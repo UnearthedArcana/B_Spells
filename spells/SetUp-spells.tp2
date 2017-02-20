@@ -1,0 +1,52 @@
+BACKUP ~spells/backup~
+AUTHOR ~Grammarsalad~
+
+VERSION ~0.85~
+
+
+ALWAYS
+	INCLUDE ~Spells/lib/alter_effect.tpa~
+
+	INCLUDE ~Spells/lib/remove_lines.tpa~
+
+	INCLUDE ~Spells/lib/spell_to_innate.tpa~
+
+	INCLUDE ~Spells/lib/spell_clone_effects.tpa~
+
+END
+//need to keep my options open
+
+// ASK_EVERY_COMPONENT
+
+/* Language Settings */
+AUTO_TRA ~Spells/tra/%s~
+LANGUAGE ~English~ ~english~ ~Spells/tra/english/setup.tra~
+
+//___________________________________________________________________________________
+
+
+BEGIN ~Spells~
+
+ACTION_IF GAME_IS ~bgee bg2ee sod eet~ THEN BEGIN   //
+
+INCLUDE ~spells/data/components/Setup_IWD_Spells.tpa~
+
+COPY ~spells/data/iwd_spells/b_IWD.itm~ ~override~   //to detect this component
+
+END
+/*
+
+INCLUDE ~spells/data/components/Setup_New_Spells.tpa~
+
+COPY ~spells/spheres/b_new.itm~ ~override~   //to detect this component
+
+INCLUDE ~spells/data/components/Setup_Revised_Spells.tpa~
+
+COPY ~spells/data/revised_spells/b_revise.itm~ ~override~   //to detect this component
+
+
+INCLUDE ~spells/data/components/setup_cantrips.tpa~
+
+COPY ~spells/data/cantrips/b_cant.itm~ ~override~   //to detect this component
+
+*/
