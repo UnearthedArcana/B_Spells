@@ -26,7 +26,7 @@ LANGUAGE ~English~ ~english~ ~Spells/tra/english/setup.tra~
 
 
 BEGIN ~Spells~
-
+//Grammar was here
 ACTION_IF GAME_IS ~bgee bg2ee sod eet~ THEN BEGIN   //
 
 INCLUDE ~spells/data/components/Setup_IWD_Spells.tpa~
