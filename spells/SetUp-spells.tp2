@@ -1,8 +1,8 @@
 BACKUP ~spells/backup~
 AUTHOR ~Grammarsalad~
 
-VERSION ~0.85.1~
-// cross-git!!
+VERSION ~0.87~
+
 
 ALWAYS
 	INCLUDE ~Spells/lib/alter_effect.tpa~
@@ -23,17 +23,19 @@ AUTO_TRA ~Spells/tra/%s~
 LANGUAGE ~English~ ~english~ ~Spells/tra/english/setup.tra~
 
 //___________________________________________________________________________________
-
-
+/*
+BEGIN @1
+DESIGNATED 101
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet~) ~BGEE or BG2EE required!~
+SUBCOMPONENT @100
+*/
 BEGIN ~Spells~
-//Grammar was here 2017-02-22
-//gs was here 2017-02-24
+
 ACTION_IF GAME_IS ~bgee bg2ee sod eet~ THEN BEGIN   //
-
-INCLUDE ~spells/data/components/Setup_IWD_Spells.tpa~
-
-COPY ~spells/data/iwd_spells/b_IWD.itm~ ~override~   //to detect this component
-
+  ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN    //If IWD spells not installed...
+   INCLUDE ~spells/data/components/Setup_IWD_Spells.tpa~
+ COPY ~spells/data/iwd_spells/b_IWD.itm~ ~override~   //to detect this component
+END
 END
 /*
 
