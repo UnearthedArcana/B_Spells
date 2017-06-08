@@ -19,56 +19,83 @@
 //SR Cause wounds spells summon a magic item that does the damage.  Account for this
 //Make compatible with sphere (if installed after them)
 
-//
+// START FROM THE BEGINNING.  USE REPLACE_TEXTUALLY WITH TRA
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //___________________________________________________________Cure minor wounds__________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
-COPY_EXISTING ~b_po010.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @101000002
-	SAY DESC @101000002
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 17            //
-                  parameter1 = 1
-  END      //
+ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN   //If Cure Minor Wounds is installed
+COPY_EXISTING ~b_po010.spl~ ~override~      //description
+ SPRINT old @101000004//old text
+ SPRINT new @101000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //Change to 10% +1 HP
+  LPF ALTER_EFFECT INT_VAR match_opcode = 17  parameter1 = 1 END
   LPF CLONE_EFFECT INT_VAR match_opcode = 17 parameter1 = 10 parameter2 = 2 END
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po010.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @101000004
-	SAY DESC @101000004
-END
 END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//___________________________________________________________inflict minor wounds_______________________________________________________________________//
+//___________________________________________________________cause/inflict minor wounds_______________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
 COPY_EXISTING ~b_po050.spl~ ~override~
-        SAY NAME1 @105000005
-        SAY NAME2 @105000005
-        SAY UNIDENTIFIED_DESC @105000003
-	SAY DESC @105000003
-  LPF DELETE_EFFECT INT_VAR match_opcode= 12 END//
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 12 parameter1 = 2 parameter2 = 4194304 savingthrow = 0 STR_VAR resource = EVAL ~ ~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 12 parameter1 = 1 savingthrow = 4 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 12 parameter1 = 1 parameter2 = 4194304 savingthrow = 0 STR_VAR resource = EVAL ~ ~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 12 parameter1 = 5 parameter2 = 4194307 savingthrow = 0 STR_VAR resource = EVAL ~ ~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 12 parameter1 = 5 parameter2 = 4194307 savingthrow = 4 STR_VAR resource = EVAL ~ ~  END
+ SPRINT old @105000003//old text
+ SPRINT new @105000004//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (set damage to % of target's hp)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 1 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 match_savingthrow = 0 parameter1 = 5 parameter2 = 4194307 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 match_savingthrow = 1 parameter1 = 5 parameter2 = 4194307 savingthrow = 4 END
+END
+
+//Continue from here
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________________Infravision_______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Only install if cantrips is installed
+ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
+COPY ~spells/data/cantrips/divine/b_po060.spl~ ~override~
+        SAY NAME1 @106000000
+        SAY NAME2 @106000000
+        SAY UNIDENTIFIED_DESC @106000001
+	SAY DESC @106000001
+//spheres
 ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po050.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @105000004
-	SAY DESC @105000004
-END
+COPY_EXISTING ~b_po060.spl~ ~override~
+ SPRINT old @106000002//old text
+ SPRINT new @106000003//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
 
-
+END
 
 
 

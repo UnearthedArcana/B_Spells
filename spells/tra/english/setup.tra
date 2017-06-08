@@ -1,158 +1,7 @@
 @1 = ~IWDEE Spells~
-//ARCANE SPELLS
-@2040000 = ~Snilloc's Snowball Swarm~
-@2040001 = ~Snilloc's Snowball Swarm
-(Evocation)
-
-Level: 2
-Range: Visual range of the caster
-Duration: Instant
-Casting Time: 2
-Area of Effect: 30-ft. radius
-Saving Throw: 1/2
-
-This spell causes a flurry of snowballs to erupt from a point within range. These snowballs will hit everything within the area of effect, doing 1d3 points of cold damage per level, up to a maximum of 8d3 points at level 8. Against fire-using or fire-dwelling creatures, it inflicts 1d6 points of cold damage per level, up to a maximum of 8d6 points at level 8.~
-
-
-@3270000 = ~Icelance~
-@3270001 = ~Icelance
-(Evocation)
-
-Level: 3
-Range: Visual range of the caster
-Duration: Instant
-Casting Time: 3
-Area of Effect: 1 creature
-Saving Throw: Special
-
-This spell fires a magical lance of ice at a target of the caster's choosing. It automatically hits, inflicting 5d6 points of cold damage and forcing the target to make a Save vs. Spell or be stunned for 3 rounds.~
-
-@4260000 = ~Shadow Monsters~
-
-@4260001 = ~Shadow Monsters
-(Illusion/Phantasm)
-
-Level: 4
-Range: Visual range of the caster
-Duration: 1 round/level
-Casting Time: 4
-Area of Effect: Special
-Saving Throw: None
-
-This spell shapes material from the Demiplane of Shadow into illusionary monsters. Up to six shadowy creatures can be summoned at once, but their total Hit Dice will normally not exceed the spellcaster's level.~
-
-@4270000 = ~Emotion: Courage~
-
-@4270001 = ~Emotion: Courage
-(Enchantment/Charm)
-
-Level: 4
-Range: Visual range of the caster
-Duration: 1 hour
-Casting Time: 4
-Area of Effect: 15-ft. radius
-Saving Throw: None
-
-This spell creates the emotion of courage within the area of effect. All creatures affected by the spell gain +1 to hit, +3 to their damage rolls, and +5 temporary Hit Points (which can put them above their maximum Hit Points). This spell nullifies all fear effects within the area of effect at the time of casting.~
-
-@4280000 = ~Emotion: Fear~
-
-@4280001 = ~Emotion: Fear
-(Enchantment/Charm)
-
-Level: 4
-Range: Visual range of the caster
-Duration: 5 rounds
-Casting Time: 4
-Area of Effect: 15-ft. radius
-Saving Throw: Neg.
-
-This spell creates the emotion of fear within the area of effect. All enemies who fail to save vs. Spell flee for 5 rounds.~
-
-@4290000 = ~Emotion: Hope~
-
-@4290001 = ~Emotion: Hope
-(Enchantment/Charm)
-
-Level: 4
-Range: Visual range of the caster
-Duration: 1 hour
-Casting Time: 4
-Area of Effect: 15-ft. radius
-Saving Throw: None
-
-This spell creates the emotion of hope within the area of effect. All creatures affected by the spell gain a morale boost and +2 on their Saving Throws, attack rolls, and damage rolls.~
-
-@4310000 = ~Shout~
-
-@4310001 = ~Shout
-(Invocation)
-
-Level: 4
-Range: 0
-Duration: Instant
-Casting Time: 1
-Area of Effect: 35-ft. cone with 15-deg. arc
-Saving Throw: Special
-
-Shout grants the wizard tremendous vocal powers, allowing <PRO_HIMHER> to emit an earsplitting roar from <PRO_HISHER> mouth in a cone-shaped area of effect. Any creature within this area is deafened for 9 rounds and suffers 4d6 points of magic damage. A successful Save vs. Spell negates the deafness and reduces the damage by half.~
-
-@4320000 = ~Vitriolic Sphere~
-
-@4320001 = ~Vitriolic Sphere
-(Conjuration)
-
-Level: 4
-Range: Visual range of the caster
-Duration: Special
-Casting Time: 4
-Area of Effect: 9-ft. radius
-Saving Throw: Special
-
-This spell conjures a sphere of glowing emerald acid that the caster can direct to strike any target within range. When it reaches its target, the sphere explodes and drenches the victim in potent acid. The victim suffers 1d4 points of acid damage per caster level, to a maximum of 12d4 points of damage. After the initial damage, the victim must save vs. Spell to avoid more damage. If unsuccessful, the victim continues to suffer acid damage in the following rounds, sustaining two less dice of damage each round. For example, an 8th-level wizard inflicts 8d4 damage with this spell on the first round, 6d4 on the second round, 4d4 on the third round, 2d4 on the fourth round, and the spell ends on the fifth round. Each round after the first, the victim is entitled to a Save vs. Spell to avoid further damage.
-
-The vitriolic sphere also splashes acid in a 9-ft. radius around the primary target. Any creatures within the splash radius must save vs. Petrification/Polymorph or suffer a splash hit that inflicts 1d4 points of damage per every five levels of the caster. Splash hits do not cause continuing damage.~
-
-@6290000 = ~Shades~
-@6290001 = ~Shades
-(Illusion/Phantasm)
-
-Level: 6
-Range: Visual range of the caster
-Duration: 1 round/level
-Casting Time: 6
-Area of Effect: Special
-Saving Throw: None
-
-Shades is similar to Shadow Monsters and Demi-Shadow Monsters—it allows the caster to shape material from the Demiplane of Shadow into illusionary creatures. These shadows are tougher than the shadows summoned by Shadow Monsters and Demi-Shadow Monsters, and they will obey the caster until the spell expires or they are slain.~
-
-@6310000 = ~Soul Eater~
-@6310001 = ~Soul Eater
-(Necromancy)
-
-Level: 6
-Range: Visual range of the caster
-Duration: Instant
-Casting Time: 5
-Area of Effect: 14-ft. radius
-Saving Throw: None
-
-This spell deals 3d8 magic damage to all living creatures within a 14-ft. radius. Any creatures that die as a result of this damage are obliterated, and their essence is transformed into a 3-Hit-Dice skeleton under control of the caster. Also, for each creature that dies in this manner, the caster receives a +1 bonus to Strength, Dexterity, and Constitution for 1 turn. Soul Eater has no effect on undead, constructs, and elemental creatures.~
-
-@7240000 = ~Acid Storm~
-
-@7240001 = ~Acid Storm
-(Evocation)
-
-Level: 7
-Range: Visual range of the caster
-Duration: 1 round/level
-Casting Time: 7
-Area of Effect: 24-ft. radius
-Saving Throw: 1/2
-
-This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damage—the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloud—if successful, they only take half damage (for that round only).~
-
+@10 = ~Scroll~
+@11 = ~Level: 1~
+@12 = ~Level: Orison~
 //DIVINE SPELLS
 @50101 = ~Cure Light Wounds
 (Necromancy)
@@ -236,34 +85,21 @@ When casting this spell, the priest must picture the faces of his fellow party m
 
 @50107 = ~Mass Cure~
 
-
 @50301 = ~Pacify the Dead~
 
 @50302 = ~Pacify the Dead
 (Alteration)
 
 Level: 2
-Sphere: Death
+Sphere: Necromantic
 Range: Visual range of the caster
 Duration: 1 turn
 Casting Time: 3
-Area of Effect: one creature
+Area of Effect: one undead creature
 Saving Throw: None.
 
-Upon casting this spell, the priest causes one undead within range to be slowed to be slowed.  This effect negates Haste, but does not otherwise affect magically sped-up or slowed creatures. Slowed creatures suffer -4 penalties to attack and Armor Class. To make matters worse, creatures save at -4 against this spell.~
+Upon casting this spell, the priest causes one undead within range to be slowed.  This effect negates Haste, but does not otherwise affect magically sped-up or slowed creatures. Slowed creatures suffer -4 penalties to attack and Armor Class. To make matters worse, the creature suffers an additional -2 to AC~
 
-@50303 = ~Pacify the Dead (focus)
-(Alteration)
-
-Level: 1
-Sphere: Death
-Range: Visual range of the caster
-Duration: 1 turn
-Casting Time: 3
-Area of Effect: one creature
-Saving Throw: None.
-
-Upon casting this spell, the priest causes one undead within range to be slowed to be slowed.  This effect negates Haste, but does not otherwise affect magically sped-up or slowed creatures. Slowed creatures suffer -4 penalties to attack and Armor Class. To make matters worse, creatures save at -4 against this spell.~
 
 @50304 = ~Eyes of the Dead~
 
@@ -271,19 +107,7 @@ Upon casting this spell, the priest causes one undead within range to be slowed 
 (Necromancy)
 
 Level: 1
-Sphere: Death
-Range: Touch
-Duration: 1 Turn
-Casting Time: 6
-Area of Effect: The caster
-
-When the caster completes this spell and touches an allied undead ally, <PRO_HESHE> gains the ability to see through that creature's eyes allowing <PRO_HIMHER> to see everything that it sees.  Additionally, <PRO_HESHE> has greater influence over the creature, making it attack more effectively, granting it a +4 bonus to attack rolls.~
-
-@50306 = ~Eyes of the Dead (focus)
-(Necromancy)
-
-Level: 1
-Sphere: Death
+Sphere: Necromantic
 Range: Touch
 Duration: 1 Turn
 Casting Time: 6
@@ -296,7 +120,7 @@ When the caster completes this spell and touches an allied undead ally, <PRO_HES
 (Necromancy)
 
 Level: 1
-Sphere: Death
+Sphere: Necromantic
 Range: Visual range of the caster
 Casting Time: 3
 Area of Effect: One Undead Creature
@@ -304,29 +128,17 @@ Saving Throw: None
 
 This spell disrupts the negative energy that sustains a target undead creature.  Any undead targeted by this spell suffers 2d6+2 points of magic damage, +2 points of damage per two levels to a maximum of 2d6+10 at 9th level.~
 
-@50309 = ~Disrupt Undead (focus)
-(Necromancy)
-
-Level: 1
-Sphere: Death
-Range: Visual range of the caster
-Casting Time: 3
-Area of Effect: One Undead Creature
-Saving Throw: None
-
-This spell disrupts the negative energy that sustains a target undead creature.  Any undead targeted by this spell suffers 2d6+2 points of magic damage, +2 points of damage per two levels to a maximum of 2d6+10 at 9th level.~
-
-@50401  = ~Holy Smite~
-@50402  = ~Holy Smite
+@50401  = ~Hand of Carnage~
+@50402  = ~Hand of Carnage
 (Conjuration)
 
 Level: 1
-Sphere: Destruction
+Sphere: Combat
 Range: Self
 Duration: 1 round/level (max 5)
 Casting Time: 1
 Saving Throw: None
-This spell imbues the caster with pure destructive energy against the caster's enemies. Melee attacks inflict an additional 2d6 points of magic damage for 1 round per level (max 5 rounds at level 5).~
+This spell imbues the caster with pure force that <PRO_HESHE> can use against <PRO_HISHER> enemies. <PRO_HISHER> melee attacks inflict an additional 2d6 points of crushing damage for 1 round per level (max 5 rounds).~
 
 @50405  = ~Shout~
 @50406  = ~Shout
@@ -373,7 +185,7 @@ Shout grants the priest tremendous vocal powers, allowing <PRO_HIMHER> to emit a
 @50409  = ~Shatter
 (Transmutation)
 Level: 2
-Sphere: Destruction
+Sphere: Combat
 Range: 25'
 Duration: Instant
 Casting Time: 9
@@ -384,27 +196,12 @@ When the priest cast's this spell, <PRO_HESHE> creates a vibrating pulse that in
 
 When cast on a door or locked container, it undermines the integrity of the object destroying all but the most sturdy or magically protected locks. Against constructs such as golems, and elementals it does double damage, and they cannot save to avoid its effects.~
 
-@50410  = ~Shatter (Focus)
-(Transmutation)
-Level: 1
-Sphere: Destruction
-Range: 25'
-Duration: Instant
-Casting Time: 9
-Area of Effect: One Creature
-Saving Throw: Polymorph 1/2
-
-When the priest cast's this spell, <PRO_HESHE> creates a vibrating pulse that increases in intensity in a nearby creature or object that is especially destructive against inorganic, solid constructs like doors and golems. The first round, a living or undead creature takes 2d6 crushing damage unless they save vs. polymorph (in which case, they take half damage and the spell ends). Every round that they do not save, they suffer the amount of damage that they received in the last round, plus an additional 2d6 points of damage for a maximum of 4 rounds. Any round that they do save, they suffer 1/2 damage and the spell ends.  The spell ends after 3 rounds.
-
-When cast on a door or locked container, it undermines the integrity of the object destroying all but the most sturdy or magically protected locks. Against constructs such as golems, it does double damage, and they cannot save to avoid its effects.~
-
-
 @50800  = ~Forbiddance~
 @50801  = ~Forbiddance
 (Enchantment/Charm)
 
 Level: 2
-Sphere: Thought
+Sphere: Charm
 Range: Visual range of the caster
 Duration: 2 round
 Casting Time: 1
@@ -412,20 +209,6 @@ Area of Effect: 1 creature
 Saving Throw: Special
 
 This spell enables the priest to forbid another creature to move, by commanding them to "stop".  A creature so commanded will stop in it's tracks, and will be unable to move if they do not make a successful save vs. spells. At the end of the second round, the creature regains the use of it's legs, and can move normally.~
-
-@50802  = ~Forbiddance (Focus)
-(Enchantment/Charm)
-
-Level: 1
-Sphere: Thought
-Range: Visual range of the caster
-Duration: 2 round
-Casting Time: 1
-Area of Effect: 1 creature
-Saving Throw: Special
-
-This spell enables the priest to forbid another creature to move, by commanding them to "stop".  A creature so commanded will stop in it's tracks, and will be unable to move if they do not make a successful save vs. spells. At the end of the second round, the creature regains the use of it's legs, and can move normally.~
-
 
 @50803 = ~Murderous Command~
 
@@ -485,18 +268,6 @@ When the caster completes this spell, and designates one opponent within sight, 
 @51101 = ~Animal Eyes~
 
 @51102 = ~Animal Eyes
-(Divination)
-
-Level: 1
-Sphere: Animal
-Range: Touch
-Duration: 1 Turn
-Casting Time: 6
-Area of Effect: The caster
-
-When the caster completes this spell and touches an allied animal, <PRO_HESHE> gains the ability to see through that animal's eyes allowing <PRO_HIMHER> to see everything that that animal sees.  Additionally, <PRO_HESHE> has greater influence over the creature, urging it to be more aggressive in its attacks, granting it a +1 critical threat rolls.~
-
-@51103 = ~Animal Eyes (focus)
 (Divination)
 
 Level: 1
@@ -659,25 +430,13 @@ Weight: 0~
 (Alteration)
 
 Level: 3
-Sphere: Elemental (Earth)
+Sphere: Elemental Earth
 Range: Self
 Duration: 1 Turn
 Casting Time: 3
 Area of Effect: The caster
 
-When the caster completes this spell, <PRO_HISHER> hands become blocks of stone.  <PRO_HESHE> can make melee attacks with these hands inflicting 2d8 points of damage plus strength.  In addition, <PRO_HESHE> is infused with the power of the earth, and <PRO_HISHER> strenght is increased by 2 for the duration of the spell.~
-
-@51503 = ~Stone Fist (Focus)
-(Alteration)
-
-Level: 2
-Sphere: Elemental (Earth)
-Range: Self
-Duration: 1 Turn
-Casting Time: 3
-Area of Effect: The caster
-
-When the caster completes this spell, <PRO_HISHER> hands become blocks of stone.  <PRO_HESHE> can make melee attacks with these hands inflicting 2d8 points of damage plus strength.  In addition, <PRO_HESHE> is infused with the power of the earth, and <PRO_HISHER> strenght is increased by 4 for the duration of the spell.~
+When the caster completes this spell, <PRO_HISHER> hands become blocks of stone.  <PRO_HESHE> can make melee attacks with these hands inflicting 2d8 points of damage plus strength.  In addition, <PRO_HESHE> is infused with the power of the earth, and <PRO_HISHER> strength is increased by 2 for the duration of the spell.~
 
 @51504 = ~Stone Fist
 
@@ -687,6 +446,7 @@ Damage: 2d8 (blunt)
 Speed Factor: 0
 Special:
 +2 to Strength~
+
 
 @51601 = ~Stormwall~
 
@@ -784,20 +544,9 @@ Area of Effect: The caster
 Saving Throw: None
 
 With this spell, the caster causes a swirling sword-shaped formation of jagged ice shards to spring forth from <PRO_HISHER> hand. This blade-like ray is wielded as if proficient. If the caster successfully hits with the ice blade in melee combat, the creature struck suffers 1d8 points of cold damage, +1 point per level (to a maximum of 1d8+10). The blade is considered to be of +1 enchantment when determining what it can hit.~
-@51706 = ~Ice Blade (Focus)
-(Evocation)
 
-Level: 1
-Sphere: Elemental Water
-Range: 0
-Duration: 2 Turns
-Casting Time: 4
-Area of Effect: The caster
-Saving Throw: None
 
-With this spell, the caster causes a swirling sword-shaped formation of jagged ice shards to spring forth from <PRO_HISHER> hand. This blade-like ray is wielded as if proficient. If the caster successfully hits with the ice blade in melee combat, the creature struck suffers 1d8 points of cold damage, +1 point per level (to a maximum of 1d8+10). The blade is considered to be of +1 enchantment when determining what it can hit.~
 @51707 = ~Frost Fingers~
-
 @51708 = ~Frost Fingers
 (Invocation)
 
@@ -809,22 +558,7 @@ Casting Time: 1
 Area of Effect: The caster
 Saving Throw: none
 
-When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHER> fingertips. The priest's hands must be held so as to send forth a fanlike sheet of frost: <PRO_HISHER> thumbs must touch each other and the fingers must be spread. The spell sends out frost jets of 5 ft. length in a horizontal arc of about 120 degrees in front of the caster. Any creature in the area receives 1d6 points of cold damage, plus 1d6 per two levels to a maximum of 5d6 damage.
-~
-
-
-@51709 = ~Frost Fingers (Focus)
-(Invocation)
-
-Level: 1
-Sphere: Elemental Water
-Range: 0
-Duration: Instant
-Casting Time: 1
-Area of Effect: The caster
-Saving Throw: none
-
-When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHER> fingertips. The priest's hands must be held so as to send forth a fanlike sheet of frost: <PRO_HISHER> thumbs must touch each other and the fingers must be spread. The spell sends out frost jets of 5 ft. length in a horizontal arc of about 120 degrees in front of the caster. Any creature in the area recieves 1d6 points ot cold damage, plus 1d6 per two levels to a maximum of 5d6 damage.~
+When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHER> fingertips. The priest's hands must be held so as to send forth a fanlike sheet of frost: <PRO_HISHER> thumbs must touch each other and the fingers must be spread. The spell sends out frost jets of 5 ft. length in a horizontal arc of about 120 degrees in front of the caster. Any creature in the area receives 1d6 points of cold damage, plus 1d6 per two levels to a maximum of 5d6 damage.~
 
 @51710 = ~Ice Blade
 
@@ -927,6 +661,160 @@ Saving Throw: None
 
 This spell shrouds the recipient in darkness, protecting <PRO_HIMHER> from both attacks and spells.  They gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.  Additionally, if the recipeient can hide in shadows, they gain a +15% bonus to that ability.~
 
+//ARCANE SPELLS
+@2040000 = ~Snilloc's Snowball Swarm~
+@2040001 = ~Snilloc's Snowball Swarm
+(Evocation)
+
+Level: 2
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 2
+Area of Effect: 30-ft. radius
+Saving Throw: 1/2
+
+This spell causes a flurry of snowballs to erupt from a point within range. These snowballs will hit everything within the area of effect, doing 1d3 points of cold damage per level, up to a maximum of 8d3 points at level 8. Against fire-using or fire-dwelling creatures, it inflicts 1d6 points of cold damage per level, up to a maximum of 8d6 points at level 8.~
+
+@3270000 = ~Icelance~
+@3270001 = ~Icelance
+(Evocation)
+
+Level: 3
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell fires a magical lance of ice at a target of the caster's choosing. It automatically hits, inflicting 5d6 points of cold damage and forcing the target to make a Save vs. Spell or be stunned for 3 rounds.~
+
+@4260000 = ~Shadow Monsters~
+
+@4260001 = ~Shadow Monsters
+(Illusion/Phantasm)
+
+Level: 4
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: None
+
+This spell shapes material from the Demiplane of Shadow into illusionary monsters. Up to six shadowy creatures can be summoned at once, but their total Hit Dice will normally not exceed the spellcaster's level.~
+
+@4270000 = ~Emotion: Courage~
+
+@4270001 = ~Emotion: Courage
+(Enchantment/Charm)
+
+Level: 4
+Range: Visual range of the caster
+Duration: 1 hour
+Casting Time: 4
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+This spell creates the emotion of courage within the area of effect. All creatures affected by the spell gain +1 to hit, +3 to their damage rolls, and +5 temporary Hit Points (which can put them above their maximum Hit Points). This spell nullifies all fear effects within the area of effect at the time of casting.~
+
+@4280000 = ~Emotion: Fear~
+
+@4280001 = ~Emotion: Fear
+(Enchantment/Charm)
+
+Level: 4
+Range: Visual range of the caster
+Duration: 5 rounds
+Casting Time: 4
+Area of Effect: 15-ft. radius
+Saving Throw: Neg.
+
+This spell creates the emotion of fear within the area of effect. All enemies who fail to save vs. Spell flee for 5 rounds.~
+
+@4290000 = ~Emotion: Hope~
+
+@4290001 = ~Emotion: Hope
+(Enchantment/Charm)
+
+Level: 4
+Range: Visual range of the caster
+Duration: 1 hour
+Casting Time: 4
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+This spell creates the emotion of hope within the area of effect. All creatures affected by the spell gain a morale boost and +2 on their Saving Throws, attack rolls, and damage rolls.~
+
+@4310000 = ~Shout~
+@4310001 = ~Shout
+(Invocation)
+
+Level: 4
+Range: 0
+Duration: Instant
+Casting Time: 1
+Area of Effect: 35-ft. cone with 15-deg. arc
+Saving Throw: Special
+
+Shout grants the wizard tremendous vocal powers, allowing <PRO_HIMHER> to emit an earsplitting roar from <PRO_HISHER> mouth in a cone-shaped area of effect. Any creature within this area is deafened for 9 rounds and suffers 4d6 points of magic damage. A successful Save vs. Spell negates the deafness and reduces the damage by half.~
+
+
+@4320000 = ~Vitriolic Sphere~
+
+@4320001 = ~Vitriolic Sphere
+(Conjuration)
+
+Level: 4
+Range: Visual range of the caster
+Duration: Special
+Casting Time: 4
+Area of Effect: 9-ft. radius
+Saving Throw: Special
+
+This spell conjures a sphere of glowing emerald acid that the caster can direct to strike any target within range. When it reaches its target, the sphere explodes and drenches the victim in potent acid. The victim suffers 1d4 points of acid damage per caster level, to a maximum of 12d4 points of damage. After the initial damage, the victim must save vs. Spell to avoid more damage. If unsuccessful, the victim continues to suffer acid damage in the following rounds, sustaining two less dice of damage each round. For example, an 8th-level wizard inflicts 8d4 damage with this spell on the first round, 6d4 on the second round, 4d4 on the third round, 2d4 on the fourth round, and the spell ends on the fifth round. Each round after the first, the victim is entitled to a Save vs. Spell to avoid further damage.
+
+The vitriolic sphere also splashes acid in a 9-ft. radius around the primary target. Any creatures within the splash radius must save vs. Petrification/Polymorph or suffer a splash hit that inflicts 1d4 points of damage per every five levels of the caster. Splash hits do not cause continuing damage.~
+
+@6290000 = ~Shades~
+@6290001 = ~Shades
+(Illusion/Phantasm)
+
+Level: 6
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 6
+Area of Effect: Special
+Saving Throw: None
+
+Shades is similar to Shadow Monsters and Demi-Shadow Monsters—it allows the caster to shape material from the Demiplane of Shadow into illusionary creatures. These shadows are tougher than the shadows summoned by Shadow Monsters and Demi-Shadow Monsters, and they will obey the caster until the spell expires or they are slain.~
+
+@6310000 = ~Soul Eater~
+@6310001 = ~Soul Eater
+(Necromancy)
+
+Level: 6
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 5
+Area of Effect: 14-ft. radius
+Saving Throw: None
+
+This spell deals 3d8 magic damage to all living creatures within a 14-ft. radius. Any creatures that die as a result of this damage are obliterated, and their essence is transformed into a 3-Hit-Dice skeleton under control of the caster. Also, for each creature that dies in this manner, the caster receives a +1 bonus to Strength, Dexterity, and Constitution for 1 turn. Soul Eater has no effect on undead, constructs, and elemental creatures.~
+
+@7240000 = ~Acid Storm~
+
+@7240001 = ~Acid Storm
+(Evocation)
+
+Level: 7
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 7
+Area of Effect: 24-ft. radius
+Saving Throw: 1/2
+
+This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damage—the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloud—if successful, they only take half damage (for that round only).~
+
+//REVISED SPELLS
 @10100000 = ~Remove Fatigue~
 @10100001 = ~Remove Fatigue
 (Necromancy)
@@ -1724,6 +1612,8 @@ Saving Throw: Neg.
 
 This powerful spell causes the organs of the touched creature to cease functioning and wither away unless a Save vs. Death at a penalty of -4 is made. The creature affected will lose 3 Hit Points per second. The effect lasts for 1 round per 2 levels of the caster or until dispelled. For example, a 14th-level priest would cause the targeted creature to lose 18 Hit Points per round for 7 rounds. This spell has no effect on undead, constructs, or extraplanar creatures.~
 
+//CANTRIPS: ZERO LEVEL PRIEST
+
 @101000000 = ~Cure Minor Wounds~
 
 @101000001 = ~Cure Minor Wounds
@@ -1741,58 +1631,14 @@ By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest c
 
 Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.
 
-This spell will only affect a given creature once per 8 hours.~
+A given creature can only be affected by Cure Minor Wounds once per 8 hours.~
 
-@101000002 = ~Cure Minor Wounds
-(Necromancy)
+@101000002 = ~Sphere: Healing~//translate note: The text needs to be exactly identical to that portion of the description above (i.e. the line that replaces: "Sphere: Healing")
+@101000003 = ~Sphere: Life~
 
-Level: Orison
-Sphere: Healing
-Range: Touch
-Duration: Permanent
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: None
+@101000004 = ~3 points of wound or other injury damage to the creature's body to be healed.~ //translate note: The text needs to be exactly to that portion of the description above.  
+@101000005 = ~1 point, plus 10% of that creature's hit point total, of wound or other injury damage to the creature's body to be healed.~
 
-By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest causes 1 point, plus 10% of that creature's hit point total, of wound or other injury damage to the creature's body to be healed. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
-
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.
-
-A creature can only be affected by Cure Minor Wounds once per 8 hours.~
-
-@101000003 = ~Cure Minor Wounds
-(Necromancy)
-
-Level: Orison
-Sphere: Life
-Range: Touch
-Duration: Permanent
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: None
-
-By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest causes 4 points of wound or other injury damage to the creature's body to be healed. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
-
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.
-
-This spell will only affect a given creature once per 8 hours.~
-
-@101000004 = ~Cure Minor Wounds
-(Necromancy)
-
-Level: Orison
-Sphere: Healing
-Range: Touch
-Duration: Permanent
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: None
-
-By casting this spell and laying <PRO_HISHER> hand upon a creature, the priest causes 2 points, plus 10% of that creature's hit point total, of wound or other injury damage to the creature's body to be healed. This healing cannot affect creatures without corporeal bodies, nor can it cure wounds of creatures not living or of extraplanar origin.
-
-Curing is permanent only insofar as the creature does not sustain further damage; caused wounds will heal—or can be cured—just as any normal injury.
-
-A creature can only be affected by Cure Minor Wounds once per 8 hours.~
 
 
 @102000000 = ~Canticle~
@@ -1815,19 +1661,8 @@ Canticle has no effect if the priest is under the effects of bless, aid, or chan
 
 @102000004 = ~Chanting~
 
-@102000005 = ~Canticle
-(Conjuration/Summoning)
-
-Level: Orison
-Sphere: Protection
-Range: Self
-Duration: Special
-Casting Time: 9
-Saving Throw: None
-
-Upon casting this spell, the priest chants softly under <PRO_HISHER> breath.  As long as <PRO_HESHE> continues to chant, <PRO_HESHE> recieves a +1 to AC.  However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead.
-
-Canticle has no effect if the priest is under the effects of bless, aid, chant, or prayer spell, and if <PRO_HESHE> is affected by one of these spells while under the effects of this Orison, Canticle is immediately dispelled.~
+@102000005 = ~bless, aid, or chant spell~
+@102000006 = ~bless, aid, chant, or prayer spell~
 
 @103000000 = ~Malediction~
 @103000001 = ~Malediction
@@ -1847,56 +1682,11 @@ Malediction does not stack with doom, and a creature under the effects of a bles
 
 A creature can only be affected by Malediction once per 8 hours.~
 
-@103000002 = ~Malediction
-(Alteration)
+@103000002 = ~Sphere: Charm~
+@103000003 = ~Sphere: Dread~
 
-Level: Orison
-Sphere: Charm
-Range: 25 ft.
-Duration: 3 rounds
-Casting Time: 9
-Area of Effect: 1 creature
-Saving Throw: None
-
-This spell causes a feeling of doom to overwhelm the target. For the duration of the spell, the target receives a -1 penalty to all <PRO_HISHER> THAC0 rolls. There is no Saving Throw for this Orison.
-
-Malediction does not stack with doom or curse, and a creature under the effects of a bless, aid, prayer or chant spell is immune.
-
-A creature can only be affected by Malediction once per 8 hours.~
-
-@103000003 = ~Malediction
-(Alteration)
-
-Level: Orison
-Sphere: Dread
-Range: 25 ft.
-Duration: 3 rounds
-Casting Time: 9
-Area of Effect: 1 creature
-Saving Throw: None
-
-This spell causes a feeling of doom to overwhelm the target. For the duration of the spell, the target receives a -1 penalty to all <PRO_HISHER> THAC0 rolls. There is no Saving Throw for this Orison.
-
-Malediction does not stack with doom, and a creature under the effects of a bless, aid, or chant spell is immune.
-
-A creature can only be affected by Malediction once per 8 hours.~
-
-@103000004 = ~Malediction
-(Alteration)
-
-Level: Orison
-Sphere: Dread
-Range: 25 ft.
-Duration: 3 rounds
-Casting Time: 9
-Area of Effect: 1 creature
-Saving Throw: None
-
-This spell causes a feeling of doom to overwhelm the target. For the duration of the spell, the target receives a -1 penalty to all <PRO_HISHER> THAC0 rolls. There is no Saving Throw for this Orison.
-
-Malediction does not stack with doom or curse, and a creature under the effects of a bless, aid, prayer or chant spell is immune.
-
-A creature can only be affected by Malediction once per 8 hours.~
+@103000004 = ~does not stack with doom, and a creature under the effects of a bless, aid, or chant spell is immune.~
+@103000005 = ~does not stack with doom or curse, and a creature under the effects of a bless, aid, prayer or chant spell is immune.~
 
 @104000000 = ~Meditation~
 @104000001 = ~Meditation
@@ -1915,47 +1705,12 @@ Meditation has no effect if the priest is under the effects of bless, aid, or ch
 
 @104000002 = ~Meditating~
 
-@104000003 = ~Meditation
-(Conjuration/Summoning)
+@104000003 = ~Sphere: Charm~
+@104000004 = ~Sphere: Thought~
 
-Level: Orison
-Sphere: Charm
-Range: Self
-Duration: Special
-Casting Time: 9
-Saving Throw: None
+@104000005 = ~bless, aid, or chant spell~
+@104000006 = ~bless, aid, prayer or chant spell~
 
-Upon casting this spell, the priest places <PRO_HISHER>self under a meditative trance.  As long as <PRO_HESHE> continues to meditate, <PRO_HESHE> recieves a +1 bonus to all saves.  However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead.
-
-Meditation has no effect if the priest is under the effects of bless, aid, prayer or chant spell, and if <PRO_HESHE> is affected by one of these spells while under the effects of this Orison, Canticle is immediately dispelled.~
-
-@104000004 = ~Meditation
-(Conjuration/Summoning)
-
-Level: Orison
-Sphere: Thought
-Range: Self
-Duration: Special
-Casting Time: 9
-Saving Throw: None
-
-Upon casting this spell, the priest places <PRO_HISHER>self under a meditative trance.  As long as <PRO_HESHE> continues to meditate, <PRO_HESHE> recieves a +1 bonus to all saves.  However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead.
-
-Meditation has no effect if the priest is under the effects of bless, aid, or chant spell, and if <PRO_HESHE> is affected by one of these spells while under the effects of this Orison, Canticle is immediately dispelled.~
-
-@104000005 = ~Meditation
-(Conjuration/Summoning)
-
-Level: Orison
-Sphere: Thought
-Range: Self
-Duration: Special
-Casting Time: 9
-Saving Throw: None
-
-Upon casting this spell, the priest places <PRO_HISHER>self under a meditative trance.  As long as <PRO_HESHE> continues to meditate, <PRO_HESHE> recieves a +1 bonus to all saves.  However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead.
-
-Meditation has no effect if the priest is under the effects of bless, aid, prayer or chant spell, and if <PRO_HESHE> is affected by one of these spells while under the effects of this Orison, Canticle is immediately dispelled.~
 
 @105000000 = ~Cause Minor Wounds~
 @105000001 = ~Cause Minor Wounds
@@ -1971,52 +1726,13 @@ Saving Throw: 1/2
 
 By casting this spell and touching a creature, the priest deals 4 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. 
 
-A given creature can only be affected by Cause Light Wounds once per 8 hours.~
+A given creature can only be affected by Cause Minor Wounds once per 8 hours.~
 
-@105000002 = ~Cause Minor Wounds
-(Necromancy)
+@105000002 = ~Sphere: Death~
 
-Level: Orison
-Sphere: Death
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
+@105000003 = ~deals 4 points of damage (save vs. Spell for half) to the creature's body~
+@105000004 = ~deals 2 plus 10% of the targets maximum hit point total points of damage (save vs. Death for half) to the creature's body~
 
-By casting this spell and touching a creature, the priest deals 4 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. 
-
-A given creature can only be affected by Cause Light Wounds once per 8 hours.~
-
-@105000003 = ~Inflict Minor Wounds
-(Necromancy)
-
-Level: Orison
-Sphere: Healing
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 2 plus 10% of the targets maximum hit point total points of damage (save vs. Death for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures.
-
-A given creature can only be affected by Cause Light Wounds once per 8 hours.~
-
-@105000004 = ~Inflict Minor Wounds
-(Necromancy)
-
-Level: Orison
-Sphere: Death
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 2 plus 10% of the targets maximum hit point total points of damage (save vs. Death for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures.
-
-A given creature can only be affected by Cause Light Wounds once per 8 hours.~
 @105000005 = ~Inflict Minor Wounds~
 
 @106000000 = ~Infravision~
@@ -2024,7 +1740,7 @@ A given creature can only be affected by Cause Light Wounds once per 8 hours.~
 (Divination)
 
 Level: Orison
-Sphere: Knowledge
+Sphere: Divination
 Range: Touch
 Duration: 8 hours
 Casting Time: 1
@@ -2032,6 +1748,9 @@ Area of Effect: 1 creature
 Saving Throw: None
 
 The recipient of this spell gains the ability to see with infravision, just as an elf or dwarf can.~
+
+@106000002 = ~Sphere: Divination~
+@106000003 = ~Sphere: Knowledge~
 
 @107000000 = ~Hold Animal~
 @107000001 = ~Hold Animal

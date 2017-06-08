@@ -1,6 +1,7 @@
 //Priest Orisons b_po###  (010, 020,...990) 010 = @@101000000; 020 = @@102000000...990 = @199000000
 
-
+//At least two options regarding relatively 'useless' spells.  
+//Infravision, Hold ANimal, Magic Stone, Goodberry Converted to cantrips, or only converted to cantrips if B_REVISE Is installed (sometimes if SR installed)...
 
 ////////////////////////////////////////////////////////////////
 /////////////////   Cantrips and Orisons    ////////////////////
@@ -8,6 +9,7 @@
 
 //NOTE: Add compatibility with sphere system
 //compatibility: Entropy shield, if present, should protect vs all, or almost all, cantrip projectiles.  
+////CHECK Malediction et alIWDEE   (WILL NEED TO COME BACK TO THIS ONCE SR CAN BE INSTALLED ON IWDEE...
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +40,7 @@
 
 
 
-//Ceremony:  A dialog cantrip that allows the priest to do a number of things.  All cost gold
+//Ceremony:  A dialog cantrip that allows the priest to do a number of things.  All cost gold, or something...
 //Ceremony: Bless Water          To add    Implementation: Dialog: costs gold, creates a vial of water that damages undead
 //
 //Ceremony: Consecrate ground    To add    All enemies in area recieve a -1 penalty to saves.  Cannot be used while enemies present (good for sleeping)
@@ -57,7 +59,7 @@
 
 //Benediction                    To add    Similar to canticle/meditation.  Gives priest bonus to THAC0
 
-//Animal Companion (druid)      To add     animal versions of familliar like spell
+//Animal Companion (druid)      To add     animal versions of familiar like spell
 
 //Detect Creature               To add     As track
 
@@ -81,6 +83,69 @@
 
 //Reprieve                      To add  Decent, but temporary bonus to hit points if below 10% (cast on condition)
 
+/*    COde for adding to priest clabs.  Adds 'cure minor wounds' to all priest spells.
+Will need to set up an array for cleric vs paladin vs. ranger vs. druid cantrips, and then a different one for fnp spheres dependin on sphere membership
+These will need to be added to compatibility code.  
+*/
+
+/*
+COPY_EXISTING ~CLABPR01.2da~ ~override~ //Base cleric
+              ~CLABPA01.2da~ ~override~ //Base paladin
+              ~CLABDR01.2da~ ~override~ //Base Druid
+              ~CLABRN01.2da~ ~override~ //Base Ranger
+              APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+
+//add to clab
+//thanks subtledoctor!
+COPY_EXISTING ~kitlist.2da~ ~override~
+	COUNT_2DA_ROWS ~9~ "rows"
+	FOR ( index = 2 ; index < rows ; index = index + 1 ) BEGIN
+		READ_2DA_ENTRY %index% 5 9 modclab
+		READ_2DA_ENTRY %index% 8 9 modclass
+		DEFINE_ASSOCIATIVE_ARRAY d5_base_spell_array BEGIN "%modclab%" => "%modclass%" END
+	END
+BUT_ONLY
+
+
+ACTION_PHP_EACH d5_base_spell_array AS bo => zo BEGIN
+	ACTION_IF (%zo% = 2) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
+		COPY_EXISTING ~%bo%.2da~ ~override~
+			LPM remove_blank_lines
+			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+	END
+	ACTION_IF (%zo% = 3) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
+		COPY_EXISTING ~%bo%.2da~ ~override~
+			LPM remove_blank_lines
+			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+	END
+	ACTION_IF (%zo% = 6) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
+		COPY_EXISTING ~%bo%.2da~ ~override~
+			LPM remove_blank_lines
+			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+	END
+	ACTION_IF (%zo% = 11) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
+		COPY_EXISTING ~%bo%.2da~ ~override~
+			LPM remove_blank_lines
+			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+	END
+	ACTION_IF (%zo% = 12) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
+		COPY_EXISTING ~%bo%.2da~ ~override~
+			LPM remove_blank_lines
+			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+	END
+	ACTION_IF (%zo% = 21) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
+		COPY_EXISTING ~%bo%.2da~ ~override~
+			LPM remove_blank_lines
+			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+	END
+END
+*/
+
+//CONTINUE FROM HERE Create arrays based on fnp, tnb, and vanilla (for both addition and immunities)
+
+//cleric innates
+COPY ~spells/data/cantrips/divine/b_prc01.spl~ ~override/b_pr01.spl~ //will need to add all cantrips to this and
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //________________________________________________________________Cure Minor Wounds_________________________________________________________________//
@@ -97,30 +162,47 @@ COPY ~spells/data/cantrips/divine/b_po010.spl~ ~override~
         SAY NAME2 @101000000
         SAY UNIDENTIFIED_DESC @101000001
 	SAY DESC @101000001
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
+
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN   //If FnP is installed (change sphere from healing to life)
+
 COPY_EXISTING ~b_po010.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @101000003
-	SAY DESC @101000003
-END
+SPRINT old @101000002//old sphere (healing)
+SPRINT new @101000003//new sphere (life)
+ READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~
+        END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+ END
+
+ //Add to life sphere level 1 (i.e. by setting the variable)
+COPY_EXISTING ~d5plif1.spl~ ~override~
+		LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode=171 opcode = 309 timing = 9 parameter1 = 1 parameter2 = 0 STR_VAR resource = EVAL ~b_life~ END // add to life sphere
+COPY_EXISTING ~d5flif1.spl~ ~override~
+		LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode=171 opcode = 309 timing = 9 parameter1 = 1 parameter2 = 0 STR_VAR resource = EVAL ~b_life~ END // add to life sphere
+END //end copatibility w/fnp
+
 //Compatibility with Revised Spells
 ACTION_IF FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN
-COPY_EXISTING ~b_po010.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @101000002
-	SAY DESC @101000002
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 17            //
-                  parameter1 = 1
-  END      //
+COPY_EXISTING ~b_po010.spl~ ~override~      //description
+ SPRINT old @101000004//old text
+ SPRINT new @101000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //Change to 10% +1 HP
+  LPF ALTER_EFFECT INT_VAR match_opcode = 17  parameter1 = 1 END
   LPF CLONE_EFFECT INT_VAR match_opcode = 17 parameter1 = 10 parameter2 = 2 END
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po010.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @101000004
-	SAY DESC @101000004
 END
-END
-//spheres
 
-//Change to 10% +1 HP
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -169,6 +251,7 @@ END
 //prayer (IWD, IWDIFICATION, MY IWD SPELLS)
 //my iWD
 ACTION_IF FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN
+ACTION_IF NOT MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_PRAYER~
   RET spell_res
@@ -177,8 +260,17 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
 COPY_EXISTING ~b_po020.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @102000005
-	SAY DESC @102000005
+ SPRINT old @102000005//old text
+ SPRINT new @102000006//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds prayer immunity)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
 END
 //IWDIFICATION
 ACTION_IF MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN
@@ -190,8 +282,16 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
 COPY_EXISTING ~b_po020.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @102000005
-	SAY DESC @102000005
+ SPRINT old @102000005//old text
+ SPRINT new @102000006//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds prayer immunity)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
 //IWDEE
 ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
@@ -199,9 +299,17 @@ COPY_EXISTING ~SPPR316.spl~ ~override~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
 COPY_EXISTING ~b_po020.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @102000005
-	SAY DESC @102000005
-END
+ SPRINT old @102000005//old text
+ SPRINT new @102000006//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds prayer immunity)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END //End IWDEE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -239,10 +347,19 @@ LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 =
 COPY_EXISTING ~sppr113.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR match_opcode = 141 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
   LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
+
 ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po030.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @103000003
-	SAY DESC @103000003
+COPY_EXISTING ~b_po030.spl~ ~override~    //change sphere from charm to dread
+ SPRINT old @103000002//old text
+ SPRINT new @103000003//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (sphere from charm to dread)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
 
 //Compatibility
@@ -265,56 +382,79 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_CURSE~
   RET spell_res
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po030.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @103000004
-	SAY DESC @103000004
-END
-
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END     //FIrst (hopefully only) clone of 321, so...okay.  May have compatibility issues with other mods
   LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
+
 COPY_EXISTING ~b_po030.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @103000002
-	SAY DESC @103000002
+ SPRINT old @103000004//old text
+ SPRINT new @103000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
+
 //IWDIFICATION
 ACTION_IF MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN
 LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_PRAYER~
+  STR_VAR spell_name = ~CLERIC_PRAYER~  //CHECK SR!!!
   RET spell_res
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po030~ END
 LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_CURSE~
+  STR_VAR spell_name = ~CLERIC_CURSE~   //CHECK SR!!!
   RET spell_res
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END      
-  
+  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR match_resource= ~CDBLESS~ resource = EVAL ~b_po030~ END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 324 target = 2 timing = 0 parameter1 = 0 parameter2 = 0 duration = 36  STR_VAR match_resource= ~CDBLESS~ resource = EVAL ~b_po030~ END
+
 COPY_EXISTING ~b_po030.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @103000002
-	SAY DESC @103000002
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po030.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @103000004
-	SAY DESC @103000004
+ SPRINT old @103000004//old text
+ SPRINT new @103000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
-END
-//IWDEE
+//IWDEE   (WILL NEED TO COME BACK TO THIS ONCE SR CAN BE INSTALLED ON IWDEE...
 ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
 COPY_EXISTING ~SPPR316.spl~ ~override~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po030~ END
 
-//DO IWD CURSE!
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CURSE~
+  RET spell_res
+END
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END      
+
 COPY_EXISTING ~b_po020.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @102000005
-	SAY DESC @102000005
+ SPRINT old @103000004//old text
+ SPRINT new @103000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
 //Spell Revisions (Break Enchantment removes Malediction)
 ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
@@ -361,8 +501,16 @@ LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 =
 //spheres
 ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
 COPY_EXISTING ~b_po040.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @104000004
-	SAY DESC @104000004
+ SPRINT old @104000003//old text
+ SPRINT new @104000004//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
 
 //check for FnP Tempus chant
@@ -383,14 +531,16 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
     LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po040~ END
 COPY_EXISTING ~b_po040.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @104000003
-	SAY DESC @104000003
-//spheres
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po040.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @104000005
-	SAY DESC @104000005
-END
+ SPRINT old @104000005//old text
+ SPRINT new @104000006//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
 //IWDIFICATION
 ACTION_IF MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN
@@ -399,33 +549,38 @@ LAF RES_NUM_OF_SPELL_NAME
   RET spell_res
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po040~ END
 COPY_EXISTING ~b_po040.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @104000003
-	SAY DESC @104000003
-//spheres
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po040.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @104000005
-	SAY DESC @104000005
-END
+ SPRINT old @104000005//old text
+ SPRINT new @104000006//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
 //IWDEE
 ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
 COPY_EXISTING ~SPPR316.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
+    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po040~ END
 COPY_EXISTING ~b_po040.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @104000003
-	SAY DESC @104000003
-//spheres
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po040.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @104000005
-	SAY DESC @104000005
+ SPRINT old @104000005//old text
+ SPRINT new @104000006//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
-END
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -436,8 +591,8 @@ END
 //                                          My Revised: yes
 //                                          Spheres: looks like it
 //                                          others?
-//ADD SPHERE SYSTEM COMPATIBILITY: SPHERE: Death  d5_spheres.d5
-//STANDARD VERSION
+//ADD SPHERE SYSTEM COMPATIBILITY: SPHERE: Death: Done.   d5_spheres.d5
+//Change spell name
 //Animation
 COPY ~spells/data/cantrips/divine/CLDAMAH.bam~ ~override~
 //Sound
@@ -455,32 +610,56 @@ COPY ~spells/data/cantrips/divine/b_po050.spl~ ~override~
  LPF ALTER_EFFECT
       INT_VAR match_opcode = 324            //
       STR_VAR resource = EVAL ~b_po050~
-  END      //
+  END 
 
 //Compatibility: sphere system Description: death sphere
 ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
 COPY_EXISTING ~b_po050.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @105000002
-	SAY DESC @105000002
+ SPRINT old @101000002//old text healing sphere from cure minor wounds
+ SPRINT new @105000002//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
-//Compatibility: altered cure/inflict spells
+
+//Compatibility: Altered spells
 ACTION_IF FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN
+COPY_EXISTING ~b_po050.spl~ ~override~
+ SPRINT old @105000003//old text
+ SPRINT new @105000004//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (set damage to % of target's hp)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 1 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 match_savingthrow = 0 parameter1 = 5 parameter2 = 4194307 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 match_savingthrow = 1 parameter1 = 5 parameter2 = 4194307 savingthrow = 4 END
+END
+
+//sr change to sr nomenclature
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
 COPY_EXISTING ~b_po050.spl~ ~override~
         SAY NAME1 @105000005
         SAY NAME2 @105000005
-        SAY UNIDENTIFIED_DESC @105000003
-	SAY DESC @101000003
-  LPF DELETE_EFFECT INT_VAR match_opcode= 12 END//
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 12 parameter1 = 2 parameter2 = 4194304 savingthrow = 0 STR_VAR resource = EVAL ~ ~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 12 parameter1 = 1 savingthrow = 4 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 12 parameter1 = 1 parameter2 = 4194304 savingthrow = 0 STR_VAR resource = EVAL ~ ~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 12 parameter1 = 5 parameter2 = 4194307 savingthrow = 0 STR_VAR resource = EVAL ~ ~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 12 parameter1 = 5 parameter2 = 4194307 savingthrow = 4 STR_VAR resource = EVAL ~ ~  END
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po050.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @105000004
-	SAY DESC @105000004
-END
+ SPRINT old @105000000//old text
+ SPRINT new @105000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (cause to inflict)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
 END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -496,12 +675,33 @@ END
 //                                          spheres: Not needed
 //                                          SR: (wiz version will need it) SR may use icons...
 //                                          Other: Not needed
+//Only install if some replacement for infravision has been installed
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvimhere.mrk~) OR (FILE_EXISTS_IN_GAME ~B_REVISE.ITM~) BEGIN   //any version of sr or my revision 
+
 COPY ~spells/data/cantrips/divine/b_po060.spl~ ~override~
         SAY NAME1 @106000000
         SAY NAME2 @106000000
         SAY UNIDENTIFIED_DESC @106000001
 	SAY DESC @106000001
-//Will remove/alter 1st level wiz spell with the mage cantrip version (and/or spell altrations)
+//spheres
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
+COPY_EXISTING ~b_po060.spl~ ~override~
+ SPRINT old @106000002//old text
+ SPRINT new @106000003//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+END
+//END SR OR B_REVISE ONLY
+
+
+ //CONTINUE FROM HERE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -517,23 +717,17 @@ COPY ~spells/data/cantrips/divine/b_po060.spl~ ~override~
 //                                          SR: Double check v3 improves hold animal (almost certainly does, but...)
 //                                          SR: any unique spells dispell hold besides Remove Paralysis?
 //                                          Other: no need as far as I can tell
+//Not installed if B_REVISE not installed
+ACTION_IF FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN
+
 COPY ~spells/data/cantrips/divine/b_po070.spl~ ~override~
         SAY NAME1 @107000000
         SAY NAME2 @107000000
         SAY UNIDENTIFIED_DESC @107000001
 	SAY DESC @107000001
 
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN   //If Altered hold beast is in game, don't make 3rd level spell unavailable to priests
-//not installed if SR is installed                                              NEED TO CHECK V3!
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
-COPY ~spells/data/cantrips/divine/SPPR305.spl~ ~override~ //unmemorizable spell
 END
-END
-//not installed if SRv4 is installed (with or without my revision)               NEED TO CHECK V3!
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
-COPY ~spells/data/cantrips/divine/SPPR305.spl~ ~override~ //unmemorizable spell
-END
-
+//END B_REVISE ONLY
 
 /* TO BE ADDED
 COPY ~clchng/Arcane/Cantrip/Spells/b_wc101.spl~ ~override~
@@ -663,8 +857,8 @@ COPY ~clchng/Arcane/Cantrip/Spl/b_csel1.spl~ ~override~
 
 COPY ~clchng/Arcane/Cantrip/Spl/b_can00.2da~ ~override~
 
-COMPILE ~clchng/Arcane/Cantrip/Baf/b_csel1.baf~ ~override~
-COMPILE ~clchng/Arcane/Cantrip/dlg/b_csel1.d~ ~override~
+COMPILE ~clchng/Arcane/Cantrip/Baf/b_csel1.baf~ 
+COMPILE ~clchng/Arcane/Cantrip/dlg/b_csel1.d~ 
 
 COPY ~clchng/Arcane/Cantrip/cre/b_csel1.cre~ ~override~
 //end to be added

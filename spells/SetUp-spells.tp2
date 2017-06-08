@@ -31,11 +31,27 @@ SUBCOMPONENT @100
 */
 BEGIN ~Spells~
 
-ACTION_IF GAME_IS ~bgee bg2ee sod eet~ THEN BEGIN   //
-  ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN    //If IWD spells not installed...
-   INCLUDE ~spells/data/components/Setup_IWD_Spells.tpa~
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+//IWDEE SPells
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+ACTION_IF (GAME_IS ~bgee bg2ee sod eet~) AND (NOT FILE_EXISTS_IN_GAME ~b_wizi.itm~) BEGIN   //
+//   INCLUDE ~spells/data/components/Setup_IWD_Wiz.tpa~     //This will be the full IWDEE Arcane spell install...
+ COPY ~spells/data/iwd_spells/b_wizi.itm~ ~override~   //to detect this component
+ ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN    //If IWD spells not installed...
+   INCLUDE ~spells/data/components/Setup_IWD_Spells.tpa~ //Divine spells
  COPY ~spells/data/iwd_spells/b_IWD.itm~ ~override~   //to detect this component
+ END
 END
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+//New SPells
+//////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+  ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_new.itm~ BEGIN    //If Newspells not installed...
+   INCLUDE ~spells/data/components/Setup_New_Spells.tpa~
+ COPY ~spells/spheres/b_new.itm~ ~override~   //to detect this component
 END
 /*
 

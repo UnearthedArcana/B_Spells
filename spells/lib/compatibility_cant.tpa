@@ -1,0 +1,11 @@
+//This is where I will put comatibility code for Cantrips
+
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => sanct
+
+END
+
+// This code is copied from Mike1072's armor_list.tpa file. 
+// WeiDU is now on my hate list as well - Yaro, 7/26
