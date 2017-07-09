@@ -1,0 +1,444 @@
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+////////////////////////            //////////////////////////
+////////////////////////  Special   //////////////////////////
+////////////////////////            //////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////  Entropy Shield   //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+//first things first.  We don't know if Entropy shield will be added.  Check for that.
+ACTION_IF (FILE_EXISTS_IN_GAME ~b_prez.itm~) OR (GAME_IS ~iwdee~) BEGIN   //detects entropy installed- look for other versions (IWDIFICATION???) YUP.  Also, it has different text for text changes...
+
+//Entropy immunity SR neutral
+INCLUDE ~spells/lib/entropy_immunity.tpa~
+
+END//end protect if entropy shield installed
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////  Free action      //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+
+//: Just in case
+COPY_EXISTING ~SPPR403.spl~ ~override~
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_free_action_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_entangle_arrays END    //I've added at least one entry so far (changed to 318)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_slow_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_special_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_web_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_grease_arrays END
+//ring of free action
+ACTION_IF FILE_EXISTS_IN_GAME ~CIGBARD.itm~ BEGIN   //
+ COPY_EXISTING ~CIGBARD.itm~ ~override~
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_free_action_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_entangle_arrays END    //I've added at least one entry so far (changed to 318)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_slow_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_special_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_web_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_grease_arrays END
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~FREEACT.itm~ BEGIN   //
+ COPY_EXISTING ~FREEACT.itm~ ~override~
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_free_action_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_entangle_arrays END    //I've added at least one entry so far (changed to 318)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_slow_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_special_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_web_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_grease_arrays END
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~RING09.itm~ BEGIN   //
+ COPY_EXISTING ~RING09.itm~ ~override~
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_free_action_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_entangle_arrays END    //I've added at least one entry so far (changed to 318)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_slow_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_special_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_web_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_grease_arrays END
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~FREERING.itm~ BEGIN   //
+ COPY_EXISTING ~FREERING.itm~ ~override~
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_free_action_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_entangle_arrays END    //I've added at least one entry so far (changed to 318)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_slow_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_special_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_web_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_grease_arrays END
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~FREERING.itm~ BEGIN   //
+ COPY_EXISTING ~FREERING.itm~ ~override~
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_free_action_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_entangle_arrays END    //I've added at least one entry so far (changed to 318)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_slow_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_special_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_web_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_grease_arrays END
+END
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////      Curse        //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//Remove curse stuff, removes canticle (special-is bless like, but what removes curse removes canticle), maladiction (Special), meditation (special),
+//DO CD_effect_batches for cantrips IN ADDITION TO THIS! Gives special that must be conditionally removed while core spell readded
+//ALSO certain spells protect against bless/curese like cantrips
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => curse
+
+END
+*/
+//Prayer is a special case.  Remove boni: #PRAYERB.SPL
+
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////      Bless        //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//remove bless stuff (bless, Exaltation?, Recitation,  canticle (special), maladiction Special), )
+//DO CD_effect_batches for cantrips IN ADDITION TO THIS! Gives special that must be conditionally removed while core spell readded
+//ALSO certain spells protect against bless/curese like cantrips
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => bless
+
+END
+*/
+//Prayer is a special case.  Remove boni: #PRAYERG.SPL
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////      Disease      //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//remove disease stuff (cause disease, mold touch, wither?, )
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => disease
+
+END
+*/
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////   Fire Spells     //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//remove fire stuff (Flame Blade, Shroud of Flame, and salamander auras are extinguished by Cloudburst.)
+//SHould smashing wave remove them?  Cantrip drench?
+//Cloud burst should prevent Produce Fire and possibly other fire spells, from working
+//Include produce fire,
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => fire
+
+END
+*/
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////   Elect Spells    //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//? Static charge, lightning bolt, chain lightning, 
+//what spells?  May not apply
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => elect
+
+END
+*/
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////   Blood Rage      //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//SPELLS BLOOD RAGE REMOVES/PROTECTS FROM
+//
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => blood
+
+END
+*/
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////     Clouds        //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//REMOVE CLOUDS (e.g. SR wind gust, zone of sweet air, Whirlwind)
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => cloud
+
+END
+*/
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////       PAIN        //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//REMOVES PAIN.  NOTE THAT BLOOD RAGE DOES IT THE 'other way'.
+//SHOULD ADD THAT LOVIATAR ABILITY TO THIS LIST
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => pain
+
+END
+*/
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////  HOPELESSNESS     //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//REMOVE HOPELESSNESS EFFECTS (BLOOD RAGE AND Imp. SANCTITY OF MIND DO IT THE 'other way'
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => hopeless
+
+END
+*/
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////      RAGE         //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//EFFECTS THAT REMOVE OR PREVENT 'RAGE like effects'.  
+//Blood rage and animal rage are accounted for sanctity etc, but maybe do it this way instead
+//Blood Rage, animal rage, 
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => rage
+
+END
+*/
+
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////      DEATH        //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//protect vs. death Destruction, Energy drain with SR
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => death
+
+END
+*/
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////      DRAIN        //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//protect vs. drain like NPP.  Death with SR    MAYBE ADD THOSE DRAIN SPELLS TO THIS
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => drain
+
+END
+*/
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////     COMMAND       //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//command type spells break enchantment sr (others?)
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => command
+
+END
+*/
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////      WIZ EYE      //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//Wiz eye, eyes of dead, animal eyes spells must preclude each other
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => eye    //Not actually created yet
+
+END
+*/
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////      STONE        //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//1st lev. protective shell not stack with stoneskin
+/*
+ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+
+~%spell_res%~ => stone    //Not actually created yet
+
+END
+*/
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+///////////////////////// SLEEP/Unconscious //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//DRowse cantrip (w/sleep)
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////     CANTRIPS      //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//Start with spells we know 
+//bless
+COPY_EXISTING ~SPPR101.spl~ ~override~   //bless
+  LPF cd_apply_batch STR_VAR array_name = b_bless_cantrip_arrays END //Remove cantrips
+//doom
+COPY_EXISTING ~SPPR113.spl~ ~override~   //doom
+  LPF cd_apply_batch STR_VAR array_name = b_bless_cantrip_arrays END //Remove cantrips
+//aid
+COPY_EXISTING ~SPPR201.spl~ ~override~   //aid
+  LPF cd_apply_batch STR_VAR array_name = b_bless_cantrip_arrays END //Remove cantrips
+//chant
+COPY_EXISTING ~SPPR203D.spl~ ~override~   //chant
+  LPF cd_apply_batch STR_VAR array_name = b_bless_cantrip_arrays END //Remove cantrips
+COPY_EXISTING ~SPPR203E.spl~ ~override~   //chant
+  LPF cd_apply_batch STR_VAR array_name = b_bless_cantrip_arrays END //Remove cantrips
+//Compatibility, but spells we know about beforehand
+//prayer
+ACTION_IF FILE_EXISTS_IN_GAME ~#PRAYERB.spl~ BEGIN
+ COPY_EXISTING ~#PRAYERB.spl~ ~override~   //chant
+  LPF cd_apply_batch STR_VAR array_name = b_bless_cantrip_arrays END //Remove cantrips
+ COPY_EXISTING ~#PRAYERG.spl~ ~override~   //chant
+  LPF cd_apply_batch STR_VAR array_name = b_bless_cantrip_arrays END //Remove cantrips
+//prayer text in cantrip spells
+ACTION_IF FILE_EXISTS_IN_GAME ~b_po020.spl~ BEGIN //if canticle in game
+ COPY_EXISTING ~b_po020.spl~ ~override~   //canticle
+  SPRINT old @102000005//old text
+  SPRINT new @102000006//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds prayer immunity)
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+ END //end if canticle in game
+//Malediction (do if exists in game for all cantrip files JUST in Case...
+ACTION_IF FILE_EXISTS_IN_GAME ~b_po030.spl~ BEGIN //if Malediction in game
+COPY_EXISTING ~b_po030.spl~ ~override~
+ SPRINT old @103000004//old text
+ SPRINT new @103000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+END//End if Malediction in game
+
+//Meditation (do if exists in game for all cantrip files JUST in Case...
+ACTION_IF FILE_EXISTS_IN_GAME ~b_po040.spl~ BEGIN //if Meditation in game
+COPY_EXISTING ~b_po040.spl~ ~override~
+ SPRINT old @104000005//old text
+ SPRINT new @104000006//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+END//End if Meditation in game
+
+END //end if prayer installed
+//Curse
+ACTION_IF ((MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~) OR (FILE_EXISTS_IN_GAME ~b_IWD.itm~)) OR (GAME_IS ~iwdee~) BEGIN
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CURSE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF cd_apply_batch STR_VAR array_name = b_bless_cantrip_arrays END //Remove cantrips
+//prayer text in cantrip spells
+//canticle
+ACTION_IF FILE_EXISTS_IN_GAME ~b_po020.spl~ BEGIN      //if canticle in game
+ COPY_EXISTING ~b_po020.spl~ ~override~ //canticle (curse)
+  SPRINT old @102000007//old text
+  SPRINT new @102000008//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds prayer immunity)
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+ END //end if canticle in game
+
+//Malediction (do if exists in game for all cantrip files JUST in Case...
+ACTION_IF FILE_EXISTS_IN_GAME ~b_po030.spl~ BEGIN //if Malediction in game
+COPY_EXISTING ~b_po030.spl~ ~override~
+ SPRINT old @103000006//old text
+ SPRINT new @103000007//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+END//End if Malediction in game
+//Meditation (do if exists in game for all cantrip files JUST in Case...
+ACTION_IF FILE_EXISTS_IN_GAME ~b_po040.spl~ BEGIN //if Meditation in game
+COPY_EXISTING ~b_po040.spl~ ~override~
+ SPRINT old @104000007//old text
+ SPRINT new @104000008//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+END//End if Meditation in game
+END //end if curse installed

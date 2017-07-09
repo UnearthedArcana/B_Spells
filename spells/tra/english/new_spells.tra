@@ -1,0 +1,275 @@
+//DIVINE SPELLS
+@50301 = ~Pacify the Dead~
+
+@50302 = ~Pacify the Dead
+(Alteration)
+
+Level: 2
+Sphere: Necromantic
+Range: Visual range of the caster
+Duration: 1 turn
+Casting Time: 3
+Area of Effect: one undead creature
+Saving Throw: None.
+
+Upon casting this spell, the priest causes one undead within range to be slowed.  This effect negates Haste, but does not otherwise affect magically sped-up or slowed creatures. Slowed creatures suffer -4 penalties to attack and Armor Class. To make matters worse, the creature suffers an additional -2 to AC~
+
+@50304 = ~Eyes of the Dead~
+
+@50305 = ~Eyes of the Dead
+(Necromancy)
+
+Level: 1
+Sphere: Necromantic
+Range: Touch
+Duration: 1 Turn
+Casting Time: 6
+Area of Effect: The caster
+
+When the caster completes this spell and touches an allied undead ally, <PRO_HESHE> gains the ability to see through that creature's eyes allowing <PRO_HIMHER> to see everything that it sees.  Additionally, <PRO_HESHE> has greater influence over the creature, making it attack more effectively, granting it a +4 bonus to attack rolls.~
+
+@50307 = ~Disrupt Undead~
+@50308 = ~Disrupt Undead
+(Necromancy)
+
+Level: 1
+Sphere: Necromantic
+Range: Visual range of the caster
+Casting Time: 3
+Area of Effect: One Undead Creature
+Saving Throw: None
+
+This spell disrupts the negative energy that sustains a target undead creature.  Any undead targeted by this spell suffers 2d6+2 points of magic damage, +2 points of damage per two levels to a maximum of 2d6+10 at 9th level.~
+
+@50401  = ~Hand of Carnage~
+@50402  = ~Hand of Carnage
+(Conjuration)
+
+Level: 1
+Sphere: Combat
+Range: Self
+Duration: 1 round/level (max 5)
+Casting Time: 1
+Saving Throw: None
+This spell imbues the caster with pure force that <PRO_HESHE> can use against <PRO_HISHER> enemies. <PRO_HISHER> melee attacks inflict an additional 2d6 points of crushing damage for 1 round per level (max 5 rounds).~
+
+@50408  = ~Shatter~
+
+@50409  = ~Shatter
+(Transmutation)
+
+Level: 2
+Sphere: Combat
+Range: 25'
+Duration: Instant
+Casting Time: 9
+Area of Effect: One Creature
+Saving Throw: Polymorph 1/2
+
+When the priest cast's this spell, <PRO_HESHE> creates a vibrating pulse that increases in intensity in a nearby creature or object that is especially destructive against inorganic, solid constructs like doors and golems. The first round, a living or undead creature takes 2d6 crushing damage unless they save vs. polymorph (in which case, they take half damage and the spell ends). Every round that they do not save, they suffer the amount of damage that they received in the last round, plus an additional 2d6 points of damage for a maximum of 4 rounds. Any round that they do save, they suffer 1/2 damage and the spell ends.  The spell ends after 3 rounds.
+
+When cast on a door or locked container, it undermines the integrity of the object destroying all but the most sturdy or magically protected locks. Against constructs such as golems, and elementals it does double damage, and they cannot save to avoid its effects.~
+
+@50800  = ~Forbiddance~
+@50801  = ~Forbiddance
+(Enchantment/Charm)
+
+Level: 2
+Sphere: Charm
+Range: Visual range of the caster
+Duration: 2 round
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell enables the priest to forbid another creature to move, by commanding them to "stop".  A creature so commanded will stop in it's tracks, and will be unable to move if they do not make a successful save vs. spells. At the end of the second round, the creature regains the use of it's legs, and can move normally.~
+
+@51101 = ~Animal Eyes~
+
+@51102 = ~Animal Eyes
+(Divination)
+
+Level: 1
+Sphere: Animal
+Range: Touch
+Duration: 1 Turn
+Casting Time: 6
+Area of Effect: The caster
+
+When the caster completes this spell and touches an allied animal, <PRO_HESHE> gains the ability to see through that animal's eyes allowing <PRO_HIMHER> to see everything that that animal sees.  Additionally, <PRO_HESHE> has greater influence over the creature, urging it to be more aggressive in its attacks, granting it a +1 critical threat rolls.~
+
+@51401 = ~Nature's Wrath~
+
+@51402 = ~Nature's Wrath
+(Alteration)
+
+Level: 6
+Sphere: Plant
+Range: Self
+Duration: 1 Turn
+Casting Time: 6
+Area of Effect: The caster
+
+With this spell, the priest draws on the power of nature to transform <PRO_HIMHER>self into a terrible plant-like creature known as a Shambling Mound.
+
+<PRO_HISHER> body becomes incredibly resistant to damage.  <PRO_HEHER> AC is set at 0, and <PRO_HESHE> is 50% resistant to all physical damage.  <PRO_HESHE> also becomes completely immune to fire and electricity, and only suffers half damage from cold.  Additionally, <PRO_HESHE> regenerates 6 hit points per round.
+
+Additionally, <PRO_HESHE> is infused with the raw power of nature, gaining a strength of 20, and <PRO_HESHE> can make two unarmed attacks per round inflicting 2d8 (+8 from strength) damage, and those struck must make a save vs. breath or be entangled for two rounds.
+
+These unarmed attacks count as +3 weapons.
+
+The wrath of nature will not be restrained.  The priest is protected by freedom of action while transformed.
+
+<PRO_HESHE> loses the ability to cast spells while transformed.~
+
+@51403 = ~Nature's Wrath (Focus)
+(Alteration)
+
+Level: 5
+Sphere: Plant
+Range: Self
+Duration: 1 Turn
+Casting Time: 6
+Area of Effect: The caster
+
+With this spell, the priest draws on the power of nature to transform <PRO_HIMHER>self into a terrible plant-like creature known as a Shambling Mound.
+
+<PRO_HISHER> body becomes incredibly resistant to damage.  <PRO_HEHER> AC is set at 0, and <PRO_HESHE> is 50% resistant to all physical damage.  <PRO_HESHE> also becomes completely immune to fire and electricity, and only suffers half damage from cold.  Additionally, <PRO_HESHE> regenerates 6 hit points per round.
+
+Additionally, <PRO_HESHE> is infused with the raw power of nature, gaining a strength of 20, and <PRO_HESHE> can make two unarmed attacks per round inflicting 2d8 (+8 from strength) damage, and those struck must make a save vs. breath or be entangled for two rounds.
+
+These unarmed attacks count as +3 weapons.
+
+The wrath of nature will not be restrained.  The priest is protected by freedom of action while transformed.
+
+<PRO_HESHE> loses the ability to cast spells while transformed.~
+@51707 = ~Frost Fingers~
+@51708 = ~Frost Fingers
+(Invocation)
+
+Level: 1
+Sphere: Elemental Water
+Range: 0
+Duration: Instant
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: none
+
+When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHER> fingertips. The priest's hands must be held so as to send forth a fanlike sheet of frost: <PRO_HISHER> thumbs must touch each other and the fingers must be spread. The spell sends out frost jets of 5 ft. length in a horizontal arc of about 120 degrees in front of the caster. Any creature in the area receives 1d6 points of cold damage, plus 1d6 per two levels to a maximum of 5d6 damage.~
+
+@51710 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+1 (cold)
+Speed Factor: 2~
+
+@51711 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+2 (cold)
+Speed Factor: 2~
+
+@51712 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+3 (cold)
+Speed Factor: 2~
+
+@51713 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+4 (cold)
+Speed Factor: 2~
+
+@51714 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+5 (cold)
+Speed Factor: 2~
+
+@51715 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+6 (cold)
+Speed Factor: 2~
+
+@51716 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+7 (cold)
+Speed Factor: 2~
+
+@51717 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+8 (cold)
+Speed Factor: 2~
+
+@51718 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+9 (cold)
+Speed Factor: 2~
+
+@51719 = ~Ice Blade
+
+STATISTICS:
+
+Damage: 1d8+10 (cold)
+Speed Factor: 2~
+
+
+
+@73700002 = ~Shambling Mound~
+
+
+//ARCANE SPELLS
+@60001 = ~Protective Shell~
+@60002 = ~Protective Shell
+(Abjuration)
+
+Level: 1
+Range: 0
+Casting Time: 6
+Duration: 3 turns
+Area of Effect: The caster
+Saving Throw: None
+
+This spell creates a thin magical shell that harmlessly absorbs the first physical strike that hits the caster.~
+
+@60101   = ~Anticipation~
+@60102   = ~Anticipation
+(Divination)
+
+Level: 1
+Range: 0
+Casting Time: 0
+Duration: 3 rounds
+Area of Effect: The caster
+Saving Throw: None
+
+This cantrip gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time with a +5 bonus to AC and saves vs. dragon breath for 3 rounds.~
+
+@60201 = ~Alarm~
+@60202 = ~Alarm
+(Divination)
+
+Level: 1
+Range: 30 ft.
+Duration: 8 Hours
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+
+
+Alarm creates a subtle ward on an area you select. Once the spell effect is in place, it thereafter sounds a mental or audible alarm each time a hostile creature of Tiny or larger size enters the warded area or touches it. This alarm awakens the caster and <PRO_HISHER> allies, and makes them alert to all enemies, giving them a +2 bonus to weapon and casting speed for a single round.  This spell cannot be cast in the presence of enemies, and once the ward is set, it cannot be moved.~
+

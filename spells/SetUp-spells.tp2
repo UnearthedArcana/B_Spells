@@ -1,7 +1,7 @@
 BACKUP ~spells/backup~
 AUTHOR ~Grammarsalad~
 
-VERSION ~0.87~
+VERSION ~0.88~
 
 
 ALWAYS
@@ -13,6 +13,8 @@ ALWAYS
 
 	INCLUDE ~Spells/lib/spell_clone_effects.tpa~
 
+        INCLUDE ~Spells/lib/bg2fp_effect_batches_fnp.tpa~
+
 END
 //need to keep my options open
 
@@ -20,7 +22,11 @@ END
 
 /* Language Settings */
 AUTO_TRA ~Spells/tra/%s~
-LANGUAGE ~English~ ~english~ ~Spells/tra/english/setup.tra~
+LANGUAGE ~English~ ~english~ 
+         ~Spells/tra/english/setup.tra~
+         ~Spells/tra/english/IWD_spells.tra~  //for IWDEE spells
+         ~Spells/tra/english/new_spells.tra~  //for new spells
+         ~Spells/tra/english/cantrips.tra~  //for cantrips
 
 //___________________________________________________________________________________
 /*
@@ -31,17 +37,28 @@ SUBCOMPONENT @100
 */
 BEGIN ~Spells~
 
+//component detection: b_wizo.itm detects fnp IWD wizard spells (either fron fnp or Setup_IWD_Spells)
+//component detection: b_wizi.itm detects fnp IWD wiz spells from Setup_IWD_Wiz
+//component detection: b_wizd.itm wizard spells installed (not including fnp)
+//component detection: b_wize.itm wizard spells installed (not including fnp) with entropy sheild immunities
+//component detection: b_prez.itm detects IWD priest spells  (either fron fnp or Setup_IWD_Spells)
+//component detection: b_prea.itm sunscorch has been added to protions and immunities
+
+
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 //IWDEE SPells
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
 ACTION_IF (GAME_IS ~bgee bg2ee sod eet~) AND (NOT FILE_EXISTS_IN_GAME ~b_wizi.itm~) BEGIN   //
-//   INCLUDE ~spells/data/components/Setup_IWD_Wiz.tpa~     //This will be the full IWDEE Arcane spell install...
- COPY ~spells/data/iwd_spells/b_wizi.itm~ ~override~   //to detect this component
  ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN    //If IWD spells not installed...
    INCLUDE ~spells/data/components/Setup_IWD_Spells.tpa~ //Divine spells
  COPY ~spells/data/iwd_spells/b_IWD.itm~ ~override~   //to detect this component
+   INCLUDE ~spells/data/components/Setup_IWD_Wiz.tpa~     //This will be the full IWDEE Arcane spell install...
+ COPY ~spells/data/iwd_spells/b_wizi.itm~ ~override~   //to detect this component
+//now, handle any and all immunities (ALWAYS LAST)
+INCLUDE ~spells/lib/immunities.tpa~
+
  END
 END
 //////////////////////////////////////////////////////

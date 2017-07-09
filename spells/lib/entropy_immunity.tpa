@@ -1,0 +1,232 @@
+///////////////////////////////////////////////////////////////////////////////////////////
+////////////////////                                                   ////////////////////
+////////////////////                  fnp wiz Spells                   ////////////////////
+////////////////////                                                   ////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+//create matrices  for immunity  (i.e. spell and pro)
+
+//list
+//we need a list for priest spells, and one for wiz spells, but no repeats!
+ACTION_IF (FILE_EXISTS_IN_GAME ~b_wizo.itm~) AND (NOT FILE_EXISTS_IN_GAME ~b_prea.itm~) BEGIN    // pre spells not added to entropy list
+//b_wizo detects fnp wiz spells have been installed
+//b_prea detects whether this particular protection has been added
+//so this doesn't repeat
+ COPY ~Spells/data/iwd_spells/b_wizo.itm~ ~override/b_prea.itm~   //To detect this sub component
+
+//__________________________________________Snowball Swarm___________________________________________\\
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_SNILLOCS_SNOWBALL_SWARM~
+  RET spell_res
+END
+//Sh. of Entropy immunity list
+INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+
+//alter descriptive text of e shield
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
+  RET spell_res
+END
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @61500002//old text
+ SPRINT new @61500003//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds immunity text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+
+
+//__________________________________________Icelance___________________________________________\\
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ICELANCE~
+  RET spell_res
+END
+
+//Sh. of Entropy immunity list
+INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+
+//alter descriptive text of e shield
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
+  RET spell_res
+END
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @61500002//old text
+ SPRINT new @61500004//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds immunity text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+
+//__________________________________________Alicorn Lance___________________________________________\\
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ALICORN_LANCE~
+  RET spell_res
+END
+
+//Sh. of Entropy immunity list
+INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+
+//alter descriptive text of e shield
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
+  RET spell_res
+END
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @61500002//old text
+ SPRINT new @61500005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds immunity text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+
+//__________________________________________Sunscorch___________________________________________\\
+//Special case with sr. text already added to spell
+//if NOT SR INSTALLED
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN    //If IWD spells not installed...
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_SUNSCORCH~
+  RET spell_res
+END
+
+//Sh. of Entropy immunity list
+INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+//projectile list
+
+INCLUDE ~spells/lib/pro_list_fnp.tpa~
+
+END//end if SR NOT installed
+//if sr installed
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN    //If IWD spells not installed...
+
+//projectile list
+
+INCLUDE ~spells/lib/pro_list_fnp_sr.tpa~
+END//end sr installed
+
+END
+//now, if wiz installed first...
+ACTION_IF (FILE_EXISTS_IN_GAME ~b_wizd.itm~) AND (NOT FILE_EXISTS_IN_GAME ~b_wize.itm~) BEGIN    // pre spells not added to entropy list
+//so this doesn't repeat
+ COPY ~Spells/data/iwd_spells/b_wizo.itm~ ~override/b_wize.itm~   //To detect this sub component
+
+//__________________________________________Lance of Disruption___________________________________________\\
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_LANCE_OF_DISRUPTION~
+  RET spell_res
+END
+
+//Sh. of Entropy immunity list
+ INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+
+//alter descriptive text of e shield
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
+  RET spell_res
+END
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @61500002//old text
+ SPRINT new @61500006//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds immunity text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+
+//all of this for a single spell!!!
+//protect from the projectile
+INCLUDE ~spells/lib/pro_wiz_list.tpa~
+END  //end non-fnp wiz lists
+
+
+//Now, check for IWDEE non-fnp wiz
+ACTION_IF (FILE_EXISTS_IN_GAME ~b_wizd.itm~) AND (NOT FILE_EXISTS_IN_GAME ~b_wize.itm~) BEGIN    // pre spells not added to entropy list
+//so this doesn't repeat
+ COPY ~Spells/data/iwd_spells/b_wizo.itm~ ~override/b_wize.itm~   //To detect this sub component
+
+//__________________________________________Lance of Disruption___________________________________________\\
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_LANCE_OF_DISRUPTION~
+  RET spell_res
+END
+
+//Sh. of Entropy immunity list
+ INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+
+//alter descriptive text of e shield
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
+  RET spell_res
+END
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @61500002//old text
+ SPRINT new @61500006//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds immunity text)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+
+//all of this for a single spell!!!
+//protect from the projectile
+//INCLUDE ~spells/lib/pro_wiz_list.tpa~
+END  //end non-fnp wiz lists
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~b_prea.itm~) OR (FILE_EXISTS_IN_GAME ~b_wize.itm~) BEGIN    // pre spells not added to entropy list
+//as long as one of the two sets of lists above have been created, add to entropy
+//add actual immunity
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
+  RET spell_res
+END
+
+//Immunities
+ ACTION_PHP_EACH prot AS block => rock BEGIN
+  ACTION_IF (~%rock%~ STRING_EQUAL ~entropy~) BEGIN
+     COPY_EXISTING ~%spell_res%.spl~ ~override~
+     LPF CLONE_EFFECT INT_VAR match_opcode = 325 opcode = 318 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%block%~ END //immune to spell
+  END
+ END
+ ACTION_PHP_EACH prot AS block => rock BEGIN
+   ACTION_IF (~%rock%~ STRING_EQUAL ~entropy_pro~) BEGIN
+     COPY_EXISTING ~%spell_res%.spl~ ~override~
+     LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 83 parameter2 = ~%block%~ END //immune to projectile
+  END
+END
+//If SR IS installed, sunscorch has to be specifically added (again, CHECK FOR PRO!!!)
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
+     COPY_EXISTING ~%spell_res%.spl~ ~override~
+       LPF CLONE_EFFECT INT_VAR match_opcode = 325 opcode = 318 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~sppr116~ END //sr sun scorch
+
+END//End specific sunscorch for sr
+
+END//Tot end
+
+

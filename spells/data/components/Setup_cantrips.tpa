@@ -228,88 +228,7 @@ COPY ~spells/data/cantrips/divine/b_po021.spl~ ~override~      //to remove
 	SAY DESC @102000003
 COPY ~spells/data/cantrips/divine/b_po022.eff~ ~override~
   SAY 0x1c @102000004 //Chanting
-//bless, aid, chant
-//bless
-COPY_EXISTING ~sppr101.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 130 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 130 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-//aid
-COPY_EXISTING ~sppr201.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 129 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 129 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-//Compatibility
-//chant
-COPY_EXISTING ~sppr203.spl~ ~override~
-LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
-//check for FnP Tempus chant
-ACTION_IF FILE_EXISTS_IN_GAME ~B_TEM01.spl~ BEGIN
-  COPY_EXISTING ~B_TEM01.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
-END
-//prayer (IWD, IWDIFICATION, MY IWD SPELLS)
-//my iWD
-ACTION_IF FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN
-ACTION_IF NOT MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_PRAYER~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
-COPY_EXISTING ~b_po020.spl~ ~override~
- SPRINT old @102000005//old text
- SPRINT new @102000006//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds prayer immunity)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-END
-//IWDIFICATION
-ACTION_IF MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_PRAYER~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
-COPY_EXISTING ~b_po020.spl~ ~override~
- SPRINT old @102000005//old text
- SPRINT new @102000006//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds prayer immunity)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-//IWDEE
-ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
-COPY_EXISTING ~SPPR316.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po020~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po020~ END
-COPY_EXISTING ~b_po020.spl~ ~override~
- SPRINT old @102000005//old text
- SPRINT new @102000006//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (adds prayer immunity)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END //End IWDEE
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -332,22 +251,8 @@ COPY ~spells/data/cantrips/divine/b_po031.eff~ ~override~
   SAY 0x1c @103000000 //Malediction
 //bless, aid, chant doom
 //bless
-COPY_EXISTING ~sppr101.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 130 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 130 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-//aid
-COPY_EXISTING ~sppr201.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 129 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 129 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-//chant
-COPY_EXISTING ~sppr203.spl~ ~override~
-LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po030~ END
-//doom
-COPY_EXISTING ~sppr113.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 141 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-
+//Compatibility
+//fnp
 ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
 COPY_EXISTING ~b_po030.spl~ ~override~    //change sphere from charm to dread
  SPRINT old @103000002//old text
@@ -362,100 +267,7 @@ COPY_EXISTING ~b_po030.spl~ ~override~    //change sphere from charm to dread
   END  //
 END
 
-//Compatibility
-//check for FnP Tempus chant
-ACTION_IF FILE_EXISTS_IN_GAME ~B_TEM01.spl~ BEGIN
-  COPY_EXISTING ~B_TEM01.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po030~ END
-END
-//prayer (IWD, IWDIFICATION, MY IWD SPELLS)
-//my iWD
-ACTION_IF FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_PRAYER~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po030~ END
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_CURSE~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END     //FIrst (hopefully only) clone of 321, so...okay.  May have compatibility issues with other mods
-  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-
-COPY_EXISTING ~b_po030.spl~ ~override~
- SPRINT old @103000004//old text
- SPRINT new @103000005//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-
-//IWDIFICATION
-ACTION_IF MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_PRAYER~  //CHECK SR!!!
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po030~ END
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_CURSE~   //CHECK SR!!!
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR match_resource= ~CDBLESS~ resource = EVAL ~b_po030~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 215 opcode = 324 target = 2 timing = 0 parameter1 = 0 parameter2 = 0 duration = 36  STR_VAR match_resource= ~CDBLESS~ resource = EVAL ~b_po030~ END
-
-COPY_EXISTING ~b_po030.spl~ ~override~
- SPRINT old @103000004//old text
- SPRINT new @103000005//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-//IWDEE   (WILL NEED TO COME BACK TO THIS ONCE SR CAN BE INSTALLED ON IWDEE...
-ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
-COPY_EXISTING ~SPPR316.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po030~ END
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_CURSE~
-  RET spell_res
-END
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END      
-
-COPY_EXISTING ~b_po020.spl~ ~override~
- SPRINT old @103000004//old text
- SPRINT new @103000005//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (curse and prayer in text)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
+//SR
 //Spell Revisions (Break Enchantment removes Malediction)
 ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
 COPY_EXISTING ~sppr307.spl~ ~override~
@@ -484,93 +296,12 @@ COPY ~spells/data/cantrips/divine/b_po040.spl~ ~override~
 	SAY DESC @104000001
 COPY ~spells/data/cantrips/divine/b_po031.eff~ ~override~
   SAY 0x1c @104000002 //meditating
-//bless, aid, chant
-//bless
-COPY_EXISTING ~sppr101.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 130 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 130 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
-//aid
-COPY_EXISTING ~sppr201.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 129 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 129 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
-//Compatibility
-//chant
-COPY_EXISTING ~sppr203.spl~ ~override~
-LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
-LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po040~ END
+//compatibility
 //spheres
 ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
 COPY_EXISTING ~b_po040.spl~ ~override~
  SPRINT old @104000003//old text
  SPRINT new @104000004//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-
-//check for FnP Tempus chant
-ACTION_IF FILE_EXISTS_IN_GAME ~B_TEM01.spl~ BEGIN
-  COPY_EXISTING ~B_TEM01.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po040~ END
-END
-
-//prayer (IWD, IWDIFICATION, MY IWD SPELLS)
-//my iWD
-ACTION_IF FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_PRAYER~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po040~ END
-COPY_EXISTING ~b_po040.spl~ ~override~
- SPRINT old @104000005//old text
- SPRINT new @104000006//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-//IWDIFICATION
-ACTION_IF MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_PRAYER~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po040~ END
-COPY_EXISTING ~b_po040.spl~ ~override~
- SPRINT old @104000005//old text
- SPRINT new @104000006//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-//IWDEE
-ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
-COPY_EXISTING ~SPPR316.spl~ ~override~
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 2 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po040~ END
-    LPF ADD_SPELL_EFFECT INT_VAR opcode = 324 target = 2 parameter1 = 0 parameter2 = 0 timing = 0 duration = 60 STR_VAR resource = EVAL ~b_po040~ END
-COPY_EXISTING ~b_po040.spl~ ~override~
- SPRINT old @104000005//old text
- SPRINT new @104000006//new text
   READ_LONG 0x50 "valid"
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
@@ -700,10 +431,289 @@ END
 END
 //END SR OR B_REVISE ONLY
 
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////                                  /////////////////////////////
+/////////////////////////////               Mage               /////////////////////////////
+/////////////////////////////             Cantrips             /////////////////////////////
+/////////////////////////////                                  /////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
 
- //CONTINUE FROM HERE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________Frost Ray______________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Template               Added:no           Compatiblity:                                         Double Checked: no
+//                                          IWDEE:
+//                                          IWDification:
+//                                          My IWD spells:
+//                                          my revised spells:
+//                                          spheres:
+//                                          SR:
+//                                          Other: no need as far as I can tell
+//
+//Projectile
+ADD_PROJECTILE ~Spells/data/cantrips/arcane/b_1c101.pro~   //projectile
+//VVC
+//bam
+COPY ~Spells/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
+//animations
+//3d animation
+//sounds  Check for TRA_17.wav
+//COPY ~Spells/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
+//effs
+//Spell itself
+COPY ~Spells/data/cantrips/arcane/b_wc001.spl~  ~override~
+        SAY NAME1 @108000001
+        SAY NAME2 @108000001
+        SAY UNIDENTIFIED_DESC @108000002
+	SAY DESC @108000002
+LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_1c101% END
+
+/* TO BE ADDED
+
+
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CURSE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139            //
+      parameter1 = 17426    //Cursed notification
+  END
+//compatibility
+//orisons. mal.  does not stack with it.
+ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END     //FIrst (hopefully only) clone of 321, so...okay.  May have compatibility issues with other mods
+  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
+END
+//Spell Revisions (Break Enchantment removes Curse)
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
+COPY_EXISTING ~sppr307.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
+COPY_EXISTING ~spwi410.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
+END
+//globe of invuln immunity:
+//minor globe of invuln
+COPY_EXISTING ~spwi406.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+//globe of invuln
+COPY_EXISTING ~spwi602.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWM126.spl~ BEGIN
+COPY_EXISTING ~SPWM126.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+END
+//icons
+COPY ~Spells/data/iwd_spells/priest_1/sppr112a.bam~ ~override/%spell_res%a.bam~
+COPY ~Spells/data/iwd_spells/priest_1/sppr112b.bam~ ~override/%spell_res%b.bam~
+COPY ~Spells/data/iwd_spells/priest_1/sppr112c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro237% STR_VAR icon = EVAL  ~%spell_res%B~ END
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+//Remove Curse
+INCLUDE ~spells/lib/spell_lists/curse_list.tpa~
+//end of extra frost ray to be added stuff
+*/
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________Jolt__________________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Template               Added:no           Compatiblity:                                         Double Checked: no
+//                                          IWDEE:
+//                                          IWDification:
+//                                          My IWD spells:
+//                                          my revised spells:
+//                                          spheres:
+//                                          SR:
+//                                          Other: no need as far as I can tell
+//
+//objectively better than shocking grasp.  Installed only if SR not installed.  Otherwise, shocking grasp becomes a cantrip
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
+
+
+//Projectile
+//ADD_PROJECTILE ~Spells/data/cantrips/arcane/b_1c101.pro~   //projectile
+//VVC
+//bam
+//COPY ~Spells/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
+//animations
+//3d animation
+//sounds  Check for TRA_17.wav
+//COPY ~Spells/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
+//effs
+//Spell itself
+COPY ~Spells/data/cantrips/arcane/b_wc002.spl~  ~override~
+        SAY NAME1 @109000001
+        SAY NAME2 @109000001
+        SAY UNIDENTIFIED_DESC @109000002
+	SAY DESC @109000002
+
+/* TO BE ADDED
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CURSE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139            //
+      parameter1 = 17426    //Cursed notification
+  END
+//compatibility
+//orisons. mal.  does not stack with it.
+ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END     //FIrst (hopefully only) clone of 321, so...okay.  May have compatibility issues with other mods
+  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
+END
+//Spell Revisions (Break Enchantment removes Curse)
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
+COPY_EXISTING ~sppr307.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
+COPY_EXISTING ~spwi410.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
+END
+//globe of invuln immunity:
+//minor globe of invuln
+COPY_EXISTING ~spwi406.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+//globe of invuln
+COPY_EXISTING ~spwi602.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWM126.spl~ BEGIN
+COPY_EXISTING ~SPWM126.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+END
+//icons
+COPY ~Spells/data/iwd_spells/priest_1/sppr112a.bam~ ~override/%spell_res%a.bam~
+COPY ~Spells/data/iwd_spells/priest_1/sppr112b.bam~ ~override/%spell_res%b.bam~
+COPY ~Spells/data/iwd_spells/priest_1/sppr112c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro237% STR_VAR icon = EVAL  ~%spell_res%B~ END
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+//Remove Curse
+INCLUDE ~spells/lib/spell_lists/curse_list.tpa~
+//end of extra frost ray to be added stuff
+*/
+  END ELSE BEGIN // otherwise nuke stun stuff
+//This is where we convert shocking grasp to cantrip (i.e. if SR not installed)
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________Drowse_________________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Template               Added:no           Compatiblity:                                         Double Checked: no
+//                                          IWDEE:
+//                                          IWDification:
+//                                          My IWD spells:
+//                                          my revised spells:
+//                                          spheres:
+//                                          SR:
+//                                          Other: 
+//
+//Projectile
+//ADD_PROJECTILE ~Spells/data/cantrips/arcane/b_1c101.pro~   //projectile
+//VVC
+//bam
+//COPY ~Spells/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
+//animations
+//3d animation
+//sounds  Check for TRA_17.wav
+//COPY ~Spells/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
+//effs
+//Spell itself
+COPY ~Spells/data/cantrips/arcane/D5_WIEN.spl~  ~override~
+        SAY NAME1 @109100001
+        SAY NAME2 @109100001
+        SAY UNIDENTIFIED_DESC @109100002
+	SAY DESC @109100002
+
+/* TO BE ADDED
+
+
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CURSE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139            //
+      parameter1 = 17426    //Cursed notification
+  END
+//compatibility
+//orisons. mal.  does not stack with it.
+ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END     //FIrst (hopefully only) clone of 321, so...okay.  May have compatibility issues with other mods
+  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
+END
+//Spell Revisions (Break Enchantment removes Curse)
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
+COPY_EXISTING ~sppr307.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
+COPY_EXISTING ~spwi410.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
+END
+//globe of invuln immunity:
+//minor globe of invuln
+COPY_EXISTING ~spwi406.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+//globe of invuln
+COPY_EXISTING ~spwi602.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+ACTION_IF FILE_EXISTS_IN_GAME ~SPWM126.spl~ BEGIN
+COPY_EXISTING ~SPWM126.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
+END
+//icons
+COPY ~Spells/data/iwd_spells/priest_1/sppr112a.bam~ ~override/%spell_res%a.bam~
+COPY ~Spells/data/iwd_spells/priest_1/sppr112b.bam~ ~override/%spell_res%b.bam~
+COPY ~Spells/data/iwd_spells/priest_1/sppr112c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro237% STR_VAR icon = EVAL  ~%spell_res%B~ END
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+//Remove Curse
+INCLUDE ~spells/lib/spell_lists/curse_list.tpa~
+//end of extra frost ray to be added stuff
+*/
+
+//CONTINUE FROM HERE
+/*
+
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_______________________________________________________________Hold animal____________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -729,7 +739,8 @@ COPY ~spells/data/cantrips/divine/b_po070.spl~ ~override~
 END
 //END B_REVISE ONLY
 
-/* TO BE ADDED
+
+
 COPY ~clchng/Arcane/Cantrip/Spells/b_wc101.spl~ ~override~
   SAY NAME1 @105000 // Fire Bolt
   SAY UNIDENTIFIED_DESC @105001
@@ -1333,7 +1344,6 @@ COPY_EXISTING - ~kitlist.2da~ ~override~
 		END 		
 				  
 */				  
-				  
 				  
 				  
 				  
