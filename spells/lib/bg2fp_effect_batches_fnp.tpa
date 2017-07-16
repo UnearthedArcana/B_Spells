@@ -9,7 +9,7 @@ DEFINE_PATCH_FUNCTION cd_elven_sleep_charm_resistance BEGIN
   PATCH_IF ("%sig%" STRING_COMPARE_CASE "ITM" = 0) BEGIN
     SET abil_length = 0x38
   END ELSE
-  PATCH_IF ("%sig%" STRING_COMPARE_CASE "SPL" = 0) BEGIN
+  PATCH_IF ("%sig%" STRING_COMPARE_CASE "SPL" = 0) BEGIN                                        
     SET abil_length = 0x28
   END
   PATCH_IF abil_length = 0 BEGIN
@@ -103,6 +103,7 @@ with AC and THAC0 penalties which can't be blocked via opcode without serious co
 * Timing and duration are only used for new fx writes
 * Use -1 in a field (or "same" in string fields) if the match value for that field doesn't matter.
 * Always map the effect to zero.
+*/
 
 //EXAMPLE OF FREE ACTION WITH CONDITIONALS (USE FOR BGEE VS. BG2EE VS IWDEE VS EET VS MODIFICATIONS FOR EACH...
 // free action should always be supplemented by other macros to supplement the basic immunities it adds
@@ -155,51 +156,6 @@ DEFINE_PATCH_MACRO ~cd_immunity_free_action_arrays~ BEGIN
   END
 END
 
-*/
-
-// free action should always be supplemented by other macros to supplement the basic immunities it adds
-// unlike other batches, do *not* use this one in a regexp--it'll turn a small web immunity into fullblown FA.
-DEFINE_PATCH_MACRO ~cd_immunity_free_action_arrays~ BEGIN
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    101,  "-10",  16, "same",  "-10",  "-10", "same" => 1 // immunity to haste
-    101,  "-10",  40, "same",  "-10",  "-10", "same" => 1 // immunity to slow
-    101,  "-10", 109, "same",  "-10",  "-10", "same" => 1 // immunity to paralyzation
-    101,  "-10", 126, "same",  "-10",  "-10", "last" => 1 // immunity to movement rate bonus
-    101,  "-10", 154, "same",  "-10",  "-10", "same" => 1 // immunity to entangle
-    101,  "-10", 157, "same",  "-10",  "-10", "same" => 1 // immunity to web
-    101,  "-10", 158, "same",  "-10",  "-10", "same" => 1 // immunity to grease
-    101,  "-10", 175, "same",  "-10",  "-10", "same" => 1 // immunity to hold
-  END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-     46,   "-10",  "-10",    "same",       1,      0, "same"  => 1 // unstun
-    162,   "-10",  "-10",    "same",       1,      0, "same"  => 1 // remove paralysis
-    163,   "-10",  "-10",    "same",       1,      0, "same"  => 1 // free action
-    126,     100,      2,    "same",   "-10",  "-10", "first" => 1 // set movement rate to 100%
-//    206,    "-1",  "-10", "spcl522",   "-10",  "-10", "same"  => 1 // immunity to defensive spin (no longer needed now that DS uses op 176)
-      142,   "-10",  19, "same",      "-10",  "-10", "same" => 1 // free action icon
-      240,   "-10",  13, "same",      "-10",  "-10", "same" => 1 // remove held icon
-      240,   "-10",  41, "same",      "-10",  "-10", "same" => 1 // remove slow icon
-      240,   "-10",  55, "same",      "-10",  "-10", "same" => 1 // remove stun icon
-      240,   "-10", 129, "same",      "-10",  "-10", "same" => 1 // remove web icon
-      240,   "-10", 144, "same",      "-10",  "-10", "same" => 1 // remove entangled icon
-      240,   "-10", 145, "same",      "-10",  "-10", "same" => 1 // remove grease icon
-  END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
-    101,  "-10", 185, "same",  "-10",  "-10", "same" => 1 // immunity to 'special' hold
-//    101,  "-10",  16, "same",  "-10",  "-10", "same" => 1 // immunity to haste
-//      101, "-10",    45, "same", "-10", "-10", "same" => 1 // stun immunity
-//      101, "-10",   210, "same", "-10", "-10", "same" => 1 // pw: stun immunity
-//      169, "-10",    55, "same", "-10", "-10", "same" => 1 // prevent stun icon
-//      267,  1280, "-10", "same", "-10", "-10", "same" => 1 // prevent stunned string
-//      267, 14043, "-10", "same", "-10", "-10", "same" => 1 // prevent stun string
-      267, 26019, "-10",    "same",  "-10", "-10", "same" => 1 // protection from string "hasted"  (For BGEE )
-      267, 26018, "-10",    "same",  "-10", "-10", "same" => 1 // protection from string "hasted"  (For BGEE )
-      206,   "-10",  "-10", "spin572",  "-10", "-10", "same" => 1 // protection from spell, haste
-      206,   "-10",  "-10", "spin828",  "-10", "-10", "same" => 1 // protection from spell, haste
-      206,    "-10",  "-10", "spra301",  "-10", "-10", "same" => 1 // protection from spell, haste
-      206,    "-10",  "-10", "spwi305",  "-10", "-10", "same" => 1 // protection from spell, haste
-END
-END
 
 
 // turns entangle immunity into full immunity
@@ -224,22 +180,7 @@ DEFINE_PATCH_MACRO ~cd_immunity_entangle_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // 2
 END
 
-//okay, not all desired effects have 142 display portrait icon.  This needs to change
-// SPECIAL CANTRIP REMOVAL BATCH
-DEFINE_PATCH_MACRO ~b_bless_cantrip_arrays~ BEGIN
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    142,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 // shared by bless, curse type effects
-  END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    321, "0", "0", "b_po020",  "-10", "-10", "first" => 1 // remove spell, canticle cantrip
-    324, "0", "0", "b_po020",  "-10", "-10", "last" => 1 // protect from spell, canticle cantrip
-    321, "0", "0", "b_po030",  "-10", "-10", "first" => 1 // remove spell, maladiction cantrip
-    324, "0", "0", "b_po030",  "-10", "-10", "last" => 1 // protection from spell, maladiction cantrip
-    321, "0", "0", "b_po040",  "-10", "-10", "first" => 1 // remove spell, meditation cantrip
-    324, "0", "0", "b_po040",  "-10", "-10", "last" => 1 // protection from spell, meditation cantrip
-  END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nadda
-END
+
 
 
 // turns grease immunity into full immunity
@@ -270,15 +211,46 @@ DEFINE_PATCH_MACRO ~cd_immunity_slow_arrays~ BEGIN
     206, "-1",  "-10", "spwish25", "-10", "-10", "same" => 1 // protection from spell, slow
     206, "-1",  "-10", "spwi312",  "-10", "-10", "same" => 1 // protection from spell, slow
     206, "-1",  "-10", "spin575",  "-10", "-10", "same" => 1 // protection from spell, vortex web
-    267, 14000, "-10",    "same",  "-10", "-10", "same" => 1 // protection from string "slow"
-    267, 14668, "-10",    "same",  "-10", "-10", "same" => 1 // protection from string "slowed"
+    267, 14000, "-10",    "",  "-10", "-10", "same" => 1 // protection from string "slow"  (BG2EE)   In IWDEE and BGEE...not sure if it's used  
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       169, "-10", 41, "same", "-10", "-10", "same" => 1 // prevent slow icon
     END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     267, 31772, "-10",     "",  "-10", "-10", "same" => 1 // protection from string slowed (BGEE)
+    END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet iwdee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN    
+     267, 14668, "-10",    "",  "-10", "-10", "same" => 1 // protection from string "slowed" (BG2EE/IWDEE)
+    END
+  END
+  PATCH_IF GAME_IS ~eet~ BEGIN   //just in case...
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     267, 11799, "-10",    "",  "-10", "-10", "same" => 1 // protection from string "slow" (EET)--Used?  Just in case
+    END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN   //just in case...
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     267, 37787, "-10",    "",  "-10", "-10", "same" => 1 // protection from string "slowed" (IWDEE)  Just in case
+     267, 37638, "-10",    "",  "-10", "-10", "same" => 1 // protection from string "slow" (IWDEE)  Just in case
+    END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+  END // nothing to delete...except there is...
+  PATCH_IF GAME_IS ~bg2ee eet iwdee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+     267, 31772, "-10",     "",  "-10", "-10", "same" => 1 // protection from string slowed (BGEE)
+    END
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+     267, 14668, "-10",    "",  "-10", "-10", "same" => 1 // protection from string "slowed" (BG2EE/IWDEE)
+    END
+  END
 END
 
 
@@ -290,8 +262,6 @@ DEFINE_PATCH_MACRO ~cd_immunity_confusion_arrays~ BEGIN
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
     296, "-10", "-10", "spconfus",  "-10", "-10", "same" => 1 // confusion visuals
-    267, 14782, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "confused"
-    267, 14791, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking"
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
@@ -300,7 +270,56 @@ DEFINE_PATCH_MACRO ~cd_immunity_confusion_arrays~ BEGIN
       169, "-10", 47, "same", "-10", "-10", "same" => 1 // prevent chaos icon
     END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     267, 25807, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused" (BGEE)
+     267, 26184, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (BGEE)
+    END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     267, 14782, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused"      (BG2EE)
+     267, 14791, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (BG2EE)
+    END
+  END
+  PATCH_IF GAME_IS ~eet~ BEGIN   //just in case...
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     267, 17394, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused"      (EET)
+     267, 17393, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (EET)
+    END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     267, 37604, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused" (IWDEE)
+     267, 37603, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (IWDEE)
+    END
+  END
+DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+END // nothing to delete ...except
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+     267, 37604, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused" (IWDEE)
+     267, 37603, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (IWDEE)
+     267, 14782, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused"       (BG2EE)
+     267, 14791, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (BG2EE)
+    END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+     267, 37604, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused" (IWDEE)
+     267, 37603, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (IWDEE)
+     267, 25807, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused" (BGEE)
+     267, 26184, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (BGEE)
+    END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+     267, 14782, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused" (BG2EE)
+     267, 14791, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (BG2EE)
+     267, 25807, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "confused" (BGEE)
+     267, 26184, "-10",     "",  "-10", "-10", "same" => 1 // protection from string "Rigid Thinking" (BGEE)
+    END
+  END
 END
 
 
@@ -311,11 +330,6 @@ DEFINE_PATCH_MACRO ~cd_immunity_level_drain_arrays~ BEGIN
     101,  "-10", 216, "same",  "-10",  "-10", "same" => 1 // immunity to level drain
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267, 41495, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"
-    267, 40968, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"
-    267, 40969, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"
-    267, 40979, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"
-    267, 41616, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
@@ -323,7 +337,77 @@ DEFINE_PATCH_MACRO ~cd_immunity_level_drain_arrays~ BEGIN
       142, "-10", 90, "same", "-10", "-10", "same" => 1 // display npp icon
     END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN  //
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+      267, 25802, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"   (BGEE)
+      267, 25803, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"   (BGEE)
+      267, 25804, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"  (BGEE)
+      267, 25805, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"   (BGEE)
+      267, 25806, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"   (BGEE)
+    END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+      267, 41495, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"   (BG2EE)
+      267, 40968, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"  (BG2EE)
+      267, 40969, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"  (BG2EE)
+      267, 40979, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"   (BG2EE)
+      267, 41616, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"  (BG2EE)
+    END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN  //FIND OTHER STRINGS!
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+      267, 35498, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"  (IWDEE)
+      267, 35497, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"    (IWDEE)
+      267, 35496, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"   (IWDEE)
+      267, 35472, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"   (IWDEE)
+      267, 35495, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"   (IWDEE)
+    END
+  END
+DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+END // nothing to delete ...not
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+      267, 35498, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"  (IWDEE)
+      267, 35497, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"    (IWDEE)
+      267, 35496, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"   (IWDEE)
+      267, 35472, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"   (IWDEE)
+      267, 35495, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"   (IWDEE)
+      267, 41495, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"   (BG2EE)
+      267, 40968, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"  (BG2EE)
+      267, 40969, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"  (BG2EE)
+      267, 40979, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"   (BG2EE)
+      267, 41616, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"  (BG2EE)
+    END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+      267, 35498, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"  (IWDEE)
+      267, 35497, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"    (IWDEE)
+      267, 35496, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"   (IWDEE)
+      267, 35472, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"   (IWDEE)
+      267, 35495, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"   (IWDEE)
+      267, 25802, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"   (BGEE)
+      267, 25803, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"   (BGEE)
+      267, 25804, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"  (BGEE)
+      267, 25805, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"   (BGEE)
+      267, 25806, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"   (BGEE)
+    END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+      267, 41495, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"   (BG2EE)
+      267, 40968, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"  (BG2EE)
+      267, 40969, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"  (BG2EE)
+      267, 40979, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"   (BG2EE)
+      267, 41616, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"  (BG2EE)
+      267, 25802, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "one level drained"   (BGEE)
+      267, 25803, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "two levels drained"   (BGEE)
+      267, 25804, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "three levels drained"  (BGEE)
+      267, 25805, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "four levels drained"   (BGEE)
+      267, 25806, "-10",     "same",  "-10", "-10", "same" => 1 // protection from string "five levels drained"   (BGEE)
+    END
+  END
 END
 
 // turns special-hold immunity into all-hold immunity
@@ -343,36 +427,77 @@ END
 // should run cd_immunity_hold_special_arrays before this
 DEFINE_PATCH_MACRO ~cd_immunity_hold_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    101,  "-10", 109, "same",  "-10",  "-10", "same" => 1 // immunity to paralyzation
-    101,  "-10", 175, "same",  "-10",  "-10", "same" => 1 // immunity to hold
+    101,  "-10", 109, "",  "-10",  "-10", "same" => 1 // immunity to paralyzation
+    101,  "-10", 175, "",  "-10",  "-10", "same" => 1 // immunity to hold
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267, 14102, "-10",     "same",     "-10", "-10", "same" => 1 // protection from string "held"
     296, "-10", "-10",     "spmindat", "-10", "-10", "same" => 1 // protection from animation
     296, "-10", "-10",     "spflayer", "-10", "-10", "same" => 1 // protection from animation
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-      169, "-10", 13, "same", "-10", "-10", "same" => 1 // prevent hold icon
+      169, "-10", 13, "", "-10", "-10", "same" => 1 // prevent hold icon
+    END
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 25866, "-10", "", "-10", "-10", "same"  => 1 // protection from string "held" (BGEE)
+    267, 31799, "-10", "", "-10", "-10", "same"  => 1 // protection from string "held" (BGEE)
+    267, 14650, "-10", "", "-10", "-10", "same"  => 1 // protection from string "Paralyzed" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 14102, "-10",     "",     "-10", "-10", "same" => 1 // protection from string "held" (BG2EE/IWDEE)
+   END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+  END // nothing to delete
+  PATCH_IF GAME_IS ~bg2ee eet iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 31799, "-10", "", "-10", "-10", "same"  => 1 // protection from string "held" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 14102, "-10", "", "-10", "-10", "same" => 1 // protection from string "held" (BG2EE/IWDEE)
+   END
+  END
+END
+
+
+// turns fear removal into full removal
+DEFINE_PATCH_MACRO ~cd_fear_removal_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    161, "-10", "-10", "same",  "-10",  "-10", "same" => 1 // fear removal
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN END
+  PATCH_IF FILE_EXISTS_IN_GAME ~monkfist.2da~ BEGIN // ee game
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+      23, "-10", "-10",     "same",     1,     0, "first" => 1 // reset morale
+      321, "-10", "-10", "spin105", 1, 0, "same" => 1 // remove spell effects: horror, innate (removes visuals)
+      321, "-10", "-10", "spwi205", 1, 0, "same" => 1 // remove spell effects: horror, arcane (removes visuals)
+    END
+  END
+  PATCH_IF cosmetic = 1 BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+      240, "-10", 36, "same", 1, 0, "same" => 1 // remove panic icon
     END
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
 
 
-
 // turns fear immunity into full immunity
 DEFINE_PATCH_MACRO ~cd_immunity_fear_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN // these three go last so they don't block their own extras effects
-    101,  "-10",  23, "same",  "-10",  "-10", "last" => 1 // immunity to reset morale 
+//    101,  "-10",  23, "same",  "-10",  "-10", "last" => 1 // immunity to cure horror?
     101,  "-10",  24, "same",  "-10",  "-10", "last" => 1 // immunity to horror
     101,  "-10", 106, "same",  "-10",  "-10", "last" => 1 // immunity to morale break modifier
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
      23, "-10", "-10",     "same",     1,     0, "first" => 1 // reset morale
     161, "-10", "-10",     "same",     1,     0, "same"  => 1 // remove fear
-    267, 14007, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "panic"
-    267, 17427, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "panic"
     296, "-10", "-10", "cdhorror", "-10", "-10", "same"  => 1 // protection from animation
     106, "-10",     1,     "same",     1,     0, "first" => 1 // morale break
   END
@@ -383,7 +508,49 @@ DEFINE_PATCH_MACRO ~cd_immunity_fear_arrays~ BEGIN
       142, "-10", 37, "same", "-10", "-10", "same" => 1 // display resist fear icon
     END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 25818, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"                 (BGEE)
+    267, 20568, "-10", "", "-10", "-10", "same"  => 1 // protection from string "Morale Failure: Panic" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 14007, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"   (BG2EE)
+    267, 17427, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"   (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 20568, "-10", "", "-10", "-10", "same"  => 1 // protection from string "Morale Failure: Panic"   (IWDEE)
+    267, 35484, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"   (IWDEE)
+   END
+  END
+DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 14007, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"   (BG2EE)
+    267, 17427, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"   (BG2EE)
+    267, 25818, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"                 (BGEE)
+    267, 20568, "-10", "", "-10", "-10", "same"  => 1 // protection from string "Morale Failure: Panic" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 20568, "-10", "", "-10", "-10", "same"  => 1 // protection from string "Morale Failure: Panic"   (IWDEE)
+    267, 35484, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"   (IWDEE)
+    267, 25818, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"                 (BGEE)
+    267, 20568, "-10", "", "-10", "-10", "same"  => 1 // protection from string "Morale Failure: Panic" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 20568, "-10", "", "-10", "-10", "same"  => 1 // protection from string "Morale Failure: Panic"   (IWDEE)
+    267, 35484, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"   (IWDEE)
+    267, 14007, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"   (BG2EE)
+    267, 17427, "-10", "", "-10", "-10", "same"  => 1 // protection from string "panic"   (BG2EE)
+   END
+  END
 END
 
 
@@ -394,9 +561,6 @@ DEFINE_PATCH_MACRO ~cd_immunity_charm_arrays~ BEGIN
     101,  "-10",  5, "same",  "-10",  "-10", "same" => 1 // immunity to charm
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,  8364, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated"
-    267, 14672, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"
-    267, 14780, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dire charmed"
     296, "-10", "-10", "spnwchrm", "-10", "-10", "same"  => 1 // protection from animation
   END
   PATCH_IF cosmetic = 1 BEGIN
@@ -407,7 +571,56 @@ DEFINE_PATCH_MACRO ~cd_immunity_charm_arrays~ BEGIN
       142, "-10", 52, "same", "-10", "-10", "same" => 1 // display mind shield icon
     END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 26206, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated" (BGEE)
+    267, 31787, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"  (BGEE)
+    267, 14780, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dire charmed" (BG2EE/BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  8364, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated"  (BG2EE)
+    267, 14672, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"     (BG2EE)
+    267, 14780, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dire charmed"  (BG2EE/BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 35544, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated"  (IWDEE)
+    267, 37801, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"     (IWDEE)
+    267, 17392, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dire charmed"  (IWDEE)
+   END
+  END
+ DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+ END //
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 35544, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated"  (IWDEE)
+    267, 37801, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"     (IWDEE)
+    267,  8364, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated"  (BG2EE)
+    267, 14672, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"     (BG2EE)
+    267, 17392, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dire charmed"  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 26206, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated" (BGEE)
+    267, 31787, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"  (BGEE)
+    267, 35544, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated"  (IWDEE)
+    267, 37801, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"     (IWDEE)
+    267, 17392, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dire charmed"  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  8364, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated"  (BG2EE)
+    267, 14672, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"     (BG2EE)
+    267, 14780, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dire charmed"  (BG2EE/BGEE)
+    267, 26206, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "dominated" (BGEE)
+    267, 31787, "-10",     "same", "-10", "-10", "same"  => 1 // protection from string "charmed"  (BGEE)
+   END
+  END
 END
 
         
@@ -418,7 +631,6 @@ DEFINE_PATCH_MACRO ~cd_immunity_haste_arrays~ BEGIN
     101,  "-10", 16, "same",  "-10",  "-10", "same" => 1 // immunity to haste
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267, 14023, "-10",    "same",  "-10", "-10", "same" => 1 // protection from string "hasted"
     206,     0,  "-10", "spin572",  "-10", "-10", "same" => 1 // protection from spell, haste
     206,     0,  "-10", "spin828",  "-10", "-10", "same" => 1 // protection from spell, haste
     206,     0,  "-10", "spra301",  "-10", "-10", "same" => 1 // protection from spell, haste
@@ -430,7 +642,28 @@ DEFINE_PATCH_MACRO ~cd_immunity_haste_arrays~ BEGIN
       169, "-10", 38, "same", "-10", "-10", "same" => 1 // prevent haste icon
     END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 26019, "-10",    "same",  "-10", "-10", "same" => 1 // protection from string "hasted" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 14023, "-10",    "same",  "-10", "-10", "same" => 1 // protection from string "hasted" (BG2EE/IWDEE)
+   END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+  END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 14023, "-10",    "same",  "-10", "-10", "same" => 1 // protection from string "hasted" (BG2EE/IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 26019, "-10",    "same",  "-10", "-10", "same" => 1 // protection from string "hasted" (BGEE)
+   END
+  END
 END
 
 
@@ -441,15 +674,52 @@ DEFINE_PATCH_MACRO ~cd_immunity_disease_arrays~ BEGIN
     101,  "-10", 78, "same",  "-10",  "-10", "same" => 1 // immunity to disease
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267, 39752, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "stricken by a foul disease"
-    267, 54337, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "diseased"
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       169, "-10", 7, "same", "-10", "-10", "same" => 1 // prevent diseased icon
     END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 31238, "-10", "",  "-10", "-10", "same" => 1 // protection from string "Diseased" (BGEE)
+    267, 26453, "-10", "",  "-10", "-10", "same" => 1 // protection from string "Stricken by a foul disease" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 39752, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "stricken by a foul disease"  (BG2EE/IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 54337, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "diseased"   (BG2EE/ALso EET)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 35593, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "diseased"  (IWDEE)
+   END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+  END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN  //that's a lie!!!
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 35593, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "diseased"  (IWDEE)
+    267, 39752, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "stricken by a foul disease"  (BG2EE/IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 31238, "-10", "",  "-10", "-10", "same" => 1 // protection from string "Diseased" (BGEE)
+    267, 26453, "-10", "",  "-10", "-10", "same" => 1 // protection from string "Stricken by a foul disease" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 35593, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "diseased"  (IWDEE)
+   END
+  END
 END
 
 
@@ -460,17 +730,57 @@ DEFINE_PATCH_MACRO ~cd_immunity_poison_arrays~ BEGIN
     101,  "-10", 25, "same",  "-10",  "-10", "same" => 1 // immunity to poison
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267, 14662, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned"
-    267, 14017, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison"
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       169, "-10",   6, "same", "-10", "-10", "same" => 1 // prevent poison icon
-      169, "-10", 137, "same", "-10", "-10", "same" => 1 // prevent bleeding icon
+      169, "-10", 137, "same", "-10", "-10", "same" => 1 // prevent bleeding icon //Should this be here???
       142, "-10",  30, "same", "-10", "-10", "same" => 1 // display protection from poison icon
     END
   END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 25425, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned" (BGEE)
+    267, 26215, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 14662, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned" (BG2EE)
+    267, 14017, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison"   (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 37607, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned" (IWDEE)
+    267, 36317, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison"   (IWDEE)
+   END
+  END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 37607, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned" (IWDEE)
+    267, 36317, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison"   (IWDEE)
+    267, 14662, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned" (BG2EE)
+    267, 14017, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison"   (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 37607, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned" (IWDEE)
+    267, 36317, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison"   (IWDEE)
+    267, 25425, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned" (BGEE)
+    267, 26215, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 14662, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned" (BG2EE)
+    267, 14017, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison"   (BG2EE)
+    267, 25425, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poisoned" (BGEE)
+    267, 26215, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "poison" (BGEE)
+   END
+  END
 END
 
 
@@ -498,7 +808,6 @@ DEFINE_PATCH_MACRO ~cd_immunity_web_arrays~ BEGIN
     101,  "-10", 157, "same",  "-10",  "-10", "same" => 1 // immunity to web
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267, 14102, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "held"
     101,  "-10", 109, "same",  "-10",  "-10", "last" => 1 // immunity to paralyze
   END
   PATCH_IF cosmetic = 1 BEGIN
@@ -506,7 +815,9 @@ DEFINE_PATCH_MACRO ~cd_immunity_web_arrays~ BEGIN
       169, "-10", 129, "same", "-10", "-10", "same" => 1 // prevent webbed icon
     END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN  // nothing to delete
+    267, 14102, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "held"  //This should be turned into a custom string "webbed"
+  END
 END
 
 
@@ -639,7 +950,7 @@ DEFINE_PATCH_MACRO ~cd_full_blindness_opcode_arrays~ BEGIN
     74, "-10", "-10", "same",  "-10",  "-10", "same" => 1 // blindness
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    139,  14674, "-10", "same",     1,     0, "same" => 1 // display 'blinded' string
+    139,  14674, "-10", "same",     1,     0, "same" => 1 // display 'blinded' string  (works for bgee, bg2ee And iwdee...)
     142, "-10",     8, "same", "-10", "-10", "same" => 1 // display 'blinded' icon
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN // alternate blinded strings, trying to consolidate on one
@@ -649,6 +960,8 @@ DEFINE_PATCH_MACRO ~cd_full_blindness_opcode_arrays~ BEGIN
     139,  12948, "-10", "same",     1,     0, "same" => 1 // display 'blindness' string
     139,  13017, "-10", "same",     1,     0, "same" => 1 // display 'blindness' string
     139,  17399, "-10", "same",     1,     0, "same" => 1 // display 'blindness' string
+    139,  37800, "-10", "same",     1,     0, "same" => 1 // display "Blinded" string (IWDEE)
+    139,  31786, "-10", "same",     1,     0, "same" => 1 // display "Blinded" string (BGEE)
   END
 END
 
@@ -683,9 +996,42 @@ DEFINE_PATCH_MACRO ~cd_immunity_petrification_arrays~ BEGIN
     101, "-10", 134, "same",  "-10",  "-10", "same" => 1 // immunity to petrification
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,  14665, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  25863, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"   (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  14665, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"   (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  38043, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"   (IWDEE)
+   END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+  END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  14665, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"   (BG2EE)
+    267,  38043, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"   (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  25863, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"   (BGEE)
+    267,  38043, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"   (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  25863, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"   (BGEE)
+    267,  14665, "-10", "same", "-10",  "-10", "same" => 1 // disable string "petrified"   (BG2EE)
+   END
+  END
 END
 
 
@@ -697,9 +1043,28 @@ DEFINE_PATCH_MACRO ~cd_immunity_kill_target_arrays~ BEGIN
     101, "-10", 13, "same",  "-10",  "-10", "same" => 1 // immunity to kill target
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,  64285, "-10", "same", "-10",  "-10", "same" => 1 // disable string "vorpal hit"
-    267,  14026, "-10", "same", "-10",  "-10", "same" => 1 // disable string "death"
-    267,  10554, "-10", "same", "-10",  "-10", "same" => 1 // disable string "undead destroyed"
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+//    267,  64285, "-10", "same", "-10",  "-10", "same" => 1 // disable string "vorpal hit" (BGEE?)
+    267,  25282, "-10", "same", "-10",  "-10", "same" => 1 // disable string "death"      (BGEE)
+    267,  31250, "-10", "same", "-10",  "-10", "same" => 1 // disable string "undead destroyed"   (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  64285, "-10", "same", "-10",  "-10", "same" => 1 // disable string "vorpal hit"       (BG2EE)
+    267,  14026, "-10", "same", "-10",  "-10", "same" => 1 // disable string "death"            (BG2EE)
+    267,  10554, "-10", "same", "-10",  "-10", "same" => 1 // disable string "undead destroyed" (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  35592, "-10", "same", "-10",  "-10", "same" => 1 // disable string "vorpal hit"    (IWDEE)
+    267,  35591, "-10", "same", "-10",  "-10", "same" => 1 // disable string "death"         (IWDEE)
+    267,  35600, "-10", "same", "-10",  "-10", "same" => 1 // disable string "undead destroyed"  (IWDEE)
+    267,  40195, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Outer planar destroyed"  (IWDEE)
+   END
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
@@ -713,9 +1078,41 @@ DEFINE_PATCH_MACRO ~cd_immunity_invisibility_arrays~ BEGIN
     101, "-10", 20, "same",  "-10",  "-10", "same" => 1 // immunity to invisibility
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,  14773, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  31747, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"   (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  14773, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"  (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  37762, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"  (IWDEE)
+   END
+  END
+DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END //
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  14773, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"  (BG2EE)
+    267,  37762, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  31747, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"   (BGEE)
+    267,  37762, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  31747, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"   (BGEE)
+    267,  14773, "-10", "same", "-10",  "-10", "same" => 1 // disable string "invisible"  (BG2EE)
+   END
+  END
 END
 
 
@@ -727,15 +1124,55 @@ DEFINE_PATCH_MACRO ~cd_immunity_silence_arrays~ BEGIN
     101, "-10", 38, "same",  "-10",  "-10", "same" => 1 // immunity to silence
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,  14002, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"
-    267,  14676, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced"
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       169, "-10", 34, "same", "-10", "-10", "same" => 1 // prevent silenced icon
     END
   END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  31791, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"  (BGEE)
+    267,  17425, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  14002, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"  (BG2EE)
+    267,  14676, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced" (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  37805, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"  (IWDEE)
+    267,  37633, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced" (IWDEE)
+   END
+  END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  37805, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"  (IWDEE)
+    267,  37633, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced" (IWDEE)
+    267,  14002, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"  (BG2EE)
+    267,  14676, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced" (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  31791, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"  (BGEE)
+    267,  17425, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced" (BGEE)
+    267,  37805, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"  (IWDEE)
+    267,  37633, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced" (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  31791, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"  (BGEE)
+    267,  17425, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced" (BGEE)
+    267,  14002, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silence"  (BG2EE)
+    267,  14676, "-10", "same", "-10",  "-10", "same" => 1 // disable string "silenced" (BG2EE)
+   END
+  END
 END
 
 
@@ -746,24 +1183,64 @@ DEFINE_PATCH_MACRO ~cd_immunity_blindness_arrays~ BEGIN
     101, "-10", 74, "same",  "-10",  "-10", "same" => 1 // immunity to blindness
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,  14674, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blinded"
-    267,   1474, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"
+    267,  14674, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blinded"   (BG2EE--Also, protects vs. batch added blindness string--i.e. for ALL games)
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       169, "-10", 8, "same", "-10", "-10", "same" => 1 // prevent blindness icon
     END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN // these alts don't appear to be used
-/*
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  31786, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blinded"   (BGEE)
+    267,  26352, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blindness"   (BGEE)
+    267,  17399, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blind"   (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,   1474, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"  (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,   37800, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blinded"  (IWDEE)
+    267,   37608, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blind"  (IWDEE)
+   END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN // these alts don't appear to be used...
+  /*
     267,   1474, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"
     267,  14071, "-10", "same", "-10",  "-10", "same" => 1 // display 'blindness' string
     267,  12015, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"
     267,  12948, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"
     267,  13017, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"
-    267,  17399, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"
-*/
+    267,  17399, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"   
+ */
   END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,   1474, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"  (BG2EE)
+    267,   37800, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blinded"  (IWDEE)
+    267,   37608, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blind"  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  31786, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blinded"   (BGEE)
+    267,  26352, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blindness"   (BGEE)
+    267,  17399, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blind"   (BGEE)
+    267,   37800, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blinded"  (IWDEE)
+    267,   37608, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blind"  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,   1474, "-10", "same", "-10",  "-10", "same" => 1 // disable string "blind"  (BG2EE)
+    267,   37800, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blinded"  (IWDEE)
+    267,   37608, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Blind"  (IWDEE)
+   END
+  END
 END
 
 
@@ -773,16 +1250,53 @@ DEFINE_PATCH_MACRO ~cd_immunity_deafness_arrays~ BEGIN
     101, "-10", 80, "same",  "-10",  "-10", "same" => 1 // immunity to deafneas
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,  54318, "-10", "same", "-10",  "-10", "same" => 1 // disable string "deaf"
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       169, "-10", 112, "same", "-10", "-10", "same" => 1 // prevent deaf icon
     END
   END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  30258, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deafness"   (BGEE)
+    267,  25102, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deaf"   (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  54318, "-10", "same", "-10",  "-10", "same" => 1 // disable string "deaf" (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  14073, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deafness"   (IWDEE)
+    267,  35952, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deaf"   (IWDEE)
+   END
+  END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  14073, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deafness"   (IWDEE)
+    267,  35952, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deaf"   (IWDEE)
+    267,  54318, "-10", "same", "-10",  "-10", "same" => 1 // disable string "deaf" (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  14073, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deafness"   (IWDEE)
+    267,  35952, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deaf"   (IWDEE)
+    267,  30258, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deafness"   (BGEE)
+    267,  25102, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deaf"   (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  54318, "-10", "same", "-10",  "-10", "same" => 1 // disable string "deaf" (BG2EE)
+    267,  30258, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deafness"   (BGEE)
+    267,  25102, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Deaf"   (BGEE)
+   END
+  END
 END
-
 
 
 
@@ -808,9 +1322,41 @@ DEFINE_PATCH_MACRO ~cd_immunity_invisible_detection_arrays~ BEGIN
     101, "-10", 116, "same",  "-10",  "-10", "same" => 1 // immunity to detect invisible
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,  14109, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible"
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  26179, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  14109, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible" (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  36282, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible" (IWDEE)
+   END
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  14109, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible" (BG2EE)
+    267,  36282, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible" (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  26179, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible" (BGEE)
+    267,  36282, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible" (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  26179, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible" (BGEE)
+    267,  14109, "-10", "same", "-10",  "-10", "same" => 1 // disable string "dispel invisible" (BG2EE)
+   END
+  END
 END
 
 // turns polymorph immunity into full immunity
@@ -835,14 +1381,46 @@ DEFINE_PATCH_MACRO ~cd_immunity_sleep_arrays~ BEGIN
     101, "-10", 217, "same",  "-10",  "-10", "same" => 1 // immunity to pw: sleep
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,  14001, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep"
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       169, "-10", 14, "same", "-10", "-10", "same" => 1 // prevent sleep icon
     END
   END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  26371, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  14001, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep" (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,  37613, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep"  (IWDEE)
+   END
+  END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  14001, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep" (BG2EE)
+    267,  37613, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep"  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  37613, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep"  (IWDEE)
+    267,  26371, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,  14001, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep" (BG2EE)
+    267,  26371, "-10", "same", "-10",  "-10", "same" => 1 // disable string "sleep" (BGEE)
+   END
+  END
 END
 
 // turns stun immunity into full immunity
@@ -852,48 +1430,112 @@ DEFINE_PATCH_MACRO ~cd_immunity_stun_arrays~ BEGIN
     101, "-10", 210, "same",  "-10",  "-10", "same" => 1 // immunity to pw: stun
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    267,   1280, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"
-    267,  14043, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       169, "-10", 55, "same", "-10", "-10", "same" => 1 // prevent stun icon
     END
   END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,   26050, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"  (BGEE)
+    267,   25862, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"  (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,   1280, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"   (BG2EE)
+    267,  14043, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"      (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267,   35568, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"  (IWDEE)
+    267,   35567, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"  (IWDEE)
+   END
+  END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,   1280, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"   (BG2EE)
+    267,  14043, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"      (BG2EE)
+    267,   35568, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"  (IWDEE)
+    267,   35567, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,   26050, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"  (BGEE)
+    267,   25862, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"  (BGEE)
+    267,   35568, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"  (IWDEE)
+    267,   35567, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267,   26050, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"  (BGEE)
+    267,   25862, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"  (BGEE)
+    267,   1280, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stunned"   (BG2EE)
+    267,  14043, "-10", "same", "-10",  "-10", "same" => 1 // disable string "stun"      (BG2EE)
+   END
+  END
 END
 
-
-// turns fear removal into full removal
-DEFINE_PATCH_MACRO ~cd_fear_removal_arrays~ BEGIN
+// ensures stun is always accompanied by string and icon
+DEFINE_PATCH_MACRO ~cd_full_stun_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    161, "-10", "-10", "same",  "-10",  "-10", "same" => 1 // fear removal
+    45, "-10", "-10", "same",  "-10",  "-10", "same" => 1 // blindness
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN END
-  PATCH_IF FILE_EXISTS_IN_GAME ~monkfist.2da~ BEGIN // ee game
-    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-      321, "-10", "-10", "spin105", 1, 0, "same" => 1 // remove spell effects: horror, innate (removes visuals)
-      321, "-10", "-10", "spwi205", 1, 0, "same" => 1 // remove spell effects: horror, arcane (removes visuals)
-    END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    142, "-10",    55, "same", "-10", "-10", "same" => 1 // display 'stun' icon
   END
-  PATCH_IF cosmetic = 1 BEGIN
-    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-      240, "-10", 36, "same", 1, 0, "same" => 1 // remove panic icon
-    END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139,  26050, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string  (BGEE)
+   END
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139,  1280, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string   (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139,  35568, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string   (IWDEE)
+   END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139,  1280, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string   (BG2EE)
+    139,  35568, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string   (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139,  26050, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string  (BGEE)
+    139,  35568, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string   (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139,  26050, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string  (BGEE)
+    139,  1280, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string   (BG2EE)
+   END
+  END
 END
+
 
 
 // turns feeblemind immunity into full immunity
 DEFINE_PATCH_MACRO ~cd_immunity_feeblemind_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    101, "-10",  76, "same",  "-10",  "-10", "same" => 1 // immunity to stun
+    101, "-10",  76, "same",  "-10",  "-10", "same" => 1 // immunity to feeblemind
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-      169, "-10", 48, "same", "-10", "-10", "same" => 1 // prevent stun icon
+      169, "-10", 48, "same", "-10", "-10", "same" => 1 // prevent feeblemind icon
     END
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
@@ -914,6 +1556,21 @@ DEFINE_PATCH_MACRO ~cd_full_dispel_arrays~ BEGIN
      77, "-10", "-10", "same",     "-10", "-10", "same" => 1 // cure feeblemind
     240, "-10",   112, "same",     "-10", "-10", "same" => 1 // remove deafness icon
     240, "-10",    48, "same",     "-10", "-10", "same" => 1 // remove feeblemind icon
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139, 25820, "-10", "same",     "-10", "-10", "same" => 1 // display 'dispel effects' string  (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139, 14056, "-10", "same",     "-10", "-10", "same" => 1 // display 'dispel effects' string  (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139, 35499, "-10", "same",     "-10", "-10", "same" => 1 // display 'dispel effects' string  (IWDEE)
+   END
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
     177,      7,      7, "die"     , "-10", "-10", "same" => 1 // handful of items (e.g. deva.itm) nuke illusionary creatures with die.eff instead of correct destself.eff
@@ -953,6 +1610,24 @@ DEFINE_PATCH_MACRO ~cd_full_dispel_arrays~ BEGIN
     112,  "-10",  "-10", "slaylive", "-10", "-10", "same" => 1
     112,  "-10",  "-10", "sorb"    , "-10", "-10", "same" => 1
     112,  "-10",  "-10", "stardart", "-10", "-10", "same" => 1
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139, 14056, "-10", "same",     "-10", "-10", "same" => 1 // display 'dispel effects' string  (BG2EE)
+    139, 35499, "-10", "same",     "-10", "-10", "same" => 1 // display 'dispel effects' string  (IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139, 35499, "-10", "same",     "-10", "-10", "same" => 1 // display 'dispel effects' string  (IWDEE)
+    139, 25820, "-10", "same",     "-10", "-10", "same" => 1 // display 'dispel effects' string  (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139, 14056, "-10", "same",     "-10", "-10", "same" => 1 // display 'dispel effects' string  (BG2EE)
+    139, 25820, "-10", "same",     "-10", "-10", "same" => 1 // display 'dispel effects' string  (BGEE)
+   END
   END
 END
 
@@ -1075,17 +1750,6 @@ DEFINE_PATCH_MACRO ~cd_spell_transformation_human_arrays~ BEGIN
   END
 END
 
-// ensures stun is always accompanied by string and icon
-DEFINE_PATCH_MACRO ~cd_full_stun_arrays~ BEGIN
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    45, "-10", "-10", "same",  "-10",  "-10", "same" => 1 // blindness
-  END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    139,  1280, "-10", "same",     1,     0, "same" => 1 // display 'stunned' string
-    142, "-10",    55, "same", "-10", "-10", "same" => 1 // display 'stun' icon
-  END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END
-END
 
 // alters spell school immunities to cover AoE spells in school
 DEFINE_PATCH_MACRO ~cd_immunity_abjuration~ BEGIN
@@ -1198,6 +1862,268 @@ DEFINE_PATCH_MACRO ~cd_immunity_divination~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
 */
+
+///CUSTOM BATCH
+
+//okay, not all desired effects have 142 display portrait icon.  This needs to change
+// SPECIAL CANTRIP REMOVAL BATCH Need to add more 'Key' batches (to account for all such spells...)
+DEFINE_PATCH_MACRO ~b_bless_cantrip_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    "-10",  "-10", "-10", "same",  0,  "-10", "same" => 1 // only timing matters (and only sometimes)
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "0", "0", "b_po020",  1,     "-10", "last" => 1 // remove spell, canticle cantrip
+    324, "0", "0", "b_po020",  "-10", "-10", "last" => 1 // protect from spell, canticle cantrip
+    321, "0", "0", "b_po030",  1,     "-10", "last" => 1 // remove spell, maladiction cantrip
+    324, "0", "0", "b_po030",  "-10", "-10", "last" => 1 // protection from spell, maladiction cantrip
+    321, "0", "0", "b_po040",  1,     "-10", "last" => 1 // remove spell, meditation cantrip
+    324, "0", "0", "b_po040",  "-10", "-10", "last" => 1 // protection from spell, meditation cantrip
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nadda
+END
+
+//berserk immunity
+DEFINE_PATCH_MACRO ~b_immunity_berserk_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    101,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //Exaltation doesn't protect vs berserk despite description
+    101,  "-10", 3, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
+    101,  "-10", 245, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
+    101,  "-10", 246, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
+    101,  "-10", 247, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN //nope
+    169, "-10", 4, "", "-10", "-10", "same" => 1 // prevent berserk icon
+  END
+PATCH_IF GAME_IS ~iwdee~ BEGIN //well...
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    324, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // protection from spell, animal rage
+    324, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // protection from spell, blood rage
+    169, "-10", 173, "", "-10", "-10", "same" => 1 // protection from animal rage icon
+    169, "-10", 176, "", "-10", "-10", "same" => 1 // protection from blood rage icon
+    267,  37605, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Berserk" (IWDEE)
+  END
+END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+  END // nadda but...
+PATCH_IF NOT GAME_IS ~iwdee~ BEGIN //well...
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    324, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // protection from spell, animal rage
+    324, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // protection from spell, blood rage
+    169, "-10", 173, "", "-10", "-10", "same" => 1 // protection from animal rage icon
+    169, "-10", 176, "", "-10", "-10", "same" => 1 // protection from blood rage icon
+    267,  37605, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Berserk" (IWDEE)
+  END
+END
+
+END
+
+//
+//Rage/berserk removal
+DEFINE_PATCH_MACRO ~b_removal_rage_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    4,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //cure: berserking
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "0", "0", "spcl152",  "-10", "-10", "same" => 1 // remove spell, barbi rage
+    240, "-10", 138, "", "-10", "-10", "same" => 1 // remove barbi rage icon
+    240, "-10", 4, "", "-10", "-10", "same" => 1 // remove berserk icon
+    321, "0", "0", "b_tem03",  "-10", "-10", "same" => 1 // remove spell, Tempus incite rage special
+    240, "-10", 141, "",   "-10",  "-10", "same" => 1 // remove enrage icon
+    321, "0", "0", "spcl321",  "-10", "-10", "same" => 1 // remove spell,  enrage special
+  END
+PATCH_IF GAME_IS ~iwdee~ BEGIN  //iwdee specific icons--handle IWDification/B_Spells a different way
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // remove spell, animal rage
+    321, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // remove spell, blood rage
+    240, "-10", 173, "", "-10", "-10", "same" => 1 // remove animal rage icon
+    240, "-10", 176, "", "-10", "-10", "same" => 1 // remove blood rage icon
+  END
+END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+  END // nadda...except
+PATCH_IF NOT GAME_IS ~iwdee~ BEGIN  //
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    321, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // remove spell, animal rage
+    321, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // remove spell, blood rage
+    240, "-10", 173, "", "-10", "-10", "same" => 1 // remove animal rage icon
+    240, "-10", 176, "", "-10", "-10", "same" => 1 // remove blood rage icon
+  END
+END
+END
+
+//Rage/berserk immunity
+DEFINE_PATCH_MACRO ~b_immunity_rage_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    101,  "-10", 3, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
+    101,  "-10", 245, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
+    101,  "-10", 246, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
+    101,  "-10", 247, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    169, "-10", 138, "", "-10", "-10", "same" => 1 // prevent barbi rage icon
+    169, "-10", 4, "", "-10", "-10", "same" => 1 // prevent berserk icon
+    324, "0", "0", "spcl152",  "-10", "-10", "same" => 1 // protection from spell, barbi rage special
+    324, "0", "0", "b_tem03",  "-10", "-10", "same" => 1 // protection from spell, Tempus incite rage
+    169, "-10", 141, "", "-10", "-10", "same" => 1 // prevent enrage icon
+    324, "0", "0", "spcl321",  "-10", "-10", "same" => 1 // protection from spell, enrage special
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 25829, "-10",     "",  "-10", "-10", "same" => 1 // protection from string re rage (BGEE)
+  END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 20723, "-10",     "",  "-10", "-10", "same" => 1 // protection from string re rage (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    267, 36021, "-10",     "",  "-10", "-10", "same" => 1 // protection from string re rage (IWDEE)
+    324, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // protection from spell, animal rage
+    324, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // protection from spell, blood rage
+    169, "-10", 173, "", "-10", "-10", "same" => 1 // protection from animal rage icon
+    169, "-10", 176, "", "-10", "-10", "same" => 1 // protection from blood rage icon
+   END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+  END // nadda er....
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 20723, "-10",     "",  "-10", "-10", "same" => 1 // protection from string re rage (BG2EE)
+    267, 25829, "-10",     "",  "-10", "-10", "same" => 1 // protection from string re rage (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 25829, "-10",     "",  "-10", "-10", "same" => 1 // protection from string re rage (BGEE)
+    267, 36021, "-10",     "",  "-10", "-10", "same" => 1 // protection from string re rage (IWDEE)
+    324, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // protection from spell, animal rage
+    324, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // protection from spell, blood rage
+    169, "-10", 173, "", "-10", "-10", "same" => 1 // protection from animal rage icon
+    169, "-10", 176, "", "-10", "-10", "same" => 1 // protection from blood rage icon
+  END
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    267, 20723, "-10",     "",  "-10", "-10", "same" => 1 // protection from string re rage (BG2EE)
+    267, 36021, "-10",     "",  "-10", "-10", "same" => 1 // protection from string re rage (IWDEE)
+    324, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // protection from spell, animal rage
+    324, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // protection from spell, blood rage
+    169, "-10", 173, "", "-10", "-10", "same" => 1 // protection from animal rage icon
+    169, "-10", 176, "", "-10", "-10", "same" => 1 // protection from blood rage icon
+   END
+  END
+END
+
+// fear effect
+DEFINE_PATCH_MACRO ~b_fear_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    24, "-10", "-10", "same",  "-10",  "-10", "same" => 1 // fear
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN END
+  PATCH_IF FILE_EXISTS_IN_GAME ~monkfist.2da~ BEGIN // ee game
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+      142, "-10", 36, "same", "-10",  "-10", "same" => 1 // Fear portrait icon
+    END
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN  //
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     139, 25818, "-10", "", "-10", "-10", "same"  => 1 // string "panic"    (BGEE)
+    END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN  //
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     139, 14007, "-10", "", "-10", "-10", "same"  => 1 //  string "panic"   (BG2EE)
+    END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN  //
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+     139, 35484, "-10", "", "-10", "-10", "same"  => 1 // string "panic"   (IWDEE)
+    END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN  //
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+     139, 14007, "-10", "", "-10", "-10", "same"  => 1 //  string "panic"   (BG2EE)
+     139, 35484, "-10", "", "-10", "-10", "same"  => 1 // string "panic"   (IWDEE)
+    END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN  //
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+     139, 25818, "-10", "", "-10", "-10", "same"  => 1 // string "panic"   (BGEE)
+     139, 35484, "-10", "", "-10", "-10", "same"  => 1 // string "panic"   (IWDEE)
+    END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN  //
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+     139, 25818, "-10", "", "-10", "-10", "same"  => 1 // string "panic"    (BGEE)
+     139, 14007, "-10", "", "-10", "-10", "same"  => 1 //  string "panic"   (BG2EE)
+    END
+  END
+END
+
+// deafness
+DEFINE_PATCH_MACRO ~b_deafness_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    80, "-10", "-10", "same",  "-10",  "-10", "same" => 1 // deafneas
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    142, "-10", 112, "same",  "-10",  "-10", "same" => 1 // deafneas icon
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139,  30258, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deafness"   (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139,  54318, "-10", "same", "-10",  "-10", "same" => 1 //  string "deaf" (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139,  14073, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deafness"   (IWDEE)
+   END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139,  14073, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deafness"   (IWDEE)
+    139,  35952, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deaf"   (IWDEE)
+    139,  54318, "-10", "same", "-10",  "-10", "same" => 1 //  string "deaf" (BG2EE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139,  14073, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deafness"   (IWDEE)
+    139,  35952, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deaf"   (IWDEE)
+    139,  30258, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deafness"   (BGEE)
+    139,  25102, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deaf"   (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139,  54318, "-10", "same", "-10",  "-10", "same" => 1 //  string "deaf" (BG2EE)
+    139,  30258, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deafness"   (BGEE)
+    139,  25102, "-10", "same", "-10",  "-10", "same" => 1 //  string "Deaf"   (BGEE)
+   END
+  END
+END
+
+// Curse Effect
+DEFINE_PATCH_MACRO ~b_curse_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    325, "-10", "-10", "same", "-10", "-10", "same" => 1 // save vs. all
+    54,  "-10", "-10", "same", "-10", "-10", "same" => 1 // THAC0
+    23,  "-10", "-10", "same", "-10", "-10", "same" => 1 // Cure: horror(?)
+    142, "-10", 35,    "same", "-10", "-10", "same" => 1 // Cursed portrait icon
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139, 17426, "-10", "same", 1, "-10", "same" => 1 // Cursed notification  (All games!  Can you believe that!)
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+END
 
 /////                                                  \\\\\
 ///// the batch... err... patch                        \\\\\

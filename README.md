@@ -1,6 +1,63 @@
 ﻿# B_Spells
 
 log
+
+2017-07-16
+
+- Tested install successful (after a few bug fixes)
+
+2017-07-15
+
+- Updated Blindess immunity
+- Updated Deafness Immunity
+- Updated invis detection immunity
+- Updated Sleep Immunity
+- Updated stun
+- Updated dispel magic
+- Applied stun batch to icelance
+- Applied fear immunity and removal to emotion: courage
+- Created fear batch
+- Applied fear batch to Emotion: fear
+- Applied fear removal to Emotion: Hope
+- Created deafness batch
+- Applied deafness batch to shout
+- Created curse batch
+- Applied curse batch to curse spell
+- Externalized (to immunity.tpa) curse interactions (also, to some degree prayer)
+
+2017-07-14
+
+- Started death immunity
+- Updated invisibility immunity
+
+2017-07-13
+
+- Updated Charm batch
+- Updated Disease batch
+- Finished Level drain batch
+- Updated poison immunity batch
+- Batch: web immunity delete 'held' string protection.  Create batch that removes that string.  Create new 'webbed' string
+
+2017-07-12
+
+- Updated drain batch.  A few stringrefs missing for BGEE and IWDEE... Also, need to REMOVE unneded strings
+- Added Calm Orison
+- Updated Fear batch
+
+2017-07-11
+
+- Included OHTYR1 in exaltation protection (needs to be heavily expanded...)
+- Batches: Updated slow immunity and confusion immunity by EE game engine
+- Created Berserk immunity batch
+
+2017-07-10
+
+- Added rage removal/protection to batches (tested with exaltation)  Need to update how exaltation et al. implemented (no longer need dif spls for dif games)
+
+
+2017-07-09
+
+- cantrips: gave a +2 bonus to saves for jolt and frost ray.  Reducted duration of drowse to 1 round, period
 v. 0.88
 
 2017-07-08

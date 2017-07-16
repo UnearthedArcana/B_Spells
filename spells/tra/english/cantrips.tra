@@ -168,10 +168,23 @@ This spell holds 1 hostile animal rigidly immobile if it fails to save vs. Spell
 
 Paralyzed creatures are helpless and cannot dodge or defend themselves from attacks. Being held does not prevent the worsening of the subject's condition due to wounds, disease, or poison.~
 
-//CANTRIPS: ZERO LEVEL WIZARD
+@108000001 = ~Calm~
+@108000002 = ~Calm
+(Abjuration)
 
-@108000001 = ~Frost Ray~
-@108000002 = ~Frost Ray
+Level: Orison
+Sphere: Charm
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 1
+Area of Effect: One Creature
+Saving Throw: Special
+
+This spell gives an ally a chance to overcome any strong emotions they might be experiencing.  This spell allows the recipient to save vs. spell to shake off fear or berserk effects.  A character can only be aided by this spell once per 8 hours.~
+
+//CANTRIPS: ZERO LEVEL WIZARD
+@200001001 = ~Frost Ray~
+@200001002 = ~Frost Ray
 (Evocation)
 
 Level: Cantrip
@@ -181,12 +194,12 @@ Casting Time: 3
 Area of Effect: 2-ft. by 40-ft. jet.
 Saving Throw: Neg.
 
-Upon casting this spell a ray of ice appears at the caster's fingertips and shoots toward a target of the caster's choice. The ray causes 1d4 points of cold damage to the target to anyone in the ray's path.  Targets can save vs. breath to avoid the ray.
+Upon casting this spell a ray of ice appears at the caster's fingertips and shoots toward a target of the caster's choice. The ray causes 1d4 points of cold damage to the target to anyone in the ray's path.  Targets can save vs. breath +2 to avoid the ray.
 
 Damage is increased by 1d4, and targets recieve a -1 penalty to their save, at levels 4, 8, 12, 16 and 20.~
 
-@109000001 = ~Jolt~
-@109000002 = ~Jolt
+@200002001 = ~Jolt~
+@200002002 = ~Jolt
 (Conjuration/Summoning)
 
 Level: Cantrip
@@ -196,14 +209,14 @@ Casting Time: 3
 Area of Effect: 1 creature
 Saving Throw: Neg.
 
-Upon casting this spell, the caster generates a jolt of electricty in a nearby enemy. The jolt causes 2d4 points of electical damage, and stops them in their tracks for a crucial 2 seconds if they do not save vs. polymorph.
+Upon casting this spell, the caster generates a jolt of electricty in the body of a nearby enemy. The jolt causes 2d4 points of electical damage, and stops them in their tracks for a crucial 2 seconds if they do not save vs. polymorph +2.
 
 Damage is increased by 1d4 at levels 3, 6, 9, 12, 15 and 18.  Opponents suffer a -1 penalty to their save at levels 10 and 20.
 
-A creature can only be affected by Jolt a maximum of once per turn.~
+A creature affected by this spell gains immunity to it for one turn as their body retains the electric charge.~
 
-@109100001   = ~Drowse~
-@109100002   = ~Drowse
+@200003001   = ~Drowse~
+@200003002   = ~Drowse
 
 Level: Cantrip
 Range: 35'
@@ -214,4 +227,4 @@ Saving Throw: Neg.
 
 This cantrip causes the target to drift off into a very brief slumber, slumping to the ground for 6 seconds before regaining full consciousness.
 
-This spell lasts an additional 6 seconds at levels 5, 10, 15 and 20.  Opponents receive a -1 penalty to their saves at levels 10 and 20.~
+Opponents receive a -1 penalty to their saves at levels 10 and 20.~

@@ -6,6 +6,8 @@ ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
 b_po020 => curse  //canticle main spell (need to address extra ability which shoucl conditionally be removed and canticle readded...)
 b_po030 => curse  //maladiction (Special)
 b_po040 => curse  //meditation (Special) Spells that cancel cursss, cancel meditation
+CDID313B => curse  //IWDIFICATION BAD PRAYER
+//#PRAYERB => curse  //OTHER VERSION BAD PRAYER Doesn't like the "#" character...damn
 
 END
 

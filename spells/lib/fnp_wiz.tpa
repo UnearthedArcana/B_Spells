@@ -140,6 +140,7 @@ ADD_SPELL ~Spells/data/iwd_spells/wizard_3/b_w327.spl~ 2 3 ~WIZARD_ICELANCE~ //
         SAY NAME2 @3270000
         SAY UNIDENTIFIED_DESC @3270001
 	SAY DESC @3270001
+    LPF cd_apply_batch STR_VAR array_name = cd_full_stun_arrays END
 
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
@@ -454,6 +455,9 @@ ADD_SPELL ~Spells/data/iwd_spells/wizard_4/b_w427.spl~ 2 4 ~WIZARD_EMOTION_COURA
         SAY NAME2 @4270000
         SAY UNIDENTIFIED_DESC @4270001
 	SAY DESC @4270001
+    LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END
+    LPF cd_apply_batch STR_VAR array_name = cd_immunity_fear_arrays END
+
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_EMOTION_COURAGE~
@@ -570,6 +574,8 @@ ADD_SPELL ~Spells/data/iwd_spells/wizard_4/b_w428.spl~ 2 4 ~WIZARD_EMOTION_FEAR~
         SAY NAME2 @4280000
         SAY UNIDENTIFIED_DESC @4280001
 	SAY DESC @4280001
+    LPF cd_apply_batch STR_VAR array_name = b_fear_arrays END
+
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_EMOTION_FEAR~
@@ -659,6 +665,7 @@ ADD_SPELL ~Spells/data/iwd_spells/wizard_4/b_w429.spl~ 2 4 ~WIZARD_EMOTION_HOPE~
         SAY NAME2 @4290000
         SAY UNIDENTIFIED_DESC @4290001
 	SAY DESC @4290001
+    LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_EMOTION_HOPE~
@@ -728,6 +735,7 @@ ADD_SPELL ~Spells/data/iwd_spells/wizard_4/b_w431.spl~ 2 4 ~WIZARD_SHOUT~ //
         SAY NAME2 @4310000
         SAY UNIDENTIFIED_DESC @4310001
 	SAY DESC @4310001
+    LPF cd_apply_batch STR_VAR array_name = b_deafness_arrays END
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_SHOUT~

@@ -1,7 +1,7 @@
 BACKUP ~spells/backup~
 AUTHOR ~Grammarsalad~
 
-VERSION ~0.88~
+VERSION ~0.88a~
 
 
 ALWAYS
@@ -56,8 +56,6 @@ ACTION_IF (GAME_IS ~bgee bg2ee sod eet~) AND (NOT FILE_EXISTS_IN_GAME ~b_wizi.it
  COPY ~spells/data/iwd_spells/b_IWD.itm~ ~override~   //to detect this component
    INCLUDE ~spells/data/components/Setup_IWD_Wiz.tpa~     //This will be the full IWDEE Arcane spell install...
  COPY ~spells/data/iwd_spells/b_wizi.itm~ ~override~   //to detect this component
-//now, handle any and all immunities (ALWAYS LAST)
-INCLUDE ~spells/lib/immunities.tpa~
 
  END
 END
@@ -70,6 +68,8 @@ END
    INCLUDE ~spells/data/components/Setup_New_Spells.tpa~
  COPY ~spells/spheres/b_new.itm~ ~override~   //to detect this component
 END
+//now, handle any and all immunities (ALWAYS LAST)
+INCLUDE ~spells/lib/immunities.tpa~
 /*
 
 INCLUDE ~spells/data/components/Setup_New_Spells.tpa~
