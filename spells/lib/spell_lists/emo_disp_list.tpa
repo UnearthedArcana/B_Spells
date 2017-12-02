@@ -1,8 +1,8 @@
 //special thanks to Subtledoctor and Aquadrizzt for this code
 
-ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
+ACTION_DEFINE_ASSOCIATIVE_ARRAY dispel BEGIN
 
-~%spell_res%~ => bless
+~%spell_res%~ => emo_disp
 
 END
 

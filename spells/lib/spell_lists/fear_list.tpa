@@ -2,7 +2,7 @@
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
 
-~%spell_res%~ => bless
+~%spell_res%~ => fear
 
 END
 

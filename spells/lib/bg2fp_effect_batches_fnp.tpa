@@ -471,12 +471,14 @@ DEFINE_PATCH_MACRO ~cd_fear_removal_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
     161, "-10", "-10", "same",  "-10",  "-10", "same" => 1 // fear removal
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN 
+      23, "-10", "-10",     "same",     1,     0, "same" => 1 // reset morale
+  END
   PATCH_IF FILE_EXISTS_IN_GAME ~monkfist.2da~ BEGIN // ee game
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-      23, "-10", "-10",     "same",     1,     0, "first" => 1 // reset morale
       321, "-10", "-10", "spin105", 1, 0, "same" => 1 // remove spell effects: horror, innate (removes visuals)
       321, "-10", "-10", "spwi205", 1, 0, "same" => 1 // remove spell effects: horror, arcane (removes visuals)
+      321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1 // remove spell effects: generic
     END
   END
   PATCH_IF cosmetic = 1 BEGIN
@@ -491,7 +493,7 @@ END
 // turns fear immunity into full immunity
 DEFINE_PATCH_MACRO ~cd_immunity_fear_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN // these three go last so they don't block their own extras effects
-//    101,  "-10",  23, "same",  "-10",  "-10", "last" => 1 // immunity to cure horror?
+    101,  "-10",  23, "same",  "-10",  "-10", "last" => 1 // immunity to cure horror?
     101,  "-10",  24, "same",  "-10",  "-10", "last" => 1 // immunity to horror
     101,  "-10", 106, "same",  "-10",  "-10", "last" => 1 // immunity to morale break modifier
   END
@@ -829,6 +831,17 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_1_arrays~ BEGIN
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
     206, "-1", "-10", "sppr105", "-10", "-10", "same" => 1 // protection from spell
+//    206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1 // protection from spell not nec, apparently...
+    206, "-1", "-10", "b_po010", "-10", "-10", "same" => 1 // protection from Cure minor wounds cantrip
+    206, "-1", "-10", "b_po020", "-10", "-10", "same" => 1 // protection from Canticle cantrip
+    206, "-1", "-10", "b_po030", "-10", "-10", "same" => 1 // protection from Maladiction cantrip
+    206, "-1", "-10", "b_po040", "-10", "-10", "same" => 1 // protection from Meditation cantrip
+    206, "-1", "-10", "b_po050", "-10", "-10", "same" => 1 // protection from Cause minor wounds cantrip
+    206, "-1", "-10", "b_po060", "-10", "-10", "same" => 1 // protection from Infravision cantrip
+    206, "-1", "-10", "b_po080", "-10", "-10", "same" => 1 // protection from Calm cantrip
+    206, "-1", "-10", "b_wc001", "-10", "-10", "same" => 1 // protection from Frost ray cantrip
+    206, "-1", "-10", "b_wc002", "-10", "-10", "same" => 1 // protection from Jolt cantrip
+    206, "-1", "-10", "D5_WIEN", "-10", "-10", "same" => 1 // protection from Drowse cantrip
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
@@ -842,6 +855,7 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_2_arrays~ BEGIN
     206, "-1", "-10", "spwi215", "-10", "-10", "same" => 1 // protection from spell
     206, "-1", "-10", "spwi213", "-10", "-10", "same" => 1 // protection from spell
     206, "-1", "-10", "sppr211", "-10", "-10", "same" => 1 // protection from spell
+    206, "-1", "-10", "LEV_TWO", "-10", "-10", "same" => 1 // protection from spell dummy
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
@@ -858,6 +872,7 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_3_arrays~ BEGIN
     206, "-1", "-10", "sppr313", "-10", "-10", "same" => 1 // protection from spell
     206, "-1", "-10", "sppr304", "-10", "-10", "same" => 1 // protection from spell
     206, "-1", "-10", "sppr302", "-10", "-10", "same" => 1 // protection from spell
+    206, "-1", "-10", "LEV_THR", "-10", "-10", "same" => 1 // protection from spell dummy
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
@@ -867,7 +882,9 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_4_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
     102, 4, "-10", "same",  "-10",  "-10", "same" => 1 // immunity to spell level 4
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN END // nothing here yet
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN 
+    206, "-1", "-10", "LEV_FOU", "-10", "-10", "same" => 1 // protection from spell dummy
+  END // nothing here yet
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
 
@@ -1863,7 +1880,7 @@ DEFINE_PATCH_MACRO ~cd_immunity_divination~ BEGIN
 END
 */
 
-///CUSTOM BATCH
+///CUSTOM BATCHES
 
 //okay, not all desired effects have 142 display portrait icon.  This needs to change
 // SPECIAL CANTRIP REMOVAL BATCH Need to add more 'Key' batches (to account for all such spells...)
@@ -1882,10 +1899,69 @@ DEFINE_PATCH_MACRO ~b_bless_cantrip_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nadda
 END
 
+//
+//Rage/berserk removal
+DEFINE_PATCH_MACRO ~b_removal_rage_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    4,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //cure: berserking
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "0", "0", "spcl152",  "-10", "-10", "same" => 1 // remove spell, barbi rage
+    240, "-10", 138, "", "-10", "-10", "same" => 1 // remove barbi rage icon
+    240, "-10", 4, "", "-10", "-10", "same" => 1 // remove berserk icon
+    321, "0", "0", "b_tem03",  "-10", "-10", "same" => 1 // remove spell, Tempus incite rage special
+    240, "-10", 141, "",   "-10",  "-10", "same" => 1 // remove enrage icon
+    321, "0", "0", "spcl321",  "-10", "-10", "same" => 1 // remove spell,  enrage special
+    321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1 // remove spell, generic
+  END
+PATCH_IF GAME_IS ~iwdee~ BEGIN  //iwdee specific icons--handle IWDification/B_Spells a different way
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // remove spell, animal rage
+    321, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // remove spell, blood rage
+    240, "-10", 173, "", "-10", "-10", "same" => 1 // remove animal rage icon
+    240, "-10", 176, "", "-10", "-10", "same" => 1 // remove blood rage icon
+  END
+END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+  END // nadda...except
+PATCH_IF NOT GAME_IS ~iwdee~ BEGIN  //
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    321, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // remove spell, animal rage
+    321, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // remove spell, blood rage
+    240, "-10", 173, "", "-10", "-10", "same" => 1 // remove animal rage icon
+    240, "-10", 176, "", "-10", "-10", "same" => 1 // remove blood rage icon
+  END
+END
+END
+
+//Rage/berserk second removal end
+DEFINE_PATCH_MACRO ~b_removal_rage_arrays_second~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    4,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //cure: berserking
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1 // remove spell, generic
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+  END // nadda...except
+END
+
+
+//Rage/berserk removal end
+DEFINE_PATCH_MACRO ~b_removal_rage_arrays_end~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    4,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //cure: berserking
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1 // remove spell, generic
+  END // nadda...except
+END
+
 //berserk immunity
 DEFINE_PATCH_MACRO ~b_immunity_berserk_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    101,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //Exaltation doesn't protect vs berserk despite description
     101,  "-10", 3, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
     101,  "-10", 245, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
     101,  "-10", 246, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
@@ -1914,42 +1990,32 @@ PATCH_IF NOT GAME_IS ~iwdee~ BEGIN //well...
     267,  37605, "-10", "same", "-10",  "-10", "same" => 1 // disable string "Berserk" (IWDEE)
   END
 END
-
 END
 
-//
-//Rage/berserk removal
-DEFINE_PATCH_MACRO ~b_removal_rage_arrays~ BEGIN
+//berserk immunity
+DEFINE_PATCH_MACRO ~b_immunity_berserk_arrays_second~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    4,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //cure: berserking
+    101,  "-10", 3, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    321, "0", "0", "spcl152",  "-10", "-10", "same" => 1 // remove spell, barbi rage
-    240, "-10", 138, "", "-10", "-10", "same" => 1 // remove barbi rage icon
-    240, "-10", 4, "", "-10", "-10", "same" => 1 // remove berserk icon
-    321, "0", "0", "b_tem03",  "-10", "-10", "same" => 1 // remove spell, Tempus incite rage special
-    240, "-10", 141, "",   "-10",  "-10", "same" => 1 // remove enrage icon
-    321, "0", "0", "spcl321",  "-10", "-10", "same" => 1 // remove spell,  enrage special
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN //nope
+    324, "0", "0", "RAGE_P",  "-10", "-10", "same" => 1 // protect spell, generic
   END
-PATCH_IF GAME_IS ~iwdee~ BEGIN  //iwdee specific icons--handle IWDification/B_Spells a different way
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    321, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // remove spell, animal rage
-    321, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // remove spell, blood rage
-    240, "-10", 173, "", "-10", "-10", "same" => 1 // remove animal rage icon
-    240, "-10", 176, "", "-10", "-10", "same" => 1 // remove blood rage icon
-  END
-END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
-  END // nadda...except
-PATCH_IF NOT GAME_IS ~iwdee~ BEGIN  //
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
-    321, "0", "0", "sppr522",  "-10", "-10", "same" => 1 // remove spell, animal rage
-    321, "0", "0", "sppr422",  "-10", "-10", "same" => 1 // remove spell, blood rage
-    240, "-10", 173, "", "-10", "-10", "same" => 1 // remove animal rage icon
-    240, "-10", 176, "", "-10", "-10", "same" => 1 // remove blood rage icon
+  END // nadda but...
+END
+
+//berserk immunity
+DEFINE_PATCH_MACRO ~b_immunity_berserk_arrays_end~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    101,  "-10", 3, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
   END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN //nope
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    324, "0", "0", "RAGE_P",  "-10", "-10", "same" => 1 // protect spell, generic
+  END // nadda but...
 END
-END
+
 
 //Rage/berserk immunity
 DEFINE_PATCH_MACRO ~b_immunity_rage_arrays~ BEGIN
@@ -2123,6 +2189,181 @@ DEFINE_PATCH_MACRO ~b_curse_arrays~ BEGIN
     139, 17426, "-10", "same", 1, "-10", "same" => 1 // Cursed notification  (All games!  Can you believe that!)
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+END
+
+// turns inflict disease full disease
+DEFINE_PATCH_MACRO ~b_disease_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    "-10",  "-10", "-10", "same",  0,  "-10", "same" => 1 // Any timed effect
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+  END
+  PATCH_IF cosmetic = 1 BEGIN
+    DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+      142, "-10", 7, "", "-10", "-10", "same" => 1 // Apply diseased icon
+    END
+  END
+  PATCH_IF GAME_IS ~bgee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139, 31238, "-10", "",  1, "-10", "same" => 1 // Apply string "Diseased" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139, 54337, "-10", "",  1, "-10", "same" => 1 // Apply string "diseased"   (BG2EE/ALso EET)
+   END
+  END
+  PATCH_IF GAME_IS ~iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    139, 35593, "-10", "",  1, "-10", "same" => 1 // Apply string  string "diseased"  (IWDEE)
+   END
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN 
+  END // nothing to delete
+  PATCH_IF GAME_IS ~bgee~ BEGIN  //that's a lie!!!
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139, 35593, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "diseased"  (IWDEE)
+    139, 39752, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "stricken by a foul disease"  (BG2EE/IWDEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet iwdee~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139, 31238, "-10", "",  "-10", "-10", "same" => 1 // protection from string "Diseased" (BGEE)
+    139, 26453, "-10", "",  "-10", "-10", "same" => 1 // protection from string "Stricken by a foul disease" (BGEE)
+   END
+  END
+  PATCH_IF GAME_IS ~bg2ee eet~ BEGIN
+   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    139, 35593, "-10", "same",  "-10", "-10", "same" => 1 // protection from string "diseased"  (IWDEE)
+   END
+  END
+END
+
+//  slow removal
+DEFINE_PATCH_MACRO ~b_removal_slow_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    321,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 // removes at least one spell...
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "-10", "-10", "spwm164", "-10","-10", "same" => 1 // remove spell effects: slow
+    321, "-10", "-10", "spin977", "-10","-10", "same" => 1 // remove spell effects: golem slow
+    321, "-10", "-10", "spin983", "-10","-10", "same" => 1 // remove spell effects: slow
+    321, "-10", "-10", "spwish25", "-10","-10", "same" => 1 // remove spell effects: slow
+    321, "-10", "-10", "spwi312",  "-10", "-10", "same" => 1 // remove spell effects:  slow
+    321, "-10", "-10", "spin575",  "-10", "-10", "same" => 1 // remove spell effects: vortex web
+    240, "-10", 41, "", "-10", "-10", "same" => 1 // remove slow icon
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+  END // nothing to delete...
+END
+
+//  haste removal
+DEFINE_PATCH_MACRO ~b_removal_haste_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    321,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 // removes at least one spell...
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "-10", "-10", "spin572", 1,"-10", "same" => 1 // remove spell effects: haste
+    321, "-10", "-10", "spin828", 1,"-10", "same" => 1 // remove spell effects: haste
+    321, "-10", "-10", "spra301", 1,"-10", "same" => 1 // remove spell effects: haste
+    321, "-10", "-10", "spwi305", 1,"-10", "same" => 1 // remove spell effects: haste
+    240, "-10", 38, "", "-10", "-10", "same" => 1 // remove haste icon
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+  END // nothing to delete
+END
+
+//  Create item renewal (removes previous item)
+DEFINE_PATCH_MACRO ~b_magic_item_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    111,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 // removes at least one spell...
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    112, "-10", "-10", "wolfm", 1, 0, "first"  => 1 // remove item
+    111, "-10", "-10", "wolfm", 0, 0, "first" => 1 // add item
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+  END // nothing to delete
+END
+
+// blood rage special...
+DEFINE_PATCH_MACRO ~b_blood_rage_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    101,  "-10", 5, "same",  "-10",  "-10", "same" => 1 // Protection from charm...seems legit
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "-10", "-10", "EMO_R", 1,"-10", "same" => 1 // remove spell effects: generic
+    318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1 // protect spell: generic
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+END
+// light Armors (Proficiency)  (CHECK THIS JIVES WITH OTHER ARMOR ALTERING MODS)
+DEFINE_PATCH_MACRO ~b_light_armor_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    7,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    177, 0, 2, "B_LIT0", 2,"-10", "same" => 1 // Apply spl
+    326, 0, 0, "B_LIT0B", 1,"-10", "same" => 1 // Apply spl - will be 'equal to 0' not 'less than 2'
+    177, 0, 2, "B_LIT1", 2,"-10", "same" => 1 // Apply spl
+    326, 1, 0, "B_LIT1B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_LIT2", 2,"-10", "same" => 1 // Apply spl
+    326, 2, 0, "B_LIT2B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_LIT4", 2,"-10", "same" => 1 // Apply spl
+    326, 4, 0, "B_LIT4B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_LIT5", 2,"-10", "same" => 1 // Apply spl
+    326, 5, 0, "B_LITB", 1,"-10", "same" => 1 // Apply spl
+END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    145,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable spell casting
+    144,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable buttons
+  END //
+END
+
+// medium Armors (Proficiency)  (CHECK THIS JIVES WITH OTHER ARMOR ALTERING MODS)
+DEFINE_PATCH_MACRO ~b_medium_armor_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    7,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    177, 0, 2, "B_MED0", 2,"-10", "same" => 1 // Apply spl
+    326, 2, 0, "B_MED0B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_MED2", 2,"-10", "same" => 1 // Apply spl
+    326, 2, 0, "B_MED2B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_MED3", 2,"-10", "same" => 1 // Apply spl
+    326, 3, 0, "B_MED3B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_MED4", 2,"-10", "same" => 1 // Apply spl
+    326, 4, 0, "B_MED4B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_MED5", 2,"-10", "same" => 1 // Apply spl
+    326, 5, 0, "B_MED5B", 1,"-10", "same" => 1 // Apply spl
+END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    145,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable spell casting
+    144,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable buttons
+  END //
+END
+
+// HEavy Armors (Proficiency)  (CHECK THIS JIVES WITH OTHER ARMOR ALTERING MODS)
+DEFINE_PATCH_MACRO ~b_heavy_armor_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    7,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    177, 0, 2, "B_HVY0", 2,"-10", "same" => 1 // Apply spl
+    326, 2, 0, "B_HVY0B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_HVY2", 2,"-10", "same" => 1 // Apply spl
+    326, 2, 0, "B_HVY2B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_HVY3", 2,"-10", "same" => 1 // Apply spl
+    326, 3, 0, "B_HVY3B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_HVY4", 2,"-10", "same" => 1 // Apply spl
+    326, 4, 0, "B_HVY4B", 1,"-10", "same" => 1 // Apply spl
+    177, 0, 2, "B_HVY5", 2,"-10", "same" => 1 // Apply spl
+    326, 5, 0, "B_HVY5B", 1,"-10", "same" => 1 // Apply spl
+END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+    145,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable spell casting
+    144,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable buttons
+  END //
 END
 
 /////                                                  \\\\\

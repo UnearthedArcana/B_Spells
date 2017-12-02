@@ -95,6 +95,8 @@ This spell turns a target's blood to flame, doing 3d4 Hit Points of damage every
 
 @4220002 = ~Berserk~
 
+
+
 @4260000 = ~Shadow Monsters~
 
 @4260001 = ~Shadow Monsters
@@ -153,6 +155,19 @@ Saving Throw: None
 
 This spell creates the emotion of hope within the area of effect. All creatures affected by the spell gain a morale boost and +2 on their Saving Throws, attack rolls, and damage rolls.~
 
+@4300000 = ~Mordenkainen's Force Missiles~
+@4300001 = ~Mordenkainen's Force Missiles
+(Invocation)
+
+Level: 4
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 4
+Area of Effect: 5-ft. radius
+Saving Throw: Special
+
+This spell creates a brilliant globe of magical energy that streaks forth from the caster's hand to unerringly strike its target, much like a Magic Missile spell. The wizard creates one missile at 7th level and an additional missile at every third level after that; in other words, two missiles at 10th level, three at 13th, four at 16th, and so on, to a maximum of seven missiles at 25th level. Each missile inflicts 2d4 points of damage to the target and then bursts in a 5-ft. radius concussive blast that inflicts 1 point of damage per level of the caster. For example, a 12th-level wizard could conjure two force missiles, each of which strikes for 2d4+12 points of magic damage. Creatures taking damage can attempt a Save vs. Spell to negate the concussion damage, but the impact of the missile itself allows no Saving Throw. The 1st-level wizard spell Shield will absorb the force missiles harmlessly, including the concussion damage.~
+
 @4310000 = ~Shout~
 @4310001 = ~Shout
 (Invocation)
@@ -196,6 +211,20 @@ Saving Throw: None
 
 Shades is similar to Shadow Monsters and Demi-Shadow Monsters—it allows the caster to shape material from the Demiplane of Shadow into illusionary creatures. These shadows are tougher than the shadows summoned by Shadow Monsters and Demi-Shadow Monsters, and they will obey the caster until the spell expires or they are slain.~
 
+@6300000 = ~Darts of Bone~
+@6300001 = ~Darts of Bone
+(Necromancy)
+
+Level: 6
+Range: 0
+Duration: 5 rounds
+Casting Time: 5
+Area of Effect: The caster
+Saving Throw: None
+
+This spell creates nine darts that can be used by the caster and cannot be unequipped so long as the spell is in effect. The darts are +3, do 1d4+3 missile damage, and a creature struck by a dart must save vs. Death or take 2d6 magic damage and have its Strength reduced by 3 for 5 rounds. Strength reduction is noncumulative, and failing a save while the reduction is in effect will not extend its duration. The caster's weapon proficiency with darts (or lack thereof) has no effect on the darts' chances to hit a target.~
+
+@6300002 = ~Dart of Bone +3~
 @6310000 = ~Soul Eater~
 @6310001 = ~Soul Eater
 (Necromancy)
@@ -239,6 +268,9 @@ Saving Throw: None
 
 When uttering the Curse spell, the caster lowers the morale of enemy creatures and any Saving Throws and attack rolls they make by 1. At the instant the spell is completed, it affects all creatures in a 30-ft. radius centered on the point selected by the caster. Affected creatures leaving the area are still subject to the spell's effect; those entering the area after the casting is completed are not.~
 
+@11200002 = ~Sphere: All~
+@11200003 = ~Sphere: Dread~
+
 @11400000 = ~Cause Light Wounds~
 @11400001 = ~Cause Light Wounds
 (Necromancy)
@@ -253,45 +285,12 @@ Saving Throw: 1/2
 
 By casting this spell and touching a creature, the priest deals 8 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures.~
 
-@11400002 = ~Cause Light Wounds
-(Necromancy)
+@11400002 = ~Sphere: Healing~
 
-Level: 1
-Sphere: Life
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
+@11400003 = ~Sphere: Life~
 
-By casting this spell and touching a creature, the priest deals 8 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures.~
-
-@11400003 = ~Inflict Light Wounds
-(Necromancy)
-
-Level: 1
-Sphere: Healing
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 6, + 20% of the targets maximum hit points, of magic damage (save vs. Death for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures.~
-
-@11400004 = ~Inflict Light Wounds
-(Necromancy)
-
-Level: 1
-Sphere: Life
-Range: Touch
-Duration: Instant
-Casting Time: 5
-Area of Effect: 1 creature
-Saving Throw: 1/2
-
-By casting this spell and touching a creature, the priest deals 6, + 20% of the targets maximum hit points, of magic damage (save vs. Death for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures.~
-@11400005 = ~Inflict Light Wounds~
+@11400004 = ~deals 8 points of damage (save vs. Spell for half) to the creature's body.~
+@11400005 = ~deals 6, + 20% of the targets maximum hit points, of magic damage (save vs. Death for half) to the creature's body.~
 
 @11500000 = ~Sunscorch~
 @11500001 = ~Sunscorch
@@ -306,6 +305,10 @@ Area of Effect: 1 creature
 Saving Throw: Special
 
 When this spell is cast, a brilliant ray of scorching heat slants down from the sky and strikes one target of the caster's choice. Any creature struck by the ray takes 1d6 points of damage, plus 1 point per level of the caster; however, if the target is an undead creature or a monster vulnerable to bright light, the damage is 1d6, plus 2 points per level of the caster. In addition to sustaining damage, victims are also blinded for 3 rounds. The victim is allowed a Save vs. Spell for half damage and to avoid the blindness.~
+
+@11500002 = ~Sphere: Sun~
+@11500003 = ~Sphere: Light~
+
 
 @21600000 = ~Resist Fire/Cold~
 @21600001 = ~Resist Fire/Cold
@@ -351,6 +354,8 @@ This spell creates a silver-hued, partially ethereal lance shaped in the form of
 
 
 @21800003 = ~Outlined in a Silvery Radiance (AC penalty of 2)~
+
+@21800004 = ~Sphere: Combat~
 
 @21900000 = ~Beast Claw~
 @21900001 = ~Beast Claw
@@ -408,9 +413,7 @@ Saving Throw: None
 Prayer bestows favor on the priest and <PRO_HISHER> allies, and curses their enemies. All attacks, damage, and Saving Throws by friendly characters gain a +1 bonus, while enemy attacks, damage rolls, and saves get a -1 penalty. Any creatures within the area of effect when the spell is cast will continue to be affected by the spell when they leave the area, so if the warriors want to chase down that fleeing goblin, the effects of the Prayer will follow them.~
 
 @31600002 = ~Combat Penalties~
-@31600003 = ~Normal Book~
 @31600004 = ~Combat Bonuses~
-@31600005 = ~History of Calimshan~
 
 @32000000 = ~Cause Disease~
 @32000001 = ~Cause Disease
@@ -971,6 +974,7 @@ Area of Effect: Special
 Saving Throw: None
 
 This spell creates two 11-HD shambling mounds. These creatures willingly aid the caster in combat or whatever other duties they are assigned and have the capability to carry out.~
+@73700002 = ~Shambling Mound~
 @73700003 = ~Entangled~
 
 @73900000 = ~Energy Drain~

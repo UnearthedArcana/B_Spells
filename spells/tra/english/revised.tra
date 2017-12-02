@@ -1,0 +1,52 @@
+//REVISED SPELLS
+
+@10100000 = ~Remove Fatigue~
+@10100001 = ~Remove Fatigue
+(Necromancy)
+
+Level: 1
+Sphere: Necromantic
+Range: Touch
+Duration: Instant
+Casting Time: 9
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell restores the stamina of the creature touched, eliminating any fatigue.~
+
+@10100002 = ~Unfailing Endurance~
+@10100003 = ~Unfailing Endurance
+(Necromancy)
+
+Level: 4
+Sphere: Necromantic
+Range: Touch
+Duration: Instant
+Casting Time: 9
+Area of Effect: 30-ft. radius
+Saving Throw: None
+
+This spell restores the stamina of the caster, and any allies within 30 feet, eliminating any fatigue, and healing each for 25% of their maximum hit points.  Additionally, targets of this spell can draw on a reserve of energy once in the next 8 hours, completely removing fatigue a second time.~
+@10100004 = ~Draw on hidden reserves to remove any fatigue~
+
+@10100005 = ~Goodberry
+(Alteration, Evocation)
+
+Level: 2
+Sphere: Plant
+Range: Touch 
+Duration: Permanent
+Casting Time: 9 
+Area of Effect: Special 
+Saving Throw: None 
+
+Casting a Goodberry spell creates 5 magical berries that the caster can carry with <PRO_HIMHER>. Each berry restores 15% of a creature's maximum Hit Point total, and removes all fatigue when eaten.~
+@10100006 = ~Created by the Goodberry spell, these simple-looking blueberries will heal 15% of a creature's maximum Hit Point total, and removes all fatigue when eaten.
+
+STATISTICS:
+
+Special: Heals 15% of a creature's maximum Hit Point total, and removes all fatigue when eaten.
+
+Weight: 0~
+@10100007 = ~Goodberry~
+

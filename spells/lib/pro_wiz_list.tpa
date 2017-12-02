@@ -3,6 +3,10 @@
  ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
 
   ~%IDPRO313%~ => entropy_pro   //Lance of disruption pro
+  ~%IDPRO217%~ => entropy_pro   //Snowballs
+  ~%IDPRO251%~ => entropy_pro   //Icelance
+  ~%MFMISS%~ => entropy_pro   //MFM pro
+  ~%SMLLAREA%~ => entropy_pro   //MFM sec pro
 
  END  //end add LoD
 

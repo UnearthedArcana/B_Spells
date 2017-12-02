@@ -1,6 +1,101 @@
 ﻿# B_Spells
 
 log
+2017-11-30
+
+- Updated Stormwall
+
+2017-11-25
+- Updated Readme
+- Updated Disrupt Undead
+- Reorganized tras 
+
+2017-11-24
+- Cleaned up cause/inflict minor wounds cantrip and revise
+- Unfailing endurance/remove fatigue improved and iwdee spells
+
+2017-11-23
+- Infravision cantrip cleaned up, and revised cleaned up
+- Hold animal cantrip and revised coordinated (also w/sr)
+
+2017-11-22
+- Infravision-->Heat Vision
+
+
+2017-08-11
+
+- Shades: Fixed reference so it shouldn't crash anymore...
+- Shades: Removed umber hulk reference (amimations in BGEE)
+- Shadow Monsters: Added missing summons (liz men)
+- Shades and SMon: Made it so up to 6 cre can be summoned
+
+2017-07-29
+
+- Updated fear removal
+- Updated emotion removal/protection
+- Tested install.  Installed, but need to test further (executes an array witin an array)
+- Fixed an error with fear removal batch
+- Updated and applied (generally) remove and protect vs. berserk
+- Charm protection added (general) for strings
+
+2017-07-28_2
+
+- Updated Lev 3 prot
+- Updated Lev 4 prot
+- Tested: Prot lev 1-4 looks good (cursory obervation)
+
+2017-07-28
+
+- Updated-again!-lev one protection
+- Tested. Installed
+- Updated lev two protection
+
+2017-07-25
+
+- Added protection from slow and haste arrays to exp. retreat
+- Created remove slow and haste arrays and applied to exp retreat
+- Created magic item and spell removal arrays and applied to Decastave and bone darts
+- Tested...installs 
+
+
+2017-07-22
+
+- Applied fear, confusion, beserk/rage, and feeblemind removal/immunity to Exaltation.
+- Added Mordenkainen's Force Missiles
+- Added Mordenkainen's Force Missiles pro to entropy shield protection
+- Added Darts of Bone (protected from entropy shield?) 
+
+2017-07-20
+
+- Prayer: Used cantrip removal batch, and updates cantrip descriptions (may externalize...).
+- Created disease batch.
+- Applied Disease batch to cause disease
+- Created and applied lev 2 immune to Cause MW, Beast Claw, Al lance, Cure mod wounds, Resist fire/cold
+- Created and applied lev 3 immune to Prayer (sec spells), cause disease
+
+2017-07-19
+
+- Updated Fnp compatibility: Curse, cause light wounds and Sunscorch
+- Updated Sunscorch blindness notification (via batch)
+- Updated fnp compat: cure mod wounds, Alicorn Lance 
+
+
+2017-07-18
+
+- Added maladiction, cure and cause minor wounds, infravision, canticle, meditation, and frost ray cantrips to 1st lev immunity
+
+2017-07-17
+
+- Created 1st lev immune array
+- Applied 1st lev immune array to globes of invuln
+
+2017-07-16_2
+
+- Used Replace_textually with curse spell
+- Used Replace_textually with cause light wounds spell
+- Created compatibility folder (in lib) and tpa files (not edited yet).  Move compatibility to these files...
+
+v. 0.88a
 
 2017-07-16
 
@@ -58,6 +153,7 @@ log
 2017-07-09
 
 - cantrips: gave a +2 bonus to saves for jolt and frost ray.  Reducted duration of drowse to 1 round, period
+
 v. 0.88
 
 2017-07-08

@@ -106,6 +106,8 @@ COPY_EXISTING ~SCROLLS.STO~ ~override~
 END
 //Sh. of Entropy immunity list
 INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+//lev 2
+INCLUDE ~spells/lib/spell_lists/2nd_list.tpa~
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -315,6 +317,8 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
  END
 
 END
+//4th lev
+INCLUDE ~spells/lib/spell_lists/4th_list.tpa~
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -380,6 +384,13 @@ LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_SHADOW_MONSTERS~
   RET spell_res
 END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 331  parameter2 = 0   END      //
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 82 END   //82% 2 cre
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 65 END   //66% 3 cre
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 49 END   //50% 4 cre
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 32 END   //33% 5 cre
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 16 END   //~17% 6 cre
 //icons
 COPY ~Spells/data/iwd_spells/wizard_4/SPWI426a.bam~ ~override/%spell_res%a.bam~
 COPY ~Spells/data/iwd_spells/wizard_4/SPWI426b.bam~ ~override/%spell_res%b.bam~
@@ -455,8 +466,8 @@ ADD_SPELL ~Spells/data/iwd_spells/wizard_4/b_w427.spl~ 2 4 ~WIZARD_EMOTION_COURA
         SAY NAME2 @4270000
         SAY UNIDENTIFIED_DESC @4270001
 	SAY DESC @4270001
-    LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END
-    LPF cd_apply_batch STR_VAR array_name = cd_immunity_fear_arrays END
+//    LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END
+//    LPF cd_apply_batch STR_VAR array_name = cd_immunity_fear_arrays END
 
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
@@ -465,9 +476,7 @@ LAF RES_NUM_OF_SPELL_NAME
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //
+      INT_VAR match_opcode = 321 STR_VAR match_resource = ~SPWI427~ resource = EVAL ~%spell_res%~ END      // SPWI427
 //icons
 COPY ~Spells/data/iwd_spells/wizard_4/SPWI427a.bam~ ~override/%spell_res%a.bam~
 COPY ~Spells/data/iwd_spells/wizard_4/SPWI427b.bam~ ~override/%spell_res%b.bam~
@@ -502,6 +511,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 //bloodrage immunity list
 INCLUDE ~spells/lib/spell_lists/blood_list.tpa~
+//emotion
+INCLUDE ~spells/lib/spell_lists/emotion_list.tpa~
 
 //Add scroll, and add scroll to stores
 //Copy over the scroll:
@@ -574,7 +585,7 @@ ADD_SPELL ~Spells/data/iwd_spells/wizard_4/b_w428.spl~ 2 4 ~WIZARD_EMOTION_FEAR~
         SAY NAME2 @4280000
         SAY UNIDENTIFIED_DESC @4280001
 	SAY DESC @4280001
-    LPF cd_apply_batch STR_VAR array_name = b_fear_arrays END
+//    LPF cd_apply_batch STR_VAR array_name = b_fear_arrays END
 
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
@@ -595,6 +606,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //bloodrage immunity list
 INCLUDE ~spells/lib/spell_lists/blood_list.tpa~
+//fear
+INCLUDE ~spells/lib/spell_lists/fear_list.tpa~
 
 //Add scroll, and add scroll to stores
 //Copy over the scroll:
@@ -665,7 +678,7 @@ ADD_SPELL ~Spells/data/iwd_spells/wizard_4/b_w429.spl~ 2 4 ~WIZARD_EMOTION_HOPE~
         SAY NAME2 @4290000
         SAY UNIDENTIFIED_DESC @4290001
 	SAY DESC @4290001
-    LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END
+//    LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_EMOTION_HOPE~
@@ -710,6 +723,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 //bloodrage immunity list
 INCLUDE ~spells/lib/spell_lists/blood_list.tpa~
+//emotion
+INCLUDE ~spells/lib/spell_lists/emotion_list.tpa~
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -735,7 +750,7 @@ ADD_SPELL ~Spells/data/iwd_spells/wizard_4/b_w431.spl~ 2 4 ~WIZARD_SHOUT~ //
         SAY NAME2 @4310000
         SAY UNIDENTIFIED_DESC @4310001
 	SAY DESC @4310001
-    LPF cd_apply_batch STR_VAR array_name = b_deafness_arrays END
+//    LPF cd_apply_batch STR_VAR array_name = b_deafness_arrays END
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_SHOUT~
@@ -755,7 +770,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro315% STR_VAR icon = EVAL  ~%spell_res%B~ END
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //bloodrage immunity list
-INCLUDE ~spells/lib/spell_lists/blood_list.tpa~
+//INCLUDE ~spells/lib/spell_lists/blood_list.tpa~
 
 
 //////////////////////////////////////////////////////////////
@@ -813,12 +828,14 @@ COPY ~Spells/data/iwd_spells/wizard_6/SS3trl7.cre~ ~override~   //
 COPY ~Spells/data/iwd_spells/wizard_6/SS3trl8.cre~ ~override~   // Check animations...actually check all animations
         SAY NAME1 ~Troll~
         SAY NAME2 ~Troll~
+/*    Uhulk anims not in all
 COPY ~Spells/data/iwd_spells/wizard_6/SS3umb8.cre~ ~override~   //
         SAY NAME1 ~Umber Hulk~
         SAY NAME2 ~Umber Hulk~
 COPY ~Spells/data/iwd_spells/wizard_6/SS3umb9.cre~ ~override~   //
         SAY NAME1 ~Umber Hulk~
         SAY NAME2 ~Umber Hulk~
+*/
 //Spell itself
 ADD_SPELL ~Spells/data/iwd_spells/wizard_6/B_W629.spl~ 2 6 ~WIZARD_SHADES~ //
         SAY NAME1 @6290000
@@ -830,6 +847,14 @@ LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_SHADES~
   RET spell_res
 END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 331  parameter2 = 0      STR_VAR resource = EVAL ~B_SH03~ END      //
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 82 END   //82% 2 cre
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 65 END   //66% 3 cre
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 49 END   //50% 4 cre
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 32 END   //33% 5 cre
+  LPF CLONE_EFFECT INT_VAR multi_match = 1     match_opcode = 331  probability1 = 16 END   //~17% 6 cre
+
 //icons
 COPY ~Spells/data/iwd_spells/wizard_6/SPWI629a.bam~ ~override/%spell_res%a.bam~
 COPY ~Spells/data/iwd_spells/wizard_6/SPWI629b.bam~ ~override/%spell_res%b.bam~

@@ -9,17 +9,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////                                         //////////////////////////////////////
-/////////////////////////////////////         CANTRIP COMPATIBILITY           //////////////////////////////////////
+/////////////////////////////////////                ORISON STUFF             //////////////////////////////////////
 /////////////////////////////////////                                         //////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//MOVE SPELLS FROM 'NEW SPELLS' TO 'REVISED SPELLS' SPECIFICALLY 'REMOVE FATIGUE' DONE
-
 //SR Cause wounds spells summon a magic item that does the damage.  Account for this
 //Make compatible with sphere (if installed after them)
 
-// START FROM THE BEGINNING.  USE REPLACE_TEXTUALLY WITH TRA
+//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //___________________________________________________________Cure minor wounds__________________________________________________________________________//
@@ -27,20 +25,112 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN   //If Cure Minor Wounds is installed
-COPY_EXISTING ~b_po010.spl~ ~override~      //description
- SPRINT old @101000004//old text
- SPRINT new @101000005//new text
+ COPY_EXISTING ~b_po010.spl~ ~override~      //description
+  SPRINT old @101000004//old text
+  SPRINT new @101000005//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //Change to 10% +1 HP
+   LPF ALTER_EFFECT INT_VAR match_opcode = 17  parameter1 = 1 END
+   LPF CLONE_EFFECT INT_VAR match_opcode = 17 parameter1 = 10 parameter2 = 2 END
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________________Infravision_______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Infravision ---> Heat Vision
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvimhere.mrk~) BEGIN   //any version of sr
+  ADD_SPELL ~Spells/data/revised_spells/heat_vision/spwi111.spl~ 2 1 ~WIZARD_HEAT_VISION~ //HEAT VISION
+        SAY NAME1 @106000004
+        SAY NAME2 @106000004
+        SAY UNIDENTIFIED_DESC @106000007
+	SAY DESC @106000007
+        LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@106000004) END  //Notification: Heat Vision
+END//End SR
+
+
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~) BEGIN    //otherwise...
+ COPY_EXISTING ~SPWI111.spl~ ~override~   //Copy over the original spell
+        SAY NAME1 @106000004  //Heat Vision
+        SAY NAME2 @106000004  //Heat Vision
+        LPF CLONE_EFFECT INT_VAR match_opcode = 63 opcode = 301 parameter1 = 2 END
+        LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@106000004) END  //Notification: Heat Vision
+ SPRINT old1 @106000000//old text Infravision
+ SPRINT new1 @106000004//new text Heat Vision
+ SPRINT old2 @106000005//old text Infravision
+ SPRINT new2 @106000006//new text Heat Vision
   READ_LONG 0x50 "valid"
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
 	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~
+	REPLACE_TEXTUALLY ~%old1%~ ~%new1%~        //replacing old with new
 	END
   SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //Change to 10% +1 HP
-  LPF ALTER_EFFECT INT_VAR match_opcode = 17  parameter1 = 1 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 17 parameter1 = 10 parameter2 = 2 END
-END
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old2%~ ~%new2%~        //replacing old with new
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END  //
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________Hold Animal ---> Hold Beast____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//FIND ALL VERSIONS OF THIS SPELL!
+//IN case they're needed...
+COPY ~Spells/data/spells/revised_spells/hold_animal/#GENENCH.vvc~ ~override~ // vvc
+COPY ~Spells/data/spells/revised_spells/hold_animal/ENCHANX.bam~ ~override~ // vvc bam
+COPY ~Spells/data/spells/revised_spells/hold_animal/#ARE_P21.WAV~ ~override~ // vvc sound
+COPY ~Spells/data/spells/revised_spells/hold_animal/#EFF_P04.WAV~ ~override~ // sound
+COPY ~Spells/data/spells/revised_spells/hold_animal/#EFF_E05.WAV~ ~override~ // sound
+ADD_PROJECTILE ~Spells/data/spells/revised_spells/hold_animal/b_beast.pro~   //pro
+//Can't replace if SR is installe
+//Cantrips disables it (though, not if SR is installed)
+//Add if SR installed, Replace hold animal otherwise.
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~) BEGIN   //not installed, disable spell
+  COPY ~Spells/data/spells/revised_spells/hold_animal/sppr305.spl~ ~override~ // Hold Beast
+        SAY NAME1 @51104
+        SAY NAME2 @51104
+        SAY UNIDENTIFIED_DESC @51105
+	SAY DESC @51105
+        LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_beast% END
+END//End not SR
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~dvimhere.mrk~) BEGIN   //if SR installed, add spell
+  ADD_SPELL ~Spells/data/revised_spells/hold_animal/sppr305.spl~ 1 3 ~CLERIC_HOLD_BEAST~ //HEAT VISION
+        SAY NAME1 @51104
+        SAY NAME2 @51104
+        SAY UNIDENTIFIED_DESC @51105
+	SAY DESC @51105
+        LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_beast% END
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~CLERIC_HOLD_BEAST~
+    RET spell_res
+  END
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+    LPF ALTER_EFFECT
+      INT_VAR match_opcode = 324            //
+      STR_VAR resource = EVAL ~%spell_res%~
+END//END SR
+
+//MAKING 'ALLIES' IMMUNE.  nOT SURE IF THAT MEANS 'ALLY TO PC' OR 'ALLY TO CASTER'.
+//I THIK IT'S 'ALLIES TO PC' SO MAY NEED A DIFFERENT VERSION FOR PCS VS NPCS.
+//ORIGINAL MAY NEED TO BE ADDED TO HIDESPL, AND MADE INTO A NPC VERSION, SCRIPTS SHOULD BE TWEAKED SO THEY USE VS. SUMMONED MONSTERS
+//THIS VERSION WOULD BE ADDSPELLED AND GIVEN TO PC'S, BUT NOT IF SPELL REVISONS IS INSTALLED
+
+//ALSO, DOUBLE CHECK THIS DOESN'T HOLD SPIRIT SUMMONS
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -66,84 +156,188 @@ COPY_EXISTING ~b_po050.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR match_opcode = 12 match_savingthrow = 1 parameter1 = 5 parameter2 = 4194307 savingthrow = 4 END
 END
 
-//Continue from here
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////                1st level +/-            //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//Unfailing Endurance --> Remove Fatigue
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//____________________________________________________________________Infravision_______________________________________________________________________//
+//_______________________________________________________Remove Fatigue_________________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Only install if cantrips is installed
-ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
-COPY ~spells/data/cantrips/divine/b_po060.spl~ ~override~
-        SAY NAME1 @106000000
-        SAY NAME2 @106000000
-        SAY UNIDENTIFIED_DESC @106000001
-	SAY DESC @106000001
-//spheres
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po060.spl~ ~override~
- SPRINT old @106000002//old text
- SPRINT new @106000003//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
+ADD_SPELL ~Spells/data/revised_spells/unfailing_endurance/b_p101.spl~ 1 1 ~CLERIC_REMOVE_FATIGUE~ //
+        SAY NAME1 @10100000
+        SAY NAME2 @10100000
+        SAY UNIDENTIFIED_DESC @10100001
+	SAY DESC @10100001
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_REMOVE_FATIGUE~
+  RET spell_res
+END
+//icons
+COPY ~Spells/data/revised_spells/unfailing_endurance/SPPR424a.bam~ ~override/%spell_res%a.bam~
+COPY ~Spells/data/revised_spells/unfailing_endurance/SPPR424b.bam~ ~override/%spell_res%b.bam~
+COPY ~Spells/data/revised_spells/unfailing_endurance/SPPR424c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+  WRITE_EVALUATED_ASCII 0x0076 ~%spell_res%B~
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________Unfailing Endurance____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN
+//should be able to use exact same code for iwdee and iwdification
+//spec ability
+COPY ~Spells/data/revised_spells/unfailing_endurance/b_fatig.spl~ ~override~
+        SAY NAME1 @10100000
+        SAY NAME2 @10100000
+        SAY UNIDENTIFIED_DESC @10100004
+	SAY DESC @10100004
+//heal notification
+COPY ~Spells/data/revised_spells/unfailing_endurance/B_HEALN.eff~ ~override~
+  SAY 0x1c ~Healed~ //healed (already in dialog.tlk so...)
+
+//animation
+COPY ~Spells/data/revised_spells/unfailing_endurance/ENCHAH.bam~ ~override~
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_UNFAILING_ENDURANCE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+        SAY NAME1 @10100002
+        SAY NAME2 @10100002
+        SAY UNIDENTIFIED_DESC @10100003
+	SAY DESC @10100003
+	WRITE_BYTE 0x072 ~2~  //Projectile
+	WRITE_BYTE 0x07E ~5~  //Self
+	WRITE_SHORT 0x098 ~158~  //DH Projectile
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 324 parameter1 = 0 parameter2 = 1 STR_VAR resource = EVAL ~%spell_res%~ END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 17 parameter1 = 25 parameter2 = 2 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 171 timing = 0 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 172 timing = 4 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 177 parameter1 = 0 parameter2 = 2 STR_VAR resource = EVAL ~b_healn~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR resource = EVAL ~ENCHAH~  END
+END  //End 'my version'
+
+//IWDEE
+
+ACTION_IF GAME_IS ~iwdee~ THEN BEGIN   //
+//should be able to use exact same code for iwdee and iwdification
+//spec ability
+COPY ~Spells/data/revised_spells/unfailing_endurance/b_fatig.spl~ ~override~
+        SAY NAME1 @10100000
+        SAY NAME2 @10100000
+        SAY UNIDENTIFIED_DESC @10100004
+	SAY DESC @10100004
+//heal notification
+COPY ~Spells/data/revised_spells/unfailing_endurance/B_HEALN.eff~ ~override~
+  SAY 0x1c ~Healed~ //healed (already in dialog.tlk so...)
+
+//animation
+COPY ~Spells/data/revised_spells/unfailing_endurance/ENCHAH.bam~ ~override~
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_UNFAILING_ENDURANCE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+        SAY NAME1 @10100002
+        SAY NAME2 @10100002
+        SAY UNIDENTIFIED_DESC @10100003
+	SAY DESC @10100003
+	WRITE_BYTE 0x072 ~2~  //Projectile
+	WRITE_BYTE 0x07E ~5~  //Self
+	WRITE_SHORT 0x098 ~158~  //DH Projectile
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 324 parameter1 = 0 parameter2 = 1 STR_VAR resource = EVAL ~%spell_res%~ END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 17 parameter1 = 25 parameter2 = 2 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 171 timing = 0 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 172 timing = 4 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 177 parameter1 = 0 parameter2 = 2 STR_VAR resource = EVAL ~b_healn~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR resource = EVAL ~ENCHAH~  END
+END
+//End iwdee version
+//IWDIfication
+ACTION_IF MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN//should be able to use exact same code for iwdee and iwdification
+//spec ability
+COPY ~Spells/data/revised_spells/unfailing_endurance/b_fatig.spl~ ~override~
+        SAY NAME1 @10100000
+        SAY NAME2 @10100000
+        SAY UNIDENTIFIED_DESC @10100004
+	SAY DESC @10100004
+//heal notification
+COPY ~Spells/data/revised_spells/unfailing_endurance/B_HEALN.eff~ ~override~
+  SAY 0x1c ~Healed~ //healed (already in dialog.tlk so...)
+
+//animation
+COPY ~Spells/data/revised_spells/unfailing_endurance/ENCHAH.bam~ ~override~
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_UNFAILING_ENDURANCE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+        SAY NAME1 @10100002
+        SAY NAME2 @10100002
+        SAY UNIDENTIFIED_DESC @10100003
+	SAY DESC @10100003
+	WRITE_BYTE 0x072 ~2~  //Projectile
+	WRITE_BYTE 0x07E ~5~  //Self
+	WRITE_SHORT 0x098 ~158~  //DH Projectile
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 324 parameter1 = 0 parameter2 = 1 STR_VAR resource = EVAL ~%spell_res%~ END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 17 parameter1 = 25 parameter2 = 2 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 171 timing = 0 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 172 timing = 4 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 177 parameter1 = 0 parameter2 = 2 STR_VAR resource = EVAL ~b_healn~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR resource = EVAL ~ENCHAH~  END
 END
 
-END
+//ATTENTION: FIT REMOVE FATIGUE AND UNFAILING ENDURANCE IN SPHERE SYSTEM...
+//ALSO, MAYBE REMOVE FATIGUE SHOULD HEAL A BIT???
 
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////                2nd level +/-            //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_______________________________________________________Hold Animal ---> Hold Beast____________________________________________________________________//
+//_________________________________________________________________Goodberry____________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//Just brutin' away...
+  COPY ~Spells/data/revised_spells/goodberry/SPPR207.spl~ ~override~
+        SAY NAME1 @10100007
+        SAY NAME2 @10100007
+        SAY UNIDENTIFIED_DESC @10100005
+	SAY DESC @10100005
+  COPY ~Spells/data/revised_spells/goodberry/gberry.itm~ ~override~
+        SAY NAME1 @10100007
+        SAY NAME2 @10100007
+        SAY UNIDENTIFIED_DESC @10100006
+	SAY DESC @10100006
 
-//FIND ALL VERSIONS OF THIS SPELL!
-//'BRUTING' it because there are different versions of the spell in different versions of the game.  (may 'do it right', however).  
-//REMOVE FROM SPHERES TPA
-COPY ~Spells/data/spells/revised_spells/hold_animal/#GENENCH.vvc~ ~override~ // vvc
-COPY ~Spells/data/spells/revised_spells/hold_animal/ENCHANX.bam~ ~override~ // vvc bam
-COPY ~Spells/data/spells/revised_spells/hold_animal/#ARE_P21.WAV~ ~override~ // vvc sound
-COPY ~Spells/data/spells/revised_spells/hold_animal/#EFF_P04.WAV~ ~override~ // sound
-COPY ~Spells/data/spells/revised_spells/hold_animal/#EFF_E05.WAV~ ~override~ // sound
-ADD_PROJECTILE ~Spells/data/spells/revised_spells/hold_animal/b_beast.pro~   //pro
-COPY ~Spells/data/spells/revised_spells/hold_animal/sppr305.spl~ ~override~ // Hold Beast
-        SAY NAME1 @51104
-        SAY NAME2 @51104
-        SAY UNIDENTIFIED_DESC @51105
-	SAY DESC @51105
-	WRITE_SHORT 0x098 ~%b_beast%~
-	WRITE_SHORT 0x0C0 ~%b_beast%~
-	WRITE_SHORT 0x0E8 ~%b_beast%~
-	WRITE_SHORT 0x110 ~%b_beast%~
-	WRITE_SHORT 0x138 ~%b_beast%~
-	WRITE_SHORT 0x160 ~%b_beast%~
-	WRITE_SHORT 0x188 ~%b_beast%~
-	WRITE_SHORT 0x1B0 ~%b_beast%~
-	WRITE_SHORT 0x1D8 ~%b_beast%~
-	WRITE_SHORT 0x200 ~%b_beast%~
-	WRITE_SHORT 0x228 ~%b_beast%~
-	WRITE_SHORT 0x250 ~%b_beast%~
-	WRITE_SHORT 0x278 ~%b_beast%~
-	WRITE_SHORT 0x2A0 ~%b_beast%~
-	WRITE_SHORT 0x2C8 ~%b_beast%~
-	WRITE_SHORT 0x2F0 ~%b_beast%~
-//MAKING 'ALLIES' IMMUNE.  nOT SURE IF THAT MEANS 'ALLY TO PC' OR 'ALLY TO CASTER'.
-//I THIK IT'S 'ALLIES TO PC' SO MAY NEED A DIFFERENT VERSION FOR PCS VS NPCS.
-//ORIGINAL MAY NEED TO BE ADDED TO HIDESPL, AND MADE INTO A NPC VERSION, SCRIPTS SHOULD BE TWEAKED SO THEY USE VS. SUMMONED MONSTERS
-//THIS VERSION WOULD BE ADDSPELLED AND GIVEN TO PC'S, BUT NOT IF SPELL REVISONS IS INSTALLED
+//CONTINUE FROM HERE
 
-//ALSO, DOUBLE CHECK THIS DOESN'T HOLD SPIRIT SUMMONS
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -153,6 +347,7 @@ COPY ~Spells/data/spells/revised_spells/hold_animal/sppr305.spl~ ~override~ // H
 
 
 //Find all versions, including 'innate' versions, of cure light wounds (sppr103/spin101 present in both bgee and bg2ee, no spin101 in IWDEE)
+//Maybe use Cam's macro...
 //cures an additional 4 hit points so it's still useful at lower levels
 COPY_EXISTING ~sppr103.spl~ ~override~ //
         SAY UNIDENTIFIED_DESC @50101
@@ -360,153 +555,7 @@ END
 //Altered Inflict/harm spells  (CHANGE NAME FROM 'CAUSE x' To 'Inflict x'
 //ACTION_IF FILE_EXISTS_IN_GAME ~b_po050.spl~ BEGIN
 
-//Goodberries and fatigue 'revision'
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_______________________________________________________Remove Fatigue_________________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ADD_SPELL ~Spells/data/revised_spells/unfailing_endurance/b_p101.spl~ 1 1 ~CLERIC_REMOVE_FATIGUE~ //
-        SAY NAME1 @10100000
-        SAY NAME2 @10100000
-        SAY UNIDENTIFIED_DESC @10100001
-	SAY DESC @10100001
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_REMOVE_FATIGUE~
-  RET spell_res
-END
-//icons
-COPY ~Spells/data/revised_spells/unfailing_endurance/SPPR424a.bam~ ~override/%spell_res%a.bam~
-COPY ~Spells/data/revised_spells/unfailing_endurance/SPPR424b.bam~ ~override/%spell_res%b.bam~
-COPY ~Spells/data/revised_spells/unfailing_endurance/SPPR424c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-  WRITE_EVALUATED_ASCII 0x0076 ~%spell_res%B~
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_______________________________________________________Unfailing Endurance____________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//REMOVE UNFAILING ENDURANCE FROM SELECTION IF NO IWDEE SPELLS INSTALLED
-//WHAT DOES THE BELOW CODE DO, EXACTLY?  DOCUMENTATION!!!
-
-//IDEAS:
-//DURATIoN WHERE CHARACTER DOES NOT EXPERIENCE ANY FATIGUE (e.g. from haste)
-//CAST ON TOTAL PARTY
-//Heals?  
-
-//IMPROVED 'MY' VERSION
-ACTION_IF FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN
-//should be able to use exact same code for iwdee and iwdification
-//spec ability
-COPY ~Spells/data/revised_spells/unfailing_endurance/b_fatig.spl~ ~override~
-        SAY NAME1 @10100000
-        SAY NAME2 @10100000
-        SAY UNIDENTIFIED_DESC @10100004
-	SAY DESC @10100004
-//heal notification
-COPY ~Spells/data/revised_spells/unfailing_endurance/B_HEALN.eff~ ~override~
-  SAY 0x1c ~Healed~ //healed (already in dialog.tlk so...)
-
-//animation
-COPY ~Spells/data/revised_spells/unfailing_endurance/ENCHAH.bam~ ~override~
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_UNFAILING_ENDURANCE~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-        SAY NAME1 @10100002
-        SAY NAME2 @10100002
-        SAY UNIDENTIFIED_DESC @10100003
-	SAY DESC @10100003
-	WRITE_BYTE 0x072 ~2~  //Projectile
-	WRITE_BYTE 0x07E ~5~  //Self
-	WRITE_SHORT 0x098 ~158~  //DH Projectile
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 324 parameter1 = 0 parameter2 = 1 STR_VAR resource = EVAL ~%spell_res%~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 17 parameter1 = 10 parameter2 = 2 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 171 timing = 0 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 172 timing = 4 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 177 parameter1 = 0 parameter2 = 2 STR_VAR resource = EVAL ~b_healn~ END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR resource = EVAL ~ENCHAH~  END
-END
-
-//IWDEE
-
-ACTION_IF GAME_IS ~iwdee~ THEN BEGIN   //
-//should be able to use exact same code for iwdee and iwdification
-//spec ability
-COPY ~Spells/data/revised_spells/unfailing_endurance/b_fatig.spl~ ~override~
-        SAY NAME1 @10100000
-        SAY NAME2 @10100000
-        SAY UNIDENTIFIED_DESC @10100004
-	SAY DESC @10100004
-//heal notification
-COPY ~Spells/data/revised_spells/unfailing_endurance/B_HEALN.eff~ ~override~
-  SAY 0x1c ~Healed~ //healed (already in dialog.tlk so...)
-
-//animation
-COPY ~Spells/data/revised_spells/unfailing_endurance/ENCHAH.bam~ ~override~
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_UNFAILING_ENDURANCE~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-        SAY NAME1 @10100002
-        SAY NAME2 @10100002
-        SAY UNIDENTIFIED_DESC @10100003
-	SAY DESC @10100003
-	WRITE_BYTE 0x072 ~2~  //Projectile
-	WRITE_BYTE 0x07E ~5~  //Self
-	WRITE_SHORT 0x098 ~158~  //DH Projectile
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 324 parameter1 = 0 parameter2 = 1 STR_VAR resource = EVAL ~%spell_res%~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 17 parameter1 = 10 parameter2 = 2 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 171 timing = 0 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 172 timing = 4 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 177 parameter1 = 0 parameter2 = 2 STR_VAR resource = EVAL ~b_healn~ END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR resource = EVAL ~ENCHAH~  END
-END
-//IWDIfication
-ACTION_IF MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~ THEN BEGIN//should be able to use exact same code for iwdee and iwdification
-//spec ability
-COPY ~Spells/data/revised_spells/unfailing_endurance/b_fatig.spl~ ~override~
-        SAY NAME1 @10100000
-        SAY NAME2 @10100000
-        SAY UNIDENTIFIED_DESC @10100004
-	SAY DESC @10100004
-//heal notification
-COPY ~Spells/data/revised_spells/unfailing_endurance/B_HEALN.eff~ ~override~
-  SAY 0x1c ~Healed~ //healed (already in dialog.tlk so...)
-
-//animation
-COPY ~Spells/data/revised_spells/unfailing_endurance/ENCHAH.bam~ ~override~
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_UNFAILING_ENDURANCE~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-        SAY NAME1 @10100002
-        SAY NAME2 @10100002
-        SAY UNIDENTIFIED_DESC @10100003
-	SAY DESC @10100003
-	WRITE_BYTE 0x072 ~2~  //Projectile
-	WRITE_BYTE 0x07E ~5~  //Self
-	WRITE_SHORT 0x098 ~158~  //DH Projectile
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 324 parameter1 = 0 parameter2 = 1 STR_VAR resource = EVAL ~%spell_res%~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 17 parameter1 = 10 parameter2 = 2 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 171 timing = 0 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 172 timing = 4 parameter1 = 0 parameter2 = 0 duration = 2400 STR_VAR resource = EVAL ~b_fatig~  END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 93 opcode = 177 parameter1 = 0 parameter2 = 2 STR_VAR resource = EVAL ~b_healn~ END
-  LPF ALTER_EFFECT INT_VAR match_opcode = 215 STR_VAR resource = EVAL ~ENCHAH~  END
-END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

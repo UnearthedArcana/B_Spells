@@ -27,6 +27,7 @@ LANGUAGE ~English~ ~english~
          ~Spells/tra/english/IWD_spells.tra~  //for IWDEE spells
          ~Spells/tra/english/new_spells.tra~  //for new spells
          ~Spells/tra/english/cantrips.tra~  //for cantrips
+         ~Spells/tra/english/revised.tra~  //for revised
 
 //___________________________________________________________________________________
 /*
@@ -64,9 +65,18 @@ END
 //New SPells
 //////////////////////////////////////////////////////
 //////////////////////////////////////////////////////
-  ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_new.itm~ BEGIN    //If Newspells not installed...
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_new.itm~ BEGIN    //If Newspells not installed...
    INCLUDE ~spells/data/components/Setup_New_Spells.tpa~
- COPY ~spells/spheres/b_new.itm~ ~override~   //to detect this component
+    COPY ~spells/spheres/b_new.itm~ ~override~   //to detect this component
+END
+
+//compatibility
+ACTION_IF (((FILE_EXISTS_IN_GAME ~b_IWD.itm~) OR (MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~)) OR (GAME_IS ~iwdee~)) BEGIN  //iwd priest spells
+
+  ACTION_IF ((FILE_EXISTS_IN_GAME ~d5_spheres.d5~) AND (NOT FILE_EXISTS_IN_GAME ~B_sphere.mrk~)) BEGIN //fnp spheres installed, spells not modificed
+//COPY ~spells/lib/compatibility/B_sphere.mrk~   //I NEED A MARKER...
+ INCLUDE ~spells/lib/compatibility/fnp.tpa~
+  END //End fnp compatibility priest spells
 END
 //now, handle any and all immunities (ALWAYS LAST)
 INCLUDE ~spells/lib/immunities.tpa~

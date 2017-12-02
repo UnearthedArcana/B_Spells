@@ -36,9 +36,222 @@
 //                                          SR: no
 //                                          Other: no
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________________Infravision_______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Infravision            Added:Yes          Compatiblity:                                         Double Checked: no
+//                                          IWDEE: Not needed
+//                                          IWDification: Not needed
+//                                          My IWD spells: Not needed
+//                                          my revised spells: No (may have a 'heat vision' version...)
+//                                          spheres: Not needed
+//                                          SR: (wiz version will need it) SR may use icons...
+//                                          Other: Not needed
+//
+COPY ~spells/data/cantrips/divine/b_po060.spl~ ~override~
+        SAY NAME1 @106000000
+        SAY NAME2 @106000000
+        SAY UNIDENTIFIED_DESC @106000001
+	SAY DESC @106000001
+//spheres
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
+COPY_EXISTING ~b_po060.spl~ ~override~
+ SPRINT old @106000002//old text
+ SPRINT new @106000003//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+//If Neither SR nor Revise is installed, Infa needs to be removed
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~) AND (NOT FILE_EXISTS_IN_GAME ~B_REVISE.ITM~) BEGIN   //not installed, disable spell
+ COPY_EXISTING ~SPWI111.spl~ ~override~   //Copy over the original spell
+    WRITE_LONG 0x1e ~0x4000~ //  exclude generalist
+    WRITE_BYTE 0x21 (THIS | 0b10000000) //exlcude wildmage
+END
+//END SR OR B_REVISE ONLY
+ ///ATTENTION:  SEE HOW TO ADD TO KNOWLEDGE SPHERE
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________Hold animal____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Template               Added:no           Compatiblity:                                         Double Checked: no
+//                                          IWDEE: no need
+//                                          IWDification: no need
+//                                          My IWD spells: no need
+//                                          my revised spells: yes
+//                                          spheres: no
+//                                          SR: Double check v3 improves hold animal (almost certainly does, but...)
+//                                          SR: any unique spells dispell hold besides Remove Paralysis?
+//                                          Other: no need as far as I can tell
+//Adding the cantrip either way
+COPY ~spells/data/cantrips/divine/b_po070.spl~ ~override~
+        SAY NAME1 @107000000
+        SAY NAME2 @107000000
+        SAY UNIDENTIFIED_DESC @107000001
+	SAY DESC @107000001
+//disable original spell if neither SR nor Revise installed
 
+//If Neither SR nor Revise is installed, Cont animals needs to be removed
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~) AND (NOT FILE_EXISTS_IN_GAME ~B_REVISE.ITM~) BEGIN   //not installed, disable spell
+ COPY_EXISTING ~SPPR305.spl~ ~override~   //Copy over the original spell
+    WRITE_BYTE 0x21 (THIS | 0b11000000) //exlcude all priest classes
+END
+//END SR OR B_REVISE ONLY
+
+ ///ATTENTION:  SEE HOW TO ADD TO ANIMAL SPHERE
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Cure Minor Wounds_________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//cure minor wounds     added               Revised Spells: yes (both ways?)                       Double Checked: no
+//                                          (Our) Spheres: NO DO  From 'healing' to 'life'
+//                                          Others?
+
+//ADD SPHERE SYSTEM COMPATIBILITY: SPHERE: LIFE  d5_spheres.d5
+//STANDARD VERSION
+COPY ~spells/data/cantrips/divine/b_po010.spl~ ~override~
+        SAY NAME1 @101000000
+        SAY NAME2 @101000000
+        SAY UNIDENTIFIED_DESC @101000001
+	SAY DESC @101000001
+
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN   //If FnP is installed (change sphere from healing to life)
+
+  COPY_EXISTING ~b_po010.spl~ ~override~
+    SPRINT old @101000002//old sphere (healing)
+    SPRINT new @101000003//new sphere (life)
+   READ_LONG 0x50 "valid"
+     PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+     READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~
+        END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END
+END
+
+ ///ATTENTION:  SEE HOW TO ADD TO LIFE SPHERE
+ //Add to life sphere level 1 (i.e. by setting the variable)
+ 
+ /* Verify how to do this these days!!!
+COPY_EXISTING ~d5plif1.spl~ ~override~
+		LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode=171 opcode = 309 timing = 9 parameter1 = 1 parameter2 = 0 STR_VAR resource = EVAL ~b_life~ END // add to life sphere
+COPY_EXISTING ~d5flif1.spl~ ~override~
+		LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode=171 opcode = 309 timing = 9 parameter1 = 1 parameter2 = 0 STR_VAR resource = EVAL ~b_life~ END // add to life sphere
+END //end copatibility w/fnp
+*/
+
+//Compatibility with Revised Spells
+ACTION_IF FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN
+COPY_EXISTING ~b_po010.spl~ ~override~      //description
+ SPRINT old @101000004//old text
+ SPRINT new @101000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //Change to 10% +1 HP
+  LPF ALTER_EFFECT INT_VAR match_opcode = 17  parameter1 = 1 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 17 parameter1 = 10 parameter2 = 2 END
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________Cause Minor Wounds_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Cause Minor Wounds   Added                Compatiblity                                          Double Checked: no
+//                                          My Revised: yes
+//                                          Spheres: looks like it
+//                                          others?
+//ADD SPHERE SYSTEM COMPATIBILITY: SPHERE: Death: Done.   d5_spheres.d5
+//Change spell name
+//Animation
+COPY ~spells/data/cantrips/divine/CLDAMAH.bam~ ~override~
+//Sound
+COPY ~spells/data/cantrips/divine/#FF_P103.WAV~ ~override~
+//icons (placeholders)
+COPY ~spells/data/cantrips/divine/SPPR114A.BAM~ ~override~
+COPY ~spells/data/cantrips/divine/SPPR114B.BAM~ ~override~
+COPY ~spells/data/cantrips/divine/SPPR114C.BAM~ ~override~
+//spell itself
+COPY ~spells/data/cantrips/divine/b_po050.spl~ ~override~
+        SAY NAME1 @105000000
+        SAY NAME2 @105000000
+        SAY UNIDENTIFIED_DESC @105000001
+	SAY DESC @105000001
+ LPF ALTER_EFFECT
+      INT_VAR match_opcode = 324            //
+      STR_VAR resource = EVAL ~b_po050~
+  END 
+
+//Compatibility: sphere system Description: death sphere
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
+COPY_EXISTING ~b_po050.spl~ ~override~
+ SPRINT old @101000002//old text healing sphere from cure minor wounds
+ SPRINT new @105000002//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+
+//Compatibility: Altered spells
+ACTION_IF FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN
+COPY_EXISTING ~b_po050.spl~ ~override~
+ SPRINT old @105000003//old text
+ SPRINT new @105000004//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (set damage to % of target's hp)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+  LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 1 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 match_savingthrow = 0 parameter1 = 5 parameter2 = 4194307 END
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 match_savingthrow = 1 parameter1 = 5 parameter2 = 4194307 savingthrow = 4 END
+END
+
+//sr change to sr nomenclature
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
+COPY_EXISTING ~b_po050.spl~ ~override~
+        SAY NAME1 @105000005
+        SAY NAME2 @105000005
+ SPRINT old @105000000//old text
+ SPRINT new @105000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (cause to inflict)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+//ATTENTION: IF SR IS INSTALLED, CHANGE INFLICT MINOR WOUNDS TO WORK AS OTHER INFLICT SPELLS
+
+//CONTINUE FROM HERE
 
 //Ceremony:  A dialog cantrip that allows the priest to do a number of things.  All cost gold, or something...
 //Ceremony: Bless Water          To add    Implementation: Dialog: costs gold, creates a vial of water that damages undead
@@ -49,12 +262,14 @@
 //
 //Alternatively: Rituals: Cast spells with a gold cost that is more powerful/long lasting than normal (or both?)
 
-//Sense Magic                    To add    just the reveal magic opcode
 
 //                    To Add    Convert 1st level spell to cantrip
 
 //Magic stone                    To add    Convert 1st level spell to cantrip
 
+//Sense Magic                    To add    just the reveal magic opcode
+
+//Expedious retreat              To add    1st lev iwdee spell
 
 //Animal Companion (druid)      To add     animal versions of familiar like spell
 
@@ -143,60 +358,6 @@ END
 //cleric innates
 COPY ~spells/data/cantrips/divine/b_prc01.spl~ ~override/b_pr01.spl~ //will need to add all cantrips to this and
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//________________________________________________________________Cure Minor Wounds_________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//cure minor wounds     added               Revised Spells: yes (both ways?)                       Double Checked: no
-//                                          (Our) Spheres: NO DO  From 'healing' to 'life'
-//                                          Others?
-
-//ADD SPHERE SYSTEM COMPATIBILITY: SPHERE: LIFE  d5_spheres.d5
-//STANDARD VERSION
-COPY ~spells/data/cantrips/divine/b_po010.spl~ ~override~
-        SAY NAME1 @101000000
-        SAY NAME2 @101000000
-        SAY UNIDENTIFIED_DESC @101000001
-	SAY DESC @101000001
-
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN   //If FnP is installed (change sphere from healing to life)
-
-COPY_EXISTING ~b_po010.spl~ ~override~
-SPRINT old @101000002//old sphere (healing)
-SPRINT new @101000003//new sphere (life)
- READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~
-        END
-  SAY_EVALUATED 0x50 ~%new_desc%~
- END
-
- //Add to life sphere level 1 (i.e. by setting the variable)
-COPY_EXISTING ~d5plif1.spl~ ~override~
-		LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode=171 opcode = 309 timing = 9 parameter1 = 1 parameter2 = 0 STR_VAR resource = EVAL ~b_life~ END // add to life sphere
-COPY_EXISTING ~d5flif1.spl~ ~override~
-		LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode=171 opcode = 309 timing = 9 parameter1 = 1 parameter2 = 0 STR_VAR resource = EVAL ~b_life~ END // add to life sphere
-END //end copatibility w/fnp
-
-//Compatibility with Revised Spells
-ACTION_IF FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN
-COPY_EXISTING ~b_po010.spl~ ~override~      //description
- SPRINT old @101000004//old text
- SPRINT new @101000005//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //Change to 10% +1 HP
-  LPF ALTER_EFFECT INT_VAR match_opcode = 17  parameter1 = 1 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 17 parameter1 = 10 parameter2 = 2 END
-END
 
 
 
@@ -310,123 +471,7 @@ COPY_EXISTING ~b_po040.spl~ ~override~
 END
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_______________________________________________________________Cause Minor Wounds_____________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Cause Minor Wounds   Added                Compatiblity                                          Double Checked: no
-//                                          My Revised: yes
-//                                          Spheres: looks like it
-//                                          others?
-//ADD SPHERE SYSTEM COMPATIBILITY: SPHERE: Death: Done.   d5_spheres.d5
-//Change spell name
-//Animation
-COPY ~spells/data/cantrips/divine/CLDAMAH.bam~ ~override~
-//Sound
-COPY ~spells/data/cantrips/divine/#FF_P103.WAV~ ~override~
-//icons (placeholders)
-COPY ~spells/data/cantrips/divine/SPPR114A.BAM~ ~override~
-COPY ~spells/data/cantrips/divine/SPPR114B.BAM~ ~override~
-COPY ~spells/data/cantrips/divine/SPPR114C.BAM~ ~override~
-//spell itself
-COPY ~spells/data/cantrips/divine/b_po050.spl~ ~override~
-        SAY NAME1 @105000000
-        SAY NAME2 @105000000
-        SAY UNIDENTIFIED_DESC @105000001
-	SAY DESC @105000001
- LPF ALTER_EFFECT
-      INT_VAR match_opcode = 324            //
-      STR_VAR resource = EVAL ~b_po050~
-  END 
 
-//Compatibility: sphere system Description: death sphere
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po050.spl~ ~override~
- SPRINT old @101000002//old text healing sphere from cure minor wounds
- SPRINT new @105000002//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-
-//Compatibility: Altered spells
-ACTION_IF FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN
-COPY_EXISTING ~b_po050.spl~ ~override~
- SPRINT old @105000003//old text
- SPRINT new @105000004//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (set damage to % of target's hp)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-  LPF ALTER_EFFECT INT_VAR match_opcode = 12 parameter1 = 1 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 12 match_savingthrow = 0 parameter1 = 5 parameter2 = 4194307 END
-  LPF CLONE_EFFECT INT_VAR match_opcode = 12 match_savingthrow = 1 parameter1 = 5 parameter2 = 4194307 savingthrow = 4 END
-END
-
-//sr change to sr nomenclature
-ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
-COPY_EXISTING ~b_po050.spl~ ~override~
-        SAY NAME1 @105000005
-        SAY NAME2 @105000005
- SPRINT old @105000000//old text
- SPRINT new @105000005//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (cause to inflict)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//____________________________________________________________________Infravision_______________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Infravision            Added:Yes          Compatiblity:                                         Double Checked: no
-//                                          IWDEE: Not needed
-//                                          IWDification: Not needed
-//                                          My IWD spells: Not needed
-//                                          my revised spells: No (may have a 'heat vision' version...)
-//                                          spheres: Not needed
-//                                          SR: (wiz version will need it) SR may use icons...
-//                                          Other: Not needed
-//Only install if some replacement for infravision has been installed
-ACTION_IF (FILE_EXISTS_IN_GAME ~dvimhere.mrk~) OR (FILE_EXISTS_IN_GAME ~B_REVISE.ITM~) BEGIN   //any version of sr or my revision 
-
-COPY ~spells/data/cantrips/divine/b_po060.spl~ ~override~
-        SAY NAME1 @106000000
-        SAY NAME2 @106000000
-        SAY UNIDENTIFIED_DESC @106000001
-	SAY DESC @106000001
-//spheres
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po060.spl~ ~override~
- SPRINT old @106000002//old text
- SPRINT new @106000003//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-END
-//END SR OR B_REVISE ONLY
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -633,8 +678,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //Remove Curse
 INCLUDE ~spells/lib/spell_lists/curse_list.tpa~
 //end of extra frost ray to be added stuff
-*/
-  END ELSE BEGIN // otherwise nuke stun stuff
+END ELSE BEGIN */
+
 //This is where we convert shocking grasp to cantrip (i.e. if SR not installed)
 END
 
@@ -728,31 +773,7 @@ INCLUDE ~spells/lib/spell_lists/curse_list.tpa~
 //CONTINUE FROM HERE
 /*
 
- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_______________________________________________________________Hold animal____________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE: no need
-//                                          IWDification: no need
-//                                          My IWD spells: no need
-//                                          my revised spells: yes
-//                                          spheres: no
-//                                          SR: Double check v3 improves hold animal (almost certainly does, but...)
-//                                          SR: any unique spells dispell hold besides Remove Paralysis?
-//                                          Other: no need as far as I can tell
-//Not installed if B_REVISE not installed
-ACTION_IF FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN
 
-COPY ~spells/data/cantrips/divine/b_po070.spl~ ~override~
-        SAY NAME1 @107000000
-        SAY NAME2 @107000000
-        SAY UNIDENTIFIED_DESC @107000001
-	SAY DESC @107000001
-
-END
-//END B_REVISE ONLY
 
 
 

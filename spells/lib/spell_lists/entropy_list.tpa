@@ -3,6 +3,7 @@
 ACTION_DEFINE_ASSOCIATIVE_ARRAY prot BEGIN
 
 ~%spell_res%~ => entropy
+~DOBONE~ => entropy   //Bone darts
 
 END
 

@@ -1,0 +1,141 @@
+//IWD priest spells... (not in IWDification: Seven Eyes, Soul Eater, (Great) Shout, Mordenkainen's Force Missiles, Spiritual Wrath, Mold Touch, Wall of Moonlight, and Smashing Wave.)
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////               Curse: Sphere change           //////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CURSE~
+  RET spell_res
+END
+//compatibility spheres (ours) sphere: all -> dread
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @11200002//old text Sphere: all
+ SPRINT new @11200003//new text Sphere: dread
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old sphere with new
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////               CLW: Sphere change             //////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CAUSE_LIGHT_WOUNDS~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @11400002//old text Sphere: Healing
+ SPRINT new @11400003//new text Sphere: Life
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old sphere with new
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////        SUNSCORCH: Sphere change              //////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// IF SR NOT INSTALLED...(problem in that IWDIFICATION DOES NOT CHECK FOR SR...)
+ACTION_IF ((NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~) OR (MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~)) BEGIN  //prob: IWDIFICATIon doesn't check for SR
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_SUNSCORCH~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @11500002//old text Sphere: sun
+ SPRINT new @11500003//new text Sphere: light
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old sphere with new
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+
+END//END SR NOT INSTALLED (OR IWDIFICATION INSTALLED) 
+
+//////////if SR installed...
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
+COPY_EXISTING ~SPPR116.spl~ ~override~  //SR sunscorch
+ SPRINT old @11500002//old text Sphere: sun
+ SPRINT new @11500003//new text Sphere: light
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old sphere with new
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END //end sunscorch sr
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////        SUNSCORCH: Sphere change              //////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//REsist fire and cold (Not in FnP?) 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////        CURE MOD WOUNDS: Sphere change        //////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF ((NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~) OR (MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~)) BEGIN  //prob: IWDIFICATIon doesn't check for SR
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CURE_MODERATE_WOUNDS~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~  //SR sunscorch
+ SPRINT old @11400002//old text Sphere: healing
+ SPRINT new @11400002//new text Sphere: life
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old sphere with new
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+
+
+END//END SR NOT INSTALLED (OR IWDIFICATION INSTALLED)
+//////////if SR installed...
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
+COPY_EXISTING ~SPPR215.spl~ ~override~  //SR CMW
+ SPRINT old @11400002//old text Sphere: healing
+ SPRINT new @11400002//new text Sphere: life
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old sphere with new
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END //end  sr
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////        ALICORN LANCE: Sphere change          //////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ALICORN_LANCE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~  //SR sunscorch
+ SPRINT old @21800004//old text Sphere: combat
+ SPRINT new @11500003//new text Sphere: light
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old sphere with new
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
