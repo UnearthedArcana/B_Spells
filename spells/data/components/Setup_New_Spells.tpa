@@ -1,3 +1,71 @@
+
+//SPELL IDEAS
+
+
+//LEVEL 1
+
+//DIVINE
+
+//Camouflage (Earth): Invisibility spell that is dispelled in the normal way, but also if the character moves.
+
+//Guidance (Knowledge): Target temporarily gains an additional rank in a known skill (if Proficiencies?), and/or weapon prof
+
+//Protection from Cantrips (Protection): Target is immune to all cantrips/orisons
+
+//Animal Friendship: Familliar for druids
+
+//Bless water (create a temp flask of holy water that damages undead)
+
+//Cheetah's Sprint 1 round x10 movement (ranger/druid/shaman only)
+
+//Stalk +20% hide backstab (ranger only)
+
+
+
+
+//ARCANE 
+
+//Alarm (Divination): Gains a guardian while sleeping
+
+//Camouflage (Transmutation): Invisibility spell that is dispelled in the normal way, but also if the character moves.
+
+//Protective Shell (Abjuration): 1 turn duration, 1 layer stoneskin
+
+//Protection from Cantrips (Abjuration): Target is immune to all cantrips/orisons   
+
+//Hypnotism: "fascinate" a number of creatures for 1 min.  Feeblemind unless attacked
+
+//Snowball: shoots a ball of snow that does 1d6/lev cold dam (5d6 max).  Target saves for 1/2 dam.  (Evocation)
+
+//Silent Image  (see how in BG2 they did illusory werewolves in the tent--or maybe 1 hp summons)
+
+//Enlarge Person (investigate!!!)
+
+//Accelerate Healing: Very slow regeneration (longer but slower than SR druid version)
+
+//Protection from Cantrips (think about enhansing AI as this is the only way to make this feasible)
+
+//Mending: Repair broken items (investigate use beyond BG1EE)
+
+//Level 2
+
+//Divine
+
+//Thunderstomp (knock down nearby enemies)
+
+// Ancestor Knowledge Gain weapon proficiency
+
+
+//Level 6
+
+//Arcane
+
+//Wall of Force: Wall that 'pushes away' all creatures less than Huge size (meh, what about ranged weapons?)  
+
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////                                         //////////////////////////////////////
@@ -19,6 +87,7 @@
 
 //Regular added spells b_wnxx(wizard spells)
 //Regular added spells b_pnxx(priest spells)
+//Regular added spells b_rnxx (ranger spells)
 
 /*
 opcode = 177
@@ -94,6 +163,11 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
 
 FYI   */
+
+
+
+
+
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
@@ -113,10 +187,99 @@ END
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
-////////////////////////   Level 1  ///////////////////////////
+////////////////////////   Level 1  //////////////////////////
 ////////////////////////            //////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________Abundant Ammunition________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds
+//2da
+COPY ~Spells/data/new_spells/ranger_1/b_r101.2da~ ~override~
+//effs
+//Spell itself
+ADD_SPELL ~Spells/data/new_spells/ranger_1/b_r101.spl~ 1 1 ~CLERIC_ABUNDANT_AMMO~ //
+        SAY NAME1 @53000
+        SAY NAME2 @53000
+        SAY UNIDENTIFIED_DESC @53001
+	SAY DESC @53001
+
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ABUNDANT_AMMO~
+  RET spell_res
+END
+//COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+//  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
+//COPY ~Spells/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
+//COPY ~Spells/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
+//COPY ~Spells/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+//COPY_EXISTING ~%spell_res%.spl~ ~override~
+//  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+//Sh. of Entropy immunity list
+//INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+
+//COMPATIBILITY: IN FNP WILL BE ADDED TO WAR SPHERE
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________Camouflage__________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds
+//2da
+//COPY ~Spells/data/new_spells/ranger_1/b_r101.2da~ ~override~
+//effs
+//Spell itself
+ADD_SPELL ~Spells/data/new_spells/ranger_1/b_r102.spl~ 1 1 ~CLERIC_CAMOUFLAGE~ //
+        SAY NAME1 @53010
+        SAY NAME2 @53010
+        SAY UNIDENTIFIED_DESC @53011
+	SAY DESC @53011
+
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CAMOUFLAGE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //  Remove earlier versions of spell
+//add icons and projectile
+//  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
+//COPY ~Spells/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
+//COPY ~Spells/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
+//COPY ~Spells/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+//COPY_EXISTING ~%spell_res%.spl~ ~override~
+//  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+//Sh. of Entropy immunity list
+//INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+
+//COMPATIBILITY: IN FNP WILL BE ADDED TO EARTH SPHERE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -478,6 +641,20 @@ COPY ~spells/spheres/spells/death/b_c105c.bam~ ~override/%spell_res%c.bam~
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
+//Change to life sphere if FnP installed
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @50309//old text
+ SPRINT new @50310//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1087,6 +1264,58 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 */
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________HYPNOTISM___________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//If SR is installed, zero out save penalties, and change description to SR standard
+//Make and place scrolls
+//make portrait icon
+
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds  ENSURE THAT EFF_E01, EFF_M77 is in all versions of game
+//COPY ~spells/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
+//effs
+//Secondary spell(s)
+//Using command as a base spell
+COPY_EXISTING ~SPPR102.spl~ ~override/b_1w1xx.spl~
+
+ADD_SPELL ~override/b_1w1xx.spl~ 2 1 ~WIZARD_HYPNOTISM~ //
+          SAY NAME1 @60203
+          SAY NAME2 @60203
+          SAY UNIDENTIFIED_DESC @60204
+  	  SAY DESC @60204
+ WRITE_BYTE 0x1c 1//Wizard Spells
+ WRITE_LONG 0x1e 0x1000//General spells, exclude necro
+ WRITE_LONG 0x18 0//Remove hostility
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 39  opcode = 76          //change to feeblemind opcode
+  END      //
+  LPF CLONE_EFFECT INT_VAR match_opcode = 76 opcode = 324 parameter2 = 1 END  //Protection complete below
+  LPF CLONE_EFFECT INT_VAR match_opcode = 76 opcode = 139 parameter1 = RESOLVE_STR_REF (@60205) END  //Notification: Hypnotized
+  LPF CLONE_EFFECT INT_VAR match_opcode = 76 opcode = 232 parameter2 = 7 END  //Notification: Hypnotized
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = 190 END  //hold projectile
+//  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_HYPNOTISM~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 232 STR_VAR resource = EVAL ~%spell_res%A~ END  //Hypno remover
+  LPF ALTER_EFFECT INT_VAR match_opcode = 324 STR_VAR resource = EVAL ~%spell_res%~ END   //no undead
+  LPF CLONE_EFFECT INT_VAR match_opcode = 324 parameter2 = 27 STR_VAR resource = EVAL ~%spell_res%~ END  //no golem
+
+COPY ~spells/data/new_spells/mage_1/B_W1XXA.spl~ ~override/%spell_res%A.spl~   //Notification: No longer Hypnotized
+          SAY NAME1 @60206
+          SAY NAME2 @60206
+  LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~%spell_res%~ END  //
+//  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@60206) END  //Notification: No longer Hypnotized
 
   //CONTINUE FROM HERE
 

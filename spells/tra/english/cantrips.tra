@@ -36,7 +36,7 @@ Duration: Special
 Casting Time: 9
 Saving Throw: None
 
-Upon casting this spell, the priest chants softly under <PRO_HISHER> breath.  As long as <PRO_HESHE> continues to chant, <PRO_HESHE> receives a +1 to AC.  However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead.
+Upon casting this spell, the priest chants softly under <PRO_HISHER> breath.  As long as <PRO_HESHE> continues to chant, <PRO_HESHE> receives a +1 to AC.  However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead while under the effects of Canticle.
 
 Canticle has no effect if the priest is under the effects of bless, aid, or chant spell, and if <PRO_HESHE> is affected by one of these spells while under the effects of this Orison, Canticle is immediately dispelled.
 
@@ -70,7 +70,7 @@ This spell causes a feeling of doom to overwhelm the target. For the duration of
 
 Malediction does not stack with doom, and a creature under the effects of a bless, aid, or chant spell is immune.
 
-A creature can only be affected by Malediction once per 8 hours.~
+A creature can only be affected by Malediction once per 8 hours. A creature can only be affected by Malediction once per 8 hours. Further, Maladiction can only affect a single creature at a time.  As such, when this orison is cast, it cannot be further cast for another 3 rounds.~
 
 @103000002 = ~Sphere: Charm~
 @103000003 = ~Sphere: Dread~
@@ -122,7 +122,7 @@ Casting Time: 5
 Area of Effect: 1 creature
 Saving Throw: 1/2
 
-By casting this spell and touching a creature, the priest deals 4 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. 
+By casting this spell and touching a creature, the priest deals 4 points of damage (save vs. Death for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. 
 
 A given creature can only be affected by Cause Minor Wounds once per 8 hours.~
 
@@ -139,13 +139,13 @@ A given creature can only be affected by Cause Minor Wounds once per 8 hours.~
 
 Level: Orison
 Sphere: Divination
-Range: Touch
+Range: 0
 Duration: 8 hours
 Casting Time: 1
-Area of Effect: 1 creature
+Area of Effect: 30-ft. radius
 Saving Throw: None
 
-The recipient of this spell gains the ability to see with infravision, just as an elf or dwarf can.~
+When this cantrip is cast, the spellcaster and all of <PRO_HISHER> allies within 30' gain the ability to see with infravision, just as an elf or dwarf can.~
 
 @106000002 = ~Sphere: Divination~
 @106000003 = ~Sphere: Knowledge~
@@ -188,11 +188,12 @@ Level: Orison
 Sphere: Charm
 Range: Visual range of the caster
 Duration: Instant
-Casting Time: 1
+Casting Time: 0
 Area of Effect: One Creature
 Saving Throw: Special
 
 This spell gives an ally a chance to overcome any strong emotions they might be experiencing.  This spell allows the recipient to save vs. spell to shake off fear or berserk effects.  A character can only be aided by this spell once per 8 hours.~
+
 
 //CANTRIPS: ZERO LEVEL WIZARD
 
@@ -209,36 +210,71 @@ Saving Throw: Neg.
 
 Upon casting this spell a ray of ice appears at the caster's fingertips and shoots toward a target of the caster's choice. The ray causes 1d4 points of cold damage to the target to anyone in the ray's path.  Targets can save vs. breath +2 to avoid the ray.
 
-Damage is increased by 1d4, and targets recieve a -1 penalty to their save, at levels 4, 8, 12, 16 and 20.~
+Damage is increased by 1d4 at levels 4, 8, 12, 16 and 20. 
+
+Targets receive a -1 penalty to their save at levels 10 and 20.~
 
 @200002001 = ~Jolt~
 @200002002 = ~Jolt
 (Conjuration/Summoning)
 
 Level: Cantrip
-Range: 5'
+Range: 10'
 Duration: Instant
-Casting Time: 3
-Area of Effect: 1 creature
-Saving Throw: Neg.
-
-Upon casting this spell, the caster generates a jolt of electricty in the body of a nearby enemy. The jolt causes 2d4 points of electical damage, and stops them in their tracks for a crucial 2 seconds if they do not save vs. polymorph +2.
-
-Damage is increased by 1d4 at levels 3, 6, 9, 12, 15 and 18.  Opponents suffer a -1 penalty to their save at levels 10 and 20.
-
-A creature affected by this spell gains immunity to it for one turn as their body retains the electric charge.~
-
-@200003001   = ~Drowse~
-@200003002   = ~Drowse
-
-Level: Cantrip
-Range: 35'
-Duration: 1 round
 Casting Time: 1
 Area of Effect: 1 creature
 Saving Throw: Neg.
 
-This cantrip causes the target to drift off into a very brief slumber, slumping to the ground for 6 seconds before regaining full consciousness.
+Upon casting this spell, the caster generates a jolt of electricity in the body of a nearby enemy. The jolt causes 1d6 points of electrical damage, and halves their speed for a crucial 6 seconds if they do not save vs. polymorph +2.
+
+Damage is increased by 1d6 at levels 6, 12 and 18.  Opponents suffer a -1 penalty to their save at levels 10 and 20.
+
+A creature affected by this spell gains immunity to it for one turn.~
+
+@200002003 = ~Level: 1~
+@200002004 = ~Level: Cantrip~
+
+
+@200003001   = ~Drowse~
+@200003002   = ~Drowse
+(Enchantment)
+
+Level: Cantrip
+Range: 35'
+Duration: 3 seconds
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This cantrip causes the target to drift off into a very brief slumber, slumping to the ground for 3 seconds before regaining full consciousness, unless they may a save vs. spell +2.
+
+The mage cannot affect any creature with more hit dice than <PRO_HISHER> level after 5th level.  This spell can always affect creatures with 4 or fewer hit die.
+
+A creature affected by this spell becomes immune to it for 1 turn.  
+
+The duration increases to 1 round at 8th level, and 2 rounds at 16th level.
 
 Opponents receive a -1 penalty to their saves at levels 10 and 20.~
+
+@200004001   = ~Level: 1~
+@200004002   = ~Level: Orison~
+
+@200005001   = ~Drench~
+@200005002   = ~Drench
+(Conjuration/Summoning)
+
+Level: Cantrip
+Range: 20'
+Duration: 1 round
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell brings forth a splash of water to drench a single target.  If the creature is a cold- or fire-dwelling creature, it takes 2d3 points of magic damage.  Flame Blade, Shroud of Flame, and salamander auras are extinguished by Drench if the target fails their save vs. breath +2.
+
+Additionally, the target becomes somewhat more vulnerable to electricity (resistance -15%) for 2 rounds.
+
+Opponents receive a -1 penalty to their saves at levels 10 and 20.~
+
+@200005003   = ~Drenched~
 

@@ -131,7 +131,6 @@ INCLUDE ~spells/lib/spell_lists/curse_list.tpa~
 //not installed if SRv4 is installed (though, see revisions to alter that version)
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN
-
 //Projectile
 //animations
 //3d animation
@@ -185,6 +184,7 @@ COPY ~Spells/data/iwd_spells/priest_1/sppr114c.bam~ ~override/%spell_res%c.bam~ 
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
   WRITE_EVALUATED_ASCII 0x0076 ~%spell_res%B~
+
 
 
 END //END SR NOT INSTALLED
@@ -333,15 +333,24 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   END      //
 //COMPATIBILITY: REVISED CURE SPELLS
 //cure moderate wound 30%
+
 ACTION_IF FILE_EXISTS_IN_GAME ~b_revise.itm~ BEGIN
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-        SAY UNIDENTIFIED_DESC @50102
-	SAY DESC @50102
+ COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_EFFECT
       INT_VAR match_opcode = 17            //
                   parameter1 = 6
   END      //
   LPF CLONE_EFFECT INT_VAR match_opcode = 17 parameter1 = 30 parameter2 = 2 END
+  SPRINT old @10100012//old text
+  SPRINT new @10100013//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
 END
 //icons
 COPY ~Spells/data/iwd_spells/priest_2/sppr217a.bam~ ~override/%spell_res%a.bam~   //scroll bam
@@ -920,6 +929,19 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //3rd lev
 INCLUDE ~spells/lib/spell_lists/3rd_list.tpa~
+
+/* When Shround of flame is added... From drench cantrip.  Changes are needed...Need to do this with fire macro???
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_SHROUD_OF_FLAME~
+  RET spell_res
+END
+COPY_EXISTING ~b_wc003.spl~ ~override~    //This needs to be cloudburst...
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321 duration = 6            //
+      STR_VAR match_resource = ~SPWI524~ resource = EVAL ~%spell_res%~
+  END
+*/
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

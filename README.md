@@ -1,6 +1,65 @@
 ﻿# B_Spells
 
 log
+
+2017-12-26
+
+- Charm Person or mam (can't control enemy) Have to test to see what AI does in presence of other enemies...
+
+2017-12-23
+
+- Hypnotism  (first draft)
+- Charm person (can't control enemy)
+
+2017-12-16
+
+- Started Wall of force (air?) found in newspells/force_wall
+- Changed to an attaction spell (still in wall_force folder--probably make party friendly and require a save.
+
+2017-12-13
+
+- Created Setup_IWD_Style_Spells.tpa for IWDEE style spells installation
+
+2017-12-10
+
+- Revised Globals (Cure med wounds)
+- Revised Globals (Cure serious wounds)
+- Revised Globals (Cure crit wounds)
+- Revised Globals (Mass cure)
+
+
+2017-12-09
+
+- Revised globale (Cure Light Wounds) 
+- Revised global (cause light wounds)
+- Revised global (cure moderate wounds)
+- IWDEE Cure mod wounds: Used replace_Textually
+- Infravision Cantrip: Made area affect
+- New Spells: Disrupt Undead (life sphere if FnP installed)
+
+2017-12-04
+
+- Cantrips: Fixed a few cantrips (global opcodes) and added 'no failure' to patched cantrip/spells. 
+
+2017-12-03
+
+- Cantrips: completed 1st draft of drench
+- Cantrips: first draft drowse
+- Orisons: second draft Calm
+- Cantrips: Second draft of Jolt
+- Cantrips: Frist draft of Chill Touch
+
+2017-12-02
+
+- Cantrips: Detect Evil/ALignment, 
+- Cantrips: Started Drench (animation only)
+
+2017-12-01
+
+- Created first blush versions of abundant ammunition and camoflauge (sp) New Spells (which, btw, needs a complete overhaul)
+
+V. 088b
+
 2017-11-30
 
 - Updated Stormwall

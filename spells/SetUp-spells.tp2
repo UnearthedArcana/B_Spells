@@ -15,6 +15,7 @@ ALWAYS
 
         INCLUDE ~Spells/lib/bg2fp_effect_batches_fnp.tpa~
 
+        INCLUDE ~Spells/lib/bg2fp_effect_batches_b_vise.tpa~
 END
 //need to keep my options open
 
