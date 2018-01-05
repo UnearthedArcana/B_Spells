@@ -409,58 +409,29 @@ This spell invokes a wall of electric energy.  This wall is intangible, requirin
 
 @51701 = ~Conjure Water Elemental~
 @51702 = ~Conjure Water Elemental
+
 Level: 6
-School: Conjuration
 Sphere: Elemental (Water)
-Range: Medium
-Duration: 1 turn + 1 round/level
-Casting Time: 1 round
+Range: Visual range of the caster
+Duration: 1 turn/level
+Casting Time: 9
 Area of Effect: Special
 Saving Throw: None
 
-Upon casting a Conjure Water Elemental spell, the caster opens a special gate to the Elemental Plane of Water, and a water elemental is summoned to the vicinity of the spellcaster. Normally, an elemental with 12 hit dice will be conjured. At fifteenth level and above, however, the caster will be able to summon an elemental with 16 hit dice. The elemental will do the bidding of the caster until it is slain or the duration of the spell runs out. All of the commands given to the elemental are done so telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature.
+Upon casting a Conjure Water Elemental spell, the caster opens a special gate to the Elemental Plane of Water, and a water elemental is summoned in the vicinity of the caster. There is a 60% chance that a 12-Hit-Dice elemental appears; a 35% chance that a 16-Hit-Dice elemental appears; and a 5% chance that a 24-Hit-Dice elemental appears. The elemental will do the bidding of the caster until it is slain or the duration of the spell runs out. All the commands given to the elemental are done telepathically, so there is no time lost due to miscommunication and no need to know the language of the summoned creature. Unlike Mages, priests do not have to engage in a battle of the minds to control their elemental.~
 
-Water Elemental (12 Hit Dice):
-STR 21, DEX 9, CON 9, INT 9, WIS 9, CHA 9;  AL Neutral
-HP 128, AC 2, THAC0 7, Saving Throws 4/6/5/4/7
-2 Attacks Per Round, 4d6+9 Blunt (Fist +3)
+@51703 = ~Conjure Water Elemental
 
-Greater Water Elemental (16 Hit Dice):
-STR 22, DEX 15, CON 16, INT 9, WIS 9, CHA 9;  AL Neutral
-HP 168, AC 0, THAC0 3, Saving Throws 3/5/4/3/6
-2 Attacks Per Round, 4d8+10 Blunt (Fist +3)
-
-Special Qualities (12 & 16 Hit Dice):
-Immune to normal weapons
-Immune to hold, poison, polymorph, sleep, & stun effects
-Slashing, Crushing, Piercing, & Missile Resistance 20%~
-
-@51703 = ~Conjure Water Elemental (Focus)
 Level: 5
-School: Conjuration
 Sphere: Elemental (Water)
-Range: Medium
-Duration: 1 turn + 1 round/level
-Casting Time: 1 round
+Range: Visual range of the caster
+Duration: 1 turn/level
+Casting Time: 9
 Area of Effect: Special
 Saving Throw: None
 
-Upon casting a Conjure Water Elemental spell, the caster opens a special gate to the Elemental Plane of Water, and a water elemental is summoned to the vicinity of the spellcaster. Normally, an elemental with 12 hit dice will be conjured. At fifteenth level and above, however, the caster will be able to summon an elemental with 16 hit dice. The elemental will do the bidding of the caster until it is slain or the duration of the spell runs out. All of the commands given to the elemental are done so telepathically, so there is no time lost due to miscommunication, and it is not necessary to know the language of the summoned creature.
+Upon casting a Conjure Water Elemental spell, the caster opens a special gate to the Elemental Plane of Water, and a water elemental is summoned in the vicinity of the caster. There is a 60% chance that a 12-Hit-Dice elemental appears; a 35% chance that a 16-Hit-Dice elemental appears; and a 5% chance that a 24-Hit-Dice elemental appears. The elemental will do the bidding of the caster until it is slain or the duration of the spell runs out. All the commands given to the elemental are done telepathically, so there is no time lost due to miscommunication and no need to know the language of the summoned creature. Unlike Mages, priests do not have to engage in a battle of the minds to control their elemental.~
 
-Water Elemental (12 Hit Dice):
-STR 21, DEX 9, CON 9, INT 9, WIS 9, CHA 9;  AL Neutral
-HP 128, AC 2, THAC0 7, Saving Throws 4/6/5/4/7
-2 Attacks Per Round, 4d6+9 Blunt (Fist +3)
-
-Greater Water Elemental (16 Hit Dice):
-STR 22, DEX 15, CON 16, INT 9, WIS 9, CHA 9;  AL Neutral
-HP 168, AC 0, THAC0 3, Saving Throws 3/5/4/3/6
-2 Attacks Per Round, 4d8+10 Blunt (Fist +3)
-
-Special Qualities (12 & 16 Hit Dice):
-Immune to normal weapons
-Immune to hold, poison, polymorph, sleep, & stun effects
-Slashing, Crushing, Piercing, & Missile Resistance 20%~
 
 @51704 = ~Ice Blade~
 @51705 = ~Ice Blade
@@ -560,6 +531,9 @@ STATISTICS:
 
 Damage: 1d8+10 (cold)
 Speed Factor: 2~
+
+@51720 = ~Water Elemental~
+@51721 = ~Greater Water Elemental~
 
 //@52000
 
@@ -694,5 +668,75 @@ Affected creatures shake off this effect if they are attacked.~
 
 @60205 = ~Hypnotized~
 @60206 = ~No longer Hypnotized~
+
+//@61000 1st level arcane spells
+
+@61001 = ~Detect Traps and Portals~
+@61002 = ~Detect Traps and Portals
+(Divination)
+
+Level: 1
+Range: 0
+Duration: 3 turns
+Casting Time: 5
+Area of Effect: 30-ft. radius
+Saving Throw: None
+
+When a mage casts this spell, all traps within the area of effect that are concealed normally or magically, of magical or mechanical nature become apparent to <PRO_HIMHER>, as if <PRO_HESHE> were a Thief.~
+
+//@63000 3RD level arcane spells
+
+@63001 = ~Solvent of Corrosion~
+@63002 = ~Solvent of Corrosion
+(Conjuration)
+
+Level: 3
+Range: 10'
+Duration: 3 rounds
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell conjures a corrosive, acidic slime of horrid strength on one creature.  The acid persists, burning the creature over 3 rounds.  The first round, the creature suffers 1d3 points of acid damage per level (max 15d3). On the second round, the creature suffers 1d2 points of acid damage (max 15d2).  On the third round, the creature suffers 1 point of damage per level (max 15).
+
+Additionally, the target suffers a -2 penalty to attacks while the acid is in effect.  The affected creature can save vs. poison/death to reduce the damage by 1/2 and to avoid the to hit penalty.
+
+This spell is effective against constructs and other creatures normally resistant to magic.~
+
+
+//@64000 4th level arcane spells
+
+@64001 = ~Charm Monster~
+@64002 = ~Charm Monster
+(Enchantment/Charm)
+
+Level: 1
+Range: Visual range of the caster
+Duration: 5 rounds
+Casting Time: 1
+Area of Effect: 1 person
+Saving Throw: Neg.
+
+This spell affects any single person or monster it is cast upon. The term monster includes any non-undead, non-construct, non-extraplanar creature, such as an ogre or even a dragon.  The target is allowed a Saving Throw vs. Spell to negate the effect (a person, as described by charm person, saves at -4).
+
+If the spell's recipient fails <PRO_HISHER> Saving Throw, <PRO_HESHE> regards the caster as a trusted friend and ally to be heeded and protected. The caster may give him orders, and the charmed individual will carry them out as quickly as possible.
+
+If the caster harm or attempts to harm the charmed creature by some overt action, or if a Dispel Magic spell is cast upon the charmed creature, the Charm spell is broken. If two or more Charms simultaneously affect a creature, the most recent Charm takes precedence. Note that the subject has full memory of the events that took place while he was charmed. Also note that you cannot have a charmed creature leave the area where he is charmed.~
+
+//@65000 5th level arcane spells
+@65001 = ~Snilloc's Major Missile~
+@65002 = ~Snilloc's Major Missile
+(Evocation)
+
+Level: 5
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+
+Major Missile is much like Magic Missile, creating a single missile of magical energy that darts forth from the wizard's fingertip and unerringly strike their target, which must be a creature of some sort. This missile inflicts 1d4+1 points of damage, plus 1d4+1 for every two levels thereafter, to a maximum of 15d4 +15.~
+
+
 
 

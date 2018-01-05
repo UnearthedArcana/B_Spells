@@ -1,5 +1,6 @@
 //Priest Orisons b_po###  (010, 020,...990) 010 = @@101000000; 020 = @@102000000...990 = @199000000
 
+
 //At least two options regarding relatively 'useless' spells.  
 //Infravision, Hold ANimal, Magic Stone, Goodberry Converted to cantrips, or only converted to cantrips if B_REVISE Is installed (sometimes if SR installed)...
 
@@ -700,6 +701,10 @@ Level			Cantrips Known
 20+			       6
 */
 //Light?  Possible?  Useful?
+
+//Audible Glamer: Target saves or is distracted (deaf immune)
+
+//Catapult: throws dagger
 
 //Air Bubble +4 save vs. gas
 

@@ -48,7 +48,7 @@ DEFINE_PATCH_MACRO ~b_charm_revision~ BEGIN
     END
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-      324,  "-10",  "-10", "charm",  "-10",  "-10", "first" => 1 // Immunities
+//    324,  "-10",  "-10", "charm",  "-10",  "-10", "first" => 1 // Immunities  Not really needed anymore...
       321,   0,  6,    "charm",       4,     "-10", "last"  => 1 // Remove after a period of time
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
@@ -60,6 +60,7 @@ DEFINE_PATCH_MACRO ~b_charm_revision~ BEGIN
     177,  "-10",  "-10",    "CDELFCM1",  "-10",  "-10", "same"   => 1 // quirky elf/half elf immunities
     177,  "-10",  "-10",    "CDELFCM0",  "-10",  "-10", "same"   => 1 // quirky elf/half elf immunities
  //   215,  "-10",  "-10",    "same",      "-10",  "-10", "same" => 1 // Charm opcode; humanoid target
+      5, 2, "-10", "same",  "-10",  "-10", "same" => 1 // Remove extra charm animal from cporm
   END
 END
 

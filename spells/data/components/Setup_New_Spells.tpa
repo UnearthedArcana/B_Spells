@@ -4,6 +4,7 @@
 
 //LEVEL 1
 
+
 //DIVINE
 
 //Camouflage (Earth): Invisibility spell that is dispelled in the normal way, but also if the character moves.
@@ -20,7 +21,15 @@
 
 //Stalk +20% hide backstab (ranger only)
 
+//Call upon faith (+15% skills)
 
+//Invisibilty to undead 
+
+//Guardian +x to saves to one character
+
+//Speak with animals (would be cool...)
+
+//
 
 
 //ARCANE 
@@ -47,18 +56,111 @@
 
 //Mending: Repair broken items (investigate use beyond BG1EE)
 
+//Detect Secret Passages and Portals
+
+//Enlarge (investigate)
+
+//Fireburst 10' rad 1pt/level Max 10 fire(evoke)
+
+//Phantasmal Force (illusion that does decent dam but 'dispelled' if hit--i.e. has 1 hp)
+
+//Ray of Fatigue (necro) 
+
+//Scatterspray (alteration) 10'
+
+//Snowball (evoc)
+
+
+
 //Level 2
 
-//Divine
+//DIVINE
 
 //Thunderstomp (knock down nearby enemies)
 
 // Ancestor Knowledge Gain weapon proficiency
 
+//Withdrawl (maybe...)
+
+//Watery Fist
+
+//Trip
+
+//Restore Str
+
+//Sanctify
+
+//Nap
+
+//Iron Vigil (caster immune to fatigue for a while)
+
+//ARCANE
+
+//Bladethirst: +3 hit (alteration), 1 round (per 5 levels)
+
+//Choke (necro)1d4/round (save ea round for 1/2 dam) victim -2 to hit 1 round/lev
+
+//Flying Fist (evoc)
+
+//Forget (target forgets a 1st level spell)
+
+//Hypnotic pattern (like hypnotism but more targers)
+
+//Improved Phantasmal Force
+
+//Irritation
+
+//Heat Metal (alteration)
+
+//Moment (divination)
+
+//Music of the Spheres (Bard only?)
+
+//Ward against Undead
+
+//Accelerate Healing
+
+
+
+//Level 3
+
+//DIVINE
+
+//Bone Club
+
+//Delay Death (minhp 1 1 turn)
+
+//Dictate command, 1 round/lev
+
+//Snare set trap
+
+//ARCANE
+
+//Alacrity (name) casting speed -2
+
+//Fundamental Breakdown (know of alchemy, or create temp minor random, temp, potion)
+
+//Iron Mind (Immune to charm and fear spells of 3rd level or lower)
+
+//Pain touch 
+
+//Solvent of Corrosion (acid dam vs. 1 target, 3 rounds, d3/lev, d2/lev, 1 dam/lev, save vs. half)
+
+//Random Causality (dam to self if damage other? Wild magic )
+
+//Unearthly Choir (bard)
+
+//Unfailing Premonition 
+
+//Level 4
+
+//ARCANE
+
+//Charm Monster (only if revised charm?)  Maybe persons -4 save
 
 //Level 6
 
-//Arcane
+//ARCANE
 
 //Wall of Force: Wall that 'pushes away' all creatures less than Huge size (meh, what about ranged weapons?)  
 
@@ -988,6 +1090,67 @@ INCLUDE ~spells/lib/spell_lists/command_list.tpa~
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________Summon Water Elemental____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Projectile
+//VVC
+//cre
+ COPY ~spells/spheres/spells/water/b_wele1.cre~ ~override~ // 12 HD elemental
+        SAY NAME1 @51720
+        SAY NAME2 @51720
+ COPY ~spells/spheres/spells/water/b_wele2.cre~ ~override~ // 16 HD elemental
+        SAY NAME1 @51720
+        SAY NAME2 @51720
+ COPY ~spells/spheres/spells/water/b_wele3.cre~ ~override~ // 24 HD (greater) elemental
+        SAY NAME1 @51721
+        SAY NAME2 @51721
+//itm
+ COPY ~spells/spheres/spells/water/b_wele1.itm~ ~override~ // Water Elemental fist
+//bam
+ COPY ~spells/spheres/spells/water/iwatere.bam~ ~override~ // fist bam
+//animations -check SoD for cre animations...
+ COPY ~spells/spheres/spells/water/anim~ ~override~ // water anims
+//3d animation
+//sounds   Copy sound #EFF_M08
+//COPY ~Spells/data/iwd_spells/wizard_2/TRA_18.WAV~ ~override~   //
+//effs
+ COPY ~spells/spheres/spells/water/B_PRWA1.eff~ ~override~ // Summon Water Elemental
+ COPY ~spells/spheres/spells/water/B_PRWA2.eff~ ~override~ // Summon Water Elemental
+ COPY ~spells/spheres/spells/water/B_PRWA3.eff~ ~override~ // Summon Water Elemental
+//Spell itself
+COPY_EXISTING ~SPPR605.spl~ ~override/b_pr602.spl~  // Start with C Fire Elemental
+                  LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA1~ match_resource = ~SPFIR1P~  END //
+                  LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA2~ match_resource = ~SPFIR2P~  END //
+                  LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA3~ match_resource = ~SPFIR3P~  END //
+
+ADD_SPELL ~override/b_pr602.spl~ 1 6 ~CLERIC_CONJURE_WATER_ELEMENTAL~ //
+        SAY NAME1 @51701
+        SAY NAME2 @51701
+        SAY UNIDENTIFIED_DESC @51702
+	SAY DESC @51702
+//Now, other spell stuff...
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_CONJURE_WATER_ELEMENTAL~
+  RET spell_res
+END
+
+/* NEED TO CREATE UNIQUE SPELL ICON
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~spells/spheres/spells/charm/b_c201a.bam~ ~override/%spell_res%a.bam~
+COPY ~spells/spheres/spells/charm/b_c201b.bam~ ~override/%spell_res%b.bam~
+COPY ~spells/spheres/spells/charm/b_c201c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+*/
+
+//Add scrolls to stores, etc...
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //____________________________________________________________Nature's Wrath____________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1117,102 +1280,9 @@ END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_______________________________________________________________PROTECTIVE SHELL_______________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Credit for this spell belons to Subtledoctor (Modified with permission)
-
-//Projectile
-//VVC
-//bam
-//animations
-//3d animation
-//sounds  ENSURE THAT EFF_M60 is in all versions of game
-//COPY ~spells/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
-//effs
-//Spell itself
-ADD_SPELL ~spells/data/new_spells/mage_1/D5_WIAB.spl~ 2 1 ~WIZARD_PROTECTIVE_SHELL~ //
-        SAY NAME1 @60001
-        SAY NAME2 @60001
-        SAY UNIDENTIFIED_DESC @60002
-	SAY DESC @60002
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_PROTECTIVE_SHELL~
-  RET spell_res
-END
-//to clear earlier versions of the spell
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //
-
-//No icons as yet
-/*
-
-//add icons and projectile
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~spells/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
-COPY ~spells/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
-COPY ~spells/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-*/
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________________________________ANTICIPATION_________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Credit for this spell belons to Subtledoctor (Modified with permission)
-
-//Projectile
-//VVC
-//bam
-//animations
-//3d animation
-//sounds  ENSURE THAT EFF_E03 is in all versions of game
-//COPY ~spells/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
-//effs
-//Spell itself
-ADD_SPELL ~spells/data/new_spells/mage_1/D5_WIDI.spl~ 2 1 ~WIZARD_ANTICIPATION~ //
-        SAY NAME1 @60101
-        SAY NAME2 @60101
-        SAY UNIDENTIFIED_DESC @60102
-	SAY DESC @60102
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_ANTICIPATION~
-  RET spell_res
-END
-//to clear earlier versions of the spell
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //
-
-//No icons as yet
-/*
-
-//add icons and projectile
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~spells/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
-COPY ~spells/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
-COPY ~spells/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-*/
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_________________________________________________________________ALARM________________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Credit for this spell belons to Subtledoctor (Modified with permission)
 
 //Projectile
 //VVC
@@ -1263,6 +1333,88 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 */
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________ANTICIPATION_________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Credit for this spell belons to Subtledoctor (Modified with permission)
+
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds  ENSURE THAT EFF_E03 is in all versions of game
+//COPY ~spells/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
+//effs
+//Spell itself
+ADD_SPELL ~spells/data/new_spells/mage_1/D5_WIDI.spl~ 2 1 ~WIZARD_ANTICIPATION~ //
+        SAY NAME1 @60101
+        SAY NAME2 @60101
+        SAY UNIDENTIFIED_DESC @60102
+	SAY DESC @60102
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ANTICIPATION~
+  RET spell_res
+END
+//to clear earlier versions of the spell
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+
+//No icons as yet
+/*
+
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~spells/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
+COPY ~spells/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
+COPY ~spells/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+*/
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________DETECT TRAPS AND PORTALS_____________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds  ENSURE THAT EFF_E01, EFF_M77 is in all versions of game
+//COPY ~spells/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
+//effs
+//Secondary spell(s)
+//Using Find Traps as a base spell
+COPY_EXISTING ~SPPR205.spl~ ~override/b_1w1xx.spl~
+  WRITE_BYTE 0x1c 1//Wizard Spells
+  WRITE_LONG 0x34 1//Change to level 1
+  WRITE_LONG 0x1e 0x0800//General spells, exclude invoker
+
+ADD_SPELL ~override/b_1w1xx.spl~ 2 1 ~WIZARD_DETECT_TRAPS~ //
+          SAY NAME1 @61001
+          SAY NAME2 @61001
+          SAY UNIDENTIFIED_DESC @61002
+  	  SAY DESC @61002
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_DETECT_TRAPS~
+  RET spell_res
+END
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1317,7 +1469,196 @@ COPY ~spells/data/new_spells/mage_1/B_W1XXA.spl~ ~override/%spell_res%A.spl~   /
   LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~%spell_res%~ END  //
 //  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@60206) END  //Notification: No longer Hypnotized
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________PROTECTIVE SHELL_______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Credit for this spell belons to Subtledoctor (Modified with permission)
+
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds  ENSURE THAT EFF_M60 is in all versions of game
+//COPY ~spells/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
+//effs
+//Spell itself
+ADD_SPELL ~spells/data/new_spells/mage_1/D5_WIAB.spl~ 2 1 ~WIZARD_PROTECTIVE_SHELL~ //
+        SAY NAME1 @60001
+        SAY NAME2 @60001
+        SAY UNIDENTIFIED_DESC @60002
+	SAY DESC @60002
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_PROTECTIVE_SHELL~
+  RET spell_res
+END
+//to clear earlier versions of the spell
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+
+//No icons as yet
+/*
+
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~spells/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
+COPY ~spells/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
+COPY ~spells/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+*/
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+////////////////////////            //////////////////////////
+////////////////////////   Level 3  ///////////////////////////
+////////////////////////            //////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________SOLVENT OF CORROSION___________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Acid spells resist? Probably add to an acid list...1
+
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds  ENSURE THAT EFF_M60 is in all versions of game
+//COPY ~spells/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
+//effs
+//Spell itself
+ADD_SPELL ~spells/data/new_spells/mage_3/D5_WIAB.spl~ 2 3 ~SOLVENT_OF_CORROSION~ //
+        SAY NAME1 @63001
+        SAY NAME2 @63001
+        SAY UNIDENTIFIED_DESC @63002
+	SAY DESC @63002
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~SOLVENT_OF_CORROSION~
+  RET spell_res
+END
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+////////////////////////            //////////////////////////
+////////////////////////   Level 4  ///////////////////////////
+////////////////////////            //////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________CHARM MONSTER__________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//if my charm revision is dispelled, no changes...
+
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds  ENSURE THAT EFF_E01, EFF_M77 is in all versions of game
+//COPY ~spells/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
+//effs
+//Secondary spell(s)
+//Using charm as a base spell
+COPY_EXISTING ~SPWI104.spl~ ~override/b_1w4xx.spl~  //Copy over charm person
+  WRITE_LONG 0x34 4//Change to level 4
+  LPF ALTER_EFFECT INT_VAR match_opcode = 5 parameter1 = 0 parameter2 = 0 savebonus = 0 STR_VAR END //general, no save bon
+
+//add another sec spell that imposes a -4 to save vs. spell (which will be applied to humanoids.)
+
+ADD_SPELL ~override/b_1w4xx.spl~ 2 4 ~WIZARD_CHARM_MONSTER~ //
+          SAY NAME1 @64001
+          SAY NAME2 @64001
+          SAY UNIDENTIFIED_DESC @64002
+  	  SAY DESC @64002
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+////////////////////////            //////////////////////////
+////////////////////////   Level 5  ///////////////////////////
+////////////////////////            //////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________Snilloc's Major Missile___________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Make shield protect vs. SMM (and mention in description)
+//Add projectile with larger bam...
+
+//Projectile  I would like to add a much bigger pro...
+//ADD_PROJECTILE ~Spells/data/new_spells/mage_5/IDPRO217.pro~   //projectile
+//VVC
+//bam
+//COPY ~Spells/data/iwd_spells/wizard_2/SSSWART.BAM~ ~override~   //animation
+//COPY ~Spells/data/iwd_spells/wizard_2/SSSWARR.BAM~ ~override~   //animation
+//COPY ~Spells/data/iwd_spells/wizard_2/SSSWARX.BAM~ ~override~   //animation
+//animations
+//3d animation
+//sounds
+//COPY ~Spells/data/iwd_spells/wizard_2/TRA_18.WAV~ ~override~   //
+//COPY ~Spells/data/iwd_spells/wizard_2/RNG_M02.WAV~ ~override~   //
+//effs
+//Spell itself
+ADD_SPELL ~Spells/data/new_spells/mage_5/B_W501.spl~ 2 5 ~WIZARD_SNILLOCS_MAJOR_MISSILE~ //
+        SAY NAME1 @65001
+        SAY NAME2 @65001
+        SAY UNIDENTIFIED_DESC @65002
+	SAY DESC @65002
+
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_SNILLOCS_MAJOR_MISSILE~
+  RET spell_res
+END
+
+
+/*  if needed...
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 318            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 324            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~Spells/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
+COPY ~Spells/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
+COPY ~Spells/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+//Shield immunity list
+INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+*/
+
+
   //CONTINUE FROM HERE
+
+
+
 
 /*
 

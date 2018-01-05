@@ -2,6 +2,28 @@
 
 log
 
+2018-01-05
+
+Version 0.88.03
+
+- Completely redid conjure water elemental
+
+2017-12-30
+
+- New Spells: 1st draft of Snilloc's Major Missile
+- New Spells: 1st draft of Detect Traps and Portals
+- New Spells: 1st draft Solent of Corrosion
+
+2017-12-28
+
+- Started Charm Monster (as a new spell)
+
+2017-12-27
+
+Version 0.88.02
+
+- Dire Charm (can't control enemy) 
+
 2017-12-26
 
 - Charm Person or mam (can't control enemy) Have to test to see what AI does in presence of other enemies...

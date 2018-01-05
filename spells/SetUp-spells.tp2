@@ -1,7 +1,7 @@
 BACKUP ~spells/backup~
 AUTHOR ~Grammarsalad~
 
-VERSION ~0.88a~
+VERSION ~0.88.03~
 
 
 ALWAYS
@@ -23,7 +23,7 @@ END
 
 /* Language Settings */
 AUTO_TRA ~Spells/tra/%s~
-LANGUAGE ~English~ ~english~ 
+LANGUAGE ~English~ ~english~
          ~Spells/tra/english/setup.tra~
          ~Spells/tra/english/IWD_spells.tra~  //for IWDEE spells
          ~Spells/tra/english/new_spells.tra~  //for new spells
