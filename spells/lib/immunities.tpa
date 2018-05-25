@@ -1,103 +1,158 @@
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
-////////////////////////            //////////////////////////
-////////////////////////  Special   //////////////////////////
-////////////////////////            //////////////////////////
-//////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//////////////////      Modify Batchs           ////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+ACTION_PHP_EACH prot AS block => rock BEGIN
+    //1st level immune
+  ACTION_IF (~%rock%~ STRING_EQUAL ~lev_one~) BEGIN
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1~ ~206, "-1", "-10", "%block%", "-10", "-10", "same" => 1
+      206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1~
+  END
+    //2nd level immune
+  ACTION_IF (~%rock%~ STRING_EQUAL ~lev_two~) BEGIN
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_TWO", "-10", "-10", "same" => 1~ ~206, "-1", "-10", "%block%", "-10", "-10", "same" => 1
+      206, "-1", "-10", "LEV_TWO", "-10", "-10", "same" => 1~
+  END
+    //3rd level immune
+  ACTION_IF (~%rock%~ STRING_EQUAL ~lev_three~) BEGIN
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_THR", "-10", "-10", "same" => 1~ ~206, "-1", "-10", "%block%", "-10", "-10", "same" => 1
+      206, "-1", "-10", "LEV_THR", "-10", "-10", "same" => 1~
+  END
+    //4th level immune
+  ACTION_IF (~%rock%~ STRING_EQUAL ~lev_four~) BEGIN
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_FOU", "-10", "-10", "same" => 1~ ~206, "-1", "-10", "%block%", "-10", "-10", "same" => 1
+      206, "-1", "-10", "LEV_FOU", "-10", "-10", "same" => 1~
+  END
+    //Fear immune
+  ACTION_IF (~%rock%~ STRING_EQUAL ~fear~) BEGIN
+    //Fear spells
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~ ~321, "-10", "-10", "%block%", 1, 0, "same" => 1
+      321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~
+  END
+    //Rage immune
+    //Berserk   Blood Rage has a unique icon that needs to be protected against!!! Is this done???
+  ACTION_IF (~%rock%~ STRING_EQUAL ~rage~) BEGIN
+    //Beserk removal and immunity
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1~ ~321, "0", "0", "%block%",  "-10", "-10", "same" => 1
+      321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1~
+      REPLACE_TEXTUALLY ~324, "0", "0", "RAGE_P",  "-10", "-10", "same" => 1~ ~324, "0", "0", "%block%",  "-10", "-10", "same" => 1
+      324, "0", "0", "RAGE_P",  "-10", "-10", "same" => 1~
+  END
+  ACTION_IF (~%rock%~ STRING_EQUAL ~blood~) BEGIN   //blood rage specific removes
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~321, "-10", "-10", "EMO_R", 1,"-10", "same" => 1~ ~321, "-10", "-10", "%block%", 1,"-10", "same" => 1
+      321, "-10", "-10", "EMO_R", 1,"-10", "same" => 1~
+      REPLACE_TEXTUALLY ~318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1~ ~318, "-10", "-10", "%block%", "-10","-10", "same" => 1
+      318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1~
+  END
+
+END
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//////////////////           Remove Gunk          //////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+
+//Remove Gunk
+COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_TWO", "-10", "-10", "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_THR", "-10", "-10", "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_FOU", "-10", "-10", "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~324, "0", "0", "RAGE_P",  "-10", "-10", "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~321, "-10", "-10", "EMO_R", 1,"-10", "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1~ ~~
+//Reinclude effect_batches
+REINCLUDE ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+//////////////////       Apply Batchs           ////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+PRINT @13
+
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~ //copy over all spl files
+  LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_1_arrays END  //Level 1
+  LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_2_arrays END  //Level 2
+  LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_3_arrays END  //Level 3
+  LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_4_arrays END  //Level 4   Is there a need to make WIZARD_MORDENKAINENS_FORCE_MISSILES special???
+  LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END            //Fear
+  LPF cd_apply_batch STR_VAR array_name = b_removal_rage_arrays END // apply based on iwdee or not
+  LPF cd_apply_batch STR_VAR array_name = b_removal_rage_arrays_second END // for RAGE_R to be altered if needed
+  LPF cd_apply_batch STR_VAR array_name = b_removal_rage_arrays_end END // Just to remover RAGE_R if nec
+  LPF cd_apply_batch STR_VAR array_name = b_immunity_berserk_arrays END //
+  LPF cd_apply_batch STR_VAR array_name = b_immunity_berserk_arrays_second END //
+  LPF cd_apply_batch STR_VAR array_name = b_immunity_berserk_arrays_end END
+//  LPF cd_apply_batch STR_VAR array_name = cd_immunity_some_other_thing END
+  // etc.
+  BUT_ONLY
+
+
+//special cases
+//IWDEE SPECIFIC PRIEST SPELLS ONLY
+
+//Once entropy immunities is done, do this check
+
+//ACTION_IF (((MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~) OR (FILE_EXISTS_IN_GAME ~b_IWD.itm~)) OR ((GAME_IS ~iwdee~) OR (FILE_EXISTS_IN_GAME ~b_wiz.itm~))) BEGIN //Only if BR/ES installed
 
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-///////////////////////// 1st level immune  //////////////////////////
+/////////////////////////     Blood Rage    //////////////////////////
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-//IWDEE version prot vs. no 1st lev spells except entangle...I'll just use
-/* not nec to run array, apparently...
-ACTION_PHP_EACH prot AS block => rock BEGIN   //
-  ACTION_IF (~%rock%~ STRING_EQUAL ~lev_one~) BEGIN  //
-*/
 
-  COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~ //copy over all spl files
-   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items //
-     LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_1_arrays END //prot from lev 1 (cantrips, etc...)
-//       LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~LEV_ONE~ resource = EVAL ~%block%~ END  //not nec apparently
-   END //
-  BUT_ONLY//
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_BLOOD_RAGE~
+  RET spell_res
+END
+     COPY_EXISTING ~%spell_res%.spl~ ~override~
+       LPF cd_apply_batch STR_VAR array_name = b_blood_rage_arrays END  //TEST!!!!!!!!!!!!
+
 /*
+//CONTINUE ENTROPY SHIelD IMMUNITY TPA
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////  Entropy Shield   //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//ALICORN LANCE: MAKE ENTROPY SHIELD PROTECT VS @21800003    //Notification "Outlined in a Silvery Radiance (AC penalty of 2)"
+//Prob have to do it via 177
 
- END
+//Entropy immunity SR neutral
+INCLUDE ~spells/lib/entropy_immunity.tpa~
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
+  RET spell_res
 END
+     COPY_EXISTING ~%spell_res%.spl~ ~override~
+//       LPF cd_apply_batch STR_VAR array_name = b_blood_rage_arrays END  //Create array and TEST!!!
 
-*/
-
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-///////////////////////// 2nd level immune  //////////////////////////
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-//Protects vs. S. Snowball storm
-ACTION_PHP_EACH prot AS block => rock BEGIN   //
-  ACTION_IF (~%rock%~ STRING_EQUAL ~lev_two~) BEGIN  //
-
-
-  COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~ //copy over all spl files
-   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items //
-     LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_2_arrays END //prot from lev 2
-       LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~LEV_TWO~ resource = EVAL ~%block%~ END  //not nec apparently
-   END //
-  BUT_ONLY//
-
-
- END
-END
-
-
-
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-///////////////////////// 3rd level immune  //////////////////////////
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-//mold touch, spike growth (added cloudburst)
-
-
-ACTION_PHP_EACH prot AS block => rock BEGIN   //
-  ACTION_IF (~%rock%~ STRING_EQUAL ~lev_three~) BEGIN  //
-
-
-  COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~ //copy over all spl files
-   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items //
-     LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_3_arrays END //prot from lev 2
-       LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~LEV_THR~ resource = EVAL ~%block%~ END  //not nec apparently
-   END //
-  BUT_ONLY//
-
-
- END
-END
-
+END//End IWDEE SPECIFIC priest spells installed
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 ///////////////////////// 4th level immune  //////////////////////////
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-//vitrolic sphere, Wall of moonlight, thorn spray, smashing wave, Cloud of Pestilence, static charge, prod fire, mord force mis sec spell...
 
-
-ACTION_PHP_EACH prot AS block => rock BEGIN   //
-  ACTION_IF (~%rock%~ STRING_EQUAL ~lev_four~) BEGIN  //
-
-
-  COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~ //copy over all spl files
-   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items //
-     LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_4_arrays END //prot from lev 2
-       LPF ALTER_EFFECT INT_VAR match_opcode = 206 STR_VAR match_resource = ~LEV_FOU~ resource = EVAL ~%block%~ END  //not nec apparently
-   END //
-  BUT_ONLY//
-
-
- END
-END
+///WHAT IS GOING ON HERe?
 
 //Special Case
 //HAVE TO ENSURE THIS IS INSTALLED...
@@ -116,32 +171,10 @@ END
   BUT_ONLY//
   
 END//check
-
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-/////////////////////////      Berserk      //////////////////////////
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-//Berserk   Blood Rage has a unique icon that needs to be protected against!!!
-
-ACTION_PHP_EACH prot AS block => rock BEGIN   //
-  ACTION_IF (~%rock%~ STRING_EQUAL ~rage~) BEGIN  //
-
-  COPY_EXISTING_REGEXP GLOB ~.*\.spl~ ~override~ //copy over all spl files
-   PATCH_IF (SOURCE_SIZE > 0x71) BEGIN // avoid crashing on empty items //
-     LPF cd_apply_batch STR_VAR array_name = b_removal_rage_arrays END // apply based on iwdee or not
-     LPF cd_apply_batch STR_VAR array_name = b_removal_rage_arrays_second END // for RAGE_R to be altered if needed
-       LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR match_resource = ~RAGE_R~ resource = EVAL ~%block%~ END  //
-     LPF cd_apply_batch STR_VAR array_name = b_removal_rage_arrays_end END // Just to remover RAGE_R if nec
-     LPF cd_apply_batch STR_VAR array_name = b_immunity_berserk_arrays END //
-     LPF cd_apply_batch STR_VAR array_name = b_immunity_berserk_arrays_second END //
-       LPF ALTER_EFFECT INT_VAR match_opcode = 324 STR_VAR match_resource = ~RAGE_P~ resource = EVAL ~%block%~ END  //
-     LPF cd_apply_batch STR_VAR array_name = b_immunity_berserk_arrays_end END //  (same progression as removal)
-   END //
-  BUT_ONLY//
-
- END
-END
+//IS THIS NEEDED FOR IMMUNITY????
+*/
+//Add the below on case by case basis
+/*
 
 
 
@@ -177,24 +210,6 @@ ACTION_PHP_EACH prot AS block => rock BEGIN   //
 END
 */
 
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-/////////////////////////   Blood Rage      //////////////////////////
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-//SPELLS BLOOD RAGE REMOVES/PROTECTS FROM
-//
-//BLood Rage immunities
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_BLOOD_RAGE~
-  RET spell_res
-END
-ACTION_PHP_EACH prot AS block => rock BEGIN
-  ACTION_IF (~%rock%~ STRING_EQUAL ~blood~) BEGIN
-     COPY_EXISTING ~%spell_res%.spl~ ~override~
-     LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 6 opcode = 318 STR_VAR resource = EVAL ~%block%~ END
-  END
-END
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 /////////////////////////     Clouds        //////////////////////////
@@ -618,20 +633,6 @@ END
 */
 
 
-//special cases
-
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-/////////////////////////  Entropy Shield   //////////////////////////
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////
-//ALICORN LANCE: MAKE ENTROPY SHIELD PROTECT VS @21800003    //Notification "Outlined in a Silvery Radiance (AC penalty of 2)"
-//Prob have to do it via 177
-//first things first.  We don't know if Entropy shield/exaltation will be installed.  Check for that.
-ACTION_IF ((MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~) OR (FILE_EXISTS_IN_GAME ~b_IWD.itm~)) OR (GAME_IS ~iwdee~) BEGIN //detects entropy installed- look for other versions (IWDIFICATION???) YUP.  Also, it has different text for text changes...
-
-//Entropy immunity SR neutral
-INCLUDE ~spells/lib/entropy_immunity.tpa~
 
 
 //////////////////////////////////////////////////////////////////////
@@ -798,3 +799,4 @@ COPY_EXISTING ~b_po040.spl~ ~override~
   SAY_EVALUATED 0x50 ~%new_desc%~
   END  //
 END
+*/

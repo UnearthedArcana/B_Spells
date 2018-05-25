@@ -1,4 +1,4 @@
-//ARCANE SPELLS 
+//ARCANE SPELLS
 @1260000 = ~Expeditious Retreat~
 @1260001 = ~Expeditious Retreat
 (Alteration)
@@ -413,7 +413,9 @@ Saving Throw: None
 Prayer bestows favor on the priest and <PRO_HISHER> allies, and curses their enemies. All attacks, damage, and Saving Throws by friendly characters gain a +1 bonus, while enemy attacks, damage rolls, and saves get a -1 penalty. Any creatures within the area of effect when the spell is cast will continue to be affected by the spell when they leave the area, so if the warriors want to chase down that fleeing goblin, the effects of the Prayer will follow them.~
 
 @31600002 = ~Combat Penalties~
+@31600003 = ~Combat Penalties~
 @31600004 = ~Combat Bonuses~
+@31600005 = ~Combat Penalties~
 
 @32000000 = ~Cause Disease~
 @32000001 = ~Cause Disease

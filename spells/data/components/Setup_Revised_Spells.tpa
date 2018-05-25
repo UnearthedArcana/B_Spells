@@ -17,7 +17,19 @@
 
 //Individual Spells
 
+//LEVEL 1 ARCANE
+
 //Find Familiar: Can set off traps, and be cast by other than main character (IWD version?) Cantrip or innate
+
+//Larloch's Minor Drain ???
+
+//LEVEL 1 DIVINE
+
+//LEVEL 2 ARCANE
+
+//LEVEL 2 DIVINE
+
+//Goodberry Recover Fatigue
 
 //Favor of Ilmater (Name change: Divine Favor; castable by evil and on evil)
 
@@ -29,7 +41,7 @@
 
 //Unholy Blight: Damages party enemies (evil don't care about hurting other evil)
 
-//Larloch's Minor Drain ???
+
 
 //Dire Charm: Original spell makes target berserk
 
@@ -282,21 +294,61 @@ END  //End SR
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________________________________Goodberry____________________________________________________________________________//
+//_________________________________________________________________Goodberry 10% ea_____________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Just brutin' away...
+//
   COPY ~Spells/data/revised_spells/goodberry/SPPR207.spl~ ~override~
         SAY NAME1 @10100007
         SAY NAME2 @10100007
         SAY UNIDENTIFIED_DESC @10100005
 	SAY DESC @10100005
-  COPY ~Spells/data/revised_spells/goodberry/gberry.itm~ ~override~
-        SAY NAME1 @10100007
-        SAY NAME2 @10100007
-        SAY UNIDENTIFIED_DESC @10100006
-	SAY DESC @10100006
+
+ //Goodberry items
+ COPY_EXISTING ~gberry.itm~ ~override~
+   LPF ALTER_EFFECT INT_VAR match_opcode = 17 parameter1 = 10 parameter2 = 2 END
+  SPRINT old @10110011//old text
+  SPRINT new @10110012//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  // descriptions for SR
+  SPRINT old @10110013//old text
+  SPRINT new @10110012//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
+  COPY_EXISTING ~SPPR118.spl~ ~override~   //Copies SR version
+    LPF ALTER_EFFECT INT_VAR match_opcode = 122 STR_VAR resource = EVAL ~GBERRY~ END
+    SAY UNIDENTIFIED_DESC @10100005
+    SAY DESC @10100005
+END//End if SR installed
+
+//Spell description alteration
+ COPY_EXISTING ~SPPR207.spl~ ~override~
+//     WRITE_LONG 0x34 ~2~ // level 2
+  SPRINT old @10110011//old text
+  SPRINT new @10110012//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+
 
 /////////////////////////////////////////////////////////
 ///      3rd level cure/inflict
@@ -378,6 +430,14 @@ ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
         SAY UNIDENTIFIED_DESC @10100023
 	SAY DESC @10100023
 END//SR
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_____________________________________________Neutralize Poison (as cure moderate wound)_______________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//TO DO
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -469,12 +529,32 @@ END//SR
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//TO DO
+
+/////////////////////////////////////////////////////////
+///      6th level cure/inflict
+/////////////////////////////////////////////////////////
+
+
+
+/////////////////////////////////////////////////////////
+///      7th level cure/inflict
+/////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//___________________________________________Mist of Eldath(as cure critical wound)_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Be sure that the spell description still ends with "Hit Points." for compatiblity with the individual spell change
+//TO DO
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////                                        ///////////////////////////////////////////////
 ///////////////////////////////////////////////              CHARM SPELLS              ///////////////////////////////////////////////
 ///////////////////////////////////////////////                                        ///////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Compatiblity: Install Charm Monster if new spells installed
 
 /////////////////////////////////////////////////////////
 ///      1st level charm
@@ -561,6 +641,18 @@ COPY_EXISTING ~SPWI316.spl~ ~override~  //Priest 2nd lev charm
 
 
 //Iff Charm monster is added, change it...
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////                                        ///////////////////////////////////////////////
+///////////////////////////////////////////////             SUMMON SPELLS              ///////////////////////////////////////////////
+///////////////////////////////////////////////          (IMPROVED SUMMONS)            ///////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////                                        ///////////////////////////////////////////////
+///////////////////////////////////////////////             SUMMON SPELLS              ///////////////////////////////////////////////
+///////////////////////////////////////////////          (CRE DESCRIPTIONS)            ///////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //TO DO
 
@@ -688,6 +780,207 @@ END//END SR
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////                2nd level                //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________Goodberry____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Recovers fatigue
+
+ //Goodberry items
+ COPY_EXISTING ~gberry.itm~ ~override~
+   LPF CLONE_EFFECT INT_VAR match_opcode = 17 opcode = 93 parameter1 = 0 parameter2 = 1 END
+  SPRINT old @10110005//old text
+  SPRINT new @10110006//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  // descriptions for SR
+  SPRINT old @10110007//old text
+  SPRINT new @10110008//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+
+ACTION_IF FILE_EXISTS_IN_GAME ~GBERRY1.itm~ BEGIN
+  COPY_EXISTING ~GBERRY1.itm~ ~override~ //to make unselectable
+   LPF CLONE_EFFECT INT_VAR match_opcode = 17 opcode = 93 parameter1 = 0 parameter2 = 1 END
+  SPRINT old @10110007//old text
+  SPRINT new @10110008//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~GBERRY2.itm~ BEGIN
+  COPY_EXISTING ~GBERRY2.itm~ ~override~ //to make unselectable
+   LPF CLONE_EFFECT INT_VAR match_opcode = 17 opcode = 93 parameter1 = 0 parameter2 = 1 END
+  SPRINT old @10110007//old text
+  SPRINT new @10110008//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~GBERRY3.itm~ BEGIN
+  COPY_EXISTING ~GBERRY3.itm~ ~override~ //to make unselectable
+   LPF CLONE_EFFECT INT_VAR match_opcode = 17 opcode = 93 parameter1 = 0 parameter2 = 1 END
+  SPRINT old @10110007//old text
+  SPRINT new @10110008//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~GBERRY4.itm~ BEGIN
+  COPY_EXISTING ~GBERRY4.itm~ ~override~ //to make unselectable
+   LPF CLONE_EFFECT INT_VAR match_opcode = 17 opcode = 93 parameter1 = 0 parameter2 = 1 END
+  SPRINT old @10110007//old text
+  SPRINT new @10110008//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~GBERRY5.itm~ BEGIN
+  COPY_EXISTING ~GBERRY5.itm~ ~override~ //to make unselectable
+   LPF CLONE_EFFECT INT_VAR match_opcode = 17 opcode = 93 parameter1 = 0 parameter2 = 1 END
+  SPRINT old @10110007//old text
+  SPRINT new @10110008//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~GBERRY6.itm~ BEGIN
+  COPY_EXISTING ~GBERRY6.itm~ ~override~ //to make unselectable
+   LPF CLONE_EFFECT INT_VAR match_opcode = 17 opcode = 93 parameter1 = 0 parameter2 = 1 END
+  SPRINT old @10110007//old text
+  SPRINT new @10110008//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+END
+
+//IF SR installed
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
+  COPY_EXISTING ~SPPR118.spl~ ~override/SPPR207.spl~   //Copies SR version over original
+  COPY_EXISTING ~SPPR118.spl~ ~override~ //to make unselectable
+    WRITE_BYTE 0x21 (THIS | 0b11000000) //actually make unselectable
+END//End if SR installed
+
+//Spell description alteration
+ COPY_EXISTING ~SPPR207.spl~ ~override~
+     WRITE_LONG 0x34 ~2~ // level 2
+  SPRINT old @10110009//old text
+  SPRINT new @10110010//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+   
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////                3rd level                //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/* I need to rethink this
+//Cure Disease --> Cure Affliction
+
+ COPY_EXISTING ~SPPR317.spl~ ~override~
+        SAY NAME1 @10110014
+        SAY NAME2 @10110014
+  LPF ALTER_SPELL_HEADER INT_VAR range = 150
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 46 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 162 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 163 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 240 parameter2 = 55 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 240 parameter2 = 13 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+ SPRINT old @10110015//old text
+ SPRINT new @10110014//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+ SPRINT old @10110016//old text
+ SPRINT new @10110017//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+ SPRINT old @10110018//old text
+ SPRINT new @10110019//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+*/
 
 
 //CONTINUE FROM HERE
@@ -845,42 +1138,95 @@ END
 //ATTENTION: FIT REMOVE FATIGUE AND UNFAILING ENDURANCE IN SPHERE SYSTEM...
 //ALSO, MAYBE REMOVE FATIGUE SHOULD HEAL A BIT???
 
+//Neutralize Poison --> Cure Affliction
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//___________________________________________________________Cure Affliction____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ COPY_EXISTING ~SPPR404.spl~ ~override~
+        SAY NAME1 @10110014
+        SAY NAME2 @10110014
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 46 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 162 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 163 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 240 parameter2 = 55 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 79 opcode = 240 parameter2 = 13 STR_VAR  END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+ SPRINT old @10110015//old text
+ SPRINT new @10110014//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+ SPRINT old @10110016//old text
+ SPRINT new @10110017//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+//Mist of Eldath --> Cleansing Mist
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________________________________Charm Person_________________________________________________________________________//
+//______________________________________________________________Cleansing Mist__________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________________________________Entropy Shield_______________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//IWD version only (my version already does this).  Protects vs. sol's searing orb (et al if necessary)
+//First, check if spell is installed...  with an action_if (to do)
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________________________________Charm person or mammal --> Charm Beast_______________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
+//Lasts over 5 rounds, continually healing non-enemies
+ADD_PROJECTILE ~Spells/data/revised_spells/Mist_of_Eldath/B_MIST.pro~   //pro
+//Add projectile to spl, etc.
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_MIST_OF_ELDATH~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~  //change description
+        SAY NAME1 @10110020
+        SAY NAME2 @10110020
+ SPRINT old @10110021//old text
+ SPRINT new @10110020//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+ SPRINT old @10110022//old text
+ SPRINT new @10110023//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+ SPRINT old @10110024//old text
+ SPRINT new @10110025//new text
+   READ_LONG 0x50 "valid"
+   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+   READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old w new
+	END
+   SAY_EVALUATED 0x50 ~%new_desc%~
+   END  //
+  LPF CLONE_EFFECT INT_VAR match_opcode = 17 opcode = 324 parameter1 = 0 parameter2 = 50 timing = 0 duration = 1 dicenumber = 0 dicesize = 0 STR_VAR resource = EVAL ~%spell_res%~ END   //parameter1 = 0 parameter2 = 0 resource = EVAL ~%spell_res%~
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %B_MIST% STR_VAR  END
 
 /*opcode = 177
 target = 2

@@ -131,14 +131,15 @@ This spell enables the priest to forbid another creature to move, by commanding 
 (Enchantment/Charm)
 
 Level: 3
-Sphere: Thought
+Sphere: Charm
 Range: Visual range of the caster
 Duration: 1 round per level (max 10 rounds)
 Casting Time: 1
 Area of Effect: 1 creature
 Saving Throw: Spell
 
-With this spell, the priest commands the target to attack the nearest creature.  If the target doesn't save vs. spell, they will attack the nearest creature--friend or foe--that they can reach.~
+With this spell, the priest commands the target to attack the nearest creature.  If the target doesn't save vs. spell, they will attack the nearest creature--friend or foe--that they can reach in melee combat.~
+
 
 @50805 = ~Murderous Command (focus)
 (Enchantment/Charm)
@@ -152,6 +153,51 @@ Area of Effect: 1 creature
 Saving Throw: Spell
 
 With this spell, the priest commands the target to attack the nearest creature.  If the target doesn't save vs. spell, they will attack the nearest creature--friend or foe--that they can reach.~
+
+@50806 = ~Enthrall~
+@50807 = ~Enthrall
+(Enchantment/Charm)
+
+Level: 2
+Sphere: Charm
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 1 round
+Area of Effect: Special
+Saving Throw: Neg.
+
+This spell entrances up to 1d4 creatures, causing them to stand mystified for 1 round per level of the priest if they do not save vs. spell (maximum 10 rounds). Specifically, it affects the targeted enemy and up to 3 hostile creatures within 20 ft. of it.  Enthralled creatures stand where they are, and fail to notice creatures around them.
+
+Affected creatures shake off this effect if they are attacked.~
+
+@50808 = ~Enthralled~
+@50809 = ~No longer Enthralled~
+
+@50810 = ~Dictate~
+@50811 = ~Duration: 1 round~
+@50812 = ~Duration: 5 rounds~
+@50813 = ~a single round~
+@50814 = ~five rounds~
+@50815 = ~At the end of the round~
+@50816 = ~After 5 rounds~
+@50817 = ~Flight~
+@50818 = ~Fight~
+@50819 = ~Feral Instinct~
+@50820 = ~Feral Instinct
+(Enchantment/Charm)
+
+Level: 3
+Sphere: Animal
+Range: Visual range of the caster
+Duration: 1 round per level (max 10 rounds)
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Spell
+
+With this spell, the druid causes the targetted creature to revert to a primitive state if they do not save vs. spell.  
+
+If the target doesn't save vs. spell, they will enter 'fight or flight' mode, either attacking the nearest creature--friend or foe--in melee, or fleeing the battlefield.~
+
 
 //@50900
 
@@ -535,6 +581,25 @@ Speed Factor: 2~
 @51720 = ~Water Elemental~
 @51721 = ~Greater Water Elemental~
 
+@51722 = ~Watery Fist~
+@51723 = ~Watery Fist
+(Conjuration)
+
+Level: 2
+Sphere: Elemental Water
+Range: 60 Yards
+Duration: 1 round / 2 levels
+Casting Time: 5
+Area of Effect: 1 creature 
+Saving Throw: None
+
+Upon completion of this spell the caster calls into being a huge disembodied fist formed purely of water. This fist will remain in existance for 1 round per 2 caster levels, up to maximum of 5 rounds at level 9. The first will attack the chosen target once per round and cause cold damage as listed below:
+
+Caster level 3-4: 1d6 damage per round
+Caster level 5-8: 1d10 damage per round
+Caster level 9-12: 1d12 damage per round
+Caster level 13+: 2d8 damage per round~
+
 //@52000
 
 @52001  = ~Shadow Step~
@@ -568,6 +633,62 @@ Saving Throw: None
 
 This spell shrouds the recipient in darkness, protecting <PRO_HIMHER> from both attacks and spells.  They gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.  Additionally, if the recipeient can hide in shadows, they gain a +15% bonus to that ability.~
 
+
+@52007  = ~Summon Shadows~
+@52008  = ~Summon Shadows
+Level: 5
+Range: Long
+Duration: 3 turns
+Casting Time: 1 round
+Area of Effect: Special
+Saving Throw: None
+
+This spell summons a number of shadows, which serve the caster under any condition. The type and number of creatures that appear depend upon the level of the wizard casting the spell.
+
+9th : 3 shadows
+12th+ : 2 wraiths
+
+The shadowy creatures will remain under the caster's control until they are slain or the spell duration expires.
+
+Shadow (3 Hit Dice):
+STR -, DEX 14, CON -, INT 6, WIS 12, CHA 11;  AL Chaotic Evil
+HP 36, AC 5, THAC0 13, Saving Throws 11/13/11/13/13
+1 Attack Per Round, 1d6+1 Cold Damage (Touch +1)
+
+Combat Abilities:
+Chill Touch: creatures struck must save vs. death or lose 1 point of strength for 1 hour
+
+Special Qualities:
+Immune to normal weapons
+Immune to backstab, charm, confusion, hold, poison, sleep, stun, & death effects
+Cold Resistance 100%; Physical Damage Resistance 50%
+
+
+Wraith (5 Hit Dice):
+STR -, DEX 15, CON -, INT 11, WIS 13, CHA 12;  AL Lawful Evil
+HP 60, AC 4, THAC0 12, Saving Throws 10/13/10/13/13
+1 Attack Per Round, 1d8+1 Cold Damage (Touch +1)
+
+Combat Abilities:
+Life Drain: each successeful hit raises wraith hit points by 5 for 1 turn, and the target must save vs. death or lose 1 level
+
+Special Qualities:
+Immune to normal weapons
+Immune to backstab, blindness, charm, confusion, hold, poison, sleep, stun, & death effects
+Cold Resistance 100%; Physical Damage Resistance 50%~
+@59999  = ~Spirit Ward
+(Abjuration)
+
+Level: 1
+Sphere: Perdition
+Range: Touch
+Duration: 3 rounds/level
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None 
+
+This spell surrounds the recipient with a magical barrier at a distance of one foot. Spirits, fey creatures, elementals, lower-planar creatures, and spectral undead receive a penalty of -2 to hit when attacking the protected creature. In addition, the recipient gains a +3 bonus to Saving Throws against all spells that belong to the Enchantment school. 
+~
 //Misc. @53000
 
 @53000 = ~Abundant Ammunition~
@@ -605,6 +726,8 @@ This spell cannot be cast indoors.~
 
 
 //ARCANE SPELLS
+
+//A few random 1st level spells
 
 //@60000
 @60001 = ~Protective Shell~
@@ -662,7 +785,7 @@ Casting Time: 1
 Area of Effect: Special
 Saving Throw: Neg.
 
-This spell entrances up to 1d4 creatures, causing them to stand mystified for 1 round if they do not save vs. spell. Specifically, it affects the targeted enemy and up to 3 hostile creatures within 20 ft. of it.
+This spell entrances up to 1d4 creatures, causing them to stand mystified for 1 round if they do not save vs. spell. Specifically, it affects the targeted enemy and up to 3 hostile creatures within 20 ft. of it.  Hypnotized creatures stand where they are, and fail to notice creatures around them.
 
 Affected creatures shake off this effect if they are attacked.~
 
@@ -684,6 +807,18 @@ Saving Throw: None
 
 When a mage casts this spell, all traps within the area of effect that are concealed normally or magically, of magical or mechanical nature become apparent to <PRO_HIMHER>, as if <PRO_HESHE> were a Thief.~
 
+@61011 = ~Reprieve~
+@61012 = ~Reprieve
+(Alteration)
+
+Range: Visual range of the caster
+Duration: 1 round
+Target: 1 Ally
+Casting Time: 1
+Saving Throw: None
+
+This spell causes a single ally to vanish in a flash of light. After one round that ally will reappear at the location you were when you cast this spell.~
+
 //@63000 3RD level arcane spells
 
 @63001 = ~Solvent of Corrosion~
@@ -703,6 +838,20 @@ Additionally, the target suffers a -2 penalty to attacks while the acid is in ef
 
 This spell is effective against constructs and other creatures normally resistant to magic.~
 
+@63003 = ~Iron Mind~
+@63004 = ~Iron Mind
+(Abjuration)
+
+Level: 3
+Range: Touch
+Duration: 1 hour
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: None
+
+When the mage casts this spell, and touches a creature, that creature becomes immune to charm or fear effects for the next hour.  Additionally, recipients gain a +2 bonus to save vs. spell for the duration.
+
+This spell does not protect against domination affects.~
 
 //@64000 4th level arcane spells
 
@@ -736,6 +885,7 @@ Area of Effect: 1 creature
 Saving Throw: None
 
 Major Missile is much like Magic Missile, creating a single missile of magical energy that darts forth from the wizard's fingertip and unerringly strike their target, which must be a creature of some sort. This missile inflicts 1d4+1 points of damage, plus 1d4+1 for every two levels thereafter, to a maximum of 15d4 +15.~
+
 
 
 

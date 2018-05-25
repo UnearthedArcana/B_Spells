@@ -32,16 +32,16 @@ Saving Throw: None
 This spell restores the stamina of the caster, and any allies within 30 feet, eliminating any fatigue, and healing each for 25% of their maximum hit points.  Additionally, targets of this spell can draw on a reserve of energy once in the next 8 hours, completely removing fatigue a second time.~
 @10100004 = ~Draw on hidden reserves to remove any fatigue~
 
+//Must be in SR style
 @10100005 = ~Goodberry
-(Alteration, Evocation)
-
 Level: 2
+School: Alteration
 Sphere: Plant
-Range: Touch 
-Duration: Permanent
-Casting Time: 9 
-Area of Effect: Special 
-Saving Throw: None 
+Range: Personal
+Duration: Special
+Casting Time: 1 round
+Area of Effect: Special
+Saving Throw: None
 
 Casting a Goodberry spell creates 5 magical berries that the caster can carry with <PRO_HIMHER>. Each berry restores 15% of a creature's maximum Hit Point total, and removes all fatigue when eaten.~
 @10100006 = ~Created by the Goodberry spell, these simple-looking berries will heal 15% of a creature's maximum Hit Point total, and removes all fatigue when eaten.
@@ -176,6 +176,30 @@ If the caster charms an enemy, <PRO_HESHE> will find <PRO_HIMHER>self conflicted
 
 If the caster harms the charmed person or attempts to harm the charmed person by some overt action, or if a Dispel Magic spell is cast upon the charmed person, the Charm spell is broken. If two or more Charms simultaneously affect a creature, the most recent Charm takes precedence. Note that the subject has full memory of the events that took place while he was charmed.~
 
+//Goodberry
+@10110005 = ~Special: ~
+@10110006 = ~Special: Eliminates Fatigue, ~
+@10110007 = ~of damage~
+@10110008 = ~of damage, and cures fatigue~
+@10110009 = ~damage for each~
+@10110010 = ~damage, and removes fatigue for each~
+@10110011 = ~1 Hit Point~
+@10110012 = ~10% of a creature's maximum Hit Point total~
+@10110013 = ~one point of damage~
+//Cure Affliction
+@10110014 = ~Cure Affliction~
+@10110015 = ~Neutralize Poison~
+@10110016 = ~deafness~
+@10110017 = ~deafness, paralyzation or related magic (such as a ghoul's touch or a Hold spell)~
+@10110018 = ~Range: Touch~
+@10110019 = ~Range: 150'~
+//Clensing Mist
+@10110020 = ~Cleansing Mist~
+@10110021 = ~Mist of Eldath~
+@10110022 = ~Duration: Instant~
+@10110023 = ~Duration: 5 rounds~
+@10110024 = ~Hit Points.~
+@10110025 = ~Hit Points every round for 5 rounds.~
 
 
 

@@ -834,7 +834,7 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_1_arrays~ BEGIN
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
     206, "-1", "-10", "sppr105", "-10", "-10", "same" => 1 // protection from spell
-//    206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1 // protection from spell not nec, apparently...
+    206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1 // protection from spell not nec, apparently...
     206, "-1", "-10", "b_po010", "-10", "-10", "same" => 1 // protection from Cure minor wounds cantrip
 //    206, "-1", "-10", "b_po020", "-10", "-10", "same" => 1 // protection from Canticle cantrip
     206, "-1", "-10", "b_po030", "-10", "-10", "same" => 1 // protection from Maladiction cantrip
@@ -2301,74 +2301,7 @@ DEFINE_PATCH_MACRO ~b_blood_rage_arrays~ BEGIN
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
-// light Armors (Proficiency)  (CHECK THIS JIVES WITH OTHER ARMOR ALTERING MODS)
-DEFINE_PATCH_MACRO ~b_light_armor_arrays~ BEGIN
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    7,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //
-  END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    177, 0, 2, "B_LIT0", 2,"-10", "same" => 1 // Apply spl
-    326, 0, 0, "B_LIT0B", 1,"-10", "same" => 1 // Apply spl - will be 'equal to 0' not 'less than 2'
-    177, 0, 2, "B_LIT1", 2,"-10", "same" => 1 // Apply spl
-    326, 1, 0, "B_LIT1B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_LIT2", 2,"-10", "same" => 1 // Apply spl
-    326, 2, 0, "B_LIT2B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_LIT4", 2,"-10", "same" => 1 // Apply spl
-    326, 4, 0, "B_LIT4B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_LIT5", 2,"-10", "same" => 1 // Apply spl
-    326, 5, 0, "B_LITB", 1,"-10", "same" => 1 // Apply spl
-END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
-    145,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable spell casting
-    144,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable buttons
-  END //
-END
 
-// medium Armors (Proficiency)  (CHECK THIS JIVES WITH OTHER ARMOR ALTERING MODS)
-DEFINE_PATCH_MACRO ~b_medium_armor_arrays~ BEGIN
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    7,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //
-  END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    177, 0, 2, "B_MED0", 2,"-10", "same" => 1 // Apply spl
-    326, 2, 0, "B_MED0B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_MED2", 2,"-10", "same" => 1 // Apply spl
-    326, 2, 0, "B_MED2B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_MED3", 2,"-10", "same" => 1 // Apply spl
-    326, 3, 0, "B_MED3B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_MED4", 2,"-10", "same" => 1 // Apply spl
-    326, 4, 0, "B_MED4B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_MED5", 2,"-10", "same" => 1 // Apply spl
-    326, 5, 0, "B_MED5B", 1,"-10", "same" => 1 // Apply spl
-END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
-    145,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable spell casting
-    144,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable buttons
-  END //
-END
-
-// HEavy Armors (Proficiency)  (CHECK THIS JIVES WITH OTHER ARMOR ALTERING MODS)
-DEFINE_PATCH_MACRO ~b_heavy_armor_arrays~ BEGIN
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
-    7,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //
-  END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    177, 0, 2, "B_HVY0", 2,"-10", "same" => 1 // Apply spl
-    326, 2, 0, "B_HVY0B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_HVY2", 2,"-10", "same" => 1 // Apply spl
-    326, 2, 0, "B_HVY2B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_HVY3", 2,"-10", "same" => 1 // Apply spl
-    326, 3, 0, "B_HVY3B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_HVY4", 2,"-10", "same" => 1 // Apply spl
-    326, 4, 0, "B_HVY4B", 1,"-10", "same" => 1 // Apply spl
-    177, 0, 2, "B_HVY5", 2,"-10", "same" => 1 // Apply spl
-    326, 5, 0, "B_HVY5B", 1,"-10", "same" => 1 // Apply spl
-END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
-    145,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable spell casting
-    144,  "-10", "-10", "same",  "-10",  "-10", "same" => 2 // Disable buttons
-  END //
-END
 
 /////                                                  \\\\\
 ///// the batch... err... patch                        \\\\\

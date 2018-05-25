@@ -3,25 +3,25 @@
 ////////////////////                  fnp wiz Spells                   ////////////////////
 ////////////////////                                                   ////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
-//create matrices  for immunity  (i.e. spell and pro)
 
-//list
-//we need a list for priest spells, and one for wiz spells, but no repeats!
-ACTION_IF (FILE_EXISTS_IN_GAME ~b_wizo.itm~) AND (NOT FILE_EXISTS_IN_GAME ~b_prea.itm~) BEGIN    // pre spells not added to entropy list
-//b_wizo detects fnp wiz spells have been installed
-//b_prea detects whether this particular protection has been added
-//so this doesn't repeat
- COPY ~Spells/data/iwd_spells/b_wizo.itm~ ~override/b_prea.itm~   //To detect this sub component
+
+
+//NA in IWDEE
+ACTION_IF (NOT GAME_IS ~iwdee~) BEGIN //
+
+//If all IWDEE spells are installed...
 
 //__________________________________________Snowball Swarm___________________________________________\\
+
+//alter descriptive text of e shield
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_SNILLOCS_SNOWBALL_SWARM~
   RET spell_res
 END
+
 //Sh. of Entropy immunity list
 INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
 
-//alter descriptive text of e shield
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
   RET spell_res
@@ -40,6 +40,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   END  //
 
 
+
 //__________________________________________Icelance___________________________________________\\
 
 LAF RES_NUM_OF_SPELL_NAME
@@ -50,12 +51,10 @@ END
 //Sh. of Entropy immunity list
 INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
 
-//alter descriptive text of e shield
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
   RET spell_res
 END
-
 COPY_EXISTING ~%spell_res%.spl~ ~override~
  SPRINT old @61500002//old text
  SPRINT new @61500004//new text
@@ -67,6 +66,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 	END
   SAY_EVALUATED 0x50 ~%new_desc%~
   END  //
+
+  ACTION_IF ((FILE_EXISTS_IN_GAME ~b_wiz.itm~) OR (MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~30~)) BEGIN // all IWDEE Wiz spells, not IWDEE
 
 //__________________________________________Alicorn Lance___________________________________________\\
 
@@ -95,11 +96,10 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 	END
   SAY_EVALUATED 0x50 ~%new_desc%~
   END  //
-
 //__________________________________________Sunscorch___________________________________________\\
-//Special case with sr. text already added to spell
+//text already added to spell
 //if NOT SR INSTALLED
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN    //If IWD spells not installed...
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN    //If SR not installed...
 
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_SUNSCORCH~
@@ -113,13 +113,26 @@ INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
 INCLUDE ~spells/lib/pro_list_fnp.tpa~
 
 END//end if SR NOT installed
+
 //if sr installed
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN    //If IWD spells not installed...
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN    //If IWD spells not installed...
 
 //projectile list
 
 INCLUDE ~spells/lib/pro_list_fnp_sr.tpa~
 END//end sr installed
+
+//Now, worry about IWDEE wiz spells
+
+ACTION_IF (((MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~) OR (FILE_EXISTS_IN_GAME ~b_IWD.itm~)) OR ((GAME_IS ~iwdee~) OR (FILE_EXISTS_IN_GAME ~b_wiz.itm~))) BEGIN //Only if BR/ES installed
+
+END //end not IWDEE
+
+//AFTER not IWDEE, only worry about 'new spells'...
+
+
+//CONTINUE FROM HERE
+
 
 END
 //now, if wiz installed first...
@@ -226,7 +239,4 @@ ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
        LPF CLONE_EFFECT INT_VAR match_opcode = 325 opcode = 318 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~sppr116~ END //sr sun scorch
 
 END//End specific sunscorch for sr
-
-END//Tot end
-
 

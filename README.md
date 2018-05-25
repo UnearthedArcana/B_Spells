@@ -2,11 +2,106 @@
 
 log
 
+NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
+
+Version 0.88.05
+
+2018-05-25
+
+- Reorganizing components installation procedure
+
+2018-05-24
+
+- Added modvar in tp2 intro
+
+2018-05-23
+
+- Entropy Shield: Fixed bug with Sunscorch blocking CONTINUE LINE 134 (entropy_immunity.tpa); CREATE BATCH ARRAYS FOR E SHIELD
+
+2018-05-22
+
+- Rechecking FnP wiz spells: Snilloc's Snowball Swarm (entropy shield doesn't seem to prot against)
+- Shows me that I need to reimplement Entropy Shield protections...Started with text modifications for SSS and Icelance. 
+- CONTINUE Line 103 of entropy_immunity.tpa
+
+2018-05-20
+
+- Tested with DR.  Installs if DR installed.  Not sure about how compatible they are
+
+2018-05-19 
+
+- Finished blood rage prot strings
+
+2018-05-18
+
+- Second pass at prot strings in BGEE.  Next is BG2EE and EET
+
+2018-05-17
+
+- Redoing Blood Rage: Did prot from text in BGEE
+
+2018-05-14 
+
+- Bloodrage specific immunities and removals
+- Installed...installs, but there are...issues.  e.g. Bloodrage gives protection with some weird conditions that I don't think are intentional...
+
+2018-05-13
+
+- Immunity: Rage (though, I'm not sure...this needs to be tested to see that it does what it should...)
+
+2018-05-12
+
+- I did it CAM's WAY!!! (immunities, fear arrays)
+- Added Fear, and prot from spell levels 1-4
+
+2018-02-13
+
+- Created mod_folder var
+
+2018-01-28
+
+- Updated new_spells.tra with fnp specific entries
+
+2018-01-20
+
+- New: Added Murderous Command
+- New: Added Feral Instinct
+
+2018-01-19
+
+- Fixed a bug w/solvent of corrosion (wrong reference)
+- Revised: Mist of Eldath to Cleansing Mist (5 rounds)
+- New: Created dictate (as command, but 5 rounds)
+
+2018-01-18
+
+- Revised: N. Poison to Cure Affliction (also cures paralysis)
+
+2018-01-16
+
+- New: Iron Mind first draft 
+- New: Watery Fist first draft (Credit Requiem & Mordeus)
+
+2018-01-15
+
+- New: First draft of Reprieve spell
+
+2018-01-13
+
+- Revised: Sep individual change of Goodberry (i.e. recover fatigue) from global healing boni
+- New: Inclde fist bam and 3rd eff for conjure water elemental to proper folder
+- New Spells: First draft Enthrall
+
+2018-01-08
+
+- Removed Armor prof stuff from fnp effects batch (using its own for sanity)
+
 2018-01-05
 
 Version 0.88.03
 
 - Completely redid conjure water elemental
+- Corellon's Arrow: specified that the bonuses apply only when in a frenzy in kit description
 
 2017-12-30
 

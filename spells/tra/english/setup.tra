@@ -1,6 +1,13 @@
-@1 = ~IWDEE Spells~
+@0 = ~Install All new spells (including IWDEE spells if applicable)~
+@1 = ~Install IWDEE Spells only~
+@2 = ~BGEE or BG2EE required!~
+@3 = ~Install New Spells only~
 @10 = ~Scroll~
 @11 = ~Level: 1~
 @12 = ~Level: Orison~
-
+@13 = ~*Please be patient. This will take some time...*~
+@14 = ~EE engine required!~
+@15 = ~IWDEE spells already installed!~
+@16 = ~New Spells already installed!~
+@100= ~Add New Spells~
 
