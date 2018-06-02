@@ -4,6 +4,10 @@ log
 
 NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
+2018-06-01
+
+- Fixed a few errors in entropy_immunity.tpa and immunity.tpa
+
 Version 0.88.05
 
 2018-05-25
