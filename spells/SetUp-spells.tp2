@@ -43,8 +43,9 @@ LANGUAGE ~English~ ~english~
 
 //___________________________________________________________________________________
 //Markers:
-//b_IWD.itm: FnP spells (Priest, new and specific
-//b_wiz.itm: All B_Spells new and IWDEE spells
+//b_IWD.itm: FnP spells (Priest, new and specific wiz spells)
+//B_pri.itm: IWDEE priest spells (mine)
+//b_wiz.itm: all IWDEE wiz spells (mine)
 //b_new.itm to detect my new spells only (which may or may not include IWDEE spells depening on game)
 //setup-iwdification.tp2~ ~40~: IWDIFICATION priest spells
 //setup-iwdification.tp2~ ~30~: IWDIFICATION wiz spells
@@ -61,7 +62,7 @@ ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
 //Not FnP spells; not IWDIFICATION
  ACTION_IF (NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~40~) AND (NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~) BEGIN  //neither IWDification nor our IWDEE spells installed (priest spells)
       INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
- END
+      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~ END //Detects my priest spells
  ACTION_IF (NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~30~) AND (NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~) BEGIN  //neither IWDification nor our IWDEE spells installed  (mage spells)
     INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~      //install fnp wiz spells
     INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
@@ -73,12 +74,12 @@ ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
    COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
 END
 //Add new spells if not in game
-ACTION_IF (NOT FILE_EXISTS_IN_GAME ~b_new.itm~) BEGIN
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~b_new.itm~) BEGIN //What about my new spells from fnp?????
 
     INCLUDE ~%mod_folder%/data/components/Setup_New_Spells.tpa~      //New Spells
    COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_new.itm~   //to detect my new spells only (may or may not include IWDEE spells)
 END
-   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~   //to detect all IWDEE and (my) new spells
+   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~   //to detect all (my) IWDEE wiz spells
 
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
@@ -121,6 +122,7 @@ END
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
 INCLUDE ~%mod_folder%/lib/immunities.tpa~
 
+//Do I need the stuff below this????
 /*
 ACTION_PHP_EACH prot AS block => rock BEGIN
   ACTION_IF (~%rock%~ STRING_EQUAL ~fear~) BEGIN
