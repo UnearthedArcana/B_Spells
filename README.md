@@ -8,6 +8,8 @@ NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 - Fixed a few errors in entropy_immunity.tpa and immunity.tpa
 
+- Added checks for FnP specific new spells and all new spells in entropy_immunity.tpa
+
 Version 0.88.05
 
 2018-05-25
