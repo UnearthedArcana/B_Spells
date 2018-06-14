@@ -2302,6 +2302,17 @@ DEFINE_PATCH_MACRO ~b_blood_rage_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
 
+// Entropy shield special
+DEFINE_PATCH_MACRO ~b_entropy_shield_arrays~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    318,  "-10", "-10", "SPPR984",  "-10",  "-10", "same" => 1 // Protection from charm...seems legit
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    318, "-10", "-10", "ENT_P", "-10","-10", "same" => 1 // protect spell: generic
+    83, "-10", 314, "", "-10","-10", "same" => 1 // protect pro: generic
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
+END
 
 /////                                                  \\\\\
 ///// the batch... err... patch                        \\\\\

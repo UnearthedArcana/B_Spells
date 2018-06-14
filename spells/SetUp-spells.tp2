@@ -1,7 +1,7 @@
 BACKUP ~spells/backup~
 AUTHOR ~Grammarsalad~
 
-VERSION ~0.88.05~
+VERSION ~0.88.07~
 
 
 ALWAYS
@@ -52,56 +52,59 @@ LANGUAGE ~English~ ~english~
 
 BEGIN @0  //All new spells (including IWDEE spells if applicable)
 DESIGNATED 101
-//REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @14 //~EE engine required!~
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 SUBCOMPONENT @100
 
 //Add IWD spells if not already in game_____________________________________________
 
 ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
 //IWDEE Spells
-//Not FnP spells; not IWDIFICATION
- ACTION_IF (NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~40~) AND (NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~) BEGIN  //neither IWDification nor our IWDEE spells installed (priest spells)
+//IWDEE priest spells not installed
+ ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells
       INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
-      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~ END //Detects my priest spells
- ACTION_IF (NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~30~) AND (NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~) BEGIN  //neither IWDification nor our IWDEE spells installed  (mage spells)
-    INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~      //install fnp wiz spells
-    INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
- END
-//FnP spells; not IWDIFICATION
-  ACTION_IF (((NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~30~) AND (FILE_EXISTS_IN_GAME ~b_IWD.itm~)) AND (NOT FILE_EXISTS_IN_GAME ~b_wiz.itm~)) BEGIN  // IWDification not installed, FnP wiz spells installed
-    INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
+      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~ 
+ END //Detects my priest spells
+  ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_SNILLOCS_SNOWBALL_SWARM~)) BEGIN    //if not FnP specific wiz spells
+      INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~      //install FnP specific wiz spells
   END
+  ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_CATS_GRACE~)) BEGIN    //if not other IWDEE wiz spells
+    INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
+   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~ //to detect all (my) IWDEE wiz spells
+   END
    COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
 END
 //Add new spells if not in game
-ACTION_IF (NOT FILE_EXISTS_IN_GAME ~b_new.itm~) BEGIN //What about my new spells from fnp?????
-
+ACTION_IF (!FILE_EXISTS_IN_GAME ~b_new.itm~) BEGIN //This checks for
+  INCLUDE ~%mod_folder%/lib/fnp_new_spells.tpa~
     INCLUDE ~%mod_folder%/data/components/Setup_New_Spells.tpa~      //New Spells
    COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_new.itm~   //to detect my new spells only (may or may not include IWDEE spells)
+END 
+ELSE  BEGIN
+    INCLUDE ~%mod_folder%/data/components/Setup_New_Spells.tpa~      //New Spells
 END
-   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~   //to detect all (my) IWDEE wiz spells
-
-
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
 INCLUDE ~%mod_folder%/lib/immunities.tpa~
 
 BEGIN @1  //IWDEE Spells only
 DESIGNATED 102
-REQUIRE_PREDICATE (((GAME_IS ~bgee bg2ee eet~) AND (NOT GAME_IS ~iwdee~)) AND ((NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~30~) AND (NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~40~))) @15 //~IWDEE spells already installed!~
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet~ @17 //~EE games only!~  for now
+REQUIRE_PREDICATE !GAME_IS ~iwdee~ @15 //~IWDEE spells already installed!~
 SUBCOMPONENT @100
 
- ACTION_IF (NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~40~) AND (NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~) BEGIN  //neither IWDification nor our IWDEE spells installed (priest spells)
+//IWDEE Spells
+//IWDEE priest spells not installed
+ ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells
       INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
- END
- ACTION_IF (NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~30~) AND (NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~) BEGIN  //neither IWDification nor our IWDEE spells installed  (mage spells)
-    INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~      //install fnp wiz spells
-    INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
- END
-//FnP spells; not IWDIFICATION
-  ACTION_IF (((NOT MOD_IS_INSTALLED ~setup-iwdification.tp2~ ~30~) AND ((FILE_EXISTS_IN_GAME ~b_IWD.itm~) AND (NOT FILE_EXISTS_IN_GAME ~b_wiz.itm~))) BEGIN  // IWDification not installed, FnP wiz spells installed
-    INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
+      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~ 
+ END //Detects my priest spells
+  ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_SNILLOCS_SNOWBALL_SWARM~)) BEGIN    //if not FnP specific wiz spells
+      INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~      //install FnP specific wiz spells
   END
-   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
+  ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_CATS_GRACE~)) BEGIN    //if not other IWDEE wiz spells
+    INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
+   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~
+   END
+END
 
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
@@ -109,14 +112,12 @@ INCLUDE ~%mod_folder%/lib/immunities.tpa~
 
 BEGIN @3  //New Spells only
 DESIGNATED 103
-REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) AND (NOT FILE_EXISTS_IN_GAME ~b_new.itm~) @16 //~New Spells already installed!~
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 SUBCOMPONENT @100
 
 //The spells
-ACTION_IF (NOT FILE_EXISTS_IN_GAME ~b_new.itm~) BEGIN
     INCLUDE ~%mod_folder%/data/components/Setup_New_Spells.tpa~      //New Spells
    COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_new.itm~   //to detect my new spells only (may or may not include IWDEE spells)
-END
 
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
@@ -137,7 +138,7 @@ REINCLUDE ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
   LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END
   BUT_ONLY
 
-   
+
 END
 
 

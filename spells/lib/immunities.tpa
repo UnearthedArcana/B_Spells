@@ -1,3 +1,31 @@
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+////////      Special Case- Entropy Sield           ////////////////
+////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
+//IWDEE SPECIFIC PRIEST SPELLS ONLY
+
+//Once entropy immunities is done, do this check
+//Check for IWDEE priest spells (including Entropy Shield)
+ACTION_IF FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_ENTROPY_SHIELD~) BEGIN //If Entropy Shield installd
+
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+/////////////////////////  Entropy Shield   //////////////////////////
+//////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
+//ALICORN LANCE: MAKE ENTROPY SHIELD PROTECT VS @21800003    //Notification "Outlined in a Silvery Radiance (AC penalty of 2)"
+//Prob have to do it via 177
+
+//Entropy immunity SR neutral
+INCLUDE ~spells/lib/entropy_immunity.tpa~
+
+
+END//End Entropy Shield installed
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 //////////////////      Modify Batchs           ////////////////////////////////
@@ -55,6 +83,16 @@ ACTION_PHP_EACH prot AS block => rock BEGIN
       REPLACE_TEXTUALLY ~318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1~ ~318, "-10", "-10", "%block%", "-10","-10", "same" => 1
       318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1~
   END
+  ACTION_IF (~%rock%~ STRING_EQUAL ~entropy~) BEGIN
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~318, "-10", "-10", "ENT_P", "-10","-10", "same" => 1~ ~318, "-10", "-10", "%block%", "-10","-10", "same" => 1
+      318, "-10", "-10", "ENT_P", "-10","-10", "same" => 1~
+  END
+  ACTION_IF (~%rock%~ STRING_EQUAL ~entropy_pro~) BEGIN
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~83, "-10", 314, "", "-10","-10", "same" => 1~ ~83, "-10", "%block%", "", "-10","-10", "same" => 1
+      83, "-10", 314, "", "-10","-10", "same" => 1~
+  END
 
 END
 
@@ -76,6 +114,7 @@ COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_eff
       REPLACE_TEXTUALLY ~321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1~ ~~
       REPLACE_TEXTUALLY ~321, "-10", "-10", "EMO_R", 1,"-10", "same" => 1~ ~~
       REPLACE_TEXTUALLY ~318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~318, "-10", "-10", "ENT_P", "-10","-10", "same" => 1~ ~~
 //Reinclude effect_batches
 REINCLUDE ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
 
@@ -104,19 +143,13 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~ //copy over all spl files
   BUT_ONLY
 
 
-//special cases
-//IWDEE SPECIFIC PRIEST SPELLS ONLY
-
-//Once entropy immunities is done, do this check
-//Check for IWDEE priest spells (including Entropy Shield)
-//ACTION_IF ((MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~) OR (FILE_EXISTS_IN_GAME ~b_IWD.itm~)) OR (GAME_IS ~iwdee~) BEGIN //Only if BR/ES installed
-
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-/////////////////////////     Blood Rage    //////////////////////////
+//////////////////// Special- Blood Rage    //////////////////////////
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-
+//Only in blood rage installed
+ACTION_IF FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BLOOD_RAGE~) BEGIN //Only if at least fnp IWDEE Wiz spells installed
 
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_BLOOD_RAGE~
@@ -125,27 +158,32 @@ END
      COPY_EXISTING ~%spell_res%.spl~ ~override~
        LPF cd_apply_batch STR_VAR array_name = b_blood_rage_arrays END  //TEST!!!!!!!!!!!!
 
-/*
-//CONTINUE ENTROPY SHIelD IMMUNITY TPA
+//NEEDS to protect vs this string if present:   SAY 0x1c @51203 //Wracked in Agony
+ ACTION_IF FILE_CONTAINS_EVALUATED(~spell.ids~ ~WAVES_OF_AGONY~) BEGIN //Only if waves of agony is actually in the game
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~CLERIC_BLOOD_RAGE~
+    RET spell_res
+  END
+  COPY_EXISTING ~%spell_res%.spl~ ~override~
+    LPF CLONE_EFFECT INT_VAR match_opcode = 267 parameter1 = RESOLVE_STR_REF (@51203) multi_match = 1 END  //Protect from 'wracked in agony' text
+  
+ END  //End wav of ag special
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-/////////////////////////  Entropy Shield   //////////////////////////
+////////////////  Special- Entropy Shield   //////////////////////////
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
-//ALICORN LANCE: MAKE ENTROPY SHIELD PROTECT VS @21800003    //Notification "Outlined in a Silvery Radiance (AC penalty of 2)"
-//Prob have to do it via 177
-
-//Entropy immunity SR neutral
-INCLUDE ~spells/lib/entropy_immunity.tpa~
-
+//If BR installed, ES installed, so same check
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
   RET spell_res
 END
      COPY_EXISTING ~%spell_res%.spl~ ~override~
-//       LPF cd_apply_batch STR_VAR array_name = b_blood_rage_arrays END  //Create array and TEST!!!
+       LPF cd_apply_batch STR_VAR array_name = b_entropy_shield_arrays END  //Create array and TEST!!!
 
-END//End IWDEE SPECIFIC priest spells installed
+END//End IWDEE priest spells installed
+
+/*
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 ///////////////////////// 4th level immune  //////////////////////////
@@ -175,7 +213,15 @@ END//check
 */
 //Add the below on case by case basis
 /*
+//Imperv. sanctity of mind (Special case???)
 
+ ACTION_PHP_EACH prot AS stalk => chalk BEGIN
+  ACTION_IF (~%chalk%~ STRING_EQUAL ~sanct~) BEGIN
+     COPY_EXISTING ~%spell_res%.spl~ ~override~
+       LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 206 opcode = 318 parameter1 = 0 STR_VAR resource = EVAL ~%stalk%~ END
+       LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 206 parameter1 = 0 STR_VAR resource = EVAL ~%stalk%~ END
+  END
+END
 
 
 //////////////////////////////////////////////////////////////////////

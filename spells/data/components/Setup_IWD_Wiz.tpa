@@ -50,12 +50,6 @@ FYI   */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//fnp specific wiz spells
-//Install wiz spells only if not installed in some other way    May change the way this works...
-ACTION_IF (NOT FILE_EXISTS_IN_GAME ~b_wizo.itm~) AND (NOT FILE_EXISTS_IN_GAME ~b_wizi.itm~) BEGIN
- COPY ~Spells/data/iwd_spells/b_wizo.itm~ ~override~   //To detect this sub component
-    INCLUDE ~spells/lib/fnp_wiz.tpa~ //Divine spells
-END//FnP specific wizard spells
 
 //
 //To detect this subcomponent for immunities
@@ -136,6 +130,7 @@ COPY ~Spells/data/iwd_spells/wizard_2/SPWI126X.itm~ ~override~
 	SAY DESC @1260001
 //Change icon
         WRITE_ASCIIE 0x3a ~%spell_res%A~
+
  COPY_EXISTING ~SPWI126X.itm~ ~override~     //these work
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
@@ -971,7 +966,13 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
 
 END
 
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+////////////////////////            //////////////////////////
+////////////////////////  Special   //////////////////////////
+////////////////////////            //////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
-
-
-
+//entropy pros
+INCLUDE ~%mod_folder%/lib/spell_lists/pro_wiz_list1.tpa~

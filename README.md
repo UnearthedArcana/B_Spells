@@ -1,14 +1,40 @@
 ﻿# B_Spells
 
-log
+# log
+
+ADD A PRIEST SCROLL COMPONENT: MORE PRIEST SCROLLS (ALSO PRIEST SCRIBING?)  
 
 NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
+SEPERATE FNP NEW SPELLS (EG  FROM NON FNP NEW SPELLS (EG ALARM)
+
+THERE IS A PROBLEM WITH THE REQUIRE PREDICATES
+
+Version 0.88.07
+
+2018-06-03
+
+- ADD_SPELLed Waves of Agony
+
+- Created scrolls for Cause LW and Curse (not placed, though)
+
+
+2018-06-02
+
+- Just realized the IWDification check isn't working.  Checking directly for spells in tp2 (first component only so far...REVISE THE WHOLE THING!)
+
+- Rebuilt Entropy Shield from ground up.  Need to double check protections, especially with other mods (and see above) DONE
+
+- Updated weidu to v 245
 2018-06-01
 
 - Fixed a few errors in entropy_immunity.tpa and immunity.tpa
 
 - Added checks for FnP specific new spells and all new spells in entropy_immunity.tpa
+
+2018-05-29
+
+- Test install: Problem with entropy_immunity
 
 Version 0.88.05
 
