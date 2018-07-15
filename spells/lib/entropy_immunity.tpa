@@ -17,7 +17,7 @@ ACTION_IF (NOT GAME_IS ~iwdee~) BEGIN
   END
 
   //Sh. of Entropy immunity list
-  INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+  INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
   //alter descriptive text of e shield
   LAF RES_NUM_OF_SPELL_NAME
@@ -50,7 +50,7 @@ ACTION_IF (NOT GAME_IS ~iwdee~) BEGIN
   END
 
   //Sh. of Entropy immunity list
-  INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+  INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
  END//end sr not installed
 
@@ -67,7 +67,7 @@ ACTION_IF (NOT GAME_IS ~iwdee~) BEGIN
   END
 
   //Sh. of Entropy immunity list
-  INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+  INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
   LAF RES_NUM_OF_SPELL_NAME
     STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
@@ -96,7 +96,7 @@ ACTION_IF (NOT GAME_IS ~iwdee~) BEGIN
   END
 
   //Sh. of Entropy immunity list
-  INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+  INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
   LAF RES_NUM_OF_SPELL_NAME
     STR_VAR spell_name = ~CLERIC_ENTROPY_SHIELD~
@@ -126,7 +126,7 @@ LAF RES_NUM_OF_SPELL_NAME
 END
 
 //Sh. of Entropy immunity list
- INCLUDE ~spells/lib/spell_lists/entropy_list.tpa~
+ INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
 //alter descriptive text of e shield
 LAF RES_NUM_OF_SPELL_NAME

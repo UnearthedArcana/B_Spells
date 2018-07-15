@@ -18,7 +18,7 @@ ACTION_IF FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_ENTROPY_SHIELD~) BEGIN //I
 //Prob have to do it via 177
 
 //Entropy immunity SR neutral
-INCLUDE ~spells/lib/entropy_immunity.tpa~
+INCLUDE ~%mod_folder%/lib/entropy_immunity.tpa~
 
 
 END//End Entropy Shield installed
@@ -33,7 +33,7 @@ END//End Entropy Shield installed
 ////////////////////////////////////////////////////////////////////////////////
 
 
-
+ //spell level immunities
 ACTION_PHP_EACH prot AS block => rock BEGIN
     //1st level immune
   ACTION_IF (~%rock%~ STRING_EQUAL ~lev_one~) BEGIN
@@ -59,13 +59,23 @@ ACTION_PHP_EACH prot AS block => rock BEGIN
       REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_FOU", "-10", "-10", "same" => 1~ ~206, "-1", "-10", "%block%", "-10", "-10", "same" => 1
       206, "-1", "-10", "LEV_FOU", "-10", "-10", "same" => 1~
   END
-    //Fear immune
+
+    //Fear removal
   ACTION_IF (~%rock%~ STRING_EQUAL ~fear~) BEGIN
     //Fear spells
     COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~ ~321, "-10", "-10", "%block%", 1, 0, "same" => 1
       321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~
   END
+
+      //Fear protect
+  ACTION_IF (~%rock%~ STRING_EQUAL ~fear~) BEGIN
+    //Fear spells
+    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+      REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_P", 1, 0, "same" => 1~ ~321, "-10", "-10", "%block%", 1, 0, "same" => 1
+      321, "-10", "-10", "FEAR_P", 1, 0, "same" => 1~
+  END
+
     //Rage immune
     //Berserk   Blood Rage has a unique icon that needs to be protected against!!! Is this done???
   ACTION_IF (~%rock%~ STRING_EQUAL ~rage~) BEGIN
@@ -106,6 +116,7 @@ END
 //Remove Gunk
 COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~ ~~
+      REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_P", 1, 0, "same" => 1~ ~~
       REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1~ ~~
       REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_TWO", "-10", "-10", "same" => 1~ ~~
       REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_THR", "-10", "-10", "same" => 1~ ~~
@@ -132,6 +143,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~ //copy over all spl files
   LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_3_arrays END  //Level 3
   LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_4_arrays END  //Level 4   Is there a need to make WIZARD_MORDENKAINENS_FORCE_MISSILES special???
   LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END            //Fear
+  LPF cd_apply_batch STR_VAR array_name = cd_immunity_fear_arrays END            //Fear
   LPF cd_apply_batch STR_VAR array_name = b_removal_rage_arrays END // apply based on iwdee or not
   LPF cd_apply_batch STR_VAR array_name = b_removal_rage_arrays_second END // for RAGE_R to be altered if needed
   LPF cd_apply_batch STR_VAR array_name = b_removal_rage_arrays_end END // Just to remover RAGE_R if nec

@@ -474,13 +474,16 @@ DEFINE_PATCH_MACRO ~cd_fear_removal_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
     161, "-10", "-10", "same",  "-10",  "-10", "same" => 1 // fear removal
   END
-  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN 
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       23, "-10", "-10",     "same",     1,     0, "same" => 1 // reset morale
   END
   PATCH_IF FILE_EXISTS_IN_GAME ~monkfist.2da~ BEGIN // ee game
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
       321, "-10", "-10", "spin105", 1, 0, "same" => 1 // remove spell effects: horror, innate (removes visuals)
+      321, "-10", "-10", "spwi125", 1, 0, "same" => 1 // remove spell effects: spook (removes visuals)
       321, "-10", "-10", "spwi205", 1, 0, "same" => 1 // remove spell effects: horror, arcane (removes visuals)
+      321, "-10", "-10", "SPPR416", 1, 0, "same" => 1 // remove spell effects: clk of fear(removes visuals)
+      321, "-10", "-10", "SPPR706", 1, 0, "same" => 1 // remove spell effects: symbol: fear(removes visuals)
       321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1 // remove spell effects: generic
     END
   END
@@ -496,15 +499,20 @@ END
 // turns fear immunity into full immunity
 DEFINE_PATCH_MACRO ~cd_immunity_fear_arrays~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN // these three go last so they don't block their own extras effects
-    101,  "-10",  23, "same",  "-10",  "-10", "last" => 1 // immunity to cure horror?
     101,  "-10",  24, "same",  "-10",  "-10", "last" => 1 // immunity to horror
     101,  "-10", 106, "same",  "-10",  "-10", "last" => 1 // immunity to morale break modifier
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
      23, "-10", "-10",     "same",     1,     0, "first" => 1 // reset morale
+    106, "-10",     1,     "same",     1,     0, "first" => 1 // morale break
     161, "-10", "-10",     "same",     1,     0, "same"  => 1 // remove fear
     296, "-10", "-10", "cdhorror", "-10", "-10", "same"  => 1 // protection from animation
-    106, "-10",     1,     "same",     1,     0, "first" => 1 // morale break
+    318, "-10", "-10", "spin105",  "-10", "-10", "same" => 1 // immune to spl
+    318, "-10", "-10", "spwi125",  "-10", "-10", "same" => 1 // immune to spl
+    318, "-10", "-10", "spwi205",  "-10", "-10", "same" => 1 // immune to spl
+    318, "-10", "-10", "SPPR416",  "-10", "-10", "same" => 1 // immune to spl
+    318, "-10", "-10", "SPPR706",  "-10", "-10", "same" => 1 // immune to spl
+    318, "-10", "-10", "FEAR_P",  "-10", "-10", "same" => 1 // immune to spl
   END
   PATCH_IF cosmetic = 1 BEGIN
     DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN

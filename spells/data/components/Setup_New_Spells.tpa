@@ -750,8 +750,6 @@ LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_CHARM_MONSTER~
   RET spell_res
 END
-
-
 INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
 
 //////////////////////////////////////////////////////////////
