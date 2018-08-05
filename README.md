@@ -4,6 +4,20 @@
 
 ## Divine Spells: Universal
 
+## Level 1
+
+## Level 2
+
+## Level 3
+
+## Level 4
+
+## Level 5
+
+## Level 6
+
+## Level 7
+
 ## Divine Spells: Cleric Only
 
 ## Level 1
@@ -37,9 +51,37 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 
 _If Cantrips and Orisons is installed, Eyes of the Dead becomes and Orison with no changes._
 
+## Level 2
+
+## Level 3
+
+## Level 4
+
+## Level 5
+
+## Level 6
+
+## Level 7
+
 ## Divine Spells: Druid Only
 
 ## Level 1
+
+**Abundant Ammunition**
+(Conjuration)
+
+Level: 1
+Sphere: Creation
+Range: Personal
+Duration: Instant; 24 hours
+Casting Time: 0
+Saving Throw: None
+
+This spell creates ammunition in the caster's inventory.  This spell can either create a stack of arrows, bolts, or bullets.  The spell creates 10 projectiles per level (maximum 50 at 5th level).  
+
+At 5th level, you can choose to create 10 +1 projectiles rather than 50 normal projectiles.
+
+These projectiles last for 24 hours.
 
 **Animal Eyes**
 (Divination)
@@ -57,3 +99,30 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 
 _If Cantrips and Orisons is installed, EAnimal Eyes becomes and Orison with no changes._
 
+**Camouflage**
+(Illusion)
+
+Level: 1
+Sphere: Elemental Earth
+Range: Personal
+Duration: Instant; 8 hours
+Casting Time: 0
+Saving Throw: None
+
+This spell changes the coloration of the caster to match the surrounding environment, making <PRO_HIMHER> very difficult to see. 
+
+The caster gains a +15% bonus to hide and move silently (only useful if the caster already has these skills).  
+
+This spell cannot be cast indoors.
+
+## Level 2
+
+## Level 3
+
+## Level 4
+
+## Level 5
+
+## Level 6
+
+## Level 7
