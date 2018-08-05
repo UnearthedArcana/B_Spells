@@ -111,6 +111,20 @@ This spell changes the coloration of the caster to match the surrounding environ
 
 When this spell is cast, the caster gains a +50% bonus to hide, and <PRO_HESHE> naturally blends in to the surrounding environment once per round, allowing <PRO_HIMHER> to hide as a thief or ranger for the duration.
 
+**Frost Fingers**  
+(Invocation)
+
+Level: 1  
+Sphere: Elemental Water  
+Range: 0  
+Duration: Instant  
+Casting Time: 1  
+Area of Effect: The caster  
+Saving Throw: none  
+
+When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHER> fingertips. The priest's hands must be held so as to send forth a fanlike sheet of frost: <PRO_HISHER> thumbs must touch each other and the fingers must be spread. The spell sends out frost jets of 5 ft. length in a horizontal arc of about 120 degrees in front of the caster. Any creature in the area receives 1d6 points of cold damage, plus 1d6 per two levels to a maximum of 5d6 damage.
+
+
 ## Level 2
 
 ## Level 3
