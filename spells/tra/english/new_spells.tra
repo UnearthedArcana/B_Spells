@@ -31,7 +31,9 @@ Duration: 1 Turn
 Casting Time: 6
 Area of Effect: The caster
 
-When the caster completes this spell and touches an allied undead ally, <PRO_HESHE> gains the ability to see through that creature's eyes allowing <PRO_HIMHER> to see everything that it sees.  Additionally, <PRO_HESHE> has greater influence over the creature, making it attack more effectively, granting it a +4 bonus to attack rolls.~
+When the caster completes this spell and touches an allied undead ally, <PRO_HESHE> gains the ability to see through that creature's eyes allowing <PRO_HIMHER> to see everything that it sees.  Additionally, <PRO_HESHE> has greater influence over the creature, making it attack more effectively, granting it a +4 bonus to attack rolls.
+
+While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is helpless, and blind, as <PRO_HISHER> consciousness is stuck in the living dead target.~
 
 @50307 = ~Disrupt Undead~
 @50308 = ~Disrupt Undead
@@ -44,7 +46,7 @@ Casting Time: 3
 Area of Effect: One Undead Creature
 Saving Throw: None
 
-This spell disrupts the negative energy that sustains a target undead creature.  Any undead targeted by this spell suffers 2d6+2 points of magic damage.  This damage is increased by 1d6+1 per five levels (max 6d6+6 at 20th level).~
+This spell disrupts the negative energy that sustains a target undead creature.  Any undead targeted by this spell suffers 2d6+2 points of magic damage, +1d6+1 per two levels (max 7d6+7 at 11th level).~
 
 @50309 = ~Sphere: Necromantic~
 @50310 = ~Sphere: Life~
@@ -244,7 +246,9 @@ Duration: 1 Turn
 Casting Time: 6
 Area of Effect: The caster
 
-When the caster completes this spell and touches an allied animal, <PRO_HESHE> gains the ability to see through that animal's eyes allowing <PRO_HIMHER> to see everything that that animal sees.  Additionally, <PRO_HESHE> has greater influence over the creature, urging it to be more aggressive in its attacks, granting it a +1 critical threat rolls.~
+When the caster completes this spell and touches an allied animal, <PRO_HESHE> gains the ability to see through that animal's eyes allowing <PRO_HIMHER> to see everything that that animal sees.  Additionally, <PRO_HESHE> has greater influence over the creature, urging it to be more aggressive in its attacks, granting it a +1 critical threat rolls.
+
+While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is helpless, and blind.~
 
 @51104 = ~Hold Beast~
 @51105 = ~Hold Beast
@@ -702,10 +706,32 @@ Duration: Instant; 24 hours
 Casting Time: 0
 Saving Throw: None
 
-This spell creates ammunition in the caster's inventory.  This spell can either create a stack of 20 arrows, 20 bolts, or 20 bullets.  These projectiles last for 24 hours.~
+This spell creates ammunition in the caster's inventory.  This spell can either create a stack of arrows, bolts, or bullets.  The spell creates 10 projectiles per level (maximum 50 at 5th level).  
+
+At 5th level, you can choose to create 10 +1 projectiles rather than 50 normal projectiles.
+
+These projectiles last for 24 hours.~
 
 @53002 = ~Sphere: Creation~
 @53003 = ~Sphere: War~
+@53004 = ~10 Arrows~
+@53005 = ~10 Bolts~
+@53006 = ~10 Bullets~
+@53007 = ~20 Arrows~
+@53008 = ~20 Bolts~
+@53009 = ~20 Bullets~
+@53010 = ~30 Arrows~
+@53011 = ~30 Bolts~
+@53012 = ~30 Bullets~
+@53013 = ~40 Arrows~
+@53014 = ~40 Bolts~
+@53015 = ~40 Bullets~
+@53016 = ~50 Arrows~
+@53017 = ~50 Bolts~
+@53018 = ~50 Bullets~
+@53019 = ~10 +1 Arrows~
+@53020 = ~10 +1 Bolts~
+@53021 = ~10 +1 Bullets~
 
 @53010 = ~Camouflage~
 @53011 = ~Camouflage
@@ -714,7 +740,7 @@ This spell creates ammunition in the caster's inventory.  This spell can either 
 Level: 1
 Sphere: Elemental Earth
 Range: Personal
-Duration: Instant; 1 hour
+Duration: Instant; 8 hours
 Casting Time: 0
 Saving Throw: None
 

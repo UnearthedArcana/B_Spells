@@ -8,7 +8,35 @@ TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 TO DO 3: SEPERATE FNP NEW SPELLS (EG  FROM NON FNP NEW SPELLS (EG ALARM)
 
-TO DO 4: THERE IS A PROBLEM WITH THE REQUIRE PREDICATES
+Version 0.88.09
+
+2018-09-04
+
+- Added pause to caster for Eyes of the dead and animal eyes
+
+- Updated weidu to 246
+
+2018-07-28
+
+- Finished (I think) abundant Ammo
+
+- Modified animal eyes to blind caster
+
+- Camouflage, changed port icon to 'non-detection' until custom icon is ready
+
+- Disrupt Undead: Changed progression up to 10th level
+
+2018-07-26
+
+- Upgraded Weidu to v 246
+
+- Removed an extra "END" in tp2
+
+2018-07-25
+
+- Reverted back to 0.88.07, except Waves of Agony is no longer ADD_SPELLed-That MAY have been the only thing lost...
+
+- Hopefully recovered changes from 2018-07-14 and 2018-07-01
 
 Version 0.88.08
 

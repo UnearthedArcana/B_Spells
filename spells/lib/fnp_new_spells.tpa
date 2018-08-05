@@ -119,6 +119,10 @@ FYI   */
 //sounds
 //2da
 COPY ~%mod_folder%/data/new_spells/ranger_1/b_r101.2da~ ~override~
+COPY ~%mod_folder%/data/new_spells/ranger_1/b_r102.2da~ ~override~
+COPY ~%mod_folder%/data/new_spells/ranger_1/b_r103.2da~ ~override~
+COPY ~%mod_folder%/data/new_spells/ranger_1/b_r104.2da~ ~override~
+COPY ~%mod_folder%/data/new_spells/ranger_1/b_r105.2da~ ~override~
 //effs
 //Spell itself
 ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/b_r101.spl~ 1 1 ~CLERIC_ABUNDANT_AMMO~ //
@@ -126,21 +130,95 @@ ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/b_r101.spl~ 1 1 ~CLERIC_ABUNDAN
         SAY NAME2 @53000
         SAY UNIDENTIFIED_DESC @53001
 	SAY DESC @53001
-
+//sec spells
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override~   //10 arrows
+        SAY NAME1 @53004
+        SAY NAME2 @53004
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101B.SPL~ ~override~   //10 bolts
+        SAY NAME1 @53005
+        SAY NAME2 @53005
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.SPL~ ~override~   //10 bullets
+        SAY NAME1 @53006
+        SAY NAME2 @53006
+//20 projectiles
+COPY_EXISTING ~B_R101A.spl~ ~override/B_R101D.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 20 END //20 items
+        SAY NAME1 @53007
+        SAY NAME2 @53007
+COPY_EXISTING ~B_R101B.spl~ ~override/B_R101E.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 20 END //20 items
+        SAY NAME1 @53008
+        SAY NAME2 @53008
+COPY_EXISTING ~B_R101C.spl~ ~override/B_R101F.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 20 END //20 items
+        SAY NAME1 @53009
+        SAY NAME2 @53009
+//30 projectiles
+COPY_EXISTING ~B_R101A.spl~ ~override/B_R101G.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 30 END //30 items
+        SAY NAME1 @53010
+        SAY NAME2 @53010
+COPY_EXISTING ~B_R101B.spl~ ~override/B_R101H.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 30 END //30 items
+        SAY NAME1 @53011
+        SAY NAME2 @53011
+COPY_EXISTING ~B_R101C.spl~ ~override/B_R101I.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 30 END //30 items
+        SAY NAME1 @53012
+        SAY NAME2 @53012
+//40 projectiles
+COPY_EXISTING ~B_R101A.spl~ ~override/B_R101J.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 40 END //40 items
+        SAY NAME1 @53013
+        SAY NAME2 @53013
+COPY_EXISTING ~B_R101B.spl~ ~override/B_R101K.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 40 END //40 items
+        SAY NAME1 @53014
+        SAY NAME2 @53014
+COPY_EXISTING ~B_R101C.spl~ ~override/B_R101L.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 40 END //40 items
+        SAY NAME1 @53015
+        SAY NAME2 @53015
+//50 projectiles
+COPY_EXISTING ~B_R101A.spl~ ~override/B_R101L.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 50 END //50 items
+        SAY NAME1 @53016
+        SAY NAME2 @53016
+COPY_EXISTING ~B_R101B.spl~ ~override/B_R101M.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 50 END //50 items
+        SAY NAME1 @53017
+        SAY NAME2 @53017
+COPY_EXISTING ~B_R101C.spl~ ~override/B_R101N.spl~
+ LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 50 END //50 items
+        SAY NAME1 @53018
+        SAY NAME2 @53018
+//10 +1 projectiles
+COPY_EXISTING ~B_R101A.spl~ ~override/B_R101O.spl~
+ LPF ALTER_EFFECT  STR_VAR resource = ~AROW02~ END //10 +1 arrows
+        SAY NAME1 @53019
+        SAY NAME2 @53019
+COPY_EXISTING ~B_R101B.spl~ ~override/B_R101P.spl~
+ LPF ALTER_EFFECT  STR_VAR resource = ~BOLT02~ END //10 +1 bolts
+        SAY NAME1 @53020
+        SAY NAME2 @53020
+COPY_EXISTING ~B_R101C.spl~ ~override/B_R101Q.spl~
+ LPF ALTER_EFFECT  STR_VAR resource = ~BULL02~ END //10 +1 bullets
+        SAY NAME1 @53021
+        SAY NAME2 @53021
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_ABUNDANT_AMMO~
   RET spell_res
 END
-//COPY_EXISTING ~%spell_res%.spl~ ~override~
+COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
-//  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
-//COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
-//COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
-//COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+  LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.bam~ ~override/%spell_res%C.bam~
 //add bams to spl
 //COPY_EXISTING ~%spell_res%.spl~ ~override~
-//  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 //Sh. of Entropy immunity list
 //INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
@@ -168,7 +246,6 @@ ADD_SPELL ~%mod_folder%/spheres/spells/animal/b_c102.spl~ 1 1 ~CLERIC_ANIMAL_EYE
         SAY NAME2 @51101
         SAY UNIDENTIFIED_DESC @51102
 	SAY DESC @51102
-
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_ANIMAL_EYES~
@@ -430,6 +507,7 @@ END
 //NOTE: IF CANTRIPS INSTALLED, FNP NEEDS TO CHECK FOR THAT, AND MAKE PROPER ADJUSTMENTS
 END  //end Cantrip compatibility
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //__________________________________________________________________Frost Fingers_______________________________________________________________________//
@@ -535,7 +613,7 @@ END
 //Guidance (Knowledge): Target temporarily gains an additional rank in a known skill (if Proficiencies?), and/or weapon prof
 //Caster only
 
-
+// CONTINUE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //__________________________________________________________________Hand of Carnage_____________________________________________________________________//
