@@ -22,7 +22,7 @@
 
 ## Level 1
 
-**Disrupt Undead**<Enter>
+**Disrupt Undead**
 (Necromancy)
 
 Level: 1
