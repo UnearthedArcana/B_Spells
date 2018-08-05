@@ -1,5 +1,3 @@
-# B_Spells
-
 # New Spells
 
 ## Divine Spells: Universal
