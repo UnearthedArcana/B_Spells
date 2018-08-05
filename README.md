@@ -23,6 +23,7 @@
 ## Level 1
 
 **Disrupt Undead**
+
 (Necromancy)
 
 Level: 1
@@ -36,6 +37,7 @@ This spell disrupts the negative energy that sustains a target undead creature. 
 
 
 **Eyes of the Dead**
+
 (Necromancy)
 
 Level: 1
@@ -68,6 +70,7 @@ _If Cantrips and Orisons is installed, Eyes of the Dead becomes and Orison with 
 ## Level 1
 
 **Abundant Ammunition**
+
 (Conjuration)
 
 Level: 1
@@ -84,6 +87,7 @@ At 5th level, you can choose to create 10 +1 projectiles rather than 50 normal p
 These projectiles last for 24 hours.
 
 **Animal Eyes**
+
 (Divination)
 
 Level: 1
@@ -100,6 +104,7 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 _If Cantrips and Orisons is installed, EAnimal Eyes becomes and Orison with no changes._
 
 **Camouflage**
+
 (Illusion)
 
 Level: 1
