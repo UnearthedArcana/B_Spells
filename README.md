@@ -103,15 +103,13 @@ _If Cantrips and Orisons is installed, EAnimal Eyes becomes and Orison with no c
 Level: 1  
 Sphere: Elemental Earth  
 Range: Personal  
-Duration: Instant; 8 hours  
+Duration: Instant: 1 turn  
 Casting Time: 0  
 Saving Throw: None  
 
 This spell changes the coloration of the caster to match the surrounding environment, making <PRO_HIMHER> very difficult to see. 
 
-The caster gains a +15% bonus to hide and move silently (only useful if the caster already has these skills).  
-
-This spell cannot be cast indoors.
+When this spell is cast, the caster gains a +50% bonus to hide, and <PRO_HESHE> naturally blends in to the surrounding environment once per round, allowing <PRO_HIMHER> to hide as a thief or ranger for the duration.
 
 ## Level 2
 
