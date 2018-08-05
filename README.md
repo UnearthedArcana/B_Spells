@@ -2,7 +2,9 @@
 
 # New Spells
 
-## Divine Spells
+## Divine Spells: Universal
+
+## Divine Spells: Cleric Only
 
 ## Level 1
 
@@ -34,3 +36,24 @@ When the caster completes this spell and touches an allied undead ally, <PRO_HES
 While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is helpless, and blind. 
 
 _If Cantrips and Orisons is installed, Eyes of the Dead becomes and Orison with no changes._
+
+## Divine Spells: Druid Only
+
+## Level 1
+
+**Animal Eyes**
+(Divination)
+
+Level: 1
+Sphere: Animal
+Range: Touch
+Duration: 1 Turn
+Casting Time: 6
+Area of Effect: The caster
+
+When the caster completes this spell and touches an allied animal, <PRO_HESHE> gains the ability to see through that animal's eyes allowing <PRO_HIMHER> to see everything that that animal sees.  Additionally, <PRO_HESHE> has greater influence over the creature, urging it to be more aggressive in its attacks, granting it a +1 critical threat rolls.
+
+While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is helpless, and blind.
+
+_If Cantrips and Orisons is installed, EAnimal Eyes becomes and Orison with no changes._
+
