@@ -22,15 +22,15 @@
 
 ## Level 1
 
-**Disrupt Undead**
+**Disrupt Undead**  
 (Necromancy)
 
-Level: 1
-Sphere: Necromantic
-Range: Visual range of the caster
-Casting Time: 3
-Area of Effect: One Undead Creature
-Saving Throw: None
+Level: 1  
+Sphere: Necromantic  
+Range: Visual range of the caster  
+Casting Time: 3  
+Area of Effect: One Undead Creature  
+Saving Throw: None  
 
 This spell disrupts the negative energy that sustains a target undead creature.  Any undead targeted by this spell suffers 2d6+2 points of magic damage, +1d6+1 per two levels (max 7d6+7 at 11th level).
 
