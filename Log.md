@@ -8,9 +8,18 @@ TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 TO DO 3: SEPERATE FNP NEW SPELLS (EG  FROM NON FNP NEW SPELLS (EG ALARM)
 
+Version 0.88.10
+
+
+2018-08-05
+
+- Improved Camoflauge to allow caster to hide for duration
+
+- Added invis helm for camo cre to prevent attacks against it
+
 Version 0.88.09
 
-2018-09-04
+2018-08-04
 
 - Added pause to caster for Eyes of the dead and animal eyes
 

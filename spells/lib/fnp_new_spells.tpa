@@ -303,7 +303,14 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //COPY ~%mod_folder%/data/new_spells/ranger_1/b_r101.2da~ ~override~
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/b_r102.spl~ 1 1 ~CLERIC_CAMOUFLAGE~ //
+//script
+COMPILE ~%mod_folder%/data/new_spells/ranger_1/B_CAMO.baf~
+//cre
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_CAMO.cre~ ~override~
+//itm
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
+
+ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/B_R102.spl~ 1 1 ~CLERIC_CAMOUFLAGE~ //
         SAY NAME1 @53010
         SAY NAME2 @53010
         SAY UNIDENTIFIED_DESC @53011
