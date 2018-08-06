@@ -54,17 +54,17 @@ This spell disrupts the negative energy that sustains a target undead creature. 
 
 //@50400
 
-@50401  = ~Hand of Carnage~
-@50402  = ~Hand of Carnage
+@50401  = ~Destructive Smite~
+@50402  = ~Destructive Smite
 (Conjuration)
 
 Level: 1
 Sphere: Combat
 Range: Self
 Duration: 1 round/level (max 5)
-Casting Time: 1
+Casting Time: 0
 Saving Throw: None
-This spell imbues the caster with pure force that <PRO_HESHE> can use against <PRO_HISHER> enemies. <PRO_HISHER> melee attacks inflict an additional 2d6 points of crushing damage for 1 round per level (max 5 rounds).~
+This spell imbues the caster with pure force that <PRO_HESHE> can use against <PRO_HISHER> enemies. <PRO_HISHER> melee attacks inflict an additional 2d6 points of magic damage for 1 round per level (max 5 rounds).~
 
 @50405  = ~Shout~
 
@@ -733,14 +733,14 @@ These projectiles last for 24 hours.~
 @53020 = ~10 +1 Bolts~
 @53021 = ~10 +1 Bullets~
 
-@53010 = ~Camouflage~
-@53011 = ~Camouflage  
+@53022 = ~Camouflage~
+@53023 = ~Camouflage
 (Illusion)
 
 Level: 1  
 Sphere: Elemental Earth  
 Range: Personal  
-Duration: Instant: 1 turn  
+Duration: Instant: 2 turns  
 Casting Time: 0  
 Saving Throw: None  
 

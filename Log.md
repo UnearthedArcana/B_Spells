@@ -8,8 +8,17 @@ TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 TO DO 3: SEPERATE FNP NEW SPELLS (EG  FROM NON FNP NEW SPELLS (EG ALARM)
 
-Version 0.88.10
+Version 0.88.11
 
+2018-08-06
+
+- Changed name of Hand of Carnage to Destructive Smite
+
+- Doubled duration of camoflauge to compete with sanctuary
+
+- Notes for compatibility (with self and FnP)  Will go back through for SR notes
+
+Version 0.88.10
 
 2018-08-05
 
