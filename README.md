@@ -169,3 +169,27 @@ When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHE
 ## Level 6
 
 ## Level 7
+
+# Spell Revisions
+
+## Global Changes
+
+### Healing Revision  
+This component changes heal and cause/inflict spells (if installed) to have varying effects depending on the target of the spell.  Specifically, these spells heal or inflict wounds based on the maximum hit points of the target (plus a little extra).  Spells work as follows:
+
+#### Cantrips
+
+**Heal/Inflict Minor Wounds**: 10% target's max hit points, +2 hit points (inflict save for 1/2 as normal).  
+Note: Only applicable if Cantrips is installed.
+
+#### Level 1
+
+**Cure/Inflict Light Wounds**: 20% target's max hit points, +4 hit points (inflict save for 1/2 as normal).
+
+#### Level 2
+
+**Cure/Inflict Moderate Wounds**: 30% target's max hit points, +6 hit points (inflict save for 1/2 as normal).  
+Note: Only applicable if CMW installed (or IWDEE).
+
+**Goodberry**: Berrys heal 10% of target's max hit points.
+
