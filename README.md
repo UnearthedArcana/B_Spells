@@ -2,23 +2,23 @@
 
 ## Divine Spells: Universal
 
-## Level 1
+### Level 1
 
-## Level 2
+### Level 2
 
-## Level 3
+### Level 3
 
-## Level 4
+### Level 4
 
-## Level 5
+### Level 5
 
-## Level 6
+### Level 6
 
-## Level 7
+### Level 7
 
 ## Divine Spells: Cleric Only
 
-## Level 1
+### Level 1
 
 **Destructive Smite**  
 (Conjuration)
@@ -52,8 +52,6 @@ This spell disrupts the negative energy that sustains a target undead creature. 
 **0 Level Cantrips**: This spell is converted to an Orison if Cantrips is installed, and damage starts at 1d6+1, but otherwise increases as normal.    
 **Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.  
 
-
-
 **Eyes of the Dead**  
 (Necromancy)
 
@@ -72,21 +70,21 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 **0 Level Cantrips**: This spell is converted to an Orison without alteration if 0 level Cantrips is installed.  
 **Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.  
 
-## Level 2
+### Level 2
 
-## Level 3
+### Level 3
 
-## Level 4
+### Level 4
 
-## Level 5
+### Level 5
 
-## Level 6
+### Level 6
 
-## Level 7
+### Level 7
 
 ## Divine Spells: Druid Only
 
-## Level 1
+### Level 1
 
 **Abundant Ammunition**  
 (Conjuration)
@@ -169,6 +167,25 @@ When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHE
 ## Level 6
 
 ## Level 7
+
+## Arcane Spells
+
+### Level 1
+
+**Accelerate Healing**  
+(Necromancy)
+
+Level: 1  
+Range: Touch  
+Duration: 8 Hours  
+Casting Time: 9  
+Area of Effect: 1 creature  
+Saving Throw: None  
+
+This spell stimulates the body, allowing the recipient to heal at an increased rate.  Specifically, recipients heal 1 hit point per hour over 8 hours.
+
+Multiple castings of this spell are not cumulative.
+
 
 # Spell Revisions
 
