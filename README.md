@@ -193,3 +193,32 @@ Note: Only applicable if CMW installed (or IWDEE).
 
 **Goodberry**: Berrys heal 10% of target's max hit points.
 
+#### Level 3
+
+**Cure/Infict Medium Wounds**: 40% target's max hit points, +8 hit points (inflict save for 1/2 as normal).
+
+#### Level 4
+
+**Cure/Inflict Serius Wounds**: 50% target's max hit points, +10 hit points (inflict save for 1/2 as normal).
+
+**Neutralize Poison**: 20% target's max hit points (in addition to normal cure).
+
+#### Level 5
+
+**Cure/Inflict Critical Wounds**: 60% target's max hit points, +12 hit points (inflict save for 1/2 as normal)
+
+**Mass Cure**: 25% target's max hit points, +6 hit points
+
+#### Level 6
+
+#### Level 7
+
+**Mist of Eldath**: 60% target's max hit points
+
+### Charm Revision  
+This component revises charm spells, making charmed creatures friendly but uncontrollable (as with a dominate spell).  Rather, when a charmed creature is in the middle of a fight between their former friends and a charming caster, they will 'stand there conflicted' helping neither side.    
+
+### Neutral Spell Names
+This component renames a number of spells to make them more 'neutral'. There are two different subcomponents: one that renames priest spells (generally to get rid of god names), and the other renames mage spells (generally to get rid of founder's names).
+
+**Mist of Eldath**: Renamed to Clensing Mist
