@@ -155,6 +155,8 @@ Saving Throw: none
 
 When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHER> fingertips. The priest's hands must be held so as to send forth a fanlike sheet of frost: <PRO_HISHER> thumbs must touch each other and the fingers must be spread. The spell sends out frost jets of 5 ft. length in a horizontal arc of about 120 degrees in front of the caster. Any creature in the area receives 1d6 points of cold damage, plus 1d6 per two levels to a maximum of 5d6 damage.
 
+***Notes***:    
+**1st level cantrips**: Converted to a second level spell, doing double damage. 
 
 ## Level 2
 
@@ -172,7 +174,7 @@ When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHE
 
 ### Level 1
 
-**Accelerate Healing**  
+**Accelerate Metabolism**  
 (Necromancy)
 
 Level: 1  
@@ -182,10 +184,47 @@ Casting Time: 9
 Area of Effect: 1 creature  
 Saving Throw: None  
 
-This spell stimulates the body, allowing the recipient to heal at an increased rate.  Specifically, recipients heal 1 hit point per hour over 8 hours.
+This spell stimulates the body, boosting the recipient's natural defenses against death and poison, and allowing them to heal at an increased rate.
+
+At first level, recipients heal 1 hit point per hour, and gain a +1 bonus to save vs. death.  For each 5 levels, the recipient heals an additional hit point per hour, and gains an additional +1 to save vs. death (max 5 hp/hour and +5 vs. death at 20th level).
 
 Multiple castings of this spell are not cumulative.
 
+***Notes***:    
+**1st level cantrips**: Converted to a second level spell, unchanged  
+
+**Alarm**  
+(Divination)
+
+Level: 1  
+Range: 30 ft.  
+Duration: 8 Hours  
+Casting Time: 9  
+Area of Effect: Special  
+Saving Throw: None  
+
+
+Alarm creates a subtle ward on an area you select. Once the spell effect is in place, it thereafter sounds a mental or audible alarm each time a hostile creature of Tiny or larger size enters the warded area or touches it. This alarm awakens the caster and <PRO_HISHER> allies, and makes them alert to all enemies, giving them a +2 bonus to weapon and casting speed for a single round.  This spell cannot be cast in the presence of enemies, and once the ward is set, it cannot be moved.
+
+***Notes***:    
+**1st level cantrips**: Converted to a second level spell, unchanged  
+
+**Anticipation**  
+(Divination)
+
+Level: 1  
+Range: 0  
+Casting Time: 0  
+Duration: 3 rounds  
+Area of Effect: The caster  
+Saving Throw: None  
+
+This cantrip gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time with a +5 bonus to AC and saves vs. dragon breath for 3 rounds.
+
+_Credit for this spell belons to Subtledoctor (Modified with permission)_
+
+***Notes***:    
+**0 Level Cantrips**: This spell is converted to a Cantrip, with a 1 round duration, if Cantrips is installed.
 
 # Spell Revisions
 
