@@ -31,7 +31,7 @@ Casting Time: 0
 Saving Throw: None  
 This spell imbues the caster with pure force that <PRO_HESHE> can use against <PRO_HISHER> enemies. <PRO_HISHER> melee attacks inflict an additional 2d6 points of magic damage for 1 round per level (max 5 rounds).
 
-**_Notes**_:  
+***Notes***:  
 **Faiths and Powers**: This spell is called Hand of Carnage if Faiths and Powers is installed, and it is in the Destruction Sphere.    
 **1st Level Cantrips**: This spell is converted to an Second Level Spell if 1st level cantrips is installed, and damage is doubled (4d6).   
 
@@ -48,7 +48,7 @@ Saving Throw: None
 
 This spell disrupts the negative energy that sustains a target undead creature.  Any undead targeted by this spell suffers 2d6+2 points of magic damage, +1d6+1 per two levels (max 7d6+7 at 11th level).
 
-**_Notes**_:  
+***Notes***:  
 **0 Level Cantrips**: This spell is converted to an Orison if Cantrips is installed, and damage starts at 1d6+1, but otherwise increases as normal.    
 **Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.  
 
@@ -68,7 +68,7 @@ When the caster completes this spell and touches an allied undead ally, <PRO_HES
 
 While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is helpless, and blind. 
 
-**_Notes**_:  
+***Notes***: 
 **0 Level Cantrips**: This spell is converted to an Orison without alteration if 0 level Cantrips is installed.  
 **Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.  
 
@@ -104,7 +104,7 @@ At 5th level, you can choose to create 10 +1 projectiles rather than 50 normal p
 
 These projectiles last for 24 hours.
 
-**_Notes**_:  
+***Notes***:  
 **Faiths and Powers**: This spell is in the War Sphere if FnP is installed.  
 **1st level cantrips**: Converted to a second level spell, with double the ammo and giving up to +2 ammos  
 
@@ -123,7 +123,7 @@ When the caster completes this spell and touches an allied animal, <PRO_HESHE> g
 
 While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is helpless, and blind.
 
-**_Notes**_:  
+***Notes***:  
 **0 Level Cantrips**: This spell is converted to an Orison without alteration if 0 level Cantrips is installed.  
 
 
@@ -141,7 +141,7 @@ This spell changes the coloration of the caster to match the surrounding environ
 
 When this spell is cast, the caster gains a +50% bonus to hide, and <PRO_HESHE> naturally blends in to the surrounding environment once per round, allowing <PRO_HIMHER> to hide as a thief or ranger for the duration.
 
-**_Notes**_:  
+***Notes***:    
 **1st level cantrips**: Converted to a second level spell, with 5 turn duration  
 
 **Frost Fingers**  
