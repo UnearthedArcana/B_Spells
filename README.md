@@ -71,6 +71,24 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 
 ### Level 2
 
+**Enthrall**  
+(Enchantment/Charm)
+
+Level: 2  
+Sphere: Charm  
+Range: Visual range of the caster  
+Duration: 1 round, +1 round/2 levels (max 5 rounds at level 9)  
+Casting Time: 2  
+Area of Effect: Special  
+Saving Throw: Neg.  
+
+This spell entrances up to 1d4 creatures, causing them to stand mystified for 1 round per level of the priest if they do not save vs. spell (maximum 10 rounds). Specifically, it affects the targeted enemy and up to 3 hostile creatures within 20 ft. of it.  Enthralled creatures stand where they are, and fail to notice creatures around them.
+
+Affected creatures shake off this effect if they are attacked.
+
+***Notes***: 
+**Faiths and Powers**: This spell is in the Thought Sphere if FnP is installed.  
+
 ### Level 3
 
 ### Level 4
