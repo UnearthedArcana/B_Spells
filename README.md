@@ -1,10 +1,25 @@
-# New Spells
+# New and Revised Spells
+
+New spells, "(New)", will only be installed if new spells are installed.  Revised spells, (Revised), will only be installed in the appropriate revised spell component is installed.  Interactions will be noted in the spell description.
 
 ## Divine Spells: Universal
 
 ### Level 1
 
 ### Level 2
+
+**Ice Blade**  
+(Evocation)
+
+Level: 2  
+Sphere: Elemental Water  
+Range: 0  
+Duration: 2 Turns  
+Casting Time: 4  
+Area of Effect: The caster  
+Saving Throw: None  
+
+With this spell, the caster causes a swirling sword-shaped formation of jagged ice shards to spring forth from <PRO_HISHER> hand. This blade-like ray is wielded as if proficient. If the caster successfully hits with the ice blade in melee combat, the creature struck suffers 1d8 points of cold damage, +1 point per level (to a maximum of 1d8+10). The blade is considered to be of +1 enchantment when determining what it can hit.
 
 ### Level 3
 
@@ -85,6 +100,22 @@ Saving Throw: Neg.
 This spell entrances up to 1d4 creatures, causing them to stand mystified for 1 round per level of the priest if they do not save vs. spell (maximum 10 rounds). Specifically, it affects the targeted enemy and up to 3 hostile creatures within 20 ft. of it.  Enthralled creatures stand where they are, and fail to notice creatures around them.
 
 Affected creatures shake off this effect if they are attacked.
+
+***Notes***: 
+**Faiths and Powers**: This spell is in the Thought Sphere if FnP is installed.  
+
+**Forbiddance**  
+(Enchantment/Charm)
+
+Level: 2  
+Sphere: Charm  
+Range: Visual range of the caster  
+Duration: 2 round  
+Casting Time: 1  
+Area of Effect: 1 creature  
+Saving Throw: Special  
+
+This spell enables the priest to forbid another creature to move, by commanding them to "stop".  A creature so commanded will stop in it's tracks, and will be unable to move if they do not make a successful save vs. spells. Even if they do make their save, creatures find that they move at 1/2 speed as their legs resist their own will.  At the end of the second round, the creature regains the use of it's legs, and can move normally.
 
 ***Notes***: 
 **Faiths and Powers**: This spell is in the Thought Sphere if FnP is installed.  
