@@ -20,7 +20,7 @@
 
 ### Level 1
 
-**Destructive Smite**  
+#### **Destructive Smite**  
 (Conjuration)
 
 Level: 1  
@@ -36,7 +36,7 @@ This spell imbues the caster with pure force that <PRO_HESHE> can use against <P
 **1st Level Cantrips**: This spell is converted to an Second Level Spell if 1st level cantrips is installed, and damage is doubled (4d6).   
 
 
-**Disrupt Undead**  
+#### **Disrupt Undead**  
 (Necromancy)
 
 Level: 1  
@@ -52,7 +52,7 @@ This spell disrupts the negative energy that sustains a target undead creature. 
 **0 Level Cantrips**: This spell is converted to an Orison if Cantrips is installed, and damage starts at 1d6+1, but otherwise increases as normal.    
 **Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.  
 
-**Eyes of the Dead**  
+#### **Eyes of the Dead**  
 (Necromancy)
 
 Level: 1  
@@ -86,7 +86,7 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 
 ### Level 1
 
-**Abundant Ammunition**  
+#### **Abundant Ammunition**  
 (Conjuration)
 
 Level: 1  
@@ -106,8 +106,7 @@ These projectiles last for 24 hours.
 **Faiths and Powers**: This spell is in the War Sphere if FnP is installed.  
 **1st level cantrips**: Converted to a second level spell, with double the ammo and giving up to +2 ammos  
 
-
-**Animal Eyes**  
+#### **Animal Eyes**  
 (Divination)
 
 Level: 1  
@@ -125,7 +124,7 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 **0 Level Cantrips**: This spell is converted to an Orison without alteration if 0 level Cantrips is installed.  
 
 
-**Camouflage**  
+#### **Camouflage**  
 (Illusion)
 
 Level: 1  
@@ -142,7 +141,7 @@ When this spell is cast, the caster gains a +50% bonus to hide, and <PRO_HESHE> 
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, with 5 turn duration  
 
-**Frost Fingers**  
+#### **Frost Fingers**  
 (Invocation)
 
 Level: 1  
@@ -174,7 +173,7 @@ When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHE
 
 ### Level 1
 
-**Accelerate Metabolism**  
+#### **Accelerate Metabolism**  
 (Necromancy)
 
 Level: 1  
@@ -193,7 +192,7 @@ Multiple castings of this spell are not cumulative.
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
 
-**Alarm**  
+#### **Alarm**  
 (Divination)
 
 Level: 1  
@@ -209,7 +208,7 @@ Alarm creates a subtle ward on an area you select. Once the spell effect is in p
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
 
-**Anticipation**  
+#### **Anticipation**  
 (Divination)
 
 Level: 1  
