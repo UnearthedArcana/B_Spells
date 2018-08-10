@@ -120,6 +120,23 @@ This spell enables the priest to forbid another creature to move, by commanding 
 ***Notes***: 
 **Faiths and Powers**: This spell is in the Thought Sphere if FnP is installed.  
 
+**Pacify the Dead**
+(Alteration)
+
+Level: 2  
+Sphere: Necromantic  
+Range: Visual range of the caster  
+Duration: 1 turn  
+Casting Time: 3  
+Area of Effect: one undead creature  
+Saving Throw: None.  
+
+Upon casting this spell, the priest causes one undead within range to be slowed.  This effect negates Haste, but does not otherwise affect magically sped-up or slowed creatures. Slowed creatures suffer -4 penalties to attack and Armor Class.
+
+***Notes***: 
+**Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.
+- 1st level cantrips: Changes to a 1st level spell, no change
+
 ### Level 3
 
 ### Level 4
