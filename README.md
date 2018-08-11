@@ -137,6 +137,44 @@ Upon casting this spell, the priest causes one undead within range to be slowed.
 **Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.
 - 1st level cantrips: Changes to a 1st level spell, no change
 
+**Shatter**  
+(Transmutation)
+
+Level: 2  
+Sphere: Combat  
+Range: 25'  
+Duration: Instant  
+Casting Time: 9  
+Area of Effect: One Creature  
+Saving Throw: Polymorph 1/2  
+
+When the priest cast's this spell, <PRO_HESHE> creates a vibrating pulse that increases in intensity in a nearby creature or object that is especially destructive against inorganic, solid constructs like doors and golems. The first round, a living or undead creature takes 2d6 crushing damage unless they save vs. polymorph (in which case, they take half damage and the spell ends). Every round that they do not save, they suffer the amount of damage that they received in the last round, plus an additional 2d6 points of damage for a maximum of 4 rounds. Any round that they do save, they suffer 1/2 damage and the spell ends.
+
+When cast on a door or locked container, it undermines the integrity of the object destroying all but the most sturdy or magically protected locks. Against constructs such as golems, and elementals it does double damage, and they cannot save to avoid its effects.
+
+***Notes***: 
+**Faiths and Powers**: This spell is in the Destruction Sphere if FnP is installed.
+
+**Watery Fist**  
+(Conjuration)
+
+Level: 2  
+Sphere: Elemental Water  
+Range: 60 Yards  
+Duration: 1 round / 2 levels  
+Casting Time: 5  
+Area of Effect: 1 creature  
+Saving Throw: None  
+
+Upon completion of this spell the caster calls into being a huge disembodied fist formed purely of water. This fist will remain in existance for 1 round per 2 caster levels, up to maximum of 5 rounds at level 9. The first will attack the chosen target once per round and cause cold damage as listed below:
+
+Caster level 3-4: 1d6 damage per round
+Caster level 5-8: 1d10 damage per round
+Caster level 9-12: 1d12 damage per round
+Caster level 13+: 2d8 damage per round
+
+_Credit for this spell belongs to Requiem & Mordeus (Used with permission)_
+
 ### Level 3
 
 ### Level 4
@@ -288,6 +326,38 @@ _Credit for this spell belons to Subtledoctor (Modified with permission)_
 
 ***Notes***:    
 **0 Level Cantrips**: This spell is converted to a Cantrip, with a 1 round duration, if Cantrips is installed.
+
+**Detect Traps and Portals**  
+(Divination)
+
+Level: 1  
+Range: 0  
+Duration: 3 turns  
+Casting Time: 5  
+Area of Effect: 30-ft. radius  
+Saving Throw: None  
+
+When a mage casts this spell, all traps within the area of effect that are concealed normally or magically, of magical or mechanical nature become apparent to <PRO_HIMHER>, as if <PRO_HESHE> were a Thief.
+
+***Notes***:    
+**1st level cantrips**: Converted to a second level spell, unchanged  
+
+**Hypnotism**  
+(Enchantment/Charm)
+
+Level: 1  
+Range: Visual range of the caster  
+Duration: 1 round  
+Casting Time: 1  
+Area of Effect: Special  
+Saving Throw: Neg.
+
+This spell entrances up to 1d4 creatures, causing them to stand mystified for 1 round if they do not save vs. spell. Specifically, it affects the targeted enemy and up to 3 hostile creatures within 20 ft. of it.  Hypnotized creatures stand where they are, and fail to notice creatures around them.
+
+Affected creatures shake off this effect if they are attacked.
+
+***Notes***:    
+**1st level cantrips**: Converted to a second level spell, unchanged  
 
 # Spell Revisions
 
