@@ -359,6 +359,21 @@ Affected creatures shake off this effect if they are attacked.
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
 
+**Vanish**  
+(Illusion/Phantasm)
+
+Level: 1  
+Range: 0  
+Duration: 1 round/level (max 10 rounds)  
+Casting Time: 1  
+Area of Effect: The caster  
+Saving Throw: None  
+
+This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round/level (max 10 rounds), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).
+
+***Notes***:    
+**1st level cantrips**: Duration reduced to 1 round 
+
 # Spell Revisions
 
 ## Global Changes
