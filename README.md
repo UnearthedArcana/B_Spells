@@ -374,6 +374,48 @@ This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by nor
 ***Notes***:    
 **1st level cantrips**: Duration reduced to 1 round 
 
+## Cantrips and Orisons
+
+There are two mutually exclusive versions of cantrips that can be installed for both arcane and divine casters.  All versions of cantrips are usable 'at will' meaning that the caster will always have something 'magical' to do in (or out of) combat.  The two kinds of cantrips are 1st level cantrips or 0 level cantrips.  If you install 1st level cantrips, all of your first level slots count as cantrips meaning that you can use your first level spells as often as you like, though some spells will be reduced in power or converted to a higher level for balance purposes.  0 level cantrips are prepared much like normal spells but are cast as innate abilities.  Where there are cantrips with 1st and 0 level variants, the 0 level versions tend to be weaker.  Note that arcane and divine cantrips are installed separately and you can have different versions of each (e.g. 0 level cantrips for wizards and 1st level cantrips for priests).
+
+### 0 Level Cantrips
+
+#### Cantrips Known/Prepared by Level
+| Class | G. Mage | Sp. Mage | Sorcerer | D. Disciple | Bard | Cleric | Druid | Shaman | Ranger | Paladin | 
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1st | 4/1 | 3+1/1+1 | 3/3 | 2/2 | 2/1 | -/2 | -/2 | 3/3 | - | - |
+| 2nd | -/2 | -/2+1 | 4/4 | 3/3 | -/2 | -/3 | -/3 | 4/4 | - | - |
+| 3rd | -/2 | -/2+1 | 4/4 | 3/3 | -/2 | -/3 | -/3 | 4/4 | - | - |
+| 4th | -/3 | -/3+1 | 5/5 | 4/4 | -/3 | -/4 | -/4 | 5/5 | - | - |
+| 5th | -/4 | -/4+1 | 6/6 | 5/5 | -/4 | -/5 | -/5 | 6/6 | - | - |
+| 6th | -/4 | -/4+1 | 6/6 | 5/5 | -/4 | -/5 | -/5 | 6/6 | - | - |
+| 7th | -/4 | -/4+1 | 6/6 | 5/5 | -/4 | -/5 | -/5 | 6/6 | - | - |
+| 8th | -/4 | -/4+1 | 6/6 | 5/5 | -/4 | -/5 | -/5 | 6/6 | - | - |
+| 9th | -/4 | -/4+1 | 6/6 | 5/5 | -/4 | -/5 | -/5 | 6/6 | - | - |
+| 10th | -/4 | -/4+1 | 6/6 | 5/5 | -/4 | -/5 | -/5 | 6/6 | - | - |
+| 11th | -/4 | -/4+1 | 6/6 | 5/5 | -/4 | -/5 | -/5 | 6/6 | - | - |
+| 12th | -/4 | -/4+1 | 6/6 | 5/5 | -/4 | -/5 | -/5 | 6/6 | - | - |
+| 13th | -/5 | -/5+1 | 7/7 | 6/6 | -/5 | -/6 | -/6 | 7/7 | - | - |
+| 14th | -/5 | -/5+1 | 7/7 | 6/6 | -/5 | -/6 | -/6 | 7/7 | - | - |
+| 15th | -/5 | -/5+1 | 7/7 | 6/6 | -/5 | -/6 | -/6 | 7/7 | - | - |
+| 16th | -/5 | -/5+1 | 7/7 | 6/6 | -/5 | -/6 | -/6 | 7/7 | - | - |
+| 17th | -/5 | -/5+1 | 7/7 | 6/6 | -/5 | -/6 | -/6 | 7/7 | - | - |
+| 18th | -/5 | -/5+1 | 7/7 | 6/6 | -/5 | -/6 | -/6 | 7/7 | - | - |
+| 19th | -/5 | -/5+1 | 7/7 | 6/6 | -/5 | -/6 | -/6 | 7/7 | - | - |
+| 20th | -/6 | -/6+1 | 8/8 | 7/7 | -/6 | -/7 | -/7 | 8/8 | - | - |
+**Notes** 
+- Mages: After 1st level, mages must learn cantrps the same way they learn other spells.  They must find a scroll containing the cantrip which they learn as normal.  Specialist mages must learn at least one cantrip of their favored school at first level.  In addition, they can prepare an additional cantrip but that slot must be filled by a cantrip of their favored school.
+- Clerics and Druids begin play knowing all cantrips (if FnP or DoF is installed, they know all cantrips belonging to spheres they have access to).  
+- Sorcerers and Shaman do not prepare cantrips.  Rather, they can cast all cantrips that they know.  
+
+### 0 Level Arcane Cantrip Descriptions
+
+### 0 Level Divine Cantrip Descriptions
+
+### 1st Level Arcane Cantrip Descriptions
+
+### 1st Level Divine Cantrip Descriptions
+
 # Spell Revisions
 
 ## Global Changes
