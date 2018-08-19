@@ -1,6 +1,6 @@
 # New and Revised Spells
 
-New spells, "(New)", will only be installed if new spells are installed.  Revised spells, (Revised), will only be installed in the appropriate revised spell component is installed.  Interactions will be noted in the spell description.
+New spells, "(New)", will only be installed if new spells are installed.  Revised spells, (Revised), will only be installed in the relevant revised spell component is installed.  IWDEE spells, (IWDEE) will only be installed if the relevant IWDEE spells component is installed. Interactions will be noted in the spell description.
 
 ## Divine Spells: Universal
 
@@ -8,7 +8,7 @@ New spells, "(New)", will only be installed if new spells are installed.  Revise
 
 ### Level 2
 
-**Ice Blade**  
+**Ice Blade** (New)  
 (Evocation)
 
 Level: 2  
@@ -35,7 +35,7 @@ With this spell, the caster causes a swirling sword-shaped formation of jagged i
 
 ### Level 1
 
-**Destructive Smite**  
+**Destructive Smite** (New)  
 (Conjuration)
 
 Level: 1  
@@ -50,7 +50,7 @@ This spell imbues the caster with pure force that <PRO_HESHE> can use against <P
 **Faiths and Powers**: This spell is called Hand of Carnage if Faiths and Powers is installed, and it is in the Destruction Sphere.    
 **1st Level Cantrips**: This spell is converted to an Second Level Spell if 1st level cantrips is installed, and damage is doubled (4d6).   
 
-**Disrupt Undead**  
+**Disrupt Undead** (New)  
 (Necromancy)
 
 Level: 1  
@@ -66,7 +66,7 @@ This spell disrupts the negative energy that sustains a target undead creature. 
 **0 Level Cantrips**: This spell is converted to an Orison if Cantrips is installed, and damage starts at 1d6+1, but otherwise increases as normal.    
 **Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.  
 
-**Eyes of the Dead**  
+**Eyes of the Dead** (New)  
 (Necromancy)
 
 Level: 1  
@@ -86,7 +86,7 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 
 ### Level 2
 
-**Enthrall**  
+**Enthrall** (New)  
 (Enchantment/Charm)
 
 Level: 2  
@@ -104,7 +104,7 @@ Affected creatures shake off this effect if they are attacked.
 ***Notes***: 
 **Faiths and Powers**: This spell is in the Thought Sphere if FnP is installed.  
 
-**Forbiddance**  
+**Forbiddance** (New)  
 (Enchantment/Charm)
 
 Level: 2  
@@ -120,7 +120,7 @@ This spell enables the priest to forbid another creature to move, by commanding 
 ***Notes***: 
 **Faiths and Powers**: This spell is in the Thought Sphere if FnP is installed.  
 
-**Pacify the Dead**
+**Pacify the Dead** (New)
 (Alteration)
 
 Level: 2  
@@ -137,7 +137,7 @@ Upon casting this spell, the priest causes one undead within range to be slowed.
 **Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.
 - 1st level cantrips: Changes to a 1st level spell, no change
 
-**Shatter**  
+**Shatter** (New)  
 (Transmutation)
 
 Level: 2  
@@ -155,7 +155,7 @@ When cast on a door or locked container, it undermines the integrity of the obje
 ***Notes***: 
 **Faiths and Powers**: This spell is in the Destruction Sphere if FnP is installed.
 
-**Watery Fist**  
+**Watery Fist** (New)  
 (Conjuration)
 
 Level: 2  
@@ -189,7 +189,7 @@ _Credit for this spell belongs to Requiem & Mordeus (Used with permission)_
 
 ### Level 1
 
-**Abundant Ammunition**  
+**Abundant Ammunition** (New)  
 (Conjuration)
 
 Level: 1  
@@ -209,7 +209,7 @@ These projectiles last for 24 hours.
 **Faiths and Powers**: This spell is in the War Sphere if FnP is installed.  
 **1st level cantrips**: Converted to a second level spell, with double the ammo and giving up to +2 ammos  
 
-**Animal Eyes**  
+**Animal Eyes** (New)  
 (Divination)
 
 Level: 1  
@@ -226,7 +226,7 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 ***Notes***:  
 **0 Level Cantrips**: This spell is converted to an Orison without alteration if 0 level Cantrips is installed.  
 
-**Camouflage**  
+**Camouflage** (New)  
 (Illusion)
 
 Level: 1  
@@ -243,7 +243,7 @@ When this spell is cast, the caster gains a +50% bonus to hide, and <PRO_HESHE> 
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, with 5 turn duration  
 
-**Frost Fingers**  
+**Frost Fingers** (New)  
 (Invocation)
 
 Level: 1  
@@ -275,7 +275,7 @@ When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHE
 
 ### Level 1
 
-**Accelerate Metabolism**  
+**Accelerate Metabolism** (New)  
 (Necromancy)
 
 Level: 1  
@@ -292,9 +292,9 @@ At first level, recipients heal 1 hit point per hour, and gain a +1 bonus to sav
 Multiple castings of this spell are not cumulative.
 
 ***Notes***:    
-**1st level cantrips**: Converted to a second level spell, unchanged  
+**1st level cantrips**: Converted to a second level spell, unchanged 
 
-**Alarm**  
+**Alarm** (New)  
 (Divination)
 
 Level: 1  
@@ -310,7 +310,7 @@ Alarm creates a subtle ward on an area you select. Once the spell effect is in p
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
 
-**Anticipation**  
+**Anticipation** (New)  
 (Divination)
 
 Level: 1  
@@ -327,7 +327,7 @@ _Credit for this spell belons to Subtledoctor (Modified with permission)_
 ***Notes***:    
 **0 Level Cantrips**: This spell is converted to a Cantrip, with a 1 round duration, if Cantrips is installed.
 
-**Detect Traps and Portals**  
+**Detect Traps and Portals** (New)  
 (Divination)
 
 Level: 1  
@@ -342,7 +342,7 @@ When a mage casts this spell, all traps within the area of effect that are conce
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
 
-**Hypnotism**  
+**Hypnotism** (New)  
 (Enchantment/Charm)
 
 Level: 1  
@@ -359,7 +359,7 @@ Affected creatures shake off this effect if they are attacked.
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
 
-**Vanish**  
+**Vanish** (New)  
 (Illusion/Phantasm)
 
 Level: 1  
@@ -373,6 +373,154 @@ This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by nor
 
 ***Notes***:    
 **1st level cantrips**: Duration reduced to 1 round 
+
+### Level 2  
+
+**Snilloc's Snowball Swarm** (IWDEE) 
+(Evocation)
+
+Level: 2  
+Range: Visual range of the caster  
+Duration: Instant  
+Casting Time: 2  
+Area of Effect: 30-ft. radius  
+Saving Throw: 1/2  
+
+This spell causes a flurry of snowballs to erupt from a point within range. These snowballs will hit everything within the area of effect, doing 1d3 points of cold damage per level, up to a maximum of 8d3 points at level 8. Against fire-using or fire-dwelling creatures, it inflicts 1d6 points of cold damage per level, up to a maximum of 8d6 points at level 8.
+
+***Notes***:    
+**General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
+
+### Level 3
+
+**Icelance** (IWDEE)  
+(Evocation)
+
+Level: 3
+Range: Visual range of the caster  
+Duration: Instant  
+Casting Time: 3  
+Area of Effect: 1 creature  
+Saving Throw: Special  
+
+This spell fires a magical lance of ice at a target of the caster's choosing. It automatically hits, inflicting 5d6 points of cold damage and forcing the target to make a Save vs. Spell or be stunned for 3 rounds.
+
+***Notes***:    
+**General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
+
+### Level 4
+
+**Emotion: Courage** (IWDEE)
+(Enchantment/Charm)
+
+Level: 4  
+Range: Visual range of the caster  
+Duration: 1 hour  
+Casting Time: 4  
+Area of Effect: 15-ft. radius  
+Saving Throw: None  
+
+This spell creates the emotion of courage within the area of effect. All creatures affected by the spell gain +1 to hit, +3 to their damage rolls, and +5 temporary Hit Points (which can put them above their maximum Hit Points). This spell nullifies all fear effects within the area of effect at the time of casting.
+
+***Notes***:    
+**General**: Set to Opposition School: Invocation unless IWDEE style spells is installed (where it will be Necromancer as in IWDEE)
+
+**Emotion: Fear** (IWDEE)  
+(Enchantment/Charm)
+
+Level: 4  
+Range: Visual range of the caster  
+Duration: 5 rounds  
+Casting Time: 4  
+Area of Effect: 15-ft. radius  
+Saving Throw: Neg.  
+
+This spell creates the emotion of fear within the area of effect. All enemies who fail to save vs. Spell flee for 5 rounds.
+
+***Notes***:    
+**General**: Set to Opposition School: Invocation unless IWDEE style spells is installed (where it will be Necromancer as in IWDEE)
+
+**Emotion: Hope** (IWDEE)  
+(Enchantment/Charm)
+
+Level: 4  
+Range: Visual range of the caster  
+Duration: 1 hour  
+Casting Time: 4  
+Area of Effect: 15-ft. radius  
+Saving Throw: None  
+
+This spell creates the emotion of hope within the area of effect. All creatures affected by the spell gain a morale boost and +2 on their Saving Throws, attack rolls, and damage rolls.
+
+***Notes***:    
+**General**: Set to Opposition School: Invocation unless IWDEE style spells is installed (where it will be Necromancer as in IWDEE)
+
+**Shadow Monsters** (IWDEE)  
+(Illusion/Phantasm)
+
+Level: 4
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: None
+
+This spell shapes material from the Demiplane of Shadow into illusionary monsters. Up to six shadowy creatures can be summoned at once, but their total Hit Dice will normally not exceed the spellcaster's level.
+
+***Notes***:    
+**General**: Set to Opposition School: Necromancy unless IWDEE style spells is installed (where it will be Abjurer as in IWDEE)
+
+**Shout** (IWDEE)  
+(Invocation)
+
+Level: 4  
+Range: 0  
+Duration: Instant  
+Casting Time: 1  
+Area of Effect: 35-ft. cone with 15-deg. arc  
+Saving Throw: Special  
+
+Shout grants the wizard tremendous vocal powers, allowing <PRO_HIMHER> to emit an earsplitting roar from <PRO_HISHER> mouth in a cone-shaped area of effect. Any creature within this area is deafened for 9 rounds and suffers 4d6 points of magic damage. A successful Save vs. Spell negates the deafness and reduces the damage by half.
+
+***Notes***:    
+**General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
+
+### Level 5
+
+### Level 6
+
+**Shades** (IWDEE)  
+(Illusion/Phantasm)
+
+Level: 6  
+Range: Visual range of the caster  
+Duration: 1 round/level  
+Casting Time: 6  
+Area of Effect: Special  
+Saving Throw: None  
+
+Shades is similar to Shadow Monsters and Demi-Shadow Monstersâ€”it allows the caster to shape material from the Demiplane of Shadow into illusionary creatures. These shadows are tougher than the shadows summoned by Shadow Monsters and Demi-Shadow Monsters, and they will obey the caster until the spell expires or they are slain.
+
+***Notes***:    
+**General**: Set to Opposition School: Necromancy unless IWDEE style spells is installed (where it will be Abjurer as in IWDEE)
+
+### Level 7
+
+**Acid Storm** (IWDEE)  
+(Evocation)
+
+Level: 7  
+Range: Visual range of the caster  
+Duration: 1 round/level  
+Casting Time: 7  
+Area of Effect: 24-ft. radius  
+Saving Throw: 1/2
+
+This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damageâ€”the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloudâ€”if successful, they only take half damage (for that round only).
+
+***Notes***:    
+**General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
+
 
 ## Cantrips and Orisons
 
