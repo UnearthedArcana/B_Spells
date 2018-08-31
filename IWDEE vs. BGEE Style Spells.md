@@ -47,6 +47,14 @@ TO DO:
 
 TO DO: 
 
+## SPPR107 Protection vs. Evil
+
+**IWDEE**: Castable by all priests; +2 AC/Saves(?) vs. evil, protection from demons, immunity to charm, 3 rounds/level
+
+**BGEE**: Castable by cleric/pal only; +2 AC/Saves(?), protection from demons, no immunity to charm; 3 rounds/level
+
+**SR**: Castable by cleric/pal only; +2 AC/saves(?) vs evil creatures; no prot from demons nor immunity to charm; 5 turns
+
 **If SR installed**: No change
 
 **IWDEE Version**:  As above
@@ -79,7 +87,7 @@ TO DO:
 
 TO DO: 
 
-**If SR installed**: No change
+**If SR installed**: NA
 
 **IWDEE Version**:  As above
 
@@ -265,3 +273,33 @@ TO DO:
 **IWDEE Version**:  Range 1, Duration 8 hours (Created if SR installed)
 
 **BGEE Version**: Range 30, Duration 2 hours (Created if SR installed)
+
+## SPWI112 Magic Missile
+
+**IWDEE**: Flag: Break Sanctuary; Range 50 ("Visual Range")
+
+**BGEE**:  Flag: Break Sanctuary; Range 60 ("Visual Range")
+
+**SR**: Flag: Hostile; Range 30 "long" 
+
+TO DO: 
+
+**If SR installed**: NA
+
+**IWDEE Version**:  Range 50
+
+**BGEE Version**: Range 60
+
+## SPWI113 Protection vs. Evil
+
+**IWDEE**: Castable by all priests; +2 AC/Saves(?) vs. evil, protection from demons, immunity to charm, 3 rounds/level
+
+**BGEE**: Castable by cleric/pal only; +2 AC/Saves(?), protection from demons, no immunity to charm; 3 rounds/level
+
+**SR**: Castable by cleric/pal only; +2 AC/saves(?) vs evil creatures; no prot from demons nor immunity to charm; 5 turns
+
+**If SR installed**: NA
+
+**IWDEE Version**:  As above
+
+**BGEE Version**: As above
