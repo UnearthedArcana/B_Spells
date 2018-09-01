@@ -624,11 +624,7 @@ This component renames a number of spells to make them more 'neutral'. There are
 ### Opposition Schools  
 This subcomponent alters opposition schools to conform to IWDEE or BG(2)EE standards.  
 
-| School | BG(2)EE Opposition | IWDEE Opposition |
-| --- | --- | --- |
-| Conjuration | Divination | Divination and Evocation |
-
-| School | BG(2)EE Opposition | BG(2)EE Opposition |   
+| School | BG(2)EE Opposition | IWDEE Opposition |   
 | --- | --- | --- |  
 | Conjuration | Divination | Divination and Evocation |  
 | Alteration | Abjuration | Abjuration |  
