@@ -623,16 +623,16 @@ This component renames a number of spells to make them more 'neutral'. There are
 
 ### Opposition Schools  
 This subcomponent alters opposition schools to conform to IWDEE or BG(2)EE standards.  
-| School | BG(2)EE Opposition | BG(2)EE Opposition | 
-| --- | --- | --- |
-| Conjuration | Divination | Divination/Evocation |
-| Alteration | Abjuration | Abjuration |
-| Enchantment | Evocation | Necromancy |
-| Illusion | Necromancy | Abjuration/Necromancy |
-| Abjuration | Necromancy | Illusion/Alteration |
-| Divination | Conjuration | Evocation |
-| Evocation | Enchantment | Conjuration/Enchantment |
-| Necromancy | Illusion | Illusion/Alteration |
+| School | BG(2)EE Opposition | BG(2)EE Opposition |   
+| --- | --- | --- |  
+| Conjuration | Divination | Divination and Evocation |  
+| Alteration | Abjuration | Abjuration |  
+| Enchantment | Evocation | Necromancy |  
+| Illusion | Necromancy | Abjuration and Necromancy |  
+| Abjuration | Necromancy | Illusion and Alteration |  
+| Divination | Conjuration | Evocation |  
+| Evocation | Enchantment | Conjuration and Enchantment |  
+| Necromancy | Illusion | Illusion and Alteration |  
 | Wild | All | All |
 
 ### 20/30 level cap
