@@ -616,3 +616,13 @@ This component revises charm spells, making charmed creatures friendly but uncon
 This component renames a number of spells to make them more 'neutral'. There are two different subcomponents: one that renames priest spells (generally to get rid of god names), and the other renames mage spells (generally to get rid of founder's names).
 
 **Mist of Eldath**: Renamed to Clensing Mist
+
+# IWDEE/BGEE Style Spells
+
+## Global Changes
+
+### Opposition Schools  
+This subcomponent alters opposition schools to conform to IWDEE or BG(2)EE standards.  
+
+### 20/30 level cap
+This subcomponent
