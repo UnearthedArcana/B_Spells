@@ -626,14 +626,14 @@ This subcomponent alters opposition schools to conform to IWDEE or BG(2)EE stand
 
 | School | BG(2)EE Opposition | IWDEE Opposition |   
 | --- | --- | --- |  
-| Conjuration | Divination | Divination and Evocation |  
+| Conjuration | Divination | Divination/Evocation |  
 | Alteration | Abjuration | Abjuration |  
 | Enchantment | Evocation | Necromancy |  
-| Illusion | Necromancy | Abjuration and Necromancy |  
-| Abjuration | Necromancy | Illusion and Alteration |  
+| Illusion | Necromancy | Abjuration/Necromancy |  
+| Abjuration | Necromancy | Illusion/Alteration |  
 | Divination | Conjuration | Evocation |  
-| Evocation | Enchantment | Conjuration and Enchantment |  
-| Necromancy | Illusion | Illusion and Alteration |  
+| Evocation | Enchantment | Conjuration/Enchantment |  
+| Necromancy | Illusion | Illusion/Alteration |  
 | Wild | All | All |
 
 ### 20/30 level cap
