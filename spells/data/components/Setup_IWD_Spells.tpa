@@ -89,7 +89,7 @@ INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 //The Scroll
 /*
 //Copy over the scroll:
-COPY ~Spells/data/iwd_spells/wizard_2/SPWI223A.itm~ ~override~
+COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI223A.itm~ ~override~
         SAY NAME1 @10
         SAY NAME2 @2250000
 	SAY DESC @2250001
@@ -219,7 +219,7 @@ INCLUDE ~%mod_folder%/lib/spell_lists/curse_list.tpa~
 //The Scroll Not in IWDEE.  Will have to create it
 
 //Copy over the scroll:
-COPY ~Spells/data/scrolls/priest_1/generic/B_ge148.itm~ ~override/%spell_res%.itm~
+COPY ~%mod_folder%/data/scrolls/priest_1/generic/B_ge148.itm~ ~override/%spell_res%.itm~
         SAY NAME1 @10
         SAY NAME2 @11200000
 	SAY DESC @11200001
@@ -329,7 +329,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //The Scroll Not in IWDEE.  Will have to create it
 
 //Copy over the scroll:
-COPY ~Spells/data/scrolls/priest_1/generic/B_ge146.itm~ ~override/%spell_res%.itm~
+COPY ~%mod_folder%/data/scrolls/priest_1/generic/B_ge146.itm~ ~override/%spell_res%.itm~
         SAY NAME1 @10
         SAY NAME2 @11400000
 	SAY DESC @11400001

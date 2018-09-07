@@ -17,7 +17,7 @@ Casting Time: 3
 Area of Effect: one undead creature
 Saving Throw: None.
 
-Upon casting this spell, the priest causes one undead within range to be slowed.  This effect negates Haste, but does not otherwise affect magically sped-up or slowed creatures. Slowed creatures suffer -4 penalties to attack and Armor Class. To make matters worse, the creature suffers an additional -2 to AC~
+Upon casting this spell, the priest causes one undead within range to be slowed.  This effect negates Haste, but does not otherwise affect magically sped-up or slowed creatures. Slowed creatures suffer -4 penalties to attack and Armor Class.~
 
 @50304 = ~Eyes of the Dead~
 
@@ -107,7 +107,7 @@ Casting Time: 9
 Area of Effect: One Creature
 Saving Throw: Polymorph 1/2
 
-When the priest cast's this spell, <PRO_HESHE> creates a vibrating pulse that increases in intensity in a nearby creature or object that is especially destructive against inorganic, solid constructs like doors and golems. The first round, a living or undead creature takes 2d6 crushing damage unless they save vs. polymorph (in which case, they take half damage and the spell ends). Every round that they do not save, they suffer the amount of damage that they received in the last round, plus an additional 2d6 points of damage for a maximum of 4 rounds. Any round that they do save, they suffer 1/2 damage and the spell ends.  The spell ends after 3 rounds.
+When the priest cast's this spell, <PRO_HESHE> creates a vibrating pulse that increases in intensity in a nearby creature or object that is especially destructive against inorganic, solid constructs like doors and golems. The first round, a living or undead creature takes 2d6 crushing damage unless they save vs. polymorph (in which case, they take half damage and the spell ends). Every round that they do not save, they suffer the amount of damage that they received in the last round, plus an additional 2d6 points of damage for a maximum of 4 rounds. Any round that they do save, they suffer 1/2 damage and the spell ends.
 
 When cast on a door or locked container, it undermines the integrity of the object destroying all but the most sturdy or magically protected locks. Against constructs such as golems, and elementals it does double damage, and they cannot save to avoid its effects.~
 
@@ -125,7 +125,7 @@ Casting Time: 1
 Area of Effect: 1 creature
 Saving Throw: Special
 
-This spell enables the priest to forbid another creature to move, by commanding them to "stop".  A creature so commanded will stop in it's tracks, and will be unable to move if they do not make a successful save vs. spells. At the end of the second round, the creature regains the use of it's legs, and can move normally.~
+This spell enables the priest to forbid another creature to move, by commanding them to "stop".  A creature so commanded will stop in it's tracks, and will be unable to move if they do not make a successful save vs. spells. Even if they do make their save, creatures find that they move at 1/2 speed as their legs resist their own will.  At the end of the second round, the creature regains the use of it's legs, and can move normally.~
 
 @50803 = ~Murderous Command~
 
@@ -163,8 +163,8 @@ With this spell, the priest commands the target to attack the nearest creature. 
 Level: 2
 Sphere: Charm
 Range: Visual range of the caster
-Duration: 1 round/level
-Casting Time: 1 round
+Duration: 1 round, +1 round/2 levels (max 5 rounds at level 9)
+Casting Time: 2
 Area of Effect: Special
 Saving Throw: Neg.
 
@@ -740,7 +740,7 @@ These projectiles last for 24 hours.~
 Level: 1  
 Sphere: Elemental Earth  
 Range: Personal  
-Duration: Instant: 2 turns  
+Duration: Instant: 2 turns
 Casting Time: 0  
 Saving Throw: None  
 
@@ -842,6 +842,39 @@ Casting Time: 1
 Saving Throw: None
 
 This spell causes a single ally to vanish in a flash of light. After one round that ally will reappear at the location you were when you cast this spell.~
+
+@61013 = ~Accelerate Metabolism~
+@61014 = ~Accelerate Metabolism
+(Necromancy)
+
+Level: 1
+Range: Touch
+Duration: 8 Hours
+Casting Time: 9
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell stimulates the body, boosting the recipient's natural defenses against death and poison, and allowing them to heal at an increased rate.
+
+At first level, recipients heal 1 hit point per hour, and gain a +1 bonus to save vs. death and polymorph.  For each 5 levels, the recipient heals an additional hit point per hour, and gains an additional +1 to save vs. death (max 5 hp/hour and +5 vs. death and polymorph at 20th level).
+
+Multiple castings of this spell are not cumulative.~
+
+@61015 = ~Accelerated Metabolism~
+
+@61016 = ~Vanish~
+@61017 = ~Vanish
+(Illusion/Phantasm)
+
+Level: 1
+Range: 0
+Duration: 1 round/level (max 10 rounds)
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: None
+
+This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round/level (max 10 rounds), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).~
+
 
 //@63000 3RD level arcane spells
 

@@ -242,11 +242,51 @@ END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//______________________________________________________________Accelerate Healing______________________________________________________________________//
+//______________________________________________________________Accelerate Metabolism___________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Accelerate Healing: Very slow regeneration (longer but slower than SR druid version)
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds
+//effs
+//Spell itself
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W103.spl~ 2 1 ~WIZARD_ACCELERATE_HEALING~ //
+        SAY NAME1 @61013
+        SAY NAME2 @61013
+        SAY UNIDENTIFIED_DESC @61014
+	SAY DESC @61014
 
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ACCELERATE_HEALING~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@61015)            // Accelerated Metabolism
+      STR_VAR
+  END      //
+/*
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+//Sh. of Entropy immunity list
+INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
+*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_________________________________________________________________ALARM________________________________________________________________________________//
@@ -350,12 +390,13 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 */
 
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_________________________________________________________________DETECT TRAPS AND PORTALS_____________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//
+//might change to have invis monster have caster check for traps (giving boni to search)
 
 //Projectile
 //VVC
@@ -456,6 +497,9 @@ INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
 INCLUDE ~%mod_folder%/lib/spell_lists/hypno_list.tpa~
 INCLUDE ~%mod_folder%/lib/spell_lists/1st_list.tpa~
 INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
+
+//CONTINUE HERE
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -621,6 +665,72 @@ END
 //Snowball (evoc)  Snowball: shoots a ball of snow that does 1d6/lev cold dam (5d6 max).  Target saves for 1/2 dam.  (Evocation)
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//___________________________________________________________________VANISH_____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//Projectile
+//VVC
+//bam
+//animations
+//3d animation
+//sounds  ENSURE THAT EFF_M60 is in all versions of game
+//COPY ~%mod_folder%/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
+//effs
+//Spell itself
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W104.spl~ 2 1 ~WIZARD_VANISH~ //
+        SAY NAME1 @61016
+        SAY NAME2 @61016
+        SAY UNIDENTIFIED_DESC @61017
+	SAY DESC @61017
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_VANISH~
+  RET spell_res
+END
+
+//No icons (or portrait icons) as yet.
+/*
+
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+*/
+//Scroll
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W104.itm~ ~override~ // Actual Scroll
+        SAY NAME1 @61016
+        SAY NAME2 @61016
+        SAY UNIDENTIFIED_DESC @61017
+	SAY DESC @61017
+//  LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END   //scroll icon
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 146            // Cast from scroll
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 147            // Learn from Scroll
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+//BG2EE - Sorcerous Sundries
+ACTION_IF GAME_IS ~bgee eet~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+  COPY_EXISTING ~STO0703.sto~ ~override~
+    ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #2
+//High Hedge
+  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
+    ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #2
+ ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
+  COPY_EXISTING ~BDSORCSC.STO~ ~override~
+   ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #2
+ END
+END
 
 
 //////////////////////////////////////////////////////////////

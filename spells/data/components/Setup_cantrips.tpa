@@ -47,7 +47,7 @@
 //                                          IWDIFICATION: )
 //                                          my IWD Spells:
 //                                          SR:
-COPY ~spells/data/cantrips/divine/b_po080.spl~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/b_po080.spl~ ~override~
         SAY NAME1 @108000001
         SAY NAME2 @108000002
         SAY UNIDENTIFIED_DESC @107000003
@@ -68,6 +68,31 @@ COPY_EXISTING ~b_po080.spl~ ~override~
   END  //
 END
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________________Canticle________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Canticle              Added               Acolyte of Tempus: yes                                 Double Checked: no
+//                                          IWDEE: yes         (prayer)  
+//                                          IWDIFICATION: yes  (prayer)
+//                                          my IWD Spells: Yes (prayer) Both ways
+//                                          SR: Needed?
+
+//CHECK SPELL REVISIONS!
+COPY ~%mod_folder%/data/cantrips/divine/b_po020.spl~ ~override~
+        SAY NAME1 @102000000
+        SAY NAME2 @102000000
+        SAY UNIDENTIFIED_DESC @102000001
+	SAY DESC @102000001
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@102000004) END  //Notification: Chanting
+
+COPY ~%mod_folder%/data/cantrips/divine/b_po021.spl~ ~override~      //to remove
+        SAY NAME1 @102000002
+        SAY NAME2 @102000002
+        SAY UNIDENTIFIED_DESC @102000002
+	SAY DESC @102000002
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -81,15 +106,15 @@ END
 //ADD SPHERE SYSTEM COMPATIBILITY: SPHERE: Death: Done.   d5_spheres.d5
 //Change spell name
 //Animation
-COPY ~spells/data/cantrips/divine/CLDAMAH.bam~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/CLDAMAH.bam~ ~override~
 //Sound
-COPY ~spells/data/cantrips/divine/#FF_P103.WAV~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/#FF_P103.WAV~ ~override~
 //icons (placeholders)
-COPY ~spells/data/cantrips/divine/SPPR114A.BAM~ ~override~
-COPY ~spells/data/cantrips/divine/SPPR114B.BAM~ ~override~
-COPY ~spells/data/cantrips/divine/SPPR114C.BAM~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/SPPR114A.BAM~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/SPPR114B.BAM~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/SPPR114C.BAM~ ~override~
 //spell itself
-COPY ~spells/data/cantrips/divine/b_po050.spl~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/b_po050.spl~ ~override~
         SAY NAME1 @105000000
         SAY NAME2 @105000000
         SAY UNIDENTIFIED_DESC @105000001
@@ -162,7 +187,7 @@ END
 
 //ADD SPHERE SYSTEM COMPATIBILITY: SPHERE: LIFE  d5_spheres.d5
 //STANDARD VERSION
-COPY ~spells/data/cantrips/divine/b_po010.spl~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/b_po010.spl~ ~override~
         SAY NAME1 @101000000
         SAY NAME2 @101000000
         SAY UNIDENTIFIED_DESC @101000001
@@ -207,7 +232,7 @@ COPY_EXISTING ~b_po010.spl~ ~override~      //description
 	END
   SAY_EVALUATED 0x50 ~%new_desc%~
   END  //Change to 10% +1 HP
-  LPF ALTER_EFFECT INT_VAR match_opcode = 17  parameter1 = 1 END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 17  parameter1 = 2 END
   LPF CLONE_EFFECT INT_VAR match_opcode = 17 parameter1 = 10 parameter2 = 2 END
 END
 
@@ -303,7 +328,7 @@ COPY_EXISTING_REGEXP GLOB ~b_po090.spl~ ~override~
 //                                          SR: any unique spells dispell hold besides Remove Paralysis?
 //                                          Other: no need as far as I can tell
 //Adding the cantrip either way
-COPY ~spells/data/cantrips/divine/b_po070.spl~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/b_po070.spl~ ~override~
         SAY NAME1 @107000000
         SAY NAME2 @107000000
         SAY UNIDENTIFIED_DESC @107000001
@@ -334,7 +359,7 @@ END
 //                                          SR: (wiz version will need it) SR may use icons...
 //                                          Other: Not needed
 //
-COPY ~spells/data/cantrips/divine/b_po060.spl~ ~override~
+COPY ~%mod_folder%/data/cantrips/divine/b_po060.spl~ ~override~
         SAY NAME1 @106000000
         SAY NAME2 @106000000
         SAY UNIDENTIFIED_DESC @106000001
@@ -371,6 +396,119 @@ Saving Throw: None
 The recipients of this spell gains the ability to see with infravision, just as an elf or dwarf can.
 */
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________________Malediction_______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Malediction           Added               Acolyte of Tempus: yes                                 Double Checked: no
+//                                          IWDEE: yes
+//                                          IWDIFICATION: yes
+//                                          my IWD spells: yes
+//                                          spheres:  I believe so
+//                                          SR: Yes (I believe so)
+
+COPY ~%mod_folder%/data/cantrips/divine/b_po030.spl~ ~override~
+        SAY NAME1 @103000000
+        SAY NAME2 @103000000
+        SAY UNIDENTIFIED_DESC @103000001
+	SAY DESC @103000001
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@103000000) END  //Notification: Malediction
+//bless, aid, chant doom
+//bless
+//Compatibility
+//fnp
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
+COPY_EXISTING ~b_po030.spl~ ~override~    //change sphere from charm to dread
+ SPRINT old @103000002//old text
+ SPRINT new @103000003//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (sphere from charm to dread)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+//SR
+//Spell Revisions (Break Enchantment removes Malediction)
+ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
+COPY_EXISTING ~sppr307.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
+COPY_EXISTING ~spwi410.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________________Meditation________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Meditation            Added               Acolyte of Tempus: yes                                 Double Checked: no
+//                                          IWDEE: yes
+//                                          IWDIFICATION: yes
+//                                          my IWD spells: yes
+//                                          spheres:  I believe so
+//                                          SR: I don't think so
+//CHECK SPELL REVISIONS!
+//From Charm to Thought for FnP
+COPY ~%mod_folder%/data/cantrips/divine/b_po040.spl~ ~override~
+        SAY NAME1 @104000000
+        SAY NAME2 @104000000
+        SAY UNIDENTIFIED_DESC @104000001
+	SAY DESC @104000001
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@104000002) END  //Notification: meditating
+//compatibility
+//spheres
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
+COPY_EXISTING ~b_po040.spl~ ~override~
+ SPRINT old @104000003//old text
+ SPRINT new @104000004//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________________Benediction________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Canticle              Added               Acolyte of Tempus: yes                                 Double Checked: no
+//                                          IWDEE: yes         (prayer)  
+//                                          IWDIFICATION: yes  (prayer)
+//                                          my IWD Spells: Yes (prayer) Both ways
+//                                          SR: Needed?
+
+//CHECK SPELL REVISIONS!
+COPY ~%mod_folder%/data/cantrips/divine/b_po090.spl~ ~override~
+        SAY NAME1 @109000000
+        SAY NAME2 @109000000
+        SAY UNIDENTIFIED_DESC @109000001
+	SAY DESC @109000001
+LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@102000004) END  //Notification: Chanting
+
+//spheres
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
+COPY_EXISTING ~b_po090.spl~ ~override~
+ SPRINT old @109000002//old text
+ SPRINT new @109000003//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (all to benediction sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -399,9 +537,9 @@ The recipients of this spell gains the ability to see with infravision, just as 
 //Adding the cantrip either way
 
 //Animation
-COPY ~spells/data/cantrips/arcane/b_wet.bam~ ~override~
+COPY ~%mod_folder%/data/cantrips/arcane/b_wet.bam~ ~override~
 //spell itself
-COPY ~spells/data/cantrips/arcane/b_wc003.spl~ ~override~   //Drench
+COPY ~%mod_folder%/data/cantrips/arcane/b_wc003.spl~ ~override~   //Drench
         SAY NAME1 @200005001
         SAY NAME2 @200005001
         SAY UNIDENTIFIED_DESC @200005002
@@ -448,17 +586,17 @@ COPY_EXISTING ~b_wc003.spl~ ~override~
 //                                          Other:
 //
 //Projectile
-//ADD_PROJECTILE ~Spells/data/cantrips/arcane/b_1c101.pro~   //projectile
+//ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
 //VVC
 //bam
-//COPY ~Spells/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
+//COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
 //animations
 //3d animation
 //sounds  Check for TRA_17.wav
-//COPY ~Spells/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
+//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
 //effs
 //Spell itself
-COPY ~Spells/data/cantrips/arcane/b_wc004.spl~  ~override~
+COPY ~%mod_folder%/data/cantrips/arcane/b_wc004.spl~  ~override~
         SAY NAME1 @200003001
         SAY NAME2 @200003001
         SAY UNIDENTIFIED_DESC @200003002
@@ -481,17 +619,17 @@ COPY ~Spells/data/cantrips/arcane/b_wc004.spl~  ~override~
 //                                          Other: no need as far as I can tell
 //
 //Projectile
-ADD_PROJECTILE ~Spells/data/cantrips/arcane/b_1c101.pro~   //projectile
+ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
 //VVC
 //bam
-COPY ~Spells/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
+COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
 //animations
 //3d animation
 //sounds  Check for TRA_17.wav
-//COPY ~Spells/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
+//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
 //effs
 //Spell itself
-COPY ~Spells/data/cantrips/arcane/b_wc001.spl~  ~override~
+COPY ~%mod_folder%/data/cantrips/arcane/b_wc001.spl~  ~override~
         SAY NAME1 @200001001
         SAY NAME2 @200001001
         SAY UNIDENTIFIED_DESC @200001002
@@ -500,7 +638,7 @@ LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_1c101% END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_______________________________________________________________Jolt/Shocking Grasp____________________________________________________________________//
+//_____________________________________________________________________Jolt_____________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Template               Added:no           Compatiblity:                                         Double Checked: no
@@ -512,93 +650,25 @@ LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_1c101% END
 //                                          SR: Yes
 //                                          Other: no need as far as I can tell
 //
-
-//Converts Shocking Grasp to a Cantrip if Spell Revisions is NOT installed.  Otherwise, adds Jolt.
-
-ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
+//this cantrip virtually assumes SR shocking grasp.
 //Projectile
-//ADD_PROJECTILE ~Spells/data/cantrips/arcane/b_1c101.pro~   //projectile
+//ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
 //VVC
 //bam
-//COPY ~Spells/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
+//COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
 //animations
 //3d animation
 //sounds  Check for TRA_17.wav
-//COPY ~Spells/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
+//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
 //effs
 //Spell itself
-COPY ~Spells/data/cantrips/arcane/b_wc002.spl~  ~override~
+COPY ~%mod_folder%/data/cantrips/arcane/b_wc002.spl~  ~override~
         SAY NAME1 @200002001
         SAY NAME2 @200002001
         SAY UNIDENTIFIED_DESC @200002002
 	SAY DESC @200002002
-END //End if SR installed.
 
 //Need an electricty batch protection.  Immunity to electricity should prot vs. the speed penalty as well (so, prot vs. the cantrip).
-
-//This is where we convert shocking grasp to cantrip (i.e. if SR not installed)
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
- COPY_EXISTING ~SPWI115.spl~ ~override/b_wc002.spl~      //Copy spell as innate
-    WRITE_BYTE 0x1c ~4~ // change spell type to innate
-      LPF ALTER_SPELL_HEADER INT_VAR location = 4 END   //Change of location
- SPRINT old @200002003//old text
- SPRINT new @200002004//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //Level: Cantrip
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
- COPY_EXISTING ~SPWI115.spl~ ~override~   //Copy over the original spell
-    WRITE_LONG 0x1e ~0x7fc0~ //  wildmage spell but...
-    WRITE_BYTE 0x21 (THIS | 0b10000000) //exlcude wildmage
-
-//Cantrip infinite use
-COPY_EXISTING_REGEXP GLOB ~b_wc002.spl~ ~override~
- PATCH_IF  (%spell_type% = 4) BEGIN
-        READ_LONG 	0x64	ab_off			// Abilities Offset
-	READ_SHORT	0x68	ab_num			// Number of Abilities
-	READ_SHORT	0x6a	fx_off			// Effects Offset
-	READ_SHORT	0x70	glob_fx			// Number of Global Effects
-	SET	glob_add = 0
-
-	INSERT_BYTES (fx_off) 0x30
-	  WRITE_SHORT (fx_off) 171			// Give innate
-	  WRITE_BYTE (fx_off + 0x2) 1			// Target Self
-	  WRITE_BYTE (fx_off + 0x3) 1			// power
-	  WRITE_LONG (fx_off + 0x8) 0			// Wizard
-	  WRITE_LONG (fx_off + 0xc) 9			// perm
-	  WRITE_BYTE (fx_off + 0x12) 100		// Probability 1
-	  WRITE_ASCIIE (fx_off + 0x14) ~b_wc002~	// resource
-	++glob_add
-
-        INSERT_BYTES (fx_off) 0x30
-	  WRITE_SHORT (fx_off) 172			// Remove spell
-	  WRITE_BYTE (fx_off + 0x2) 1			// Target Self
-	  WRITE_BYTE (fx_off + 0x3) 1			// power
-	  WRITE_LONG (fx_off + 0x8) 0			// Wizard
-	  WRITE_LONG (fx_off + 0xc) 9			// perm
-	  WRITE_BYTE (fx_off + 0x12) 100		// Probability 1
-	  WRITE_ASCIIE (fx_off + 0x14) ~b_wc002~	// resource
-	++glob_add
-
-//	INSERT_BYTES (fx_off) 0x30			//Second effect
-//	  WRITE_etc...
-//	++glob_add
-
-	glob_fx += glob_add
-	WRITE_SHORT 0x70 glob_fx			// Increment Number of Global Effects
-	FOR (i = 0; i < ab_num; ++i) BEGIN		// Offset Effect Index for all Abilities
-	  READ_SHORT (ab_off + i * 0x28 + 0x20) fx_idx
-	  WRITE_SHORT (ab_off + i * 0x28 + 0x20) (fx_idx + glob_add)
-	END
- END
-//No failure
- COPY_EXISTING ~b_wc002.spl~ ~override~
-   WRITE_LONG 0x0018 ~16384~            //No failure
-END //End if SR installed
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -615,7 +685,7 @@ END //End if SR installed
 //                                          Other: no need as far as I can tell
 //
 
-//All versions of Chill Touch are converted to a cantrip
+//All versions of Chill Touch are converted to a cantrip, even if SR is installed
  COPY_EXISTING ~SPWI117.spl~ ~override/b_wc005.spl~      //Copy spell as innate
     WRITE_BYTE 0x1c ~4~ // change spell type to innate
       LPF ALTER_SPELL_HEADER INT_VAR location = 4 END   //Change of location
@@ -678,9 +748,212 @@ END
  COPY_EXISTING ~b_wc005.spl~ ~override~
    WRITE_LONG 0x0018 ~16384~            //No failure
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//__________________________________________________________________Acid Splash_________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Template               Added:no           Compatiblity:                                         Double Checked: no
+//                                          IWDEE:
+//                                          IWDification:
+//                                          My IWD spells:
+//                                          my revised spells:
+//                                          spheres:
+//                                          SR: Yes
+//                                          Other: no need as far as I can tell
+//
+//this cantrip virtually assumes SR shocking grasp.
+//Projectile
+//ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
+//VVC
+//bam
+//COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
+//animations
+//3d animation
+//sounds  Check for TRA_17.wav
+//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
+//effs
+//Spell itself
+COPY ~%mod_folder%/data/cantrips/arcane/b_wc102.spl~  ~override~
+        SAY NAME1 @200006001
+        SAY NAME2 @200006001
+        SAY UNIDENTIFIED_DESC @200006002
+	SAY DESC @200006002
+
+COPY_EXISTING_REGEXP GLOB ~b_wc102.spl~ ~override~
+	PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+        READ_LONG 	0x64	ab_off			// Abilities Offset
+	READ_SHORT	0x68	ab_num			// Number of Abilities
+	READ_SHORT	0x6a	fx_off			// Effects Offset
+	READ_SHORT	0x70	glob_fx			// Number of Global Effects
+	SET	glob_add = 0
+
+	INSERT_BYTES (fx_off) 0x30
+	  WRITE_SHORT (fx_off) 171			// Give innate
+	  WRITE_BYTE (fx_off + 0x2) 1			// Target Self
+	  WRITE_BYTE (fx_off + 0x3) 1			// power
+	  WRITE_LONG (fx_off + 0x8) 0			// Wizard
+	  WRITE_LONG (fx_off + 0xc) 9			// perm
+	  WRITE_BYTE (fx_off + 0x12) 100		// Probability 1
+	  WRITE_ASCIIE (fx_off + 0x14) ~b_wc102~	// resource
+	++glob_add
+
+        INSERT_BYTES (fx_off) 0x30
+	  WRITE_SHORT (fx_off) 172			// Remove spell
+	  WRITE_BYTE (fx_off + 0x2) 1			// Target Self
+	  WRITE_BYTE (fx_off + 0x3) 1			// power
+	  WRITE_LONG (fx_off + 0x8) 0			// Wizard
+	  WRITE_LONG (fx_off + 0xc) 9			// perm
+	  WRITE_BYTE (fx_off + 0x12) 100		// Probability 1
+	  WRITE_ASCIIE (fx_off + 0x14) ~b_wc102~	// resource
+	++glob_add
+
+//	INSERT_BYTES (fx_off) 0x30			//Second effect
+//	  WRITE_etc...
+//	++glob_add
+
+	glob_fx += glob_add
+	WRITE_SHORT 0x70 glob_fx			// Increment Number of Global Effects
+	FOR (i = 0; i < ab_num; ++i) BEGIN		// Offset Effect Index for all Abilities
+	  READ_SHORT (ab_off + i * 0x28 + 0x20) fx_idx
+	  WRITE_SHORT (ab_off + i * 0x28 + 0x20) (fx_idx + glob_add)
+	END
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________Fire Bolt_______________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Credit for this spell goes to SubtleDoctor. Used and modified with permission.
+
+//Template               Added:no           Compatiblity:                                         Double Checked: no
+//                                          IWDEE:
+//                                          IWDification:
+//                                          My IWD spells:
+//                                          my revised spells:
+//                                          spheres:
+//                                          SR: Yes
+//                                          Other: no need as far as I can tell
+//
+//Projectile
+ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/D5_MSORN.pro~   //projectile
+//VVC
+//bam
+COPY ~%mod_folder%/data/cantrips/arcane/SPMAGM04.bam~ ~override~   //animation
+//animations
+//3d animation
+//sounds  Check for TRA_17.wav
+//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
+//effs
+//Spell itself
+COPY ~%mod_folder%/data/cantrips/arcane/d5_wfir.spl~  ~override~
+        SAY NAME1 @200007001
+        SAY NAME2 @200007001
+        SAY UNIDENTIFIED_DESC @200007002
+	SAY DESC @200007002
+//add projectile
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %D5_MSORN% STR_VAR END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_____________________________________________________________Magic Bolt_______________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Credit for this spell goes to SubtleDoctor. Used and modified with permission.
+
+//Template               Added:no           Compatiblity:                                         Double Checked: no
+//                                          IWDEE:
+//                                          IWDification:
+//                                          My IWD spells:
+//                                          my revised spells:
+//                                          spheres:
+//                                          SR: Yes
+//                                          Other: no need as far as I can tell
+//
+//Projectile
+ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/D5_MSBLU.pro~   //projectile
+//VVC
+//bam
+COPY ~%mod_folder%/data/cantrips/arcane/SPMAGM07.bam~ ~override~   //animation
+//animations
+//3d animation
+//sounds  Check for TRA_17.wav
+//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
+//effs
+//Spell itself
+COPY ~%mod_folder%/data/cantrips/arcane/D5_WIIN.spl~  ~override~
+        SAY NAME1 @200008001
+        SAY NAME2 @200008001
+        SAY UNIDENTIFIED_DESC @200008002
+	SAY DESC @200008002
+//add projectile
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %D5_MSBLU% STR_VAR END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//___________________________________________________________________Audible Glamer_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Template               Added:no           Compatiblity:                                         Double Checked: no
+//                                          IWDEE:
+//                                          IWDification:
+//                                          My IWD spells:
+//                                          my revised spells:
+//                                          spheres:
+//                                          SR: Yes
+//                                          Other: no need as far as I can tell
+//
+//this cantrip virtually assumes SR shocking grasp.
+//Projectile
+//ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
+//VVC
+//bam
+//COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
+//animations
+//3d animation
+//sounds  Check for TRA_17.wav
+COPY ~%mod_folder%/data/cantrips/arcane/b_wisp1.WAV~ ~override~   //sound
+COPY ~%mod_folder%/data/cantrips/arcane/b_wisp2.WAV~ ~override~   //sound
+COPY ~%mod_folder%/data/cantrips/arcane/b_wisp3.WAV~ ~override~   //sound
+COPY ~%mod_folder%/data/cantrips/arcane/b_wisp4.WAV~ ~override~   //sound
+COPY ~%mod_folder%/data/cantrips/arcane/b_wisp5.WAV~ ~override~   //sound
+COPY ~%mod_folder%/data/cantrips/arcane/b_wisp6.WAV~ ~override~   //sound
+COPY ~%mod_folder%/data/cantrips/arcane/b_wisp7.WAV~ ~override~   //sound
+//effs
+//Spell itself
+COPY ~%mod_folder%/data/cantrips/arcane/B_WC103.spl~  ~override~
+        SAY NAME1 @200009001
+        SAY NAME2 @200009001
+        SAY UNIDENTIFIED_DESC @200009002
+	SAY DESC @200009002
+	
 
 //CONTINUE FROM HERE
 /*
+ADD_PROJECTILE ~TomeAndBlood/data/cantrips/d5_msred.pro~
+ADD_PROJECTILE ~TomeAndBlood/data/cantrips/d5_msblu.pro~
+ADD_PROJECTILE ~TomeAndBlood/data/cantrips/d5_msgrn.pro~
+ADD_PROJECTILE ~TomeAndBlood/data/cantrips/d5_msbrn.pro~
+ADD_PROJECTILE ~TomeAndBlood/data/cantrips/d5_msorn.pro~
+ADD_PROJECTILE ~TomeAndBlood/data/cantrips/d5_mswhi.pro~
+COPY ~TomeAndBlood/data/cantrips/spmagm02.bam~ ~override~
+COPY ~TomeAndBlood/data/cantrips/spmagm03.bam~ ~override~
+COPY ~TomeAndBlood/data/cantrips/spmagm04.bam~ ~override~
+COPY ~TomeAndBlood/data/cantrips/spmagm05.bam~ ~override~
+COPY ~TomeAndBlood/data/cantrips/spmagm06.bam~ ~override~
+COPY ~TomeAndBlood/data/cantrips/spmagm07.bam~ ~override~
+COPY ~TomeAndBlood/data/cantrips/d5_cant.bam~ ~override~
+COPY ~TomeAndBlood/data/cantrips/d5_sp420.bam~ ~override~
+COPY ~TomeAndBlood/data/cantrips/d5_sp710.bam~ ~override~
+COPY ~TomeAndBlood/data/cantrips/d5_sp809.bam~ ~override~
+
+COPY ~TomeAndBlood/data/cantrips/d5_wiin.spl~ ~override~
+	SAY NAME1 @6025
+	SAY UNIDENTIFIED_DESC @6026
+	WRITE_SHORT 0x098 ~%d5_msred%~
+
+
 Cantrips/Orisons: In progress
 Minor spells used 'at will'.  Divine cantrips are called Orisons.  
 The first number denotes generalist and wild mages (and clerics/druids/mystics), while the second denotes Specialists (and, perhaps, acolytes in FnP):
@@ -762,7 +1035,7 @@ COPY_EXISTING ~CLABPR01.2da~ ~override~ //Base cleric
               ~CLABPA01.2da~ ~override~ //Base paladin
               ~CLABDR01.2da~ ~override~ //Base Druid
               ~CLABRN01.2da~ ~override~ //Base Ranger
-              APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+              APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
 
 //add to clab
 //thanks subtledoctor!
@@ -780,32 +1053,32 @@ ACTION_PHP_EACH d5_base_spell_array AS bo => zo BEGIN
 	ACTION_IF (%zo% = 2) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 3) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 6) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 11) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 12) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 21) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~spells/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
 	END
 END
 */
@@ -813,136 +1086,8 @@ END
 //CONTINUE FROM HERE Create arrays based on fnp, tnb, and vanilla (for both addition and immunities)
 
 //cleric innates
-COPY ~spells/data/cantrips/divine/b_prc01.spl~ ~override/b_pr01.spl~ //will need to add all cantrips to this and
+COPY ~%mod_folder%/data/cantrips/divine/b_prc01.spl~ ~override/b_pr01.spl~ //will need to add all cantrips to this and
 
-
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//______________________________________________________________________Canticle________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Canticle              Added               Acolyte of Tempus: yes                                 Double Checked: no
-//                                          IWDEE: yes         (prayer)  
-//                                          IWDIFICATION: yes  (prayer)
-//                                          my IWD Spells: Yes (prayer) Both ways
-//                                          SR: Needed?
-
-//CHECK SPELL REVISIONS!
-COPY ~spells/data/cantrips/divine/b_po020.spl~ ~override~
-        SAY NAME1 @102000000
-        SAY NAME2 @102000000
-        SAY UNIDENTIFIED_DESC @102000001
-	SAY DESC @102000001
-COPY ~spells/data/cantrips/divine/b_po021.spl~ ~override~      //to remove
-        SAY NAME1 @102000002
-        SAY NAME2 @102000002
-        SAY UNIDENTIFIED_DESC @102000003
-	SAY DESC @102000003
-COPY ~spells/data/cantrips/divine/b_po022.eff~ ~override~
-  SAY 0x1c @102000004 //Chanting
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//____________________________________________________________________Malediction_______________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Malediction           Added               Acolyte of Tempus: yes                                 Double Checked: no
-//                                          IWDEE: yes
-//                                          IWDIFICATION: yes
-//                                          my IWD spells: yes
-//                                          spheres:  I believe so
-//                                          SR: Yes (I believe so)
-
-COPY ~spells/data/cantrips/divine/b_po030.spl~ ~override~
-        SAY NAME1 @103000000
-        SAY NAME2 @103000000
-        SAY UNIDENTIFIED_DESC @103000001
-	SAY DESC @103000001
-COPY ~spells/data/cantrips/divine/b_po031.eff~ ~override~
-  SAY 0x1c @103000000 //Malediction
-//bless, aid, chant doom
-//bless
-//Compatibility
-//fnp
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po030.spl~ ~override~    //change sphere from charm to dread
- SPRINT old @103000002//old text
- SPRINT new @103000003//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (sphere from charm to dread)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-
-//SR
-//Spell Revisions (Break Enchantment removes Malediction)
-ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
-COPY_EXISTING ~sppr307.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-COPY_EXISTING ~spwi410.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-END
-
-//ADD TO SPELL: A creature can only be affected by Malediction once per 8 hours. Further, Maladiction can only affect a single creature at a time.  As such, when this orison is cast, it cannot be further cast for another 3 rounds.  
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//____________________________________________________________________Meditation________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Meditation            Added               Acolyte of Tempus: yes                                 Double Checked: no
-//                                          IWDEE: yes
-//                                          IWDIFICATION: yes
-//                                          my IWD spells: yes
-//                                          spheres:  I believe so
-//                                          SR: I don't think so
-//CHECK SPELL REVISIONS!
-//From Charm to Thought for FnP
-COPY ~spells/data/cantrips/divine/b_po040.spl~ ~override~
-        SAY NAME1 @104000000
-        SAY NAME2 @104000000
-        SAY UNIDENTIFIED_DESC @104000001
-	SAY DESC @104000001
-COPY ~spells/data/cantrips/divine/b_po031.eff~ ~override~
-  SAY 0x1c @104000002 //meditating
-//compatibility
-//spheres
-ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN
-COPY_EXISTING ~b_po040.spl~ ~override~
- SPRINT old @104000003//old text
- SPRINT new @104000004//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (charm to thought sphere)
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
-END
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////                                  /////////////////////////////
-/////////////////////////////               Mage               /////////////////////////////
-/////////////////////////////             Cantrips             /////////////////////////////
-/////////////////////////////                                  /////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -950,171 +1095,6 @@ END
 /* TO BE ADDED
 
 
-//to clear earlier versions of the spell
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_CURSE~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 139            //
-      parameter1 = 17426    //Cursed notification
-  END
-//compatibility
-//orisons. mal.  does not stack with it.
-ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END     //FIrst (hopefully only) clone of 321, so...okay.  May have compatibility issues with other mods
-  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-END
-//Spell Revisions (Break Enchantment removes Curse)
-ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
-COPY_EXISTING ~sppr307.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
-COPY_EXISTING ~spwi410.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
-END
-//globe of invuln immunity:
-//minor globe of invuln
-COPY_EXISTING ~spwi406.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
-//globe of invuln
-COPY_EXISTING ~spwi602.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
-ACTION_IF FILE_EXISTS_IN_GAME ~SPWM126.spl~ BEGIN
-COPY_EXISTING ~SPWM126.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
-END
-//icons
-COPY ~Spells/data/iwd_spells/priest_1/sppr112a.bam~ ~override/%spell_res%a.bam~
-COPY ~Spells/data/iwd_spells/priest_1/sppr112b.bam~ ~override/%spell_res%b.bam~
-COPY ~Spells/data/iwd_spells/priest_1/sppr112c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro237% STR_VAR icon = EVAL  ~%spell_res%B~ END
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-//Remove Curse
-INCLUDE ~spells/lib/spell_lists/curse_list.tpa~
-//end of extra frost ray to be added stuff
-*/
-
-
-/* TO BE ADDED
-//to clear earlier versions of the spell
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_CURSE~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 139            //
-      parameter1 = 17426    //Cursed notification
-  END
-//compatibility
-//orisons. mal.  does not stack with it.
-ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END     //FIrst (hopefully only) clone of 321, so...okay.  May have compatibility issues with other mods
-  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-END
-//Spell Revisions (Break Enchantment removes Curse)
-ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
-COPY_EXISTING ~sppr307.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
-COPY_EXISTING ~spwi410.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
-END
-//globe of invuln immunity:
-//minor globe of invuln
-COPY_EXISTING ~spwi406.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
-//globe of invuln
-COPY_EXISTING ~spwi602.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
-ACTION_IF FILE_EXISTS_IN_GAME ~SPWM126.spl~ BEGIN
-COPY_EXISTING ~SPWM126.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
-END
-//icons
-COPY ~Spells/data/iwd_spells/priest_1/sppr112a.bam~ ~override/%spell_res%a.bam~
-COPY ~Spells/data/iwd_spells/priest_1/sppr112b.bam~ ~override/%spell_res%b.bam~
-COPY ~Spells/data/iwd_spells/priest_1/sppr112c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro237% STR_VAR icon = EVAL  ~%spell_res%B~ END
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-//Remove Curse
-INCLUDE ~spells/lib/spell_lists/curse_list.tpa~
-//end of extra frost ray to be added stuff
-END ELSE BEGIN */
-
-
-
-
-/* TO BE ADDED
-
-
-//to clear earlier versions of the spell
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~CLERIC_CURSE~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 139            //
-      parameter1 = 17426    //Cursed notification
-  END
-//compatibility
-//orisons. mal.  does not stack with it.
-ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~b_po030~ END     //FIrst (hopefully only) clone of 321, so...okay.  May have compatibility issues with other mods
-  LPF CLONE_EFFECT INT_VAR match_opcode = 54 opcode = 324 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~b_po030~ END
-END
-//Spell Revisions (Break Enchantment removes Curse)
-ACTION_IF FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr
-COPY_EXISTING ~sppr307.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
-COPY_EXISTING ~spwi410.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 221 opcode = 321 parameter1 = 0 parameter2 = 0 STR_VAR resource = EVAL ~%spell_res%~ END
-END
-//globe of invuln immunity:
-//minor globe of invuln
-COPY_EXISTING ~spwi406.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
-//globe of invuln
-COPY_EXISTING ~spwi602.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
-ACTION_IF FILE_EXISTS_IN_GAME ~SPWM126.spl~ BEGIN
-COPY_EXISTING ~SPWM126.spl~ ~override~
-  LPF CLONE_EFFECT INT_VAR match_opcode = 155 opcode = 206 STR_VAR resource = EVAL ~%spell_res%~ END
-END
-//icons
-COPY ~Spells/data/iwd_spells/priest_1/sppr112a.bam~ ~override/%spell_res%a.bam~
-COPY ~Spells/data/iwd_spells/priest_1/sppr112b.bam~ ~override/%spell_res%b.bam~
-COPY ~Spells/data/iwd_spells/priest_1/sppr112c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro237% STR_VAR icon = EVAL  ~%spell_res%B~ END
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-//Remove Curse
-INCLUDE ~spells/lib/spell_lists/curse_list.tpa~
-//end of extra frost ray to be added stuff
 */
 
 //CONTINUE FROM HERE
@@ -1256,6 +1236,10 @@ COMPILE ~clchng/Arcane/Cantrip/dlg/b_csel1.d~
 
 COPY ~clchng/Arcane/Cantrip/cre/b_csel1.cre~ ~override~
 //end to be added
+COPY ~TomeAndBlood/data/cantrips/d5_wfir.spl~ ~override~
+	SAY NAME1 @6031
+	SAY UNIDENTIFIED_DESC @6032
+	WRITE_SHORT 0x098 ~%d5_msorn%~
 
 ADD_PROJECTILE ~TomeAndBlood/data/cantrips/d5_msred.pro~
 ADD_PROJECTILE ~TomeAndBlood/data/cantrips/d5_msblu.pro~
@@ -1292,6 +1276,7 @@ COPY ~TomeAndBlood/data/cantrips/d5_cant3.spl~ ~override~
 	SAY NAME1 @6012
 	SAY UNIDENTIFIED_DESC @6013
 COPY ~TomeAndBlood/data/cantrips/d5_cantr.2da~ ~override~
+
 //abjurer cantrip: protective shell
 COPY ~TomeAndBlood/data/cantrips/d5_maab.spl~ ~override~
 	SAY NAME1 @6014

@@ -851,9 +851,14 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_1_arrays~ BEGIN
     206, "-1", "-10", "b_po060", "-10", "-10", "same" => 1 // protection from Infravision cantrip
     206, "-1", "-10", "b_po080", "-10", "-10", "same" => 1 // protection from Calm cantrip
     206, "-1", "-10", "b_wc001", "-10", "-10", "same" => 1 // protection from Frost ray cantrip
-    206, "-1", "-10", "b_wc002", "-10", "-10", "same" => 1 // protection from Jolt cantrip
     206, "-1", "-10", "b_wc003", "-10", "-10", "same" => 1 // protection from Drench cantrip
     206, "-1", "-10", "b_wc004", "-10", "-10", "same" => 1 // protection from Drowse cantrip
+    206, "-1", "-10", "B_WC103", "-10", "-10", "same" => 1 // protection from a. glammer cantrip
+    206, "-1", "-10", "D5_WIIN", "-10", "-10", "same" => 1 // protection from m. bolt cantrip
+    206, "-1", "-10", "d5_wfir", "-10", "-10", "same" => 1 // protection from fire. bolt cantrip
+    206, "-1", "-10", "b_wc102", "-10", "-10", "same" => 1 // protection from acid splash cantrip
+    206, "-1", "-10", "b_wc002", "-10", "-10", "same" => 1 // protection from jolt cantrip
+    206, "-1", "-10", "b_wc005", "-10", "-10", "same" => 1 // protection from chill touch cantrip
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
@@ -1901,6 +1906,8 @@ DEFINE_PATCH_MACRO ~b_bless_cantrip_arrays~ BEGIN
     "-10",  "-10", "-10", "same",  0,  "-10", "same" => 1 // only timing matters (and only sometimes)
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "0", "0", "b_po090",  1,     "-10", "last" => 1 // remove spell, benediction cantrip
+    324, "0", "0", "b_po090",  "-10", "-10", "last" => 1 // protect from spell, benediction cantrip
     321, "0", "0", "b_po020",  1,     "-10", "last" => 1 // remove spell, canticle cantrip
     324, "0", "0", "b_po020",  "-10", "-10", "last" => 1 // protect from spell, canticle cantrip
     321, "0", "0", "b_po030",  1,     "-10", "last" => 1 // remove spell, maladiction cantrip

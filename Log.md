@@ -6,7 +6,83 @@ TO DO 1: ADD A PRIEST SCROLL COMPONENT: MORE PRIEST SCROLLS (ALSO PRIEST SCRIBIN
 
 TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
-TO DO 3: SEPERATE FNP NEW SPELLS (EG  FROM NON FNP NEW SPELLS (EG ALARM)
+TO DO 3:
+
+Version 0.88.12
+
+2018-09-04
+
+- Added new cantrips to 1st level protection batch
+
+2018-09-02
+
+- Created first draft of Audible Glamer
+
+- Made Malediction comparible with AG (save pen and increased duration at higher levels)
+
+2018-09-01
+
+- Vitrolic Sphere, Soul Eater, Decastave, Lance of Disruption, Beltyn's Burning Blood, Mordenkainen's Force Missiles, Darts of Bone set to correct opposition school
+
+- Canticle: Added some advancement at higher levels to AC
+
+- Cure Minor Wounds: changed to cure 4hp (or 2 + 10%)
+
+- Malediction: Casting time: 3, added save negates
+
+- Drench: increased dam to ice/fire creatures.
+
+- Created Benediction cantrip
+
+- Drowse: Only affects cre of at most your own level
+
+- Frost Ray: Reduced damage progression
+
+- Jolt: Got rid of immunity for 8 hours
+
+- Added first draft acid splash
+
+- Added first draft of fire bolt (credit SubtleDoctor)
+
+- Added first draft of magic bolt (credit SubtleDoctor)
+
+2018-08-19
+
+- Snilloc's Snowball Swarm, Icelance, Shadow Monsters, Emotion: Courage, Emotion: Fear, Emotion: Hope, Shout, Shades, Acid Storm set to correct opposition school
+
+2018-08-18
+
+- Drench now removes earlier instances
+
+- Canticle removes earlier versions of itself and meditation
+
+- Maladiction no longer indicates that it is only usable every 3 rounds (not implemented).
+
+- Meditation removes canticle
+
+2018-08-11
+
+- Checking Shatter, Watery Fist, Detect Traps and portals, hypnotism
+
+- Created Vanish
+
+2018-08-08
+
+- Altered Forbiddance to have an effect even on save (to make it more competetive with entrhall and hold person)
+
+- Added Ice List, and added Ice Blade to that list (in case some spell will want to cancel certain ice spells like that cloud spell does for fire blade)
+
+2018-08-07
+
+- Changed Accelerate Healing to Acceleerate Metabolism
+
+- Removed prot from spell from Alarm
+
+- Altered Enthrall to make competetive with hold persion (casting time 2)
+
+2018-08-06
+
+- Created First Draft Accelerate Healing
 
 Version 0.88.11
 
