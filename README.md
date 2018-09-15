@@ -263,6 +263,21 @@ When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHE
 
 ## Level 3
 
+**Snare** (New)  
+(Alteration)
+
+Level: 3  
+Sphere: Plant  
+Range: 20 ft.  
+Duration: Permanent until triggered  
+Casting Time: 6  
+Area of Effect: 10-ft. radius  
+Saving Throw: none  
+
+When the druid casts this spell, <PRO_HESHE> selects an area within range.  The plant life in the area reconfigue to construct a deadly trap that does 1d8 points of piercing damage per level (max 10d8). 
+
+Much like a thief trap, this spell fails if cast in the presence of enemies.
+
 ## Level 4
 
 ## Level 5
@@ -486,6 +501,24 @@ Shout grants the wizard tremendous vocal powers, allowing <PRO_HIMHER> to emit a
 **General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
 
 ### Level 5
+
+**Usurp Shell** (New)  
+(Necromancy)
+
+Level: 5
+Range: 60 ft.
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Special
+
+With this spell the caster attempts to bypass the targets mind, taking direct control of their body instead if they do not make a save vs. death -2.  Unlike a dominate spell, this spell does not touch the mind, and can even be used to usurp the body of an undead creature, or any creature with biological anatomy.
+
+If this spell is sucessful, the caster gains control of the targets body, allowing <PRO_HIMHER> to make the body attack or move as <PRO_HESHE> pleases. <PRO_HESHE> does not gain fine motor control of the tergets body, however, nor does <PRO_HESHE> gain control of the targets mind. Thus, <PRO_HESHE> cannot force the target to cast spells or use special abilities on <PRO_HISHER> behalf.
+
+Additionally, the targets movements are jerky and predicable, and they move at 80% their normal speed and suffer a -2 to all attack rolls. 
+
+If the target resists the spell, they suffer 3d8 points of magic damage.
 
 ### Level 6
 
