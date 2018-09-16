@@ -8,6 +8,16 @@ TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 TO DO 3:
 
+Version 0.88.13
+
+2018-09-15
+
+- Created Ray of Fatigue, Ursup Shell and Snare (first drafts)
+
+2018-09-08
+
+- Removed an extra END in tp2
+
 Version 0.88.12
 
 2018-09-04

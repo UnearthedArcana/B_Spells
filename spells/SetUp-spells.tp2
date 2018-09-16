@@ -1,7 +1,7 @@
 BACKUP ~spells/backup~
 AUTHOR ~Grammarsalad~
 
-VERSION ~0.88.12~
+VERSION ~0.88.13~
 
 
 ALWAYS
@@ -109,7 +109,6 @@ SUBCOMPONENT @100
     INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
    COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~
    END
-END
 
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS

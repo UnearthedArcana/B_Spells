@@ -401,6 +401,22 @@ Removes Fatigue
 
 Weight: 0~
 
+@51420 = ~Snare~
+@51421 = ~Snare
+(Alteration)
+
+Level: 3
+Sphere: Plant
+Range: 20 ft.
+Duration: Permanent until triggered
+Casting Time: 6
+Area of Effect: 10-ft. radius
+Saving Throw: none
+
+When the druid casts this spell, <PRO_HESHE> selects an area within range.  The plant life in the area reconfigue to construct a deadly trap that does 1d8 points of piercing damage per level (max 10d8). 
+
+Much like a thief trap, this spell fails if cast in the presence of enemies.~
+
 //@51500
 
 @51501 = ~Stone Fist~
@@ -875,6 +891,22 @@ Saving Throw: None
 
 This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round/level (max 10 rounds), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).~
 
+@61101 = ~Ray of Fatigue~
+@61102 = ~Ray of Fatigue
+(Necromancy)
+
+Level: 1
+Range: 40 ft.
+Duration: 1 round/level
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: Special
+
+By means of a Ray of Enfeeblement, a wizard saps the energy from an opponent, causing fatigue damage and penalizing their attack, armor class and saves. At first level, this spell does 1d4 fatigue damage, and, if the target does not save vs. death, penalizes their AC, THAC0 and Saves by -1.
+
+Damage increases by 1d4 at 3rd level, and every 2 levels thereafter.  The penalties are increased by -1 at 5th level, and every 5 levels thereafter.~
+
+@61103 = ~Fatigued~
 
 //@63000 3RD level arcane spells
 
@@ -943,6 +975,26 @@ Saving Throw: None
 
 Major Missile is much like Magic Missile, creating a single missile of magical energy that darts forth from the wizard's fingertip and unerringly strike their target, which must be a creature of some sort. This missile inflicts 1d4+1 points of damage, plus 1d4+1 for every two levels thereafter, to a maximum of 15d4 +15.~
 
+@65003 = ~Usurp Shell~
+@65004 = ~Usurp Shell
+(Necromancy)
+
+Level: 5
+Range: 60 ft.
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Special
+
+With this spell the caster attempts to bypass the targets mind, taking direct control of their body instead if they do not make a save vs. death -2.  Unlike a dominate spell, this spell does not touch the mind, and can even be used to usurp the body of an undead creature, or any creature with biological anatomy.
+
+If this spell is sucessful, the caster gains control of the targets body, allowing <PRO_HIMHER> to make the body attack or move as <PRO_HESHE> pleases. <PRO_HESHE> does not gain fine motor control of the tergets body, however, nor does <PRO_HESHE> gain control of the targets mind. Thus, <PRO_HESHE> cannot force the target to cast spells or use special abilities on <PRO_HISHER> behalf.
+
+Additionally, the targets movements are jerky and predicable, and they move at 80% their normal speed and suffer a -2 to all attack rolls. 
+
+If the target resists the spell, they suffer 3d8 points of magic damage.~
+
+@65005 = ~Body Controlled!~
 
 
 
