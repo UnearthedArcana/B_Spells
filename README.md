@@ -240,8 +240,10 @@ This spell changes the coloration of the caster to match the surrounding environ
 
 When this spell is cast, the caster gains a +50% bonus to hide, and <PRO_HESHE> naturally blends in to the surrounding environment once per round, allowing <PRO_HIMHER> to hide as a thief or ranger for the duration.
 
+This bonus increases by +5% per level, to a maximum of +95% at 10th level.
+
 ***Notes***:    
-**1st level cantrips**: Converted to a second level spell, with 5 turn duration  
+**1st level cantrips**: Converted to a second level spell, with 5 turn duration, and a +20% bonus to stealth (max 95%)  
 
 **Frost Fingers** (New)  
 (Invocation)
@@ -345,17 +347,19 @@ _Credit for this spell belons to Subtledoctor (Modified with permission)_
 **Detect Traps and Portals** (New)  
 (Divination)
 
-Level: 1  
-Range: 0  
-Duration: 3 turns  
-Casting Time: 5  
-Area of Effect: 30-ft. radius  
-Saving Throw: None  
+Level: 1
+Range: 0
+Duration: 1 hour
+Casting Time: 9
+Area of Effect: 30-ft. radius
+Saving Throw: None
 
-When a mage casts this spell, all traps within the area of effect that are concealed normally or magically, of magical or mechanical nature become apparent to <PRO_HIMHER>, as if <PRO_HESHE> were a Thief.
+With this spell, the mage can search for traps and secret doors, as if <PRO_HESHE> were a Thief.  When <PRO_HESHE> casts this spell, <PRO_HESHE> has a chance to detect traps equal to 30%, +5% for each additional level after first (max 75% at level 10) for one hour.  <PRO_HESHE> need not take a special action, <PRO_HESHE> will automatically look for traps for the duration as long as this spell is in effect, and <PRO_HESHE> is not doing anything else.
+
+This chance to detect spells stacks with any preexisting skill the mage might otherwise have with detect traps, and if <PRO_HESHE> has levels in thief, this spell will give <PRO_HIMHER> a bonus to disarm traps as well.
 
 ***Notes***:    
-**1st level cantrips**: Converted to a second level spell, unchanged  
+**1st level cantrips**: Converted to a second level spell, +20% to skill bonus (maxes out at 95%)  
 
 **Hypnotism** (New)  
 (Enchantment/Charm)
@@ -377,16 +381,21 @@ Affected creatures shake off this effect if they are attacked.
 **Ray of Fatigue** (New)  
 (Necromancy)
 
-Level: 1  
-Range: 40 ft.  
-Duration: 1 round/level  
-Casting Time: 2  
-Area of Effect: 1 creature  
-Saving Throw: Special  
+Level: 1
+Range: 40 ft.
+Duration: 1 round/level
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: Special
 
-By means of a Ray of Enfeeblement, a wizard saps the energy from an opponent, causing fatigue damage and penalizing their attack, armor class and saves. At first level, this spell does 1d4 fatigue damage, and, if the target does not save vs. death, penalizes their AC, THAC0 and Saves by -1.
+When this spell is cast, a ray of fatigue slams into the target, sapping their energy and knocking the wind out of them.  At first level, this spell does 2d4 non-lethal damage to the target, and, if they do not save vs. death, penalizes their AC, THAC0 and Saves by -1.
 
-Damage increases by 1d4 at 3rd level, and every 2 levels thereafter.  The penalties are increased by -1 at 5th level, and every 5 levels thereafter.
+Damage increases by 2d4 at 3rd level, and every 2 levels thereafter (max 10d4 at 9th level).  The penalties are increased by -1 at 5th level, and every 5 levels thereafter (max -5 at 20th level).
+
+Undead and creatures without a biological anatomy are immune to Ray of Fatigue.
+
+***Notes***:    
+**1st level cantrips**: Damage is reduced to 1/2, but kept as a 1st level spell
 
 **Vanish** (New)  
 (Illusion/Phantasm)
