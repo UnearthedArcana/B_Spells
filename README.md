@@ -374,6 +374,20 @@ Affected creatures shake off this effect if they are attacked.
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
 
+**Ray of Fatigue** (New)  
+(Necromancy)
+
+Level: 1  
+Range: 40 ft.  
+Duration: 1 round/level  
+Casting Time: 2  
+Area of Effect: 1 creature  
+Saving Throw: Special  
+
+By means of a Ray of Enfeeblement, a wizard saps the energy from an opponent, causing fatigue damage and penalizing their attack, armor class and saves. At first level, this spell does 1d4 fatigue damage, and, if the target does not save vs. death, penalizes their AC, THAC0 and Saves by -1.
+
+Damage increases by 1d4 at 3rd level, and every 2 levels thereafter.  The penalties are increased by -1 at 5th level, and every 5 levels thereafter.
+
 **Vanish** (New)  
 (Illusion/Phantasm)
 
