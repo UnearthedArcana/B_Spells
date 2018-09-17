@@ -11,7 +11,7 @@ CLERIC_ANIMAL_EYES
 
 CLERIC_CAMOUFLAGE
 - 0 level cantrips: Stays a 1st level spell
-- 1st level cantrips: Converted to a second level spell, with 5 turn duration
+- 1st level cantrips: Converted to a second level spell, with 5 turn duration, and a +20% bonus to stealth (max 95%)
 
 CLERIC_DISRUPT_UNDEAD: 
 - 0 level cantrips: Disrupt Undead is an orison if cantrips is installed, and starts at 1d6+1.  Modify description.
@@ -65,7 +65,7 @@ WIZARD_ANTICIPATION
 - 1st level cantrips: Stays a 1st level spell, unchanged
 
 WIZARD_DETECT_TRAPS
-- 1st level cantrips: Changes to a 2nd level spell, unchanged
+- 1st level cantrips:  Converted to a second level spell, +20% to skill bonus (maxes out at 95%)
 
 WIZARD_HYPNOTISM
 - 1st level cantrips: Changes to a 2nd level spell, unchanged
@@ -73,8 +73,8 @@ WIZARD_HYPNOTISM
 WIZARD_VANISH
 - 1st level cantrips: Duration reduced to 1 round
 
-
-
+WIZARD_RAY_OF_FATIGUE
+- 1st level cantrips: Damage is reduced to 1/2, but kept as a 1st level spell
 
 
  

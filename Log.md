@@ -8,6 +8,16 @@ TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 TO DO 3:
 
+Version 0.88.14
+
+2018-09-16
+
+- Update to Ray of Fatigue
+
+- Update Detect Traps and Portals
+
+- Update to Camoflauge (sp)
+
 Version 0.88.13
 
 2018-09-15

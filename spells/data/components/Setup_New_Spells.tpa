@@ -398,22 +398,14 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //might change to have invis monster have caster check for traps (giving boni to search)
 
-//Projectile
-//VVC
-//bam
-//animations
-//3d animation
-//sounds  ENSURE THAT EFF_E01, EFF_M77 is in all versions of game
-//COPY ~%mod_folder%/spheres/spells/death/EFF_M60.wav~ ~override~ // Already copied over (at least) twice, but just in case...
-//effs
-//Secondary spell(s)
-//Using Find Traps as a base spell
-COPY_EXISTING ~SPPR205.spl~ ~override/b_1w1xx.spl~
-  WRITE_BYTE 0x1c 1//Wizard Spells
-  WRITE_LONG 0x34 1//Change to level 1
-  WRITE_LONG 0x1e 0x0800//General spells, exclude invoker
+//script
+COMPILE ~%mod_folder%/data/new_spells/mage_1/B_DETT.baf~
+//cre
+COPY ~%mod_folder%/data/new_spells/mage_1/B_DETT.cre~ ~override~
+//itm
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
 
-ADD_SPELL ~override/b_1w1xx.spl~ 2 1 ~WIZARD_DETECT_TRAPS~ //
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W105.spl~ 2 1 ~WIZARD_DETECT_TRAPS~ //
           SAY NAME1 @61001
           SAY NAME2 @61001
           SAY UNIDENTIFIED_DESC @61002
@@ -423,6 +415,11 @@ LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_DETECT_TRAPS~
   RET spell_res
 END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //  Remove earlier versions of spell
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -589,6 +586,9 @@ LAF RES_NUM_OF_SPELL_NAME
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@61103) END  //
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 opcode = 324 timing = 0 parameter1 = 0 parameter2 = 1 duration = 1 dicenumber = 0 dicesize = 0 savingthrow = 0 STR_VAR resource = EVAL ~%spell_res%~  END   //undead immune
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 opcode = 324 timing = 0 parameter1 = 0 parameter2 = 9 duration = 1 dicenumber = 0 dicesize = 0 savingthrow = 0 STR_VAR resource = EVAL ~%spell_res%~  END   //elemental immune
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 opcode = 324 timing = 0 parameter1 = 0 parameter2 = 27duration = 1 dicenumber = 0 dicesize = 0 savingthrow = 0 STR_VAR resource = EVAL ~%spell_res%~  END   //golem immune
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
 COPY ~%mod_folder%/data/new_spells/mage_1/B_M101a.bam~ ~override/%spell_res%a.bam~
