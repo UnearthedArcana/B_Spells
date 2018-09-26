@@ -229,21 +229,21 @@ While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is 
 **Camouflage** (New)  
 (Illusion)
 
-Level: 1  
-Sphere: Elemental Earth  
+Level: 1    
+Sphere: Elemental Earth    
 Range: Personal  
 Duration: Instant: 2 turns  
 Casting Time: 0  
-Saving Throw: None  
+Saving Throw: None   
 
-This spell changes the coloration of the caster to match the surrounding environment, making <PRO_HIMHER> very difficult to see. 
+This spell changes the coloration of the caster to match the surrounding environment, making <PRO_HIMHER> very difficult to see.
 
-When this spell is cast, the caster gains a +50% bonus to hide, and <PRO_HESHE> naturally blends in to the surrounding environment once per round, allowing <PRO_HIMHER> to hide as a thief or ranger for the duration.
+When this spell is cast, the caster gains a +50% bonus to hide and move silently, and <PRO_HESHE> naturally blends in to the surrounding environment, allowing <PRO_HIMHER> to hide as a thief or ranger for the duration.
 
-This bonus increases by +5% per level, to a maximum of +95% at 10th level.
+This bonus increases by +5% at 2nd level, and +5% per 2 levels after that, to a maximum of +75% at 10th level.
 
 ***Notes***:    
-**1st level cantrips**: Converted to a second level spell, with 5 turn duration, and a +20% bonus to stealth (max 95%)  
+**1st level cantrips**: Converted to a second level spell, with 5 turn duration, and a +20% bonus to stealth (max 95% at 10th level)  
 
 **Frost Fingers** (New)  
 (Invocation)
@@ -330,12 +330,12 @@ Alarm creates a subtle ward on an area you select. Once the spell effect is in p
 **Anticipation** (New)  
 (Divination)
 
-Level: 1  
-Range: 0  
-Casting Time: 0  
-Duration: 3 rounds  
-Area of Effect: The caster  
-Saving Throw: None  
+Level: 1    
+Range: 0    
+Casting Time: 0    
+Duration: 3 rounds    
+Area of Effect: The caster    
+Saving Throw: None    
 
 This cantrip gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time with a +5 bonus to AC and saves vs. dragon breath for 3 rounds.
 
@@ -347,19 +347,35 @@ _Credit for this spell belons to Subtledoctor (Modified with permission)_
 **Detect Traps and Portals** (New)  
 (Divination)
 
-Level: 1
-Range: 0
-Duration: 1 hour
-Casting Time: 9
-Area of Effect: 30-ft. radius
-Saving Throw: None
+Level: 1  
+Range: 0  
+Duration: 1 hour  
+Casting Time: 9  
+Area of Effect: 30-ft. radius  
+Saving Throw: None  
 
-With this spell, the mage can search for traps and secret doors, as if <PRO_HESHE> were a Thief.  When <PRO_HESHE> casts this spell, <PRO_HESHE> has a chance to detect traps equal to 30%, +5% for each additional level after first (max 75% at level 10) for one hour.  <PRO_HESHE> need not take a special action, <PRO_HESHE> will automatically look for traps for the duration as long as this spell is in effect, and <PRO_HESHE> is not doing anything else.
+With this spell, the mage can detect traps and secret doors, as if <PRO_HESHE> were a Thief.  When <PRO_HESHE> casts this spell, <PRO_HESHE> has a chance to detect traps equal to 30%, +5% for each additional level after first (max 75% at level 10) for one hour.  <PRO_HESHE> need not take a special action, <PRO_HESHE> will automatically look for traps for the duration as long as this spell is in effect, and <PRO_HESHE> is not doing anything else.
 
 This chance to detect spells stacks with any preexisting skill the mage might otherwise have with detect traps, and if <PRO_HESHE> has levels in thief, this spell will give <PRO_HIMHER> a bonus to disarm traps as well.
 
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, +20% to skill bonus (maxes out at 95%)  
+
+**Farseer**  (New)
+(Divination)
+
+Level: 1  
+Range: Touch  
+Duration: 1 hour  
+Casting Time: 2  
+Area of Effect: 1 creature  
+Saving Throw: None
+
+The recipient of this spell gains extraordinary vision, able to see twice as far as before with clarity.  Additionally, they gain a +2 bonus to THAC0 with ranged weapons. 
+
+***Notes***:    
+**0 level cantrips**: Converted to a cantrip, unchanged  
+
 
 **Hypnotism** (New)  
 (Enchantment/Charm)
@@ -378,14 +394,28 @@ Affected creatures shake off this effect if they are attacked.
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
 
+**Protective Shell**  (New)
+(Abjuration)
+
+Level: 1  
+Range: 0  
+Casting Time: 6  
+Duration: 3 turns  
+Area of Effect: The caster  
+Saving Throw: None
+
+This spell creates a thin magical shell that harmlessly absorbs the first physical strike that hits the caster.
+
+_Credit for this spell belons to Subtledoctor (Modified with permission)_
+
 **Ray of Fatigue** (New)  
 (Necromancy)
 
-Level: 1
-Range: 40 ft.
-Duration: 1 round/level
-Casting Time: 2
-Area of Effect: 1 creature
+Level: 1  
+Range: 40 ft.  
+Duration: 1 round/level  
+Casting Time: 2  
+Area of Effect: 1 creature  
 Saving Throw: Special
 
 When this spell is cast, a ray of fatigue slams into the target, sapping their energy and knocking the wind out of them.  At first level, this spell does 2d4 non-lethal damage to the target, and, if they do not save vs. death, penalizes their AC, THAC0 and Saves by -1.
@@ -396,6 +426,22 @@ Undead and creatures without a biological anatomy are immune to Ray of Fatigue.
 
 ***Notes***:    
 **1st level cantrips**: Damage is reduced to 1/2, but kept as a 1st level spell
+
+**Reprieve**  (New)
+(Alteration)
+
+Range: Visual range of the caster  
+Duration: 1 round  
+Target: 1 Ally  
+Casting Time: 1  
+Saving Throw: None  
+
+This spell causes a single ally to vanish in a flash of light. After one round that ally will reappear at the location you were when you cast this spell.
+
+_Credit for this spell implementation belongs to Kjeron_
+
+***Notes***:    
+**0 level cantrips**: Converted to a cantrip, unchanged  
 
 **Vanish** (New)  
 (Illusion/Phantasm)
@@ -413,6 +459,22 @@ This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by nor
 **1st level cantrips**: Duration reduced to 1 round 
 
 ### Level 2  
+
+**Bolt of Paralysis**  (New)
+(Evocation)
+
+Level: 2  
+Range: 60 ft  
+Duration: 1 round/level  
+Casting Time: 1  
+Area of Effect: 1 creature  
+Saving Throw: Special  
+
+When the mage casts this spell, a bolt of pure energy lances at <PRO_HISHER> target, unerringly hitting them.  If they do not successfully save vs. poison/death, they are paralyzed for 1 round per level.
+
+Even if the target makes their save, they are instead slowed for the duration. 
+
+This spell does not affect undead or constructs, such as golems.
 
 **Snilloc's Snowball Swarm** (IWDEE) 
 (Evocation)
@@ -446,7 +508,56 @@ This spell fires a magical lance of ice at a target of the caster's choosing. It
 ***Notes***:    
 **General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
 
+**Iron Mind**  (New) 
+(Abjuration)
+
+Level: 3  
+Range: Touch  
+Duration: 1 hour  
+Casting Time: 3  
+Area of Effect: 1 creature  
+Saving Throw: None
+
+When the mage casts this spell, and touches a creature, that creature becomes immune to charm or fear effects for the next hour.  Additionally, recipients gain a +2 bonus to save vs. spell for the duration.
+
+This spell does not protect against domination affects (except though the bonus to save vs. spell).
+
+**Solvent of Corrosion** (New)  
+(Conjuration)
+
+Level: 3  
+Range: 10'  
+Duration: 3 rounds  
+Casting Time: 3  
+Area of Effect: 1 creature  
+Saving Throw: Special
+
+This spell conjures a corrosive, acidic slime of horrid strength on one creature.  The acid persists, burning the creature over 3 rounds.  The first round, the creature suffers 1d3 points of acid damage per level (max 15d3). On the second round, the creature suffers 1d2 points of acid damage (max 15d2).  On the third round, the creature suffers 1 point of damage per level (max 15).
+
+Additionally, the target suffers a -2 penalty to attacks while the acid is in effect.  The affected creature can save vs. poison/death to reduce the damage by 1/2 and to avoid the to hit penalty.
+
+This spell is effective against constructs and other creatures normally resistant to magic.
+
 ### Level 4
+
+**Charm Monster**  (New)
+(Enchantment/Charm)
+
+Level: 4  
+Range: Visual range of the caster  
+Duration: 5 rounds  
+Casting Time: 1  
+Area of Effect: 1 person or monster 
+Saving Throw: Neg.
+
+This spell affects any single person or monster it is cast upon. The term monster includes any non-undead, non-construct, non-extraplanar creature, such as an ogre or even a dragon.  The target is allowed a Saving Throw vs. Spell to negate the effect (a person, as described by charm person, saves at -4).
+
+If the spell's recipient fails <PRO_HISHER> Saving Throw, <PRO_HESHE> regards the caster as a trusted friend and ally to be heeded and protected. The caster may give him orders, and the charmed individual will carry them out as quickly as possible.
+
+If the caster harm or attempts to harm the charmed creature by some overt action, or if a Dispel Magic spell is cast upon the charmed creature, the Charm spell is broken. If two or more Charms simultaneously affect a creature, the most recent Charm takes precedence. Note that the subject has full memory of the events that took place while he was charmed. Also note that you cannot have a charmed creature leave the area where he is charmed.
+
+***Notes***:    
+**Revised Charm**: This spell is only installed if Revised Charm global revision is installed 
 
 **Emotion: Courage** (IWDEE)
 (Enchantment/Charm)
@@ -493,6 +604,22 @@ This spell creates the emotion of hope within the area of effect. All creatures 
 ***Notes***:    
 **General**: Set to Opposition School: Invocation unless IWDEE style spells is installed (where it will be Necromancer as in IWDEE)
 
+**Mindsight** (New)  
+(Divination)
+
+Level: 4  
+Range: 0  
+Duration: 1 hour  
+Casting Time: 1  
+Area of Effect: the caster  
+Saving Throw: None  
+
+When this spell is cast, the caster is able to "see" and "hear" everything in <PRO_HISHER> immediate area, as though the environmental conditions are ideal for sight and sound, and <PRO_HESHE> can effectively "see" twice as far as before.  <PRO_HESHE> needs no sensory organs for this detection, and, as such, effects that blind or deafen are effectively dispelled.  Additionally, <PRO_HESHE> need not fear such effects as long as this spell is in place.
+
+<PRO_HESHE> effectively gains infravision while this spell is in effect, and <PRO_HISHER> preternatural awareness of <PRO_HISHER> surroundings grants a -2 bonus to <PRO_HISHER> armor class.  
+
+This spell does not grant any special benefits against illusions.
+
 **Shadow Monsters** (IWDEE)  
 (Illusion/Phantasm)
 
@@ -524,6 +651,18 @@ Shout grants the wizard tremendous vocal powers, allowing <PRO_HIMHER> to emit a
 **General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
 
 ### Level 5
+
+**Snilloc's Major Missile** (New)
+(Evocation)
+
+Level: 5  
+Range: Visual range of the caster  
+Duration: Instant  
+Casting Time: 1  
+Area of Effect: 1 creature  
+Saving Throw: None  
+
+Major Missile is much like Magic Missile, creating a single missile of magical energy that darts forth from the wizard's fingertip and unerringly strike their target, which must be a creature of some sort. This missile inflicts 1d4+1 points of damage, plus 1d4+1 for every two levels thereafter, to a maximum of 15d4 +15.
 
 **Usurp Shell** (New)  
 (Necromancy)
@@ -559,6 +698,20 @@ Shades is similar to Shadow Monsters and Demi-Shadow Monstersâ€”it allows t
 
 ***Notes***:    
 **General**: Set to Opposition School: Necromancy unless IWDEE style spells is installed (where it will be Abjurer as in IWDEE)
+
+**Siphon Vitality** (New)  
+(Necromancy)
+
+Level: 6  
+Range: 15 ft.  
+Duration: 1 hour  
+Casting Time: 3  
+Area of Effect: 1 creature  
+Saving Throw: None
+
+When the caster casts this spell and points to a creature within 15', that creature is drained for 1d8 points of magic damage per 3 levels (maximum 6d8 at 18th level). These Hit Points are added to the caster's total as a temporary bonus that lasts for 1 hour.  The caster is also revitalized, gaining a +1 bonus to attack rolls, damage rolls, and moral.  This spell has no effect on constructs or undead.
+
+A caster cannot benefit from multiple castings of Siphon Vitality.
 
 ### Level 7
 
