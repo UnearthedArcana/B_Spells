@@ -8,6 +8,56 @@ TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 TO DO 3:
 
+Version 0.88.15
+
+2018-09-29
+
+- Changed Ray of Fatigue to Enervating Ray
+
+- Added a scroll to Accelerate Metabolism
+
+- Modified Alarm so that it follows caster (to be more useful)
+
+- Added Anticipation scroll
+
+- Added Detect Traps and Portals scroll
+
+- Created Farseer icon bams
+
+- Added Farseer Scroll
+
+- Added Hypnotism Scroll
+
+- Created protective shell scroll
+
+- Bolt of Paralysis scroll created
+
+2018-09-27
+
+- Added missing spl for snare
+
+2018-09-26
+
+- Revised Camoflauge (sp)
+
+- Revised text for a few new spells
+
+2018-09-23
+
+- Updated Siphon Vitality to something more reasonable
+
+- Created first draft of Bolt of Paralysis
+
+- Created first draft of Farseer
+
+- Created first draft of Mindsight
+
+2018-09-22
+
+- Changed Heat vision to devil's eyes 
+
+- First draft of siphon vitality done
+
 Version 0.88.14
 
 2018-09-16
