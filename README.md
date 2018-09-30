@@ -314,11 +314,11 @@ Multiple castings of this spell are not cumulative.
 **Alarm** (New)  
 (Divination)
 
-Level: 1
-Range: 30 ft.
-Duration: Spcial
-Casting Time: 9
-Area of Effect: Special
+Level: 1  
+Range: 30 ft.  
+Duration: Spcial  
+Casting Time: 9  
+Area of Effect: Special  
 Saving Throw: None
 
 
