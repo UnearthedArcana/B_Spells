@@ -314,15 +314,19 @@ Multiple castings of this spell are not cumulative.
 **Alarm** (New)  
 (Divination)
 
-Level: 1  
-Range: 30 ft.  
-Duration: 8 Hours  
-Casting Time: 9  
-Area of Effect: Special  
-Saving Throw: None  
+Level: 1
+Range: 30 ft.
+Duration: Spcial
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
 
 
-Alarm creates a subtle ward on an area you select. Once the spell effect is in place, it thereafter sounds a mental or audible alarm each time a hostile creature of Tiny or larger size enters the warded area or touches it. This alarm awakens the caster and <PRO_HISHER> allies, and makes them alert to all enemies, giving them a +2 bonus to weapon and casting speed for a single round.  This spell cannot be cast in the presence of enemies, and once the ward is set, it cannot be moved.
+When alarm is cast, the caster and <PRO_HISHER> allies are alerted if any creature, visible or invisible, with hostile intent comes within 30' of <PRO_HIMHER> by a mental or audible alarm.
+
+This alarm awakens the caster and <PRO_HISHER> allies, and makes them alert to all enemies, giving them a +2 bonus to weapon and casting speed for a single round.  This spell cannot be cast in the presence of enemies.  
+
+Once the ward is set, it protects the caster and <PRO_HISHER> allies as long as they stay within the general area.  The ward lasts for 8 hours or until triggered.
 
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
@@ -360,6 +364,25 @@ This chance to detect spells stacks with any preexisting skill the mage might ot
 
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, +20% to skill bonus (maxes out at 95%)  
+
+**Enervating Ray** (New)  
+(Necromancy)
+
+Level: 1
+Range: 40 ft.
+Duration: 1 round/level
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: Special
+
+When this spell is cast, a ray slams into the target chosen by the caster, sapping their energy and knocking the wind out of them.  At first level, this spell does 2d4 non-lethal damage to the target, and, if they do not save vs. death, penalizes their AC, THAC0 and Saves by -1.
+
+Damage increases by 2d4 at 3rd level, and every 2 levels thereafter (max 10d4 at 9th level).  The penalties are increased by -1 at 5th level, and every 5 levels thereafter (max -5 at 20th level).
+
+Undead and creatures without a biological anatomy are immune to Enervating Ray.
+
+***Notes***:    
+**1st level cantrips**: Damage is reduced to 1/2, but kept as a 1st level spell
 
 **Farseer**  (New)
 (Divination)
@@ -407,25 +430,6 @@ Saving Throw: None
 This spell creates a thin magical shell that harmlessly absorbs the first physical strike that hits the caster.
 
 _Credit for this spell belons to Subtledoctor (Modified with permission)_
-
-**Ray of Fatigue** (New)  
-(Necromancy)
-
-Level: 1  
-Range: 40 ft.  
-Duration: 1 round/level  
-Casting Time: 2  
-Area of Effect: 1 creature  
-Saving Throw: Special
-
-When this spell is cast, a ray of fatigue slams into the target, sapping their energy and knocking the wind out of them.  At first level, this spell does 2d4 non-lethal damage to the target, and, if they do not save vs. death, penalizes their AC, THAC0 and Saves by -1.
-
-Damage increases by 2d4 at 3rd level, and every 2 levels thereafter (max 10d4 at 9th level).  The penalties are increased by -1 at 5th level, and every 5 levels thereafter (max -5 at 20th level).
-
-Undead and creatures without a biological anatomy are immune to Ray of Fatigue.
-
-***Notes***:    
-**1st level cantrips**: Damage is reduced to 1/2, but kept as a 1st level spell
 
 **Reprieve**  (New)
 (Alteration)
