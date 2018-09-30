@@ -315,8 +315,8 @@ Multiple castings of this spell are not cumulative.
 (Divination)
 
 Level: 1  
-Range: 30 ft.  
-Duration: Spcial  
+Range: 0 
+Duration: Special  
 Casting Time: 9  
 Area of Effect: Special  
 Saving Throw: None
@@ -341,12 +341,12 @@ Duration: 3 rounds
 Area of Effect: The caster    
 Saving Throw: None    
 
-This cantrip gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time with a +5 bonus to AC and saves vs. dragon breath for 3 rounds.
+This spell gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time granting a +5 bonus to AC and saves vs. dragon breath for 3 rounds.
 
 _Credit for this spell belons to Subtledoctor (Modified with permission)_
 
 ***Notes***:    
-**0 Level Cantrips**: This spell is converted to a Cantrip, with a 1 round duration, if Cantrips is installed.
+**0 Level Cantrips**: This spell is converted to a Cantrip, with a 1 round duration, and a casting time of 1 if Cantrips is installed.
 
 **Detect Traps and Portals** (New)  
 (Divination)
@@ -355,7 +355,7 @@ Level: 1
 Range: 0  
 Duration: 1 hour  
 Casting Time: 9  
-Area of Effect: 30-ft. radius  
+Area of Effect: Special  
 Saving Throw: None  
 
 With this spell, the mage can detect traps and secret doors, as if <PRO_HESHE> were a Thief.  When <PRO_HESHE> casts this spell, <PRO_HESHE> has a chance to detect traps equal to 30%, +5% for each additional level after first (max 75% at level 10) for one hour.  <PRO_HESHE> need not take a special action, <PRO_HESHE> will automatically look for traps for the duration as long as this spell is in effect, and <PRO_HESHE> is not doing anything else.
@@ -397,7 +397,7 @@ Saving Throw: None
 The recipient of this spell gains extraordinary vision, able to see twice as far as before with clarity.  Additionally, they gain a +2 bonus to THAC0 with ranged weapons. 
 
 ***Notes***:    
-**0 level cantrips**: Converted to a cantrip, unchanged  
+**1st level cantrips**:  Duration reduced to 3 rounds 
 
 
 **Hypnotism** (New)  
@@ -450,14 +450,14 @@ _Credit for this spell implementation belongs to Kjeron_
 **Vanish** (New)  
 (Illusion/Phantasm)
 
-Level: 1  
-Range: 0  
-Duration: 1 round/level (max 10 rounds)  
-Casting Time: 1  
-Area of Effect: The caster  
-Saving Throw: None  
+Level: 1
+Range: 0
+Duration: 1 round, +1 round per 2 levels
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: None
 
-This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round/level (max 10 rounds), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).
+This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round, +1 round per 2 levels after 1st, level (max 5 rounds at levl 9), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).~
 
 ***Notes***:    
 **1st level cantrips**: Duration reduced to 1 round 
