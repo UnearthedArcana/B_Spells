@@ -135,7 +135,7 @@ Upon casting this spell, the priest causes one undead within range to be slowed.
 
 ***Notes***: 
 **Faiths and Powers**: This spell is in the Death Sphere if FnP is installed.
-- 1st level cantrips: Changes to a 1st level spell, no change
+**1st level cantrips**: Changes to a 1st level spell, no change
 
 **Shatter** (New)  
 (Transmutation)
