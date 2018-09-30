@@ -434,18 +434,21 @@ _Credit for this spell belons to Subtledoctor (Modified with permission)_
 **Reprieve**  (New)
 (Alteration)
 
-Range: Visual range of the caster  
-Duration: 1 round  
-Target: 1 Ally  
-Casting Time: 1  
-Saving Throw: None  
+Range: Visual range of the caster
+Duration: 1 round +1 round/2 levels
+Target: 1 Ally
+Casting Time: 1
+Saving Throw: None
 
 This spell causes a single ally to vanish in a flash of light. After one round that ally will reappear at the location you were when you cast this spell.
+
+Lasts for 1 round at first level, +1 round for every two levels after that (max 5 rounds at level 9).
 
 _Credit for this spell implementation belongs to Kjeron_
 
 ***Notes***:    
-**0 level cantrips**: Converted to a cantrip, unchanged  
+**0 level cantrips**: Changed to a cantrip
+**1 level cantrips**: Range changed to 1 round
 
 **Vanish** (New)  
 (Illusion/Phantasm)
