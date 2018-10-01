@@ -798,7 +798,7 @@ Duration: 3 rounds
 Area of Effect: The caster
 Saving Throw: None
 
-This cantrip gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time with a +5 bonus to AC and saves vs. dragon breath for 3 rounds.~
+This spell gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time granting a +5 bonus to AC and saves vs. dragon breath for 3 rounds.~
 
 //@60200
 
@@ -807,8 +807,8 @@ This cantrip gives the caster a temporary, intuitive foreknowledge of the immedi
 (Divination)
 
 Level: 1
-Range: 30 ft.
-Duration: Spcial
+Range: 0
+Duration: Special
 Casting Time: 9
 Area of Effect: Special
 Saving Throw: None
@@ -848,7 +848,7 @@ Level: 1
 Range: 0
 Duration: 1 hour
 Casting Time: 9
-Area of Effect: 30-ft. radius
+Area of Effect: Special  
 Saving Throw: None
 
 With this spell, the mage can detect traps and secret doors, as if <PRO_HESHE> were a Thief.  When <PRO_HESHE> casts this spell, <PRO_HESHE> has a chance to detect traps equal to 30%, +5% for each additional level after first (max 75% at level 10) for one hour.  <PRO_HESHE> need not take a special action, <PRO_HESHE> will automatically look for traps for the duration as long as this spell is in effect, and <PRO_HESHE> is not doing anything else.
@@ -860,12 +860,14 @@ This chance to detect spells stacks with any preexisting skill the mage might ot
 (Alteration)
 
 Range: Visual range of the caster
-Duration: 1 round
+Duration: 1 round +1 round/2 levels
 Target: 1 Ally
 Casting Time: 1
 Saving Throw: None
 
-This spell causes a single ally to vanish in a flash of light. After one round that ally will reappear at the location you were when you cast this spell.~
+This spell causes a single ally to vanish in a flash of light. After one round that ally will reappear at the location you were when you cast this spell.
+
+Lasts for 1 round at first level, +1 round for every two levels after that (max 5 rounds at level 9).~
 
 @61013 = ~Accelerate Metabolism~
 @61014 = ~Accelerate Metabolism
@@ -892,12 +894,12 @@ Multiple castings of this spell are not cumulative.~
 
 Level: 1
 Range: 0
-Duration: 1 round/level (max 10 rounds)
+Duration: 1 round, +1 round per 2 levels
 Casting Time: 1
 Area of Effect: The caster
 Saving Throw: None
 
-This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round/level (max 10 rounds), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).~
+This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round, +1 round per 2 levels after 1st, level (max 5 rounds at levl 9), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).~
 
 @61101 = ~Enervating Ray~
 @61102 = ~Enervating Ray

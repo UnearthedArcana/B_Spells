@@ -8,6 +8,27 @@ TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 TO DO 3:
 
+Version 0.88.16
+
+2018-09-30
+
+- Removed party vision from alarm and corrected description 
+
+- Fixed a couple misnamed scrolls (Alarm and Farseer)
+
+- Various description corrections
+
+- Detect Traps and portals (changed spl to speed 9)
+
+- Reprieve: changed casting time to 1
+
+- Vanish: Reduced duration to something managable
+
+- Updated Reprieve
+
+- Readme popup
+
+
 Version 0.88.15
 
 2018-09-29

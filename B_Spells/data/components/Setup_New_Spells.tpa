@@ -380,8 +380,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~
         SAY NAME1 @10
-        SAY NAME2 @61013
-	SAY DESC @61014
+        SAY NAME2 @60201
+	SAY DESC @60202
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
@@ -539,7 +539,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   END      //  Remove earlier versions of spell
 //No icons as yet
 //add icons and projectile
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+  LPF ALTER_SPELL_HEADER INT_VAR speed = 9 STR_VAR icon = EVAL  ~%spell_res%B~ END
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W105a.bam~ ~override/%spell_res%a.bam~
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W105b.bam~ ~override/%spell_res%b.bam~
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W105c.bam~ ~override/%spell_res%c.bam~
@@ -628,17 +628,17 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //No icons as yet
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W105a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W105b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W105c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W106a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W106b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W106c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~ //It's fine to use the same scroll
         SAY NAME1 @10
-        SAY NAME2 @61001
-	SAY DESC @61002
+        SAY NAME2 @61110
+	SAY DESC @61111
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
@@ -729,6 +729,7 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_W1XXA.spl~ ~override/%spell_res%A.sp
   LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~%spell_res%~ END  //
 //  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@60206) END  //Notification: No longer Hypnotized
 //add icons and projectile
+/*
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W105a.bam~ ~override/%spell_res%a.bam~
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W105b.bam~ ~override/%spell_res%b.bam~
@@ -736,7 +737,7 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_W105c.bam~ ~override/%spell_res%c.ba
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
+*/
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/SCRL69.itm~ ~override/%spell_res%.itm~ //It's fine to use the same scroll
         SAY NAME1 @10
@@ -998,12 +999,12 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
       INT_VAR match_opcode = 324            //
       STR_VAR resource = EVAL ~%spell_res%~
   END      //
-
+  LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
 //No icons (or portrait icons) as yet. Use invisibility (mislead) for now
 /*
 
 //add icons and projectile
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR  speed = 1 icon = EVAL  ~%spell_res%B~ END
 COPY ~%mod_folder%/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
 COPY ~%mod_folder%/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
 COPY ~%mod_folder%/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~

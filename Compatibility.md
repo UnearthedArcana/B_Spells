@@ -61,7 +61,7 @@ WIZARD_ALARM
 - 1st level cantrips: Remains a 1st level spell, unchanged
 
 WIZARD_ANTICIPATION
-- 0 level cantrips: Anticipation is a cantrip if cantrips is installed, and lasts for 1 round.  Modify description.
+- 0 level cantrips: Anticipation is a cantrip if cantrips is installed. Lasts 1 round and has a casting time of 1.  Modify description.
 - 1st level cantrips: Stays a 1st level spell, unchanged
 
 WIZARD_CHARM_MONSTER
@@ -71,16 +71,18 @@ WIZARD_DETECT_TRAPS
 - 1st level cantrips:  Converted to a second level spell, +20% to skill bonus (maxes out at 95%)
 
 WIZARD_FARSEER
-- 0 level cantrips: Convert to 0 level cantrip, unchanged
+- 1st level cantrips:  Duration reduced to 3 rounds
 
 WIZARD_HYPNOTISM
 - 1st level cantrips: Changes to a 2nd level spell, unchanged
 
-WIZARD_RAY_OF_FATIGUE
+WIZARD_ENERVATING_RAY
 - 1st level cantrips: Damage is reduced to 1/2, but kept as a 1st level spell
 
 WIZARD_VANISH
 - 1st level cantrips: Duration reduced to 1 round
 
+WIZARD_REPRIEVE
+- 1st level cantrips:  Duration reduced to 1 round
 
  

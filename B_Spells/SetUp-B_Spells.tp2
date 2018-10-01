@@ -1,7 +1,8 @@
-BACKUP ~spells/backup~
+BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
+README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.88.15~
+VERSION ~0.88.16~
 
 
 ALWAYS
