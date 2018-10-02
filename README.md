@@ -1,10 +1,8 @@
 # New and Revised Spells
 
-New spells, "(New)", will only be installed if new spells are installed.  Revised spells, (Revised), will only be installed in the relevant revised spell component is installed.  IWDEE spells, (IWDEE) will only be installed if the relevant IWDEE spells component is installed. Interactions will be noted in the spell description.
+New spells, "(New)", will only be installed if new spells are installed.  Revised spells, (Revised), will only be installed in the relevant revised spell component is installed.  IWDEE spells, described in the section below, will only be installed if the relevant IWDEE spells component is installed. Interactions will be noted in the spell description.
 
 ## Divine Spells: Universal
-
-### Level 1
 
 ### Level 2
 
@@ -21,21 +19,11 @@ Saving Throw: None
 
 With this spell, the caster causes a swirling sword-shaped formation of jagged ice shards to spring forth from <PRO_HISHER> hand. This blade-like ray is wielded as if proficient. If the caster successfully hits with the ice blade in melee combat, the creature struck suffers 1d8 points of cold damage, +1 point per level (to a maximum of 1d8+10). The blade is considered to be of +1 enchantment when determining what it can hit.
 
-### Level 3
-
-### Level 4
-
-### Level 5
-
-### Level 6
-
-### Level 7
-
-## Divine Spells: Cleric Only
+## Divine Spells: Cleric/Paladin Only
 
 ### Level 1
 
-**Destructive Smite** (New)  
+**Destructive Smite** (New)    
 (Conjuration)
 
 Level: 1  
@@ -55,9 +43,9 @@ This spell imbues the caster with pure force that <PRO_HESHE> can use against <P
 
 Level: 1  
 Sphere: Necromantic  
-Range: Visual range of the caster  
+Range: Visual range of the caster    
 Casting Time: 3  
-Area of Effect: One Undead Creature  
+Area of Effect: One Undead Creature    
 Saving Throw: None  
 
 This spell disrupts the negative energy that sustains a target undead creature.  Any undead targeted by this spell suffers 2d6+2 points of magic damage, +1d6+1 per two levels (max 7d6+7 at 11th level).
@@ -74,7 +62,7 @@ Sphere: Necromantic
 Range: Touch  
 Duration: 1 Turn  
 Casting Time: 6  
-Area of Effect: The caster
+Area of Effect: The caster  
 
 When the caster completes this spell and touches an allied undead ally, <PRO_HESHE> gains the ability to see through that creature's eyes allowing <PRO_HIMHER> to see everything that it sees.  Additionally, <PRO_HESHE> has greater influence over the creature, making it attack more effectively, granting it a +4 bonus to attack rolls.
 
@@ -120,7 +108,7 @@ This spell enables the priest to forbid another creature to move, by commanding 
 ***Notes***: 
 **Faiths and Powers**: This spell is in the Thought Sphere if FnP is installed.  
 
-**Pacify the Dead** (New)
+**Pacify the Dead** (New)  
 (Alteration)
 
 Level: 2  
@@ -175,17 +163,7 @@ Caster level 13+: 2d8 damage per round
 
 _Credit for this spell belongs to Requiem & Mordeus (Used with permission)_
 
-### Level 3
-
-### Level 4
-
-### Level 5
-
-### Level 6
-
-### Level 7
-
-## Divine Spells: Druid Only
+## Divine Spells: Druid/Ranger Only
 
 ### Level 1
 
@@ -261,8 +239,6 @@ When the priest casts this spell, a jet of chilling frost shoots from <PRO_HISHE
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, doing double damage. 
 
-## Level 2
-
 ## Level 3
 
 **Snare** (New)  
@@ -279,14 +255,6 @@ Saving Throw: none
 When the druid casts this spell, <PRO_HESHE> selects an area within range.  The plant life in the area reconfigue to construct a deadly trap that does 1d8 points of piercing damage per level (max 10d8). 
 
 Much like a thief trap, this spell fails if cast in the presence of enemies.
-
-## Level 4
-
-## Level 5
-
-## Level 6
-
-## Level 7
 
 ## Arcane Spells
 
@@ -368,12 +336,12 @@ This chance to detect spells stacks with any preexisting skill the mage might ot
 **Enervating Ray** (New)  
 (Necromancy)
 
-Level: 1
-Range: 40 ft.
-Duration: 1 round/level
-Casting Time: 2
-Area of Effect: 1 creature
-Saving Throw: Special
+Level: 1  
+Range: 40 ft.  
+Duration: 1 round/level  
+Casting Time: 2  
+Area of Effect: 1 creature  
+Saving Throw: Special  
 
 When this spell is cast, a ray slams into the target chosen by the caster, sapping their energy and knocking the wind out of them.  At first level, this spell does 2d4 non-lethal damage to the target, and, if they do not save vs. death, penalizes their AC, THAC0 and Saves by -1.
 
@@ -384,7 +352,7 @@ Undead and creatures without a biological anatomy are immune to Enervating Ray.
 ***Notes***:    
 **1st level cantrips**: Damage is reduced to 1/2, but kept as a 1st level spell
 
-**Farseer**  (New)
+**Farseer**  (New)  
 (Divination)
 
 Level: 1  
@@ -392,7 +360,7 @@ Range: Touch
 Duration: 1 hour  
 Casting Time: 2  
 Area of Effect: 1 creature  
-Saving Throw: None
+Saving Throw: None  
 
 The recipient of this spell gains extraordinary vision, able to see twice as far as before with clarity.  Additionally, they gain a +2 bonus to THAC0 with ranged weapons. 
 
@@ -400,7 +368,7 @@ The recipient of this spell gains extraordinary vision, able to see twice as far
 **1st level cantrips**:  Duration reduced to 3 rounds 
 
 
-**Hypnotism** (New)  
+**Hypnotism** (New)   
 (Enchantment/Charm)
 
 Level: 1  
@@ -417,7 +385,7 @@ Affected creatures shake off this effect if they are attacked.
 ***Notes***:    
 **1st level cantrips**: Converted to a second level spell, unchanged  
 
-**Protective Shell**  (New)
+**Protective Shell**  (New)  
 (Abjuration)
 
 Level: 1  
@@ -431,14 +399,14 @@ This spell creates a thin magical shell that harmlessly absorbs the first physic
 
 _Credit for this spell belons to Subtledoctor (Modified with permission)_
 
-**Reprieve**  (New)
+**Reprieve** (New)  
 (Alteration)
 
-Range: Visual range of the caster
-Duration: 1 round +1 round/2 levels
-Target: 1 Ally
-Casting Time: 1
-Saving Throw: None
+Range: Visual range of the caster  
+Duration: 1 round +1 round/2 levels  
+Target: 1 Ally  
+Casting Time: 1  
+Saving Throw: None  
 
 This spell causes a single ally to vanish in a flash of light. After one round that ally will reappear at the location you were when you cast this spell.
 
@@ -453,21 +421,21 @@ _Credit for this spell implementation belongs to Kjeron_
 **Vanish** (New)  
 (Illusion/Phantasm)
 
-Level: 1
-Range: 0
-Duration: 1 round, +1 round per 2 levels
-Casting Time: 1
-Area of Effect: The caster
-Saving Throw: None
+Level: 1  
+Range: 0  
+Duration: 1 round, +1 round per 2 levels  
+Casting Time: 1  
+Area of Effect: The caster  
+Saving Throw: None  
 
 This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round, +1 round per 2 levels after 1st, level (max 5 rounds at levl 9), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).~
 
-***Notes***:    
-**1st level cantrips**: Duration reduced to 1 round 
+***Notes***:     
+**1st level cantrips**: Duration reduced to 1 round  
 
 ### Level 2  
 
-**Bolt of Paralysis**  (New)
+**Bolt of Paralysis** (New)  
 (Evocation)
 
 Level: 2  
@@ -483,46 +451,16 @@ Even if the target makes their save, they are instead slowed for the duration.
 
 This spell does not affect undead or constructs, such as golems.
 
-**Snilloc's Snowball Swarm** (IWDEE) 
-(Evocation)
-
-Level: 2  
-Range: Visual range of the caster  
-Duration: Instant  
-Casting Time: 2  
-Area of Effect: 30-ft. radius  
-Saving Throw: 1/2  
-
-This spell causes a flurry of snowballs to erupt from a point within range. These snowballs will hit everything within the area of effect, doing 1d3 points of cold damage per level, up to a maximum of 8d3 points at level 8. Against fire-using or fire-dwelling creatures, it inflicts 1d6 points of cold damage per level, up to a maximum of 8d6 points at level 8.
-
-***Notes***:    
-**General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
-
 ### Level 3
 
-**Icelance** (IWDEE)  
-(Evocation)
-
-Level: 3
-Range: Visual range of the caster  
-Duration: Instant  
-Casting Time: 3  
-Area of Effect: 1 creature  
-Saving Throw: Special  
-
-This spell fires a magical lance of ice at a target of the caster's choosing. It automatically hits, inflicting 5d6 points of cold damage and forcing the target to make a Save vs. Spell or be stunned for 3 rounds.
-
-***Notes***:    
-**General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
-
-**Iron Mind**  (New) 
+**Iron Mind** (New)  
 (Abjuration)
 
 Level: 3  
 Range: Touch  
 Duration: 1 hour  
 Casting Time: 3  
-Area of Effect: 1 creature  
+Area of Effect: 1 creature   
 Saving Throw: None
 
 When the mage casts this spell, and touches a creature, that creature becomes immune to charm or fear effects for the next hour.  Additionally, recipients gain a +2 bonus to save vs. spell for the duration.
@@ -532,12 +470,12 @@ This spell does not protect against domination affects (except though the bonus 
 **Solvent of Corrosion** (New)  
 (Conjuration)
 
-Level: 3  
-Range: 10'  
-Duration: 3 rounds  
+Level: 3   
+Range: 10'   
+Duration: 3 rounds   
 Casting Time: 3  
 Area of Effect: 1 creature  
-Saving Throw: Special
+Saving Throw: Special  
 
 This spell conjures a corrosive, acidic slime of horrid strength on one creature.  The acid persists, burning the creature over 3 rounds.  The first round, the creature suffers 1d3 points of acid damage per level (max 15d3). On the second round, the creature suffers 1d2 points of acid damage (max 15d2).  On the third round, the creature suffers 1 point of damage per level (max 15).
 
@@ -547,14 +485,14 @@ This spell is effective against constructs and other creatures normally resistan
 
 ### Level 4
 
-**Charm Monster**  (New)
+**Charm Monster**  (New)  
 (Enchantment/Charm)
 
-Level: 4  
-Range: Visual range of the caster  
+Level: 4   
+Range: Visual range of the caster   
 Duration: 5 rounds  
 Casting Time: 1  
-Area of Effect: 1 person or monster 
+Area of Effect: 1 person or monster  
 Saving Throw: Neg.
 
 This spell affects any single person or monster it is cast upon. The term monster includes any non-undead, non-construct, non-extraplanar creature, such as an ogre or even a dragon.  The target is allowed a Saving Throw vs. Spell to negate the effect (a person, as described by charm person, saves at -4).
@@ -566,10 +504,117 @@ If the caster harm or attempts to harm the charmed creature by some overt action
 ***Notes***:    
 **Revised Charm**: This spell is only installed if Revised Charm global revision is installed 
 
-**Emotion: Courage** (IWDEE)
+**Mindsight** (New)   
+(Divination)
+
+Level: 4   
+Range: 0  
+Duration: 1 hour  
+Casting Time: 1  
+Area of Effect: the caster   
+Saving Throw: None  
+
+When this spell is cast, the caster is able to "see" and "hear" everything in <PRO_HISHER> immediate area, as though the environmental conditions are ideal for sight and sound, and <PRO_HESHE> can effectively "see" twice as far as before.  <PRO_HESHE> needs no sensory organs for this detection, and, as such, effects that blind or deafen are effectively dispelled.  Additionally, <PRO_HESHE> need not fear such effects as long as this spell is in place.
+
+<PRO_HESHE> effectively gains infravision while this spell is in effect, and <PRO_HISHER> preternatural awareness of <PRO_HISHER> surroundings grants a -2 bonus to <PRO_HISHER> armor class.  
+
+This spell does not grant any special benefits against illusions.
+
+### Level 5
+
+**Snilloc's Major Missile** (New)  
+(Evocation)
+
+Level: 5   
+Range: Visual range of the caster   
+Duration: Instant   
+Casting Time: 1   
+Area of Effect: 1 creature   
+Saving Throw: None   
+
+Major Missile is much like Magic Missile, creating a single missile of magical energy that darts forth from the wizard's fingertip and unerringly strike their target, which must be a creature of some sort. This missile inflicts 1d4+1 points of damage, plus 1d4+1 for every two levels thereafter, to a maximum of 15d4 +15.
+
+**Usurp Shell** (New)   
+(Necromancy)  
+
+Level: 5  
+Range: 60 ft.  
+Duration: 1 turn  
+Casting Time: 1  
+Area of Effect: 1 creature  
+Saving Throw: Special
+
+With this spell the caster attempts to bypass the targets mind, taking direct control of their body instead if they do not make a save vs. death -2.  Unlike a dominate spell, this spell does not touch the mind, and can even be used to usurp the body of an undead creature, or any creature with biological anatomy.
+
+If this spell is sucessful, the caster gains control of the targets body, allowing <PRO_HIMHER> to make the body attack or move as <PRO_HESHE> pleases. <PRO_HESHE> does not gain fine motor control of the tergets body, however, nor does <PRO_HESHE> gain control of the targets mind. Thus, <PRO_HESHE> cannot force the target to cast spells or use special abilities on <PRO_HISHER> behalf.
+
+Additionally, the targets movements are jerky and predicable, and they move at 80% their normal speed and suffer a -2 to all attack rolls. 
+
+If the target resists the spell, they suffer 3d8 points of magic damage.
+
+### Level 6
+
+**Siphon Vitality** (New)   
+(Necromancy)
+
+Level: 6   
+Range: 15 ft.  
+Duration: 1 hour   
+Casting Time: 3   
+Area of Effect: 1 creature   
+Saving Throw: None  
+
+When the caster casts this spell and points to a creature within 15', that creature is drained for 1d8 points of magic damage per 3 levels (maximum 6d8 at 18th level). These Hit Points are added to the caster's total as a temporary bonus that lasts for 1 hour.  The caster is also revitalized, gaining a +1 bonus to attack rolls, damage rolls, and moral.  This spell has no effect on constructs or undead.
+
+A caster cannot benefit from multiple castings of Siphon Vitality.
+
+
+# IWDEE Spells
+
+Description
+
+## Arcane Spells
+
+### Level 2  
+
+**Snilloc's Snowball Swarm** (IWDEE)  
+(Evocation)
+
+Level: 2  
+Range: Visual range of the caster   
+Duration: Instant  
+Casting Time: 2  
+Area of Effect: 30-ft. radius   
+Saving Throw: 1/2  
+
+This spell causes a flurry of snowballs to erupt from a point within range. These snowballs will hit everything within the area of effect, doing 1d3 points of cold damage per level, up to a maximum of 8d3 points at level 8. Against fire-using or fire-dwelling creatures, it inflicts 1d6 points of cold damage per level, up to a maximum of 8d6 points at level 8.
+
+***Notes***:    
+**General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
+
+### Level 3
+
+**Icelance** (IWDEE)  
+(Evocation)  
+
+Level: 3  
+Range: Visual range of the caster  
+Duration: Instant  
+Casting Time: 3  
+Area of Effect: 1 creature  
+Saving Throw: Special  
+
+This spell fires a magical lance of ice at a target of the caster's choosing. It automatically hits, inflicting 5d6 points of cold damage and forcing the target to make a Save vs. Spell or be stunned for 3 rounds.
+
+***Notes***:    
+**General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
+
+### Level 4
+
+**Emotion: Courage** (IWDEE)  
 (Enchantment/Charm)
 
-Level: 4  
+Level: 4   
 Range: Visual range of the caster  
 Duration: 1 hour  
 Casting Time: 4  
@@ -611,31 +656,15 @@ This spell creates the emotion of hope within the area of effect. All creatures 
 ***Notes***:    
 **General**: Set to Opposition School: Invocation unless IWDEE style spells is installed (where it will be Necromancer as in IWDEE)
 
-**Mindsight** (New)  
-(Divination)
-
-Level: 4  
-Range: 0  
-Duration: 1 hour  
-Casting Time: 1  
-Area of Effect: the caster  
-Saving Throw: None  
-
-When this spell is cast, the caster is able to "see" and "hear" everything in <PRO_HISHER> immediate area, as though the environmental conditions are ideal for sight and sound, and <PRO_HESHE> can effectively "see" twice as far as before.  <PRO_HESHE> needs no sensory organs for this detection, and, as such, effects that blind or deafen are effectively dispelled.  Additionally, <PRO_HESHE> need not fear such effects as long as this spell is in place.
-
-<PRO_HESHE> effectively gains infravision while this spell is in effect, and <PRO_HISHER> preternatural awareness of <PRO_HISHER> surroundings grants a -2 bonus to <PRO_HISHER> armor class.  
-
-This spell does not grant any special benefits against illusions.
-
 **Shadow Monsters** (IWDEE)  
 (Illusion/Phantasm)
 
-Level: 4
-Range: Visual range of the caster
-Duration: 1 round/level
-Casting Time: 4
-Area of Effect: Special
-Saving Throw: None
+Level: 4  
+Range: Visual range of the caster  
+Duration: 1 round/level  
+Casting Time: 4  
+Area of Effect: Special  
+Saving Throw: None  
 
 This spell shapes material from the Demiplane of Shadow into illusionary monsters. Up to six shadowy creatures can be summoned at once, but their total Hit Dice will normally not exceed the spellcaster's level.
 
@@ -643,7 +672,7 @@ This spell shapes material from the Demiplane of Shadow into illusionary monster
 **General**: Set to Opposition School: Necromancy unless IWDEE style spells is installed (where it will be Abjurer as in IWDEE)
 
 **Shout** (IWDEE)  
-(Invocation)
+(Invocation)  
 
 Level: 4  
 Range: 0  
@@ -656,38 +685,6 @@ Shout grants the wizard tremendous vocal powers, allowing <PRO_HIMHER> to emit a
 
 ***Notes***:    
 **General**: Set to Opposition School: Enchantment unless IWDEE style spells is installed (where it will be Conjurer as in IWDEE)
-
-### Level 5
-
-**Snilloc's Major Missile** (New)
-(Evocation)
-
-Level: 5  
-Range: Visual range of the caster  
-Duration: Instant  
-Casting Time: 1  
-Area of Effect: 1 creature  
-Saving Throw: None  
-
-Major Missile is much like Magic Missile, creating a single missile of magical energy that darts forth from the wizard's fingertip and unerringly strike their target, which must be a creature of some sort. This missile inflicts 1d4+1 points of damage, plus 1d4+1 for every two levels thereafter, to a maximum of 15d4 +15.
-
-**Usurp Shell** (New)  
-(Necromancy)
-
-Level: 5
-Range: 60 ft.
-Duration: 1 turn
-Casting Time: 1
-Area of Effect: 1 creature
-Saving Throw: Special
-
-With this spell the caster attempts to bypass the targets mind, taking direct control of their body instead if they do not make a save vs. death -2.  Unlike a dominate spell, this spell does not touch the mind, and can even be used to usurp the body of an undead creature, or any creature with biological anatomy.
-
-If this spell is sucessful, the caster gains control of the targets body, allowing <PRO_HIMHER> to make the body attack or move as <PRO_HESHE> pleases. <PRO_HESHE> does not gain fine motor control of the tergets body, however, nor does <PRO_HESHE> gain control of the targets mind. Thus, <PRO_HESHE> cannot force the target to cast spells or use special abilities on <PRO_HISHER> behalf.
-
-Additionally, the targets movements are jerky and predicable, and they move at 80% their normal speed and suffer a -2 to all attack rolls. 
-
-If the target resists the spell, they suffer 3d8 points of magic damage.
 
 ### Level 6
 
@@ -705,20 +702,6 @@ Shades is similar to Shadow Monsters and Demi-Shadow Monstersâ€”it allows t
 
 ***Notes***:    
 **General**: Set to Opposition School: Necromancy unless IWDEE style spells is installed (where it will be Abjurer as in IWDEE)
-
-**Siphon Vitality** (New)  
-(Necromancy)
-
-Level: 6  
-Range: 15 ft.  
-Duration: 1 hour  
-Casting Time: 3  
-Area of Effect: 1 creature  
-Saving Throw: None
-
-When the caster casts this spell and points to a creature within 15', that creature is drained for 1d8 points of magic damage per 3 levels (maximum 6d8 at 18th level). These Hit Points are added to the caster's total as a temporary bonus that lasts for 1 hour.  The caster is also revitalized, gaining a +1 bonus to attack rolls, damage rolls, and moral.  This spell has no effect on constructs or undead.
-
-A caster cannot benefit from multiple castings of Siphon Vitality.
 
 ### Level 7
 
