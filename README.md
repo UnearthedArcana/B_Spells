@@ -23,6 +23,33 @@ With this spell, the caster causes a swirling sword-shaped formation of jagged i
 
 ### Level 1
 
+**Bless Water** (New)  
+(Alteration)
+
+Level: 1  
+Sphere: Creation  
+Range: 0  
+Duration: 8 hours  
+Casting Time: 9  
+Area of Effect: The Caster  
+Saving Throw: None  
+
+With this spell, the caster blesses water, making it harmful against evil outsiders and undead creatures.  <PRO_HESHE> can throw them <PRO_HISHER>self, or <PRO_HESHE> can give them to <PRO_HISHER> allies.  Any character can throw these vials, and they can throw 3 per round.
+
+At 1st level, 3 vials are created.  An extra vial is created every 2 levels after that. 
+
+**Vial of Holy Water**
+
+STATISTICS:
+
+Damage: 1 damage, +2d6 +2 magic damage to undead or evil outsiders
+Speed Factor: 2
+Damage type: blunt
+
+***Notes***:  
+**Faiths and Powers**: This spell is called is in the Benediction Sphere if Faiths and Powers is installed.    
+**1st Level Cantrips**: This spell is converted to an Second Level Spell if 1st level cantrips is installed, and extra damage increses to 3d6 +3. 
+
 **Destructive Smite** (New)    
 (Conjuration)
 
