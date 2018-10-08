@@ -34,7 +34,7 @@ Casting Time: 9
 Area of Effect: The Caster  
 Saving Throw: None
 
-With this spell, the caster blesses water, creating holy water.  Holy water is harmful against evil outsiders and undead creatures, and mildly beneficial to living creatures.  Vials can be thrown or drunk, healing 1d4 points of damage to a living creature, or causing 2d4+2 magic damage to an undead creature or evil outsider.
+With this spell, the caster performs a short, but sacred ritual, creating holy water which <PRO_HESHE> can use <PRO_HIMHER>self or give to <PRO_HISHER> companions.  Holy water is harmful against evil outsiders and undead creatures, and mildly beneficial to living creatures.  Vials can be thrown or drunk, healing 1d4 points of damage to a living creature, or causing 2d4+2 magic damage to an undead creature or demonic outsider.
 
 A thrown vial does no damage in itself, but breaks and affects the target creature (within 20 ft.) as below.
 
