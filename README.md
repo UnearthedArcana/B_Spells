@@ -32,23 +32,26 @@ Range: 0
 Duration: 8 hours  
 Casting Time: 9  
 Area of Effect: The Caster  
-Saving Throw: None  
+Saving Throw: None
 
-With this spell, the caster blesses water, making it harmful against evil outsiders and undead creatures.  <PRO_HESHE> can throw them <PRO_HISHER>self, or <PRO_HESHE> can give them to <PRO_HISHER> allies.  Any character can throw these vials, and they can throw 3 per round.
+With this spell, the caster blesses water, creating holy water.  Holy water is harmful against evil outsiders and undead creatures, and mildly beneficial to living creatures.  Vials can be thrown or drunk, healing 1d4 points of damage to a living creature, or causing 2d4+2 magic damage to an undead creature or evil outsider.
 
-At 1st level, 3 vials are created.  An extra vial is created every 2 levels after that. 
+A thrown vial does no damage in itself, but breaks and affects the target creature (within 20 ft.) as below.
+
+Holy water dissipates after 8 hours if not used.
+
+At 1st level, 1 vial is created.  An extra vial is created every 2 levels after that.
 
 **Vial of Holy Water**
 
 STATISTICS:
 
-Damage: 1 damage, +2d6 +2 magic damage to undead or evil outsiders
-Speed Factor: 2
-Damage type: blunt
+Damage: 2d4+2 to Undead or Evil Outsiders
+Special: Restores 1d4 Hit Points to living creatures. 
 
 ***Notes***:  
 **Faiths and Powers**: This spell is called is in the Benediction Sphere if Faiths and Powers is installed.    
-**1st Level Cantrips**: This spell is converted to an Second Level Spell if 1st level cantrips is installed, and extra damage increses to 3d6 +3. 
+**1st Level Cantrips**: This spell is converted to an Second Level Spell if 1st level cantrips is installed, damage increses to 3d4 +3, and healing increases to 1d4+2. 
 
 **Destructive Smite** (New)    
 (Conjuration)
