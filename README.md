@@ -46,7 +46,7 @@ At 1st level, 1 vial is created.  An extra vial is created every 2 levels after 
 
 STATISTICS:
 
-Damage: 2d4+2 to Undead or Evil Outsiders
+Damage: 2d4+2 to Undead or Evil Outsiders  
 Special: Restores 1d4 Hit Points to living creatures. 
 
 ***Notes***:  
