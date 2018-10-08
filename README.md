@@ -43,6 +43,9 @@ Holy water dissipates after 8 hours if not used.
 At 1st level, 1 vial is created.  An extra vial is created every 2 levels after that.
 
 **Vial of Holy Water**
+This is a vial of water that has been sanctified by a cleric.
+
+When this delicate vial is thrown at a target, it breaks open, splashing them with holy water.  Holy water acts like acid against undead and demonic entities, but is soothing to living creatures, healing them for minor damage.
 
 STATISTICS:
 
