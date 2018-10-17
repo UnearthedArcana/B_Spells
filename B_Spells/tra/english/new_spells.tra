@@ -1,5 +1,44 @@
 //DIVINE SPELLS
+//@50000
 
+@50000 = ~Bless Water~
+@50001 = ~Bless Water
+(Alteration)
+
+Level: 1  
+Sphere: Creation  
+Range: 0  
+Duration: 8 hours  
+Casting Time: 9  
+Area of Effect: The Caster  
+Saving Throw: None
+
+With this spell, the caster performs a short, but sacred ritual, creating holy water which <PRO_HESHE> can use <PRO_HIMHER>self or give to <PRO_HISHER> companions.  Holy water is harmful against evil outsiders and undead creatures, and mildly beneficial to living creatures.  Vials can be thrown or drunk, healing 1d4 points of damage to a living creature, or causing 2d4+2 magic damage to an undead creature or demonic outsider.
+A thrown vial does no damage in itself, but breaks and affects the target creature (within 20 ft.) as below.
+
+At 1st level, 1 vial is created.  An extra vial is created every 2 levels after that.
+
+Holy water dissipates after 8 hours if not used.
+
+Vial of Holy Water
+
+STATISTICS:
+
+Damage: 2d4+2 to Undead or Evil Outsiders
+Special: Restores 1d4 Hit Points to living creatures.~
+
+@50002 = ~Vial of Holy Water~
+@50003 = ~Vial of Holy Water
+This is a vial of water that has been sanctified by a cleric.
+
+When this delicate vial is thrown at a target, it breaks open, splashing them with holy water.  Holy water acts like acid against undead and demonic entities, but is soothing to living creatures, healing them for minor damage.
+
+STATISTICS:
+
+Damage: 2d4+2 to Undead or Evil Outsiders
+Special: Restores 1d4 Hit Points to living creatures.
+
+Weight: 0~
 
 
 //@50300

@@ -9,6 +9,9 @@ CLERIC_ANIMAL_EYES
 - 0 level cantrips: Converted to an orison unchanged
 - 1st level cantrips: Stays a 1st level spell, unchanged
 
+CLERIC_BLESS_WATER
+- 1st level cantrips: This spell is converted to an Second Level Spell if 1st level cantrips is installed, and extra damage increses to 3d6 +3.
+
 CLERIC_CAMOUFLAGE
 - 0 level cantrips: Stays a 1st level spell
 - 1st level cantrips: Converted to a second level spell, with 5 turn duration, and a +20% bonus to stealth (max 95%)

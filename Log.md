@@ -8,6 +8,33 @@ TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 TO DO 3:
 
+Version 0.88.17
+
+2018-10-17
+
+- Created Scroll of sanctuary and added to temps of oghma, and wisdom
+
+- Added Vanish to Feldpost's inn store in bgee
+
+- Created Scroll of bless and added to temps of oghma, helm and wisdom
+
+- Created scroll of command and added to temple of helm
+
+- Improved code such that the description and name of orig spell gets copied to scrolls.  
+
+
+2018-10-16
+
+- Started Priest Scrolls component: Detect Evil created and added to temple of Oghma and temple of wisdom
+
+2018-10-07
+
+- Tweaked Bless Water
+
+2018-10-06
+
+- Created first draft of Bless Water
+
 Version 0.88.16
 
 2018-09-30

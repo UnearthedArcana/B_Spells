@@ -2,6 +2,7 @@
 @1 = ~Install IWDEE Spells only~
 @2 = ~BGEE or BG2EE required!~
 @3 = ~Install New Spells only~
+@4 = ~Install Priest Scrolls~
 @10 = ~Scroll~
 @11 = ~Level: 1~
 @12 = ~Level: Orison~
@@ -11,4 +12,6 @@
 @16 = ~New Spells already installed!~
 @17 = ~EE games only!~
 @100= ~Add New Spells~
+@101= ~Scrolls~
+
 

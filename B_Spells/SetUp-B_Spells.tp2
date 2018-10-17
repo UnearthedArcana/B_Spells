@@ -2,7 +2,7 @@ BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.88.16~
+VERSION ~0.88.17~
 
 
 ALWAYS
@@ -130,6 +130,14 @@ END
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
 INCLUDE ~%mod_folder%/lib/immunities.tpa~
+
+
+BEGIN @4  //Priest Scrolls
+DESIGNATED 102
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
+SUBCOMPONENT @101
+
+INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
 
 
 //Do I need the stuff below this????
