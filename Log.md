@@ -8,6 +8,20 @@ TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
 TO DO 3:
 
+2018-10-18
+
+- Created Scroll of Entangle
+
+- Created Scroll of M Stone
+
+- Created Scroll of Scroll of Prot Evil added to temp of wis, temp of oghma and temp of helm
+
+- Created Scroll of Remove Fear added to temp of wisdom and temp of helm
+
+- Created Scroll of SHILLELAGH
+
+- Created Scroll of ARMOR_OF_FAITH added to temple of helm
+
 Version 0.88.17
 
 2018-10-17
