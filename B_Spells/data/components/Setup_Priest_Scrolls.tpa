@@ -93,17 +93,91 @@ COPY ~%mod_folder%/data/scrolls/priest_1/B_PS104.itm~ ~override~   //Actual scro
        WRITE_ASCIIE 0x0054 ~%desc%~
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Scroll of Entangle
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~SPPR105.spl~ ~override~
+	          READ_ASCII 0x0008 name
+	          READ_ASCII  0x0050 desc
+
+COPY ~%mod_folder%/data/scrolls/priest_1/B_PS105.itm~ ~override~   //Actual scroll
+       WRITE_ASCIIE 0x0008 ~%name%~
+       WRITE_ASCIIE 0x000c ~%name%~
+       WRITE_ASCIIE 0x0054 ~%desc%~
+      
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Scroll of M Stone
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~SPPR106.spl~ ~override~
+	          READ_ASCII 0x0008 name
+	          READ_ASCII  0x0050 desc
+
+COPY ~%mod_folder%/data/scrolls/priest_1/B_PS106.itm~ ~override~   //Actual scroll
+       WRITE_ASCIIE 0x0008 ~%name%~
+       WRITE_ASCIIE 0x000c ~%name%~
+       WRITE_ASCIIE 0x0054 ~%desc%~
+       
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Scroll of Prot Evil
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~SPPR107.spl~ ~override~
+	          READ_ASCII 0x0008 name
+	          READ_ASCII  0x0050 desc
+
+COPY ~%mod_folder%/data/scrolls/priest_1/B_PS107.itm~ ~override~   //Actual scroll
+       WRITE_ASCIIE 0x0008 ~%name%~
+       WRITE_ASCIIE 0x000c ~%name%~
+       WRITE_ASCIIE 0x0054 ~%desc%~
+  
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Scroll of Remove Fear
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~SPPR108.spl~ ~override~
+	          READ_ASCII 0x0008 name
+	          READ_ASCII  0x0050 desc
+
+COPY ~%mod_folder%/data/scrolls/priest_1/B_PS108.itm~ ~override~   //Actual scroll
+       WRITE_ASCIIE 0x0008 ~%name%~
+       WRITE_ASCIIE 0x000c ~%name%~
+       WRITE_ASCIIE 0x0054 ~%desc%~
+       
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Scroll of Sanctuary
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 COPY_EXISTING ~SPPR109.spl~ ~override~
 	          READ_ASCII 0x0008 name
-	          READ_ASCII  0x0050 desc
+	          READ_ASCII 0x0050 desc
 
 COPY ~%mod_folder%/data/scrolls/priest_1/B_PS109.itm~ ~override~   //Actual scroll
        WRITE_ASCIIE 0x0008 ~%name%~
        WRITE_ASCIIE 0x000c ~%name%~
        WRITE_ASCIIE 0x0054 ~%desc%~
 
+//create actual scroll
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CLERIC_SHILLELAGH
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~SPPR110.spl~ ~override~
+	          READ_ASCII 0x0008 name
+	          READ_ASCII  0x0050 desc
+
+COPY ~%mod_folder%/data/scrolls/priest_1/B_PS110.itm~ ~override~   //Actual scroll
+       WRITE_ASCIIE 0x0008 ~%name%~
+       WRITE_ASCIIE 0x000c ~%name%~
+       WRITE_ASCIIE 0x0054 ~%desc%~       
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//CLERIC_ARMOR_OF_FAITH
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+COPY_EXISTING ~SPPR111.spl~ ~override~
+	          READ_ASCII 0x0008 name
+	          READ_ASCII  0x0050 desc
+
+COPY ~%mod_folder%/data/scrolls/priest_1/B_PS111.itm~ ~override~   //Actual scroll
+       WRITE_ASCIIE 0x0008 ~%name%~
+       WRITE_ASCIIE 0x000c ~%name%~
+       WRITE_ASCIIE 0x0054 ~%desc%~       
+
+       
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ///////////                         ////////////
@@ -115,7 +189,9 @@ COPY ~%mod_folder%/data/scrolls/priest_1/B_PS109.itm~ ~override~   //Actual scro
 ACTION_IF FILE_EXISTS_IN_GAME ~TEM2601.STO~ BEGIN  //Temple of Oghma
   COPY_EXISTING ~TEM2601.STO~ ~override~
     ADD_STORE_ITEM ~B_PS101~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR101.SPR-Bless)
+    ADD_STORE_ITEM ~B_PS103~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR103.SPR-Cure Light Wounds)
     ADD_STORE_ITEM ~B_PS104~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR104.SPR-Detect Evil)
+    ADD_STORE_ITEM ~B_PS107~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR107.SPR-prot from evil)
     ADD_STORE_ITEM ~B_PS109~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR109.SPR-Sanctuary)
 END
 
@@ -130,7 +206,10 @@ END
 ACTION_IF FILE_EXISTS_IN_GAME ~TEM2304.STO~ BEGIN  //Temple of wisdom
   COPY_EXISTING ~TEM2304.STO~ ~override~
     ADD_STORE_ITEM ~B_PS101~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR101.SPR-Bless)
+    ADD_STORE_ITEM ~B_PS103~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR103.SPR-Cure Light Wounds)
     ADD_STORE_ITEM ~B_PS104~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR104.SPR-Detect Evil)
+    ADD_STORE_ITEM ~B_PS107~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR107.SPR-prot from evil)
+    ADD_STORE_ITEM ~B_PS108~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR108.SPR-remove fear)
     ADD_STORE_ITEM ~B_PS109~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR109.SPR-Sanctuary)
 END
 
@@ -147,7 +226,24 @@ ACTION_IF FILE_EXISTS_IN_GAME ~TEM0002.sto~ BEGIN  //Temple of wisdom
     ADD_STORE_ITEM ~B_PS101~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR101.SPR-Bless)
     ADD_STORE_ITEM ~B_PS102~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR102.SPR-Command)
     ADD_STORE_ITEM ~B_PS104~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR104.SPR-Detect Evil)
+    ADD_STORE_ITEM ~B_PS107~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR107.SPR-prot from evil)
+    ADD_STORE_ITEM ~B_PS108~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR108.SPR-remove fear)
+    ADD_STORE_ITEM ~B_PS111~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR111.SPR-Armor of faith)
 END
+
+
+
+/*
+
+//exp code
+COPY_EXISTING_REGEXP GLOB ~SPPR.*\.SPL~ ~.~
+	READ_ASCII 0x0008 name //spell name
+	READ_ASCII 0x0050 desc //description 
+	READ_SHORT 0x007E target //Target-check
+	READ_SHORT 0x0080 range //range-check
+
+END
+
 
 /*
 //
@@ -189,7 +285,7 @@ ADD_SPELL ~%mod_folder%/data/iwd_spells/wizard_1/b_w101.spl~ 2 1 ~WIZARD_EXPEDIT
 	SAY DESC @1260001
 
 //to clear earlier versions of the spell
-LAF RES_NUM_OF_SPELL_NAME
+LAF 
   STR_VAR spell_name = ~WIZARD_EXPEDITIOUS_RETREAT~
   RET spell_res
 END
