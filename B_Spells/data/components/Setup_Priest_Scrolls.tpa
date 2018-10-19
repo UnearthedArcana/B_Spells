@@ -236,13 +236,27 @@ END
 /*
 
 //exp code
-COPY_EXISTING_REGEXP GLOB ~SPPR.*\.SPL~ ~.~
-	READ_ASCII 0x0008 name //spell name
-	READ_ASCII 0x0050 desc //description 
+COPY_EXISTING_REGEXP GLOB ~SPPR1.[^d]*\.SPL~ ~.~
+	READ_LONG 0x0008 name //spell name
+	READ_LONG 0x0050 desc //description
 	READ_SHORT 0x007E target //Target-check
 	READ_SHORT 0x0080 range //range-check
-
+        READ_ASCII 0x76 spellicon (7)
+INNER_PATCH_SAVE spell ~%SOURCE_RES%~ BEGIN
+  REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_PS~
 END
+
+INNER_ACTION BEGIN
+ COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%spell%.ITM~
+        WRITE_LONG 0x0008 ~%name%~
+        WRITE_LONG 0x000c ~%name%~
+        WRITE_LONG 0x0054 ~%desc%~
+        WRITE_SHORT 0x007E target //Target-check
+        WRITE_SHORT 0x0080 range //range-check
+        WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+        WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+END
+BUT_ONLY
 
 
 /*
