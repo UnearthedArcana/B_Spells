@@ -1,3 +1,6 @@
+
+
+
 # New and Revised Spells
 
 New spells, "(New)", will only be installed if new spells are installed.  Revised spells, (Revised), will only be installed in the relevant revised spell component is installed.  IWDEE spells, described in the section below, will only be installed if the relevant IWDEE spells component is installed. Interactions will be noted in the spell description.
@@ -870,3 +873,7 @@ This subcomponent alters opposition schools to conform to IWDEE or BG(2)EE stand
 
 ### 20/30 level cap
 This subcomponent
+
+# Magic Item Creation and Addition
+
+This component adds new magic items, and item creation.  
