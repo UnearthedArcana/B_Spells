@@ -109,6 +109,10 @@ INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 //lev 2
 INCLUDE ~%mod_folder%/lib/spell_lists/2nd_list.tpa~
 
+//SR NWN spell deflection
+OUTER_SET $aoe_spell(~WIZARD_SNILLOCS_SNOWBALL_SWARM~)=1
+
+
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
@@ -771,6 +775,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //bloodrage immunity list
 //INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
+//SR NWN spell deflection
+ OUTER_SET $aoe_spell(~WIZARD_SHOUT~)=1
 
 
 //////////////////////////////////////////////////////////////
@@ -914,7 +920,9 @@ COPY ~%mod_folder%/data/iwd_spells/wizard_6/SPWI631c.bam~ ~override/%spell_res%c
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro299% STR_VAR icon = EVAL  ~%spell_res%B~ END
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
+//SR NWN spell deflection
+ OUTER_SET $aoe_spell(~WIZARD_SOUL_EATER~)=1
+ 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
@@ -966,7 +974,8 @@ COPY ~%mod_folder%/data/iwd_spells/wizard_7/SPWI724c.bam~ ~override/%spell_res%c
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %idpro211% STR_VAR icon = EVAL  ~%spell_res%B~ END
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
+//SR NWN spell deflection
+OUTER_SET $aoe_spell(~WIZARD_ACID_STORM~)=1
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////

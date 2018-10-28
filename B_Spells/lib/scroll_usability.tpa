@@ -1,0 +1,127 @@
+  COPY_EXISTING_REGEXP GLOB ~B_US.*\.itm~ ~override~
+        READ_STRREF 0x0c id_name
+//      READ_LONG 0x0c id_name    //druid spells
+//	PATCH_IF (id_name = 12119) BEGIN
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Entangle~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Shillelagh~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Sunscorch~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Strength of Stone~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Barkskin~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~or Mammal~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Flame Blade~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Goodberry~) OR           //
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Alicorn Lance~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Beast Claw~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Call Lightning~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Hold Animal~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Summon Insects~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Moonblade~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Spike Growth~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Cloudburst~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Mold Touch~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Storm Shell~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Animal Summoning~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Call Woodland~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Giant Insect~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Produce Fire~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Static Charge~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Star Metal Cudgel~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Smashing Wave~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Thorn Spray~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Wall of Moonlight~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Iron Skins~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Pixie Dust~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Insect Plague~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Spike Stones~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Animal Rage~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Conjure Fire Elemental~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Fire Seeds~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Dolorous Decay~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Sol's Searing Orb~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Whirlwind~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Conjure Earth Elemental~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Nature's Beauty~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Fire Storm~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Sunray~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Creeping Doom~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Earthquake~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Obscuring Mist~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Regenerate~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Faerie Fire~) OR
+       //   PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Gust of Wind~) OR   //special circumstance SR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Storm Shield~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Magic Fang~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Icelance~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Ice Storm~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Stoneskin~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Polymorph Other~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Animal Growth~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Polymorph Other~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Shambling Mound~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Abundant Ammunition~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Animal Eyes~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Camouflage~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Frost Fingers~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Watery Fist~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Feral Instinct~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Snare~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Dolorous Decay~) OR
+          PATCH_IF NOT (~%id_name%~ STRING_CONTAINS_REGEXP ~Mist of Eldath~)
+          //SR Spells???
+          BEGIN
+            WRITE_BYTE 0x21 (THIS BAND 0b00000000)
+//        END
+END
+END
+  BUT_ONLY
+
+
+
+/*
+ ACTION_IF NOT VARIABLE_IS_SET %EE_LANGUAGE% BEGIN
+  COPY_EXISTING ~leat01.itm~ ~override~
+  BUT_ONLY
+  ACTION_FOR_EACH lang IN ~en_US~ ~pl_PL~ ~de_DE~ ~es_ES~ ~fr_FR~ ~cs_CZ~ ~ru_RU~ ~ko_KR~ BEGIN
+	WITH_TRA ~scales_of_balance/language/%lang%/armor.tra~ BEGIN
+	  OUTER_SPRINT ac_lang @10001
+	END	  
+	ACTION_IF NOT (~%ac_string%~ STRING_CONTAINS_REGEXP ~%ac_lang%~) BEGIN
+	  OUTER_SPRINT yaras_lang ~%lang%~
+	END
+  END
+END
+ 
+
+ COPY_EXISTING_REGEXP GLOB ~B_US.*\.itm~ ~override~
+  PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+	READ_LONG 0x31 prof
+	READ_SHORT 0x1c type
+	PATCH_IF (%prof% = 96) BEGIN // daggers
+	  LPF ALTER_ITEM_HEADER INT_VAR header_type=1 dicesize=5 dicenumber=1 END
+	  FOR (index = 0x54 ; index >= 0x50 ; index -= 4) BEGIN // loop through descriptions
+		READ_LONG "%index%" "valid"
+		PATCH_IF ("%valid%" < 2147483646) AND ("%valid%" >= 0) BEGIN // verify description is valid
+		  READ_STRREF "%index%" "description"
+		  PATCH_IF (~%description%~ STRING_CONTAINS_REGEXP ~1d6~) = 0 BEGIN // more validation
+			INNER_PATCH_SAVE new_desc ~%description%~ BEGIN
+			  REPLACE_TEXTUALLY ~1d4~ ~1d5~
+			END
+			SAY_EVALUATED "%index%" ~%new_desc%~
+		  END
+		END
+	  END
+	END     
+        
+
+READ_BYTE    ~0x1f~ ~fight~ //reads the byte containing the fighter usability flag
+		  PATCH_IF ((~%fight%~ BAND ~0b00100000~) = ~0b00000000~) BEGIN // if *usable* by fighter/mages (excluding scrolls and wands for now)
+			READ_BYTE    ~0x1e~ ~class1~
+			READ_BYTE    ~0x1f~ ~class2~
+			READ_BYTE    ~0x20~ ~class3~
+			READ_BYTE    ~0x21~ ~class4~
+			WRITE_BYTE    ~0x1e~ (~%class1%~ BAND ~0b00111111~) // cleric & bard
+			WRITE_BYTE    ~0x1f~ (~%class2%~ BAND ~0b11010111~) // multiclasses
+			WRITE_BYTE    ~0x20~ (~%class3%~ BAND ~0b10000000~) // others
+		  END
+		 END
+                 */

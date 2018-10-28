@@ -248,7 +248,7 @@ If the target doesn't save vs. spell, they will enter 'fight or flight' mode, ei
 (Alteration)
 
 Level: 5
-Sphere: Dread
+Sphere: Combat
 Range: Long
 Duration: 1 Round/level
 Casting Time: 1
@@ -670,14 +670,14 @@ The caster steps into the Shadow Plane and may move for 7 seconds while others a
 (Abjuration)
 
 Level: 3
-Sphere: Shadow
+Sphere: Sun
 Range: Touch
 Duration: 1 Turn
 Casting Time: 6
 Area of Effect: 1 creature
 Saving Throw: None
 
-This spell shrouds the recipient in darkness, protecting <PRO_HIMHER> from both attacks and spells.  They gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.  Additionally, if the recipeient can hide in shadows, they gain a +15% bonus to that ability.~
+This spell shrouds the recipient in darkness, protecting <PRO_HIMHER> from both attacks and spells.  Targets gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.  Additionally, if the recipeient can hide in shadows, they gain a +15% bonus to that ability.~
 
 @52005 = ~Cloak of Darkness (focus)
 (Abjuration)

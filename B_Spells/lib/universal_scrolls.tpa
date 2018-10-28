@@ -1,0 +1,195 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////                 Scrolls                 //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Univesal scrolls
+//This creates a few scrolls that are not eligible for scrollhood.  That should be fine if they are not placed or added to scroll creation
+COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
+       READ_LONG  0x0034 level //spell level
+       READ_BYTE 0x0021 type //spell type
+	READ_LONG 0x0008 name //spell name
+	READ_LONG 0x0050 desc //description
+	READ_SHORT 0x007E target //Target-check
+	READ_SHORT 0x0080 range //range-check
+        READ_ASCII 0x0076 spellicon (7)
+   PATCH_IF type > 0x0000   BEGIN
+     INNER_PATCH_SAVE spell ~%SOURCE_RES%~ BEGIN
+       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
+     END
+     INNER_PATCH_SAVE druid ~%SOURCE_RES%~ BEGIN
+       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
+     END
+   END
+    ELSE  BEGIN
+     INNER_PATCH_SAVE spell ~%SOURCE_FILESPEC%~ BEGIN
+       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_PS~
+       REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~.SPL~ ~~
+     END
+   END
+INNER_ACTION BEGIN
+  COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%spell%.ITM~   //Level 1 universal as generic.  Modify all others after
+        WRITE_LONG 0x0008 ~%name%~
+        WRITE_LONG 0x000c ~%name%~
+        WRITE_LONG 0x0054 ~%desc%~
+        WRITE_SHORT 0x007E target //Target-check
+        WRITE_SHORT 0x0080 range //range-check
+        WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+        WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+END
+
+INNER_ACTION BEGIN
+  COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%druid%.ITM~   //Level 1 universal as generic.  Modify all others after
+        WRITE_LONG 0x0008 ~%name%~
+        WRITE_LONG 0x000c ~%name%~
+        WRITE_LONG 0x0054 ~%desc%~
+        WRITE_SHORT 0x007E target //Target-check
+        WRITE_SHORT 0x0080 range //range-check
+        WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+        WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+END
+
+BUT_ONLY
+
+//universal spells
+COPY_EXISTING_REGEXP GLOB ~B_PS.*\.itm~ ~override~
+        READ_ASCII 0x76 icon (7)
+PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 146            //
+      STR_VAR resource = EVAL ~%icon%~
+  END      //
+END
+BUT_ONLY
+
+//druid spells (need to exclude cleric exclusive scrolls...)
+COPY_EXISTING_REGEXP GLOB ~B_DS.*\.itm~ ~override~
+        READ_ASCII 0x76 icon (7)
+PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 146            //
+      STR_VAR resource = EVAL ~%icon%~
+  END      //
+END
+BUT_ONLY
+
+//cleric spells (need to exclude druid exclusive scrolls...)
+COPY_EXISTING_REGEXP GLOB ~B_CS.*\.itm~ ~override~
+        READ_ASCII 0x76 icon (7)
+PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 146            //
+      STR_VAR resource = EVAL ~%icon%~
+  END      //
+END
+BUT_ONLY
+
+//cost
+COPY_EXISTING_REGEXP GLOB ~B_PS2.*\.itm~ ~override~
+//cost 100gp
+   WRITE_LONG 0x0034 100
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_PS3.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 150
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_PS4.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 200
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_PS5.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 250
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_PS6.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 300
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_PS7.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 350
+
+BUT_ONLY
+
+//druid
+COPY_EXISTING_REGEXP GLOB ~B_DS2.*\.itm~ ~override~
+//cost 100gp
+   WRITE_LONG 0x0034 100
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_DS3.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 150
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_DS4.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 200
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_DS5.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 250
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_DS6.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 300
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_DS7.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 350
+
+BUT_ONLY
+
+//cleric
+COPY_EXISTING_REGEXP GLOB ~B_CS2.*\.itm~ ~override~
+//cost 100gp
+   WRITE_LONG 0x0034 100
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_CS3.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 150
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_CS4.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 200
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_CS5.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 250
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_CS6.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 300
+
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_CS7.*\.itm~ ~override~
+//cost 150gp
+   WRITE_LONG 0x0034 350
+
+BUT_ONLY

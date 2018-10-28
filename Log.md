@@ -6,7 +6,49 @@ TO DO 1: ADD A PRIEST SCROLL COMPONENT: MORE PRIEST SCROLLS (ALSO PRIEST SCRIBIN
 
 TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
-TO DO 3:
+TO DO 3: CONTINUE SCROLL CODE, need to add my druid spells to usability
+
+TO DO 4: CONTINUE TO UPDATE CRAFTING CODE
+
+to do 5: POTION REVISION AND NEW POTION COMPONENTS
+
+Version 0.88.19
+
+2018-10-26
+
+- Created scroll bam for Murderous Command
+
+- Created Scroll bam for Snare
+
+2018-10-25
+
+- ADDSPELLE'd Storm Wall
+
+- ADDSPELL: Misfire
+
+- ADDSPELL: Assassin Vines
+
+2018-10-24
+
+- Started Potion Revision and New Potion components
+
+- Started Item Crafting Components (basically just copied over TnB spells and scripts for now)
+
+- Added SR NWN spell deflection compatibility (courtesy of SubtleDoctor)
+
+- Created scroll bam for Cloak of Darkness
+
+- ADDSPELL'd Cloak of Darkness, changed it to Sun Sphere (for non-FnP games)
+
+2018-10-22
+
+- Continue with scroll code
+
+- Druid usability spells mostly identified, need to add usability code (i.e. remove clerics from use)
+
+2018-10-20
+
+- Added code for scroll usability exclusivity (i.e. for druids right now--just a check)
 
 Version 0.88.18
 
