@@ -10,7 +10,51 @@ TO DO 3: CONTINUE SCROLL CODE, need to add my druid spells to usability
 
 TO DO 4: CONTINUE TO UPDATE CRAFTING CODE
 
-to do 5: POTION REVISION AND NEW POTION COMPONENTS
+TO DO 5: POTION REVISION AND NEW POTION COMPONENTS
+
+Version 0.88.20
+
+2018-11-18
+
+- Updated Cloak of Shadow
+
+2018-11-15
+
+- Created wand of command
+
+- Created Wand of Fireballs
+
+2018-11-14
+
+- Created Wand of Knock
+
+- Created Wand of Teeth
+
+- Created Mistletoe (wand)
+
+2018-11-10
+
+- Added craft components: Beholder Eyestalk, Spider fang, Skull, Tentacle, Liquid Mercury, Demon Claw,
+
+2018-11-08
+
+- Added Gulp to potions (IWDEE at least)
+
+- Added empty potion bottle (as a material component)
+
+- Add first draft of pyro delight
+
+2018-11-07
+
+- Started New wand component: Wand of Teeth (just item in wand folder)
+
+- Started Wand of knock (just file)
+
+- Started Mistletoe (wand)
+
+- Started potion of persuasion (potion)
+
+- Potion of vision started
 
 Version 0.88.19
 

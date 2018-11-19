@@ -484,7 +484,9 @@ DEFINE_PATCH_MACRO ~cd_fear_removal_arrays~ BEGIN
       321, "-10", "-10", "spwi205", 1, 0, "same" => 1 // remove spell effects: horror, arcane (removes visuals)
       321, "-10", "-10", "SPPR416", 1, 0, "same" => 1 // remove spell effects: clk of fear(removes visuals)
       321, "-10", "-10", "SPPR706", 1, 0, "same" => 1 // remove spell effects: symbol: fear(removes visuals)
-      321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1 // remove spell effects: generic
+      321, "-10", "-10", "SPWI428", 1, 0, "same" => 1
+      321, "-10", "-10", "SPPR333", 1, 0, "same" => 1
+       // remove spell effects: generic
     END
   END
   PATCH_IF cosmetic = 1 BEGIN
@@ -842,7 +844,7 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_1_arrays~ BEGIN
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
     206, "-1", "-10", "sppr105", "-10", "-10", "same" => 1 // protection from spell
-    206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1 // protection from spell not nec, apparently...
+     // protection from spell not nec, apparently...
     206, "-1", "-10", "b_po010", "-10", "-10", "same" => 1 // protection from Cure minor wounds cantrip
 //    206, "-1", "-10", "b_po020", "-10", "-10", "same" => 1 // protection from Canticle cantrip
     206, "-1", "-10", "b_po030", "-10", "-10", "same" => 1 // protection from Maladiction cantrip
@@ -872,7 +874,7 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_2_arrays~ BEGIN
     206, "-1", "-10", "spwi215", "-10", "-10", "same" => 1 // protection from spell
     206, "-1", "-10", "spwi213", "-10", "-10", "same" => 1 // protection from spell
     206, "-1", "-10", "sppr211", "-10", "-10", "same" => 1 // protection from spell
-    206, "-1", "-10", "LEV_TWO", "-10", "-10", "same" => 1 // protection from spell dummy
+     // protection from spell dummy
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
@@ -889,7 +891,11 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_3_arrays~ BEGIN
     206, "-1", "-10", "sppr313", "-10", "-10", "same" => 1 // protection from spell
     206, "-1", "-10", "sppr304", "-10", "-10", "same" => 1 // protection from spell
     206, "-1", "-10", "sppr302", "-10", "-10", "same" => 1 // protection from spell
-    206, "-1", "-10", "LEV_THR", "-10", "-10", "same" => 1 // protection from spell dummy
+    206, "-1", "-10", "SPPR322", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPPR325", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPPR326", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPPR327", "-10", "-10", "same" => 1
+       // protection from spell dummy
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
@@ -900,7 +906,15 @@ DEFINE_PATCH_MACRO ~cd_immunity_spell_level_4_arrays~ BEGIN
     102, 4, "-10", "same",  "-10",  "-10", "same" => 1 // immunity to spell level 4
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN 
-    206, "-1", "-10", "LEV_FOU", "-10", "-10", "same" => 1 // protection from spell dummy
+    206, "-1", "-10", "SPPR419", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPPR420", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPPR423", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPPR426", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPPR427", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPPR428", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPWI422", "-10", "-10", "same" => 1
+      206, "-1", "-10", "SPWI432", "-10", "-10", "same" => 1
+       // protection from spell dummy
   END // nothing here yet
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
@@ -1931,7 +1945,9 @@ DEFINE_PATCH_MACRO ~b_removal_rage_arrays~ BEGIN
     321, "0", "0", "b_tem03",  "-10", "-10", "same" => 1 // remove spell, Tempus incite rage special
     240, "-10", 141, "",   "-10",  "-10", "same" => 1 // remove enrage icon
     321, "0", "0", "spcl321",  "-10", "-10", "same" => 1 // remove spell,  enrage special
-    321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1 // remove spell, generic
+    321, "0", "0", "SPPR422",  "-10", "-10", "same" => 1
+      321, "0", "0", "SPPR522",  "-10", "-10", "same" => 1
+       // remove spell, generic
   END
 PATCH_IF GAME_IS ~iwdee~ BEGIN  //iwdee specific icons--handle IWDification/B_Spells a different way
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
@@ -1959,7 +1975,9 @@ DEFINE_PATCH_MACRO ~b_removal_rage_arrays_second~ BEGIN
     4,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //cure: berserking
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1 // remove spell, generic
+    321, "0", "0", "SPPR422",  "-10", "-10", "same" => 1
+      321, "0", "0", "SPPR522",  "-10", "-10", "same" => 1
+       // remove spell, generic
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
   END // nadda...except
@@ -1974,7 +1992,9 @@ DEFINE_PATCH_MACRO ~b_removal_rage_arrays_end~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
-    321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1 // remove spell, generic
+    321, "0", "0", "SPPR422",  "-10", "-10", "same" => 1
+      321, "0", "0", "SPPR522",  "-10", "-10", "same" => 1
+       // remove spell, generic
   END // nadda...except
 END
 
@@ -2017,7 +2037,9 @@ DEFINE_PATCH_MACRO ~b_immunity_berserk_arrays_second~ BEGIN
     101,  "-10", 3, "same",  "-10",  "-10", "same" => 1 // immunity to berserk state
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN //nope
-    324, "0", "0", "RAGE_P",  "-10", "-10", "same" => 1 // protect spell, generic
+    324, "0", "0", "SPPR422",  "-10", "-10", "same" => 1
+      324, "0", "0", "SPPR522",  "-10", "-10", "same" => 1
+       // protect spell, generic
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
   END // nadda but...
@@ -2031,7 +2053,9 @@ DEFINE_PATCH_MACRO ~b_immunity_berserk_arrays_end~ BEGIN
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN //nope
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
-    324, "0", "0", "RAGE_P",  "-10", "-10", "same" => 1 // protect spell, generic
+    324, "0", "0", "SPPR422",  "-10", "-10", "same" => 1
+      324, "0", "0", "SPPR522",  "-10", "-10", "same" => 1
+       // protect spell, generic
   END // nadda but...
 END
 
@@ -2311,8 +2335,12 @@ DEFINE_PATCH_MACRO ~b_blood_rage_arrays~ BEGIN
     101,  "-10", 5, "same",  "-10",  "-10", "same" => 1 // Protection from charm...seems legit
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    321, "-10", "-10", "EMO_R", 1,"-10", "same" => 1 // remove spell effects: generic
-    318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1 // protect spell: generic
+    321, "-10", "-10", "SPPR525", 1,"-10", "same" => 1
+      321, "-10", "-10", "SPWI131", 1,"-10", "same" => 1
+       // remove spell effects: generic
+    318, "-10", "-10", "SPPR525", "-10","-10", "same" => 1
+      318, "-10", "-10", "SPWI131", "-10","-10", "same" => 1
+       // protect spell: generic
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END
@@ -2323,8 +2351,27 @@ DEFINE_PATCH_MACRO ~b_entropy_shield_arrays~ BEGIN
     318,  "-10", "-10", "SPPR984",  "-10",  "-10", "same" => 1 // Protection from charm...seems legit
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
-    318, "-10", "-10", "ENT_P", "-10","-10", "same" => 1 // protect spell: generic
-    83, "-10", 314, "", "-10","-10", "same" => 1 // protect pro: generic
+    318, "-10", "-10", "SPPR118", "-10","-10", "same" => 1
+      318, "-10", "-10", "DOBONE", "-10","-10", "same" => 1
+      318, "-10", "-10", "SPPR218", "-10","-10", "same" => 1
+      318, "-10", "-10", "SPWI225", "-10","-10", "same" => 1
+      318, "-10", "-10", "SPWI323", "-10","-10", "same" => 1
+      318, "-10", "-10", "SPWI327", "-10","-10", "same" => 1
+       // protect spell: generic
+    83, "-10", "358", "", "-10","-10", "same" => 1
+      83, "-10", "359", "", "-10","-10", "same" => 1
+      83, "-10", "370", "", "-10","-10", "same" => 1
+      83, "-10", "371", "", "-10","-10", "same" => 1
+      83, "-10", "344", "", "-10","-10", "same" => 1
+      83, "-10", "%IDPRO313%", "", "-10","-10", "same" => 1
+      83, "-10", "379", "", "-10","-10", "same" => 1
+      83, "-10", "380", "", "-10","-10", "same" => 1
+      83, "-10", "%MFMISS%", "", "-10","-10", "same" => 1
+      83, "-10", "%SMLLAREA%", "", "-10","-10", "same" => 1
+      83, "-10", "387", "", "-10","-10", "same" => 1
+      83, "-10", "388", "", "-10","-10", "same" => 1
+      83, "-10", "215", "", "-10","-10", "same" => 1
+      83, "-10", 314, "", "-10","-10", "same" => 1 // protect pro: generic
   END
   DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN END // nothing to delete
 END

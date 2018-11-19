@@ -2,7 +2,7 @@ BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.88.19~
+VERSION ~0.88.20~
 
 
 ALWAYS
@@ -41,6 +41,7 @@ LANGUAGE ~English~ ~english~
          ~B_Spells/tra/english/new_spells.tra~  //for new spells
          ~B_Spells/tra/english/cantrips.tra~  //for cantrips
          ~B_Spells/tra/english/revised.tra~  //for revised
+         ~B_Spells/tra/english/items.tra~  //for items
 
 //___________________________________________________________________________________
 //Markers:
@@ -51,10 +52,21 @@ LANGUAGE ~English~ ~english~
 //setup-iwdification.tp2~ ~40~: IWDIFICATION priest spells
 //setup-iwdification.tp2~ ~30~: IWDIFICATION wiz spells
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////  
+////////////////////////////////////////                New Spells                ////////////////////////////////////////  
+////////////////////////////////////////                                          ////////////////////////////////////////  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 BEGIN @0  //All new spells (including IWDEE spells if applicable)
-DESIGNATED 101
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
 SUBCOMPONENT @100
+DESIGNATED 101
+GROUP @5 
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
+
 
 //SR NWN deflection compatibility
 ACTION_CLEAR_ARRAY aoe_spell
@@ -97,10 +109,12 @@ INCLUDE ~%mod_folder%/lib/immunities.tpa~
   INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
 BEGIN @1  //IWDEE Spells only
+SUBCOMPONENT @100
 DESIGNATED 102
+GROUP @5 
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet~ @17 //~EE games only!~  for now
 REQUIRE_PREDICATE !GAME_IS ~iwdee~ @15 //~IWDEE spells already installed!~
-SUBCOMPONENT @100
+
 
 //SR NWN deflection compatibility
 ACTION_CLEAR_ARRAY aoe_spell
@@ -126,9 +140,10 @@ INCLUDE ~%mod_folder%/lib/immunities.tpa~
   INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
 BEGIN @3  //New Spells only
-DESIGNATED 103
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 SUBCOMPONENT @100
+DESIGNATED 103
+GROUP @5 
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 //SR NWN deflection compatibility
 ACTION_CLEAR_ARRAY aoe_spell
@@ -146,10 +161,22 @@ INCLUDE ~%mod_folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
   INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
-BEGIN @4  //Priest Scrolls
-DESIGNATED 201
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
+  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////  
+////////////////////////////////////////                New Items                 ////////////////////////////////////////  
+////////////////////////////////////////                                          ////////////////////////////////////////  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+BEGIN @4  //Install All new items (including IWDEE items if applicable)
 SUBCOMPONENT @101
+DESIGNATED 201
+GROUP @6 
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
+
 
 INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
 

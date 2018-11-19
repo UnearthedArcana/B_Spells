@@ -956,7 +956,7 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
  END
 
 END */
-/
+
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1273,6 +1273,11 @@ ADD_SPELL ~%mod_folder%/data/new_spells/priest_2/DPPR221.spl~ 1 2 ~CLERIC_WATERY
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //create portrait icon
+COMPILE ~%mod_folder%/data/new_spells/ranger_1/B_CAMO.baf~
+//cre
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_CAMO.cre~ ~override~
+//itm
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
 
 ADD_SPELL ~%mod_folder%/spheres/spells/shadow/b_c302.spl~ 1 3 ~CLERIC_CLOAK_DARKNESS~ //
         SAY NAME1 @52003
@@ -1286,9 +1291,9 @@ END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/Destruction/B_C302a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/Destruction/B_C302b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/Destruction/B_C302c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/spheres/spells/shadow/B_C302a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/spheres/spells/shadow/B_C302b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/spheres/spells/shadow/B_C302c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~

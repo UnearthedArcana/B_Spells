@@ -1,0 +1,168 @@
+//Potions @900000000 to @900010000
+
+@900000000 = ~Potion of Vision~
+@900000001 = ~This potion will grant the person drinking it the ability to see twice as far as before with clarity.  Additionally, they gain a +2 bonus to THAC0 with ranged weapons. The effect will last for 1 hour or until dispelled.
+
+STATISTICS:
+
+Ranged THAC0: +2
+Special: Doubles Vision Range
+
+Duration: 1 hours
+
+Weight: 1~
+
+@900000002 = ~Philter of Persuasion~
+@900000003 = ~Upon drinking this potion, the imbiber gains an instant 'glow' that attracts all around them.  They find that others will go out of their way to help them, and they will get better prices from merchants.
+
+STATISTICS:
+
+Special: +4 to Charisma
+Duration: 1 turn
+
+Weight: 1~
+
+@900000004 = ~Pyromancer's Delight~
+@900000005 = ~This potion infuses the drinker with the power of fire, able to weild it more effectively than before.  Any ability or spell they cast that deals fire damage deals an additional 50% fire damage for 1 turn.
+
+STATISTICS:
+
+Special: +50% fire damage
+Duration: 1 turn
+
+Weight: 1~
+
+@900000006 = ~Empty Potion Bottle~
+@900000007 = ~This is an empty potion bottle.
+
+STATISTICS:
+
+Weight: 1~
+
+@900000008 = ~Eyestalk~
+@900000009 = ~This is the eyestalk of a beholder. The stalk has been neatly cut through.
+
+STATISTICS:
+
+Weight: 0~
+
+@900000010 = ~Spider Fang~
+@900000011 = ~This is a fang taken from a giant spider.
+
+STATISTICS:
+
+Weight: 0~
+
+@900000012 = ~Skull~
+@900000013 = ~This is a skull from an animated skeleton.  These skulls have residual necromantic magic in them, and can be used to produce necromantic items.
+
+STATISTICS:
+
+Weight: 1~
+
+@900000014  = ~Tentacle~
+
+@900000015 = ~This is a tentacle from a monsterous creature.
+
+STATISTICS:
+
+Weight: 1~
+
+@900000016  = ~Liquid Mercury~
+
+@900000017  = ~Most alchemists would be fascinated by the liquid metal in this vial.  It can be used to create numerous magical items.
+
+STATISTICS:
+
+Weight: 0~
+
+@900000018  = ~Demon's Claw~
+
+@900000019  = ~This demon's hand pulses with evil power. Though harmless enough in its present state, there are rumors that the magic of a demon's claw can be used to create items of evil power.
+
+STATISTICS:
+
+Weight: 1~
+
+//Wands @900010001 to @900020000
+
+@900010001 = ~Wand of Teeth~
+
+@900010002 = ~When activated, the wand will eject a tooth-like missile at the target, hitting them for 2d6+2 points of damage (save vs. wands for 1/2).
+
+STATISTICS:
+
+Charge abilities:
+- Tooth
+  Creates 1 'tooth', which is effectively an arrow that does 2d6+2 points of missile damage (save for 1/2)
+  Range: 100 ft.
+  Area of Effect: 1 creature
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010003 = ~Wand of Knock~
+
+@900010004 = ~Sometimes called the 'thief on a stick', this wand will open all but the strongest locked doors on command.
+
+Charge abilities:
+- Knock
+  Opens all but the strongest locks
+  Range: 50 ft.
+  Area of Effect: 1 creature
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010005 = ~Mistletoe~
+
+@900010006 = ~This wand looks like a brittle club that might break at any moment.  However, when activated, it transforms into a stout club that can be used to bash your enemies.
+
+Charge abilities:
+- Shillelagh
+  As the spell of the same name
+  Range: 0 ft.
+  Area of Effect: The wand user
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010007 = ~Wand of Command~
+
+@900010008 = ~This wand allows the weilder to dominate any humanoid creature that does not save vs. wands. This control is maintained through a telepathic link between the wand weilder and the victim. Unlike the 4th-level priest spell Mental Domination, the target has no option for release, even if made to do something against their morals. This effect can only be reversed by Dispel Magic.
+
+STATISTICS:
+
+Charge abilities:
+- Domination
+  Dominates creatures that do not save vs. wands
+  Range: 60 ft.
+  Duration: 90 seconds
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010009 = ~Wand of Fireballs~
+
+@900010010 = ~The wand will cough forth a huge, burning ball of fire that streaks out to the desired range (to a maximum of 90 ft.) and bursts in a fiery, violent blast, just like the Fireball spell. The Fireball inflicts 10d6 points of damage. The victim(s) may make a Save vs. Wand in order to take only half damage.
+
+STATISTICS:
+
+Charge abilities:
+- Fireball
+  Damage: 10d6 fire (Save vs. Wand for half)
+  Range: 90 ft.
+  Area of Effect: 30-ft. radius 
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
