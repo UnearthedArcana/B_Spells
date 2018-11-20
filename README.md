@@ -22,6 +22,8 @@ Saving Throw: None
 
 With this spell, the caster causes a swirling sword-shaped formation of jagged ice shards to spring forth from <PRO_HISHER> hand. This blade-like ray is wielded as if proficient. If the caster successfully hits with the ice blade in melee combat, the creature struck suffers 1d8 points of cold damage, +1 point per level (to a maximum of 1d8+10). The blade is considered to be of +1 enchantment when determining what it can hit.
 
+### Level 3
+
 **Cloak of Darkness** (New)  
 (Abjuration)
 
@@ -33,7 +35,9 @@ Casting Time: 6
 Area of Effect: 1 creature  
 Saving Throw: None
 
-This spell shrouds the recipient in darkness, protecting <PRO_HIMHER> from both attacks and spells.  Targets gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.  Additionally, if the recipeient can hide in shadows, they gain a +15% bonus to that ability.
+This spell infuses the target with shadow, protecting them from both attacks and spells, while also protecting them from prying eyes.  Targets gain a +1 bonus to AC per four levels (maximum of +5), +2 bonus to save vs. spells, and infravision for the duration of this spell.
+
+Additionally, the recipeient hides in shadows at 99%, and automatically blends into the shadows each round if they are not doing anything else.
 
 ***Notes***:  
 **Faiths and Powers**: This spell is in the Shadow Sphere if Faiths and Powers is installed.  
