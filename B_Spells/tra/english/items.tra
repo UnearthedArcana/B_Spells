@@ -23,7 +23,7 @@ Duration: 1 turn
 Weight: 1~
 
 @900000004 = ~Pyromancer's Delight~
-@900000005 = ~This potion infuses the drinker with the power of fire, able to weild it more effectively than before.  Any ability or spell they cast that deals fire damage deals an additional 50% fire damage for 1 turn.
+@900000005 = ~This potion infuses the drinker with the power of fire, able to weild it more effectively than before.  Any ability or spell they cast that deals fire damage deals an additional 50% damage for 1 turn.
 
 STATISTICS:
 
@@ -84,6 +84,36 @@ STATISTICS:
 
 Weight: 1~
 
+@900000020 = ~Frostfell Draught~
+@900000021 = ~This potion goes down cold, almost unbearably so.  The drinker finds, however, that any ability or spell they cast that deals cold damage deals an additional 50% damage for 1 turn.
+
+STATISTICS:
+
+Special: +50% cold damage
+Duration: 1 turn
+
+Weight: 1~
+
+@900000022 = ~Vitriolic Ooze~
+@900000023 = ~This potion smells and tastes awful.  Anybody that drinks it finds that any ability or spell they cast that deals acid damage deals an additional 50% damage for 1 turn.
+
+STATISTICS:
+
+Special: +50% acid damage
+Duration: 1 turn
+
+Weight: 1~
+
+@900000024 = ~Storm Brew~
+@900000025 = ~A small flash of lightning seems to dance in the middle of this potion.  Anybody that drinks it finds that any ability or spell they cast that deals electrical damage deals an additional 50% damage for 1 turn.
+
+STATISTICS:
+
+Special: +50% electrical damage
+Duration: 1 turn
+
+Weight: 1~
+
 //Wands @900010001 to @900020000
 
 @900010001 = ~Wand of Teeth~
@@ -120,7 +150,7 @@ Weight: 1~
 
 @900010005 = ~Mistletoe~
 
-@900010006 = ~This wand looks like a brittle club that might break at any moment.  However, when activated, it transforms into a stout club that can be used to bash your enemies.
+@900010006 = ~This wand looks like a brittle stick that might shatter at any moment.  It is surprisingly study, however, and when activated, it transforms into a stout club that can be used to bash your enemies.
 
 Charge abilities:
 - Shillelagh
@@ -161,6 +191,25 @@ Charge abilities:
   Damage: 10d6 fire (Save vs. Wand for half)
   Range: 90 ft.
   Area of Effect: 30-ft. radius 
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010011 = ~Animated Wand~
+
+@900010012 = ~This wand looks like a short sword sitting in a scabbard. When activated, the sword 'draws' itself from the scabbard and fights for the wielder.
+
+STATISTICS:
+
+Charge abilities:
+- Animated Sword
+  Range: 0 ft.
+  Duration: 1 turn
+  Stats: 20 hp 90% resistant to all types of damage except magical damage.  AC: 2.  Fights and saves as a 10th level warrior wielding a weapon that deals 1d6+1 damage.
+  
+  Note: can only have one animated sword activated at a time.  After the duration, the sword regenerates and returns to the scabbard if there are charges remaining in the wand.
 
 Requires:
  9 Intelligence

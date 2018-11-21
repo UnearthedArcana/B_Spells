@@ -15,6 +15,20 @@
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //| Animated Wand (N) | ? | Transforms into a blade that fights for the caster |
 
+COPY ~%mod_folder%/data/wands/B_WAN06.itm~ ~override~
+          SAY NAME2 @900010011
+          SAY DESC @900010012
+//cre
+COPY ~%mod_folder%/data/wands/B_WAN06.cre~ ~override~
+          SAY NAME1 @900010011
+          SAY NAME2 @900010011
+//crea weapon  IPSION.itm
+COPY ~%mod_folder%/data/wands/B_WAN06A.itm~ ~override~
+          SAY NAME1 @900010011
+          SAY NAME2 @900010011
+//just in case 
+COPY ~%mod_folder%/data/wands/IPSION.itm~ ~override~
+
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

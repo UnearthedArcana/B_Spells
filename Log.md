@@ -12,6 +12,25 @@ TO DO 4: CONTINUE TO UPDATE CRAFTING CODE
 
 TO DO 5: POTION REVISION AND NEW POTION COMPONENTS
 
+TO DO 6: RUN PROTECTIOn/REMOVAL BATCHES OVER CREATURES AND ITEMS
+
+Version 0.88.21
+
+2018-11-21
+
+- Finished (first draft of) Animated Wand
+
+2018-11-20
+
+- Created Storm Brew
+
+- Created Vitriolic Ooze
+
+- Created Frostfell Draught
+
+- Started Animated Wand (B_WAN06.itm).
+
+
 Version 0.88.20
 
 2018-11-18
