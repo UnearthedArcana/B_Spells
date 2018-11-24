@@ -1,4 +1,4 @@
-//Potions @900000000 to @900010000
+//Potions @900000000 to @900009000
 
 @900000000 = ~Potion of Vision~
 @900000001 = ~This potion will grant the person drinking it the ability to see twice as far as before with clarity.  Additionally, they gain a +2 bonus to THAC0 with ranged weapons. The effect will last for 1 hour or until dispelled.
@@ -32,55 +32,13 @@ Duration: 1 turn
 
 Weight: 1~
 
-@900000006 = ~Empty Potion Bottle~
-@900000007 = ~This is an empty potion bottle.
+@900000006 = ~Potion of Farsight~
+@900000007 = ~This potion functions identically to the farsight spell.  When this potion is consumed, the drinker is able to view an area of an unexplored map. They can view this area for a total of 40 seconds.
 
 STATISTICS:
 
-Weight: 1~
-
-@900000008 = ~Eyestalk~
-@900000009 = ~This is the eyestalk of a beholder. The stalk has been neatly cut through.
-
-STATISTICS:
-
-Weight: 0~
-
-@900000010 = ~Spider Fang~
-@900000011 = ~This is a fang taken from a giant spider.
-
-STATISTICS:
-
-Weight: 0~
-
-@900000012 = ~Skull~
-@900000013 = ~This is a skull from an animated skeleton.  These skulls have residual necromantic magic in them, and can be used to produce necromantic items.
-
-STATISTICS:
-
-Weight: 1~
-
-@900000014  = ~Tentacle~
-
-@900000015 = ~This is a tentacle from a monsterous creature.
-
-STATISTICS:
-
-Weight: 1~
-
-@900000016  = ~Liquid Mercury~
-
-@900000017  = ~Most alchemists would be fascinated by the liquid metal in this vial.  It can be used to create numerous magical items.
-
-STATISTICS:
-
-Weight: 0~
-
-@900000018  = ~Demon's Claw~
-
-@900000019  = ~This demon's hand pulses with evil power. Though harmless enough in its present state, there are rumors that the magic of a demon's claw can be used to create items of evil power.
-
-STATISTICS:
+Special: Farsight
+Duration: 40 seconds
 
 Weight: 1~
 
@@ -111,6 +69,61 @@ STATISTICS:
 
 Special: +50% electrical damage
 Duration: 1 turn
+
+Weight: 1~
+
+//Components @900009001 to @900010000
+
+
+@900009001 = ~Empty Potion Bottle~
+@900009002 = ~This is an empty potion bottle.
+
+STATISTICS:
+
+Weight: 1~
+
+@900009003 = ~Eyestalk~
+@900009004 = ~This is the eyestalk of a beholder. The stalk has been neatly cut through.
+
+STATISTICS:
+
+Weight: 0~
+
+@900009005 = ~Spider Fang~
+@900009006 = ~This is a fang taken from a giant spider.
+
+STATISTICS:
+
+Weight: 0~
+
+@900009007 = ~Skull~
+@900009008 = ~This is a skull from an animated skeleton.  These skulls have residual necromantic magic in them, and can be used to produce necromantic items.
+
+STATISTICS:
+
+Weight: 1~
+
+@900009009  = ~Tentacle~
+
+@900009010 = ~This is a tentacle from a monsterous creature.
+
+STATISTICS:
+
+Weight: 1~
+
+@900009011  = ~Mysterious Liquid~
+
+@900009012  = ~Most alchemists would be fascinated by the liquid metal in this vial.  It can be used to create numerous magical items.
+
+STATISTICS:
+
+Weight: 0~
+
+@900009013  = ~Demon's Claw~
+
+@900009014  = ~This demon's hand pulses with evil power. Though harmless enough in its present state, there are rumors that the magic of a demon's claw can be used to create items of evil power.
+
+STATISTICS:
 
 Weight: 1~
 
@@ -210,6 +223,47 @@ Charge abilities:
   Stats: 20 hp 90% resistant to all types of damage except magical damage.  AC: 2.  Fights and saves as a 10th level warrior wielding a weapon that deals 1d6+1 damage.
   
   Note: can only have one animated sword activated at a time.  After the duration, the sword regenerates and returns to the scabbard if there are charges remaining in the wand.
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010013 = ~Bonewand~
+
+@900010014 = ~This black wooden wand releases a cone of boneshards in a 30-ft long cone doing 6d4 points of damage (save for 1/2).
+
+Bonewand can also be used to Animate a single level 3 skeleton warrior for 8 hours.
+
+STATISTICS:
+
+Charge abilities:
+- Boneshard
+  Range: 30-ft.
+  Damage: 6d4 Piercing damage (save for 1/2)
+  Area of Effect: 30-ft. cone with 90-deg. arc
+
+- Animate Skeleton Warrior
+  Duration: 8 hours
+  Stats: 20 hp, AC: 6, THAC0: 18, Dam: 1d8+1
+
+Requires:
+ 9 Intelligence and 9 Wisdom
+
+Weight: 1~
+
+@900010015 = ~Wand of Force~
+
+@900010016 = ~When this dangerous wand is used against a target, that target is slammed with pure kinetic energy taking 2d6 magic damage (save for half), and if that creature is smaller than huge sized, it is knocked back 10'.
+
+STATISTICS:
+
+Charge abilities:
+- Force
+  Range: 60-ft.
+  Damage: 2d6 magic damage (save for 1/2)
+  Special: Knocks non-huge creature back 10' if no save vs. wands is made.
+  Area of Effect: 1 creature
 
 Requires:
  9 Intelligence

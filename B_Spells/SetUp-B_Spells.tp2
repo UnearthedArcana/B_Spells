@@ -2,7 +2,7 @@ BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.88.21~
+VERSION ~0.88.22~
 
 
 ALWAYS
@@ -178,7 +178,8 @@ GROUP @6
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 
-INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
+//INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
+INCLUDE ~%mod_folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
 
 
 //Do I need the stuff below this????

@@ -761,27 +761,72 @@ This spell surrounds the recipient with a magical barrier at a distance of one f
 Level: 1
 Sphere: Creation
 Range: Personal
-Duration: Instant; 24 hours
-Casting Time: 0
+Duration: Instant; 8 hours
+Casting Time: 9
 Saving Throw: None
 
-This spell creates ammunition in the caster's inventory.  This spell can either create a stack of arrows, bolts, or bullets.  The spell creates 10 projectiles per level (maximum 50 at 5th level).  
+This spell creates special ammunition in the caster's inventory.  This spell can either create a stack of 10 bolts, 20 arrows, or 40 bullets from the list determined by level.
 
-At 5th level, you can choose to create 10 +1 projectiles rather than 50 normal projectiles.
+- Elemental Ammunition: Does bonus acid, electricty, fire or cold damage (save vs. wands for 1/2). Hits as a +1 weapon (+2d2 bullets, +2d4 arrows, +4d4 bolts).
 
-These projectiles last for 24 hours.~
+-
+~
 
 @53002 = ~Sphere: Creation~
 @53003 = ~Sphere: War~
-@53004 = ~10 Arrows~
-@53005 = ~10 Bolts~
-@53006 = ~10 Bullets~
-@53007 = ~20 Arrows~
-@53008 = ~20 Bolts~
-@53009 = ~20 Bullets~
-@53010 = ~30 Arrows~
-@53011 = ~30 Bolts~
-@53012 = ~30 Bullets~
+@53004 = ~Fire Arrows~
+@53005 = ~Bolts of Piercing~
+@53006 = ~Bullets of Impact~
+@53007 = ~This is a magical arrow that will burst into flames as it is fired at an enemy. The effect is similar to an arrow doused in oil and set to flame.
+
+This arrow strikes as a +1 weapon.
+
+STATISTICS:
+
+Damage: 1d6, +2d6 fire damage (Save vs. Wands for half)
+Damage type: Missile
+Launcher: Bow
+
+Weight: 0~
+@53008 = ~This magical bolt seems perfectly normal, if particularly sharp. However, when it hits its target, it pierces their armor with ease, and does devastating damage.
+
+This bolt strikes as a +2 weapon.
+
+STATISTICS:
+
+THACO: +3
+Damage: 1d8, +6 piercing damage
+Damage type: Missile
+Launcher: Crossbow
+
+Weight: 0~
+
+@53009 = ~This bullet seems a bit heavy, but is otherwise like any orther stone. However, this bullet seems to increase velocity just as it hits, slamming into opponents with a jarring force.
+
+This bullet strikes as a +1 weapon.
+
+STATISTICS:
+
+THACO: +1
+Damage: 1d4 +1, +2 blunt damage
+Damage type: Missile
+Launcher: Sling
+
+Weight: 0~
+@53010 = ~Hunting Arrows~
+@53011 = ~This arrow is sharp and jagged, capable of causing devisting persistant wounds to targets.  When this arrow strikes a target, they must save vs. wands each round for up to 6 rounds or take 1 point of slashing damage/round.  This effect is removed if the target recieves healing of any kind.
+
+This arrow strikes as a +1 weapon.
+
+STATISTICS:
+
+Damage: 1d6
+Special: Target takes 1 point of slashing damage/round if a save is not made each round (max 6 rounds)
+Damage type: Missile
+Launcher: Bow
+
+Weight: 0~
+@53012 = ~Bolt of Impact~
 @53013 = ~40 Arrows~
 @53014 = ~40 Bolts~
 @53015 = ~40 Bullets~

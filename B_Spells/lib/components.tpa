@@ -1,0 +1,87 @@
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////Empty potion bottle
+
+COPY ~%mod_folder%/data/potions/POTN54.itm~ ~override~
+        SAY NAME1 @900009001
+        SAY NAME2 @900009001
+        SAY UNIDENTIFIED_DESC @900009002
+        SAY DESC @900009002
+//bam
+COPY ~%mod_folder%/data/potions/IPOTN54.bam~ ~override~
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////Beholder Eyestalk
+
+COPY ~%mod_folder%/data/potions/B_EYE01.itm~ ~override~
+        SAY NAME1 @900009003
+        SAY NAME2 @900009003
+        SAY UNIDENTIFIED_DESC @900009004
+        SAY DESC @900009004
+//bam
+COPY ~%mod_folder%/data/potions/IMISCA8.bam~ ~override~
+COPY ~%mod_folder%/data/potions/CMISCA8.bam~ ~override~
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////Spider fang
+
+COPY ~%mod_folder%/data/potions/B_SDR01.itm~ ~override~
+        SAY NAME1 @900009005
+        SAY NAME2 @900009005
+        SAY UNIDENTIFIED_DESC @900009006
+        SAY DESC @900009006
+//bam
+COPY ~%mod_folder%/data/potions/ISWOSPDR.bam~ ~override~
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////Skull--grind up for certain necro potions
+
+COPY ~%mod_folder%/data/potions/B_SKUL01.itm~ ~override~
+        SAY NAME1 @900009007
+        SAY NAME2 @900009007
+        SAY UNIDENTIFIED_DESC @900009008
+        SAY DESC @900009008
+//bam
+COPY ~%mod_folder%/data/potions/IMISC50.bam~ ~override~
+COPY ~%mod_folder%/data/potions/CMISC50.bam~ ~override~
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////// Tentacle
+
+COPY ~%mod_folder%/data/potions/B_TCL01.itm~ ~override~     //CDMINDFL.itm
+        SAY NAME1 @900009009
+        SAY NAME2 @900009009
+        SAY UNIDENTIFIED_DESC @900009010
+        SAY DESC @900009010
+//bam
+COPY ~%mod_folder%/data/potions/ISHAPE02.bam~ ~override~
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////Mysterious Liquid
+
+COPY ~%mod_folder%/data/potions/B_MER01.itm~ ~override~
+        SAY NAME1 @900009011
+        SAY NAME2 @900009011
+        SAY UNIDENTIFIED_DESC @900009012
+        SAY DESC @900009012
+
+//bam
+COPY ~%mod_folder%/data/potions/ICOMPO01.bam~ ~override~
+
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////Demon Claw
+
+//note, COMPON04.itm is also a Deomon claw--specifically, a Balor's Claw--which is something of a quest item
+COPY ~%mod_folder%/data/potions/B_DEM01.itm~ ~override~
+        SAY NAME1 @900009013
+        SAY NAME2 @900009013
+        SAY UNIDENTIFIED_DESC @900009014
+        SAY DESC @900009014
+//bam
+COPY ~%mod_folder%/data/potions/IMISC72.bam~ ~override~

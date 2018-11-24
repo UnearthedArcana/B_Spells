@@ -1,0 +1,20 @@
+- Hunting Arrows: Normal dam Save each round vs. wand or take 1 point slashing damage max 6 rounds, healing removes this effect.
+Counts as +1
+- Improved Hunters Arrows: 1d3 points/round
+Counts as +2
+
+- War Arrows: +3 Strike, +3 Damage
+Counts as +2
+- Improved War Arrows: +3, +6
+Counts as +3
+
+- Impaling Bolts: +3 Damage, Target: -1 attack/AC for 3 rounds if no save vs. wands
+Counts as +2 
+- Improved Impaling Bolts: +6 Damage, -2 Save
+Counts as +3
+
+- Weighted Bullets: +3 Blunt Damage
+Counts as +0
+
+-Improved Weighted Bullets: save vs wands or stun 2 seconds
+Counts as +1

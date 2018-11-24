@@ -14,11 +14,31 @@ TO DO 5: POTION REVISION AND NEW POTION COMPONENTS
 
 TO DO 6: RUN PROTECTIOn/REMOVAL BATCHES OVER CREATURES AND ITEMS
 
+TO DO 7: Modify tooltip.2da to give proper names to potions/wands (or is it just wands?)
+
+Version 0.88.22
+
+2018-11-23
+
+- Started Abundant Ammunition revision (needs a lot of work--see notes txt in main folder)
+
+- Updated Readme
+
+2018-11-22
+
+- Finished (first draft of) bonewand
+
+- First draft of Wand of Force
+
+- First draft of Potion of Farsight
+
 Version 0.88.21
 
 2018-11-21
 
 - Finished (first draft of) Animated Wand
+
+- Started Bonewand (B_WAN07.itm) Create second ability
 
 2018-11-20
 

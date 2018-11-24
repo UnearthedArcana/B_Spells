@@ -125,21 +125,89 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/b_r104.2da~ ~override~
 COPY ~%mod_folder%/data/new_spells/ranger_1/b_r105.2da~ ~override~
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/b_r101.spl~ 1 1 ~CLERIC_ABUNDANT_AMMO~ //
+ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/b_r101.spl~ 1 0 ~CLERIC_ABUNDANT_AMMO~ // won't be selectable at 1st; have to add to clab (ranger lev 8 or 9, whenever they normally get 1st lev spells)
         SAY NAME1 @53000
         SAY NAME2 @53000
         SAY UNIDENTIFIED_DESC @53001
 	SAY DESC @53001
 //sec spells
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override~   //10 arrows
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override~   //Fire Arrows
         SAY NAME1 @53004
         SAY NAME2 @53004
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101B.SPL~ ~override~   //10 bolts
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 122            //
+      STR_VAR resource = ~B_ARR01~
+  END      //
+//the actual arrow
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_ARR01.itm~ ~override~   //Fire Arrows
+        SAY NAME1 @53004
+        SAY NAME2 @53004
+        SAY UNIDENTIFIED_DESC @53007
+	SAY DESC @53007
+
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101B.SPL~ ~override~   //Piercing Bolts
         SAY NAME1 @53005
         SAY NAME2 @53005
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.SPL~ ~override~   //10 bullets
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 122            //
+      STR_VAR resource = ~B_BLT01~
+  END      //
+//the actual bolts
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_BLT01.itm~ ~override~   //Piercing Bolts
+        SAY NAME1 @53005
+        SAY NAME2 @53005
+        SAY UNIDENTIFIED_DESC @53008
+	SAY DESC @53008
+
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.SPL~ ~override~   //Impact Bullets
         SAY NAME1 @53006
         SAY NAME2 @53006
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 122            //
+      STR_VAR resource = ~B_BUL01~
+  END      //
+//the actual bullets
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_BUL01.itm~ ~override~   //Impact Bullets
+        SAY NAME1 @53006
+        SAY NAME2 @53006
+        SAY UNIDENTIFIED_DESC @53009
+	SAY DESC @53009
+
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101D.SPL~   //Acid Arrows
+        SAY NAME1 @53010
+        SAY NAME2 @53010
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 122            //
+      STR_VAR resource = ~B_ACID01~
+  END      //
+
+//the actual arrow
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_ACID01.itm~ ~override~   //Acid Arrows
+        SAY NAME1 @53010
+        SAY NAME2 @53010
+        SAY UNIDENTIFIED_DESC @53011
+	SAY DESC @53011
+
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101B.SPL~ ~override~   //Fire Bolts
+        SAY NAME1 @53005
+        SAY NAME2 @53005
+//the actual bolts
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_FIRE02.itm~ ~override~   //Fire Bolts
+        SAY NAME1 @53005
+        SAY NAME2 @53005
+        SAY UNIDENTIFIED_DESC @53008
+	SAY DESC @53008
+
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.SPL~ ~override~   //Fire Bullets
+        SAY NAME1 @53006
+        SAY NAME2 @53006
+//the actual bullets
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_FIRE03.itm~ ~override~   //Fire Bullets
+        SAY NAME1 @53006
+        SAY NAME2 @53006
+        SAY UNIDENTIFIED_DESC @53009
+	SAY DESC @53009
+
 //20 projectiles
 COPY_EXISTING ~B_R101A.spl~ ~override/B_R101D.spl~
  LPF ALTER_EFFECT  INT_VAR match_opcode = 255   parameter1 = 20 END //20 items
@@ -210,6 +278,7 @@ LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_ABUNDANT_AMMO~
   RET spell_res
 END
+/* //bams seem to be messed up (sigh, again!)
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL  ~%spell_res%B~ END
@@ -219,7 +288,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.bam~ ~override/%spell_res%C.
 //add bams to spl
 //COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
+*/
 //Sh. of Entropy immunity list
 //INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
