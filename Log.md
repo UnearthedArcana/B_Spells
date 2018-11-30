@@ -16,6 +16,22 @@ TO DO 6: RUN PROTECTIOn/REMOVAL BATCHES OVER CREATURES AND ITEMS
 
 TO DO 7: Modify tooltip.2da to give proper names to potions/wands (or is it just wands?)
 
+TO DO 8: Abundant Ammo Revision (or just trash the spell)
+
+Version 0.88.22
+
+2018-11-29
+
+- Finished first draft of Wand of Freshness
+
+- Added ADD_IDS for SR compatibility (Thanks DavidW)
+
+- Created Wand of Fog
+
+2018-11-28
+
+- Finished first draft of Wand of Eyes
+
 Version 0.88.22
 
 2018-11-23

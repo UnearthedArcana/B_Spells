@@ -143,7 +143,29 @@ END
 ////////////////////////////////              				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//| of Eyes (N) | ? |   Wizard Eye; See Invisible |
+//| of Eyes (N) | ? |   Wizard Eye; See Invisible |  b_wan09
+//add protection from B_WAND09 to WIzEye spell
+
+//WIzEye
+//copy wiz eye, add immunity to secspell:
+COPY_EXISTING ~SPWI425.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 206 STR_VAR resource = ~B_WNDEY~ END  //Protection from secspell
+//create secspell
+COPY_EXISTING ~SPWI425.spl~ ~override/B_WNDEY.spl~
+ WRITE_BYTE 0x001c  4  //innate no wiz spell!
+
+//CureBlind
+
+//Detect Invisibility
+//create secspell
+COPY_EXISTING ~SPWI203.spl~ ~override/B_WNDDI.spl~
+ WRITE_BYTE 0x001c  4  //innate no wiz spell!
+
+//actual wand
+
+COPY ~%mod_folder%/data/wands/B_WAN09.itm~ ~override~
+        SAY NAME2 @900010017
+        SAY DESC @900010018
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -168,6 +190,24 @@ COPY ~%mod_folder%/data/wands/B_WAN05.itm~ ~override~
 //| of Fog (Ns) | I |  as Obscuring Mist |
 //only installed if SR is installed 
 
+ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) BEGIN  //SR obscuring Mist
+//copy the spell
+ LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_OBSCURING_MIST~
+  RET spell_res
+ END
+ COPY_EXISTING ~%spell_res%.spl~ ~override/B_WANFG.spl~
+  WRITE_BYTE 0x001c  4  //innate
+
+  COPY ~%mod_folder%/data/wands/B_WAN11.itm~ ~override~
+        SAY NAME2 @900010021
+        SAY DESC @900010022
+LPF ALTER_ITEM_HEADER
+    INT_VAR  projectile = %dvobmist%
+END
+
+END //end SR Obscuring Mist
+
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -189,6 +229,11 @@ COPY ~%mod_folder%/data/wands/B_WAN08.itm~ ~override~
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //| of Freshness (N) | ? |  as ZoSA |
+
+COPY ~%mod_folder%/data/wands/B_WAN10.itm~ ~override~
+        SAY NAME2 @900010019
+        SAY DESC @900010020
+
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

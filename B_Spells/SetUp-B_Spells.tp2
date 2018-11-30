@@ -2,13 +2,16 @@ BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.88.22~
+VERSION ~0.88.23~
 
 
 ALWAYS
 //	ACTION_IF GAME_IS ~bgee bg2ee eet iwdee bg bg2 bgt iwd iwd2~ BEGIN
            OUTER_SPRINT ~mod_folder~ ~B_Spells~
 //        END
+        ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
+	   INCLUDE ~B_Spells/lib/add_ids.tpa~
+        END
 
 	INCLUDE ~B_Spells/lib/alter_effect.tpa~
 

@@ -269,3 +269,60 @@ Requires:
  9 Intelligence
 
 Weight: 1~
+
+@900010017 = ~Wand of Eyes~
+
+@900010018 = ~This wand has a number of abilities.  First, it can create a Wizard Eye as a 6th level caster.  Second, it can cure blindness in any creature touched.  Finally, this wand can allow the weilder to Detect Invisibility as the spell.
+
+STATISTICS:
+
+Charge abilities:
+- Wizard Eye
+  Duration: 7 rounds
+  Area of Effect: Special
+
+- Remove Blindness
+  Range: Touch
+  Effects: Cure Blindness
+  
+- Detect Invisibility
+  As Spell of same name
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010019 = ~Wand of Freshness~
+@900010020 = ~When activated, this wand repels all noxious elements from poisonous vapors (including magically created vapors such as Cloudkill). This spell will dismiss all clouds in the entire area that the caster is currently in. The spell offers no protection against poisonous vapors created by a dragon's breath weapon (such as the chlorine gas of a green dragon).
+
+STATISTICS:
+
+Charge abilities:
+- Zone of Sweet Air
+  Duration: Instant
+  Range: 100 ft.
+  Area of Effect: Special
+
+Requires:
+ 9 Wisdom
+
+Weight: 1~
+
+@900010021 = ~Wand of Fog~
+
+@900010022 = ~When activated, this wand creates a thick cloud of fog that obscures vision.  Creatures caught in the radius of the fog suffer -2 to their attack rolls, and can only see 1/2 as far as normal.  All attacks made against creatures within the fog, or against creatues outside the fog, suffer a -4 penalty.
+
+STATISTICS:
+
+Charge abilities:
+- Fog
+  Duration: 6 rounds
+  Range: 30 ft.
+  Area of Effect: 20' radius
+  Saving Throw: None
+
+Requires:
+ 9 Wisdom
+
+Weight: 1~
