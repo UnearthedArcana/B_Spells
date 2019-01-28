@@ -406,8 +406,7 @@ LAF RES_NUM_OF_SPELL_NAME
   RET spell_res
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
-//LPF cd_apply_batch STR_VAR array_name = cd_full_blindness_opcode_arrays END //Blindness notification
-
+  LPF cd_apply_batch STR_VAR array_name = cd_full_blindness_opcode_arrays END //Blindness notification
   LPF ALTER_EFFECT
       INT_VAR match_opcode = 326            //
       STR_VAR resource = EVAL ~%spell_res%D~

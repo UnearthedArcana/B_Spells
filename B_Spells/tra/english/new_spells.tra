@@ -6,7 +6,7 @@
 (Alteration)
 
 Level: 1  
-Sphere: Creation  
+Sphere: Creation
 Range: 0  
 Duration: 8 hours  
 Casting Time: 9  
@@ -39,6 +39,22 @@ Damage: 2d4+2 to Undead or Evil Outsiders
 Special: Restores 1d4 Hit Points to living creatures.
 
 Weight: 0~
+
+@50004 = ~Storm Bow~
+@50005 = ~Storm Bow
+(Alteration)
+
+Level: 1
+Sphere: Weather 
+Range: 0 ft.
+Duration: 1 minute +1 minute/2 levels
+Casting Time: 3
+Area of Effect: The caster
+Saving Throw: None
+
+This spell charges projectiles fired by the caster with the power of storm, inflicting an additional 1d8 points of electrical damage per hit.  
+
+This spell lasts for 1 minute at first level, and increases by 1 minute per 2 additional levels (max 5 minutes at level 9).~
 
 
 //@50300

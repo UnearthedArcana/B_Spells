@@ -72,6 +72,48 @@ Duration: 1 turn
 
 Weight: 1~
 
+@900000026 = ~Potion of Teleportation~
+@900000027 = ~This potion grants the drinker the ability to teleport up to three times, for one term.  Characters can only benefit from this potion a maximum of once per turn.
+STATISTICS:
+
+Special: Teleport Innate ability 3x
+Duration: 1 turn
+
+Weight: 1~
+
+@900000028 = ~Teleport~
+
+@900000029 = ~Teleport
+
+This ability allows you to teleport up to 400' in any direction.~
+
+@900000030 = ~Potion of Animal Control~
+@900000031 = ~This potion enables the imbiber to empathize with and control the emotions of animals.
+
+Over the next four hours, the drinker can charm animals up to 4x allowing a save, or they can charm an animal once not allowing a save.
+
+STATISTICS:
+
+Special: Charm Animal Innate ability 4x (with save) or 1x (no save)
+Duration: 4 hours
+
+Weight: 1~
+
+@900000032 = ~Animal Control~
+@900000033 = ~Animal Control
+This spell affects any single animal it is cast upon. The animal is allowed a Save vs. Spell to negate the effect.
+
+If the spell's recipient fails its Saving Throw, it regards the caster as a trusted friend and ally to be heeded and protected. The caster may give it orders, and the charmed animal will carry them out as quickly as possible.
+
+If the caster harms or attempts to harm the charmed animal by some overt action, or if a Dispel Magic spell is cast upon the charmed animal, the spell is broken. If two or more charms simultaneously affect a creature, the most recent charm takes precedence. Note that the subject will be hostile when the charm expires, regardless of its original attitude. Also note that you cannot have a charmed creature leave the area where it was charmed.~
+
+@900000033 = ~Animal Control
+This spell affects any single animal it is cast upon. The animal is not allowed a Save vs. Spell to negate the effect.
+
+It regards the caster as a trusted friend and ally to be heeded and protected. The caster may give it orders, and the charmed animal will carry them out as quickly as possible.
+
+If the caster harms or attempts to harm the charmed animal by some overt action, or if a Dispel Magic spell is cast upon the charmed animal, the spell is broken. If two or more charms simultaneously affect a creature, the most recent charm takes precedence. Note that the subject will be hostile when the charm expires, regardless of its original attitude. Also note that you cannot have a charmed creature leave the area where it was charmed.~
+
 //Components @900009001 to @900010000
 
 
@@ -324,5 +366,112 @@ Charge abilities:
 
 Requires:
  9 Wisdom
+
+Weight: 1~
+
+@900010023 = ~Wand of Banishment~
+
+@900010024 = ~Upon command, a ball of magical energy unerringly hits the target creature. This spell is wasted on non-summoned creatures, but any summoned creature is instantly banished from whence it came if it does not save vs. wand.
+
+Even if it does save, it is stunned for 3 rounds.
+
+STATISTICS:
+
+Charge abilities:
+- Dispel Summoned Creature
+  Duration: Special
+  Range: 30 ft.
+  Area of Effect: 30' radius
+  Saving Throw: Special
+
+Requires:
+ 9 Wisdom
+ or 
+ 9 Intelligence
+
+Weight: 1~
+
+@900010025 = ~Wand of Healing~
+
+@900010026 = ~When this incredible wand is pointed at a target creature within 15', it heals them for 3d6+3 points of damage.
+
+STATISTICS:
+
+Charge abilities:
+- Healing
+  Duration: Instant
+  Range: 15 ft.
+  Area of Effect: 1 creature
+  Saving Throw: None
+  Special: Target is healed for 3d6+3 points of damage
+
+Requires:
+ 9 Wisdom
+
+Weight: 1~
+
+@900010027 = ~Wand of Spiders~
+
+@900010028 = ~This disturbing wand can be used to summon spiders and entrap single targets in a web of for 1 full minute.
+
+STATISTICS:
+
+Charge abilities:
+- Summon Giant Spider
+  Range: 30 ft.
+  Duration: 1 turn
+
+- Web
+  Duration: 1 minute
+  Effect: Web holds single creature in place
+  Range: 30 ft.
+  Area of Effect: 1 creature
+  Saving Throw: Wands -4
+  Special: Huge creatures and fire dwelling creatures are immune to this effect
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010029 = ~Wand of Swarming~
+
+@900010030 = ~When the wielder points this wand at their intended target and utters the command word, a swarm of nasty, stinging insects harasses target unless they save vs. wands -4.  
+
+If they fail their save, the target takes 1 point of damage every 3 rounds, suffers a 30% spell failure, and takes a -1 penalty to THAC0 and AC for 1 minute.
+
+STATISTICS:
+
+Charge abilities:
+- Summon Insects
+  Duration: 1 minute
+  Effect: 30% spell failure, -1 to AC and THAC0.
+  Damage: 1 point/3 rounds
+  Range: 60 ft.
+  Area of Effect: 1 creature
+  Saving Throw: Wands -4
+
+Requires:
+ 9 Wisdom
+
+Weight: 1~
+
+@900010031 = ~Wand of Death~
+
+@900010032 = ~This wand produces a death ray, that slays any living creature that fails their save vs. death.  Even if that creature does save, they take 4d6 points to cold damage.  Any creature that is hit by a Wand of Death and survives, is immune to further Death Rays for the next four hours.
+
+STATISTICS:
+
+Charge abilities:
+- Death Ray
+  Duration: Instant
+  Effect: Death
+  Damage: 4d6 Cold
+  Range: 60 ft.
+  Area of Effect: 1 creature
+  Saving Throw: Special
+
+Requires:
+ 9 Intelligence
 
 Weight: 1~

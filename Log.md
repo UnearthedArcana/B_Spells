@@ -18,6 +18,42 @@ TO DO 7: Modify tooltip.2da to give proper names to potions/wands (or is it just
 
 TO DO 8: Abundant Ammo Revision (or just trash the spell)
 
+TO DO 9: ADDRESS WANDS INT/WIS REQUIREMENTS for wands creatable by both wizards and priests (maybe have different wands for each)
+
+Version 0.88.23
+
+2019-01-26
+
+- Removed false blindness notification (e.g. 'get him') ...hopefully
+
+- Cloak of Shadow: removed flashing animation; made it unstackable 
+
+2018-12-08
+
+- Wand of Death
+
+2018-12-07
+
+- Added Potion of Animal Control
+
+2018-12-02
+
+- Created Wand of Healing
+
+- Revised Wand of Banishing (stun for 3 rounds if no remove)
+
+- Wand of Spiders
+
+- Wand of Swarming
+
+2018-12-01
+
+- First Draft of Storm Bow
+
+- First Draft of Wand of Banishment
+
+- Potion of Teleportation
+
 Version 0.88.22
 
 2018-11-29

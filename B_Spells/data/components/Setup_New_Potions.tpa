@@ -95,7 +95,34 @@ COPY ~%mod_folder%/data/potions/B_PTN06.itm~ ~override~
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//user can control animals 5x within 4 hours, or 1x allowing no save
+//user can control animals 4x within 4 hours, or 1x allowing no save
+COPY ~%mod_folder%/data/potions/B_PTN09.itm~ ~override~
+        SAY NAME2 @900000030
+        SAY DESC @900000031
+
+//innate
+COPY ~%mod_folder%/data/potions/B_PTNA1.spl~ ~override~
+        SAY NAME1 @900000032
+        SAY NAME2 @900000032
+        SAY UNIDENTIFIED_DESC @900000033
+	SAY DESC @900000033
+COPY_EXISTING ~B_PTNA1.spl~ ~override/B_PTNA2.spl~
+        SAY UNIDENTIFIED_DESC @900000034
+	SAY DESC @900000034
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 5 savingthrow = 0  //no save
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 172
+      STR_VAR resource = ~B_PTNA1~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 172
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 172
+  END      //
+
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -136,6 +163,16 @@ COPY ~%mod_folder%/data/potions/B_PTN07.itm~ ~override~
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //D. Door 
+
+COPY ~%mod_folder%/data/potions/B_PTN08.itm~ ~override~
+        SAY NAME2 @900000026
+        SAY DESC @900000027
+///innate
+COPY ~%mod_folder%/data/potions/B_PTNDD.spl~ ~override~
+        SAY NAME1 @900000028
+        SAY NAME2 @900000028
+        SAY UNIDENTIFIED_DESC @900000029
+	SAY DESC @900000029
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
