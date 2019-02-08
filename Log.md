@@ -20,6 +20,20 @@ TO DO 8: Abundant Ammo Revision (or just trash the spell)
 
 TO DO 9: ADDRESS WANDS INT/WIS REQUIREMENTS for wands creatable by both wizards and priests (maybe have different wands for each)
 
+TO DO 10: Create batch for Entropy Shield
+
+Version 0.88.24
+
+2019-02-08
+
+- Will not replace infravision with Devil's eyes if METweaks is installed
+
+- Reduced duration of Devil's eyes to 1 turn, and crit threat to +1 (rather than +2)
+
+2019-02-02
+
+- Fixed issue with entropy patch in immunities.tpa
+
 Version 0.88.23
 
 2019-01-26

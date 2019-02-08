@@ -191,11 +191,12 @@ LAF RES_NUM_OF_SPELL_NAME
   RET spell_res
 END
      COPY_EXISTING ~%spell_res%.spl~ ~override~
-       LPF cd_apply_batch STR_VAR array_name = b_entropy_shield_arrays END  //Create array and TEST!!!
+  //     LPF cd_apply_batch STR_VAR array_name = b_entropy_shield_arrays END  //Create array and TEST!!!
 
 END//End IWDEE priest spells installed
 
-/*
+ /*
+
 //////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 ///////////////////////// 4th level immune  //////////////////////////

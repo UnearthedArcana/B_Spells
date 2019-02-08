@@ -433,6 +433,7 @@ COPY_EXISTING ~SCROLLS.STO~ ~override~
 //Underdark
 COPY_EXISTING ~UDDROW25.STO~ ~override~
  ADD_STORE_ITEM ~SPWI424X~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -442,12 +443,14 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~SCSHAD~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-COPY_EXISTING ~KALAH2.CRE~ ~override~   //Kalah...should prob just be added to Kalah2...
+ ACTION_IF FILE_EXISTS_IN_GAME ~KALAH2.CRE~ BEGIN  //
+   COPY_EXISTING ~KALAH2.CRE~ ~override~   //Kalah...should prob just be added to Kalah2...
   ADD_CRE_ITEM ~SCSHAD~ #1 #0 #0 ~IDENTIFIED~ ~INV7 INV8 INV9 INV10 INV11 INV12 INV13 INV14 INV15 INV16~
-COPY_EXISTING ~KALAH.CRE~ ~override~   //shouldn't hurt?
+ END
+ACTION_IF FILE_EXISTS_IN_GAME ~KALAH.CRE~ BEGIN  //
+  COPY_EXISTING ~KALAH.CRE~ ~override~   //shouldn't hurt?
   ADD_CRE_ITEM ~SCSHAD~ #1 #0 #0 ~IDENTIFIED~ ~INV7 INV8 INV9 INV10 INV11 INV12 INV13 INV14 INV15 INV16~
 END
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_________________________________________________________________Emotion: Courage_____________________________________________________________________//

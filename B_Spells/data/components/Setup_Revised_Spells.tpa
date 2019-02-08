@@ -689,24 +689,28 @@ COPY_EXISTING ~SPWI316.spl~ ~override~  //Priest 2nd lev charm
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Infravision ---> Heat Vision
-ACTION_IF (FILE_EXISTS_IN_GAME ~dvimhere.mrk~) BEGIN   //any version of sr
+//Infravision ---> Devil's Eyes
+//not installed if infravision tweak from METweaks is installed
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~medarkne.spl~) BEGIN   //if Infra version is not installed
+
+ ACTION_IF (FILE_EXISTS_IN_GAME ~dvimhere.mrk~) BEGIN   //any version of sr
   ADD_SPELL ~Spells/data/revised_spells/heat_vision/spwi111.spl~ 2 1 ~WIZARD_HEAT_VISION~ //HEAT VISION
         SAY NAME1 @10110026
         SAY NAME2 @10110026
         SAY UNIDENTIFIED_DESC @10110030
 	SAY DESC @10110030
         LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@10110026) END  //Notification: Heat Vision
-END//End SR
+ END//End SR
 
 //CHANGE TO DEVILS EYES!!!! AND STOP USING THE CANTRIP TRA...
 
-ACTION_IF (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~) BEGIN    //otherwise...
- COPY_EXISTING ~SPWI111.spl~ ~override~   //Copy over the original spell
+ ACTION_IF (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~) BEGIN    //otherwise...
+  COPY_EXISTING ~SPWI111.spl~ ~override~   //Copy over the original spell
         SAY NAME1 @10110026  //Devil's Eyes
         SAY NAME2 @10110026  //Devil's Eyes
         LPF CLONE_EFFECT INT_VAR match_opcode = 63 opcode = 301 parameter1 = 2 END
         LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@10110026) END  //Notification: Heat Vision
+        LPF ALTER_EFFECT INT_VAR duration = 60 END  //reduced duration to 1 turn
  SPRINT old1 @10110029//old text Infravision
  SPRINT new1 @10110026//new text Heat Vision
  SPRINT old2 @10110027//old text Infravision
@@ -724,7 +728,8 @@ ACTION_IF (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~) BEGIN    //otherwise...
 	END
   SAY_EVALUATED 0x50 ~%new_desc%~
   END  //
-END  //
+ END  // end SR not installed
+END //end METweaks not installed
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
