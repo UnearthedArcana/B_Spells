@@ -12,6 +12,15 @@
 //compatibility: Entropy shield, if present, should protect vs all, or almost all, cantrip projectiles.  
 ////CHECK Malediction et alIWDEE   (WILL NEED TO COME BACK TO THIS ONCE SR CAN BE INSTALLED ON IWDEE...
 
+// SD: eliminate #bonecir.spl from IWDEE
+ACTION_IF GAME_IS ~iwdee~ BEGIN
+  ACTION_IF FILE_EXISTS_IN_GAME "#bonecir.spl" BEGIN
+	DISABLE_FROM_KEY "#bonecir.spl"
+  END
+  ACTION_IF FILE_EXISTS "override\#bonecir.spl" BEGIN
+	DELETE "override\#bonecir.spl"
+  END
+END
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////

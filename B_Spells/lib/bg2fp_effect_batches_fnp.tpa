@@ -1983,6 +1983,17 @@ DEFINE_PATCH_MACRO ~b_removal_rage_arrays_second~ BEGIN
   END // nadda...except
 END
 
+//Cure HP spells applied to bleed effects
+DEFINE_PATCH_MACRO ~b_removal_cure_bleed~ BEGIN
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_key BEGIN
+    17,  "-10", "-10", "same",  "-10",  "-10", "same" => 1 //cure: berserking
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_extras BEGIN
+    321, "0", "0", "B_LEAD1",  "-10", "-10", "same" => 1    //bleed 1 effect
+  END
+  DEFINE_ASSOCIATIVE_ARRAY cd_immunity_batches_delete BEGIN
+  END // nadda...
+END
 
 //Rage/berserk removal end
 DEFINE_PATCH_MACRO ~b_removal_rage_arrays_end~ BEGIN

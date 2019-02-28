@@ -777,81 +777,150 @@ This spell surrounds the recipient with a magical barrier at a distance of one f
 Level: 1
 Sphere: Creation
 Range: Personal
-Duration: Instant; 8 hours
+Duration: 8 hours
 Casting Time: 9
 Saving Throw: None
 
-This spell creates special ammunition in the caster's inventory.  This spell can either create a stack of 10 bolts, 20 arrows, or 40 bullets from the list determined by level.
+This spell creates special ammunition in the caster's inventory.  This spell can either create a stack of 20 bolts, arrows or bullets.  These projectiles are somewhat better than standard ammunition.  The ranger can create the following with this spell:
 
-- Elemental Ammunition: Does bonus acid, electricty, fire or cold damage (save vs. wands for 1/2). Hits as a +1 weapon (+2d2 bullets, +2d4 arrows, +4d4 bolts).
+All ammunition types strike as +1 weapons (though, they do not necessarily gain a +1 bonus to strike or damage).
 
--
-~
+- Hunting Arrows or Bolts: Targets struck gain the 'bleed' condition for up to 6 rounds if they do not save vs. wands.  Bleeding targets suffer 1 point of slashing damage each round they are affected by bleed.  If they recieve any kind of cure effect, the bleed condition is removed.
+
+- Weighted Bullets: Weighted bullets do an additional +4 points of blunt damage upon impact, are -1 to hit, and 30% knock down (save vs. Wand negates).
+
+- Keen Arrows or Bolts: +1 to hit, 15% doing an additional die of damage to target.
+
+- Balanced Bullets: +3 to hit
+
+- Piercing Arrows or Bolts: +3 piercing damage.
+
+- Eggshell Bullet: -2 to hit, save vs. poison or 6 points of poison damage, -1 to AC for 1 round.~
 
 @53002 = ~Sphere: Creation~
 @53003 = ~Sphere: War~
-@53004 = ~Fire Arrows~
-@53005 = ~Bolts of Piercing~
-@53006 = ~Bullets of Impact~
-@53007 = ~This is a magical arrow that will burst into flames as it is fired at an enemy. The effect is similar to an arrow doused in oil and set to flame.
+@53004 = ~Hunting Arrows~
+@53005 = ~This arrow is sharp and jagged, capable of causing grievous persistent wounds to targets.  When this arrow strikes a target, they must save vs. wands or take 1 point of slashing damage/round for 6 rounds.  This effect is removed if the target receives healing of any kind.
 
 This arrow strikes as a +1 weapon.
 
 STATISTICS:
 
-Damage: 1d6, +2d6 fire damage (Save vs. Wands for half)
+Damage: 1d6 (missile)
+Special: Target takes 1 point of slashing damage/round (save vs. wand for none)
+Duration: 6 rounds
 Damage type: Missile
 Launcher: Bow
 
 Weight: 0~
-@53008 = ~This magical bolt seems perfectly normal, if particularly sharp. However, when it hits its target, it pierces their armor with ease, and does devastating damage.
 
-This bolt strikes as a +2 weapon.
+@53006 = ~Bleeding~
+@53007 = ~Hunting Bolts~
+
+@53008 ~This bolt is sharp and jagged, capable of causing grievous persistent wounds to targets.  When this arrow strikes a target, they must save vs. wands or take 1 point of slashing damage/round for 6 rounds.  This effect is removed if the target receives healing of any kind.
+
+This bolt strikes as a +1 weapon.
 
 STATISTICS:
 
-THACO: +3
-Damage: 1d8, +6 piercing damage
+Damage: 1d8 (missile)
+Special: Target takes 1 point of slashing damage/round (save vs. wand for none)
+Duration: 6 rounds
 Damage type: Missile
 Launcher: Crossbow
 
 Weight: 0~
 
-@53009 = ~This bullet seems a bit heavy, but is otherwise like any orther stone. However, this bullet seems to increase velocity just as it hits, slamming into opponents with a jarring force.
+@53009 = ~Weighted Bullets~
+
+@53010 = ~This bullet seems normal, except that it is especially big and heavy--too heavy to launch accurately (imposing a -1 to hit penalty).  However, it has a chance to knock the target senseless.  When it does hit, it inflicts an additional 4 points of crushing damage to the target, and has a 30% chance to knock down the target for 3 seconds if they do not save vs. wands.
 
 This bullet strikes as a +1 weapon.
 
 STATISTICS:
 
-THACO: +1
-Damage: 1d4 +1, +2 blunt damage
+THAC0: -1
+Damage: 1d4, +4 crushing damage
+Special: 30% chance target knocks target down (save vs. wand negates)
+Duration: 3 seconds
 Damage type: Missile
 Launcher: Sling
 
 Weight: 0~
-@53010 = ~Hunting Arrows~
-@53011 = ~This arrow is sharp and jagged, capable of causing devisting persistant wounds to targets.  When this arrow strikes a target, they must save vs. wands each round for up to 6 rounds or take 1 point of slashing damage/round.  This effect is removed if the target recieves healing of any kind.
+
+@53011 = ~Keen Arrows~
+@53012 = ~This arrow is well crafted and accurate, and possesses a sharp point. Keen arrows are +1 to hit, and have a 15% chance of inflicting an additional 1d6 points of damage to struck targets.
 
 This arrow strikes as a +1 weapon.
 
 STATISTICS:
 
+THAC0: +1
 Damage: 1d6
-Special: Target takes 1 point of slashing damage/round if a save is not made each round (max 6 rounds)
+Special: 15% of doing an additional 1d6 missile damage.
 Damage type: Missile
 Launcher: Bow
 
 Weight: 0~
-@53012 = ~Bolt of Impact~
-@53013 = ~40 Arrows~
-@53014 = ~40 Bolts~
-@53015 = ~40 Bullets~
-@53016 = ~50 Arrows~
-@53017 = ~50 Bolts~
-@53018 = ~50 Bullets~
-@53019 = ~10 +1 Arrows~
-@53020 = ~10 +1 Bolts~
-@53021 = ~10 +1 Bullets~
+
+@53013 = ~Keen Bolts~
+
+@53014 = ~This bolt is well crafted and accurate, and possesses a sharp point. Keen bolts are +1 to hit, and have a 15% chance of inflicting an additional 1d8 points of damage to struck targets.
+
+This bolt strikes as a +1 weapon.
+
+STATISTICS:
+
+THAC0: +1
+Damage: 1d8
+Special: 15% of doing an additional 1d8 missile damage.
+Damage type: Missile
+Launcher: Bow
+
+Weight: 0~
+
+@53015 = ~Balanced Bullets~
+
+@53016 = ~This bullet is very well balanced and aerodynamic, making it especially accurate, granting a +3 to all attack roles.
+
+This bullet strikes as a +1 weapon.
+
+STATISTICS:
+
+THAC0: +3
+Damage: 1d4
+Damage type: Missile
+Launcher: Sling
+
+Weight: 0~
+
+@53017 = ~Piercing Arrows~
+@53018 = ~This arrow seems perfectly normal, if particularly sharp. However, when it hits its target, it pierces flesh with ease, doing substantial damage.
+
+This arrow strikes as a +1 weapon.
+
+STATISTICS:
+
+Damage: 1d6, +3 piercing damage
+Damage type: Piercing
+Launcher: Bow
+
+Weight: 0~
+
+@53019 = ~Piercing Bolt~
+@53020 = ~This arrow seems perfectly normal, if particularly sharp. However, when it hits its target, it pierces flesh with ease, doing substantial damage.
+
+This arrow strikes as a +1 weapon.
+
+STATISTICS:
+
+Damage: 1d8, +3 piercing damage
+Damage type: Piercing
+Launcher: Crossbow
+
+Weight: 0~
+
+@53021 = ~Eggshell Bullet~
 
 @53022 = ~Camouflage~
 @53023 = ~Camouflage
@@ -870,14 +939,43 @@ When this spell is cast, the caster gains a +50% bonus to hide and move silently
 
 This bonus increases by +5% at 2nd level, and +5% per 2 levels after that, to a maximum of +75% at 10th level.~
 
+@53024 = ~This bullet looks more like an egg than a proper bullet, and it seems to contain some kind of powder.  Indeed, it is designed to burst open at the slightest impact, coating the target with that powder.  The bullet itself doesn't do much damage--targets take 1 point--but the target must save vs. poison or choke on the fumes, suffering 1 point of poison damage per second, and is penalized for -1 to AC for 6 seconds.
+
+This bullet is not well balanced, and it is difficult to shoot accuracy.  As such, it imposes a -2 penalty to hit.
+
+This bullet strikes as a +1 weapon.
+
+STATISTICS:
+
+THAC0: -2
+Damage: 1 point
+Damage type: Missile
+Launcher: Sling
+
+Weight: 0~
+
+@53025 = ~Magic Weapon~
+@53026 = ~Magic Weapon
+(Enchantment/Charm)
+
+Level: 1  
+Sphere: Combat
+Range: Personal
+Duration: Instant: 1 turn
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: None
+
+Magic weapon gives the personal weapon of the caster a +1 enhancement bonus on attack and damage rolls.~
+
 
 //ARCANE SPELLS
 
+//@65001 to @70000
 //A few random 1st level spells
 
-//@60000
-@60001 = ~Protective Shell~
-@60002 = ~Protective Shell
+@65001 = ~Protective Shell~
+@65002 = ~Protective Shell
 (Abjuration)
 
 Level: 1
@@ -889,10 +987,9 @@ Saving Throw: None
 
 This spell creates a thin magical shell that harmlessly absorbs the first physical strike that hits the caster.~
 
-//@60100
 
-@60101   = ~Anticipation~
-@60102   = ~Anticipation
+@65101   = ~Anticipation~
+@65102   = ~Anticipation
 (Divination)
 
 Level: 1
@@ -902,12 +999,10 @@ Duration: 3 rounds
 Area of Effect: The caster
 Saving Throw: None
 
-This spell gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time granting a +5 bonus to AC and saves vs. dragon breath for 3 rounds.~
+This spell gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time granting a +5 bonus to AC, and +1 to weapon and casting speed for 3 rounds.~
 
-//@60200
-
-@60201 = ~Alarm~
-@60202 = ~Alarm
+@65201 = ~Alarm~
+@65202 = ~Alarm
 (Divination)
 
 Level: 1
@@ -924,8 +1019,8 @@ This alarm awakens the caster and <PRO_HISHER> allies, and makes them alert to a
 
 Once the ward is set, it protects the caster and <PRO_HISHER> allies as long as they stay within the general area.  The ward lasts for 8 hours or until triggered.~
 
-@60203 = ~Hypnotism~
-@60204 = ~Hypnotism
+@65203 = ~Hypnotism~
+@65204 = ~Hypnotism
 (Enchantment/Charm)
 
 Level: 1
@@ -939,13 +1034,13 @@ This spell entrances up to 1d4 creatures, causing them to stand mystified for 1 
 
 Affected creatures shake off this effect if they are attacked.~
 
-@60205 = ~Hypnotized~
-@60206 = ~No longer Hypnotized~
+@65205 = ~Hypnotized~
+@65206 = ~No longer Hypnotized~
 
 //@61000 1st level arcane spells
 
-@61001 = ~Detect Traps and Portals~
-@61002 = ~Detect Traps and Portals
+@66001 = ~Detect Traps and Portals~
+@66002 = ~Detect Traps and Portals
 (Divination)
 
 Level: 1
@@ -959,8 +1054,8 @@ With this spell, the mage can detect traps and secret doors, as if <PRO_HESHE> w
 
 This chance to detect spells stacks with any preexisting skill the mage might otherwise have with detect traps, and if <PRO_HESHE> has levels in thief, this spell will give <PRO_HIMHER> a bonus to disarm traps as well.~
 
-@61011 = ~Reprieve~
-@61012 = ~Reprieve
+@66011 = ~Reprieve~
+@66012 = ~Reprieve
 (Alteration)
 
 Range: Visual range of the caster
@@ -973,8 +1068,8 @@ This spell causes a single ally to vanish in a flash of light. After one round t
 
 Lasts for 1 round at first level, +1 round for every two levels after that (max 5 rounds at level 9).~
 
-@61013 = ~Accelerate Metabolism~
-@61014 = ~Accelerate Metabolism
+@66013 = ~Accelerate Metabolism~
+@66014 = ~Accelerate Metabolism
 (Necromancy)
 
 Level: 1
@@ -990,10 +1085,10 @@ At first level, recipients heal 1 hit point per hour, and gain a +1 bonus to sav
 
 Multiple castings of this spell are not cumulative.~
 
-@61015 = ~Accelerated Metabolism~
+@66015 = ~Accelerated Metabolism~
 
-@61016 = ~Vanish~
-@61017 = ~Vanish
+@66016 = ~Vanish~
+@66017 = ~Vanish
 (Illusion/Phantasm)
 
 Level: 1
@@ -1005,8 +1100,8 @@ Saving Throw: None
 
 This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round, +1 round per 2 levels after 1st, level (max 5 rounds at levl 9), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).~
 
-@61101 = ~Enervating Ray~
-@61102 = ~Enervating Ray
+@66101 = ~Enervating Ray~
+@66102 = ~Enervating Ray
 (Necromancy)
 
 Level: 1
@@ -1022,10 +1117,10 @@ Damage increases by 2d4 at 3rd level, and every 2 levels thereafter (max 10d4 at
 
 Undead and creatures without a biological anatomy are immune to Enervating Ray.~
 
-@61103 = ~Drained~
+@66103 = ~Drained~
 
-@61110 = ~Farseer~
-@61111 = ~Farseer
+@66110 = ~Farseer~
+@66111 = ~Farseer
 (Divination)
 
 Level: 1
@@ -1037,13 +1132,12 @@ Saving Throw: None
 
 The recipient of this spell gains extraordinary vision, able to see twice as far as before with clarity.  Additionally, they gain a +2 bonus to THAC0 with ranged weapons.~
 
-@61112 = ~Farsighted~
+@66112 = ~Farsighted~
 
-//@62000 2nd level arcane spells
 
-@62000 = ~Bolt of Paralysis~
+@67000 = ~Bolt of Paralysis~
 
-@62001 = ~Bolt of Paralysis
+@67001 = ~Bolt of Paralysis
 (Evocation)
 
 Level: 2
@@ -1059,13 +1153,10 @@ Even if the target makes their save, they are instead slowed for the duration.
 
 This spell does not affect undead or constructs, such as golems.~
 
-@62002 = ~Paralyzed~
+@67002 = ~Paralyzed~
 
-
-//@63000 3RD level arcane spells
-
-@63001 = ~Solvent of Corrosion~
-@63002 = ~Solvent of Corrosion
+@67301 = ~Solvent of Corrosion~
+@67302 = ~Solvent of Corrosion
 (Conjuration)
 
 Level: 3
@@ -1081,8 +1172,8 @@ Additionally, the target suffers a -2 penalty to attacks while the acid is in ef
 
 This spell is effective against constructs and other creatures normally resistant to magic.~
 
-@63003 = ~Iron Mind~
-@63004 = ~Iron Mind
+@67303 = ~Iron Mind~
+@67304 = ~Iron Mind
 (Abjuration)
 
 Level: 3
@@ -1096,10 +1187,8 @@ When the mage casts this spell, and touches a creature, that creature becomes im
 
 This spell does not protect against domination affects (except though the bonus to save vs. spell).~
 
-//@64000 4th level arcane spells
-
-@64001 = ~Charm Monster~
-@64002 = ~Charm Monster
+@67401 = ~Charm Monster~
+@67402 = ~Charm Monster
 (Enchantment/Charm)
 
 Level: 4
@@ -1115,8 +1204,8 @@ If the spell's recipient fails <PRO_HISHER> Saving Throw, <PRO_HESHE> regards th
 
 If the caster harm or attempts to harm the charmed creature by some overt action, or if a Dispel Magic spell is cast upon the charmed creature, the Charm spell is broken. If two or more Charms simultaneously affect a creature, the most recent Charm takes precedence. Note that the subject has full memory of the events that took place while he was charmed. Also note that you cannot have a charmed creature leave the area where he is charmed.~
 
-@64010 = ~Mindsight~
-@64011 = ~Mindsight
+@67410 = ~Mindsight~
+@67411 = ~Mindsight
 (Divination)
 
 Level: 4
@@ -1132,9 +1221,8 @@ When this spell is cast, the caster is able to "see" and "hear" everything in <P
 
 This spell does not grant any special benefits against illusions.~
 
-//@65000 5th level arcane spells
-@65001 = ~Snilloc's Major Missile~
-@65002 = ~Snilloc's Major Missile
+@67501 = ~Snilloc's Major Missile~
+@67502 = ~Snilloc's Major Missile
 (Evocation)
 
 Level: 5
@@ -1146,8 +1234,8 @@ Saving Throw: None
 
 Major Missile is much like Magic Missile, creating a single missile of magical energy that darts forth from the wizard's fingertip and unerringly strike their target, which must be a creature of some sort. This missile inflicts 1d4+1 points of damage, plus 1d4+1 for every two levels thereafter, to a maximum of 15d4 +15.~
 
-@65003 = ~Usurp Shell~
-@65004 = ~Usurp Shell
+@67503 = ~Usurp Shell~
+@67504 = ~Usurp Shell
 (Necromancy)
 
 Level: 5
@@ -1165,12 +1253,10 @@ Additionally, the targets movements are jerky and predicable, and they move at 8
 
 If the target resists the spell, they suffer 3d8 points of magic damage.~
 
-@65005 = ~Body Controlled!~
+@67505 = ~Body Controlled!~
 
-//@66000 6th level arcane spells
-
-@66000 = ~Siphon Vitality~
-@66001 = ~Siphon Vitality
+@68000 = ~Siphon Vitality~
+@68001 = ~Siphon Vitality
 (Necromancy)
 
 Level: 6
@@ -1184,7 +1270,7 @@ When the caster casts this spell and points to a creature within 15', that creat
 
 A caster cannot benefit from multiple castings of Siphon Vitality.~
 
-@66002 = ~A siphon vitality spell is already active!~
+@68002 = ~A siphon vitality spell is already active!~
 
 
 

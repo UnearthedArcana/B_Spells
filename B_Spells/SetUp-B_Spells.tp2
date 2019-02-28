@@ -2,13 +2,13 @@ BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.88.24~
+VERSION ~0.89.00~
 
 
 ALWAYS
-//	ACTION_IF GAME_IS ~bgee bg2ee eet iwdee bg bg2 bgt iwd iwd2~ BEGIN
-           OUTER_SPRINT ~mod_folder~ ~B_Spells~
-//        END
+
+        OUTER_SPRINT ~mod_folder~ ~B_Spells~
+
         ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
 	   INCLUDE ~B_Spells/lib/add_ids.tpa~
         END
@@ -76,18 +76,22 @@ ACTION_CLEAR_ARRAY aoe_spell
 
 //Add IWD spells if not already in game_____________________________________________
 
-ACTION_IF GAME_IS ~bgee bg2ee eet~ BEGIN
 //IWDEE Spells
 //IWDEE priest spells not installed
 
 //Detects IWDEE priest spells- Not SR: checked in individual setup tpas
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells
+ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
+	COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
+      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
       INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
-      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~ 
-END
-//Might have 'my' particular wiz spells (i.e. from fnp) installed...so check
-ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_SNILLOCS_SNOWBALL_SWARM~)) BEGIN
-      INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~      //install FnP specific wiz spells
+
+  ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BEAST_CLAW~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
+   INCLUDE ~faiths_and_powers/lib/iwdee_sr_readd.tpa~
+  END
+
+//special: reinstall spells if any version of SR installed
+ACTION_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN
+  INCLUDE ~faiths_and_powers/lib/sr_readd.tpa~
 END
 
 //Now, for other IWDEE wiz spells--Not SR which will be checked in game
@@ -109,38 +113,46 @@ END
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
 INCLUDE ~%mod_folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
-  INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
+INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
 BEGIN @1  //IWDEE Spells only
 SUBCOMPONENT @100
 DESIGNATED 102
 GROUP @5 
-REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet~ @17 //~EE games only!~  for now
-REQUIRE_PREDICATE !GAME_IS ~iwdee~ @15 //~IWDEE spells already installed!~
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 
 //SR NWN deflection compatibility
 ACTION_CLEAR_ARRAY aoe_spell
 
-//IWDEE Spells
-//IWDEE priest spells not installed
- ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells
+//Detects IWDEE priest spells- Not SR: checked in individual setup tpas
+ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
+	COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
+      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
       INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
-      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~ 
- END //Detects my priest spells
-  ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_SNILLOCS_SNOWBALL_SWARM~)) BEGIN    //if not FnP specific wiz spells
-      INCLUDE ~%mod_folder%/lib/fnp_wiz.tpa~      //install FnP specific wiz spells
+
+  ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BEAST_CLAW~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
+   INCLUDE ~faiths_and_powers/lib/iwdee_sr_readd.tpa~
   END
-  ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_CATS_GRACE~)) BEGIN    //if not other IWDEE wiz spells
+
+//special: reinstall spells if any version of SR installed
+ACTION_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN
+  INCLUDE ~faiths_and_powers/lib/sr_readd.tpa~
+END
+
+//Now, for other IWDEE wiz spells--Not SR which will be checked in game
+ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_CATS_GRACE~)) BEGIN    //if not other IWDEE wiz spells
     INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
-   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~
+   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~ //to detect all (my) IWDEE wiz spells
    END
+   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
+END
 
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
 INCLUDE ~%mod_folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
-  INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
+INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
 BEGIN @3  //New Spells only
 SUBCOMPONENT @100
@@ -162,7 +174,7 @@ END
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
 INCLUDE ~%mod_folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
-  INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
+INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
   
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

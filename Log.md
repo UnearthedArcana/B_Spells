@@ -14,13 +14,69 @@ TO DO 5: POTION REVISION AND NEW POTION COMPONENTS
 
 TO DO 6: RUN PROTECTIOn/REMOVAL BATCHES OVER CREATURES AND ITEMS
 
-TO DO 7: Modify tooltip.2da to give proper names to potions/wands (or is it just wands?)
+TO DO 7: Modify tooltip.2da to give proper names to wand sec spells
 
-TO DO 8: Abundant Ammo Revision (or just trash the spell)
+TO DO 8:
 
 TO DO 9: ADDRESS WANDS INT/WIS REQUIREMENTS for wands creatable by both wizards and priests (maybe have different wands for each)
 
 TO DO 10: Create batch for Entropy Shield
+
+TO DO 11: Add check for charm component for charm monster (and add charm monster in charm component if new spells installed)
+
+TO DO 12:
+
+TO DO 13: Create Custom portrait icon for bleeding effect
+
+TO DO 14: Specifically exclude Abundant Ammo and StormBow (Hidespl.2da) from druid, add to all rangers
+
+TO DO 15: Continue D. Door
+
+Version 0.89.00
+
+2019-02-23
+
+- Added fnp wiz spells back to Wiz installer
+
+- Updated Add_ids
+
+- added iwdee_sr_readd.tpa
+
+- added sr_readd.tpa
+
+- updated IWD_spells from fnp
+
+- Added Magic Weapon
+
+- Started D. Door
+
+2019-02-15
+
+- Reassigned tra references of wiz spells for fnp compatibility
+
+2019-02-13
+
+- Finished first draft of abundant ammo
+
+2019-02-12
+
+- Continued with Ab Ammo: Hunting and keen bolts and arrows, weighted and balanced bullets so far
+
+2019-02-11
+
+- Created Hunting Arrows for Abundant Ammunition spell
+
+- Created Bleeding spell (for hunting arrows)
+
+- Modified cure spell removing bleed effect via bg2ft_effect_batches_fnp.tpa and immunities.tpa
+
+2019-02-09
+
+- Got rid of #bonecir.spl
+
+- Updated Anticipation (giving weapon/spell speed boni) 
+
+- Redid elemental ammos for abundant ammunition (though let's make them interesting) 
 
 Version 0.88.24
 

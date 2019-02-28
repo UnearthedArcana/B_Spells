@@ -25,6 +25,20 @@ Saving Throw: 1/2
 
 This spell causes a flurry of snowballs to erupt from a point within range. These snowballs will hit everything within the area of effect, doing 1d3 points of cold damage per level, up to a maximum of 8d3 points at level 8. Against fire-using or fire-dwelling creatures, it inflicts 1d6 points of cold damage per level, up to a maximum of 8d6 points at level 8.~
 
+@2040002 = ~Snowball Swarm~
+@2040003 = ~Snowball Swarm
+(Evocation)
+
+Level: 2
+Sphere: Elemental Water
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 2
+Area of Effect: 30-ft. radius
+Saving Throw: 1/2
+
+This spell causes a flurry of snowballs to erupt from a point within range. These snowballs will hit everything within the area of effect, doing 1d3 points of cold damage per level, up to a maximum of 8d3 points at level 8. Against fire-using or fire-dwelling creatures, it inflicts 1d6 points of cold damage per level, up to a maximum of 8d6 points at level 8.~
+
 @2160000 = ~Decastave~
 @2160001 = ~Decastave
 (Evocation)
@@ -66,6 +80,18 @@ Saving Throw: Special
 
 This spell fires a magical lance of ice at a target of the caster's choosing. It automatically hits, inflicting 5d6 points of cold damage and forcing the target to make a Save vs. Spell or be stunned for 3 rounds.~
 @3270002 = ~Stunned~
+@3270003 = ~Icelance
+(Evocation)
+
+Level: 3
+Sphere: Elemental Water
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 3
+Area of Effect: 1 creature
+Saving Throw: Special
+
+This spell fires a magical lance of ice at a target of the caster's choosing. It automatically hits, inflicting 5d6 points of cold damage and forcing the target to make a Save vs. Spell or be stunned for 3 rounds.~
 
 @3280000 = ~Lance of Disruption~
 @3280001 = ~Lance of Disruption
@@ -111,12 +137,38 @@ Saving Throw: None
 
 This spell shapes material from the Demiplane of Shadow into illusionary monsters. Up to six shadowy creatures can be summoned at once, but their total Hit Dice will normally not exceed the spellcaster's level.~
 
+@4260002 = ~Shadow Monsters
+(Illusion/Phantasm)
+
+Level: 4
+Sphere: Shadow
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: None
+
+This spell shapes material from the Demiplane of Shadow into illusionary monsters. Up to six shadowy creatures can be summoned at once, but their total Hit Dice will normally not exceed the spellcaster's level.~
+
 @4270000 = ~Emotion: Courage~
 
 @4270001 = ~Emotion: Courage
 (Enchantment/Charm)
 
 Level: 4
+Range: Visual range of the caster
+Duration: 1 hour
+Casting Time: 4
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+This spell creates the emotion of courage within the area of effect. All creatures affected by the spell gain +1 to hit, +3 to their damage rolls, and +5 temporary Hit Points (which can put them above their maximum Hit Points). This spell nullifies all fear effects within the area of effect at the time of casting.~
+
+@4270002 = ~Emotion: Courage
+(Enchantment/Charm)
+
+Level: 4
+Sphere: Charm
 Range: Visual range of the caster
 Duration: 1 hour
 Casting Time: 4
@@ -140,6 +192,18 @@ Saving Throw: Neg.
 This spell creates the emotion of fear within the area of effect. All enemies who fail to save vs. Spell flee for 5 rounds.~
 
 @4280002 = ~Panic~
+@4280003 = ~Emotion: Fear
+(Enchantment/Charm)
+
+Level: 4
+Sphere: Charm
+Range: Visual range of the caster
+Duration: 5 rounds
+Casting Time: 4
+Area of Effect: 15-ft. radius
+Saving Throw: Neg.
+
+This spell creates the emotion of fear within the area of effect. All enemies who fail to save vs. Spell flee for 5 rounds.~
 
 @4290000 = ~Emotion: Hope~
 
@@ -181,10 +245,37 @@ Saving Throw: Special
 
 Shout grants the wizard tremendous vocal powers, allowing <PRO_HIMHER> to emit an earsplitting roar from <PRO_HISHER> mouth in a cone-shaped area of effect. Any creature within this area is deafened for 9 rounds and suffers 4d6 points of magic damage. A successful Save vs. Spell negates the deafness and reduces the damage by half.~
 
+@4310002 = ~Shout
+(Invocation)
+
+Level: 4
+Sphere: Destruction
+Range: 0
+Duration: Instant
+Casting Time: 1
+Area of Effect: 35-ft. cone with 15-deg. arc
+Saving Throw: Special
+
+Shout grants the priest tremendous vocal powers, allowing <PRO_HIMHER> to emit an earsplitting roar from <PRO_HISHER> mouth in a cone-shaped area of effect. Any creature within this area is deafened for 9 rounds and suffers 4d6 points of magic damage. A successful Save vs. Spell negates the deafness and reduces the damage by half.~
 
 @4320000 = ~Vitriolic Sphere~
 
 @4320001 = ~Vitriolic Sphere
+(Conjuration)
+
+Level: 4
+Sphere: Elemental Water
+Range: Visual range of the caster
+Duration: Special
+Casting Time: 4
+Area of Effect: 9-ft. radius
+Saving Throw: Special
+
+This spell conjures a sphere of glowing emerald acid that the caster can direct to strike any target within range. When it reaches its target, the sphere explodes and drenches the victim in potent acid. The victim suffers 1d4 points of acid damage per caster level, to a maximum of 12d4 points of damage. After the initial damage, the victim must save vs. Spell to avoid more damage. If unsuccessful, the victim continues to suffer acid damage in the following rounds, sustaining two less dice of damage each round. For example, an 8th-level wizard inflicts 8d4 damage with this spell on the first round, 6d4 on the second round, 4d4 on the third round, 2d4 on the fourth round, and the spell ends on the fifth round. Each round after the first, the victim is entitled to a Save vs. Spell to avoid further damage.
+
+The vitriolic sphere also splashes acid in a 9-ft. radius around the primary target. Any creatures within the splash radius must save vs. Petrification/Polymorph or suffer a splash hit that inflicts 1d4 points of damage per every five levels of the caster. Splash hits do not cause continuing damage.~
+
+@4320002 = ~Vitriolic Sphere
 (Conjuration)
 
 Level: 4
@@ -209,7 +300,20 @@ Casting Time: 6
 Area of Effect: Special
 Saving Throw: None
 
-Shades is similar to Shadow Monsters and Demi-Shadow Monsters—it allows the caster to shape material from the Demiplane of Shadow into illusionary creatures. These shadows are tougher than the shadows summoned by Shadow Monsters and Demi-Shadow Monsters, and they will obey the caster until the spell expires or they are slain.~
+Shades is similar to Shadow Monsters and Demi-Shadow Monsters in that it allows the caster to shape material from the Demiplane of Shadow into illusionary creatures. These shadows are tougher than the shadows summoned by Shadow Monsters and Demi-Shadow Monsters, and they will obey the caster until the spell expires or they are slain.~
+
+@6290002 = ~Shades
+(Illusion/Phantasm)
+
+Level: 6
+Sphere: Shadow
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 6
+Area of Effect: Special
+Saving Throw: None
+
+Shades is similar to Shadow Monsters and Demi-Shadow Monsters in that it allows the caster to shape material from the Demiplane of Shadow into illusionary creatures. These shadows are tougher than the shadows summoned by Shadow Monsters and Demi-Shadow Monsters, and they will obey the caster until the spell expires or they are slain.~
 
 @6300000 = ~Darts of Bone~
 @6300001 = ~Darts of Bone
@@ -238,6 +342,19 @@ Saving Throw: None
 
 This spell deals 3d8 magic damage to all living creatures within a 14-ft. radius. Any creatures that die as a result of this damage are obliterated, and their essence is transformed into a 3-Hit-Dice skeleton under control of the caster. Also, for each creature that dies in this manner, the caster receives a +1 bonus to Strength, Dexterity, and Constitution for 1 turn. Soul Eater has no effect on undead, constructs, and elemental creatures.~
 
+@6310002 = ~Soul Eater
+(Necromancy)
+
+Level: 6
+Sphere: Necromantic  
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 5
+Area of Effect: 14-ft. radius
+Saving Throw: None
+
+This spell deals 3d8 magic damage to all living creatures within a 14-ft. radius. Any creatures that die as a result of this damage are obliterated, and their essence is transformed into a 3-Hit-Dice skeleton under control of the caster. Also, for each creature that dies in this manner, the caster receives a +1 bonus to Strength, Dexterity, and Constitution for 1 turn. Soul Eater has no effect on undead, constructs, and elemental creatures.~
+
 @7240000 = ~Acid Storm~
 
 @7240001 = ~Acid Storm
@@ -252,6 +369,18 @@ Saving Throw: 1/2
 
 This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damage—the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloud—if successful, they only take half damage (for that round only).~
 
+@7240002 = ~Acid Storm
+(Evocation)
+
+Level: 7
+Sphere: Elemental Water
+Range: Visual range of the caster
+Duration: 1 round/level
+Casting Time: 7
+Area of Effect: 24-ft. radius
+Saving Throw: 1/2
+
+This spell unleashes an acidic downpour on the area of effect, doing 1d4 points of acid damage each round for the first three rounds, 1d6 points for the next three rounds, and 1d8 points for each round thereafter. Moving out of the area of effect does not stop the damage—the acid adheres to the skin, and any creatures in the area of effect when Acid Storm is cast continue to suffer acid damage as long as the spell duration lasts. Creatures make a Save vs. Spell every round after they have been hit by the cloud—if successful, they only take half damage (for that round only).~
 
 //Divine Spells
 @11200000 = ~Curse~
@@ -397,6 +526,21 @@ Area of Effect: 1 creature
 Saving Throw: 1/2
 
 By casting this spell and touching a creature, the priest deals 11 points of damage (save vs. Spell for half) to the creature's body. This spell has no effect on undead, constructs, or extraplanar creatures. It cannot be cast by good-aligned characters.~
+
+@31100000 = ~Rigid Thinking~
+@31100001 = ~Rigid Thinking
+(Enchantment/Charm)
+
+Level: 3
+Sphere: Law
+Range: Visual range of the caster
+Duration: 1 turn
+Casting Time: 5 
+Area of Effect: 1 person or mammal 
+Saving Throw: Neg. 
+
+The target of this spell must make a Saving Throw vs. Spell or come under its effects. When under the effects of the Rigid Thinking spell, the victim will randomly wander, attack the nearest person, or stand confused.~
+
 
 @31600000 = ~Prayer~
 @31600001 = ~Prayer

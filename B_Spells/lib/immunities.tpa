@@ -138,6 +138,7 @@ REINCLUDE ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
 PRINT @13
 
 COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~ //copy over all spl files
+  LPF cd_apply_batch STR_VAR array_name = b_removal_cure_bleed END  //Cure Bleed
   LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_1_arrays END  //Level 1
   LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_2_arrays END  //Level 2
   LPF cd_apply_batch STR_VAR array_name = cd_immunity_spell_level_3_arrays END  //Level 3
