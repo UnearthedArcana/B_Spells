@@ -7,9 +7,9 @@
 
 Level: 1  
 Sphere: Creation
-Range: 0  
+Range: 0
 Duration: 8 hours  
-Casting Time: 9  
+Casting Time: 9
 Area of Effect: The Caster  
 Saving Throw: None
 
@@ -817,7 +817,7 @@ Weight: 0~
 @53006 = ~Bleeding~
 @53007 = ~Hunting Bolts~
 
-@53008 ~This bolt is sharp and jagged, capable of causing grievous persistent wounds to targets.  When this arrow strikes a target, they must save vs. wands or take 1 point of slashing damage/round for 6 rounds.  This effect is removed if the target receives healing of any kind.
+@53008 = ~This bolt is sharp and jagged, capable of causing grievous persistent wounds to targets.  When this arrow strikes a target, they must save vs. wands or take 1 point of slashing damage/round for 6 rounds.  This effect is removed if the target receives healing of any kind.
 
 This bolt strikes as a +1 weapon.
 
@@ -830,6 +830,7 @@ Damage type: Missile
 Launcher: Crossbow
 
 Weight: 0~
+
 
 @53009 = ~Weighted Bullets~
 
@@ -968,6 +969,19 @@ Saving Throw: None
 
 Magic weapon gives the personal weapon of the caster a +1 enhancement bonus on attack and damage rolls.~
 
+@53027 = ~Blindness~
+@53028 = ~Blindness
+(Illusion/Phantasm)
+
+Level: 2
+Sphere: Shadow
+Range: 40 ft.
+Duration: 2 hours
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: Neg.
+
+This spell temporarily blinds its target. A Saving Throw is allowed and, if successful, there are no harmful effects. If a victim is blinded, they receives a -4 penalty to their attack rolls and Armor Class.~
 
 //ARCANE SPELLS
 
@@ -986,7 +1000,6 @@ Area of Effect: The caster
 Saving Throw: None
 
 This spell creates a thin magical shell that harmlessly absorbs the first physical strike that hits the caster.~
-
 
 @65101   = ~Anticipation~
 @65102   = ~Anticipation
@@ -1037,8 +1050,6 @@ Affected creatures shake off this effect if they are attacked.~
 @65205 = ~Hypnotized~
 @65206 = ~No longer Hypnotized~
 
-//@61000 1st level arcane spells
-
 @66001 = ~Detect Traps and Portals~
 @66002 = ~Detect Traps and Portals
 (Divination)
@@ -1085,7 +1096,7 @@ At first level, recipients heal 1 hit point per hour, and gain a +1 bonus to sav
 
 Multiple castings of this spell are not cumulative.~
 
-@66015 = ~Accelerated Metabolism~
+@61015 = ~Accelerated Metabolism~
 
 @66016 = ~Vanish~
 @66017 = ~Vanish
@@ -1134,7 +1145,6 @@ The recipient of this spell gains extraordinary vision, able to see twice as far
 
 @66112 = ~Farsighted~
 
-
 @67000 = ~Bolt of Paralysis~
 
 @67001 = ~Bolt of Paralysis
@@ -1154,6 +1164,7 @@ Even if the target makes their save, they are instead slowed for the duration.
 This spell does not affect undead or constructs, such as golems.~
 
 @67002 = ~Paralyzed~
+
 
 @67301 = ~Solvent of Corrosion~
 @67302 = ~Solvent of Corrosion
@@ -1221,6 +1232,7 @@ When this spell is cast, the caster is able to "see" and "hear" everything in <P
 
 This spell does not grant any special benefits against illusions.~
 
+
 @67501 = ~Snilloc's Major Missile~
 @67502 = ~Snilloc's Major Missile
 (Evocation)
@@ -1254,6 +1266,7 @@ Additionally, the targets movements are jerky and predicable, and they move at 8
 If the target resists the spell, they suffer 3d8 points of magic damage.~
 
 @67505 = ~Body Controlled!~
+
 
 @68000 = ~Siphon Vitality~
 @68001 = ~Siphon Vitality

@@ -32,7 +32,17 @@ TO DO 14: Specifically exclude Abundant Ammo and StormBow (Hidespl.2da) from dru
 
 TO DO 15: Continue D. Door
 
+Version 0.89.01
+
+2019-03-03
+
+- Updated spl tras from FnP
+
 Version 0.89.00
+
+2019-02-28
+
+- Fixed a few parse errors (thanks Subtledoctor)
 
 2019-02-23
 
@@ -76,7 +86,7 @@ Version 0.89.00
 
 - Updated Anticipation (giving weapon/spell speed boni) 
 
-- Redid elemental ammos for abundant ammunition (though let's make them interesting) 
+- Redid elemental ammos for abundant ammunition (though let's make them interesting)
 
 Version 0.88.24
 
