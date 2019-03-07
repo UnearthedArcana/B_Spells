@@ -34,6 +34,12 @@ TO DO 15: Continue D. Door
 
 Version 0.89.01
 
+2019-03-07
+
+- Created Binding Spell
+
+Version 0.89.01
+
 2019-03-03
 
 - Updated spl tras from FnP
