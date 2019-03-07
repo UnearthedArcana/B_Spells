@@ -32,7 +32,13 @@ TO DO 14: Specifically exclude Abundant Ammo and StormBow (Hidespl.2da) from dru
 
 TO DO 15: Continue D. Door
 
-Version 0.89.01
+Version 0.89.03
+
+2019-03-07
+
+- Updated Binding Spell Duration
+
+Version 0.89.02
 
 2019-03-07
 
