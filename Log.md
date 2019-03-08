@@ -32,6 +32,12 @@ TO DO 14: Specifically exclude Abundant Ammo and StormBow (Hidespl.2da) from dru
 
 TO DO 15: Continue D. Door
 
+Version 0.89.04
+
+2019-03-08
+
+- Added Castigate priest spell
+
 Version 0.89.03
 
 2019-03-07
