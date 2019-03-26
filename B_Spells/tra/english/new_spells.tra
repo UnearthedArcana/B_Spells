@@ -1013,6 +1013,34 @@ Saving Throw: Neg.
 
 With this spell, you point at a single creature and rebuke them, filling them with terror for 1 round if they fail their save vs. spell.~
 
+@53033 = ~Minor Creation~
+@53034 = ~Minor Creation
+(Conjuration/Summoning)
+
+Level: 2  
+Sphere: Creation  
+Range: 0  
+Duration: 8 hours
+Casting Time: 4  
+Area of Effect: The Caster  
+Saving Throw: None  
+
+This spell allows the caster to conjure non-magical weapons, armor and items.  This spell allows the priest to conjure up to 10 lbs of material per 3 levels (max 50 lbs at level 13).  Each item counts as weighing a minimum of 1 lb.
+
+These items last for 8 hours before vanishing.~
+
+@53035 = ~Expeditious Retreat
+(Alteration)
+
+Level: 1
+Sphere: Travelers
+Range: 0
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: None
+
+This spell doubles the caster's normal speed for a short period of time... usually long enough to escape. Other movement-altering effects, such as Haste and Slow, cannot affect the caster while this spell is in effect. While Expeditious Retreat is active, the caster cannot attack, cast spells, or use any items or special abilities... <PRO_HESHE> can only run.~
 
 //ARCANE SPELLS
 

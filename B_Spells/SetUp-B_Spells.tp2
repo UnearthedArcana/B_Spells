@@ -2,7 +2,7 @@ BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.89.04~
+VERSION ~0.89.06~
 
 
 ALWAYS
@@ -13,7 +13,11 @@ ALWAYS
 	   INCLUDE ~B_Spells/lib/add_ids.tpa~
         END
 
-	INCLUDE ~B_Spells/lib/alter_effect.tpa~
+	INCLUDE ~B_Kits/lib/spon_cast_functions.tpa~
+
+	INCLUDE ~B_Kits/lib/SEQUENCER_MENU.tpa~
+        
+        INCLUDE ~B_Spells/lib/alter_effect.tpa~
 
 	INCLUDE ~B_Spells/lib/remove_lines.tpa~
 
@@ -64,6 +68,13 @@ LANGUAGE ~English~ ~english~
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			101: All new spells (including IWDEE spells if applicable)
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
 BEGIN @0  //All new spells (including IWDEE spells if applicable)
 SUBCOMPONENT @100
 DESIGNATED 101
@@ -110,6 +121,13 @@ ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_ACCELERATE_HEALING~)) BE
     INCLUDE ~%mod_folder%/data/components/Setup_New_Spells.tpa~      //New Spells
 END
 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			102: IWDEE spells only
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
 INCLUDE ~%mod_folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
@@ -154,6 +172,13 @@ INCLUDE ~%mod_folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
 INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			103: New spells only
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
 BEGIN @3  //New Spells only
 SUBCOMPONENT @100
 DESIGNATED 103
@@ -186,6 +211,13 @@ INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			201: Install All new items (including IWDEE items if applicable)
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
 BEGIN @4  //Install All new items (including IWDEE items if applicable)
 SUBCOMPONENT @101
 DESIGNATED 201
@@ -196,6 +228,39 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 //INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
 INCLUDE ~%mod_folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
 
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////  
+////////////////////////////////////////                  Extras                  ////////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			301: Class 'Extras': Spontaneous Casting (By Pecca)
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @180  //Spontaneous Casting for clerics and druids (by Pecca)
+SUBCOMPONENT @180 //Spontaneous Casting for clerics and druids (by Pecca)
+DESIGNATED 301
+GROUP @162    //Class 'Extras'
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
+
+//extra spells if nec
+ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
+  INCLUDE ~%mod_folder%/data/components/Setup_missing_spells.tpa~
+END
+
+//New spells if nec
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
+  INCLUDE ~%mod_folder%/lib/spon_cast_spells.tpa~
+END
+
+INCLUDE ~%mod_folder%/data/components/Setup_Spontaneous_Casting.tpa~
 
 //Do I need the stuff below this????
 

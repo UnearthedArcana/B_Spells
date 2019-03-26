@@ -32,6 +32,20 @@ TO DO 14: Specifically exclude Abundant Ammo and StormBow (Hidespl.2da) from dru
 
 TO DO 15: Continue D. Door
 
+TO DO 16: Continue Minor Creation lib/fnp_new_spells.tpa
+
+Version 0.89.06
+
+- Started Minor Creation spell
+
+- Updated new_spells.tra with fnp ex ret 
+
+Version 0.89.05
+
+2019-03-09
+
+- Added Pecca's Spon Casting for Priests (though, untested)
+
 Version 0.89.04
 
 2019-03-08
