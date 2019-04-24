@@ -34,7 +34,62 @@ TO DO 15: Continue D. Door
 
 TO DO 16: Continue Minor Creation lib/fnp_new_spells.tpa
 
+TO DO 17: B_ILL01.itm needs to add additional protections
+
+TO DO 18: Make disbelieve destroy nearby illusions of right level
+
+TO DO 19: 5th level IWDEE wiz spells (D.Shadow Monsters SPWI525) And make compatible with B_Attributes (See Setup+int_pnp_Illusion.tpa component for shad mons)
+
+TO DO 20: Finish D. Door
+
+Version 0.89.07
+
+2019-04-24
+
+- Finished Shroud of Flame
+
+- Cleaned up some of the scroll placement code in Setup_IWD_Wiz.tpa and Setup_New_Spells.tpa
+
+2019-04-23
+
+- Started Shroud of Flame (do icons and scrolls, etc.)
+
+2019-04-20
+
+- Created Invisibility to Animals
+
+2019-04-19
+
+- Added Phantasmal Killer (Credit: Raduziel)
+
+2019-04-15
+
+- Added Compatibility with B_Attributes pnp illusion immunity Int 22 lev 4 illusion immunity (prot from shadow beasts) for both fnp added wiz priest SB and iwdee added SB
+
+- Apparently, I missed at least 1 lev 5 IWDEE wiz spell (Demi-Shadow Monsters...) Added to TO DO
+
+
+2019-04-13
+
+- Created first draft of Invisibility to Undead (for cleric and wizard)
+
+2019-04-06
+
+- Added Illusion.bcs for bgee or iwdee to illusory cre (in ph force)
+
+2019-04-01
+
+- Updated Phant Force (disbelieve prot vs. lev dep illusions)
+
+2019-03-30
+
+- Fixed tra errors
+
+- Phantasmal Force: First Draft
+
 Version 0.89.06
+
+2019-03-24
 
 - Started Minor Creation spell
 

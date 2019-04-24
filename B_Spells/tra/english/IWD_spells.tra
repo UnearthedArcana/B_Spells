@@ -289,6 +289,20 @@ This spell conjures a sphere of glowing emerald acid that the caster can direct 
 
 The vitriolic sphere also splashes acid in a 9-ft. radius around the primary target. Any creatures within the splash radius must save vs. Petrification/Polymorph or suffer a splash hit that inflicts 1d4 points of damage per every five levels of the caster. Splash hits do not cause continuing damage.~
 
+@5240000 = ~Shroud of Flame~
+@5240001 = ~Shroud of Flame
+(Invocation)
+
+Level: 5
+Range: Visual range of the caster
+Duration: 1 round/2 levels (special)
+Casting Time: 5
+Area of Effect: 5-ft. radius
+Saving Throw: Neg.
+
+This spell causes a creature to burst into flames if it fails a Save vs. Spell. The creature will burn for 2d6 points of fire damage every round, and gouts of flame erupt from the burning target, causing any creatures within 5 ft. to take 1d4 points of fire damage from the flames. Anyone hit by the victim's flames must also make a Save vs. Spell to avoid contracting the shroud themselves. The shroud of flame dissipates if the caster and target are no longer in the same area. This spell is particularly useful in dispersing packs of trolls and frost salamanders.~
+
+
 @6290000 = ~Shades~
 @6290001 = ~Shades
 (Illusion/Phantasm)

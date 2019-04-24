@@ -2,7 +2,7 @@ BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.89.06~
+VERSION ~0.89.07~
 
 
 ALWAYS
@@ -13,10 +13,24 @@ ALWAYS
 	   INCLUDE ~B_Spells/lib/add_ids.tpa~
         END
 
-	INCLUDE ~B_Kits/lib/spon_cast_functions.tpa~
+ 	ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN
+          OUTER_SPRINT ~game~ ~bg2ee~
+        END
 
-	INCLUDE ~B_Kits/lib/SEQUENCER_MENU.tpa~
+ 	ACTION_IF GAME_IS ~bgee~ THEN BEGIN
+          OUTER_SPRINT ~game~ ~bgee~
+        END
         
+ 	ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
+          OUTER_SPRINT ~game~ ~iwdee~
+        END
+
+        INCLUDE ~B_Spells/lib/spon_cast_functions.tpa~
+
+	INCLUDE ~B_Spells/lib/SEQUENCER_MENU.tpa~
+        
+        INCLUDE ~B_Spells/lib/illusion_crea.tpa~
+
         INCLUDE ~B_Spells/lib/alter_effect.tpa~
 
 	INCLUDE ~B_Spells/lib/remove_lines.tpa~
@@ -237,6 +251,9 @@ INCLUDE ~%mod_folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+//issues with the function
+
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
@@ -261,76 +278,5 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
 END
 
 INCLUDE ~%mod_folder%/data/components/Setup_Spontaneous_Casting.tpa~
-
-//Do I need the stuff below this????
-
-
-/*
-ACTION_PHP_EACH prot AS block => rock BEGIN
-  ACTION_IF (~%rock%~ STRING_EQUAL ~fear~) BEGIN
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~Spells/lib/bg2fp_effect_batches_fnp.tpa~
-      REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~ ~321, "-10", "-10", "%block%", 1, 0, "same" => 1~
-  END
-END
-
-REINCLUDE ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
-
- COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~ //copy over all spl files
-  LPF cd_apply_batch STR_VAR array_name = cd_fear_removal_arrays END
-  BUT_ONLY
-
-
-END
-
-
-
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-//IWDEE SPells
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-ACTION_IF (GAME_IS ~bgee bg2ee sod eet~) AND (NOT FILE_EXISTS_IN_GAME ~b_wizi.itm~) BEGIN   //
- ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_IWD.itm~ BEGIN    //If IWD spells not installed...
-   INCLUDE ~spells/data/components/Setup_IWD_Spells.tpa~ //Divine spells
- COPY ~spells/data/iwd_spells/b_IWD.itm~ ~override~   //to detect this component
-   INCLUDE ~spells/data/components/Setup_IWD_Wiz.tpa~     //This will be the full IWDEE Arcane spell install...
- COPY ~spells/data/iwd_spells/b_wizi.itm~ ~override~   //to detect this component
-
- END
-END
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-//New SPells
-//////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
-ACTION_IF NOT FILE_EXISTS_IN_GAME ~b_new.itm~ BEGIN    //If Newspells not installed...
-   INCLUDE ~spells/data/components/Setup_New_Spells.tpa~
-    COPY ~spells/spheres/b_new.itm~ ~override~   //to detect this component
-END
-
-//compatibility
-ACTION_IF (((FILE_EXISTS_IN_GAME ~b_IWD.itm~) OR (MOD_IS_INSTALLED ~SETUP-IWDIFICATION.TP2~ ~40~)) OR (GAME_IS ~iwdee~)) BEGIN  //iwd priest spells
-
-  ACTION_IF ((FILE_EXISTS_IN_GAME ~d5_spheres.d5~) AND (NOT FILE_EXISTS_IN_GAME ~B_sphere.mrk~)) BEGIN //fnp spheres installed, spells not modificed
-//COPY ~spells/lib/compatibility/B_sphere.mrk~   //I NEED A MARKER...
- INCLUDE ~spells/lib/compatibility/fnp.tpa~
-  END //End fnp compatibility priest spells
-END
-//now, handle any and all immunities (ALWAYS LAST)
-INCLUDE ~spells/lib/immunities.tpa~
-
-
-INCLUDE ~spells/data/components/Setup_New_Spells.tpa~
-
-COPY ~spells/spheres/b_new.itm~ ~override~   //to detect this component
-
-INCLUDE ~spells/data/components/Setup_Revised_Spells.tpa~
-
-COPY ~spells/data/revised_spells/b_revise.itm~ ~override~   //to detect this component
-
-
-INCLUDE ~spells/data/components/setup_cantrips.tpa~
-
-COPY ~spells/data/cantrips/b_cant.itm~ ~override~   //to detect this component
 
 */

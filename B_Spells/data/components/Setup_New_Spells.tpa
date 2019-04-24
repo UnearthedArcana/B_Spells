@@ -183,16 +183,15 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //Sh. of Entropy immunity list
 INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
-FYI   */
+FYI   
+*/
 
 // SD: eliminate #bonecir.spl from IWDEE
-ACTION_IF GAME_IS ~iwdee~ BEGIN
-  ACTION_IF FILE_EXISTS_IN_GAME "#bonecir.spl" BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME "#bonecir.spl" BEGIN
 	DISABLE_FROM_KEY "#bonecir.spl"
   END
   ACTION_IF FILE_EXISTS "override\#bonecir.spl" BEGIN
 	DELETE "override\#bonecir.spl"
-  END
 END
 
 
@@ -228,6 +227,66 @@ END
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________Invisibility to Animals_________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Spell itself
+ADD_SPELL ~%mod_folder%/data/new_spells/priest_1/B_C109.spl~ 1 1 ~CLERIC_INVISIBILITY_TO_ANIMALS~ //
+        SAY NAME1 @51106
+        SAY NAME2 @51106
+        SAY UNIDENTIFIED_DESC @51107
+	SAY DESC @51107
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@51108)            // Protected from Animals
+      STR_VAR
+  END      //
+
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_INVISIBILITY_TO_ANIMALS~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+
+//icons, scrolls, immunities CONTINUE!
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________Invisibility to Undead__________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Spell itself
+ADD_SPELL ~%mod_folder%/data/new_spells/priest_1/B_C108.spl~ 1 1 ~CLERIC_INVISIBILITY_TO_UNDEAD~ //
+        SAY NAME1 @68011
+        SAY NAME2 @68011
+        SAY UNIDENTIFIED_DESC @68012
+	SAY DESC @68012
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68013)            // Accelerated Metabolism
+      STR_VAR
+  END      //
+
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_INVISIBILITY_TO_UNDEAD~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+
+//icons, scrolls, immunities CONTINUE!
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -323,28 +382,27 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-//scrolls in stores
-//sod
+//Scroll Placement
 //BGEE - Sorcerous Sundries
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -355,9 +413,7 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
-//immunities and protections?
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -375,7 +431,7 @@ END//end only bg2ee
 //effs
 //Secondary spell(s)
 ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/b_alarm.spl~ 3 1 ~INNATE_ALARM~ //Innate
-	SAY NAME1 @60201
+	SAY NAME1 @65201
 //itm
 COPY ~%mod_folder%/data/new_spells/mage_1/b_w101.itm~ ~override~   //itm alarm
 //baf
@@ -418,28 +474,27 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-//scrolls in stores
-//sod
+//Scroll Placement
 //BGEE - Sorcerous Sundries
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -450,9 +505,6 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
-//immunities and protections?
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -504,28 +556,27 @@ COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~ ~override/%spell_res%.itm
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-//scrolls in stores
-//sod
+//Scroll Placement
 //BGEE - Sorcerous Sundries
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -536,9 +587,6 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
-//immunities and protections?
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -587,28 +635,27 @@ COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~ ~override/%spell_res%.itm
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-//scrolls in stores
-//sod
+//Scroll Placement
 //BGEE - Sorcerous Sundries
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -619,9 +666,6 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
-//immunities and protections?
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -675,28 +719,27 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-//scrolls in stores
-//sod
+//Scroll Placement
 //BGEE - Sorcerous Sundries
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -707,9 +750,7 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
-//immunities and protections?
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -779,28 +820,27 @@ COPY ~%mod_folder%/data/new_spells/mage_1/SCRL69.itm~ ~override/%spell_res%.itm~
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-//scrolls in stores
-//sod
+//Scroll Placement
 //BGEE - Sorcerous Sundries
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -811,12 +851,91 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
+
 //PROTECTION FROM COMMAND?
 INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
 INCLUDE ~%mod_folder%/lib/spell_lists/hypno_list.tpa~
 INCLUDE ~%mod_folder%/lib/spell_lists/1st_list.tpa~
 INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________Invisibility to Undead__________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Spell itself
+ADD_SPELL ~%mod_folder%/data/new_spells/priest_1/B_W107.spl~ 2 1 ~WIZARD_INVISIBILITY_TO_UNDEAD~ //
+        SAY NAME1 @68011
+        SAY NAME2 @68011
+        SAY UNIDENTIFIED_DESC @68014
+	SAY DESC @68014
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68013)            // Protected from undead
+      STR_VAR
+  END      //
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_INVISIBILITY_TO_UNDEAD~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+
+//no unique icons (or scrolls)
+/*
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W103a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W103b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W103c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+*/
+//scroll
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W107.itm~ ~override/%spell_res%.itm~
+        SAY NAME1 @10
+        SAY NAME2 @68011
+	SAY DESC @68014
+//  LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
+  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
+  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
+//Scroll Placement
+//BGEE - Sorcerous Sundries
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
+  COPY_EXISTING ~STO0703.sto~ ~override~
+    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
+//High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
+  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
+    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
+COPY_EXISTING ~SCROLLS.STO~ ~override~
+ ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
+  COPY_EXISTING ~BDSORCSC.STO~ ~override~
+   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+ END
+
+ ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
+  COPY_EXISTING ~STO0703.STO~ ~override~
+   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+ END
 
 //CONTINUE HERE
 
@@ -835,6 +954,88 @@ INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Phantasmal Force (illusion that does decent dam but 'dispelled' if hit--i.e. has 1 hp)
 //(see how in BG2 they did illusory werewolves in the tent--or maybe 1 hp summons)
+//scripts
+//IWDEE 37456
+//BGEE 25267
+ACTION_IF GAME_IS ~bgee iwdee~ THEN BEGIN
+ COMPILE ~%mod_folder%/data/new_spells/mage_1/%game%/ILLUSION.baf~  //script
+END
+
+//creatures
+//kobold
+COPY ~%mod_folder%/data/new_spells/mage_1/b_kbds01.cre~ ~override~
+        SAY NAME1 @68005
+        SAY NAME2 @68005
+        LAUNCH_PATCH_FUNCTION make_illusion END
+//Ogrillon
+COPY ~%mod_folder%/data/new_spells/mage_1/b_ogr01.cre~ ~override~
+        SAY NAME1 @68006
+        SAY NAME2 @68006
+        LAUNCH_PATCH_FUNCTION make_illusion END
+//Worg
+COPY ~%mod_folder%/data/new_spells/mage_1/b_wrg01.cre~ ~override~
+        SAY NAME1 @68007
+        SAY NAME2 @68007
+        LAUNCH_PATCH_FUNCTION make_illusion END
+//Wild Dog
+COPY ~%mod_folder%/data/new_spells/mage_1/b_dog01.cre~ ~override~
+        SAY NAME1 @68008
+        SAY NAME2 @68008
+        LAUNCH_PATCH_FUNCTION make_illusion END
+//natty weapons and illusory item
+COPY ~%mod_folder%/data/new_spells/mage_1/b_nl1-6.itm~ ~override~
+COPY ~%mod_folder%/data/new_spells/mage_1/b_nla01.itm~ ~override~
+COPY ~%mod_folder%/data/new_spells/mage_1/b_nl1-4.itm~ ~override~
+COPY ~%mod_folder%/data/new_spells/mage_1/b_nl1-8.itm~ ~override~
+COPY ~%mod_folder%/data/new_spells/mage_1/b_ill01.itm~ ~override~  //illusion ring immunities and such need to add string immunities,etc
+
+//Spell itself
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_WZ101.spl~ 2 1 ~WIZARD_PHANTASMAL_FORCE~ //
+        SAY NAME1 @68003
+        SAY NAME2 @68003
+        SAY UNIDENTIFIED_DESC @68004
+	SAY DESC @68004
+	  LPF ALTER_EFFECT INT_VAR match_opcode = 177 resist_dispel = 3 STR_VAR END
+
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_PHANTASMAL_FORCE~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR power = 1 STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+//eff
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ101.eff~ ~override/%spell_res%.eff~
+
+//2da
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ101.2da~ ~override~
+
+//Belief spell
+COPY ~%mod_folder%/data/new_spells/mage_1/b_belie.spl~ ~override~
+        SAY NAME1 @68009
+        SAY NAME2 @68009
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68010) END  //Disbelieves Illusion
+
+//Belief eff
+COPY ~%mod_folder%/data/new_spells/mage_1/b_belie.eff~ ~override~
+
+
+/*
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+//Sh. of illusion immunity list
+INCLUDE ~%mod_folder%/lib/spell_lists/illusion_list.tpa~
+*/
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -892,28 +1093,27 @@ COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~ ~override/%spell_res%.itm
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-//scrolls in stores
-//sod
+//Scroll Placement
 //BGEE - Sorcerous Sundries
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -924,9 +1124,6 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
-//immunities and protections?
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -965,28 +1162,27 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~ ~override/%spell_res%.itm~
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-//scrolls in stores
-//sod
+//Scroll Placement
 //BGEE - Sorcerous Sundries
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
     ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -997,9 +1193,6 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
-//immunities and protections?
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1047,7 +1240,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 */
 //Scroll
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W102.itm~ ~override~ // Actual Scroll
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W102.itm~ ~override/%spell_res%.itm~ // Actual Scroll
         SAY NAME1 @66011
         SAY NAME2 @66011
         SAY UNIDENTIFIED_DESC @66012
@@ -1061,18 +1254,37 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_W102.itm~ ~override~ // Actual Scrol
       INT_VAR match_opcode = 147            // Learn from Scroll
       STR_VAR resource = EVAL ~%spell_res%~
   END      //
-//BG2EE - Sorcerous Sundries
-ACTION_IF GAME_IS ~bgee eet~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+//Scroll Placement
+//BGEE - Sorcerous Sundries
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
-    ADD_STORE_ITEM ~B_W102~ #1 #0 #0 ~IDENTIFIED~ #2
+    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~B_W102~ #1 #0 #0 ~IDENTIFIED~ #2
+    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
+COPY_EXISTING ~SCROLLS.STO~ ~override~
+ ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~B_W102~ #1 #0 #0 ~IDENTIFIED~ #2
+   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END
+
+ ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
+  COPY_EXISTING ~STO0703.STO~ ~override~
+   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+ END
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1123,7 +1335,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 */
 //Scroll
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W104.itm~ ~override~ // Actual Scroll
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W104.itm~ ~override/%spell_res%.itm~ // Actual Scroll
         SAY NAME1 @66016
         SAY NAME2 @66016
         SAY UNIDENTIFIED_DESC @66017
@@ -1137,36 +1349,37 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_W104.itm~ ~override~ // Actual Scrol
       INT_VAR match_opcode = 147            // Learn from Scroll
       STR_VAR resource = EVAL ~%spell_res%~
   END      //
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+//Scroll Placement
+//BGEE - Sorcerous Sundries
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
-    ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #2
+    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
- ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #4
+ ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #2
+   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
   COPY_EXISTING ~STO0703.STO~ ~override~
-   ADD_STORE_ITEM ~B_W104~ #1 #0 #0 ~IDENTIFIED~ #2
+   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
 
 
 //////////////////////////////////////////////////////////////
@@ -1228,7 +1441,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 */
 
 //Scroll
-COPY ~%mod_folder%/data/new_spells/mage_2/B_W201.itm~ ~override~ // Actual Scroll
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W201.itm~ ~override/%spell_res%.itm~ // Actual Scroll
         SAY NAME1 @67000
         SAY NAME2 @67000
         SAY UNIDENTIFIED_DESC @67001
@@ -1242,36 +1455,37 @@ COPY ~%mod_folder%/data/new_spells/mage_2/B_W201.itm~ ~override~ // Actual Scrol
       INT_VAR match_opcode = 147            // Learn from Scroll
       STR_VAR resource = EVAL ~%spell_res%~
   END      //
-ACTION_IF GAME_IS ~bgee~ THEN BEGIN   //  ACTION_IF GAME_IS ~bgee sod~ THEN BEGIN
+//Scroll Placement
+//BGEE - Sorcerous Sundries
+ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
   COPY_EXISTING ~STO0703.sto~ ~override~
-    ADD_STORE_ITEM ~B_W201~ #1 #0 #0 ~IDENTIFIED~ #2
+    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
 //High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
   COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~B_W201~ #1 #0 #0 ~IDENTIFIED~ #2
-END//End BGEE
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~B_W201~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
- ADD_STORE_ITEM ~B_W201~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~B_W201~ #1 #0 #0 ~IDENTIFIED~ #4
+ ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~B_W201~ #1 #0 #0 ~IDENTIFIED~ #2
+   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
   COPY_EXISTING ~STO0703.STO~ ~override~
-   ADD_STORE_ITEM ~B_W201~ #1 #0 #0 ~IDENTIFIED~ #2
+   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -1299,9 +1513,9 @@ END//end only bg2ee
 //Spell itself
 ADD_SPELL ~%mod_folder%/data/new_spells/mage_3/B_W301.spl~ 2 3 ~SOLVENT_OF_CORROSION~ //
         SAY NAME1 @67301
-        SAY NAME2 @63001
-        SAY UNIDENTIFIED_DESC @63002
-	SAY DESC @63002
+        SAY NAME2 @67301
+        SAY UNIDENTIFIED_DESC @67302
+	SAY DESC @67302
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~SOLVENT_OF_CORROSION~
   RET spell_res
@@ -1430,6 +1644,34 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
       STR_VAR resource = EVAL ~%spell_res%~
   END      // remove earlier versions of spell
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//___________________________________________________________Phantasmal Killer__________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_4/B_W402.spl~ 2 4 ~WIZARD_PHANTASMAL_KILLER~ //
+          SAY NAME1 @67412
+          SAY NAME2 @67412
+          SAY UNIDENTIFIED_DESC @67413
+  	  SAY DESC @67412
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_PHANTASMAL_KILLER~
+  RET spell_res
+END
+//sec spell
+COPY ~%mod_folder%/data/new_spells/mage_4/B_W402A.spl~ ~override/%spell_res%A.spl~
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 324           //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 146           //
+      STR_VAR resource = EVAL ~%spell_res%A~
+  END      //
+
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
@@ -1557,20 +1799,17 @@ COPY ~%mod_folder%/data/new_spells/mage_5/b_w502.itm~ ~override/%spell_res%.itm~
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
   LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-//scrolls in stores
-//sod
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-//bg2ee
-ACTION_IF GAME_IS ~bg2ee eet~ THEN BEGIN   //  A
-//Lady Yuth
+//Scroll Placement
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
 COPY_EXISTING ~SCROLLS.STO~ ~override~
  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-//Underdark
-COPY_EXISTING ~UDDROW25.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
 
  ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
   COPY_EXISTING ~BDSORCSC.STO~ ~override~
@@ -1581,9 +1820,6 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
   COPY_EXISTING ~STO0703.STO~ ~override~
    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
  END
-END//end only bg2ee
-//immunities and protections?
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
 
 
 

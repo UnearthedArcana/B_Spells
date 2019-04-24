@@ -321,6 +321,22 @@ This spell holds 1d4 hostile non humanoid, low intelligence animals or mosters r
 
 Paralyzed creatures are helpless and cannot dodge or defend themselves from attacks. Being held does not prevent the worsening of the subject's condition due to wounds, disease, or poison.~
 
+@51106 = ~Invisibility to Animals~
+
+@51107 = Invisibility to Animals
+(Abjuration)
+
+Level: 1
+Sphere: Animal
+Range: Touch
+Casting Time: 4
+Duration: 1 Turn, +1 Turn/5 levels
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell causes nearby animals to lose track of and ignore the warded creature for the duration of the spell. Note that unlike normal invisibility, the recipient of this spell can still attack animals without losing the invisibility.~
+@51108 = ~Protected from Animals~
+
 //@51200
 
 
@@ -1155,7 +1171,7 @@ At first level, recipients heal 1 hit point per hour, and gain a +1 bonus to sav
 
 Multiple castings of this spell are not cumulative.~
 
-@61015 = ~Accelerated Metabolism~
+@66015 = ~Accelerated Metabolism~
 
 @66016 = ~Vanish~
 @66017 = ~Vanish
@@ -1291,6 +1307,23 @@ When this spell is cast, the caster is able to "see" and "hear" everything in <P
 
 This spell does not grant any special benefits against illusions.~
 
+@67412 = ~Phantasmal Killer~
+@67413 = ~Phantasmal Killer
+(Illusion/Phantasm)
+
+Level: 4
+Range: 50 ft.
+Duration: Special
+Casting Time: 4
+Area of Effect: 1 creature
+Saving Throw: Special
+
+When this spell is cast, the caster creates the illusion of the most fearsome thing imaginable to the target, transforming the fears of thier subconscious mind into something that the conscious mind can visualize--the most horrible beast. Only the target can see the phantasmal killer.
+
+The phantasmal killer attacks, automatically 'hitting' the target, forcing them to make a Saving Throw vs. Spell. Success means that the illusion is disbelieved and nothing happens. If the target fails, another Saving Throw, this time vs. Death, must be rolled. Success means that the victim will be in panic for 4 rounds and take 4d6 points of magic damage. Failing in this second test kills the victim instantly.
+
+This spell has no effect over constructs and undead.~
+
 
 @67501 = ~Snilloc's Major Missile~
 @67502 = ~Snilloc's Major Missile
@@ -1344,6 +1377,56 @@ A caster cannot benefit from multiple castings of Siphon Vitality.~
 
 @68002 = ~A siphon vitality spell is already active!~
 
+@68003 = ~Phantasmal Force~
+@68004 = ~Phantasmal Force
+(Illusion/Phantasm)
+
+Level: 1
+Range: Visual Range of Caster
+Duration: 2 rounds + 1 round/level
+Casting Time: 4
+Area of Effect: Special
+Saving Throw: Special
+
+This spell creates the illusion of fearsome creatures that 'fight' on the caster's behalf.  
+
+This spell only creates a basic fascimilie of life, and they do not react correctly in combat or when hit, nor are they affected by most spells that affect normal creatures.  As such, enemies can see through them relatively easily.
+
+Any enemy that gets within melee range, or that attacks or hits them, can save vs. spell to disbelieve them.  Any enemy that disbelieves an illusion cannot be affected by that illusion for a round, and can easily destroy them with a hit.~
+
+@68005 = ~Kobold Commando~
+@68006 = ~Ogrillon~
+@68007 = ~Worg~
+@68008 = ~Wild Dog~
+@68009 = ~Attempting to Disbelieve~
+@68010 = ~Disbelieves Illusion~
+
+@68011 = ~Invisibility to Undead~
+
+@68012 = ~Invisibility to Undead
+(Abjuration)
+
+Level: 1
+Sphere: Necromantic
+Range: Touch
+Casting Time: 4
+Duration: 1 Turn
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell causes nearby undead to lose track of and ignore the warded creature for the duration of the spell. This spell is effective against undead with 4 Hit Die or undead with Hit Die equal to the caster's level, whichever is higher. Note that unlike normal invisibility, the recipient of this spell can still attack undead creatures without losing the invisibility. Priests affected by this spell cannot turn undead.~
+@68013 = ~Protected from Undead~
+@68014 = ~Invisibility to Undead
+(Abjuration)
+
+Level: 1
+Range: Touch
+Casting Time: 4
+Duration: 1 Turn
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell causes nearby undead to lose track of and ignore the warded creature for the duration of the spell. This spell is effective against undead with 4 Hit Die or undead with Hit Die equal to the caster's level, whichever is higher. Note that unlike normal invisibility, the recipient of this spell can still attack undead creatures without losing the invisibility. Priests affected by this spell cannot turn undead.~
 
 
 
