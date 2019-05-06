@@ -270,6 +270,23 @@ COPY_EXISTING ~UDDROW25.STO~ ~override~
 
 END */
 
+//compatibility with cantrips
+ACTION_IF FILE_EXISTS_IN_GAME ~b_po090.spl~ BEGIN
+  COPY_EXISTING ~b_po090.spl~ ~override~
+COPY_EXISTING ~b_po090.spl~ ~override~
+ SPRINT old @109000004//old text
+ SPRINT new @109000005//new text
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //replacing old with new (all to benediction sphere)
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+
+END
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_______________________________________________________________Cause Light Wounds_____________________________________________________________________//

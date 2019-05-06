@@ -169,6 +169,10 @@ STATISTICS:
 
 Weight: 1~
 
+@900009015  = ~Demon's Claw~
+
+@900009016 = ~Scroll~
+
 //Wands @900010001 to @900020000
 
 @900010001 = ~Wand of Teeth~
@@ -475,3 +479,4 @@ Requires:
  9 Intelligence
 
 Weight: 1~
+

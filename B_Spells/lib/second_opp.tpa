@@ -1,0 +1,83 @@
+DEFINE_PATCH_FUNCTION SECOND_OPP
+  INT_VAR   generalist        = "-1" //1 = Prohibit Generalist (too)(NO OTHER VALUES ACCEPTED) TEST
+            abjuration        = "-1" //1 = Prohibit Abjuration (too)(NO OTHER VALUES ACCEPTED) TEST
+            conjuration       = "-1" //1 = Prohibit Conjuration (too)(NO OTHER VALUES ACCEPTED) TEST
+            divination        = "-1" //1 = Prohibit Divination (too)(NO OTHER VALUES ACCEPTED) TEST
+            enchantment       = "-1" //1 = Prohibit Enchantment (too)(NO OTHER VALUES ACCEPTED) TEST
+            illusionist       = "-1" //1 = Prohibit Illusion (too)(NO OTHER VALUES ACCEPTED) TEST
+            invocation        = "-1" //1 = Prohibit Invocation (too)(NO OTHER VALUES ACCEPTED) TEST
+            necromancy        = "-1" //1 = Prohibit Necromancy (too)(NO OTHER VALUES ACCEPTED) TEST
+            alteration        = "-1" //1 = Prohibit Transmutation (too)(NO OTHER VALUES ACCEPTED) TEST
+            chaos             = "-1" //1 = Prohibit Chaotic priests (too)(NO OTHER VALUES ACCEPTED) TEST
+            evil              = "-1" //1 = Prohibit Evil priests (too)(NO OTHER VALUES ACCEPTED) TEST
+            good              = "-1" //1 = Prohibit Good priests (too)(NO OTHER VALUES ACCEPTED) TEST
+            geneutral         = "-1" //1 = Prohibit moral neutral priests (too)(NO OTHER VALUES ACCEPTED) TEST
+            law               = "-1" //1 = Prohibit Lawful priests (too)(NO OTHER VALUES ACCEPTED) TEST
+            lcneutral         = "-1" //1 = Prohibit Morally neutral priests (too)(NO OTHER VALUES ACCEPTED) TEST
+  STR_VAR   
+  
+  BEGIN
+
+//Additional restricted schools if specified
+PATCH_IF (generalist = 1) BEGIN //Adds Generalist restriction to spell
+    READ_BYTE     0x001f general //reads the byte
+    WRITE_BYTE    0x001f (general BOR 0b01000000)  //
+END
+PATCH_IF (abjuration = 1) BEGIN //Adds abjuration restriction to spell
+    READ_BYTE     0x001e abj //reads the byte
+    WRITE_BYTE    0x001e (abj BOR 0b01000000)  //
+END
+PATCH_IF (conjuration = 1) BEGIN //Adds conjuration restriction to spell
+    READ_BYTE     0x001e conj //reads the byte
+    WRITE_BYTE    0x001e (conj BOR 0b10000000)  //
+END
+PATCH_IF (divination = 1) BEGIN //Adds divination restriction to spell
+    READ_BYTE     0x001f div //reads the byte
+    WRITE_BYTE    0x001f (div BOR 0b00000001)  //
+END
+PATCH_IF (enchantment = 1) BEGIN //Adds enchantment restriction to spell
+    READ_BYTE     0x001f enc //reads the byte
+    WRITE_BYTE    0x001f (enc BOR 0b00000010)  //
+END
+PATCH_IF (illusionist = 1) BEGIN //Adds illusionist restriction to spell
+    READ_BYTE     0x001f enc //reads the byte
+    WRITE_BYTE    0x001f (enc BOR 0b00000100)  //
+END
+PATCH_IF (invocation = 1) BEGIN //Adds invocation restriction to spell
+    READ_BYTE     0x001f inv //reads the byte
+    WRITE_BYTE    0x001f (inv BOR 0b00001000)  //
+END
+PATCH_IF (necromancy = 1) BEGIN //Adds necromancy restriction to spell
+    READ_BYTE     0x001f nec //reads the byte
+    WRITE_BYTE    0x001f (nec BOR 0b00010000)  //
+END
+PATCH_IF (alteration = 1) BEGIN //Adds alteration restriction to spell
+    READ_BYTE     0x001f alt //reads the byte
+    WRITE_BYTE    0x001f (alt BOR 0b00100000)  //
+END
+PATCH_IF (chaos = 1) BEGIN //Adds chaos restriction to spell
+    READ_BYTE     0x001e cha //reads the byte
+    WRITE_BYTE    0x001e (cha BOR 0b00000001)  //
+END
+PATCH_IF (evil = 1) BEGIN //Adds evil restriction to spell
+    READ_BYTE     0x001e evi //reads the byte
+    WRITE_BYTE    0x001e (evi BOR 0b00000010)  //
+END
+PATCH_IF (good = 1) BEGIN //Adds good restriction to spell
+    READ_BYTE     0x001e god //reads the byte
+    WRITE_BYTE    0x001e (god BOR 0b00000100)  //
+END
+PATCH_IF (geneutral = 1) BEGIN //Adds neutral moral restriction to spell
+    READ_BYTE     0x001e nmor //reads the byte
+    WRITE_BYTE    0x001e (nmor BOR 0b00001000)  //
+END
+PATCH_IF (law = 1) BEGIN //Adds law restriction to spell
+    READ_BYTE     0x001e lw //reads the byte
+    WRITE_BYTE    0x001e (lw BOR 0b00010000)  //
+END
+PATCH_IF (lcneutral = 1) BEGIN //Adds neutral ethical restriction to spell
+    READ_BYTE     0x001e neth //reads the byte
+    WRITE_BYTE    0x001e (neth BOR 0b00100000)  //
+END
+
+  END

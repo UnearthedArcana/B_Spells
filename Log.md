@@ -42,6 +42,86 @@ TO DO 19: 5th level IWDEE wiz spells (D.Shadow Monsters SPWI525) And make compat
 
 TO DO 20: Finish D. Door
 
+TO DO 21:  Trade out @10 'Scroll' reference for @900009016.  DONE: Setup_IWD_Wiz.tpa
+
+TO DO 22:
+
+TO DO 23: Look to make ALTER_SPELL_TYPE text changes more non-english friendly...
+
+TO DO 24: Make school changes automatically change spell text (preferably in a non-eng friendly way)
+
+TO DO 25: Break ALTER_SPELL_TYPE into 2 or more different macros (at least one for 2nd opposition schools--Probably one for Cantrip_text (just for me), and maybe others...
+
+Version 0.89.08
+
+2019-05-05
+
+- Updated setup_cantrips.tpa with new alter_spell_type and make_cantrip as necessary
+
+- cantrip: exp retreat removed text alteration reduncancy
+
+2019-05-04
+
+- Created Make_Cantrip.tpa (only an option for 0 lev right now)
+
+- Created second_opp.tpa 
+
+2019-05-03
+
+- Successfully tested Second Restricted School
+
+2019-05-02
+
+- Continued with ALTER_SPELL_TYPE: aded generalist and abjuration additional exclusion flags TEST!
+
+2019-05-01
+
+- Continued with ALTER_SPELL_TYPE (need ot add a few more...)
+
+2019-04-30
+
+- Added both cannot and can cast in combat to ALTER_SPELL_TYPE
+
+- Tidied up the divine spells in new_spells.tpa
+
+- Did more with ALTER_SPELL_TYPE (need to fix cleric_druid_wild--right now only really works to make spell uncastable by wildmage-- and expand spell flags)
+
+2019-04-29
+
+- Updated ALTER_SPELL_TYPE to Change level text 
+
+- Updated ALTER_SPELL_TYPE to change school text for changed school (Abjuration only--need to check description of a few spells before finishing)
+
+- Updated ALTER_SPELL_TYPE to include a function to add ignore wild surge and prohibit indoor casting
+
+2019-04-28
+
+- Test install cantrips (fixed 1 false tra reference)
+
+- Cleaned up IWD cat's grace and Decastave
+
+- Cleaned up IWD SSS, Icelance, LoD, BBB, DD (THOUGH INCOMPLETE), and Emotion: fear and courage
+
+- Compatibility code between curse and benediction (text notifications)
+
+- Cleaned up Benediction, calm and canticle
+
+2019-04-27
+
+- Finished ALTER_SPELL_TYPE macro...hopefully
+
+- Added CANTRIPS_RECAST for infinite casting
+
+- Added Exp Retreat cantrip (and coded compatibility with added IWDEE spell regardless of order...hopefully)
+
+2019-04-25
+
+- Cleaned up Exp Retreat (going down the list) CONTINUE WITH CANTRIP VERSION (make 1 round and innate, but cast from spell menu)
+
+- Trading out @10 'Scroll' reference so that value can be used in Install.tra ( in Setup_IWD_Wiz.tpa)
+
+- Started ALTER_SPELL_TYPE macro.  See Test in BD version of BG
+
 Version 0.89.07
 
 2019-04-24

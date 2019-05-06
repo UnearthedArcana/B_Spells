@@ -2,7 +2,7 @@ BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.89.07~
+VERSION ~0.89.08~
 
 
 ALWAYS
@@ -30,6 +30,12 @@ ALWAYS
 	INCLUDE ~B_Spells/lib/SEQUENCER_MENU.tpa~
         
         INCLUDE ~B_Spells/lib/illusion_crea.tpa~
+
+        INCLUDE ~B_Spells/lib/alter_spell_type.tpa~
+
+        INCLUDE ~B_Spells/lib/second_opp.tpa~
+
+        INCLUDE ~B_Spells/lib/make_cantrip.tpa~
 
         INCLUDE ~B_Spells/lib/alter_effect.tpa~
 

@@ -31,9 +31,10 @@ A given creature can only be affected by Cure Minor Wounds once per 8 hours.~
 
 Level: Orison
 Sphere: Protection
-Range: Self
+Range: 0
 Duration: Special
 Casting Time: 9
+Area of Effect: The caster
 Saving Throw: None
 
 Upon casting this spell, the priest chants softly under <PRO_HISHER> breath.  As long as <PRO_HESHE> continues to chant, <PRO_HESHE> receives a +1 to AC.  However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead while under the effects of Canticle.  
@@ -200,7 +201,7 @@ Level: Orison
 Sphere: Charm
 Range: Visual range of the caster
 Duration: Instant
-Casting Time: 0
+Casting Time: 1
 Area of Effect: One Creature
 Saving Throw: Special
 
@@ -212,14 +213,15 @@ This spell gives an ally a chance to overcome any strong emotions they might be 
 
 Level: Orison
 Sphere: All
-Range: Self
+Range: 0
 Duration: Special
 Casting Time: 9
+Area of Effect: The caster
 Saving Throw: None
 
-Upon casting this spell, the priest chants softly under <PRO_HISHER> breath.  As long as <PRO_HESHE> continues to chant, <PRO_HESHE> receives a +1 to THAC0 rolls.  However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead while under the effects of Benediction.
+Upon casting this spell, the priest chants softly under <PRO_HISHER> breath.  As long as <PRO_HESHE> continues to chant, <PRO_HESHE> receives a +1 to moral, THAC0 rolls, and damage, much like a bless spell.  
 
-This bonus to THAC0 increases by 1 at levels 8 and 16.
+However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead while under the effects of Benediction.
 
 Benediction has no effect if the priest is under the effects of bless, aid, or chant spell, and if <PRO_HESHE> is affected by one of these spells while under the effects of this Orison, Benediction is immediately dispelled.
 
@@ -230,6 +232,10 @@ Benediction cannot be used in conjunction with canticle or meditation.~
 @109000002 = ~Sphere: All~
 
 @109000003 = ~Sphere: Benediction~
+
+@109000004 = ~the Doom spell~
+
+@109000005 = ~Curse or Doom spells~
 
 
 //CANTRIPS: ZERO LEVEL WIZARD
@@ -268,6 +274,8 @@ Damage is increased by 1d6 at levels 6, 12 and 18.  Opponents suffer a -1 penalt
 
 @200002003 = ~Level: 1~
 @200002004 = ~Level: Cantrip~
+@200002005 = ~Duration: 3 rounds~
+@200002006 = ~Duration: 1 round~
 
 
 @200003001   = ~Drowse~
@@ -293,6 +301,7 @@ Opponents receive a -1 penalty to their saves at levels 10 and 20.~
 
 @200004001   = ~Level: 1~
 @200004002   = ~Level: Orison~
+@200004003   = ~Level: 3~
 
 @200005001   = ~Drench~
 @200005002   = ~Drench
