@@ -1,0 +1,103 @@
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////             GLOBAL CHANGES              //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////                                        ///////////////////////////////////////////////
+///////////////////////////////////////////////              CHARM SPELLS              ///////////////////////////////////////////////
+///////////////////////////////////////////////                                        ///////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Compatiblity: Install Charm Monster if new spells installed
+
+/////////////////////////////////////////////////////////
+///      1st level charm
+/////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//__________________________________________________________________Charm Persion_______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  Note: prob going to need a different version of b_charm_revision for IWDEE...see what is going on with non IWDEE versions of 2.5
+COPY_EXISTING ~SPWI104.spl~ ~override~  //Wizard first level charm
+        SAY UNIDENTIFIED_DESC @10100133
+		SAY DESC @10100133
+                   LPF cd_apply_batch STR_VAR array_name = b_charm_revision END //Apply charm revision
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 5 parameter1 = 0 parameter2 = 0 savebonus = 0 duration = 60 match_power = 1 STR_VAR END //first lev no save pen; 1 turn
+                   //Lev 1 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 215 savebonus = 0 duration = 60 match_power = 1 STR_VAR END  //anim lev 1 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 174 savebonus = 0 match_power = 1 STR_VAR END //sound lev 1 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 142 savebonus = 0 STR_VAR END //icon no save boni
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 50 savebonus = 0 STR_VAR END //no save boni
+//                   LPF ALTER_EFFECT INT_VAR match_opcode = 324 parameter1 = 0 parameter2 = 6 timing = 0 duration = 1 savingthrow  = 0 STR_VAR resource = ~SPWI104~ match_resource = ~charm~ END   //Non-human resistance lev 1 charm
+                   LPF CLONE_EFFECT INT_VAR match_opcode = 5 opcode = 365 multi_match = 1 parameter1 = 0 parameter2 = 0 timing = 1 dicenumber = 100 savebonus = 0 match_power = 1 STR_VAR END   //Unselectable lev 1 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 321 parameter1 = 0 parameter2 = 0 duration = 60 savebonus = 0 STR_VAR resource = ~SPWI104~ match_resource = ~charm~ END
+                   //General
+//                   LPF CLONE_EFFECT INT_VAR match_opcode = 324 multi_match = 1 parameter2 = 15 probability1 = 90 probability2 = 1 STR_VAR match_resource = ~SPWI104~  END //Elf resistance
+//                   LPF CLONE_EFFECT INT_VAR match_opcode = 324 multi_match = 1 parameter2 = 19 probability1 = 30 probability2 = 1 STR_VAR match_resource = ~SPWI104~ END //half elf resistance
+
+/////////////////////////////////////////////////////////
+///      2nd level charm
+/////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//__________________________________________________________________Charm Person or Mammal______________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  +0 save
+//do descripion
+
+COPY_EXISTING ~SPPR204.spl~ ~override~  //Priest 2nd lev charm
+//        	SAY UNIDENTIFIED_DESC @10100133
+//		SAY DESC @10100133
+                   LPF cd_apply_batch STR_VAR array_name = b_charm_revision END //Apply charm revision
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 5 parameter1 = 0 parameter2 = 0 savebonus = 0 duration = 60 STR_VAR END //no save pen; 1 turn
+                   //Lev 2 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 215 savebonus = 0 duration = 60 STR_VAR END  //anim lev 2 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 174 savebonus = 0 STR_VAR END //sound lev 2 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 142 savebonus = 0 STR_VAR END //icon no save boni
+//                   LPF ALTER_EFFECT INT_VAR match_opcode = 324 parameter1 = 0 parameter2 = 22 timing = 0 duration = 1 savingthrow  = 0 STR_VAR resource = ~SPPR204~ match_resource = ~charm~ END   //Not human or animal   -not really needed anymore
+                   LPF CLONE_EFFECT INT_VAR match_opcode = 5 opcode = 365 multi_match = 1 parameter1 = 0 parameter2 = 0 timing = 1 dicenumber = 100 savebonus = 0 STR_VAR END   //Unselectable lev 1 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 321 parameter1 = 0 parameter2 = 0 duration = 60 savebonus = 0 STR_VAR resource = ~SPPR204~ match_resource = ~charm~ END  //-not really needed anymore
+                   //General
+//                   LPF CLONE_EFFECT INT_VAR match_opcode = 324 multi_match = 1 parameter2 = 15 probability1 = 90 probability2 = 1 STR_VAR match_resource = ~SPPR204~  END //Elf resistance -not really needed anymore
+//                   LPF CLONE_EFFECT INT_VAR match_opcode = 324 multi_match = 1 parameter2 = 19 probability1 = 30 probability2 = 1 STR_VAR match_resource = ~SPPR204~ END //half elf resistance
+
+/////////////////////////////////////////////////////////
+///      3rd level charm
+/////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________________Dire Charm_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//  +0 save
+//do descripion
+COPY_EXISTING ~SPWI316.spl~ ~override~  //Priest 2nd lev charm
+//Dire charm -2 save hex 0xFFFE
+//        	SAY UNIDENTIFIED_DESC @10100133
+//		SAY DESC @10100133
+                   LPF cd_apply_batch STR_VAR array_name = b_charm_revision END //Apply charm revision
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 5 parameter1 = 0 parameter2 = 0 savebonus = 0xFFFE duration = 60 STR_VAR END //no save pen; 1 turn
+                   //Lev 2 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 215 savebonus = 0xFFFE duration = 60 STR_VAR END  //anim lev 2 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 174 savebonus = 0xFFFE STR_VAR END //sound lev 2 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 142 savebonus = 0xFFFE STR_VAR END //icon no save boni
+//                   LPF ALTER_EFFECT INT_VAR match_opcode = 324 parameter1 = 0 parameter2 = 22 timing = 0 duration = 1 savingthrow  = 0 STR_VAR resource = ~SPWI316~ match_resource = ~charm~ END   //Not human or animal -not really needed anymore
+                   LPF CLONE_EFFECT INT_VAR match_opcode = 5 opcode = 365 multi_match = 1 parameter1 = 0 parameter2 = 0 timing = 1 dicenumber = 100 savebonus = 0xFFFE STR_VAR END   //Unselectable lev 1 charm
+                   LPF ALTER_EFFECT INT_VAR match_opcode = 321 parameter1 = 0 parameter2 = 0 duration = 60 savebonus = 0xFFFE STR_VAR resource = ~SPWI316~ match_resource = ~charm~ END
+                   //General
+//                   LPF CLONE_EFFECT INT_VAR match_opcode = 324 multi_match = 1 parameter2 = 15 probability1 = 90 probability2 = 1 STR_VAR match_resource = ~SPWI316~  END //Elf resistance-not really needed anymore
+//                   LPF CLONE_EFFECT INT_VAR match_opcode = 324 multi_match = 1 parameter2 = 19 probability1 = 30 probability2 = 1 STR_VAR match_resource = ~SPWI316~ END //half elf resistance-not really needed anymore
+
+
+//Iff Charm monster is added, change it...

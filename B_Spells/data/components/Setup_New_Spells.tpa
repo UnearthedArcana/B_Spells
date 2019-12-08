@@ -542,7 +542,7 @@ ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W103.spl~ 2 1 ~WIZARD_ACCELERAT
         SAY NAME1 @66013
         SAY NAME2 @66013
         SAY UNIDENTIFIED_DESC @66014
-	SAY DESC @66014
+		SAY DESC @66014
 
 //to clear earlier versions of the spell
 LAF RES_NUM_OF_SPELL_NAME
@@ -568,7 +568,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @66013
 	SAY DESC @66014
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
@@ -660,7 +660,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @65201
 	SAY DESC @65202
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
@@ -742,7 +742,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @65101
 	SAY DESC @65102
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
@@ -821,7 +821,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~ ~override/%spell_res%.itm~ //It's fine to use the same scroll
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @66001
 	SAY DESC @66002
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
@@ -864,7 +864,7 @@ END
 //_________________________________________________________________Enlarge______________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Enlarge (investigate)
+//Enlarge (investigate)- Probably not.  Too large of a spell...
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -905,7 +905,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~ //It's fine to use the same scroll
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @66110
 	SAY DESC @66111
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
@@ -1006,7 +1006,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 */
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/SCRL69.itm~ ~override/%spell_res%.itm~ //It's fine to use the same scroll
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @65203
 	SAY DESC @65204
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
@@ -1091,7 +1091,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 */
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W107.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @68011
 	SAY DESC @68014
 //  LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
@@ -1279,7 +1279,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @65001
 	SAY DESC @65002
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
@@ -1348,7 +1348,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @66101
 	SAY DESC @66102
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
@@ -1985,7 +1985,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //scroll
 COPY ~%mod_folder%/data/new_spells/mage_5/b_w502.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @67503
 	SAY DESC @67504
   LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END

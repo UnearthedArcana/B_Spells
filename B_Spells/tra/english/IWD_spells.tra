@@ -433,7 +433,7 @@ By casting this spell and touching a creature, the priest deals 8 points of dama
 @11400003 = ~Sphere: Life~
 
 @11400004 = ~deals 8 points of damage (save vs. Spell for half) to the creature's body.~
-@11400005 = ~deals 6, + 20% of the targets maximum hit points, of magic damage (save vs. Death for half) to the creature's body.~
+@11400005 = ~deals 4, + 20% of the targets maximum hit points, of magic damage (save vs. Death for half) to the creature's body.~
 
 @11500000 = ~Sunscorch~
 @11500001 = ~Sunscorch

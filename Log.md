@@ -6,7 +6,7 @@ TO DO 1: ADD A PRIEST SCROLL COMPONENT: MORE PRIEST SCROLLS (ALSO PRIEST SCRIBIN
 
 TO DO 2: NEED TO KEEP UP WITH IMMUNITY/REMOVAL CODE ESP WITH NEW SPELLS
 
-TO DO 3: CONTINUE SCROLL CODE, need to add my druid spells to usability
+TO DO 3: Do summoning spells as they are in IWDEE (according to the new style)
 
 TO DO 4: CONTINUE TO UPDATE CRAFTING CODE
 
@@ -16,7 +16,7 @@ TO DO 6: RUN PROTECTIOn/REMOVAL BATCHES OVER CREATURES AND ITEMS
 
 TO DO 7: Modify tooltip.2da to give proper names to wand sec spells
 
-TO DO 8:
+TO DO 8: Look to make ALTER_SPELL_TYPE text changes more non-english friendly...
 
 TO DO 9: ADDRESS WANDS INT/WIS REQUIREMENTS for wands creatable by both wizards and priests (maybe have different wands for each)
 
@@ -24,7 +24,7 @@ TO DO 10: Create batch for Entropy Shield
 
 TO DO 11: Add check for charm component for charm monster (and add charm monster in charm component if new spells installed)
 
-TO DO 12:
+TO DO 12: Trade out @10 'Scroll' reference for @900009016.  DONE: Setup_IWD_Wiz.tpa and Setup_New_Spells.tpa
 
 TO DO 13: Create Custom portrait icon for bleeding effect
 
@@ -42,15 +42,120 @@ TO DO 19: 5th level IWDEE wiz spells (D.Shadow Monsters SPWI525) And make compat
 
 TO DO 20: Finish D. Door
 
-TO DO 21:  Trade out @10 'Scroll' reference for @900009016.  DONE: Setup_IWD_Wiz.tpa
+TO DO 21: Redo summoning by sumtables
 
-TO DO 22:
+TO DO 22: Add SR School naming scheme into alter_spell_type macro (schools and sphere names/combos)
 
-TO DO 23: Look to make ALTER_SPELL_TYPE text changes more non-english friendly...
+TO DO 23: Cause Moderate Wounds (SR Revision)
 
-TO DO 24: Make school changes automatically change spell text (preferably in a non-eng friendly way)
+TO DO 24: Further update prest scroll code  (need to further update it, check for spell type, include specific res spells where I know they exist (e.g. in FnP)
 
-TO DO 25: Break ALTER_SPELL_TYPE into 2 or more different macros (at least one for 2nd opposition schools--Probably one for Cantrip_text (just for me), and maybe others...
+Version 0.89.09
+
+2019-12-07
+
+- Priest scrolls (general code to add gen/cle lev 1-3 scrolls in all temples)
+- Temple of wisdom (lev 1-3 druid scrolls)
+
+2019-12-06
+
+- Aligned tp2 setup with readme
+
+2019-06-15
+
+- Created alter_effect_add
+
+2019-06-11
+
+- Updated priest scroll code to capture all of my custom priest spells (may be too inclusive--check).  Update for SD's and Raz, at least
+
+2019-06-08
+
+- Priest scrolls: Added cost (level x50)
+
+- Added placement of priest scrolls for a few BGEE stores
+
+2019-06-06
+
+- Updated Priest scroll code to check for spell type
+
+2019-06-04
+
+- Updated Priest scroll code
+
+2019-06-01
+
+- Cleaned up REPLACE_TEXTUALLY in global cure tpa for IWDEE spell wording.
+
+2019-05-29
+
+- Converted tras to UTF-8 (grr, see if that is what was messing with TEXTUAL issues re SR) 
+
+2019-05-28
+
+- Global Cure Moderate Wounds (NOT SR VERSION)
+
+2019-05-27
+
+- Sep Global heal and global charm from revised spells tpa (as they are distinct components)
+
+- Revised cure/inflict minor wounds to just check for actual cantrip spls (because, easier)
+
+- Streamlined Global cure for cmw (SR SHOULD be accounted for...test)
+
+2019-05-19
+
+- Started cantrip install in tp2
+
+- Broke up infinite innate priest and arcane cantrip components
+
+2019-05-18
+
+- removed bless/curse etc immunity from benediction
+
+- Added add_spell_header (thanks Adarnis)
+
+- Added Adarnis' tooltip macro
+
+2019-05-17
+
+- Added location to spell type macro
+
+2019-05-16
+
+- Added support for add_spell to c_icon in alter_spell_type
+
+2019-05-15
+
+- Added first draft of school and sphere text for alter_spell_type macro
+
+- Adapted alter_spell_type to modify even SR text (hopefully)
+
+- Created c_icon STR_VAR for alter_spell_type
+
+2019-05-12
+
+- Added CamDawg's sumtable mod macro
+
+2019-05-11
+
+- Finished Universal Scrolls(?) 
+
+- Updated Scroll Placement
+
+- split alignment restriction from school restriction and wildmage restriction from cleric/druid restriction in ALTER_SPELL_TYPE.tpa
+
+2019-05-10
+
+- Started revising 'universal_scrolls.tpa' (ready to test for druid scrolls)
+
+2019-05-09
+
+- Replaced @10 with @900009016 for scroll names in fnp_new_spells.tpa 
+
+2019-05-08
+
+- Replaced @10 scroll ref in Setup_New_Spells.tpa (any others left?) 
 
 Version 0.89.08
 

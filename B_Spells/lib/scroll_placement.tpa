@@ -1,3 +1,7 @@
+//Druid exclusive: B_DS
+//Cleric exclusive: B_CS
+//non-exclusive: B_PS
+
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
 ///////////                         ////////////
@@ -5,16 +9,22 @@
 ///////////                         ////////////
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
-//1st lev cleric only knowledge based
-
-ACTION_IF FILE_EXISTS_IN_GAME ~TEM2601.STO~ BEGIN  //Temple of Oghma
-  COPY_EXISTING ~TEM2601.STO~ ~override~
-    ADD_STORE_ITEM ~B_PS101~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR101.SPR-Bless)
-    ADD_STORE_ITEM ~B_PS103~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR103.SPR-Cure Light Wounds)
-    ADD_STORE_ITEM ~B_PS104~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR104.SPR-Detect Evil)
-    ADD_STORE_ITEM ~B_PS107~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR107.SPR-Protect from evil)
-    ADD_STORE_ITEM ~B_PS108~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR108.SPR-Remove Fear)
-    ADD_STORE_ITEM ~B_CS109~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR109.SPR-Sanctuary)
+//1st lev general or cleric exclusive
+ACTION_IF FILE_EXISTS_IN_GAME ~TEM2601.STO~ BEGIN  //Temple of Oghma-only if installed
+  COPY_EXISTING_REGEXP GLOB ~B_CS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2601.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_GS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2601.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    // general spells
+    END
 END
 
 ////////////////////////////////////////////////
@@ -26,14 +36,74 @@ END
 ////////////////////////////////////////////////
 //1st through 3rd priest scrolls (including druid)
 ACTION_IF FILE_EXISTS_IN_GAME ~TEM2304.STO~ BEGIN  //Temple of wisdom
-  COPY_EXISTING ~TEM2304.STO~ ~override~
-    ADD_STORE_ITEM ~B_PS101~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR101.SPR-Bless)
-    ADD_STORE_ITEM ~B_PS103~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR103.SPR-Cure Light Wounds)
-    ADD_STORE_ITEM ~B_PS104~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR104.SPR-Detect Evil)
-    ADD_STORE_ITEM ~B_PS107~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR107.SPR-Protect from evil)
-    ADD_STORE_ITEM ~B_PS108~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR108.SPR-Remove Fear)
-    ADD_STORE_ITEM ~B_CS109~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR109.SPR-Sanctuary)
-END
+
+  COPY_EXISTING_REGEXP GLOB ~B_CS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_CS2.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_CS3.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+
+  COPY_EXISTING_REGEXP GLOB ~B_GS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_GS2.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_GS3.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+//druid
+  COPY_EXISTING_REGEXP GLOB ~B_DS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_DS2.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_DS3.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+
+END   //end if temp of wisdom in game
 
 ////////////////////////////////////////////////
 ////////////////////////////////////////////////
@@ -44,11 +114,48 @@ END
 ////////////////////////////////////////////////
 //1st through 3rd lev priest (app for clerics of helm)
 ACTION_IF FILE_EXISTS_IN_GAME ~TEM0002.sto~ BEGIN  //
-  COPY_EXISTING ~TEM0002.sto~ ~override~
-    ADD_STORE_ITEM ~B_PS101~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR101.SPR-Bless)
-    ADD_STORE_ITEM ~B_CS102~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR102.SPR-Command)
-    ADD_STORE_ITEM ~B_PS104~ #1 #0 #0 ~IDENTIFIED~ #2    //  (SPPR104.SPR-Detect Evil)
-    ADD_STORE_ITEM ~B_PS107~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR107.SPR-Protect from evil)
-    ADD_STORE_ITEM ~B_PS108~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR108.SPR-Remove Fear)
-    ADD_STORE_ITEM ~B_PS111~ #1 #0 #0 ~IDENTIFIED~ #2     //  (SPPR111.SPR-armor of faith)
-END
+  COPY_EXISTING_REGEXP GLOB ~B_CS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM0002.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_CS2.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM0002.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_CS3.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM0002.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+
+  COPY_EXISTING_REGEXP GLOB ~B_GS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM0002.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_GS2.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM0002.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_GS3.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM0002.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+
+END//End temp of Helm

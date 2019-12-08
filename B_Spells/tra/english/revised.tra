@@ -108,6 +108,10 @@ Area of Effect: 1 creature
 Saving Throw: None
 
 When casting this spell, and laying <PRO_HISHER> hand upon a creature, the priest causes wounds and other injuries to the creature's body to be healed. The priest can restore 8 plus 40% of the recipients total hit point total of damage sustained by the target creature.~
+@11400018 = ~deals 11 points of damage (save vs. Spell for half) to the creature's body.~
+@11400019 = ~deals 6, + 30% of the targets maximum hit points, of magic damage (save vs. Death for half) to the creature's body.~
+
+@10100020 = ~the priest heals 8 Hit Points to the creature's body and cures intoxication~
 
 //Insert Cause Serious wounds (18-20)
 
@@ -157,6 +161,16 @@ Area of Effect: Sight
 Saving Throw: None
 
 When casting this spell, the priest must picture the faces of <PRO_HISHER> fellow party members clearly and focus on the unity of the group. Upon completion, all party members within sight of the caster are healed by 6 + 25% of their max hit points.~
+
+@10100033 = ~14 Hit Points to the creature's body~
+@10100034 = ~8 plus 40% of the recipients total hit points to the creature's body~
+@10100035 = ~17 Hit Points and cures intoxication~
+
+@10100036 = ~10 plus 50% of the recipients hit point total hit points and cures intoxication~
+
+@10100037 = ~27 Hit Points and cures intoxication~
+
+@10100038 = ~12 plus 60% of the recipients hit point total Hit Points and cures intoxication~
 
 @10100133 = ~Charm Person
 (Enchantment/Charm)
@@ -215,5 +229,4 @@ Area of Effect: 1 creature
 Saving Throw: None
 
 Upon the casting of this spell the recipient gains the sight of an infernal being.  This allows them to not only see in the dark as per the infravision ability, but it allows them to see and exploit vulnerabilities in their targets, allowing them to more often land critical blows.  As such, they crit on a natural roll of an 19 or above.~
-
 

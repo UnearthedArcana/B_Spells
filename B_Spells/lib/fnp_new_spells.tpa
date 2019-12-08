@@ -136,7 +136,9 @@ ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/b_r101.spl~ 1 0 ~CLERIC_ABUNDAN
         SAY NAME1 @53000
         SAY NAME2 @53000
         SAY UNIDENTIFIED_DESC @53001
-	SAY DESC @53001
+		SAY DESC @53001
+//prevent druids from having this spell
+		LPF ALTER_SPELL_TYPE INT_VAR opp_school_align = 16 STR_VAR END    //Prohibit moral neutral (I think)
 
 //Hunting Arrows
 COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override~   //Hunting Arrows spl
@@ -759,7 +761,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 //Copy over the scroll:
 COPY ~%mod_folder%/spheres/scrolls/D1148.itm~ ~override/B_FRST1.itm~   //cuz it's a 148 scroll...
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @51707
 	SAY DESC @51708
 //Change icon
@@ -899,7 +901,7 @@ END
 
 //Copy over the scroll:
 COPY ~%mod_folder%/spheres/scrolls/C1146.itm~ ~override/B_CARN.itm~   //cuz it's a 146 scroll...
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @50401
 	SAY DESC @50402
 //Change icon
@@ -1087,7 +1089,7 @@ INCLUDE ~%mod_folder%/lib/spell_lists/emotion_list.tpa~
 /*
 //Copy over the scroll:
 COPY ~Spells/data/iwd_spells/wizard_2/SPWI223A.itm~ ~override~
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @2250000
 	SAY DESC @2250001
 //Change icon
@@ -1195,7 +1197,7 @@ INCLUDE ~%mod_folder%/lib/spell_lists/emotion_list.tpa~
 /*
 //Copy over the scroll:
 COPY ~Spells/data/iwd_spells/wizard_2/SPWI223A.itm~ ~override~
-        SAY NAME1 @10
+        SAY NAME1 @900009016
         SAY NAME2 @2250000
 	SAY DESC @2250001
 //Change icon

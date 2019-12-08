@@ -3,13 +3,14 @@ DEFINE_PATCH_FUNCTION ALTER_SPELL_TYPE
             spell_level       = "-1"
             location          = "-1" //none: (0); spell: (2); innate (4)
             school	      = "-1" //school: 0 = None; 1 = abjuration; 2 = conjuration; 3= divination; 4 = enchantment; 5 = illusion; 6 = invoker; 7 = necromancer; 8 = transmuter; 9 = trueclass mage; 10 = wild mage only
-            opp_school_align  = "-1" //opposition school: 0 = None; 1 = abjuration; 2 = conjuration; 3= divination; 4 = enchantment; 5 = illusion; 6 = invoker; 7 = necromancer; 8 = transmuter; 9 = trueclass mage; 10 = wild mage only
-//                                  //or prohibited alignment: 11 = exclude chaotic; 12 = evil; 13 = good; 14 = ethical neutral; 15 = lawful 16 = moral neutral
+            opposition_school = "-1" //opposition school: 0 = None; 1 = abjuration; 2 = conjuration; 3= divination; 4 = enchantment; 5 = illusion; 6 = invoker; 7 = necromancer; 8 = transmuter; 9 = trueclass mage; 10 = wild mage only
+         prohibited_alignment = "-1" //or prohibited alignment: 1 = exclude chaotic; 2 = evil; 3 = good; 4 = ethical neutral; 5 = lawful 6 = moral neutral
             casting_graphics  = "-1" //school: 0 = None; 1 = abjuration; 2 = conjuration; 3= divination; 4 = enchantment; 5 = illusion; 6 = invoker; 7 = necromancer; 8 = transmuter; 9 = black sparks
-            cleric_druid_wild = "-1" //0 = no restrictions; 1 = cleric/Pal exclusive (priest spells); 2 = druid/Ran exclusive (priest spells) 3 = No Wildmage (mage spells)
-            sec_type          = "-1" ////0 = none; 1 = Spell Protection; 2 = Specific Protections; 3 = Illusonary Protections; 4 = Magic Attack; 5 = Divination Attack; 6 = Conjuration; 7 = Combat Protections; 8 = Contingency; 9 = Battleground; 10 = Offensive Damage; 11 = Disabling; 12 = Combination; 13 = Non-Combat; 14 = Dorn's Sword
+            cleric_druid_only = "-1" //0 = no restrictions; 1 = cleric/Pal exclusive (priest spells); 2 = druid/Ran exclusive (priest spells); 3 = prohibit all
+            wild_mage         = "-1" //0 = Wildmage restricted (wm can't cast); 1 = Wildmage can cast (mage spells)
+            sec_type          = "-1" //0 = none; 1 = Spell Protection; 2 = Specific Protections; 3 = Illusonary Protections; 4 = Magic Attack; 5 = Divination Attack; 6 = Conjuration; 7 = Combat Protections; 8 = Contingency; 9 = Battleground; 10 = Offensive Damage; 11 = Disabling; 12 = Combination; 13 = Non-Combat; 14 = Dorn's Sword
             failure           = "-1" // 0 = Failure NOT possible; 1 = Failure possible (other values not accepted)
-            indoors           = "-1" // 0 = cannot be cast indoors; 1 = can cast not indoors (other values not accepted)
+            indoors           = "-1" // 0 = cannot be cast indoors; 1 = can cast indoors (other values not accepted)
             surge             = "-1" // 0 = wildsurge not possible; 1 = wildsurge possible (other values not accepted)
             los               = "-1" // 0 = Line of Sight required; 1 = no LOS required (other values not accepted)
             combat            = "-1" // 0 = cannot be cast in combat; 1 = CAN be cast in combat (other values not accepted)
@@ -18,9 +19,9 @@ DEFINE_PATCH_FUNCTION ALTER_SPELL_TYPE
             target_invisible  = "-1" // 0 = cannot target invisible; 1 = can target invisibile (other values not accepted)
             silence           = "-1" // 0 = cannot cast when silenced; 1 = can cast when silenced (other values not accepted)
   STR_VAR   level_text        = "SAME"  //Only accepts values of 1-10, "Quest", "Cantrip" or "Orison"--Changes "Level: x" in spell description to "Level: y" where y is the value added TEST!!!
-//	    school_text	      = "SAME"  //TO DO for user created schools
-//	    sphere_text	      = "SAME"  //TO DO
-//	    c_icon            = "SAME"  //TO DO
+ 	    school_text	      = "SAME"  //Only necessary for user created schools
+  	    sphere_text	      = "SAME"  //Name of sphere
+	    c_icon            = "NO"  //"SAME" = %SOURCE_RES%C, "ADD" = %spell_res%C, else Exact name given of C icon
 
 BEGIN
   READ_LONG  0x64 abil_off ELSE 0
@@ -31,7 +32,18 @@ BEGIN
 PATCH_IF (spell_type >= 0) //types: innate(4)
   BEGIN
     WRITE_SHORT 0x1C spell_type
+  PATCH_IF (location < 0) BEGIN
+    PATCH_IF (spell_type = 0) OR ((spell_type = 2) OR (spell_type = 4)) BEGIN
+      FOR (index = 0 ; index < abil_num ; ++index) BEGIN
+        WRITE_SHORT (abil_off + 0x02 + (0x28 * index)) spell_type
+      END
+    END ELSE BEGIN
+      FOR (index = 0 ; index < abil_num ; ++index) BEGIN
+        WRITE_SHORT (abil_off + 0x02 + (0x28 * index)) 0
+      END
+    END
   END
+END
   
   // Handle spell level if specified
 PATCH_IF (spell_level > 0)
@@ -45,57 +57,60 @@ PATCH_IF (location >= 0) BEGIN
   END
 END
 
-// Handle opp school if specified
-PATCH_IF (opp_school_align >= 0) BEGIN
-  PATCH_IF (opp_school_align = 0) BEGIN
+// Handle opp school if specified (mage only)
+PATCH_IF (opposition_school >= 0) BEGIN
+  PATCH_IF (opposition_school = 0) BEGIN
    WRITE_LONG 0x001e 0x0000 //General spells, exclude nobody
   END
-  PATCH_IF (opp_school_align = 1) BEGIN
+  PATCH_IF (opposition_school = 1) BEGIN
    WRITE_LONG 0x001e 0x0040 //General spells, exclude abjuration
   END
-  PATCH_IF (opp_school_align = 2) BEGIN
+  PATCH_IF (opposition_school = 2) BEGIN
    WRITE_LONG 0x001e 0x0080 //General spells, exclude conjuration
   END
-  PATCH_IF (opp_school_align = 3) BEGIN
+  PATCH_IF (opposition_school = 3) BEGIN
    WRITE_LONG 0x001e 0x0100 //General spells, exclude divination
   END
-  PATCH_IF (opp_school_align = 4) BEGIN
+  PATCH_IF (opposition_school = 4) BEGIN
    WRITE_LONG 0x001e 0x0200 //General spells, exclude enchanter
   END
-  PATCH_IF (opp_school_align = 5) BEGIN
+  PATCH_IF (opposition_school = 5) BEGIN
    WRITE_LONG 0x001e 0x0400 //General spells, exclude illusion
   END
-  PATCH_IF (opp_school_align = 6) BEGIN
+  PATCH_IF (opposition_school = 6) BEGIN
    WRITE_LONG 0x001e 0x0800 //General spells, exclude invoker
   END
-  PATCH_IF (opp_school_align = 7) BEGIN
+  PATCH_IF (opposition_school = 7) BEGIN
    WRITE_LONG 0x001e 0x1000 //General spells, exclude necro
   END
-  PATCH_IF (opp_school_align = 8) BEGIN
+  PATCH_IF (opposition_school = 8) BEGIN
    WRITE_LONG 0x001e 0x2000 //General spells, exclude transmutation
   END
-  PATCH_IF (opp_school_align = 9) BEGIN
+  PATCH_IF (opposition_school = 9) BEGIN
    WRITE_LONG 0x001e 0x4000 //General spells, exclude trueclass mage
   END
-  PATCH_IF (opp_school_align = 10) BEGIN
+  PATCH_IF (opposition_school = 10) BEGIN
    WRITE_LONG 0x001e 0x7fc0 //General spells, wildmage only
   END
-  PATCH_IF (opp_school_align = 11) BEGIN
+END
+//prohibited_alignment if specified (priest only)
+PATCH_IF (prohibited_alignment > 0) BEGIN
+  PATCH_IF (prohibited_alignment = 1) BEGIN
    WRITE_LONG 0x001e 0x0001 //exclude chaotic
   END
-  PATCH_IF (opp_school_align = 12) BEGIN
+  PATCH_IF (prohibited_alignment = 2) BEGIN
    WRITE_LONG 0x001e 0x0002 //exclude evil
   END
-  PATCH_IF (opp_school_align = 13) BEGIN
+  PATCH_IF (prohibited_alignment = 3) BEGIN
    WRITE_LONG 0x001e 0x0004 //exclude good
   END
-  PATCH_IF (opp_school_align = 14) BEGIN
+  PATCH_IF (prohibited_alignment = 4) BEGIN
    WRITE_LONG 0x001e 0x0020 //exclude ethical neutral
   END
-  PATCH_IF (opp_school_align = 15) BEGIN
+  PATCH_IF (prohibited_alignment = 5) BEGIN
    WRITE_LONG 0x001e 0x0010 //exclude lawful
   END
-  PATCH_IF (opp_school_align = 16) BEGIN
+  PATCH_IF (prohibited_alignment = 6) BEGIN
    WRITE_LONG 0x001e 0x0008 //exclude moral neutral
   END
 END 
@@ -111,16 +126,17 @@ PATCH_IF (school >= 0) BEGIN
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
 	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN //CHECK SPELLS: Wraithform, MMM, Fireshield
-	REPLACE_TEXTUALLY ~(Abjuration)~ ~(Abjuration)~        //replacing old with new 
-	REPLACE_TEXTUALLY ~(Conjuration)~ ~(Abjuration)~        //replacing old with new 
-	REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Abjuration)~        //replacing old with new 
-	REPLACE_TEXTUALLY ~(Alteration)~ ~(Abjuration)~        //replacing old with new 
-	REPLACE_TEXTUALLY ~(Evocation)~ ~(Abjuration)~        //replacing old with new 
-	REPLACE_TEXTUALLY ~(Necromancy)~ ~(Abjuration)~        //replacing old with new 
-	REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Abjuration)~        //replacing old with new 
-	REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Abjuration)~        //replacing old with new 
-	REPLACE_TEXTUALLY ~(Divination)~ ~(Abjuration)~        //replacing old with new 
-	END
+	REPLACE_TEXTUALLY ~Abjuration~ ~Abjuration~        //replacing old with new 
+	REPLACE_TEXTUALLY ~Conjuration~ ~Abjuration~        //replacing old with new 
+	REPLACE_TEXTUALLY ~Conjuration/Summoning~ ~Abjuration~        //replacing old with new 
+	REPLACE_TEXTUALLY ~Alteration~ ~Abjuration~        //replacing old with new 
+	REPLACE_TEXTUALLY ~Evocation~ ~Abjuration~        //replacing old with new 
+	REPLACE_TEXTUALLY ~Necromancy~ ~Abjuration~        //replacing old with new 
+	REPLACE_TEXTUALLY ~Enchantment/Charm~ ~Abjuration~        //replacing old with new 
+	REPLACE_TEXTUALLY ~Illusion/Phantasm~ ~Abjuration~        //replacing old with new 
+	REPLACE_TEXTUALLY ~(Divination)~ ~(Abjuration)~        //replacing old with new
+	REPLACE_TEXTUALLY ~School: Divination~ ~School: Abjuration~        //replacing old with new
+	END       //
   SAY_EVALUATED 0x50 ~%new_desc%~
   END  // end text change
   END
@@ -130,35 +146,37 @@ PATCH_IF (school >= 0) BEGIN
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
 	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN //CHECK SPELLS: Wraithform, MMM, Fireshield
-	REPLACE_TEXTUALLY ~(Abjuration)~ ~(Conjuration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration)~ ~(Conjuration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Conjuration/Summoning)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Alteration)~ ~(Conjuration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Evocation)~ ~(Conjuration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Necromancy)~ ~(Conjuration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Conjuration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Conjuration)~        //replacing old with new
+	REPLACE_TEXTUALLY ~Abjuration~ ~Conjuration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration~ ~Conjuration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration/Summoning~ ~Conjuration/Summoning~        //replacing old with new
+	REPLACE_TEXTUALLY ~Alteration~ ~Conjuration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Evocation~ ~Conjuration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Necromancy~ ~Conjuration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Enchantment/Charm~ ~Conjuration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Illusion/Phantasm~ ~Conjuration~        //replacing old with new
 	REPLACE_TEXTUALLY ~(Divination)~ ~(Conjuration)~        //replacing old with new
+	REPLACE_TEXTUALLY ~School: Divination~ ~School: Conjuration~        //replacing old with new
 	END
+	//
   SAY_EVALUATED 0x50 ~%new_desc%~
   END  // end text change
   END
   PATCH_IF (school = 3) BEGIN
-   WRITE_BYTE 0x0025 0x03 // Divination
+   WRITE_BYTE 0x0025 0x03 // (Divination)
   READ_LONG 0x50 "valid"
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
 	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN //CHECK SPELLS: Wraithform, MMM, Fireshield
-	REPLACE_TEXTUALLY ~(Abjuration)~ ~(Divination)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration)~ ~(Divination)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Divination)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Alteration)~ ~(Divination)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Evocation)~ ~(Divination)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Necromancy)~ ~(Divination)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Divination)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Divination)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Divination)~ ~(Divination)~        //replacing old with new
+	REPLACE_TEXTUALLY ~Abjuration~ ~Divination~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration~ ~Divination~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration/Summoning~ ~Divination~        //replacing old with new
+	REPLACE_TEXTUALLY ~Alteration~ ~Divination~        //replacing old with new
+	REPLACE_TEXTUALLY ~Evocation~ ~Divination~        //replacing old with new
+	REPLACE_TEXTUALLY ~Necromancy~ ~Divination~        //replacing old with new
+	REPLACE_TEXTUALLY ~Enchantment/Charm~ ~Divination~        //replacing old with new
+	REPLACE_TEXTUALLY ~Illusion/Phantasm~ ~Divination~        //replacing old with new
 	END
+	//
   SAY_EVALUATED 0x50 ~%new_desc%~
   END  // end text change
   END
@@ -168,17 +186,18 @@ PATCH_IF (school >= 0) BEGIN
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
 	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN //CHECK SPELLS: Wraithform, MMM, Fireshield
-	REPLACE_TEXTUALLY ~(Abjuration)~ ~(Enchantment/Charm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration)~ ~(Enchantment/Charm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Enchantment/Charm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Alteration)~ ~(Enchantment/Charm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Evocation)~ ~(Enchantment/Charm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Necromancy)~ ~(Enchantment/Charm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Enchantment/Charm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Enchantment/Charm)~        //replacing old with new
+	REPLACE_TEXTUALLY ~Abjuration~ ~Enchantment/Charm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration~ ~Enchantment/Charm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration/Summoning~ ~Enchantment/Charm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Alteration~ ~Enchantment/Charm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Evocation~ ~Enchantment/Charm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Necromancy~ ~Enchantment/Charm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Enchantment/Charm~ ~Enchantment/Charm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Illusion/Phantasm~ ~Enchantment/Charm~        //replacing old with new
 	REPLACE_TEXTUALLY ~(Divination)~ ~(Enchantment/Charm)~        //replacing old with new
+	REPLACE_TEXTUALLY ~School: Divination~ ~School: Enchantment/Charm~        //replacing old with new
 	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
+  SAY_EVALUATED 0x50 ~%new_desc%~   //
   END  // end text change
   END
   PATCH_IF (school = 5) BEGIN
@@ -187,17 +206,18 @@ PATCH_IF (school >= 0) BEGIN
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
 	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN //CHECK SPELLS: Wraithform, MMM, Fireshield
-	REPLACE_TEXTUALLY ~(Abjuration)~ ~(Illusion/Phantasm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration)~ ~(Illusion/Phantasm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Illusion/Phantasm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Alteration)~ ~(Illusion/Phantasm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Evocation)~ ~(Illusion/Phantasm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Necromancy)~ ~(Illusion/Phantasm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Illusion/Phantasm)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Illusion/Phantasm)~        //replacing old with new
+	REPLACE_TEXTUALLY ~Abjuration~ ~Illusion/Phantasm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration~ ~Illusion/Phantasm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration/Summoning~ ~Illusion/Phantasm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Alteration~ ~Illusion/Phantasm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Evocation~ ~Illusion/Phantasm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Necromancy~ ~Illusion/Phantasm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Enchantment/Charm~ ~Illusion/Phantasm~        //replacing old with new
+	REPLACE_TEXTUALLY ~Illusion/Phantasm~ ~Illusion/Phantasm~        //replacing old with new
 	REPLACE_TEXTUALLY ~(Divination)~ ~(Illusion/Phantasm)~        //replacing old with new
+	REPLACE_TEXTUALLY ~School: Divination~ ~School: Illusion/Phantasm~        //replacing old with new
 	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
+  SAY_EVALUATED 0x50 ~%new_desc%~   //
   END  // end text change
   END
   PATCH_IF (school = 6) BEGIN
@@ -206,17 +226,18 @@ PATCH_IF (school >= 0) BEGIN
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
 	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN //CHECK SPELLS: Wraithform, MMM, Fireshield
-	REPLACE_TEXTUALLY ~(Abjuration)~ ~(Evocation)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration)~ ~(Evocation)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Evocation)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Alteration)~ ~(Evocation)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Evocation)~ ~(Evocation)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Necromancy)~ ~(Evocation)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Evocation)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Evocation)~        //replacing old with new
+	REPLACE_TEXTUALLY ~Abjuration~ ~Evocation~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration~ ~Evocation~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration/Summoning~ ~Evocation~        //replacing old with new
+	REPLACE_TEXTUALLY ~Alteration~ ~Evocation~        //replacing old with new
+	REPLACE_TEXTUALLY ~Evocation~ ~Evocation~        //replacing old with new
+	REPLACE_TEXTUALLY ~Necromancy~ ~Evocation~        //replacing old with new
+	REPLACE_TEXTUALLY ~Enchantment/Charm~ ~Evocation~        //replacing old with new
+	REPLACE_TEXTUALLY ~Illusion/Phantasm~ ~Evocation~        //replacing old with new
 	REPLACE_TEXTUALLY ~(Divination)~ ~(Evocation)~        //replacing old with new
+	REPLACE_TEXTUALLY ~School: Divination~ ~School: Evocation~        //replacing old with new
 	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
+  SAY_EVALUATED 0x50 ~%new_desc%~    //
   END  // end text change
   END
   PATCH_IF (school = 7) BEGIN
@@ -225,17 +246,18 @@ PATCH_IF (school >= 0) BEGIN
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
 	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN //CHECK SPELLS: Wraithform, MMM, Fireshield
-	REPLACE_TEXTUALLY ~(Abjuration)~ ~(Necromancy)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration)~ ~(Necromancy)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Necromancy)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Alteration)~ ~(Necromancy)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Evocation)~ ~(Necromancy)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Necromancy)~ ~(Necromancy)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Necromancy)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Necromancy)~        //replacing old with new
+	REPLACE_TEXTUALLY ~Abjuration~ ~Necromancy~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration~ ~Necromancy~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration/Summoning~ ~Necromancy~        //replacing old with new
+	REPLACE_TEXTUALLY ~Alteration~ ~Necromancy~        //replacing old with new
+	REPLACE_TEXTUALLY ~Evocation~ ~Necromancy~        //replacing old with new
+	REPLACE_TEXTUALLY ~Necromancy~ ~Necromancy~        //replacing old with new
+	REPLACE_TEXTUALLY ~Enchantment/Charm~ ~Necromancy~        //replacing old with new
+	REPLACE_TEXTUALLY ~Illusion/Phantasm~ ~Necromancy~        //replacing old with new
 	REPLACE_TEXTUALLY ~(Divination)~ ~(Necromancy)~        //replacing old with new
+	REPLACE_TEXTUALLY ~School: Divination~ ~School: Necromancy~        //replacing old with new
 	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
+  SAY_EVALUATED 0x50 ~%new_desc%~      //
   END  // end text change
   END
   PATCH_IF (school = 8) BEGIN
@@ -244,17 +266,18 @@ PATCH_IF (school >= 0) BEGIN
   PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
   READ_STRREF 0x50 ~desc~
 	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN //CHECK SPELLS: Wraithform, MMM, Fireshield
-	REPLACE_TEXTUALLY ~(Abjuration)~ ~(Alteration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration)~ ~(Alteration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Conjuration/Summoning)~ ~(Alteration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Alteration)~ ~(Alteration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Evocation)~ ~(Alteration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Necromancy)~ ~(Alteration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Enchantment/Charm)~ ~(Alteration)~        //replacing old with new
-	REPLACE_TEXTUALLY ~(Illusion/Phantasm)~ ~(Alteration)~        //replacing old with new
+	REPLACE_TEXTUALLY ~Abjuration~ ~Alteration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration~ ~Alteration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration/Summoning~ ~Alteration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Alteration~ ~Alteration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Evocation~ ~Alteration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Necromancy~ ~Alteration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Enchantment/Charm~ ~Alteration~        //replacing old with new
+	REPLACE_TEXTUALLY ~Illusion/Phantasm~ ~Alteration~        //replacing old with new
 	REPLACE_TEXTUALLY ~(Divination)~ ~(Alteration)~        //replacing old with new
+	REPLACE_TEXTUALLY ~School: Divination~ ~School: Alteration~        //replacing old with new
 	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
+  SAY_EVALUATED 0x50 ~%new_desc%~     //
   END  // end text change
   END
   PATCH_IF (school = 9) BEGIN
@@ -262,31 +285,43 @@ PATCH_IF (school >= 0) BEGIN
   END
 END
 
-PATCH_IF (cleric_druid_wild >= 0) BEGIN
-  PATCH_IF (cleric_druid_wild = 0) BEGIN
+PATCH_IF (cleric_druid_only >= 0) BEGIN
+  PATCH_IF (cleric_druid_only = 0) BEGIN
       READ_BYTE    0x21 none //
       WRITE_BYTE   0x21 (none BAND 0b00000000)  // reset
   END
-  PATCH_IF (cleric_druid_wild = 1) BEGIN
+  PATCH_IF (cleric_druid_only = 1) BEGIN
       READ_BYTE    0x21 none //
       WRITE_BYTE   0x21 (none BAND 0b00000000)  // reset
       READ_BYTE    0x21 cleric //
       WRITE_BYTE   0x21 (cleric BOR 0b10000000)  // set to cleric
   END
-  PATCH_IF (cleric_druid_wild = 2) BEGIN
+  PATCH_IF (cleric_druid_only = 2) BEGIN
       READ_BYTE    0x21 none //
       WRITE_BYTE   0x21 (none BAND 0b00000000)  // reset
       READ_BYTE    0x21 druid //
       WRITE_BYTE   0x21 (druid BOR 0b01000000)  // set to druid
   END
-  PATCH_IF (cleric_druid_wild = 3) BEGIN
+  PATCH_IF (cleric_druid_only = 3) BEGIN
       READ_BYTE    0x21 none //
       WRITE_BYTE   0x21 (none BAND 0b00000000)  // reset
       READ_BYTE    0x21 no_wild //
-      WRITE_BYTE   0x21 (no_wild BOR 0b11000000)  // Restrict Wild mages
+      WRITE_BYTE   0x21 (no_wild BOR 0b11000000)  // Restrict everybody
   END
 END
-
+//wild_mage if specified
+PATCH_IF (wild_mage >= 0) BEGIN
+  PATCH_IF (wild_mage = 0) BEGIN  //Wildmage Can't cast
+      READ_BYTE    0x21 none //
+      WRITE_BYTE   0x21 (none BAND 0b00000000)  // reset
+      READ_BYTE    0x21 no_wild //
+      WRITE_BYTE   0x21 (no_wild BOR 0b11000000)  // Restrict wildmage
+  END
+  PATCH_IF (wild_mage = 1) BEGIN //wildmage Can cast
+      READ_BYTE    0x21 none //
+      WRITE_BYTE   0x21 (none BAND 0b00000000)  // wildmage enabled
+  END
+END
 //casting graphics if specified
 PATCH_IF (casting_graphics >= 0) BEGIN
   PATCH_IF (casting_graphics = 0) BEGIN
@@ -480,5 +515,165 @@ PATCH_IF ("%level_text%" STRING_COMPARE_CASE "SAME" != 0) BEGIN //
 
 END //end lev text
 
+//level school if specified
+PATCH_IF ("%school_text%" STRING_COMPARE_CASE "SAME" != 0) BEGIN //
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	REPLACE_TEXTUALLY ~Abjuration~ ~%school_text%~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration~ ~%school_text%~        //replacing old with new
+	REPLACE_TEXTUALLY ~Conjuration/Summoning~ ~%school_text%~        //replacing old with new
+	REPLACE_TEXTUALLY ~Alteration~ ~%school_text%~        //replacing old with new
+	REPLACE_TEXTUALLY ~Evocation~ ~%school_text%~        //replacing old with new
+	REPLACE_TEXTUALLY ~Necromancy~ ~%school_text%~        //replacing old with new
+	REPLACE_TEXTUALLY ~Enchantment/Charm~ ~%school_text%~        //replacing old with new
+	REPLACE_TEXTUALLY ~Illusion/Phantasm~ ~%school_text%~        //replacing old with new
+	REPLACE_TEXTUALLY ~(Divination)~ ~(%school_text%)~        //replacing old with new
+	REPLACE_TEXTUALLY ~School: Divination~ ~School: %school_text%~        //replacing old with new
+	END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END//End school_text text
+
+//level school if specified
+PATCH_IF ("%sphere_text%" STRING_COMPARE_CASE "SAME" != 0) BEGIN //
+  READ_LONG 0x50 "valid"
+  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
+  READ_STRREF 0x50 ~desc~
+	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
+	  REPLACE_TEXTUALLY ~Sphere: Affliction~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Air~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: All~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Animal~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Animal, Summoning~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Benediction~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Chaos~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Charm~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Charm, Combat, Law~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Charm, Creation~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Charm, Law~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Charm, Protection~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Combat~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Combat, Necromantic~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Combat, Plant~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Combat, Summoning~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Creation~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Death~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Deception~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Destruction~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Divination~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Dread~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Earth~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental (Air)~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental Air~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental (Earth)~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental (Earth), Summoning~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental Earth~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental (Fire)~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental (Fire), Summoning~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental Fire~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental (Water)~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Elemental Water~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Exploration~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Fire~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Guardian~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Guardian, Creation~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Healing~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Knowledge~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Law~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Life~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Light~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Magic~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Necromantic~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Necromantic, Protection~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Numbers~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Perdition~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Plant~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Protection~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Protection, Elemental (Fire)~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Protection, Plant~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Protection, Sun~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Protection, Weather~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Shadow~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Summoning~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Sun~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Thought~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Travelers~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Universal~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Vigor~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: War~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Wards~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Wards, Elemental (Air)~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Water~ ~Sphere: %sphere_text%~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Sphere: Weather~ ~Sphere: %sphere_text%~        //replacing old with new
+//missing sphere info
+	  REPLACE_TEXTUALLY ~1
+Range~ ~1
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~2
+Range~ ~2
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~3
+Range~ ~3
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~4
+Range~ ~4
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~5
+Range~ ~5
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~6
+Range~ ~6
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~7
+Range~ ~7
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~8
+Range~ ~8
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~9
+Range~ ~9
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Quest
+Range~ ~Quest
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Orison
+Range~ ~Orison
+Sphere: %sphere_text%
+Range~        //replacing old with new
+	  REPLACE_TEXTUALLY ~Cantrip
+Range~ ~Cantrip
+Sphere: %sphere_text%
+Range~        //replacing old with new
+END
+  SAY_EVALUATED 0x50 ~%new_desc%~
+  END  //
+END//End school_text text
+
+//c_icon if specified
+PATCH_IF ("%c_icon%" STRING_COMPARE_CASE "NO" != 0) BEGIN //
+ PATCH_IF ("%c_icon%" STRING_COMPARE_CASE "SAME" = 0) BEGIN //
+  WRITE_EVALUATED_ASCII 0x003a ~%SOURCE_RES%C~
+ END  
+ ELSE PATCH_IF ("%c_icon%" STRING_COMPARE_CASE "ADD" = 0) BEGIN
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+ END
+ ELSE
+ BEGIN
+  WRITE_EVALUATED_ASCII 0x003a ~%c_icon%~
+ END
+END//End c_icon
 
 END

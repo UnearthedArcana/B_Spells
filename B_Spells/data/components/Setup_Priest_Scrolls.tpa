@@ -9,22 +9,275 @@
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-////////////////////////////////            							   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-////////////////////////////////            							   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////      Scroll Creation and Distribution     \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-////////////////////////////////            							   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-////////////////////////////////            							   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-//Univesal scrolls- Priest
-//This code creates a few scrolls that are not eligible for scrollhood.  That should be fine if they are not placed or added to scroll creation
-INCLUDE ~%mod_folder%/lib/universal_scrolls.tpa~      //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////                 Scrolls                 //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//check for SR, for Gust of Wind (I think it's a dif level for druid compared to cleric...)
-//Usability 
-INCLUDE ~%mod_folder%/lib/druid_scroll_usability.tpa~      //  
+//Priest Scrolls
+//This creates a few scrolls that are not eligible for scrollhood.  That should be fine if they are not placed or added to scroll creation
+COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
+	 PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+	  READ_BYTE 0x001C type //Spell type
+	   PATCH_IF type = 2 BEGIN
+       READ_BYTE 0x0021 general //general type
+	   PATCH_IF ((general BAND 0b11000000) = 0b00000000)   BEGIN //If General type (I think)
+         READ_LONG  0x0034 level //spell level
+ 	     READ_LONG 0x0008 name //spell name
+	     READ_LONG 0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+         READ_ASCII 0x0076 spellicon (7)
+         INNER_PATCH_SAVE gen ~%SOURCE_RES%~ BEGIN
+          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_PS~
+         END
+           INNER_ACTION BEGIN
+            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+             WRITE_LONG 0x0034 (level * 50)
+           END
+	   END
+	   PATCH_IF ((general BAND 0b11000000) = 0b10000000)   BEGIN //If Cleric exclusive (I think)
+         READ_LONG  0x0034 level //spell level
+ 	     READ_LONG 0x0008 name //spell name
+	     READ_LONG 0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+         READ_ASCII 0x0076 spellicon (7)
+         INNER_PATCH_SAVE gen ~%SOURCE_RES%~ BEGIN
+          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
+         END
+           INNER_ACTION BEGIN
+            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+             WRITE_LONG 0x0034 (level * 50)
+           END
+	   END
+	 PATCH_IF ((general BAND 0b11000000) = 0b01000000)   BEGIN //If Druid exclusive (I think)
+         READ_LONG  0x0034 level //spell level
+ 	     READ_LONG 0x0008 name //spell name
+	     READ_LONG 0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+         READ_ASCII 0x0076 spellicon (7)
+         INNER_PATCH_SAVE gen ~%SOURCE_RES%~ BEGIN
+          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
+         END
+           INNER_ACTION BEGIN
+            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+             WRITE_LONG 0x0034 (level * 50)
+           END
+	   END
+	  END
+	END
+BUT_ONLY
 
-//placement
+//fnp custom spells: , b_w101.spl, b_w427.spl, b_w428.spl, b_w429.spl, d5pr601.spl, b_w204.spl, b_w327.spl, b_w432.spl, b_w724.spl, b_w206.spl, b_w426.spl, d5sh501.spl, B_SSTEP.spl, B_W629.spl,
+ACTION_IF FILE_EXISTS_IN_GAME ~B_W631.spl~ BEGIN  // at least one
+ COPY_EXISTING_REGEXP GLOB ~B_.[^abcde]*\.SPL~ ~override~
+	 PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+	  READ_BYTE 0x001C type //Spell type
+	   PATCH_IF type = 2 BEGIN
+             READ_LONG  0x0034 level //spell level
+ 	     READ_LONG 0x0008 name //spell name
+	     READ_LONG 0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+             READ_ASCII 0x0076 spellicon (7)  //needed?
+         INNER_PATCH_SAVE cus0 ~%SOURCE_RES%~ BEGIN
+         END
+         INNER_PATCH_SAVE cus2 ~%cus0%~ BEGIN
+          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_S~ ~B_WS~
+         END
+         INNER_PATCH_SAVE cus1 ~%cus2%~ BEGIN
+          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_W~ ~B_WS~
+         END
+           INNER_ACTION BEGIN
+            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%cus1%.ITM~   //Level 1 universal as generic.  Modify all others after
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
+             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
+             WRITE_LONG 0x0034 (level * 50)
+             LPF ALTER_EFFECT
+               INT_VAR match_opcode = 146            //
+               STR_VAR resource = EVAL ~%cus0%~
+             END      //
+           END
+        END
+      END
+    BUT_ONLY
+END
 
-INCLUDE ~%mod_folder%/lib/scroll_placement.tpa~      //  
+//Still missing fnp custom spells: d5pr601.spl, d5sh501.spl (now for all SD custom priest)
+ACTION_IF FILE_EXISTS_IN_GAME ~d5pr601.spl~ BEGIN  // at least one
+
+END
+//Druid exclusive: B_DS
+//Cleric exclusive: B_CS
+//non-exclusive: B_PS
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////              Scroll Placement           //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+//level 1 to 3 general and priest scrolls in all temples
+//lev 1
+COPY_EXISTING_REGEXP GLOB ~B_CS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
+          READ_LONG 0x0008 "sto_type"
+            PATCH_IF (%sto_type% = 03) BEGIN
+              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+            END
+    BUT_ONLY
+    END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_PS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
+          READ_LONG 0x0008 "sto_type"
+            PATCH_IF (%sto_type% = 03) BEGIN
+              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+            END
+    BUT_ONLY
+    END
+BUT_ONLY
+
+//lev 2
+COPY_EXISTING_REGEXP GLOB ~B_CS2.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
+          READ_LONG 0x0008 "sto_type"
+            PATCH_IF (%sto_type% = 03) BEGIN
+              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+            END
+    BUT_ONLY
+    END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_PS2.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
+          READ_LONG 0x0008 "sto_type"
+            PATCH_IF (%sto_type% = 03) BEGIN
+              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+            END
+    BUT_ONLY
+    END
+BUT_ONLY
+
+//lev 3
+COPY_EXISTING_REGEXP GLOB ~B_CS3.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
+          READ_LONG 0x0008 "sto_type"
+            PATCH_IF (%sto_type% = 03) BEGIN
+              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+            END
+    BUT_ONLY
+    END
+BUT_ONLY
+
+COPY_EXISTING_REGEXP GLOB ~B_PS3.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
+          READ_LONG 0x0008 "sto_type"
+            PATCH_IF (%sto_type% = 03) BEGIN
+              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+            END
+    BUT_ONLY
+    END
+BUT_ONLY
+
+//special cases
+//druid scrolls
+
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+///////////                         ////////////
+///////////     Temple of Wisdom    ////////////
+///////////                         ////////////
+////////////////////////////////////////////////
+////////////////////////////////////////////////
+//1st through 3rd priest scrolls (including druid) - they are more rare.  two only
+ACTION_IF FILE_EXISTS_IN_GAME ~TEM2304.STO~ BEGIN  //Temple of wisdom
+
+//druid
+  COPY_EXISTING_REGEXP GLOB ~B_DS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_DS2.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+  COPY_EXISTING_REGEXP GLOB ~B_DS3.*\.ITM~ ~override~    // 1st level cleric exclusive
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING ~TEM2304.STO~ ~override~
+          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #2    //
+    END
+
+END   //end if temp of wisdom in game
+
+//special cases lev 4+ scrolls

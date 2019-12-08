@@ -2,7 +2,7 @@ BACKUP ~B_Spells/backup~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.89.08~
+VERSION ~0.89.09~
 
 
 ALWAYS
@@ -20,12 +20,14 @@ ALWAYS
  	ACTION_IF GAME_IS ~bgee~ THEN BEGIN
           OUTER_SPRINT ~game~ ~bgee~
         END
-        
+
  	ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
           OUTER_SPRINT ~game~ ~iwdee~
         END
 
         INCLUDE ~B_Spells/lib/spon_cast_functions.tpa~
+
+        INCLUDE ~B_Spells/lib/add_sumtable.tpa~
 
 	INCLUDE ~B_Spells/lib/SEQUENCER_MENU.tpa~
         
@@ -35,9 +37,13 @@ ALWAYS
 
         INCLUDE ~B_Spells/lib/second_opp.tpa~
 
+        INCLUDE ~B_Spells/lib/tooltips.tpa~
+
         INCLUDE ~B_Spells/lib/make_cantrip.tpa~
 
         INCLUDE ~B_Spells/lib/alter_effect.tpa~
+
+        INCLUDE ~B_Spells/lib/alter_effect_add.tpa~
 
 	INCLUDE ~B_Spells/lib/remove_lines.tpa~
 
@@ -48,6 +54,8 @@ ALWAYS
         INCLUDE ~B_Spells/lib/bg2fp_effect_batches_fnp.tpa~
 
         INCLUDE ~B_Spells/lib/bg2fp_effect_batches_b_vise.tpa~
+
+        INCLUDE ~B_Spells/lib/bg2fp_effect_batches_spell_saves.tpa~
 
 //  	INCLUDE ~override/d5_fnp_settings.ini~
 
@@ -83,7 +91,7 @@ LANGUAGE ~English~ ~english~
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
-////////////////////////////////////////                New Spells                ////////////////////////////////////////  
+////////////////////////////////////////       Components 101-103: New Spells     ////////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,20 +117,20 @@ ACTION_CLEAR_ARRAY aoe_spell
 
 //IWDEE Spells
 //IWDEE priest spells not installed
-
+//include
 //Detects IWDEE priest spells- Not SR: checked in individual setup tpas
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-	COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
+      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
       COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
-      INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
+        INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
 
-  ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BEAST_CLAW~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
-   INCLUDE ~faiths_and_powers/lib/iwdee_sr_readd.tpa~
-  END
+ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BEAST_CLAW~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
+ INCLUDE ~%mod_folder%/lib/iwdee_sr_readd.tpa~
+END
 
 //special: reinstall spells if any version of SR installed
 ACTION_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN
-  INCLUDE ~faiths_and_powers/lib/sr_readd.tpa~
+  INCLUDE ~%mod_folder%/lib/sr_readd.tpa~
 END
 
 //Now, for other IWDEE wiz spells--Not SR which will be checked in game
@@ -221,12 +229,92 @@ INCLUDE ~%mod_folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
 INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
-  
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
-////////////////////////////////////////                New Items                 ////////////////////////////////////////  
+///////////////////////////////////   Components 201-???: Cantrips: Infinite Innate   ////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//		201: Infinite Innate Cantrips for all divine and arcane classes
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+BEGIN @18  //Install Infinite Innate Cantrips for all divine and arcane classes
+SUBCOMPONENT @19
+DESIGNATED 201
+GROUP @19
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now  Will check for specifics below (i.e. presence of 1st level, finite, etc.)
+
+//CODE TO SET CANTRIP TYPE (i.e. in make_cantrip.tpa) 
+
+//END CODE TO SET CANTRIP TYPE
+
+//priest orisons
+//CHECK???
+INCLUDE ~%mod_folder%/data/components/Setup_priest_0-cantrips.tpa~ //Priest infinite cantrips
+//END
+//arcane orisons
+//CHECK???
+INCLUDE ~%mod_folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite cantrips
+//END
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//		202: Infinite Innate Cantrips for all divine classes
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+BEGIN @20  //Install Infinite Innate Cantrips for all divine classes
+SUBCOMPONENT @19
+DESIGNATED 202
+GROUP @19
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now  Will check for specifics below (i.e. presence of 1st level, finite, etc.)
+
+//CODE TO SET CANTRIP TYPE (i.e. in make_cantrip.tpa) 
+
+//END CODE TO SET CANTRIP TYPE
+
+//priest orisons
+//CHECK???
+INCLUDE ~%mod_folder%/data/components/Setup_priest_0-cantrips.tpa~ //Priest infinite cantrips
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//		203: Infinite Innate Cantrips for all arcane classes
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+BEGIN @21  //Install Infinite Innate Cantrips for all arcane classes
+SUBCOMPONENT @19
+DESIGNATED 203
+GROUP @19
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now  Will check for specifics below (i.e. presence of 1st level, finite, etc.)
+
+//CODE TO SET CANTRIP TYPE (i.e. in make_cantrip.tpa) 
+
+//END CODE TO SET CANTRIP TYPE
+
+//arcane orisons
+//CHECK???
+INCLUDE ~%mod_folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite cantrips
+//END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////  
+////////////////////////////////////////       Components 501-???: New Items      ////////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -234,20 +322,41 @@ INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//			201: Install All new items (including IWDEE items if applicable)
+//			501: Install All new items (including IWDEE items if applicable)
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
 BEGIN @4  //Install All new items (including IWDEE items if applicable)
 SUBCOMPONENT @101
-DESIGNATED 201
+DESIGNATED 501
 GROUP @6 
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 
-//INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
+INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
 INCLUDE ~%mod_folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////  
+////////////////////////////////////////    Components 601-???: Revised Items     ////////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			601: Revise all items
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @4  //Install All new items (including IWDEE items if applicable)
+SUBCOMPONENT @101
+DESIGNATED 501
+GROUP @6 
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -263,13 +372,13 @@ INCLUDE ~%mod_folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//			301: Class 'Extras': Spontaneous Casting (By Pecca)
+//			1001: Class 'Extras': Spontaneous Casting (By Pecca)
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
 BEGIN @180  //Spontaneous Casting for clerics and druids (by Pecca)
 SUBCOMPONENT @180 //Spontaneous Casting for clerics and druids (by Pecca)
-DESIGNATED 301
+DESIGNATED 1001
 GROUP @162    //Class 'Extras'
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
@@ -285,4 +394,7 @@ END
 
 INCLUDE ~%mod_folder%/data/components/Setup_Spontaneous_Casting.tpa~
 
+//ADD ITEM CRAFTING COMPONENTS
+//ADD DOMAIN SPELLS (INTERACTS WITH SPON CASTING and CANTRIPS)
+//ADD
 */

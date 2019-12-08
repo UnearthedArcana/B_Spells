@@ -221,13 +221,7 @@ Saving Throw: None
 
 Upon casting this spell, the priest chants softly under <PRO_HISHER> breath.  As long as <PRO_HESHE> continues to chant, <PRO_HESHE> receives a +1 to moral, THAC0 rolls, and damage, much like a bless spell.  
 
-However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead while under the effects of Benediction.
-
-Benediction has no effect if the priest is under the effects of bless, aid, or chant spell, and if <PRO_HESHE> is affected by one of these spells while under the effects of this Orison, Benediction is immediately dispelled.
-
-Similarly, <PRO_HESHE> cannot cast Benediction if <PRO_HESHE> is under the influence of the Doom spell.
-
-Benediction cannot be used in conjunction with canticle or meditation.~
+However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, nor turn undead while under the effects of Benediction.~
 
 @109000002 = ~Sphere: All~
 
