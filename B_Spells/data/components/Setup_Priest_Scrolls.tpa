@@ -1,12 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////                                         //////////////////////////////////////
-/////////////////////////////////////                 Scrolls                 //////////////////////////////////////
-/////////////////////////////////////                                         //////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -16,6 +7,15 @@
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////              Missing BAMS               //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//it seems that BG2EE (At least!) doesn't have all priest scroll bams.  Add them here if needed
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,9 +51,10 @@ COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
              WRITE_SHORT 0x0080 range //range-check
              WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
              WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
-             WRITE_LONG 0x0034 (level * 50)
-           END
-	   END
+             WRITE_LONG 0x0034 (level * 50)       //cost
+             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%spellicon%~ END
+           END //end inner action
+	   END //end gen type
 	   PATCH_IF ((general BAND 0b11000000) = 0b10000000)   BEGIN //If Cleric exclusive (I think)
          READ_LONG  0x0034 level //spell level
  	     READ_LONG 0x0008 name //spell name
@@ -74,6 +75,7 @@ COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
              WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
              WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
              WRITE_LONG 0x0034 (level * 50)
+             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%spellicon%~ END
            END
 	   END
 	 PATCH_IF ((general BAND 0b11000000) = 0b01000000)   BEGIN //If Druid exclusive (I think)
@@ -85,7 +87,7 @@ COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
          READ_ASCII 0x0076 spellicon (7)
          INNER_PATCH_SAVE gen ~%SOURCE_RES%~ BEGIN
           REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
-         END
+         END //end inner patch save
            INNER_ACTION BEGIN
             COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
              WRITE_LONG 0x0008 ~%name%~
@@ -96,10 +98,12 @@ COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
              WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
              WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
              WRITE_LONG 0x0034 (level * 50)
-           END
-	   END
-	  END
-	END
+             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%spellicon%~ END
+           END //end inner action
+           //need to add generic scroll bams in game if they don't exist
+	   END //gen type
+	  END //cleric type spell
+	END //source size
 BUT_ONLY
 
 //fnp custom spells: , b_w101.spl, b_w427.spl, b_w428.spl, b_w429.spl, d5pr601.spl, b_w204.spl, b_w327.spl, b_w432.spl, b_w724.spl, b_w206.spl, b_w426.spl, d5sh501.spl, B_SSTEP.spl, B_W629.spl,
@@ -159,88 +163,79 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+//for BG2EE or BGEE
+ACTION_IF GAME_IS ~bg2ee bgee eet~ THEN BEGIN
 
-//level 1 to 3 general and priest scrolls in all temples
+//level 1 to 2 general and priest scrolls in all temples that offer cures
+
 //lev 1
-COPY_EXISTING_REGEXP GLOB ~B_CS1.*\.ITM~ ~override~    // 1st level cleric exclusive
+COPY_EXISTING_REGEXP GLOB ~B_.*\.ITM~ ~override~    // 1st level cleric exclusive
+    PATCH_IF (((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_CS" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_PS" = 0)) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_DS" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "W" != 0)) BEGIN // if scroll
+    //now, lev 1 gen/cleric exclusive
+    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_CS1" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_CS2" = 0)) OR (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_PS1" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_PS2" = 0))) AND (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "150" != 0) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "250" != 0)) BEGIN // if lev 1 or 2 scroll
     INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
     END
     INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
-          READ_LONG 0x0008 "sto_type"
-            PATCH_IF (%sto_type% = 03) BEGIN
-              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-            END
+        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
+	READ_BYTE 0x10 "flags" ELSE 0
+            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
+//            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
+            READ_LONG 0x2c "buy_off"   ELSE 0
+  	    READ_LONG 0x34 "sale_off"  ELSE 0
+            READ_LONG 0x4c "drink_off" ELSE 0
+ 	    READ_LONG 0x70 "cure_off"  ELSE 0
+	    READ_LONG 0x74 "cure_num"  ELSE 0
+	    SET "new_cure" = 0
+	    SET "sppr103" = 0 // cure light wounds
+            // check if cures already available
+            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
+		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr103" = 0) BEGIN
+		  SET "sppr103" = 1
+		END 
+            END //end for loop
+ 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
+  	        PATCH_IF ("%sppr103%" = 1) BEGIN // if cure light wounds offered, add lev 1 scrolls
+                      ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+	        END
+	    END //end cures/invalid
     BUT_ONLY
     END
+END //lev 1/2 gen/cleric exclusives
+//lev 3  
+    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_CS3" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_PS3" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "350" != 0))  BEGIN // if lev 3 scroll
+    INNER_PATCH_SAVE scroll3 ~%SOURCE_RES%~ BEGIN 
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
+	READ_BYTE 0x10 "flags" ELSE 0
+            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
+            READ_LONG 0x2c "buy_off"   ELSE 0
+  	    READ_LONG 0x34 "sale_off"  ELSE 0
+            READ_LONG 0x4c "drink_off" ELSE 0
+ 	    READ_LONG 0x70 "cure_off"  ELSE 0
+	    READ_LONG 0x74 "cure_num"  ELSE 0
+	    SET "new_cure" = 0
+  	    SET "sppr307" = 0 // remove curse
+            // check if cures already available
+            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
+		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
+	        PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr307" = 0) BEGIN
+	          SET "sppr307" = 1
+	        END
+            END //end for loop
+ 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
+  	        PATCH_IF ("%sppr307%" = 1) BEGIN // if remove curse offered, add lev 1 scrolls
+                      ADD_STORE_ITEM ~%scroll3%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+	        END
+	    END //end cures/invalid
+    BUT_ONLY
+    END
+END //lev 3 gen/cleric exclusives
+
+END //end scroll file name
 BUT_ONLY
 
-COPY_EXISTING_REGEXP GLOB ~B_PS1.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
-          READ_LONG 0x0008 "sto_type"
-            PATCH_IF (%sto_type% = 03) BEGIN
-              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-            END
-    BUT_ONLY
-    END
-BUT_ONLY
-
-//lev 2
-COPY_EXISTING_REGEXP GLOB ~B_CS2.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
-          READ_LONG 0x0008 "sto_type"
-            PATCH_IF (%sto_type% = 03) BEGIN
-              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-            END
-    BUT_ONLY
-    END
-BUT_ONLY
-
-COPY_EXISTING_REGEXP GLOB ~B_PS2.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
-          READ_LONG 0x0008 "sto_type"
-            PATCH_IF (%sto_type% = 03) BEGIN
-              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-            END
-    BUT_ONLY
-    END
-BUT_ONLY
-
-//lev 3
-COPY_EXISTING_REGEXP GLOB ~B_CS3.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
-          READ_LONG 0x0008 "sto_type"
-            PATCH_IF (%sto_type% = 03) BEGIN
-              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-            END
-    BUT_ONLY
-    END
-BUT_ONLY
-
-COPY_EXISTING_REGEXP GLOB ~B_PS3.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~.*\.sto~ ~override~    // Load all stores
-          READ_LONG 0x0008 "sto_type"
-            PATCH_IF (%sto_type% = 03) BEGIN
-              ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-            END
-    BUT_ONLY
-    END
-BUT_ONLY
 
 //special cases
 //druid scrolls
@@ -281,3 +276,80 @@ ACTION_IF FILE_EXISTS_IN_GAME ~TEM2304.STO~ BEGIN  //Temple of wisdom
 END   //end if temp of wisdom in game
 
 //special cases lev 4+ scrolls
+
+END //end game is bgee or bg2ee
+
+//now iwdee
+ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
+//level 1 to 2 general and priest scrolls in all temples that offer cures
+
+//lev 1
+COPY_EXISTING_REGEXP GLOB ~B_.*\.ITM~ ~override~    // 1st level cleric exclusive
+    PATCH_IF (((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_CS" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_PS" = 0)) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_DS" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "W" != 0)) BEGIN // if scroll
+    //now, lev 1 gen/cleric exclusive
+    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_CS1" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_CS2" = 0)) OR (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_PS1" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_PS2" = 0))) AND (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "150" != 0) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "250" != 0)) BEGIN // if lev 1 or 2 scroll
+    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
+	READ_BYTE 0x10 "flags" ELSE 0
+            PATCH_IF (("%flags%" BAND 0b00100001) = 0b00100001) BEGIN // if cures available and sells stuff; also filters out invalid files
+//            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
+            READ_LONG 0x2c "buy_off"   ELSE 0
+  	    READ_LONG 0x34 "sale_off"  ELSE 0
+            READ_LONG 0x4c "drink_off" ELSE 0
+ 	    READ_LONG 0x70 "cure_off"  ELSE 0
+	    READ_LONG 0x74 "cure_num"  ELSE 0
+	    SET "new_cure" = 0
+	    SET "sppr103" = 0 // cure light wounds
+            // check if cures already available
+            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
+		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr103" = 0) BEGIN
+		  SET "sppr103" = 1
+		END 
+            END //end for loop
+ 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
+  	        PATCH_IF ("%sppr103%" = 1) BEGIN // if cure light wounds offered, add lev 1 scrolls
+                      ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+	        END
+	    END //end cures/invalid
+    BUT_ONLY
+    END
+END //lev 1/2 gen/cleric exclusives
+//lev 3  
+    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_CS3" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_PS3" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "350" != 0))  BEGIN // if lev 3 scroll
+    INNER_PATCH_SAVE scroll3 ~%SOURCE_RES%~ BEGIN 
+    END
+    INNER_ACTION BEGIN
+        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
+	READ_BYTE 0x10 "flags" ELSE 0
+            PATCH_IF (("%flags%" BAND 0b00100001) = 0b00100001) BEGIN // if cures available and sells stuff; also filters out invalid files
+            READ_LONG 0x2c "buy_off"   ELSE 0
+  	    READ_LONG 0x34 "sale_off"  ELSE 0
+            READ_LONG 0x4c "drink_off" ELSE 0
+ 	    READ_LONG 0x70 "cure_off"  ELSE 0
+	    READ_LONG 0x74 "cure_num"  ELSE 0
+	    SET "new_cure" = 0
+  	    SET "sppr307" = 0 // remove curse
+            // check if cures already available
+            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
+		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
+	        PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr307" = 0) BEGIN
+	          SET "sppr307" = 1
+	        END
+            END //end for loop
+ 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
+  	        PATCH_IF ("%sppr307%" = 1) BEGIN // if remove curse offered, add lev 1 scrolls
+                      ADD_STORE_ITEM ~%scroll3%~ #1 #0 #0 ~IDENTIFIED~ #5    //
+	        END
+	    END //end cures/invalid
+    BUT_ONLY
+    END
+END //lev 3 gen/cleric exclusives
+
+END //end scroll file name
+BUT_ONLY
+
+//special cases lev 4+ scrolls
+END //end placement iwdee

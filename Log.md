@@ -50,6 +50,28 @@ TO DO 23: Cause Moderate Wounds (SR Revision)
 
 TO DO 24: Further update prest scroll code  (need to further update it, check for spell type, include specific res spells where I know they exist (e.g. in FnP)
 
+TO DO 25: Issue with priest scrolls - at least one subspell being added as a scroll (214W DUHM) Find and Eliminate!
+
+TO DO 26: Scroll component: missing icons in BGII.  Add! (get from bg1 and/or iwd)
+
+TO DO 27: Scrolls in iwdee (converts sum mon subspells e.g. sppr329) 
+
+TO DO 28: Scrolls (at least in iwdee) don't cast the right damn spell!  All cast sppr101 it seems...
+
+Version 0.89.10
+
+2019-12-09
+
+- Priest scrolls: now actually cast the right spells... duh!
+
+- Imporoved scroll placement to work with iwdee
+
+2019-12-08
+
+- Fixed issue where DUHM subspell scroll and shaman scrolls (lev 1 and 2) was being added to stores - scrolls still being created tho...)
+
+- Improved scroll placement using camcode!
+
 Version 0.89.09
 
 2019-12-07
@@ -151,7 +173,7 @@ Version 0.89.09
 
 2019-05-09
 
-- Replaced @10 with @900009016 for scroll names in fnp_new_spells.tpa 
+- Replaced @10 with @900009016 for scroll names in fnp_new_spells.tpa
 
 2019-05-08
 
