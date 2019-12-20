@@ -50,13 +50,51 @@ TO DO 23: Cause Moderate Wounds (SR Revision)
 
 TO DO 24: Further update prest scroll code  (need to further update it, check for spell type, include specific res spells where I know they exist (e.g. in FnP)
 
-TO DO 25: Issue with priest scrolls - at least one subspell being added as a scroll (214W DUHM) Find and Eliminate!
+TO DO 25: Update scroll placement but using ACTION_PHP_EACH by either sphere (fnp) or class (van) rather than file name (i.e. only B_P, etc. nec)
 
-TO DO 26: Scroll component: missing icons in BGII.  Add! (get from bg1 and/or iwd)
+Version 0.89.11
 
-TO DO 27: Scrolls in iwdee (converts sum mon subspells e.g. sppr329) 
+2019-12-20
 
-TO DO 28: Scrolls (at least in iwdee) don't cast the right damn spell!  All cast sppr101 it seems...
+- Finished fnp compatibility spells (but revise placement as 25)
+
+2019-12-18
+
+- fnp scroll compatibility (SD's procedurally gen spls)
+
+2019-12-17
+
+- Fnp scroll compaitiblity: life and universal spheres (not including exceptions)
+
+2019-12-16
+
+- Started priest scroll compatibility w/fnp
+
+2019-12-15
+
+- Redid auto bam creation and bg2ee bams because somehow I deleted it.  blah
+
+- continuing with custom spl folders
+
+-
+2019-12-14
+
+- Excluded odd lev 3 summon spell scrolls from placement (still exist in game though--hopefully, not an issue)
+
+- Scroll Placement: IWDEE: changed 3rd level placement to cure disease check, as at least one temple uses cd but not remove curse
+
+- Scroll Placement: Excluded SPPR599 from placement (still creates the scroll, tho. I think it's related to Harm).
+
+- Created scroll icons for "SPPR" spells without scroll icons (pretty much just for new ADD_SPELL spls)
+
+- Added bg1 scroll icons in bg2ee scroll installs
+
+- Improved code to create scrolls from custom spls (mine and SD's)
+
+- Scrolls: Pricing: 100 * spell level
+
+- Externalized backup folder
+
 
 Version 0.89.10
 

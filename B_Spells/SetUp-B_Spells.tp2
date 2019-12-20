@@ -1,8 +1,8 @@
-BACKUP ~B_Spells/backup~
+BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.89.10~
+VERSION ~0.89.11~
 
 
 ALWAYS
@@ -332,8 +332,13 @@ DESIGNATED 501
 GROUP @6 
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
+ACTION_IF !FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //no fnp spheres
+  INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //fnp spheres (of some kind)
+  INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls_fnp.tpa~      //Priest Scrolls
+END
 
-INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
 INCLUDE ~%mod_folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

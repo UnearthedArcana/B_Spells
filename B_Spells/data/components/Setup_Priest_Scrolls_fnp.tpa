@@ -18,19 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Priest Scrolls
-//This creates a few scrolls that are not eligible for scrollhood.  That should be fine if they are not placed or added to scroll creation
-COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
-	 PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
-	  READ_BYTE 0x001C type //Spell type
-	   PATCH_IF type = 2 BEGIN
-       READ_BYTE 0x0021 general //general type
-	   PATCH_IF ((general BAND 0b11000000) = 0b00000000)   BEGIN //If General type (I think)
+COPY_EXISTING ~d5fnplst.2da~ ~override~
+  READ_2DA_ENTRIES_NOW rows 4
+  FOR (row = 0; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY_FORMER rows row 1 scr_spl
+ 	READ_2DA_ENTRY_FORMER rows row 4 scr_sph
+
+//        PATCH_PRINT ~%scr_spl% is a spell in the %scr_sph% sphere~        //just to be sure...
+
+	INNER_ACTION BEGIN
+             INCLUDE ~%mod_folder%/lib/scroll_lists/fnp_scroll_list.tpa~
+	END// end inner action
+END // end for row
+
+ACTION_PHP_EACH fnp_scroll AS block => rock BEGIN
+  ACTION_IF ("%block%" STRING_COMPARE_CASE "MINOR" != 0) BEGIN
+     COPY_EXISTING_REGEXP GLOB ~%block%.SPL~ ~override~
              READ_LONG  0x0034 level //spell level
  	     READ_LONG 0x0008 name //spell name
 	     READ_LONG 0x0050 desc //description
 	     READ_SHORT 0x007E target //Target-check
 	     READ_SHORT 0x0080 range //range-check
              READ_ASCII 0x0076 spellicon (7)
+         INNER_PATCH_SAVE scroll_ref ~%SOURCE_RES%~ BEGIN
+         END
          INNER_PATCH_SAVE gen9 ~%SOURCE_RES%~ BEGIN
           REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_P~
          END
@@ -65,101 +76,12 @@ COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
              WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
              WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
              WRITE_LONG 0x0034 (level * 100)       //cost
-             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%spellicon%~ END
+             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%scroll_ref%~ END
            END //end inner action
-	   END //end gen type
-	   PATCH_IF ((general BAND 0b11000000) = 0b10000000)   BEGIN //If Cleric exclusive (I think)
-         READ_LONG  0x0034 level //spell level
- 	     READ_LONG 0x0008 name //spell name
-	     READ_LONG 0x0050 desc //description
-	     READ_SHORT 0x007E target //Target-check
-	     READ_SHORT 0x0080 range //range-check
-         READ_ASCII 0x0076 spellicon (7)
-         INNER_PATCH_SAVE gen9 ~%SOURCE_RES%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_C~
-         END
-         INNER_PATCH_SAVE gen8 ~%gen9%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_C1~ ~B_C%level%~
-         END
-         INNER_PATCH_SAVE gen7 ~%gen8%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_C2~ ~B_C%level%~
-         END
-         INNER_PATCH_SAVE gen6 ~%gen7%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_C3~ ~B_C%level%~
-         END
-         INNER_PATCH_SAVE gen5 ~%gen6%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_C4~ ~B_C%level%~
-         END
-         INNER_PATCH_SAVE gen4 ~%gen5%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_C5~ ~B_C%level%~
-         END
-         INNER_PATCH_SAVE gen3 ~%gen4%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_C6~ ~B_C%level%~
-         END
-         INNER_PATCH_SAVE gen ~%gen3%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_C7~ ~B_C%level%~
-         END
-           INNER_ACTION BEGIN
-            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
-             WRITE_LONG 0x0008 ~%name%~
-             WRITE_LONG 0x000c ~%name%~
-             WRITE_LONG 0x0054 ~%desc%~
-             WRITE_SHORT 0x007E target //Target-check
-             WRITE_SHORT 0x0080 range //range-check
-             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
-             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
-             WRITE_LONG 0x0034 (level * 100)
-             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%spellicon%~ END
-           END
-	   END
-	 PATCH_IF ((general BAND 0b11000000) = 0b01000000)   BEGIN //If Druid exclusive (I think)
-         READ_LONG  0x0034 level //spell level
- 	     READ_LONG 0x0008 name //spell name
-	     READ_LONG 0x0050 desc //description
-	     READ_SHORT 0x007E target //Target-check
-	     READ_SHORT 0x0080 range //range-check
-         READ_ASCII 0x0076 spellicon (7)
-         INNER_PATCH_SAVE gen9 ~%SOURCE_RES%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_D~
-         END //end inner patch save
-         INNER_PATCH_SAVE gen8 ~%gen9%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_D1~ ~B_D%level%~
-         END
-         INNER_PATCH_SAVE gen7 ~%gen8%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_D2~ ~B_D%level%~
-         END
-         INNER_PATCH_SAVE gen6 ~%gen7%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_D3~ ~B_D%level%~
-         END
-         INNER_PATCH_SAVE gen5 ~%gen6%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_D4~ ~B_D%level%~
-         END
-         INNER_PATCH_SAVE gen4 ~%gen5%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_D5~ ~B_D%level%~
-         END
-         INNER_PATCH_SAVE gen3 ~%gen4%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_D6~ ~B_D%level%~
-         END
-         INNER_PATCH_SAVE gen ~%gen3%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_D7~ ~B_D%level%~
-         END
-           INNER_ACTION BEGIN
-            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
-             WRITE_LONG 0x0008 ~%name%~
-             WRITE_LONG 0x000c ~%name%~
-             WRITE_LONG 0x0054 ~%desc%~
-             WRITE_SHORT 0x007E target //Target-check
-             WRITE_SHORT 0x0080 range //range-check
-             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
-             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
-             WRITE_LONG 0x0034 (level * 100)
-             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%spellicon%~ END
-           END //end inner action
-           //need to add generic scroll bams in game if they don't exist
-	   END //gen type
-	  END //cleric type spell
-	END //source size
-BUT_ONLY
+           BUT_ONLY
+  END
+END //
+/*
 
 //fnp custom spells: , b_w101.spl, b_w427.spl, b_w428.spl, b_w429.spl, d5pr601.spl, b_w204.spl, b_w327.spl, b_w432.spl, b_w724.spl, b_w206.spl, b_w426.spl, d5sh501.spl, B_SSTEP.spl, B_W629.spl,
 ACTION_IF FILE_EXISTS_IN_GAME ~B_W631.spl~ BEGIN  // at least one
@@ -666,3 +588,4 @@ BUT_ONLY
 
 
 END //end placement iwdee
+*/
