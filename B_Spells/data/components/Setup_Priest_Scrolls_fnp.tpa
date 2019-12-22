@@ -21,22 +21,22 @@
 COPY_EXISTING ~d5fnplst.2da~ ~override~
   READ_2DA_ENTRIES_NOW rows 4
   FOR (row = 0; row < rows; ++row) BEGIN
+	READ_2DA_ENTRY_FORMER rows row 0 orig_spl
 	READ_2DA_ENTRY_FORMER rows row 1 scr_spl
  	READ_2DA_ENTRY_FORMER rows row 4 scr_sph
-
-//        PATCH_PRINT ~%scr_spl% is a spell in the %scr_sph% sphere~        //just to be sure...
+//        PATCH_PRINT ~%scr_spl% is a spell (oritinally %orig_spl%) in the %scr_sph% sphere~        //just to be sure...
 
 	INNER_ACTION BEGIN
-             INCLUDE ~%mod_folder%/lib/scroll_lists/fnp_scroll_list.tpa~
+             INCLUDE ~%mod_folder%/lib/scroll_lists/fnp_scroll_ref.tpa~
 	END// end inner action
 END // end for row
 
-ACTION_PHP_EACH fnp_scroll AS block => rock BEGIN
+ACTION_PHP_EACH fnp_scroll_ref AS block => clock BEGIN
   ACTION_IF ("%block%" STRING_COMPARE_CASE "MINOR" != 0) BEGIN
      COPY_EXISTING_REGEXP GLOB ~%block%.SPL~ ~override~
              READ_LONG  0x0034 level //spell level
- 	     READ_LONG 0x0008 name //spell name
-	     READ_LONG 0x0050 desc //description
+ 	     READ_LONG  0x0008 name //spell name
+	     READ_LONG  0x0050 desc //description
 	     READ_SHORT 0x007E target //Target-check
 	     READ_SHORT 0x0080 range //range-check
              READ_ASCII 0x0076 spellicon (7)
@@ -76,88 +76,13 @@ ACTION_PHP_EACH fnp_scroll AS block => rock BEGIN
              WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
              WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
              WRITE_LONG 0x0034 (level * 100)       //cost
-             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%scroll_ref%~ END
+             LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%clock%~ END
+               INCLUDE ~%mod_folder%/lib/scroll_lists/fnp_scroll_sell.tpa~
+//           PATCH_PRINT ~%gen% is the name of the scroll that casts the spell %clock%~        //just to be sure...
            END //end inner action
            BUT_ONLY
   END
 END //
-/*
-
-//fnp custom spells: , b_w101.spl, b_w427.spl, b_w428.spl, b_w429.spl, d5pr601.spl, b_w204.spl, b_w327.spl, b_w432.spl, b_w724.spl, b_w206.spl, b_w426.spl, d5sh501.spl, B_SSTEP.spl, B_W629.spl,
-ACTION_IF FILE_EXISTS_IN_GAME ~B_W631.spl~ BEGIN  // at least one
- COPY_EXISTING_REGEXP GLOB ~B_.[^abcde]*\.SPL~ ~override~
-	 PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
-	  READ_BYTE 0x001C type //Spell type
-	   PATCH_IF type = 2 BEGIN
-                READ_BYTE 0x0021 general //general type
-	        PATCH_IF ((general BAND 0b11000000) = 0b00000000)   BEGIN //If General type (I think)
-                    READ_LONG  0x0034 level //spell level
- 	            READ_LONG 0x0008 name //spell name
-	            READ_LONG 0x0050 desc //description
-	            READ_SHORT 0x007E target //Target-check
-	            READ_SHORT 0x0080 range //range-check
-                    READ_ASCII 0x0076 spellicon (7)  //needed?
-         INNER_PATCH_SAVE cus0 ~%SOURCE_RES%~ BEGIN
-         END      //end inner patch
-         INNER_PATCH_SAVE cus2 ~%cus0%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_W~ ~B_G~  //
-         END      //end inner patch
-         INNER_PATCH_SAVE cus3 ~%cus2%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_SS~ ~B_G%level%~   //
-         END     //end inner patch
-         INNER_PATCH_SAVE cus4 ~%cus3%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_PR~ ~B_G~  //
-         END     //end inner patch
-         INNER_PATCH_SAVE cus5 ~%cus4%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_C~ ~B_G~  //
-         END     //end inner patch
-         INNER_PATCH_SAVE cus6 ~%cus5%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_G1~ ~B_G%level%~  //
-         END     //end inner patch
-         INNER_PATCH_SAVE cus7 ~%cus6%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_G2~ ~B_G%level%~  //
-         END     //end inner patch
-         INNER_PATCH_SAVE cus8 ~%cus7%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_G3~ ~B_G%level%~  //
-         END     //end inner patch
-         INNER_PATCH_SAVE cus9 ~%cus8%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_G4~ ~B_G%level%~  //
-         END     //end inner patch
-         INNER_PATCH_SAVE cusa ~%cus9%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_G5~ ~B_G%level%~  //
-         END     //end inner patch
-         INNER_PATCH_SAVE cusb ~%cusa%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_G6~ ~B_G%level%~  //
-         END     //end inner patch
-         INNER_PATCH_SAVE cus1 ~%cusa%~ BEGIN
-          REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_G7~ ~B_G%level%~  //
-         END     //end inner patch
-           INNER_ACTION BEGIN
-            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%cus1%.ITM~   //Level 1 universal as generic.  Modify all others after
-             WRITE_LONG 0x0008 ~%name%~
-             WRITE_LONG 0x000c ~%name%~
-             WRITE_LONG 0x0054 ~%desc%~
-             WRITE_SHORT 0x007E target //Target-check
-             WRITE_SHORT 0x0080 range //range-check
-             WRITE_ASCIIE 0x0076  ~%spellicon%A~   //use icon
-             WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
-             WRITE_LONG 0x0034 (level * 100)
-             LPF ALTER_EFFECT
-               INT_VAR match_opcode = 146            //
-               STR_VAR resource = EVAL ~%cus0%~
-             END      // end alter effect
-           END        //end inner action
-        END           //end general type  - still need to do cleric and/or druid
-
-      END           //end type
-      END           //end source size
-    BUT_ONLY
-END                 //end file exists
-
-//Still missing fnp custom spells: d5pr601.spl, d5sh501.spl (now for all SD custom priest)
-ACTION_IF FILE_EXISTS_IN_GAME ~d5pr601.spl~ BEGIN  // at least one
-
-END
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -172,7 +97,8 @@ ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN  //missing scroll bams in bg2ee
 END
 
 //if bam has no pres ref (e.g. say a custom spl where the modder didn't supply a scroll bam)
- COPY_EXISTING_REGEXP GLOB ~B_.[^abcdew]*\.ITM~ ~override~
+ACTION_PHP_EACH fnp_scroll AS rock => sock BEGIN
+   COPY_EXISTING_REGEXP GLOB ~%rock%*\.ITM~ ~override~
 	 PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
               READ_ASCII 0x0076 spellicon (7)  //needed?
               PATCH_IF !FILE_EXISTS_IN_GAME ~%spellicon%A.BAM~ BEGIN
@@ -181,9 +107,9 @@ END
                    END
               END
          END    //end valid file
-//Druid exclusive: B_D
-//Cleric exclusive: B_C
-//non-exclusive: B_P, B_G
+ BUT_ONLY
+END
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -193,399 +119,85 @@ END
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-//for BG2EE or BGEE
-ACTION_IF GAME_IS ~bg2ee bgee eet~ THEN BEGIN
-
-//level 1 to 2 general and priest scrolls in all temples that offer cures
-
-//lev 1
-COPY_EXISTING_REGEXP GLOB ~B_.*\.ITM~ ~override~    //
-   PATCH_IF (((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P" = 0)) OR (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_D" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_G" = 0))) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "W" != 0)) BEGIN // if scroll
-    //now, lev 1 gen/cleric exclusive
-    PATCH_IF (((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C1" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C2" = 0)) OR (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P1" = 0) OR (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P2" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_G1" = 0)))) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_G2" = 0)) AND (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "150" != 0) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "250" != 0)) BEGIN // if lev 1 or 2 scroll
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
+//designate stores
+COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
 	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
-//            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
+            PATCH_IF (("%flags%" BAND 0b00100001) = 0b00100001) BEGIN // if cures available and sells stuff; also filters out invalid files
             READ_LONG 0x2c "buy_off"   ELSE 0
   	    READ_LONG 0x34 "sale_off"  ELSE 0
             READ_LONG 0x4c "drink_off" ELSE 0
  	    READ_LONG 0x70 "cure_off"  ELSE 0
 	    READ_LONG 0x74 "cure_num"  ELSE 0
+            INNER_PATCH_SAVE store_s ~%SOURCE_RES%~ BEGIN END
 	    SET "new_cure" = 0
 	    SET "sppr103" = 0 // cure light wounds
-            // check if cures already available
-            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
-		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
-		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr103" = 0) BEGIN
-		  SET "sppr103" = 1
-		END 
-            END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr103%" = 1) BEGIN // if cure light wounds offered, add lev 1 scrolls
-                      ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 1/2 gen/cleric exclusives
-//lev 3
-    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C3" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P3" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "350" != 0))  BEGIN // if lev 3 scroll
-    INNER_PATCH_SAVE scroll3 ~%SOURCE_RES%~ BEGIN 
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
-	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
-            READ_LONG 0x2c "buy_off"   ELSE 0
-  	    READ_LONG 0x34 "sale_off"  ELSE 0
-            READ_LONG 0x4c "drink_off" ELSE 0
- 	    READ_LONG 0x70 "cure_off"  ELSE 0
-	    READ_LONG 0x74 "cure_num"  ELSE 0
-	    SET "new_cure" = 0
   	    SET "sppr307" = 0 // remove curse
-            // check if cures already available
-            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
-		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
-	        PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr307" = 0) BEGIN
-	          SET "sppr307" = 1
-	        END
-            END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr307%" = 1) BEGIN // if remove curse offered, add lev 1 scrolls
-                      ADD_STORE_ITEM ~%scroll3%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 3 gen/cleric exclusives
-
-//lev 4
-    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C4" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P4" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "450" != 0))  BEGIN // if lev 3 scroll
-    INNER_PATCH_SAVE scroll4 ~%SOURCE_RES%~ BEGIN 
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
-	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
-            READ_LONG 0x2c "buy_off"   ELSE 0
-  	    READ_LONG 0x34 "sale_off"  ELSE 0
-            READ_LONG 0x4c "drink_off" ELSE 0
- 	    READ_LONG 0x70 "cure_off"  ELSE 0
-	    READ_LONG 0x74 "cure_num"  ELSE 0
-	    SET "new_cure" = 0
   	    SET "sppr401" = 0 // remove curse
-            // check if cures already available
-            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
-		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
-	        PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr401" = 0) BEGIN
-	          SET "sppr401" = 1
-	        END
-            END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr401%" = 1) BEGIN // if remove curse offered, add lev 1 scrolls
-                      ADD_STORE_ITEM ~%scroll4%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 4 gen/cleric exclusives
-
-//lev 5
-    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C5" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P5" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "550" != 0))  BEGIN // if lev 5 scroll
-    INNER_PATCH_SAVE scroll5 ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
-	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
-            READ_LONG 0x2c "buy_off"   ELSE 0
-  	    READ_LONG 0x34 "sale_off"  ELSE 0
-            READ_LONG 0x4c "drink_off" ELSE 0
- 	    READ_LONG 0x70 "cure_off"  ELSE 0
-	    READ_LONG 0x74 "cure_num"  ELSE 0
-	    SET "new_cure" = 0
   	    SET "sppr504" = 0 // raise dead
-            // check if cures already available
-            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
-		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
-	        PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr504" = 0) BEGIN
-	          SET "sppr504" = 1
-	        END
-            END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr504%" = 1) BEGIN // if raise offered, add lev 5 scrolls
-                      ADD_STORE_ITEM ~%scroll5%~ #1 #0 #0 ~IDENTIFIED~ #3    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 5 gen/cleric exclusives
-
-//lev 6/7 (only if offer res)
-    //now, lev 1 gen/cleric exclusive
-    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C6" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C7" = 0)) OR (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P6" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P7" = 0))) AND (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "750" != 0) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "650" != 0)) BEGIN // if lev 6 or 7 scroll
-    INNER_PATCH_SAVE scroll7 ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
-	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
-//            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
-            READ_LONG 0x2c "buy_off"   ELSE 0
-  	    READ_LONG 0x34 "sale_off"  ELSE 0
-            READ_LONG 0x4c "drink_off" ELSE 0
- 	    READ_LONG 0x70 "cure_off"  ELSE 0
-	    READ_LONG 0x74 "cure_num"  ELSE 0
-	    SET "new_cure" = 0
 	    SET "sppr712" = 0 // res
-            // check if cures already available
-            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
-		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
-		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr712" = 0) BEGIN
-		  SET "sppr712" = 1
-		END 
-            END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr712%" = 1) BEGIN // if cure light wounds offered, add lev 1 scrolls
-                      ADD_STORE_ITEM ~%scroll7%~ #1 #0 #0 ~IDENTIFIED~ #3    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 1/2 gen/cleric exclusives
-
-END //end scroll file name
-BUT_ONLY
-
-
-//special cases
-//druid scrolls
-
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-///////////                         ////////////
-///////////     Temple of Wisdom    ////////////
-///////////                         ////////////
-////////////////////////////////////////////////
-////////////////////////////////////////////////
-//1st through 3rd priest scrolls (including druid) - they are more rare.  two only
-ACTION_IF FILE_EXISTS_IN_GAME ~TEM2304.STO~ BEGIN  //Temple of wisdom
-
-//druid
-  COPY_EXISTING_REGEXP GLOB ~B_D1.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING ~TEM2304.STO~ ~override~
-          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-    END
-  COPY_EXISTING_REGEXP GLOB ~B_D2.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING ~TEM2304.STO~ ~override~
-          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-    END
-  COPY_EXISTING_REGEXP GLOB ~B_D3.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING ~TEM2304.STO~ ~override~
-          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-    END
-
-  COPY_EXISTING_REGEXP GLOB ~B_D4.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING ~TEM2304.STO~ ~override~
-          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-    END
-
-  COPY_EXISTING_REGEXP GLOB ~B_D5.*\.ITM~ ~override~    // 1st level cleric exclusive
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING ~TEM2304.STO~ ~override~
-          ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #3    //
-    END
-
-END   //end if temp of wisdom in game
-
-
-END //end game is bgee or bg2ee
-
-//now iwdee
-ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
-//level 1 to 2 general and priest scrolls in all temples that offer cures
-
-//lev 1
-COPY_EXISTING_REGEXP GLOB ~B_.*\.ITM~ ~override~    // 1st level cleric exclusive
-    PATCH_IF (((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P" = 0)) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_D" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "W" != 0)) BEGIN // if scroll
-    //now, lev 1 gen/cleric exclusive
-    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C1" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C2" = 0)) OR (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P1" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P2" = 0))) AND (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "150" != 0) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "250" != 0)) BEGIN // if lev 1 or 2 scroll
-    INNER_PATCH_SAVE scroll ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
-	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00100001) = 0b00100001) BEGIN // if cures available and sells stuff; also filters out invalid files
-//            PATCH_IF (("%flags%" BAND 0b00010001) = 0b00010001) BEGIN // if cures available and sells stuff; also filters out invalid files
-            READ_LONG 0x2c "buy_off"   ELSE 0
-  	    READ_LONG 0x34 "sale_off"  ELSE 0
-            READ_LONG 0x4c "drink_off" ELSE 0
- 	    READ_LONG 0x70 "cure_off"  ELSE 0
-	    READ_LONG 0x74 "cure_num"  ELSE 0
-	    SET "new_cure" = 0
-	    SET "sppr103" = 0 // cure light wounds
-            // check if cures already available
             FOR (index = 0; index < cure_num; index = index + 1) BEGIN
 		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
 		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr103" = 0) BEGIN
 		  SET "sppr103" = 1
-		END 
-            END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr103%" = 1) BEGIN // if cure light wounds offered, add lev 1 scrolls
-                      ADD_STORE_ITEM ~%scroll%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 1/2 gen/cleric exclusives
-//lev 3
-    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C3" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P3" = 0)) AND (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "350" != 0) AND (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "328" != 0) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "329" != 0)) ))  BEGIN // if lev 3 scroll
-    INNER_PATCH_SAVE scroll3 ~%SOURCE_RES%~ BEGIN 
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
-	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00100001) = 0b00100001) BEGIN // if cures available and sells stuff; also filters out invalid files
-            READ_LONG 0x2c "buy_off"   ELSE 0
-  	    READ_LONG 0x34 "sale_off"  ELSE 0
-            READ_LONG 0x4c "drink_off" ELSE 0
- 	    READ_LONG 0x70 "cure_off"  ELSE 0
-	    READ_LONG 0x74 "cure_num"  ELSE 0
-	    SET "new_cure" = 0
-  	    SET "sppr317" = 0 // remove disease
-            // check if cures already available
-            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
-		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
-	        PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr317" = 0) BEGIN
-	          SET "sppr317" = 1
-	        END
-            END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr317%" = 1) BEGIN // if remove curse offered, add lev 1 scrolls
-                      ADD_STORE_ITEM ~%scroll3%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 3 gen/cleric exclusives
-
-//lev 4
-    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C4" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P4" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "450" != 0))  BEGIN // if lev 3 scroll
-    INNER_PATCH_SAVE scroll4 ~%SOURCE_RES%~ BEGIN 
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
-	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00100001) = 0b00100001) BEGIN // if cures available and sells stuff; also filters out invalid files
-            READ_LONG 0x2c "buy_off"   ELSE 0
-  	    READ_LONG 0x34 "sale_off"  ELSE 0
-            READ_LONG 0x4c "drink_off" ELSE 0
- 	    READ_LONG 0x70 "cure_off"  ELSE 0
-	    READ_LONG 0x74 "cure_num"  ELSE 0
-	    SET "new_cure" = 0
-  	    SET "sppr401" = 0 // remove curse
-            // check if cures already available
-            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
-		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
-	        PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr401" = 0) BEGIN
-	          SET "sppr401" = 1
-	        END
-            END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr401%" = 1) BEGIN // if remove curse offered, add lev 1 scrolls
-                      ADD_STORE_ITEM ~%scroll4%~ #1 #0 #0 ~IDENTIFIED~ #5    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 4 gen/cleric exclusives
-
-//lev 5
-    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C5" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P5" = 0)) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "550" != 0))  BEGIN // if lev 5 scroll
-    INNER_PATCH_SAVE scroll5 ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
-	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00100001) = 0b00100001) BEGIN // if cures available and sells stuff; also filters out invalid files
-            READ_LONG 0x2c "buy_off"   ELSE 0
-  	    READ_LONG 0x34 "sale_off"  ELSE 0
-            READ_LONG 0x4c "drink_off" ELSE 0
- 	    READ_LONG 0x70 "cure_off"  ELSE 0
-	    READ_LONG 0x74 "cure_num"  ELSE 0
-	    SET "new_cure" = 0
-  	    SET "sppr504" = 0 // raise dead
-            // check if cures already available
-            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
-		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
-	        PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr504" = 0) BEGIN
-	          SET "sppr504" = 1
-	        END
-            END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr504%" = 1) BEGIN // if raise offered, add lev 5 scrolls
-                      ADD_STORE_ITEM ~%scroll5%~ #1 #0 #0 ~IDENTIFIED~ #3    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 5 gen/cleric exclusives
-
-//lev 6/7 (only if offer res)
-    //now, lev 1 gen/cleric exclusive
-    PATCH_IF ((("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C6" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_C7" = 0)) OR (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P6" = 0) OR ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "B_P7" = 0))) AND (("%SOURCE_RES%" STRING_CONTAINS_REGEXP "750" != 0) AND ("%SOURCE_RES%" STRING_CONTAINS_REGEXP "650" != 0)) BEGIN // if lev 6 or 7 scroll
-    INNER_PATCH_SAVE scroll7 ~%SOURCE_RES%~ BEGIN
-    END
-    INNER_ACTION BEGIN
-        COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
-	READ_BYTE 0x10 "flags" ELSE 0
-            PATCH_IF (("%flags%" BAND 0b00100001) = 0b00100001) BEGIN // if cures available and sells stuff; also filters out invalid files
-            READ_LONG 0x2c "buy_off"   ELSE 0
-  	    READ_LONG 0x34 "sale_off"  ELSE 0
-            READ_LONG 0x4c "drink_off" ELSE 0
- 	    READ_LONG 0x70 "cure_off"  ELSE 0
-	    READ_LONG 0x74 "cure_num"  ELSE 0
-	    SET "new_cure" = 0
-	    SET "sppr712" = 0 // res
-            // check if cures already available
-            FOR (index = 0; index < cure_num; index = index + 1) BEGIN
-		READ_ASCII ("%cure_off%" + ("%index%" * 0x0c)) "resref"
+		END   //end check for sppr103
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr307" = 0) BEGIN
+		  SET "sppr307" = 1
+		END   //end check for sppr307
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr401" = 0) BEGIN
+		  SET "sppr401" = 1
+		END   //end check for sppr401
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr504" = 0) BEGIN
+		  SET "sppr504" = 1
+		END   //end check for sppr504
 		PATCH_IF ("%resref%" STRING_COMPARE_CASE "sppr712" = 0) BEGIN
-		  SET "sppr712" = 1
-		END 
+                  SET "sppr712" = 1
+		END   //end check for sppr712
             END //end for loop
- 	        // add lev 1/2 scrolls if at least cure light wounds offered--cleric exclusive and gen scrolls
-  	        PATCH_IF ("%sppr712%" = 1) BEGIN // if cure light wounds offered, add lev 1 scrolls
-                      ADD_STORE_ITEM ~%scroll7%~ #1 #0 #0 ~IDENTIFIED~ #3    //
-	        END
-	    END //end cures/invalid
-    BUT_ONLY
-    END
-END //lev 1/2 gen/cleric exclusives
-
-END //end scroll file name
-BUT_ONLY
-
-
-END //end placement iwdee
-*/
+            INNER_ACTION BEGIN
+                ACTION_IF ("sppr103" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ < 3) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #5
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+                ACTION_IF ("sppr307" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ = 3) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #5
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+                ACTION_IF ("sppr401" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ = 4) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #5
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+                ACTION_IF ("sppr504" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ = 5) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #5
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+                ACTION_IF ("sppr712" = 1) BEGIN
+                   ACTION_PHP_EACH fnp_scroll_sell AS s_item => s_level BEGIN
+                        ACTION_IF (~%s_level%~ > 5) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_item%~ #1 #0 #0 ~IDENTIFIED~ #3
+                                  BUT_ONLY
+                        END//end lev less than 3
+                   END //end php action
+                END
+            END //end inner action
+       END //end cure check

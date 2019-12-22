@@ -52,6 +52,19 @@ TO DO 24: Further update prest scroll code  (need to further update it, check fo
 
 TO DO 25: Update scroll placement but using ACTION_PHP_EACH by either sphere (fnp) or class (van) rather than file name (i.e. only B_P, etc. nec)
 
+TO DO 26: Finish Gremlin wand B_WAN17.itm, and the creature as well.
+
+Version 0.90.00
+
+2019-12-21
+
+- Finished fnp priest scroll (specifically scroll placement)
+
+- Finished normal priest scrolls
+
+- Wands: Gremlin wand (basic item and description).  Needs to be actually created, though
+
+
 Version 0.89.11
 
 2019-12-20

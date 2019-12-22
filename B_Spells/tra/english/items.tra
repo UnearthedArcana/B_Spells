@@ -480,3 +480,23 @@ Requires:
 
 Weight: 1~
 
+@900010033 = ~Gremlin Wand~
+
+@900010034 = ~This stout ebony shaft looks as though it has been filed down, with a barely discernable wooden claw at the tip, into which is set a sphere of quartz or some other crystal.  This wand will summon 1d4 gremlins under the complete control of the wielder.  While virtually worthless in single combat, gremlins are quite adept at causing havoc when unleashed on unsuspecting enemies.  They can sneak, backstab, and set traps as a thief, making them quite deadly if they can catch an enemy unaware.
+
+STATISTICS:  
+
+Charge abilities:
+- Summon Gremlins
+  Duration: 3 hours
+  Range: 15 ft.
+
+Requires:
+ 9 Wisdom
+ or 
+ 9 Intelligence
+
+Weight: 1
+
+Gremlins: 20 hp, claw 1d6, THAC0: 19, Move Silently/Hide: 60%, backstab x3, Set Snare x2 (80%)~
+
