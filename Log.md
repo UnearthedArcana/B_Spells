@@ -52,7 +52,48 @@ TO DO 24: Further update prest scroll code  (need to further update it, check fo
 
 TO DO 25: Update scroll placement but using ACTION_PHP_EACH by either sphere (fnp) or class (van) rather than file name (i.e. only B_P, etc. nec)
 
-TO DO 26: Finish Gremlin wand B_WAN17.itm, and the creature as well.
+TO DO 26:
+
+TO DO 27: 
+
+TO DO 28: Finish wand of darkness (summon shadow effect) B_WAN18.itm
+
+TO DO 29: Figure out how to add sounds to custom creatures
+
+Version 0.90.01
+
+2019-12-27
+
+- Got a working version of wand store distribution working
+
+2019-12-26
+
+- Finished gremlin wand (except gremlin sounds...)
+
+2019-12-25
+
+- Set prices (fin so far) for wands by encyclopedia magica
+
+- Revised wand of healing, fireball and illumination (as per encyclopedia magica)
+
+- Tooltip: Bonewand, Wand of Eyes and Wand of Spiders
+
+2019-12-24
+
+- Added wand list by tier.  Started filling it out.
+
+- Set prices (up to wand of freshness) for wands by encyclopedia magica
+
+2019-12-23
+
+- New Potion: Potion of Vitality (needs portrait icon)
+
+2019-12-22
+
+- Wands: Wand of darkness: blindness and smite effects (need to still create summon shadow effect)
+
+- Wands: Completed Wand of Illumination
+
 
 Version 0.90.00
 

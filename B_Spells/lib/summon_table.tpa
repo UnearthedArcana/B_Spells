@@ -1,0 +1,26 @@
+//credit belongs to CamDawg
+/* sample:
+LAF cd_new_summon_table STR_VAR descript = "Giant_insect" 2da_file = cdiinsct RET table END
+
+ADD_SPELL ~iwdification/spl/cdid418.spl~ 1 4 CLERIC_GIANT_INSECT
+  LPF ALTER_EFFECT INT_VAR match_opcode = 331 parameter2 = table END
+
+*/
+
+DEFINE_ACTION_FUNCTION cd_new_summon_table
+  STR_VAR descript = "foo"
+          2da_file = "foo"
+  RET     table
+  BEGIN
+
+  COPY_EXISTING ~smtables.2da~ ~override~
+    COUNT_2DA_ROWS 2 count
+    READ_2DA_ENTRY (count - 1) 0 2 table
+    INNER_PATCH_SAVE table ~%table%~ BEGIN
+      REPLACE_TEXTUALLY ~^\([0-9]+\).+$~ ~\1~
+    END
+    SET table += 1
+
+  APPEND ~smtables.2da~ ~%table%_%descript% %2da_file%~
+
+END

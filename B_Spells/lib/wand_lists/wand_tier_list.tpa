@@ -1,0 +1,16 @@
+//special thanks to Subtledoctor and Aquadrizzt for this code
+
+ACTION_DEFINE_ASSOCIATIVE_ARRAY wand_tier BEGIN
+
+B_WAN01 => tier_I   //Wand of teeth, tier I
+B_WAN03 => tier_I   //Mistletoe, tier I
+B_WAN10 => tier_I   //wand of freshness, tier I
+//B_WAN11 => tier_I   //wand of fog, tier I    Only if sr is installed...
+B_WAN02 => tier_II  //wand of knock, tier II
+B_WAN13 => tier_II  //wand of healing, tier II
+
+
+END
+
+// This code is copied from Mike1072's armor_list.tpa file. 
+// WeiDU is now on my hate list as well - Yaro, 7/26

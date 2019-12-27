@@ -114,6 +114,17 @@ It regards the caster as a trusted friend and ally to be heeded and protected. T
 
 If the caster harms or attempts to harm the charmed animal by some overt action, or if a Dispel Magic spell is cast upon the charmed animal, the spell is broken. If two or more charms simultaneously affect a creature, the most recent charm takes precedence. Note that the subject will be hostile when the charm expires, regardless of its original attitude. Also note that you cannot have a charmed creature leave the area where it was charmed.~
 
+@900000034 = ~Animal Control~
+@900000035 = ~Animal Control
+This potion restores the user to full vitality despite exertion, lack of sleep. It completely restores fatigue, and eliminates any poison or disease from the body.  In addition, the imbiber is protected from poison or disease for 4 hours.
+
+STATISTICS:
+
+Special: Cures poison, disease and removes fatigue.  Protects against poison and disease for 4 hours.  
+Duration: 4 hours
+
+Weight: 1~
+
 //Components @900009001 to @900010000
 
 
@@ -241,13 +252,13 @@ Weight: 1~
 
 @900010009 = ~Wand of Fireballs~
 
-@900010010 = ~The wand will cough forth a huge, burning ball of fire that streaks out to the desired range (to a maximum of 90 ft.) and bursts in a fiery, violent blast, just like the Fireball spell. The Fireball inflicts 10d6 points of damage. The victim(s) may make a Save vs. Wand in order to take only half damage.
+@900010010 = ~The wand will cough forth a huge, burning ball of fire that streaks out to the desired range (to a maximum of 90 ft.) and bursts in a fiery, violent blast, just like the Fireball spell. The Fireball inflicts 6d6 points of damage. The victim(s) may make a Save vs. Wand in order to take only half damage.
 
 STATISTICS:
 
 Charge abilities:
 - Fireball
-  Damage: 10d6 fire (Save vs. Wand for half)
+  Damage: 6d6 fire (Save vs. Wand for half)
   Range: 90 ft.
   Area of Effect: 30-ft. radius 
 
@@ -318,7 +329,7 @@ Weight: 1~
 
 @900010017 = ~Wand of Eyes~
 
-@900010018 = ~This wand has a number of abilities.  First, it can create a Wizard Eye as a 6th level caster.  Second, it can cure blindness in any creature touched.  Finally, this wand can allow the weilder to Detect Invisibility as the spell.
+@900010018 = ~This wand has a number of abilities.  First, it can create a Wizard Eye as a 6th level caster.  Second, it can cure blindness in any creature touched.  Finally, this wand can allow the wielder to Detect Invisibility as the spell.
 
 STATISTICS:
 
@@ -499,4 +510,61 @@ Requires:
 Weight: 1
 
 Gremlins: 20 hp, claw 1d6, THAC0: 19, Move Silently/Hide: 60%, backstab x3, Set Snare x2 (80%)~
+
+@900010035 = ~Wand of Darkness~
+
+@900010036 = ~This wand radiates evil, and can be found in the clutches of many an evil wielder of magic.  They are typically made of ebony or carved and polished bone, and a few have small, ornamental claws at one or both ends.
+
+A wand of darkness has four separate functions. It can be used to blind ones enemies, hurt creatures of good alignment, or it can be used to summon shadows.    
+
+STATISTICS:
+
+Charge abilities:  
+- Blindness
+  Blinds creatures that do not save vs. wands.  Otherwise, this spell acts as the blindness spell of the same name.  
+
+- Smite Good: This spell does 1d6+6 magic damage to any enemy creature targeted.  It does double damage if that creature is good.  
+Range: 60'
+Save: None
+
+- Summon Shadow: This effect summons 4HD shadows as the Summon Shadow spell.  
+Duration: 15 rounds
+
+Requires:  
+ 9 Intelligence  
+(or 9 Wisdom)
+Evil alignment
+
+Weight: 1~
+
+@900010037 = ~Wand of Illumination~
+
+@900010038 = ~When this wand is activated, the wielder bursts into a brilliant flame, doing 6d6 points of fire damage to all undead within 15'.  Living creatures, magical constructs, and others are unharmed.
+
+Charge abilities:
+- Sunfire
+  The wielder is the center of a sudden burst of flame, doing 6d6 points of fire damage to all surrounding undead creatures (save vs. wands for 1/2) but leaving the wielder and non-undead unscathed.
+  Damage: 6d6
+  Range: 0
+  Area of Effect: 15-ft. radius
+  Saving Throw: 1/2
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+@900010039 = ~Shards of Bone~
+@900010040 = ~Animate Skeleton Warrior~
+@900010041 = ~Blindness~
+@900010042 = ~Smite Good~
+@900010043 = ~Summon Shadow~
+
+@900010044 = ~Wizard Eye~
+@900010045 = ~Remove Blindness~
+@900010046 = ~Detect Invisibility~
+@900010047 = ~Summon Giant Spider~
+@900010048 = ~Web~
+@900010049 = ~Gremlin~
+
+
 

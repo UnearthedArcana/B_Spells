@@ -31,6 +31,7 @@ COPY ~%mod_folder%/data/wands/B_WAN06A.itm~ ~override~
 //just in case
 COPY ~%mod_folder%/data/wands/IPSION.itm~ ~override~
 
+
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -45,10 +46,17 @@ ADD_PROJECTILE ~%mod_folder%/data/iwd_spells/priest_4/idpro303.pro~   //projecti
 //probam
 COPY ~%mod_folder%/data/iwd_spells/priest_4/TSPRAYT.bam~ ~override~   //
 COPY ~%mod_folder%/data/wands/B_WAN07.itm~ ~override~
-          SAY NAME2 @900010011
-          SAY DESC @900010012
+          SAY NAME2 @900010013
+          SAY DESC @900010014
 LPF ALTER_ITEM_HEADER
     INT_VAR  header = 1 projectile = %idpro303%
+END
+//tooltip
+LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010039) // Boneshard
+  $tip(2) = RESOLVE_STR_REF (@900010040) // Animate Skeleton Warrior
+STR_VAR
+  item = B_WAN07 // file name
 END
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -59,10 +67,26 @@ END
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //| Gremlin Wand (N) | ? | Summon Gremlins |
+//copy over the monsters:
+COPY ~%mod_folder%/data/wands/b_grem01.cre~ ~override~
+          SAY NAME1 @900010049
+          SAY NAME2 @900010049
+//cre item
+COPY ~%mod_folder%/data/wands/b_grem01.itm~ ~override~
+
+
+//copy over the table:
+COPY ~%mod_folder%/data/wands/B_GREM.2da~ ~override~
+
+//add to sumtable
+LAF cd_new_summon_table STR_VAR descript = "GREMLINS" 2da_file = B_GREM RET table END
+
+//add the wand and ref sumtable
+
 COPY ~%mod_folder%/data/wands/B_WAN17.itm~ ~override~
           SAY NAME2 @900010033
           SAY DESC @900010034
-//CONTINUE
+  LPF ALTER_EFFECT INT_VAR match_opcode = 331 parameter2 = table END
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -74,8 +98,8 @@ COPY ~%mod_folder%/data/wands/B_WAN17.itm~ ~override~
 //| Mistletoe (N)  | I |  Shillelagh |
 
 COPY ~%mod_folder%/data/wands/B_WAN03.itm~ ~override~
-        SAY NAME2 @900000005
-        SAY DESC @900000006
+        SAY NAME2 @900010005
+        SAY DESC @900010006
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -86,12 +110,15 @@ COPY ~%mod_folder%/data/wands/B_WAN03.itm~ ~override~
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //| of Banishment (Ns) | ? | Removes summoned creatures, evil outsiders save or destroyed/banished |
 //only installed if SR is installed 
+
+
 ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN  //SR Banishment
 
  LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_BANISHMENT~
   RET spell_res
- END
+END
+
  COPY_EXISTING ~%spell_res%.spl~ ~override/B_WANBA.spl~
   WRITE_BYTE 0x001c  4  //innate
   LPF ALTER_EFFECT
@@ -99,7 +126,7 @@ ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN  //SR
   END      //
   LPF CLONE_EFFECT 
       INT_VAR match_opcode = 177 savingthrow = 0  timing = 0 duration = 18
-      STR_VAR resource = ~B_WANST~ END  //Stun
+      STR_VAR resource = ~B_WANST~   //Stun
   END
 
   //stun eff
@@ -111,7 +138,8 @@ ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN  //SR
         SAY DESC @900010024
 
 
-END
+END //end check for banishment
+
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -133,8 +161,8 @@ END
 //| of Command (N)  | ? |  as Dominate |
 
 COPY ~%mod_folder%/data/wands/B_WAN04.itm~ ~override~
-        SAY NAME2 @900000007
-        SAY DESC @900000008
+        SAY NAME2 @900010007
+        SAY DESC @900010008
 
 //text notification (BG2EE/EET is the default)
 ACTION_IF GAME_IS ~bgee~ BEGIN
@@ -177,6 +205,20 @@ COPY ~%mod_folder%/data/wands/B_WAN16.itm~ ~override~
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
+COPY ~%mod_folder%/data/wands/B_WAN18.itm~ ~override~
+        SAY NAME2 @900010035
+        SAY DESC @900010036
+
+//tooltip
+LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010041) // Blindness
+  $tip(2) = RESOLVE_STR_REF (@900010042) // Smite Good
+  $tip(3) = RESOLVE_STR_REF (@900010043) // Summon Shadow
+STR_VAR
+  item = B_WAN18 // file name
+END
+
+        //CONTINUE
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -208,6 +250,15 @@ COPY ~%mod_folder%/data/wands/B_WAN09.itm~ ~override~
         SAY NAME2 @900010017
         SAY DESC @900010018
 
+//tooltip
+LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010044) // Wizard Eye
+  $tip(2) = RESOLVE_STR_REF (@900010045) // Remove Blindness
+  $tip(3) = RESOLVE_STR_REF (@900010046) // Detect Invisibility
+STR_VAR
+  item = B_WAN09 // file name
+END
+
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -218,8 +269,8 @@ COPY ~%mod_folder%/data/wands/B_WAN09.itm~ ~override~
 //| of Fireballs (N) | ? | As Fireball Spell | 6d6 dam
 
 COPY ~%mod_folder%/data/wands/B_WAN05.itm~ ~override~
-        SAY NAME2 @900000009
-        SAY DESC @900000010
+        SAY NAME2 @900010009
+        SAY DESC @900010010
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -269,7 +320,7 @@ COPY ~%mod_folder%/data/wands/B_WAN08.itm~ ~override~
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//| of Freshness (N) | ? |  as ZoSA |
+//| of Freshness (N) | I |  as ZoSA | p235
 
 COPY ~%mod_folder%/data/wands/B_WAN10.itm~ ~override~
         SAY NAME2 @900010019
@@ -283,7 +334,7 @@ COPY ~%mod_folder%/data/wands/B_WAN10.itm~ ~override~
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//| of Healing (N)  | ? |  Cure 3d6+3 HP at range |
+//| of Healing (N)  | ? |  Cure 2d6+2 HP at range |
 
   COPY ~%mod_folder%/data/wands/B_WAN13.itm~ ~override~
         SAY NAME2 @900010023
@@ -296,7 +347,12 @@ COPY ~%mod_folder%/data/wands/B_WAN10.itm~ ~override~
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//| of Illumination (N) | ? | As Sunburst |
+//| of Illumination (N) | ? | As Sunfire |
+//just use the fireball pro...
+
+  COPY ~%mod_folder%/data/wands/B_WAN19.itm~ ~override~
+        SAY NAME2 @900010037
+        SAY DESC @900010038
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -314,7 +370,7 @@ COPY ~%mod_folder%/data/wands/B_WAN10.itm~ ~override~
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//| of Knock(N) | II | As Knock |
+//| of Knock(N) | II | As Knock |   p237
 COPY ~%mod_folder%/data/wands/B_WAN02.itm~ ~override~
         SAY NAME2 @900010003
         SAY DESC @900010004
@@ -386,6 +442,13 @@ COPY ~%mod_folder%/data/wands/B_WAN14.itm~ ~override~
         SAY NAME2 @900010027
         SAY DESC @900010028
 
+//tooltip
+LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010047) // Summon Giant Spider
+  $tip(2) = RESOLVE_STR_REF (@900010048) // Web
+STR_VAR
+  item = B_WAN14 // file name
+END
 
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -435,7 +498,7 @@ COPY ~%mod_folder%/data/wands/B_WAN15.itm~ ~override~
 ////////////////////////////////            				   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//| of Teeth (N)  | ? | 2d6+2 missile dam (save 1/2) |
+//| of Teeth (N)  | I | 2d6+2 missile dam (save 1/2) |
 COPY ~%mod_folder%/data/wands/B_WAN01.itm~ ~override~
         SAY NAME2 @900010001
         SAY DESC @900010002
@@ -448,4 +511,41 @@ COPY ~%mod_folder%/data/wands/B_WAN01.itm~ ~override~
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 /////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 //| of Traps(N)  | ? |   as Find Traps |  Each charge just one 'check'
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////             Store Placement             //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//associate tiers with wands
+INCLUDE ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
+
+ //something doesn't work...
+COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
+  READ_BYTE 0x10 "flags" ELSE 0
+  PATCH_IF (("%flags%" BAND 0b00000001) = 0b00000001) BEGIN // if sells stuff; also filters out invalid files I'm told, so cool
+       READ_LONG 0x34 "item_off"   ELSE 0
+       READ_LONG 0x38 "item_num"  ELSE 0
+         INNER_PATCH_SAVE store_s ~%SOURCE_RES%~ BEGIN END
+       SET "wand08" = 0 // wand of sleep
+            FOR (index = 0; index < item_num; index = index + 1) BEGIN
+		READ_ASCII ("%item_off%" + ("%index%" * 0x01c)) "resref"
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "wand08" = 0) BEGIN
+		  SET "wand08" = 1
+		END   //end check for wand08
+		INNER_ACTION BEGIN
+		   ACTION_IF ("wand08" = 1) BEGIN
+                     ACTION_PHP_EACH wand_tier AS s_wand => s_tier BEGIN
+                        ACTION_IF (~%s_tier%~ STRING_COMPARE_CASE "tier_I" = 0) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_wand%~ #100 #0 #0 ~IDENTIFIED~ #1
+                        END//tier check
+                     END//end php
+		   END//check for wand08
+		END//inner action
+  END// filter stores
+END
+BUT_ONLY
 
