@@ -60,6 +60,16 @@ TO DO 28: Finish wand of darkness (summon shadow effect) B_WAN18.itm
 
 TO DO 29: Figure out how to add sounds to custom creatures
 
+Version 0.90.02
+
+2019-12-29
+
+- Fixed minor issue with wand of fog (SR required wand)
+
+2019-12-28
+
+- Probably updated wand store distribution (but test! backup made 2019-12-28 before this update, so it can be reverted)
+
 Version 0.90.01
 
 2019-12-27

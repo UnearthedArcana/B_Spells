@@ -294,9 +294,9 @@ ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) BEGIN  
   COPY ~%mod_folder%/data/wands/B_WAN11.itm~ ~override~
         SAY NAME2 @900010021
         SAY DESC @900010022
-LPF ALTER_ITEM_HEADER
-    INT_VAR  projectile = %dvobmist%
-END
+//now, include in tier 1 wands:
+    COPY ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~ ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
+      REPLACE_TEXTUALLY ~//B_WAN11~ ~B_WAN11~
 
 END //end SR Obscuring Mist
 
@@ -522,30 +522,63 @@ COPY ~%mod_folder%/data/wands/B_WAN01.itm~ ~override~
 //associate tiers with wands
 INCLUDE ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
 
- //something doesn't work...
+//should work...need to test, though
 COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:
   READ_BYTE 0x10 "flags" ELSE 0
   PATCH_IF (("%flags%" BAND 0b00000001) = 0b00000001) BEGIN // if sells stuff; also filters out invalid files I'm told, so cool
        READ_LONG 0x34 "item_off"   ELSE 0
        READ_LONG 0x38 "item_num"  ELSE 0
          INNER_PATCH_SAVE store_s ~%SOURCE_RES%~ BEGIN END
-       SET "wand08" = 0 // wand of sleep
+       SET "wand03" = 0 // wand of mm T1
+       SET "wand08" = 0 // wand of sleep T1
+       SET "wand02" = 0 // wand of fear T2
+       SET "wand05" = 0 // wand of fire T3
+       SET "wand07" = 0 // wand of lightning T3
+       SET "wand10" = 0 // wand of mon sum T3
             FOR (index = 0; index < item_num; index = index + 1) BEGIN
 		READ_ASCII ("%item_off%" + ("%index%" * 0x01c)) "resref"
 		PATCH_IF ("%resref%" STRING_COMPARE_CASE "wand08" = 0) BEGIN
 		  SET "wand08" = 1
 		END   //end check for wand08
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "wand03" = 0) BEGIN
+		  SET "wand03" = 1
+		END   //end check for wand08
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "wand02" = 0) BEGIN
+		  SET "wand02" = 1
+		END   //end check for wand02
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "wand05" = 0) BEGIN
+		  SET "wand05" = 1
+		END   //end check for wand05
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "wand07" = 0) BEGIN
+		  SET "wand07" = 1
+		END   //end check for wand07
+		PATCH_IF ("%resref%" STRING_COMPARE_CASE "wand10" = 0) BEGIN
+		  SET "wand10" = 1
+		END   //end check for wand10
+	    END //end For loop
 		INNER_ACTION BEGIN
-		   ACTION_IF ("wand08" = 1) BEGIN
+		   ACTION_IF (("wand08" = 1) OR ("wand03" = 1)) OR ("wand02" = 1) BEGIN //tier 1 and 2 wands can be sold wherever mm, sleep or fear wands are sold
                      ACTION_PHP_EACH wand_tier AS s_wand => s_tier BEGIN
                         ACTION_IF (~%s_tier%~ STRING_COMPARE_CASE "tier_I" = 0) BEGIN
                               COPY_EXISTING ~%store_s%.STO~ ~override~
-                                  ADD_STORE_ITEM ~%s_wand%~ #100 #0 #0 ~IDENTIFIED~ #1
+                                  ADD_STORE_ITEM ~%s_wand%~ #60 #0 #0 ~IDENTIFIED~ #1 //tier I 60 charges
+                        END//tier check
+                        ACTION_IF (~%s_tier%~ STRING_COMPARE_CASE "tier_II" = 0) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_wand%~ #24 #0 #0 ~IDENTIFIED~ #1 //tier II 24 charges
                         END//tier check
                      END//end php
-		   END//check for wand08
+		   END //check for wand08 or wand02
+		   ACTION_IF (("wand05" = 1) OR ("wand07" = 1)) OR ("wand10" = 1) BEGIN //tier 3 wands can be sold wherever monsum, fire or lightning wands are sold
+                     ACTION_PHP_EACH wand_tier AS s_wand => s_tier BEGIN
+                        ACTION_IF (~%s_tier%~ STRING_COMPARE_CASE "tier_III" = 0) BEGIN
+                              COPY_EXISTING ~%store_s%.STO~ ~override~
+                                  ADD_STORE_ITEM ~%s_wand%~ #15 #0 #0 ~IDENTIFIED~ #1 //tier III, 15 charges
+                        END//tier check
+                     END//end php
+		   END //check for wand05 or wand07 or wand10
 		END//inner action
-  END// filter stores
-END
+
+END// filter stores
 BUT_ONLY
 

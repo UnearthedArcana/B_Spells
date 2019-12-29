@@ -2,7 +2,7 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.html~
 
-VERSION ~0.90.01~
+VERSION ~0.90.02~
 
 
 ALWAYS
@@ -355,7 +355,7 @@ INCLUDE ~%mod_folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//			601: Revise all items
+//			601: Revise all items (Includes variant magic consumables, and revised items)
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
@@ -365,6 +365,14 @@ DESIGNATED 501
 GROUP @6 
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
+//revised wands
+
+//revised potions
+
+//variant wands
+INCLUDE ~%mod_folder%/data/components/Setup_Variant_Wands.tpa~      //Priest Scrolls
+
+//variant potions(?) 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
