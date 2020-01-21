@@ -109,8 +109,8 @@ This spell disrupts the negative energy that sustains a target undead creature. 
 
 //@50400
 
-@50401  = ~Destructive Smite~
-@50402  = ~Destructive Smite
+@50401  = ~Divine Wrath~
+@50402  = ~Divine Wrath
 (Conjuration)
 
 Level: 1
@@ -1057,6 +1057,24 @@ Area of Effect: The caster
 Saving Throw: None
 
 This spell doubles the caster's normal speed for a short period of time... usually long enough to escape. Other movement-altering effects, such as Haste and Slow, cannot affect the caster while this spell is in effect. While Expeditious Retreat is active, the caster cannot attack, cast spells, or use any items or special abilities... <PRO_HESHE> can only run.~
+
+@53036 = ~Guidance~
+@53037 = ~Guidance
+(Divination)      
+Level: 1
+Sphere: Divination
+Range: Touch
+Duration: 1 minute
+Target: 1 Ally
+Casting Time: 1
+Saving Throw: None
+
+This spell imbues the subject with a touch of divine guidance.
+
+The recipient of this spell gains a +10% bonus to all thief skills for the duration of the spell.~
+
+@53038 = ~Affected by Guidance~
+
 
 //ARCANE SPELLS
 

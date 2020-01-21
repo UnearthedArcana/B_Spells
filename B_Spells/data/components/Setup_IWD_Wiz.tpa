@@ -1948,7 +1948,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ADD_PROJECTILE ~%mod_folder%/data/iwd_spells/wizard_5/IDSHROUD.pro~   //projectile
 //VVC
 //bam
-COPY ~%mod_folder%/data/iwd_spells/wizard_5/SOFLAMC.bam.BAM~ ~override~   //
+COPY ~%mod_folder%/data/iwd_spells/wizard_5/SOFLAMC.BAM~ ~override~   //
 //bam
 //animations
 //3d animation

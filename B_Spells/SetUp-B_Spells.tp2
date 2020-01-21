@@ -1,8 +1,8 @@
 BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
-README ~B_Spells\B_Spells_README.html~
+README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.02~
+VERSION ~0.90.03~
 
 
 ALWAYS
@@ -24,6 +24,14 @@ ALWAYS
  	ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
           OUTER_SPRINT ~game~ ~iwdee~
         END
+        /*
+        //not ready yet
+	ACTION_IF NOT FILE_EXISTS ~override/b_spells_settings.ini~ BEGIN
+  	  COPY ~faiths_and_powers/b_spells_settings.ini~ ~override~
+	END
+
+  	INCLUDE ~override/b_spells_settings.ini~
+       */
 
         INCLUDE ~B_Spells/lib/spon_cast_functions.tpa~
 
@@ -59,7 +67,6 @@ ALWAYS
 
         INCLUDE ~B_Spells/lib/bg2fp_effect_batches_spell_saves.tpa~
 
-//  	INCLUDE ~override/d5_fnp_settings.ini~
 
 END
 
@@ -68,7 +75,7 @@ END
 
 //need to keep my options open
 
-// ASK_EVERY_COMPONENT
+ASK_EVERY_COMPONENT
 
 /* Language Settings */
 AUTO_TRA ~B_Spells/tra/%s~
@@ -231,7 +238,8 @@ INCLUDE ~%mod_folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
 INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
-
+/*
+//not ready yet
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
@@ -312,6 +320,7 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 INCLUDE ~%mod_folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite cantrips
 //END
 
+*/
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
@@ -320,6 +329,8 @@ INCLUDE ~%mod_folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infi
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/*
+//Not ready
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -372,7 +383,30 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 //variant wands
 INCLUDE ~%mod_folder%/data/components/Setup_Variant_Wands.tpa~      //Priest Scrolls
 
-//variant potions(?) 
+
+//variant potions(?)
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			505: Install Priest Scrolls
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @22  //Install Priest Scrolls
+SUBCOMPONENT @101
+DESIGNATED 505
+GROUP @6 
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
+
+ACTION_IF !FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //no fnp spheres
+  INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //fnp spheres (of some kind)
+  INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls_fnp.tpa~      //Priest Scrolls
+END
+*/
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
@@ -382,7 +416,7 @@ INCLUDE ~%mod_folder%/data/components/Setup_Variant_Wands.tpa~      //Priest Scr
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
-//issues with the function
+//issues with the function, so not ready yet
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
