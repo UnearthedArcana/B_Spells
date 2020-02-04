@@ -60,6 +60,12 @@ TO DO 28: Finish wand of darkness (summon shadow effect) B_WAN18.itm
 
 TO DO 29: Figure out how to add sounds to custom creatures
 
+Version 0.90.04
+
+2020-01-27
+
+- Fixed "PRO_HEHER" text and duplicate @900000033 in items.tra
+
 Version 0.90.03
 
 2020-01-21
@@ -707,7 +713,7 @@ Version 0.88.17
 
 - Created scroll of command and added to temple of helm
 
-- Improved code such that the description and name of orig spell gets copied to scrolls.  
+- Improved code such that the description and name of orig spell gets copied to scrolls.
 
 
 2018-10-16
