@@ -52,13 +52,68 @@ TO DO 24: Further update prest scroll code  (need to further update it, check fo
 
 TO DO 25: Update scroll placement but using ACTION_PHP_EACH by either sphere (fnp) or class (van) rather than file name (i.e. only B_P, etc. nec)
 
-TO DO 26:
-
-TO DO 27: 
+TO DO 27: Modify scroll placement to automate adding scrolls to stores that sell similar spells (e.g. a level y necro spell that sells other level y necro spells)
 
 TO DO 28: Finish wand of darkness (summon shadow effect) B_WAN18.itm
 
 TO DO 29: Figure out how to add sounds to custom creatures
+
+TO DO 30: Add certain spells added in revision (e.g. hold beast; devil's eyes) to new spells component (make sure checks are in place to ensure compatibility)
+
+Version 0.90.05
+
+2020-03-08
+
+- Started Exterminate spell
+
+- Started Filth's Bane
+
+- Started Cantrip spell (very prelim pre alpha draft) 
+
+2020-03-07
+
+- Fixed ini ref error in revised spell component
+
+- Began incorporating ini for new spells: all 1st lev wiz spells (completed or not)
+
+2020-02-27
+
+- Revised Traps settings in b_spells_settings.ini (but not actual component--still in development)
+
+2020-02-26
+
+- Completed Hold Animal/Hold Beast revision
+
+2020-02-25
+
+- Infravision --> Devil's Eyes 4 versions
+
+- b_spells_settings.ini Arcane vs divine cantrip settings
+
+2020-02-24
+
+- Added add_spell_ex (thanks k4th...)  
+
+- incorporated b_spells_settings into revised spells
+
+- used add_spell_ex to create var for hold animal spell level
+
+2020-02-22
+
+- Potion of vision (150 gp)
+
+
+2020-02-14
+
+- Started potion code: automating tier list based on cost
+
+2020-02-11
+
+- populated b_spells_settings.ini a bit
+
+2020-02-09
+
+- Organizing spells (to better see what is missing from each spell)
 
 Version 0.90.04
 

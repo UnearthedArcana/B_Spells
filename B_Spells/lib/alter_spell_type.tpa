@@ -18,8 +18,8 @@ DEFINE_PATCH_FUNCTION ALTER_SPELL_TYPE
             spotting          = "-1" // 0 = no spotting(?); 1 = spotting (other values not accepted)
             target_invisible  = "-1" // 0 = cannot target invisible; 1 = can target invisibile (other values not accepted)
             silence           = "-1" // 0 = cannot cast when silenced; 1 = can cast when silenced (other values not accepted)
-  STR_VAR   level_text        = "SAME"  //Only accepts values of 1-10, "Quest", "Cantrip" or "Orison"--Changes "Level: x" in spell description to "Level: y" where y is the value added TEST!!!
- 	    school_text	      = "SAME"  //Only necessary for user created schools
+  STR_VAR   level_text        = "SAME"  //Will replace level display with whatever is put in this field (whether an integer or text.)
+   	    school_text	      = "SAME"  //Only necessary for user created schools
   	    sphere_text	      = "SAME"  //Name of sphere
 	    c_icon            = "NO"  //"SAME" = %SOURCE_RES%C, "ADD" = %spell_res%C, else Exact name given of C icon
 

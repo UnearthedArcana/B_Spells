@@ -2,7 +2,7 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.04~
+VERSION ~0.90.05~
 
 
 ALWAYS
@@ -34,6 +34,8 @@ ALWAYS
        */
 
         INCLUDE ~B_Spells/lib/spon_cast_functions.tpa~
+
+        INCLUDE ~B_Spells/lib/add_spell_ex.tpa~
 
         INCLUDE ~B_Spells/lib/add_sumtable.tpa~
 
@@ -121,6 +123,12 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for 
 
 //SR NWN deflection compatibility
 ACTION_CLEAR_ARRAY aoe_spell
+
+LAM b_spells_settings_global
+
+OUTER_SET b_new_spells = 1
+OUTER_SET b_iwdee_spells = 1
+
 
 //Add IWD spells if not already in game_____________________________________________
 

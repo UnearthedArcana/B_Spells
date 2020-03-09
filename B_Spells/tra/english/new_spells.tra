@@ -317,7 +317,7 @@ Casting Time: 5
 Area of Effect: Special
 Saving Throw: Neg.
 
-This spell holds 1d4 hostile non humanoid, low intelligence animals or mosters rigidly immobile. Specifically, it affects the targeted enemy and up to 3 hostile creatures within 20 ft. of it. A successful Save vs. Spell negates the effect.
+This spell holds 1d4 hostile non humanoid, low intelligence animals or monsters rigidly immobile. Specifically, it affects the targeted enemy and up to 3 hostile creatures within 20 ft. of it. A successful Save vs. Spell negates the effect.
 
 Paralyzed creatures are helpless and cannot dodge or defend themselves from attacks. Being held does not prevent the worsening of the subject's condition due to wounds, disease, or poison.~
 
@@ -1100,12 +1100,42 @@ This spell creates a thin magical shell that harmlessly absorbs the first physic
 
 Level: 1
 Range: 0
-Casting Time: 0
 Duration: 3 rounds
+Casting Time: 0
 Area of Effect: The caster
 Saving Throw: None
 
 This spell gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time granting a +5 bonus to AC, and +1 to weapon and casting speed for 3 rounds.~
+
+@65111   = ~Exterminate~
+@65112   = ~Exterminate
+(Necromancy)
+
+Level: 1
+Range: Visual Range of Caster
+Duration: Instantaneous
+Casting Time: 5
+Area of Effect: Special
+Saving Throw: Special
+
+This spell instantaneously snuffs out the life forces of all animals in the area of effect, including such normal pests as flies, mice, beetles, rats, spiders, and the like. Specifically, it affects the targeted animal and up to 3 animals within 20 ft. of it. Animals with 1 or fewer Hit Die are instantly slain with no save.  Animals with more hit die are allowed a save vs. death. 
+Animals that succeed the save receive 2d8 points of damage but do not (necessarily) die.  Only non-humanoid animals can be affected by this spell, including large spiders, stirges, poisonous snakes, and giant or huge centipedes. If the targeted creatures are extremely small (1 hp or less), then an area up to 5 cubic can be cleansed of pests.  This spell can counter the summon insects or summon swarm spells, but it is not powerful enough to counter stronger summoning spells, such as creeping death.  This spell is ineffective against Familiars.~
+
+@65113   = ~Exterminated~
+
+@65121   = ~Exterminate~
+@65122   = ~Exterminate
+(Alteration)
+
+Level: 1
+Range: Touch
+Duration: Instantaneous
+Casting Time: 6
+Area of Effect: 1 Creature
+Saving Throw: Special
+
+This simple spell removes dirt, grime, and impurities from any surface or person it is cast upon. While this spell doesn't specifically remove diseases and poisons, the purifying magic can give a victim of these afflictions a fighting chance. If the target saves vs. death, any poisons or diseases they are afflicted with are removed.~
+
 
 @65201 = ~Alarm~
 @65202 = ~Alarm
@@ -1408,7 +1438,7 @@ Saving Throw: Special
 
 This spell creates the illusion of fearsome creatures that 'fight' on the caster's behalf.  
 
-This spell only creates a basic fascimilie of life, and they do not react correctly in combat or when hit, nor are they affected by most spells that affect normal creatures.  As such, enemies can see through them relatively easily.
+This spell only creates a basic facsimile of life, and they do not react correctly in combat or when hit, nor are they affected by most spells that affect normal creatures.  As such, enemies can see through them relatively easily.
 
 Any enemy that gets within melee range, or that attacks or hits them, can save vs. spell to disbelieve them.  Any enemy that disbelieves an illusion cannot be affected by that illusion for a round, and can easily destroy them with a hit.~
 
