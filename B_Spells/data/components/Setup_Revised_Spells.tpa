@@ -279,7 +279,7 @@ END //end armor modification
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
-// Need to check if code works in BG2, IWDEE and with SR TO DO CONTINUE
+//Need to check if code works in BG2, IWDEE and with SR TO DO CONTINUE
 //need to modify text to reflect extra affect vs. undead
 //need to change the apply spl using the method applied in IWDEE (so, check that out).  
 //need to modify further by instructions in readme. chill_affect_undead_patch = 1 Undead fear effect; 2 = Undead hold effect
@@ -323,16 +323,26 @@ COPY ~%mod_folder%/data/revised_spells/chill_touch/SPWI117A.spl~ ~override/%spel
                             COPY_EXISTING ~%the_item%.ITM~ ~override~
                                 LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 STR_VAR resource = EVAL  ~%spell_res%A~ END
                                 LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 326 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 STR_VAR resource = EVAL  ~%spell_res%C~ END
-
-
                        END//inner action
                   END //type 111
                END //php
             END//php
      END //source_size
+//text notification
+ COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @10110033//old text
+ SPRINT new @10110034//new text
+     LPF TEXT_REPLACE
+       STR_VAR orig_text = EVAL  ~%old%~  new_text = EVAL  ~%new%~
+     END
+ COPY_EXISTING ~%spell_res%.spl~ ~override~
+ SPRINT old @10110035//old text
+ SPRINT new @10110036//new text
+     LPF TEXT_REPLACE
+       STR_VAR orig_text = EVAL  ~%old%~  new_text = EVAL  ~%new%~
+     END
 
-      
-      END //end not SR iwdee
+      END //end not SR and iwdee
 END//end fear affect undead
 
 END  //end undead flee
@@ -364,9 +374,13 @@ ACTION_IF (%chill_affect_undead_patch% = 2) BEGIN  //
                     //   PATCH_PRINT "%item%"  //test
                        INNER_PATCH_SAVE the_item ~%item%~ BEGIN  END
                        INNER_ACTION BEGIN
+		            ACTION_IF (!GAME_IS ~iwdee~)
                             COPY_EXISTING ~%the_item%.ITM~ ~override~
-                                LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 opcode = 146 timing = 1 parameter1 = 0 parameter2 = 1 STR_VAR resource = ~B_HDED1~ END
-
+                                LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 STR_VAR resource = ~B_HDED1~ END
+			    END //end game is not iwdee
+			    ACTION_IF (GAME_IS ~iwdee~)
+                               LPF ALTER_EFFECT INT_VAR multi_match = 1 match_opcode = 326 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 STR_VAR match_resource = ~SPWI117A~ resource = ~B_HDED1~ END
+			    END//end game is iwdee (replace fear w/hold)
                        END//inner action
                   END //type 111
                END //php
@@ -376,38 +390,24 @@ ACTION_IF (%chill_affect_undead_patch% = 2) BEGIN  //
 //text notification
  COPY_EXISTING ~%spell_res%.spl~ ~override~
  SPRINT old @10110033//old text
- SPRINT new @10110034//new text
+ SPRINT new @10110037//new text
      LPF TEXT_REPLACE
        STR_VAR orig_text = EVAL  ~%old%~  new_text = EVAL  ~%new%~
      END
  COPY_EXISTING ~%spell_res%.spl~ ~override~
  SPRINT old @10110035//old text
- SPRINT new @10110036//new text
+ SPRINT new @10110038//new text
      LPF TEXT_REPLACE
        STR_VAR orig_text = EVAL  ~%old%~  new_text = EVAL  ~%new%~
      END
 END //end Hold undead
 
 
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
+//turn immunity?  
+//protection from hold undead?  
 
 ////////////////////////////
 //////Compatibility
