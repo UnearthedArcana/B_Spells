@@ -234,9 +234,17 @@ Upon the casting of this spell the recipient gains the sight of an infernal bein
 @10110033 = ~5 rounds.~
 @10110034 = ~5 rounds.
 
-This spell has a special effect on undead creatures. Undead touched by the caster suffer no damage or Strength loss, but they must successfully save vs. spell or held for 2 Turns.~
+This spell has a special effect on undead creatures. Undead touched by the caster suffer no damage or Strength loss, but they must successfully save vs. spell or be held for 2 Turns.~
 @10110035 = ~it can hit.~
 @10110036 = ~it can hit.
 
-This spell has a special effect on undead creatures. Undead touched by the caster suffer no damage or Strength loss, but they must successfully save vs. spell or held for 2 Turns.~
+This spell has a special effect on undead creatures. Undead touched by the caster suffer no damage or Strength loss, but they must successfully save vs. spell or be held for 2 Turns.~
+
+@10110037 = ~5 rounds.
+
+This spell has a special effect on undead creatures. Undead touched by the caster suffer no damage or Strength loss, but they must successfully save vs. spell or flee for 2 Turns.~
+@10110038 = ~it can hit.
+
+This spell has a special effect on undead creatures. Undead touched by the caster suffer no damage or Strength loss, but they must successfully save vs. spell or flee for 2 Turns.~
+
 
