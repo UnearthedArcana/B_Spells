@@ -62,6 +62,10 @@ TO DO 30: Add certain spells added in revision (e.g. hold beast; devil's eyes) t
 
 TO DO 31: Revise Reprieve spell as per description on github. 
 
+Version 0.90.07
+
+- Chill touch fear undead stuff
+
 Version 0.90.06
 
 2020-03-18

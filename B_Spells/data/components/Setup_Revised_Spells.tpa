@@ -290,7 +290,6 @@ END //end armor modification
 ///////////////////////////////////////////////////////////////////////
 ACTION_IF (%chill_affect_undead_patch% > 0) BEGIN  //
 
-
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
@@ -298,19 +297,62 @@ ACTION_IF (%chill_affect_undead_patch% > 0) BEGIN  //
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_HOLD_UNDEAD~
-  RET spell_res
-END
-   COPY_EXISTING ~%spell_res%.spl~ ~override/B_HDED1.spl~   //the hold spell
+//if undead flee
+ACTION_IF (%chill_affect_undead_patch% = 1) BEGIN  //
+      ACTION_IF (!GAME_IS ~iwdee~) AND (!FILE_EXISTS_IN_GAME ~dvimhere.mrk~) THEN BEGIN    //Already exists in iwdee--but SR overwrites
+              LAF RES_NUM_OF_SPELL_NAME
+                STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
+                RET spell_res
+              END
+              //fear spl
+COPY ~%mod_folder%/data/revised_spells/chill_touch/SPWI117C.spl~ ~override/%spell_res%C.spl~  //removes protection
+COPY ~%mod_folder%/data/revised_spells/chill_touch/SPWI117A.spl~ ~override/%spell_res%A.spl~  //applies horror
+//now, let's modify the actual spell
+   COPY_EXISTING_REGEXP GLOB ~%spell_res%.spl~ ~override~
+     PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+            GET_OFFSET_ARRAY ab_array 0x64 4 0x68 2 0 0 0x28
+            PHP_EACH ab_array AS int => ab_off BEGIN
+               GET_OFFSET_ARRAY2 fx_array ab_off ITM_V10_HEAD_EFFECTS
+               PHP_EACH fx_array AS int => fx_off BEGIN
+                  READ_SHORT fx_off fx_type
+                  READ_ASCII fx_off + 0x14 item
+                  PATCH_IF fx_type = 111 BEGIN     // Create magic weap
+                    //   PATCH_PRINT "%item%"  //test
+                       INNER_PATCH_SAVE the_item ~%item%~ BEGIN  END
+                       INNER_ACTION BEGIN
+                            COPY_EXISTING ~%the_item%.ITM~ ~override~
+                                LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 STR_VAR resource = EVAL  ~%spell_res%A~ END
+                                LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 326 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 STR_VAR resource = EVAL  ~%spell_res%C~ END
+
+
+                       END//inner action
+                  END //type 111
+               END //php
+            END//php
+     END //source_size
+
+      
+      END //end not SR iwdee
+END//end fear affect undead
+
+END  //end undead flee
+
+//if hold undead
+ACTION_IF (%chill_affect_undead_patch% = 2) BEGIN  //
+
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_HOLD_UNDEAD~
+    RET spell_res
+  END
+     COPY_EXISTING ~%spell_res%.spl~ ~override/B_HDED1.spl~   //the hold spell
         LPF ALTER_SPELL_HEADER INT_VAR projectile = 1 END
         LPF ALTER_EFFECT INT_VAR duration = 120 END  //Duration 2 turns
 
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
-  RET spell_res
-END
- COPY_EXISTING_REGEXP GLOB ~%spell_res%.spl~ ~override~
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
+    RET spell_res
+  END
+   COPY_EXISTING_REGEXP GLOB ~%spell_res%.spl~ ~override~
      PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
             GET_OFFSET_ARRAY ab_array 0x64 4 0x68 2 0 0 0x28
             PHP_EACH ab_array AS int => ab_off BEGIN
@@ -344,6 +386,8 @@ END
      LPF TEXT_REPLACE
        STR_VAR orig_text = EVAL  ~%old%~  new_text = EVAL  ~%new%~
      END
+END //end Hold undead
+
 
 ////////////////////////////////
 //////Add Icons and Projectiles:
