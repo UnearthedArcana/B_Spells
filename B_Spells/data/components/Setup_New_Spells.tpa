@@ -520,10 +520,11 @@ END //end alarm
 
 ACTION_IF (%b_anticipation% > 0) BEGIN  //
 
+
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
-// 1st Level Cantrips: This spell is converted to a second level spell, and the duration increased to 1 turn.
+// **1st-Level Cantrips**: This spell is installed (unchanged) if 1st-level cantrips is installed.
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -634,7 +635,7 @@ ACTION_IF (%b_cantrip_spell% > 0) BEGIN  //
 //probably do this spell only After all cantrips are decided
 //1st level cantrips: Cantrip is moved to 2nd level if 1st level cantrips is installed, and it will allow the character to cast the 1st level versions of all cantrips. Note that this spell allows the mage to cast any cantrip, even if they do not know it or if it is from an otherwise prohibited school.
 //This spell does not require that any cantrip component be installed. 
-//need to actually populate the select spell 2da (again, wait until finished with cantrips) 
+//need to actually populate the select spell 2da (again, wait until finished with cantrips)
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -933,11 +934,12 @@ ACTION_IF (%b_exterminate% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
-//0-level cantrips: convert to 0 level cantrip  
-//need to remove the insect projectile using effect 273 (probably?)
-//remove summon swarm (new wiz spell 3rd lev)  from  B_M102A.spl/%spell_res%A.spl
-//prot/immunity to death
-//add icons, etc.
+  //0-level cantrips: convert to 0 level cantrip
+  //**1st-Level Cantrips**: This spell is installed if 1st level spell (unchanged) if 1st-level Cantrips  is installed.
+  //need to remove the insect projectile using effect 273 (probably?)
+  //remove summon swarm (new wiz spell 3rd lev)  from  B_M102A.spl/%spell_res%A.spl
+  //prot/immunity to death
+  //add icons, etc.
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -1016,8 +1018,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Compatibility
 ////////////////////////////
-//0-level cantrips: convert to 0 level cantrip  
-//TO DO CONTINUE
+  //**1st-Level Cantrips**: This spell is installed if 1st level spell (unchanged) if 1st-level Cantrips is installed.
+  //0-level cantrips: convert to 0 level cantrip
+  //TO DO CONTINUE
 
 END//end exterminate
  
@@ -1160,8 +1163,9 @@ ACTION_IF (%b_filth_bane% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
- // 0-Level Cantrips: This spell is converted to a cantrip if 0-level cantrips is installed. Further, creatures can only be affected by Filth's Bane once per 8 hours (whether they save or not).
- // Check if needs to remove IWDEE specific spells (used BGEE n.poison)
+  //**0-Level Cantrips**: This spell is converted to a cantrip if 0-level cantrips is installed.  Further, creatures can only be affected by Filth's Bane once per 8 hours, and the save is made with a -4 penalty.
+  //**1st-Level Cantrips**: Filth's Bane will only affect a creature once per 8 hours if 1st-level spells installed.
+  // Check if needs to remove IWDEE specific spells (used BGEE n.poison)
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -1213,7 +1217,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Compatibility
 ////////////////////////////
-// 0-Level Cantrips: This spell is converted to a cantrip if 0-level cantrips is installed. Further, creatures can only be affected by Filth's Bane once per 8 hours (whether they save or not).
+  //**0-Level Cantrips**: This spell is converted to a cantrip if 0-level cantrips is installed.  Further, creatures can only be affected by Filth's Bane once per 8 hours, and the save is made with a -4 penalty.
+  //**1st-Level Cantrips**: Filth's Bane will only affect a creature once per 8 hours if 1st-level spells installed.
+  //TO DO CONTINUE
 
 END// End filth's Bane
 
@@ -1235,7 +1241,7 @@ ACTION_IF (%b_hypno_arcane% > 0) BEGIN  //
 //make portrait icon
 //note to user that changes to command spell affect hypnotism as well
 //check with MEspells alteration (which gives 1 round control) e.g. the alter
-//1st level cantrips: Converted to a second level spell, unchanged
+//1st level cantrips: This spell is installed (unchanged) if 1st-level spells is installed.
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -1358,7 +1364,7 @@ END
 //////Compatibility
 ////////////////////////////
 //to do CONTINUE 
-///1st level cantrips: Converted to a second level spell, unchanged 
+///1st level cantrips: This spell is installed (unchanged) if 1st-level spells is installed.
 
 END //hypnosis 
 
@@ -1510,6 +1516,8 @@ ACTION_IF (%b_mending% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
+  //**0-level cantrips**: This spell is installed (unchanged) if 0-level cantrips is installed.
+  //**1st-level cantrips**: This spell is installed (unchanged) if 1st-level cantrips is installed.
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -1542,6 +1550,8 @@ ACTION_IF (%b_mending% > 0) BEGIN  //
 ////////////////////////////
 //////Compatibility
 ////////////////////////////
+  //**0-level cantrips**: This spell is installed (unchanged) if 0-level cantrips is installed.
+  //**1st-level cantrips**: This spell is installed (unchanged) if 1st-level cantrips is installed.
 
 END //mending 
 

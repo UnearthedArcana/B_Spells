@@ -2,7 +2,7 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.05~
+VERSION ~0.90.06~
 
 
 ALWAYS
@@ -24,16 +24,17 @@ ALWAYS
  	ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
           OUTER_SPRINT ~game~ ~iwdee~
         END
-        /*
+
         //not ready yet
 	ACTION_IF NOT FILE_EXISTS ~override/b_spells_settings.ini~ BEGIN
-  	  COPY ~faiths_and_powers/b_spells_settings.ini~ ~override~
+  	  COPY ~B_Spells/b_spells_settings.ini~ ~override~
 	END
 
   	INCLUDE ~override/b_spells_settings.ini~
-       */
 
         INCLUDE ~B_Spells/lib/spon_cast_functions.tpa~
+
+        INCLUDE ~B_Spells/lib/replace_text.tpa~
 
         INCLUDE ~B_Spells/lib/add_spell_ex.tpa~
 

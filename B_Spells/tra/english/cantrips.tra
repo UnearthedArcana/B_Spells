@@ -303,7 +303,7 @@ Opponents receive a -1 penalty to their saves at levels 10 and 20.~
 
 Level: Cantrip
 Range: 20 ft.
-Duration: 1 round
+Duration: 2 rounds
 Casting Time: 1
 Area of Effect: 1 creature
 Saving Throw: Special
@@ -327,7 +327,7 @@ Casting Time: 3
 Area of Effect: 1 creature
 Saving Throw: Neg.
 
-By means of this spell, the wizard creates a glob of acid that propels at an enemy of <PRO_HISHER> choosing within 10'. If the creature does not save vs. breath +2, they recieve 1d3 points of acid damage.  Unless the cantrip is somehow dispelled, this cantrip will cause another 1d3 points of damage on the next round.
+By means of this spell, the wizard creates a glob of acid that propels at an enemy of <PRO_HISHER> choosing within 10'. If the creature does not save vs. breath +2, they receive 1d3 points of acid damage.  Unless the cantrip is somehow dispelled, this cantrip will cause another 1d3 points of damage on the next round.
 
 This cantrip lasts for an additional round, doing an additional 1d3 points of damage, at levels 6, 12, and 18.
 
@@ -361,7 +361,7 @@ Casting Time: 3
 Area of Effect: 1 creature
 Saving Throw: Neg.
 
-By means of this spell, the wizard fires a bolt of magic at a target of <PRO_HISHER> choice within range. If the creature does not save vs. breath +2, they recieve 1d6 points of magic damage.
+By means of this spell, the wizard fires a bolt of magic at a target of <PRO_HISHER> choice within range. If the creature does not save vs. breath +2, they receive 1d6 points of magic damage.
 
 This cantrip does an additional 1d6 points of magic damage at levels 6, 12, and 18.
 
@@ -380,7 +380,7 @@ Saving Throw: Neg.
 
 With this spell, the caster surrounds a creature with illusory sounds of disturbing whispers for 3 rounds.  That creature must make a save vs. spell or be distracted by the sounds, suffering a -1 to attack rolls and a 5% spell failure chance.
 
-As the caster levels up, the illurory sounds become more distracting and more difficult to ignore.  They inflict a -1 penalty to attack and an additional 5% spell failure at levels 6 and 18.
+As the caster levels up, the illusory sounds become more distracting and more difficult to ignore.  They inflict a -1 penalty to attack and an additional 5% spell failure at levels 6 and 18.
 
 Creatures without minds, such as golems, are unaffected by this cantrip (though, undead creatures are not immune). Deaf creatures are also immune.~
 //Items start at @900000000

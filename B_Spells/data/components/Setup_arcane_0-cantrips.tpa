@@ -12,30 +12,16 @@
 //compatibility: Entropy shield, if present, should protect vs all, or almost all, cantrip projectiles.  
 ////CHECK Malediction et alIWDEE   (WILL NEED TO COME BACK TO THIS ONCE SR CAN BE INSTALLED ON IWDEE...
 
-// SD: eliminate #bonecir.spl from IWDEE
-ACTION_IF GAME_IS ~iwdee~ BEGIN
-  ACTION_IF FILE_EXISTS_IN_GAME "#bonecir.spl" BEGIN
-	DISABLE_FROM_KEY "#bonecir.spl"
-  END
-  ACTION_IF FILE_EXISTS "override\#bonecir.spl" BEGIN
-	DELETE "override\#bonecir.spl"
-  END
-END
+
 
 //template
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//____________________________________________________________________Template__________________________________________________________________________//
+//____________________________________________________________Spell Name________________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE: no
-//                                          IWDification: no
-//                                          My IWD spells: no
-//                                          my revised spells: no
-//                                          spheres: no
-//                                          SR: no
-//                                          Other: no
+
+ACTION_IF (%b_var_cantrip_0% > 0) BEGIN  //
 
 ////////////////////////////
 //////NOTES:
@@ -65,6 +51,31 @@ END
 //////Compatibility
 ////////////////////////////
 
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+END //end cantrip add
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////             GLOBAL CHANGES              //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////
+//////////// player modified variables
+LAM b_spells_settings_0_cantrip
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,27 +95,21 @@ END
 //__________________________________________________________________Acid Splash_________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE:
-//                                          IWDification:
-//                                          My IWD spells:
-//                                          my revised spells:
-//                                          spheres:
-//                                          SR: Yes
-//                                          Other: no need as far as I can tell
-//
+
+ACTION_IF (%b_acid_splash_cantrip_0% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
 //this cantrip virtually assumes SR shocking grasp.
-//Projectile
-//ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
-//VVC
-//bam
-//COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
-//animations
-//3d animation
-//sounds  Check for TRA_17.wav
-//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
-//effs
-//Spell itself
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
 COPY ~%mod_folder%/data/cantrips/arcane/b_wc102.spl~  ~override~
         SAY NAME1 @200006001
         SAY NAME2 @200006001
@@ -112,31 +117,52 @@ COPY ~%mod_folder%/data/cantrips/arcane/b_wc102.spl~  ~override~
 	SAY DESC @200006002
   LPF MAKE_CANTRIP END      //Default make_cantrip
 
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
 
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no need as far as I can tell
+
+END //end acid splash
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //___________________________________________________________________Audible Glamer_____________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE:
-//                                          IWDification:
-//                                          My IWD spells:
-//                                          my revised spells:
-//                                          spheres:
-//                                          SR: Yes
-//                                          Other: no need as far as I can tell
-//
-//this cantrip virtually assumes SR shocking grasp.
-//Projectile
-//ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
-//VVC
-//bam
-//COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
-//animations
-//3d animation
-//sounds  Check for TRA_17.wav
+
+ACTION_IF (%b_audible_glam_cantrip_0% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+//sounds
 COPY ~%mod_folder%/data/cantrips/arcane/b_wisp1.WAV~ ~override~   //sound
 COPY ~%mod_folder%/data/cantrips/arcane/b_wisp2.WAV~ ~override~   //sound
 COPY ~%mod_folder%/data/cantrips/arcane/b_wisp3.WAV~ ~override~   //sound
@@ -144,8 +170,11 @@ COPY ~%mod_folder%/data/cantrips/arcane/b_wisp4.WAV~ ~override~   //sound
 COPY ~%mod_folder%/data/cantrips/arcane/b_wisp5.WAV~ ~override~   //sound
 COPY ~%mod_folder%/data/cantrips/arcane/b_wisp6.WAV~ ~override~   //sound
 COPY ~%mod_folder%/data/cantrips/arcane/b_wisp7.WAV~ ~override~   //sound
-//effs
-//Spell itself
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
 COPY ~%mod_folder%/data/cantrips/arcane/B_WC103.spl~  ~override~
         SAY NAME1 @200009001
         SAY NAME2 @200009001
@@ -153,23 +182,54 @@ COPY ~%mod_folder%/data/cantrips/arcane/B_WC103.spl~  ~override~
 	SAY DESC @200009002
   LPF MAKE_CANTRIP STR_VAR spell_name = ~B_WC103~ END      //Default make_cantrip
 
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+END //end a glam
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_______________________________________________________________Chill Touch____________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE:
-//                                          IWDification:
-//                                          My IWD spells:
-//                                          my revised spells:
-//                                          spheres:
-//                                          SR:
-//                                          Other: no need as far as I can tell
-//
+ACTION_IF (%b_chill_touch_cantrip_0% > 0) BEGIN  //
 
-//All versions of Chill Touch are converted to a cantrip, even if SR is installed
+////////////////////////////
+//////NOTES:
+////////////////////////////
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+//All versions of Chill Touch are converted to a cantrip, even if SR is installed  --revise and give player options
  COPY_EXISTING ~SPWI117.spl~ ~override/b_wc005.spl~      //Copy spell as innate
   LPF MAKE_CANTRIP STR_VAR spell_name = ~B_WC005~ END      //Default make_cantrip
 
@@ -189,25 +249,59 @@ COPY_EXISTING ~b_wc005.spl~ ~override~
     WRITE_LONG 0x1e ~0x7fc0~ //  wildmage spell but...
     WRITE_BYTE 0x21 (THIS | 0b10000000) //exlcude wildmage
 
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+END //end chill touch as a 0-cantrip
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_______________________________________________________________Drench_________________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE:
-//                                          IWDification:
-//                                          My IWD spells:
-//                                          my revised spells:
-//                                          spheres:
-//                                          SR:
-//
-//                                          Other:
-//Adding the cantrip either way
+ACTION_IF (%b_drench_cantrip_0% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Unfinished
+//Create Dispel fire effect batch macro
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
 
 //Animation
 COPY ~%mod_folder%/data/cantrips/arcane/b_wet.bam~ ~override~
-//spell itself
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
 COPY ~%mod_folder%/data/cantrips/arcane/b_wc003.spl~ ~override~   //Drench
         SAY NAME1 @200005001
         SAY NAME2 @200005001
@@ -232,6 +326,7 @@ COPY ~%mod_folder%/data/cantrips/arcane/b_wc003.spl~ ~override~   //Drench
 
 /* 
 //When Shround of flame is added to non-IWDEE games...
+
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_SHROUD_OF_FLAME~
   RET spell_res
@@ -242,53 +337,113 @@ COPY_EXISTING ~b_wc003.spl~ ~override~
       STR_VAR match_resource = ~SPWI524~ resource = EVAL ~%spell_res%~
   END
 */
-//Create Dispel fire effect batch macro
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+
+END //end drench
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_______________________________________________________________Drowse_________________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE:
-//                                          IWDification:
-//                                          My IWD spells:
-//                                          my revised spells:
-//                                          spheres:
-//                                          SR:
-//                                          Other:
-//
-//Projectile
-//ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
-//VVC
-//bam
-//COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
-//animations
-//3d animation
-//sounds  Check for TRA_17.wav
-//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
-//effs
-//Spell itself
+
+ACTION_IF (%b_drowse_cantrip_0% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//to add: Opponent becomes immune for 1 day.
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
 COPY ~%mod_folder%/data/cantrips/arcane/b_wc004.spl~  ~override~
         SAY NAME1 @200003001
         SAY NAME2 @200003001
         SAY UNIDENTIFIED_DESC @200003002
 	SAY DESC @200003002
-//to add: Opponent becomes immune for 1 day.
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+END //end cantrip add
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //____________________________________________________________Expeditious Retreat_______________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE: no
-//                                          IWDification: no
-//                                          My IWD spells: no
-//                                          my revised spells: no
-//                                          spheres: no
-//                                          SR: Yes
-//                                          Other: no
+
+ACTION_IF (%b_exp_retreat_cantrip_0% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
 
  ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN   //This spell is a cantrip if cantrips installed
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr (not sure about details if SR installed--for now, not if SR installed)
@@ -346,6 +501,36 @@ COPY_EXISTING ~%spell_res%~ ~override~
   END  //
 END
 
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+END //end Expeditious Retreat
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //______________________________________________________________Fire Bolt_______________________________________________________________________________//
@@ -353,33 +538,58 @@ END
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Credit for this spell goes to SubtleDoctor. Used and modified with permission.
 
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE:
-//                                          IWDification:
-//                                          My IWD spells:
-//                                          my revised spells:
-//                                          spheres:
-//                                          SR: Yes
-//                                          Other: no need as far as I can tell
-//
+ACTION_IF (%b_fire_bolt_cantrip_0% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
 //Projectile
 ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/D5_MSORN.pro~   //projectile
-//VVC
 //bam
 COPY ~%mod_folder%/data/cantrips/arcane/SPMAGM04.bam~ ~override~   //animation
-//animations
-//3d animation
-//sounds  Check for TRA_17.wav
-//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
-//effs
-//Spell itself
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
 COPY ~%mod_folder%/data/cantrips/arcane/d5_wfir.spl~  ~override~
         SAY NAME1 @200007001
         SAY NAME2 @200007001
         SAY UNIDENTIFIED_DESC @200007002
 	SAY DESC @200007002
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
 //add projectile
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %D5_MSORN% STR_VAR END
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+END //end cantrip add
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -387,66 +597,116 @@ COPY ~%mod_folder%/data/cantrips/arcane/d5_wfir.spl~  ~override~
 //_______________________________________________________________Frost Ray______________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE:
-//                                          IWDification:
-//                                          My IWD spells:
-//                                          my revised spells:
-//                                          spheres:
-//                                          SR:
-//                                          Other: no need as far as I can tell
-//
+
+ACTION_IF (%b_frost_ray_cantrip_0% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
 //Projectile
 ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
-//VVC
 //bam
 COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
-//animations
-//3d animation
-//sounds  Check for TRA_17.wav
-//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
-//effs
-//Spell itself
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
 COPY ~%mod_folder%/data/cantrips/arcane/b_wc001.spl~  ~override~
         SAY NAME1 @200001001
         SAY NAME2 @200001001
         SAY UNIDENTIFIED_DESC @200001002
 	SAY DESC @200001002
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
 LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_1c101% END
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+END //end cantrip add
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_____________________________________________________________________Jolt_____________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE:
-//                                          IWDification:
-//                                          My IWD spells:
-//                                          my revised spells:
-//                                          spheres:
-//                                          SR: Yes
-//                                          Other: no need as far as I can tell
-//
-//this cantrip virtually assumes SR shocking grasp.
-//Projectile
-//ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
-//VVC
-//bam
-//COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
-//animations
-//3d animation
-//sounds  Check for TRA_17.wav
-//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
-//effs
-//Spell itself
+
+ACTION_IF (%b_jolt_cantrip_0% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Need an electricty batch protection.  Immunity to electricity should prot vs. the speed penalty as well (so, prot vs. the cantrip).
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
 COPY ~%mod_folder%/data/cantrips/arcane/b_wc002.spl~  ~override~
         SAY NAME1 @200002001
         SAY NAME2 @200002001
         SAY UNIDENTIFIED_DESC @200002002
 	SAY DESC @200002002
 
-//Need an electricty batch protection.  Immunity to electricity should prot vs. the speed penalty as well (so, prot vs. the cantrip).
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+END //end cantrip add
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -456,33 +716,72 @@ COPY ~%mod_folder%/data/cantrips/arcane/b_wc002.spl~  ~override~
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Credit for this spell goes to SubtleDoctor. Used and modified with permission.
 
-//Template               Added:no           Compatiblity:                                         Double Checked: no
-//                                          IWDEE:
-//                                          IWDification:
-//                                          My IWD spells:
-//                                          my revised spells:
-//                                          spheres:
-//                                          SR: Yes
-//                                          Other: no need as far as I can tell
-//
+ACTION_IF (%b_magic_bolt_cantrip_0% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
 //Projectile
 ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/D5_MSBLU.pro~   //projectile
-//VVC
 //bam
 COPY ~%mod_folder%/data/cantrips/arcane/SPMAGM07.bam~ ~override~   //animation
-//animations
-//3d animation
-//sounds  Check for TRA_17.wav
-//COPY ~%mod_folder%/data/cantrips/arcane/#EFF_P99.WAV~ ~override~   //sound
-//effs
-//Spell itself
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
 COPY ~%mod_folder%/data/cantrips/arcane/D5_WIIN.spl~  ~override~
         SAY NAME1 @200008001
         SAY NAME2 @200008001
         SAY UNIDENTIFIED_DESC @200008002
 	SAY DESC @200008002
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
 //add projectile
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %D5_MSBLU% STR_VAR END
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+//Compatiblity:
+//  IWDEE: no
+//  IWDification: no
+//  B_Spells (New): no
+//  B_Spells (Revised): no
+//  Faiths_and_Powers: no
+//  SR: no
+//  Made_in_Heaven: no
+//  OSpells: no
+//  Other: no
+
+END //end cantrip add
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

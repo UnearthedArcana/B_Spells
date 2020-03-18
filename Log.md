@@ -60,6 +60,31 @@ TO DO 29: Figure out how to add sounds to custom creatures
 
 TO DO 30: Add certain spells added in revision (e.g. hold beast; devil's eyes) to new spells component (make sure checks are in place to ensure compatibility)
 
+TO DO 31: Revise Reprieve spell as per description on github. 
+
+Version 0.90.06
+
+2020-03-18
+
+- Undead affect undead spell text 
+
+2020-03-15
+
+- Added chill touch affect undead code (not tested; also need to check for SR and IWDEE) 
+
+2020-03-14
+
+- Began incorp. of ini into 0-level cantrips
+
+- Added replace_text.tpa
+
+- Added Armor mod
+
+2020-03-13
+
+- Spell checked a few cantrips
+
+
 Version 0.90.05
 
 2020-03-08
