@@ -221,6 +221,10 @@ ACTION_IF (%b_chill_touch_cantrip_0% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
+//need to check if certain modifications are made to chill touch and revert them 
+//(or maybe BETTER, change chill touch or the replacement to a different spell name)
+//TO DO CONTINUE
+//CHECK FOR REVISIONS ini section TO MODIFY THIS SPELL (OTHERWISE IDENTICAL TO THE ORIGINAL) TO DO 
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -230,25 +234,28 @@ ACTION_IF (%b_chill_touch_cantrip_0% > 0) BEGIN  //
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 //All versions of Chill Touch are converted to a cantrip, even if SR is installed  --revise and give player options
- COPY_EXISTING ~SPWI117.spl~ ~override/b_wc005.spl~      //Copy spell as innate
-  LPF MAKE_CANTRIP STR_VAR spell_name = ~B_WC005~ END      //Default make_cantrip
+              LAF RES_NUM_OF_SPELL_NAME
+                STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
+                RET spell_res
+              END
+ COPY_EXISTING ~%spell_res%.spl~ ~backup/%mod_folder%/workspace/B_TEMP.SPL~  //place it here for now
+ //add as an innate:
+ LAF ADD_SPELL_EX INT_VAR type = 3  STR_VAR file = EVAL ~backup/%mod_folder%/workspace/B_TEMP.SPL~ name = ~WIZARD_CHILL_TOUCH~ RET DEST_FILE END
+   COPY_EXISTING ~%DEST_FILE%~ ~override~
+     LPF MAKE_CANTRIP STR_VAR spell_name = EVAL ~%DEST_FILE%~ END      //Default make_cantrip
+     SPRINT old @200002003//old text
+     SPRINT new @200002004//new text
+     LPF TEXT_REPLACE
+       STR_VAR orig_text = EVAL  ~%old%~  new_text = EVAL  ~%new%~
+     END
 
-COPY_EXISTING ~b_wc005.spl~ ~override~
- SPRINT old @200002003//old text
- SPRINT new @200002004//new text
-  READ_LONG 0x50 "valid"
-  PATCH_IF (%valid% >= 0) BEGIN // verify desc is valid
-  READ_STRREF 0x50 ~desc~
-	INNER_PATCH_SAVE new_desc ~%desc%~ BEGIN
-	REPLACE_TEXTUALLY ~%old%~ ~%new%~        //Level: Cantrip
-	END
-  SAY_EVALUATED 0x50 ~%new_desc%~
-  END  //
 
+  /*
+  //not needed anymore
  COPY_EXISTING ~SPWI117.spl~ ~override~   //Copy over the original spell
     WRITE_LONG 0x1e ~0x7fc0~ //  wildmage spell but...
     WRITE_BYTE 0x21 (THIS | 0b10000000) //exlcude wildmage
-
+*/
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////

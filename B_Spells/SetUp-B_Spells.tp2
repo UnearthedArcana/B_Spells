@@ -2,7 +2,7 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.07~
+VERSION ~0.90.08~
 
 
 ALWAYS
@@ -35,6 +35,8 @@ ALWAYS
         INCLUDE ~B_Spells/lib/spon_cast_functions.tpa~
 
         INCLUDE ~B_Spells/lib/replace_text.tpa~
+
+        INCLUDE ~B_Spells/lib/add_headers.tpa~
 
         INCLUDE ~B_Spells/lib/add_spell_ex.tpa~
 

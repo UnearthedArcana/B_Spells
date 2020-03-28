@@ -62,7 +62,32 @@ TO DO 30: Add certain spells added in revision (e.g. hold beast; devil's eyes) t
 
 TO DO 31: Revise Reprieve spell as per description on github. 
 
+TO DO 32: go back to CHill Touch range 10' IFF touch to target spells global is installed
+
+Version 0.90.08
+
+2020-03-27
+
+- Started adding Spectral Hand (revised spell)  
+
+- Incorporated ADD_SPELL_HEADER (credit: Adarnis)  
+
+2020-03-26
+
+- Changed chill touch to innate to make space for new spell (and so scripts can make better use of it)
+
+
+2020-03-21
+
+- Finished affect undead chill touch (for iwdee w/o SR)
+
+- Chill touch 10' range
+
 Version 0.90.07
+
+2020-03-18
+
+- Finished affect undead (though test) for Chill Touch
 
 - Chill touch fear undead stuff
 

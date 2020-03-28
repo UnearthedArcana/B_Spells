@@ -275,24 +275,107 @@ END //end armor modification
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
 //Need to check if code works in BG2, IWDEE and with SR TO DO CONTINUE
-//need to modify text to reflect extra affect vs. undead
-//need to change the apply spl using the method applied in IWDEE (so, check that out).  
 //need to modify further by instructions in readme. chill_affect_undead_patch = 1 Undead fear effect; 2 = Undead hold effect
+//go back to CHill Touch range 10' IFF touch to target spells global is installed
+//NO LONGER A RANDED OPTION--REMOVE, BUT USE CODE FOR SPECTRAL HAND
+//spectral hand to 2nd lev if 1st level cantrips installed TO DO CONTINUE
+//continue modifying Spectral Hand
+
+//Chill Touch ---> Spectral Hand
+///////////////////////////////////////////////////////////////////////
+ACTION_IF (%spectral_hand% > 0) BEGIN  //if install spect hand at all
+//Always starting w/original chill touch
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
+    RET spell_res
+  END
+
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+ACTION_IF (%spectral_hand% = 1) BEGIN //replace chill touch w/spectral hand
+      COPY_EXISTING ~%spell_res%.spl~ ~backup/%mod_folder%/workspace/B_SPECT.SPL~
+        LAF ADD_SPELL_EX INT_VAR type = 2 level = 1  STR_VAR file = EVAL ~backup/%mod_folder%/workspace/B_SPECT.SPL~ name = ~WIZARD_CHILL_TOUCH~ RET spell_res END
+          COPY_EXISTING ~%spell_res%.spl~ ~override~
+          SAY NAME1 @10110043
+          SAY NAME2 @10110043
+          SAY UNIDENTIFIED_DESC @10110044
+	  SAY DESC @10110044
+              LPF ALTER_EFFECT INT_VAR duration = 60 END
+    COPY_EXISTING_REGEXP GLOB ~%spell_res%.spl~ ~override~
+     PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+            GET_OFFSET_ARRAY ab_array 0x64 4 0x68 2 0 0 0x28
+            PHP_EACH ab_array AS int => ab_off BEGIN
+               GET_OFFSET_ARRAY2 fx_array ab_off ITM_V10_HEAD_EFFECTS
+               PHP_EACH fx_array AS int => fx_off BEGIN
+                  READ_SHORT fx_off fx_type
+                  READ_ASCII fx_off + 0x14 item
+                  PATCH_IF fx_type = 111 BEGIN     // Create magic weap
+                  //     PATCH_PRINT "%item%"  //test
+                       INNER_PATCH_SAVE the_item ~%item%~ BEGIN  END
+                       INNER_ACTION BEGIN
+                            COPY_EXISTING ~%the_item%.ITM~ ~override~
+                                LPF ALTER_ITEM_HEADER INT_VAR range = 10 thac0_bonus = 4 END
+                                LPF ALTER_EFFECT INT_VAR multi_match = 1 match_opcode = 12 timing = 1 dicenumber = 2 dicesize = 8 parameter1 = 0 parameter2 = 131072 savingthrow = 0 STR_VAR END
+                                   PATCH_IF (!GAME_IS ~iwdee~) AND (!FILE_EXISTS_IN_GAME ~dvimhere.mrk~) THEN BEGIN //not IWDEE w/o SR
+
+                                   END
+                                   ELSE BEGIN    //iwdee version
+                                        LPF DELETE_EFFECT INT_VAR match_opcode = 326 match_parameter2 = 1 END //remove undead affecting opcodes
+                                        LPF DELETE_EFFECT INT_VAR match_opcode = 326 savingthrow = 4 STR_VAR = END //Immune to healing and regen
+                                   END
+                                   BUT_ONLY
+                       END//inner action
+                  END //type 111
+               END //php
+            END//php
+     END //source_size
+END//replace chill touch w/spectral hand
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+
+END //end spectral hand installation
+
+
+
 
 //TO DO CONTINUE
 
 //Affect Undead
 ///////////////////////////////////////////////////////////////////////
 ACTION_IF (%chill_affect_undead_patch% > 0) BEGIN  //
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
@@ -358,6 +441,7 @@ ACTION_IF (%chill_affect_undead_patch% = 2) BEGIN  //
         LPF ALTER_SPELL_HEADER INT_VAR projectile = 1 END
         LPF ALTER_EFFECT INT_VAR duration = 120 END  //Duration 2 turns
 
+ACTION_IF (!GAME_IS ~iwdee~) OR (FILE_EXISTS_IN_GAME ~dvimhere.mrk~) THEN BEGIN //not iwdee
   LAF RES_NUM_OF_SPELL_NAME
     STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
     RET spell_res
@@ -400,6 +484,23 @@ ACTION_IF (%chill_affect_undead_patch% = 2) BEGIN  //
      LPF TEXT_REPLACE
        STR_VAR orig_text = EVAL  ~%old%~  new_text = EVAL  ~%new%~
      END
+END//end not iwdee
+ELSE BEGIN    //iwdee version
+     COPY_EXISTING ~B_HDED1.spl~ ~override/SPWI117A.spl~   //the hold spell
+     //k, that was easy.  Now, text:
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
+    RET spell_res
+  END
+   COPY_EXISTING ~%spell_res%.spl~ ~override~
+   SPRINT old @10110039//old text
+   SPRINT new @10110040//new text
+     LPF TEXT_REPLACE
+       STR_VAR orig_text = EVAL  ~%old%~  new_text = EVAL  ~%new%~
+     END
+
+END  //end iwdee (w/o SR)
+
 END //end Hold undead
 
 
@@ -420,34 +521,38 @@ END //end affect undead modification
 ///////////////////////////////////////////////////////////////////////
 ACTION_IF (%chill_affect_range_patch% > 0) BEGIN  //
 
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
+  LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
+    RET spell_res
+  END
+   COPY_EXISTING_REGEXP GLOB ~%spell_res%.spl~ ~override~
+     PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
+            GET_OFFSET_ARRAY ab_array 0x64 4 0x68 2 0 0 0x28
+            PHP_EACH ab_array AS int => ab_off BEGIN
+               GET_OFFSET_ARRAY2 fx_array ab_off ITM_V10_HEAD_EFFECTS
+               PHP_EACH fx_array AS int => fx_off BEGIN
+                  READ_SHORT fx_off fx_type
+                  READ_ASCII fx_off + 0x14 item
+                  PATCH_IF fx_type = 111 BEGIN     // Create magic weap
+                    //   PATCH_PRINT "%item%"  //test
+                       INNER_PATCH_SAVE the_item ~%item%~ BEGIN  END
+                       INNER_ACTION BEGIN
+                            COPY_EXISTING ~%the_item%.ITM~ ~override~
+                                ALTER_ITEM_HEADER INT_VAR range = 10
+                       END//inner action
+                  END //type 111
+               END //php
+            END//php
+     END //source_size
+   COPY_EXISTING ~%spell_res%.spl~ ~override~
+   SPRINT old @10110041//old text
+   SPRINT new @10110042//new text
+     LPF TEXT_REPLACE
+       STR_VAR orig_text = EVAL  ~%old%~  new_text = EVAL  ~%new%~
+     END
 
 ////////////////////////////
 //////Compatibility

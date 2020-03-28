@@ -247,4 +247,25 @@ This spell has a special effect on undead creatures. Undead touched by the caste
 
 This spell has a special effect on undead creatures. Undead touched by the caster suffer no damage or Strength loss, but they must successfully save vs. spell or flee for 2 Turns.~
 
+@10110039 = ~affected by panic~
+@10110040 = ~held~
+@10110041 = ~wizard makes a successful melee attack.~  
+@10110042 = ~wizard makes a successful attack against an opponent up to 10 ft. away.~
+@10110043 = ~Spectral Hand~
+@10110044 = ~Spectral Hand
+(Necromancy)
 
+Level: 1
+Range: 10 ft.
+Duration: 1 turn
+Casting Time: 1
+Area of Effect: The creature
+Saving Throw: Special
+
+When this spell is cast, the mage create a ghostly extension of <PRO_HISHER> hand that can attack creatures as far away as 10 feet with a +4 bonus.  If <PRO_HESHE> hits a creature within 10 ft. with a melee attack, that creature suffers 1d2 fist damage, plus 1d10 points of colod damage.  Furthermore, that creature must make a save vs. death or be unable to heal by any means (cure spell, regeneration, etc.) for 1 turn.
+
+Once the caster makes a successful attack, this spell ends.
+
+Damage increases by 2 points every level (max +20 poinds at level 10).
+
+Undead Creatures are unaffected by Spectral Hand.~
