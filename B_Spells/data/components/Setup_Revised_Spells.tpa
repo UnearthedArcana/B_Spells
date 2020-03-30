@@ -279,103 +279,19 @@ END //end armor modification
 //////NOTES:
 ////////////////////////////
 //Need to check if code works in BG2, IWDEE and with SR TO DO CONTINUE
-//need to modify further by instructions in readme. chill_affect_undead_patch = 1 Undead fear effect; 2 = Undead hold effect
-//go back to CHill Touch range 10' IFF touch to target spells global is installed
-//NO LONGER A RANDED OPTION--REMOVE, BUT USE CODE FOR SPECTRAL HAND
-//spectral hand to 2nd lev if 1st level cantrips installed TO DO CONTINUE
-//continue modifying Spectral Hand
+//Do increased damage progression
+//do No Save
 
-//Chill Touch ---> Spectral Hand
-///////////////////////////////////////////////////////////////////////
-ACTION_IF (%spectral_hand% > 0) BEGIN  //if install spect hand at all
-//Always starting w/original chill touch
-  LAF RES_NUM_OF_SPELL_NAME
-    STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
-    RET spell_res
-  END
-
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-ACTION_IF (%spectral_hand% = 1) BEGIN //replace chill touch w/spectral hand
-      COPY_EXISTING ~%spell_res%.spl~ ~backup/%mod_folder%/workspace/B_SPECT.SPL~
-        LAF ADD_SPELL_EX INT_VAR type = 2 level = 1  STR_VAR file = EVAL ~backup/%mod_folder%/workspace/B_SPECT.SPL~ name = ~WIZARD_CHILL_TOUCH~ RET spell_res END
-          COPY_EXISTING ~%spell_res%.spl~ ~override~
-          SAY NAME1 @10110043
-          SAY NAME2 @10110043
-          SAY UNIDENTIFIED_DESC @10110044
-	  SAY DESC @10110044
-              LPF ALTER_EFFECT INT_VAR duration = 60 END
-    COPY_EXISTING_REGEXP GLOB ~%spell_res%.spl~ ~override~
-     PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
-            GET_OFFSET_ARRAY ab_array 0x64 4 0x68 2 0 0 0x28
-            PHP_EACH ab_array AS int => ab_off BEGIN
-               GET_OFFSET_ARRAY2 fx_array ab_off ITM_V10_HEAD_EFFECTS
-               PHP_EACH fx_array AS int => fx_off BEGIN
-                  READ_SHORT fx_off fx_type
-                  READ_ASCII fx_off + 0x14 item
-                  PATCH_IF fx_type = 111 BEGIN     // Create magic weap
-                  //     PATCH_PRINT "%item%"  //test
-                       INNER_PATCH_SAVE the_item ~%item%~ BEGIN  END
-                       INNER_ACTION BEGIN
-                            COPY_EXISTING ~%the_item%.ITM~ ~override~
-                                LPF ALTER_ITEM_HEADER INT_VAR range = 10 thac0_bonus = 4 END
-                                LPF ALTER_EFFECT INT_VAR multi_match = 1 match_opcode = 12 timing = 1 dicenumber = 2 dicesize = 8 parameter1 = 0 parameter2 = 131072 savingthrow = 0 STR_VAR END
-                                   PATCH_IF (!GAME_IS ~iwdee~) AND (!FILE_EXISTS_IN_GAME ~dvimhere.mrk~) THEN BEGIN //not IWDEE w/o SR
-
-                                   END
-                                   ELSE BEGIN    //iwdee version
-                                        LPF DELETE_EFFECT INT_VAR match_opcode = 326 match_parameter2 = 1 END //remove undead affecting opcodes
-                                        LPF DELETE_EFFECT INT_VAR match_opcode = 326 savingthrow = 4 STR_VAR = END //Immune to healing and regen
-                                   END
-                                   BUT_ONLY
-                       END//inner action
-                  END //type 111
-               END //php
-            END//php
-     END //source_size
-END//replace chill touch w/spectral hand
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-
-
-END //end spectral hand installation
-
-
-
-
-//TO DO CONTINUE
 
 //Affect Undead
 ///////////////////////////////////////////////////////////////////////
 ACTION_IF (%chill_affect_undead_patch% > 0) BEGIN  //
+
+//all ref original spell
+              LAF RES_NUM_OF_SPELL_NAME
+                STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
+                RET spell_res
+              END
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
@@ -383,10 +299,6 @@ ACTION_IF (%chill_affect_undead_patch% > 0) BEGIN  //
 //if undead flee
 ACTION_IF (%chill_affect_undead_patch% = 1) BEGIN  //
       ACTION_IF (!GAME_IS ~iwdee~) AND (!FILE_EXISTS_IN_GAME ~dvimhere.mrk~) THEN BEGIN    //Already exists in iwdee--but SR overwrites
-              LAF RES_NUM_OF_SPELL_NAME
-                STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
-                RET spell_res
-              END
               //fear spl
 COPY ~%mod_folder%/data/revised_spells/chill_touch/SPWI117C.spl~ ~override/%spell_res%C.spl~  //removes protection
 COPY ~%mod_folder%/data/revised_spells/chill_touch/SPWI117A.spl~ ~override/%spell_res%A.spl~  //applies horror
@@ -407,7 +319,11 @@ COPY ~%mod_folder%/data/revised_spells/chill_touch/SPWI117A.spl~ ~override/%spel
                                 LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 177 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 STR_VAR resource = EVAL  ~%spell_res%A~ END
                                 LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 326 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 STR_VAR resource = EVAL  ~%spell_res%C~ END
                        END//inner action
-                  END //type 111
+                  END //opcode 111
+                  PATCH_IF fx_type = 12 BEGIN     // Damage opcode
+                                LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 12 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 dicenumber = 0 dicesize = 0 STR_VAR resource = EVAL  ~%spell_res%A~ END
+                                LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 326 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 STR_VAR match_resource = EVAL  ~%spell_res%A~ resource = EVAL  ~%spell_res%C~ END
+                  END //opcode 12
                END //php
             END//php
      END //source_size
@@ -428,7 +344,7 @@ COPY ~%mod_folder%/data/revised_spells/chill_touch/SPWI117A.spl~ ~override/%spel
       END //end not SR and iwdee
 END//end fear affect undead
 
-END  //end undead flee
+//END  //end  undead     extra end????
 
 //if hold undead
 ACTION_IF (%chill_affect_undead_patch% = 2) BEGIN  //
@@ -466,6 +382,10 @@ ACTION_IF (!GAME_IS ~iwdee~) OR (FILE_EXISTS_IN_GAME ~dvimhere.mrk~) THEN BEGIN 
                                LPF ALTER_EFFECT INT_VAR multi_match = 1 match_opcode = 326 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 STR_VAR match_resource = ~SPWI117A~ resource = ~B_HDED1~ END
 			    END//end game is iwdee (replace fear w/hold)
                        END//inner action
+                  END //type 111
+                  PATCH_IF fx_type = 12 BEGIN     // Direct Damage
+                                LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 12 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 dicenumber = 0 dicesize = 0 STR_VAR resource = EVAL  ~%spell_res%A~ END
+                                LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 326 opcode = 326 timing = 1 parameter1 = 0 parameter2 = 1 savingthrow = 1 STR_VAR match_resource = EVAL  ~%spell_res%A~ resource = EVAL  ~%spell_res%C~ END
                   END //type 111
                END //php
             END//php
@@ -517,9 +437,9 @@ END //end Hold undead
 
 END //end affect undead modification
 
-//10 ft. range
+//Consistent Damage
 ///////////////////////////////////////////////////////////////////////
-ACTION_IF (%chill_affect_range_patch% > 0) BEGIN  //
+ACTION_IF (%chill_con_dam_patch% > 0) BEGIN  //
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
@@ -541,9 +461,12 @@ ACTION_IF (%chill_affect_range_patch% > 0) BEGIN  //
                        INNER_PATCH_SAVE the_item ~%item%~ BEGIN  END
                        INNER_ACTION BEGIN
                             COPY_EXISTING ~%the_item%.ITM~ ~override~
-                                ALTER_ITEM_HEADER INT_VAR range = 10
+                                ALTER_ITEM_EFFECT INT_VAR match_opcode = 12 dicesize = EVAL  ~%chill_con_dam_patch%~  END
                        END//inner action
                   END //type 111
+                  PATCH_IF fx_type = 12 BEGIN     // Direct Damage
+                                ALTER_ITEM_EFFECT INT_VAR match_opcode = 12 dicesize = EVAL  ~%chill_con_dam_patch%~  END
+                  END //type 12
                END //php
             END//php
      END //source_size
@@ -559,7 +482,7 @@ ACTION_IF (%chill_affect_range_patch% > 0) BEGIN  //
 ////////////////////////////
 
 
-END //end ranged patch modification
+END //end consistent damage
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -721,91 +644,7 @@ ACTION_IF (%b_ffam_revision_patch_multi% > 0) BEGIN  //
 
 END //end ffam innate patch
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//________________________________________________________________Infravision___________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Infravision ---> Devil's Eyes
-///////////////////////////////////////////////////////////////////////
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-//add icons/scroll (replacement is ~easy at least)
-//there is something wrong here.  What is that EVAL doing with the ADD_SPELL at line ~242?
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-//NA 
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-
- //level 2 spell if Settings 4:
-ACTION_IF (%devil_eyes% = 4) OR ((%devil_eyes% > 0) AND (%b_cantrips% = 1) BEGIN  //
-   LAF ADD_SPELL_EX INT_VAR type = 2 level = 2  STR_VAR file = EVAL ~%mod_folder%/data/revised_spells/heat_vision/spwi111.spl~ name = ~WIZARD_HEAT_VISION~ RET DEST_FILE END
-   COPY_EXISTING ~%DEST_FILE%~ ~override~
-        SAY NAME1 @10110026
-        SAY NAME2 @10110026
-        SAY UNIDENTIFIED_DESC @10110030
-	SAY DESC @10110030
-        LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@10110026) END  //Notification: Heat Vision
-        LPF ALTER_SPELL_TYPE INT_VAR   spell_level = 2 STR_VAR level_text = 2 END      // change spell text to 2 (prob don't need to change actual level, but harmless)
- END//end as new 2nd level spell
-
-//Install as 1st level spell if sr installed with setting 1 or Setting 3 selected
-ELSE ACTION_IF ((%devil_eyes% = 1) AND (FILE_EXISTS_IN_GAME ~dvimhere.mrk~)) OR (%devil_eyes% = 3) BEGIN  //
-  ADD_SPELL EVAL ~%mod_folder%/data/revised_spells/heat_vision/spwi111.spl~ 2 1 ~WIZARD_HEAT_VISION~ //HEAT VISION
-        SAY NAME1 @10110026
-        SAY NAME2 @10110026
-        SAY UNIDENTIFIED_DESC @10110030
-	SAY DESC @10110030
-        LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@10110026) END  //Notification: Heat Vision
-
- END//ADD DEVIL'S EYES AS NEW 1ST LEVEL SPELL
- //level 1 OVER Infravision if Settings 2:
-ELSE ACTION_IF ((%devil_eyes% = 1) AND (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~)) OR (%devil_eyes% = 2) BEGIN  //
-   LAF ADD_SPELL_EX INT_VAR type = 2 level = 1  STR_VAR file = EVAL ~%mod_folder%/data/revised_spells/heat_vision/spwi111.spl~ name = ~WIZARD_INFRAVISION~ RET DEST_FILE END
-   COPY_EXISTING ~%DEST_FILE%~ ~override~
-        SAY NAME1 @10110026
-        SAY NAME2 @10110026
-        SAY UNIDENTIFIED_DESC @10110030
-	SAY DESC @10110030
-        LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@10110026) END  //Notification: Heat Vision
-  END
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-//TO DO CONTINUE
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//TO DO CONTINUE
-
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-//NA 
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-//TO DO CONTINUE
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-//TO DO CONTINUE
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-//DONE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -955,120 +794,6 @@ LAF ADD_SPELL_EX INT_VAR type = 1 level = EVAL ~%hold_animal_lev%~  STR_VAR file
 
 END //End Hold Animal Level Change  
 
-//Hold Animal ---> Hold Beast
-///////////////////////////////////////////////////////////////////////
-ACTION_IF (%hold_beast% > 0) BEGIN  //
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-
-//MAKING 'ALLIES' IMMUNE.  nOT SURE IF THAT MEANS 'ALLY TO PC' OR 'ALLY TO CASTER'.
-//I THIK IT'S 'ALLIES TO PC' SO MAY NEED A DIFFERENT VERSION FOR PCS VS NPCS.
-//ORIGINAL MAY NEED TO BE ADDED TO HIDESPL, AND MADE INTO A NPC VERSION, SCRIPTS SHOULD BE TWEAKED SO THEY USE VS. SUMMONED MONSTERS
-
-
-//ALSO, DOUBLE CHECK THIS DOESN'T HOLD SPIRIT SUMMONS
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-COPY ~%mod_folder%/data/spells/revised_spells/hold_animal/#GENENCH.vvc~ ~override~ // vvc
-COPY ~Spells/data/spells/revised_spells/hold_animal/ENCHANX.bam~ ~override~ // vvc bam
-COPY ~Spells/data/spells/revised_spells/hold_animal/#ARE_P21.WAV~ ~override~ // vvc sound
-COPY ~Spells/data/spells/revised_spells/hold_animal/#EFF_P04.WAV~ ~override~ // sound
-COPY ~Spells/data/spells/revised_spells/hold_animal/#EFF_E05.WAV~ ~override~ // sound
-ADD_PROJECTILE ~Spells/data/spells/revised_spells/hold_animal/b_beast.pro~   //pro
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-
-
-//need to determine if hold animal is still level 3
-ACTION_IF (%hold_animal_lev% > 3) OR ((%hold_animal_lev% < 3) AND (%hold_animal_lev% > 0)) BEGIN  //it isn't lev 3 anymore
-//SR doen't need to be accounted for Here because if true, the SR spell is not the same splres.
-  ADD_SPELL ~Spells/data/revised_spells/hold_animal/sppr305.spl~ 1 3 ~CLERIC_HOLD_BEAST~ //
-        SAY NAME1 @51104
-        SAY NAME2 @51104
-        SAY UNIDENTIFIED_DESC @51105
-	SAY DESC @51105
-        LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_beast% END
-  LAF RES_NUM_OF_SPELL_NAME
-    STR_VAR spell_name = ~CLERIC_HOLD_BEAST~
-    RET spell_res
-  END
-  COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ALTER_EFFECT
-      INT_VAR match_opcode = 324            //
-      STR_VAR resource = EVAL ~%spell_res%~
-
-END
-
-ELSE BEGIN  //it IS Lev 3 (and should work if hold_animal_lev is Not set)
-
-  ACTION_IF (FILE_EXISTS_IN_GAME ~dvimhere.mrk~) AND (%hold_beast% < 2) BEGIN   //if SR installed, add hold beast as new spell
-
-    ADD_SPELL ~Spells/data/revised_spells/hold_animal/sppr305.spl~ 1 3 ~CLERIC_HOLD_BEAST~ //
-        SAY NAME1 @51104
-        SAY NAME2 @51104
-        SAY UNIDENTIFIED_DESC @51105
-	SAY DESC @51105
-        LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_beast% END
-   LAF RES_NUM_OF_SPELL_NAME
-    STR_VAR spell_name = ~CLERIC_HOLD_BEAST~
-    RET spell_res
-   END
-   COPY_EXISTING ~%spell_res%.spl~ ~override~
-    LPF ALTER_EFFECT
-      INT_VAR match_opcode = 324            //
-      STR_VAR resource = EVAL ~%spell_res%~
-
-  END //END SR installed
-
-  ELSE BEGIN //SR Not installed OR Hold Beast is a value of 2
-    COPY ~Spells/data/spells/revised_spells/hold_animal/sppr305.spl~ ~override~ // Hold Beast
-        SAY NAME1 @51104
-        SAY NAME2 @51104
-        SAY UNIDENTIFIED_DESC @51105
-	SAY DESC @51105
-        LPF ALTER_SPELL_HEADER INT_VAR projectile = %b_beast% END
-  END //END SR Not installed
-
-END //end hold animal Not lev 3
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-//TO DO CONTINUE (IFF ADD BEAST) 
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//NA(?)
-
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-//TO DO CONTINUE(?) 
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
- //TO DO CONTINUE (IFF ADD BEAST)
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-//TO DO CONTINUE (IFF ADD BEAST)
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-//TO DO CONTINUE (IFF ADD BEAST)
-
-
-END //End Add Hold Beast
 
 
 

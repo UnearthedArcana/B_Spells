@@ -64,11 +64,27 @@ TO DO 31: Revise Reprieve spell as per description on github.
 
 TO DO 32: go back to CHill Touch range 10' IFF touch to target spells global is installed
 
+TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or add as 2nd level spell as Spectral Hand).  
+
+Version 0.90.09
+
+2020-03-30
+
+- Started Moving Hold Beast to New Spells (while keeping hold animal change level in Revised)
+
+2020-03-29
+
+- Moved Devil's Eyes to New Spells and made it non-destructive
+
+2020-03-28
+
+- Put Spectral Hand in New Spell
+
 Version 0.90.08
 
 2020-03-27
 
-- Started adding Spectral Hand (revised spell)  
+- Started adding Spectral Hand (revised spell)
 
 - Incorporated ADD_SPELL_HEADER (credit: Adarnis)  
 

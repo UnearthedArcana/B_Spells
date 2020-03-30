@@ -252,6 +252,8 @@ This spell has a special effect on undead creatures. Undead touched by the caste
 @10110041 = ~wizard makes a successful melee attack.~  
 @10110042 = ~wizard makes a successful attack against an opponent up to 10 ft. away.~
 @10110043 = ~Spectral Hand~
+@10110044 = ~Cannot heal by any means!~      
+
 @10110044 = ~Spectral Hand
 (Necromancy)
 
