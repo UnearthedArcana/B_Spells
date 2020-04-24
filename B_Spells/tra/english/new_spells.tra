@@ -1100,12 +1100,14 @@ This spell creates a thin magical shell that harmlessly absorbs the first physic
 
 Level: 1
 Range: 0
-Duration: 3 rounds
-Casting Time: 0
+Duration: 1 round
+Casting Time: Special
 Area of Effect: The caster
 Saving Throw: None
 
-This spell gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time granting a +5 bonus to AC, and +1 to weapon and casting speed for 3 rounds.~
+This spell gives the caster a temporary, intuitive foreknowledge of the immediate future, resulting in improved reaction time granting a +5 bonus to AC, and +1 to weapon and casting speed for 1 round.
+
+This spell can be cast immediately, even if the caster has already taken an action this round.  In addition, if <PRO_HESHE> has cast this spell in a given round, <PRO_HESHE> can take another action (such as casting another spell, or attacking with your weapon) in the same round.~
 
 @65111   = ~Exterminate~
 @65112   = ~Exterminate
@@ -1476,5 +1478,130 @@ Saving Throw: None
 
 This spell causes nearby undead to lose track of and ignore the warded creature for the duration of the spell. This spell is effective against undead with 4 Hit Die or undead with Hit Die equal to the caster's level, whichever is higher. Note that unlike normal invisibility, the recipient of this spell can still attack undead creatures without losing the invisibility. Priests affected by this spell cannot turn undead.~
 
+@66015 = ~Accelerated Metabolism~
+@66016 = ~Vanish~
+@66017 = ~Vanish
+Level: 1
+Range: 0
+Duration: 1 round, +1 round per 2 levels
+Casting Time: 1
+Area of Effect: The caster
+Saving Throw: None
 
+This spell turns the caster invisible and makes <PRO_HIMHER> undetectable by normal vision or infravision. The spell remains in effect for 1 round, +1 round per 2 levels after 1st, level (max 5 rounds at levl 9), until it is magically broken or dispelled, or until the recipient talks to or attacks any creature. Thus, the invisible being can open doors, eat, climb stairs, etc., but if <PRO_HESHE> attacks or casts a spell, <PRO_HESHE> immediately becomes visible (although the invisibility enables <PRO_HIMHER> to attack first).~
 
+@68018 = ~Blastbones~
+@68019 = ~Blastbones
+(Necromancy)
+
+Level: 2
+Range: Visual range of the caster
+Casting Time: 2
+Duration: Special
+Area of Effect: Special
+Saving Throw: Special
+
+This spell allows the caster to shatter exposed bones in a violent explosion.  Blastbones has a different affect depending on whether the target is an enemy.  Enemy skeletons (and a few other undead, see below) must save vs. death -2 or explode, destroying itself and damaging all nearby creatures with shards of bone for 2d4 points of piercing (all affected creatures can save vs. breath for 1/2 damage).  Skeleton Warriors targeted by this spell inflict double damage  (4d4 points of damage), and they deal magic damage instead of slashing damage.  More fleshy creatures, such as zombies, do an additional 1d12 points of crushing damage (again, save vs. breath for 1/2 damage).  If the creature makes its save, or if this spell is cast an enemy undead creature that cannot be otherwise affected, the spell only creates a small explosive puff doing 1d4+1 points of magic damage to the target creature with no explosion.
+
+Allied (and non-enemy) undead do not explode, nor are they allowed a save.  Instead, they explode once they are reduced down to 10% their hit point total (though, not if they are destroyed by turning).  The explosion has the same affect as above.  Note that the affected undead will explode immediately if they are already at 10% their hit point total.  
+
+At 3rd level, this spell can only affect normal skeletons. At 5th level, it can affect zombies.  Finally, at 9th level, this spell can affect skeleton warriors.~
+
+@68020 = ~Illusory Fireball~
+@68021 = ~Illusory Fireball
+(Illusion/Phantasm) 
+
+Level: 2
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 3
+Area of Effect: 15-ft. radius
+Saving Throw: 1/2
+
+This spell creates a realistic illusion of the quintessential mage spell: the dreaded fireball.  But, while this spell creates a sensory representation of that spell, the damage it causes is due to 'psychic shock' of those who believe that they are targeted by that deadly spell.  Though fire resistance does not protect against this spell, those that are immune to fire take no damage as they do not expect to be damaged by a fireball spell.  This spell is not powerful enough to actually kill its targets.  Target enemies take 1d4 points of non-lethal damage, plus 1d4 points per 2 levels of the caster (max 6d4 points of damage at 10th level.  Those who roll successful Saving Throw vs. spell manage to partially disbelieve the spell, taking only half damage.
+
+Allies of the caster and creatures with an Intelligence of 20 or higher are immune to this spell.~
+
+@68022 = ~Bolt of Paralysis~
+
+@68023 = ~Bolt of Paralysis
+(Evocation)
+
+Level: 2
+Range: Visual Range of Caster
+Duration: 1 round/level
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: Special
+
+When the mage casts this spell, a bolt of pure energy lances at <PRO_HISHER> target, unerringly hitting them. If they do not successfully save vs. poison/death, they are paralyzed for 1 round per level.
+Even if the target makes their save, they are instead slowed for one round.
+
+This spell does not affect undead or constructs, such as golems.~
+
+@68024 = ~Animate Skeleton~
+@68025 = ~Animate Skeleton
+(Necromancy)
+
+Level: 1
+Range: Visual range of the caster
+Duration: 8 hours
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+
+This specialized version of the animate dead spell produces one skeleton servant. The animated skeleton obeys the simple verbal commands of the caster, and remain animated until destroyed in combat, turned by a priest, or 8 hours pass; the magic cannot be dispelled.~
+
+@68026 = ~Carpet of Adhesion~
+
+@68027 = ~Carpet of Adhesion
+(Conjuration)
+
+Level: 1
+Range: 30 ft.
+Duration: 1 Turn
+Casting Time: 1
+Area of Effect: 15-ft. radius
+Saving Throw: Special
+
+An Adhesion spell covers a material surface with a sticky tar-like substance. Any creature entering the area or caught in it when the spell is cast must save vs. Breath each round or be stuck in place, unable to move for the rest of the round (wait until the next round). Those who successfully save can move but do so at 1/4 their normal rate. All creatures in the area find it hard to defend themselves, and suffer a -2 penalty to saves vs. Breath (including subsequent saves against adhesion) and a -2 penalty to AC.
+
+This spell has no chance of holding huge or larger creatures in place.~
+
+@68028 = ~Snowball~
+@68029 = ~Snowball
+(Evocation)
+
+Level: 2
+Range: Visual range of the caster
+Duration: Instantaneous.
+Target: 1 Creature
+Casting Time: 1
+Saving Throw: 1/2
+
+This spell creates a mystical snowball which flies at any target of <PRO_HISHER> choice within range. The snowball hits automatically for 2d6 points of cold damage (double against fire using creatures). Targets can save vs. breath for 1/2 damage.  This spell does an additional 1d6 points of cold damage for every 2 levels of experience after 3rd level (maximum 5d6 cold damage at 9th level).~
+@68030 = ~Ice Knife~
+@68031 = ~Ice Knife
+(Evocation)
+
+Level: 1
+Range: Visual range of the caster
+Duration: Special
+Casting Time: 2
+Area of Effect: Special
+Saving Throw: Special
+
+This spell fires a dagger of ice at the target. The target suffers 2-8 (2d4) hit points of missile damage. When an ice knife strikes a creature, the knife shatters, releasing a wave of numbing cold. All creatures within a 15-foot radius suffer 2-8 (2d4) hit points of cold damage and become numb for 3 rounds. Numbed creatures have their movement rates reduced by half and their chance to hit reduced by 2. Creatures can save vs. paralyzation for half damage and to avoid the numbed condition.~
+
+@68030 = ~Fire Burst~
+@68031 = ~Fire Burst
+(Evocation)
+
+Level: 1
+Range: Visual range of the caster
+Duration: Instantaneous
+Casting Time: 1
+Area of Effect: 15-ft. radius
+Saving Throw: Neg.
+
+When this spell is cast, the caster selects a point within range. That point bursts into flames, causing all creatures within 15 feet to suffer 1 point of damage per level of the caster (maximum of 10 points). Victims who roll a saving throw vs. breath successfully suffer no damage.~

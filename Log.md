@@ -64,7 +64,51 @@ TO DO 31: Revise Reprieve spell as per description on github.
 
 TO DO 32: go back to CHill Touch range 10' IFF touch to target spells global is installed
 
-TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or add as 2nd level spell as Spectral Hand).  
+TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or add as 2nd level spell as Spectral Hand).
+
+Version 0.90.10
+
+2020-04-20
+
+- Ice Knife
+
+- Casting time alteration to Anticipation
+
+- Fire Burst
+
+2020-04-19
+
+- Snowball to 2nd level
+
+2020-04-18
+
+- Animate Skeleton
+
+- Carpet of Adhesion
+
+- Snowball
+
+2020-04-17
+
+- Bolt of Paralysis
+
+2020-04-16
+
+- Skeleton of Illusory Fireball spell
+
+- A few details on blastbones
+
+- Final first draft of blastbones
+
+2020-04-11
+
+- First Draft of Blastbones
+
+- Fixed missing vanish text ref
+
+2020-04-08
+
+- Put Hold Animal Lev change in Revised Component, and Hold Beast in New Spells Component
 
 Version 0.90.09
 
