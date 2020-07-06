@@ -558,6 +558,23 @@ Weight: 1~
 @900010047 = ~Summon Giant Spider~
 @900010048 = ~Web~
 @900010049 = ~Gremlin~
+@900010050 = ~Notebook~
+@900010051 = ~This notebook is perfect for sketching out notes for various endeavors, including recipes for potions, crafting instructions for wands, etc.
+The notebook has a simple mechanical device that allows the user to remove and replace pages as needed.
+Note that the pages in this notebook are too shoddy to use for scroll creation.
+
+STATISTICS:
+
+Weight: 2~
+@900010052 = ~Potion Recipe: ~
+@900010053 = ~Notebook Page, Blank~
+@900010054 = ~Notebook
+This is a blank page from a notebook.
+It is too shoddy to use for scroll creation.
+
+STATISTICS:
+
+Weight: 0~
 
 
 

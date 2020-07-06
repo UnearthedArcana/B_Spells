@@ -23,6 +23,10 @@
 @21 = ~Install Infinite Innate Cantrips for all arcane classes~
 @22 = ~Install Priest Scrolls~
 
+@50 = ~Install the Standard (Simulated PnP) version of Item creation for all casting classes~
+@51 = ~Install the Standard (Simulated PnP) version of Item creation for all casting classes~
+@52 = ~Item Creation~
+
 @100= ~Add New Spells~
 @101= ~Add New Items~
 

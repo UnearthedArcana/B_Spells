@@ -66,6 +66,48 @@ TO DO 32: go back to CHill Touch range 10' IFF touch to target spells global is 
 
 TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or add as 2nd level spell as Spectral Hand).
 
+Version 0.90.11
+
+2020-07-04
+
+- Started Carpet of adhesion, detect magic, 
+
+2020-07-03
+
+- Added ini entries charm monster, Sepia Snake Sigil, Fabricate
+
+- Fixed a number of installation errors for New Arcane Spells
+
+- Fixed issue with animate skeleton spell (missing cre in certain games)
+
+2020-07-02
+
+- Added ini entries Summon Swarm, Pyrotechnics, Protection from Paralysis, Tasha's Laughter 
+
+2020-07-01
+
+- Added ini entries Control Plants, Disrupt Life, ESP
+
+2020-06-30
+
+- Added ini entries for detect magic
+
+2020-06-27
+
+- Added ini entries for Iron mind, explosive runes, solvent of corrosion, Augment Undead
+
+2020-05-16
+
+- Added notebook and page bams/items for 
+
+2020-05-02
+
+- Restructured tp2
+
+2020-04-30
+
+- Created ingame notebook for item crafting recipies
+
 Version 0.90.10
 
 2020-04-20

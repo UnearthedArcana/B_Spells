@@ -1593,8 +1593,8 @@ Saving Throw: Special
 
 This spell fires a dagger of ice at the target. The target suffers 2-8 (2d4) hit points of missile damage. When an ice knife strikes a creature, the knife shatters, releasing a wave of numbing cold. All creatures within a 15-foot radius suffer 2-8 (2d4) hit points of cold damage and become numb for 3 rounds. Numbed creatures have their movement rates reduced by half and their chance to hit reduced by 2. Creatures can save vs. paralyzation for half damage and to avoid the numbed condition.~
 
-@68030 = ~Fire Burst~
-@68031 = ~Fire Burst
+@68032 = ~Fire Burst~
+@68033 = ~Fire Burst
 (Evocation)
 
 Level: 1
@@ -1605,3 +1605,22 @@ Area of Effect: 15-ft. radius
 Saving Throw: Neg.
 
 When this spell is cast, the caster selects a point within range. That point bursts into flames, causing all creatures within 15 feet to suffer 1 point of damage per level of the caster (maximum of 10 points). Victims who roll a saving throw vs. breath successfully suffer no damage.~
+
+@68034 = ~Skeleton~
+@68035 = ~Skeleton Archer~
+@68036 = ~Detect Magic~
+@68037 = ~Detect Magic
+(Divination)
+
+Level: 1
+Range: 0
+Duration: Special
+Casting Time: Special
+Area of Effect: 30-ft. radius
+Saving Throw: None
+
+When the detect magic spell is cast, the wizard detects magical radiations in all creatures within 30-ft. Essentially, all creatures under the effect of a dispellable spell glow briefly. This spell also gives the caster special insight as to the nature of the magics affecting said creatures. The caster can use this insight to cast dispel magic within 1 round, and if <PRO_HESHE> does so, <PRO_HISHER> dispel magic check is made at twice <PRO_HISHER> level (maximum +5 levels at 5th level).
+
+Note that this spell does not reveal the presence of good or evil, or reveal alignment. Otherplanar creatures are not necessarily magical.
+
+This spell can be cast immediately, even if the caster has already taken an action this round. In addition, if <PRO_HESHE> has cast this spell in a given round, <PRO_HESHE> can take another action (such as casting another spell, or attacking with your weapon) in the same round.~
