@@ -4,7 +4,7 @@
 @2 = ~BGEE or BG2EE required!~
 @3 = ~Install New Spells only~
 @4 = ~Install All new items (including IWDEE items if applicable)~
-@5 = ~New Spells~
+@5 = ~New and Revised Spells~
 @6 = ~New Items~
 @8 = ~skipping component~
 @9 = ~Main Component~
@@ -26,6 +26,7 @@
 @50 = ~Install the Standard (Simulated PnP) version of Item creation for all casting classes~
 @51 = ~Install the Standard (Simulated PnP) version of Item creation for all casting classes~
 @52 = ~Item Creation~
+@53 = ~Install All Revised Spells (per ini)~
 
 @100= ~Add New Spells~
 @101= ~Add New Items~

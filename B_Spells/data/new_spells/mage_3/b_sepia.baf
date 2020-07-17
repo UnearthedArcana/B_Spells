@@ -1,0 +1,21 @@
+IF
+	See([EVILCUTOFF])
+THEN
+	RESPONSE #100
+	ReallyForceSpell(NearestEnemyOf(Myself),INNATE_SEPIA_PARALYSIS)
+	Continue()
+END
+
+IF
+	CheckStat(NearestEnemyOf(Myself),1,58)
+THEN
+	RESPONSE #100
+	DestroySelf()
+END
+
+IF
+	True()
+THEN
+	RESPONSE #100
+	Wait(3)
+END

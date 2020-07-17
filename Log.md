@@ -66,6 +66,53 @@ TO DO 32: go back to CHill Touch range 10' IFF touch to target spells global is 
 
 TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or add as 2nd level spell as Spectral Hand).
 
+Version 0.90.12
+
+2020-07-17
+
+- Started Structural Revision of tp2 (but too many distractions!)  
+
+2020-07-15
+
+- Fixed and improved Sepia, including script and special item.  
+
+- Set up ini for mindsight, Phantasmal killer, Snilloc's Major Missile, Usurp Shell
+
+- Finially started limiting scope for version 1
+
+2020-07-14
+
+- Finished (first draft of) Sepia Snake Sigil (Tested: add script to monster and script doesn't seem to fire...)
+
+2020-07-13
+
+- Started Sepia Snake Sigil
+
+2020-07-12
+
+- Changed control plant to 3rd level, and summon swarm to level 4 (because wizards shouldn't be better than druids at druidy things)
+
+2020-07-11
+
+- Started ESP spell (revised)
+
+
+2020-07-10
+
+- Started Bind spell (which I revised)
+
+2020-07-09
+
+- Changed Disrupt life to a 3rd level spell, and made first draft
+
+- Modified Detect Magic
+
+2020-07-07
+
+- Made carpet of adhesion actually install in iwdee
+
+- Started Animate Zombie 
+
 Version 0.90.11
 
 2020-07-04

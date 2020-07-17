@@ -2,7 +2,7 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.11~
+VERSION ~0.90.11.01~
 
 
 ALWAYS
@@ -122,7 +122,7 @@ LANGUAGE ~English~ ~english~
 BEGIN @0  //All new spells (including IWDEE spells if applicable)
 SUBCOMPONENT @100
 DESIGNATED 101
-GROUP @5 
+GROUP @5  //New and Revised Spells
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for now
 
 
@@ -251,12 +251,11 @@ INCLUDE ~%mod_folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
 INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 
-/*
-//not ready yet
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
-///////////////////////////////////   Components 111-???: Cantrips: Infinite Innate   ////////////////////////////////////
+////////////////////////////////////////    Components 110-???: Revised Spells    ////////////////////////////////////////
 ////////////////////////////////////////                                          ////////////////////////////////////////  
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -264,14 +263,44 @@ INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//		111: Infinite Innate Cantrips for all divine and arcane classes
+//			110: All Locally Revised Spells
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN @53 // ~Install All Revised Spells (per ini)~
+//SUBCOMPONENT @100
+DESIGNATED 110
+GROUP @5 
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//			111: Global Spell Changes: 
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+/*
+//not ready yet
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////  
+///////////////////////////////////   Components 120-???: Cantrips: Infinite Innate   ////////////////////////////////////
+////////////////////////////////////////                                          ////////////////////////////////////////  
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//		120: Infinite Innate Cantrips for all divine and arcane classes
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
 
 BEGIN @18  //Install Infinite Innate Cantrips for all divine and arcane classes
 SUBCOMPONENT @19
-DESIGNATED 111
+DESIGNATED 120
 GROUP @19
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now  Will check for specifics below (i.e. presence of 1st level, finite, etc.)
 
@@ -291,14 +320,14 @@ INCLUDE ~%mod_folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infi
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//		112: Infinite Innate Cantrips for all divine classes
+//		121: Infinite Innate Cantrips for all divine classes
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
 
 BEGIN @20  //Install Infinite Innate Cantrips for all divine classes
 SUBCOMPONENT @19
-DESIGNATED 112
+DESIGNATED 121
 GROUP @19
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now  Will check for specifics below (i.e. presence of 1st level, finite, etc.)
 
@@ -313,14 +342,14 @@ INCLUDE ~%mod_folder%/data/components/Setup_priest_0-cantrips.tpa~ //Priest infi
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 //
-//		113: Infinite Innate Cantrips for all arcane classes
+//		122: Infinite Innate Cantrips for all arcane classes
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
 
 BEGIN @21  //Install Infinite Innate Cantrips for all arcane classes
 SUBCOMPONENT @19
-DESIGNATED 113
+DESIGNATED 122
 GROUP @19
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now  Will check for specifics below (i.e. presence of 1st level, finite, etc.)
 

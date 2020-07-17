@@ -484,7 +484,7 @@ Casting Time: 6
 Area of Effect: 10-ft. radius
 Saving Throw: none
 
-When the druid casts this spell, <PRO_HESHE> selects an area within range.  The plant life in the area reconfigue to construct a deadly trap that does 1d8 points of piercing damage per level (max 10d8). 
+When the druid casts this spell, <PRO_HESHE> selects an area within range.  The plant life in the area reconfigue to construct a deadly trap that does 1d8 points of piercing damage per level (max 10d8).
 
 Much like a thief trap, this spell fails if cast in the presence of enemies.~
 
@@ -1624,3 +1624,119 @@ When the detect magic spell is cast, the wizard detects magical radiations in al
 Note that this spell does not reveal the presence of good or evil, or reveal alignment. Otherplanar creatures are not necessarily magical.
 
 This spell can be cast immediately, even if the caster has already taken an action this round. In addition, if <PRO_HESHE> has cast this spell in a given round, <PRO_HESHE> can take another action (such as casting another spell, or attacking with your weapon) in the same round.~
+
+@68038 = ~Plant Control~
+@68039 = ~Plant Control
+(Alteration)    
+
+Level: 3
+Range: Visual Range of Caster
+Duration: 1 Turn
+Casting Time:  4
+Area of Effect: Special
+Saving Throw: Special
+  
+The plant control spell enables the caster to do one of two things: <PRO_HESHE> can cause local vegetation to hassle <PRO_HISHER> enemies, or <PRO_HESHE> can use it to dominate plant-like creatures.  
+  
+With the first use of this spell, the caster causes normal vegetation to grow, entwine, and entangle enemies of smaller than huge size. This use of the Control Plants spell is identical to the Druid's Entanglement spell.  
+  
+Alternatively, this spell can be used to dominate a creature of plant origin (Shambling Mound, Myconid, etc.)  In this case, the creature must save vs. spell and if they fail, they are under the control of the caster for the duration.~
+
+@68040 = ~Zombie~
+@68041 = ~Animate Zombie~
+@68042 = ~Animate Zombie
+(Necromancy)
+
+Level: 2
+Range: Visual range of the caster
+Duration: 8 hours
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+This variation of the animate dead spell produces one zombie servant. The animated zombie obeys the simple verbal commands of the caster. and remain animated until destroyed in combat, turned by a priest, or 8 hours pass; the magic cannot be dispelled.~
+@68043 = ~Disrupt Life~
+@68044 = ~Disrupt Life
+(Necromancy)
+
+Level: 3
+Range: Visual range of the caster
+Duration: Special
+Casting Time: 7
+Area of Effect: One Living Creature
+Saving Throw: Special
+This spell disrupts the life force that sustains a target living creature. Any living creature targeted by this spell suffers 4d6+4 points of magic damage, +1d6+1 per two levels after 5th level (max 9d6+9 at 15th level).
+
+In addition, the target creature must save vs. spell or suffer fatigue for 2 rounds/level.
+
+This spell only affects living creatures. It has no affect on unnatural creatures such as undead or golems.~
+@68045 = ~Reveal Magic~
+@68046 = ~Reveal Magic
+When you concentrate and use this ability, all creatues within 30' that are affected by dispellable effects will glow red briefly.~
+@68047 = ~Detect Magic
+(Divination)
+
+Level: 1
+Range: 0
+Duration: 1 Turn/2 level (max 5 turns)
+Casting Time: 9
+Area of Effect: The Caster
+Saving Throw: None
+When the detect magic spell is cast, the wizard is able to detect magical radiations in all creatures within 30-ft with only a moment of concentration. Essentially, whenever <PRO_HESHE> uses this ability, all creatures under the effect of a dispellable spell glow briefly. This spell also gives the caster special insight as to the nature of the magics affecting said creatures. The caster can use this insight to cast dispel magic within the duration, and if <PRO_HESHE> does so, <PRO_HISHER> dispel magic check is made at twice <PRO_HISHER> level (maximum +5 levels at 5th level). This spell also makes it easier for <PRO_HIMHER> to identify magical items, effectively giving <PRO_HIMHER> a +10 bonus to lore for the duration.
+
+Note that this spell does not reveal the presence of good or evil, or reveal alignment. Otherplanar creatures are not necessarily magical.~
+@68047 = ~Bind~
+@68048 = ~Bind
+(Alteration)
+
+Level: 2
+Range: Visual Range of Caster
+Duration: 5 rounds maximum (see below)
+Casting Time: 2
+Area of Effect: 1 Creature
+Saving Throw: Neg
+When this spell is employed, the wizard can command any nonliving ropelike object, including string, yarn, cord, line, rope, or even a cable to enwrap a single creature if they do not make a save vs. breath. Affected creatures cannot move and are effectively held for 1 round. Each additional round, the target gets another save, and if they succeed, then they are free. Otherwise, the creature remains held until they save or until 5 rounds pass.
+
+Huge creatures, and creatures with strength scores of 20 or higher are not affected by this spell.~
+
+
+@68049 = ~Choke~
+@68050 = ~Choke
+(Necromancy)
+
+Level: 2
+Range: Visual range of caster
+Duration: Special
+Casting Time: 2
+Area of Effect: 1 Creature
+Saving Throw: Special
+By means of choke, the caster causes a pair of ghostly hands to appear around the throat of a single victim. The victim must be a creature with a describable throat, such as a human, demihuman, or humanoid. The hands will choke and strangle the affected victim for the duration of the spell; each round, the victim suffers 2-4 hit points of damage from the choking hands, and they suffer a 40% spell failure chance. Each round the victim makes a successful saving throw, they suffer half-damage and no spell failure. Choke can be negated by dispel magic or a similar spell; the victim cannot wrench the ethereal hands away from their neck.
+
+Choke lasts for 1 round at level 3, and for 1 additional round every two levels after that (max 5 rounds at level 11).~
+
+@68051 = ~ESP~
+@68052 = ~ESP
+(Divination)
+
+Level: 2
+Range: 0
+Duration: 1 turn/level (max 10 turns)
+Casting Time: 1
+Area of Effect: The Caster
+Saving Throw: None
+When an ESP spell is used, the caster is gains a prenatal ability to detect, and react to danger. For the duration of the spell, the caster gains a +2 bonus to AC, and saves vs. Breath, and the target gains immunity to backstab for the duration.~
+
+@68053 = ~Summon Swarm~
+@68054 = ~Paralysis~
+@68055 = ~Sepia Snake Sigil~
+@68056 = ~Sepia Snake Sigil
+(Conjuration/Summoning)
+
+Level: 3
+Range: 0
+Duration: Special
+Casting Time: 9
+Area of Effect: Special
+Saving Throw: None
+When this spell is cast, an area selected by the caster is warded against intrusion.  If an uninvited creature comes too close to the warded area, they are struck by a shimmering field of force, and are paralyzed for 1 full turn if they fail to save vs. paralysis.  If the creature makes their save, then the affect happens again, up to two times per round until a creature is paralyzed, at which time the ward dissipates.
+
+The target can be released by any effect that removes paralysis, or by a successful dispel magic spell.~
