@@ -576,5 +576,11 @@ STATISTICS:
 
 Weight: 0~
 
+//Wands @900020001 to @900030000
+
+@900020001 = ~You do not have the materials to recharge a wand.~
+@900020002 = ~Recharge a wand of what tier?~
+@900020003 = ~Recharge a Tier I Wand~
+
 
 

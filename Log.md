@@ -66,7 +66,51 @@ TO DO 32: go back to CHill Touch range 10' IFF touch to target spells global is 
 
 TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or add as 2nd level spell as Spectral Hand).
 
-Version 0.90.12
+Version 0.90.13
+
+2020-08-25
+
+- Added spell bams for accelerate metabolism, detect magic, exterminate, mindsight, Filth's Bane, Fire burst, Hypnotism
+
+- Note: GET BACK TO RECHARGE!
+
+2020-08-15
+
+- Continued on Recharge
+
+2020-08-08
+
+- Started Recharge Spell
+
+2020-08-01
+
+- Started Polymorph any object
+
+- First Draft: Algarth's Embattlement
+
+2020-07-29
+
+- First Draft: Mass Dominate
+
+2020-07-25
+
+- First Draft: Unfailing Premonition
+
+- First Draft: Delayed Magic Missile
+
+- First Draft: Poison (wiz version)  
+
+2020-07-24
+
+- First Draft: Weird
+
+- First Draft: Demand
+
+2020-07-19
+
+- First Draft: Destroy Undead Spell
+
+Version 0.90.11.01
 
 2020-07-17
 

@@ -1,0 +1,71 @@
+//ground bam
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~GWAND01.bam~ BEGIN
+  COPY ~%mod_folder%/data/arcane_crafting/wand/GWAND01.bam~ ~override~
+END
+//missing gems
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~MISC41.itm~ BEGIN
+  COPY ~%mod_folder%/data/arcane_crafting/wand/MISC41.itm~ ~override~
+        SAY NAME1 @68087
+        SAY NAME2 @68088
+	SAY DESC @68089
+  COPY ~%mod_folder%/data/arcane_crafting/wand/TTTREAS.itm~ ~override~
+        SAY NAME1 @68087
+        SAY NAME2 @68088
+	SAY DESC @68089
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////      Wand of Spell Striking        //////////////////
+////////////////////////////////////////////////////////////////////////
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND18.itm~ BEGIN
+  COPY ~%mod_folder%/data/arcane_crafting/wand/IWAND18.bam~ ~override~
+  COPY ~%mod_folder%/data/arcane_crafting/wand/WAND18.ITM~ ~override~
+        SAY NAME1 @68077
+        SAY NAME2 @68083
+        SAY UNIDENTIFIED_DESC @68080
+	SAY DESC @68084
+  LPF ALTER_EFFECT INT_VAR STR_VAR match_resource = SPWI513 resource = B_WA101 END      //   breach
+  LPF ALTER_EFFECT INT_VAR STR_VAR match_resource = SPWI608 resource = B_WA102 END      // sp piercing
+
+//tooltip
+LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@68085) // Breach
+  $tip(2) = RESOLVE_STR_REF (@68086) // Pierce Magic
+STR_VAR
+  item = WAND18 // file name
+END
+//spells
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_BREACH~
+  RET spell_res
+END
+  COPY_EXISTING ~%spell_res%.spl~ ~override/B_WA101.spl~
+    LPF ALTER_SPELL_TYPE INT_VAR   spell_type = 4 END
+
+  COPY ~%mod_folder%/data/arcane_crafting/wand/B_WA102.SPL~ ~override~
+        SAY NAME1 @68086
+        SAY NAME2 @68086
+        LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68087) STR_VAR END  //Spell Protections Removed
+
+  COPY ~%mod_folder%/data/arcane_crafting/wand/SPATTCK1.BAM~ ~override~
+
+END  //end add wand
+
+////////////////////////////////////////////////////////////////////////
+//////////////////          Wand of Cursing           //////////////////
+////////////////////////////////////////////////////////////////////////
+
+//
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND19.itm~ BEGIN
+  COPY ~%mod_folder%/data/arcane_crafting/wand/IWAND19.bam~ ~override~
+
+  COPY ~%mod_folder%/data/arcane_crafting/wand/WAND19.ITM~ ~override~
+        SAY NAME1 @68077
+        SAY NAME2 @68078
+        SAY UNIDENTIFIED_DESC @68080
+	SAY DESC @68079
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68081) match_parameter1 = 37800 STR_VAR END  //blind notification
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68082) match_parameter1 = 35952 STR_VAR END  //deaf notification
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68083) match_parameter1 = 37805 STR_VAR END  //Silence notification
+END  //end add wand

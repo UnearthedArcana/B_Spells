@@ -1740,3 +1740,194 @@ Saving Throw: None
 When this spell is cast, an area selected by the caster is warded against intrusion.  If an uninvited creature comes too close to the warded area, they are struck by a shimmering field of force, and are paralyzed for 1 full turn if they fail to save vs. paralysis.  If the creature makes their save, then the affect happens again, up to two times per round until a creature is paralyzed, at which time the ward dissipates.
 
 The target can be released by any effect that removes paralysis, or by a successful dispel magic spell.~
+@68057 = ~Destroy Undead~
+@68058 = ~Destroy Undead
+(Necromancy)
+
+Level: 4
+Range: Visual range of the caster
+Duration: Instantaneous
+Casting Time: 3
+Area of Effect: 1d4 undead
+Saving Throw: Special
+This spell disrupts the animating force that keeps undead going, destroying all but the most powerful undead creatures. Undead creatures with fewer than 5 Hit Die are destroyed immediately (no save). Stronger undead take 1d8 Hit Points of magic damage per level of the caster (save vs. spell for half damage; max 15d8 damage at level 15).
+
+The target can be released by any effect that removes paralysis, or by a successful dispel magic spell.~
+@68059 = ~Weird~
+@68060 = ~Weird
+(Illusion/Phantasm)
+
+Level: 9
+Range: Visual Range of Caster
+Duration: Special
+Casting Time: 1
+Area of Effect: 1 Creature
+Saving Throw: Special
+This spell confronts those affected by it with phantasmal images of their greatest fears, consuming them in the most gruesome way. While this actually occurs in the blink in an eye, it seems to last for an excruciatingly long time for the victim. Creatures with 8 or fewer hit die are slain instantly with no save. Creatures with more than 8 hit die must save vs. death -4, or die of shock.
+
+The force of the magic is such that even creatures make their save, they will be paralyzed for 4 rounds, and suffer a -4 penalty to hit for 1 turn.~
+@68061 = ~Demand~
+@68062 = ~Demand
+(Enchantment/Charm)
+
+Level: 8
+Range: Visual Range of Caster
+Duration: 8 rounds
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+This spell functions exactly like the 5th level spell Domination, with two exceptions: it doesn't allow a saving throw, and it has a casting time of 1.~
+
+@68063 = ~Unfailing Premonition~
+@68064 = ~Unfailing Premonition
+(Divination)
+
+Level: 8
+Range: 0
+Duration: 8 hours
+Casting Time: 6
+Area of Effect: The caster
+Saving Throw: None
+By anticipating possible futures and outcomes of the caster’s actions, this spell provides the <PRO_HIMHER> with a temporary sixth sense or feel for danger. The spell operates on a subconscious level, and the caster receives strong intuitive impulses when he contemplates courses of action that may bring immediate physical injury or harm to him.
+
+The unfailing premonition is quite useful in combat; as long as the caster obeys <PRO_HISHER> instincts and ducks, dodges, or withdraws when <PRO_HISHER> subconscious tells him to. When under the effect of this spell, <PRO_HESHE> effectively gains a +4 luck bonus, granting <PRO_HIMHER> +4 bonus to <PRO_HISHER> Saving Throws, attack rolls, and minimum damage/healing rolls as well as +20% to all thieving skills. Furthermore, damage dice for all effects outside a weapon's base damage is reduced by 4. For example, a 6d6 fireball will do 6d2 damage, and a flaming long sword that deals 1d8+2 slashing plus 1d3 fire damage will deal 1d8+2 slashing plus 1 fire damage instead.
+
+Unfailing Premonition does not stack with the Luck spell.~
+@68065 = ~Delayed Magic Missile~
+@68066 = ~Delayed Magic Missile
+(Evocation)
+
+Level: 5
+Range: Visual range of the caster
+Duration: 5 rounds
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw: None
+Visually, this spell is nearly identical to the first level magic missile spell; however. it has several differences: delayed magic missile deals more damage that is staggered over a longer time; second and subsequent attacks do not need to be directed by the caster. Finally, a shield spell does not block the attack.
+
+When cast, a single dart of magical energy shoot from all of the wizard's fingertips, unerringly striking the target creature. The missile causes 1d6+1 points of magic damage. The next round, and for 3 rounds after that, another missile strikes the target, again doing another 1d6+1 damage (for a total of 5d6+5 points of damage over the 5 round period.) The caster need not concentrate on subsequent castings, and can even cast other spells in the interim.~
+
+@68067 = ~Poison~
+@68068 = ~Poison
+(Necromancy)
+
+Level: 4
+Range: Touch
+Duration: 20 seconds
+Casting Time: 4
+Area of Effect: 1 creature
+Saving Throw: Neg
+This spell grants the caster the ability to touch a creature and instantly poison it unless it makes a successful Save vs. Poison. The poison deals 20 points of damage over 20 seconds and then dissipates from the target's body.~
+
+@68069 = ~Mass Domination~
+@68070 = ~Mass Domination
+(Enchantment/Charm)
+
+Level: 9
+Range: Visual range of the caster
+Duration: 15 rounds
+Casting Time: 5
+Area of Effect: 15-ft. radius
+Saving Throw: Neg.
+
+This spell functions exactly like domination, but it affects all enemies in a 15-foot radius that do not make their save.~
+
+@68071 = ~Polymorph Any Object~
+@68072 = ~Polymorph Any Object
+(Alteration)
+
+Level: 8
+Range: Visual range of caster.
+Duration: 5 turns
+Casting Time: 1
+Area of Effect: The Caster
+Saving Throw: Special
+This spell changes one object or creature into another. The effect depends on whether it is cast on oneself or ones enemy. When cast against an enemy, the spell transforms them into stone if they do not make a successful save vs polymorph with a -4 penalty. When targeting an ally, the spell allows the target to change shape as the polymorph self spell and removes any harmful transmutation affects on that creature such as polymorph other or flesh to stone.
+
+Polymorph any object affects any creature whatsoever, including demons, golems and undead.~
+@68073 = ~Algarth's Embattlement~
+@68074 = ~Algarth's Embattlement
+(Alteration)
+
+Level: 9
+Range: 0
+Duration: Permanent
+Casting Time: 9
+Area of Effect: The Caster
+Saving Throw: None
+This spell works like Spell Sequencer, except that it allows a wizard to store three spells of 7th level or lower in a sequencer and activate them all at once upon releasing the sequencer at a later time.
+
+Algarth's Embattlement has a default casting time of 9, whereas the sequencer created via the spell has a default casting time of 1. If the wizard wears any casting time reduction gear (such as Amulet of Power), <PRO_HESHE> can always instantly release <PRO_HISHER> sequencer as if it had a casting time of zero.
+
+Once the sequencer is released, the three spells stored in it are immediately activated in the order from its leftmost slot to the rightmost, with no casting time nor casting delay between the spells. If different spells are stored in the seqeuncer, they should be stored in a way that the spell in a right slot may benefit from the effect of the spell stored in a left slot.
+
+If the wizard dies and later gets resurrected, the spells stored in <PRO_HISHER> sequencer's spell slots are lost. If <RRO_HESHE> possessed a seqeuncer when <PRO_HESHE> died, <PRO_HESHE> will need to release the now dead sequencer (no effects) before <PRO_HESHE> may cast Algarth's Embattlement to create one that can be used normally.~
+
+@68075 = ~Recharge~
+@68076 = ~Recharge
+(Enchantment/Charm)
+
+Level: 7
+Range: Touch
+Duration: Instant
+Casting Time: 9
+Area of Effect: 1 Wand
+Saving Throw: None
+This spell acts as a funnel to channel magical spell energy into a wand as additional charges. When this spell is cast, the mage selects a wand in <PRO_HISHER> possession. That wand will be fully recharged if <PRO_HESHE> has enough gold to do so.~
+@68077 = ~Wand~
+@68078 = ~Wand of Cursing~
+@68079 = ~This wand instantly renders the target blind, deaf, and mute. But perhaps the most dangerous aspect of this terrible device is that anyone can use it.
+
+STATISTICS:
+
+Charge abilities:
+- Blindness, Deafness, and Silence (Save vs. Spell negates all effects)
+  Duration: 1 turn
+  Area of Effect: 1 creature
+
+Weight: 1~
+@68080 = ~Wands are 1 1/4 ft. long and slender. They are made of ivory, bone, or wood and are usually tipped with something metal, crystal, stone, and so on. They are fragile and tend to break easily. Because of this, they are often kept in cases.
+
+Wands are powered by charges, each use costing one or more charges (depending on the item). When a wand runs out of charges, it is consumed and destroyed.
+
+STATISTICS:
+
+Weight: 1~
+@68081 = ~Blinded~
+@68082 = ~Deaf~
+@68082 = ~Silence~
+@68083 = ~Wand of Spell Striking~
+@68084 = ~Ironically, these wands are both prized and hated by wizards. They can tear down an enemy mage's defenses, but of course every mage knows the wands can also be turned against themselves.
+
+STATISTICS:
+
+Charge abilities:
+- Breach
+  Dispels all specific and combat protections on target
+  Range: 40 ft.
+  Area of Effect: 1 creature
+
+- Pierce Magic
+  Lowers target's Magic Resistance by 20% for 2 turns and removes one spell protection from target
+  Range: 40 ft.
+  Area of Effect: 1 creature
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+@68085 = ~Breach~
+@68086 = ~Pierce Magic~
+@68087 = ~Gem~
+@68088 = ~Star Sapphire~
+@68089 = ~Star sapphire is a precious variation of the sapphire; however, it is more translucent, with a white star highlighted in its center. A star sapphire has been known to ornament devices that protect against magic.
+
+STATISTICS:
+
+Weight: 0~
+
+
+
+
+
+
