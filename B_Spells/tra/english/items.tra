@@ -576,11 +576,147 @@ STATISTICS:
 
 Weight: 0~
 
+@900010055 = ~Wand~
+@900010056 = ~Wand of Lightning~
+@900010057 = ~The possessor of the wand can discharge six bolts of lightning, each directed at a target of the user's choosing. As it passes through a creature, a bolt does 3d6 points of damage with a Save vs. Wand for half. Each bolt will continue through its target and proceed to "rebound" until expended.
+
+STATISTICS:
+
+Charge abilities:
+- Six Lightning Bolts
+  Damage: 3d6 electrical (Save vs. Wand for half)
+  Range: 100 ft.
+  Area of Effect: Path of bolts
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+@900010058 = ~Wands are 1 1/4 ft. long and slender. They are made of ivory, bone, or wood and are usually tipped with something—metal, crystal, stone, and so on. They are fragile and tend to break easily. Because of this, they are often kept in cases.
+
+Wands are powered by charges, each use costing one or more charges (depending on the item). When a wand runs out of charges, it is consumed and destroyed.
+
+STATISTICS:
+
+Weight: 1~
+
+@900010059 = ~Wand of Freezing Death~
+@900010060 = ~This deadly wand was crafted by the wizard Hegthen to protect him from his rival's fire-using minions. Hegthen made frequent use of the wand during his protracted war with his enemy. After ten years of hounding, Hegthen decided to take the battle to his rival, defeating him in one of the most spectacular magical duels ever seen in Suzail's history. As his terms of victory, Hethgen demanded that his enemy's name be magically snuffed out of the memory of all who knew him. His enemy accepted and later went on to become the Cloaked Flame, a dangerous terrorist killed by Cormyrean Purple Dragons and War Wizards in 1212 DR.
+
+STATISTICS:
+
+Charge abilities:
+- Icelance
+  Damage: 5d6 cold
+  Stuns target for 3 rounds (Save vs. Spell negates)
+  Range: 100 ft.
+  Area of Effect: 1 creature
+
+- Snilloc's Snowball Swarm
+  Damage: 4d3 cold (Save vs. Spell for half)
+  Range: 40 ft.
+  Area of Effect: 15-ft. radius
+
+- Ice Storm
+  Damage: 3d10 cold
+  Range: 40 ft.
+  Area of Effect: 15-ft. radius
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
+@900010061 = ~Wand of Armory~
+@900010062 = ~Often confused with another wand of the same name, the Wand of Armory is used to cast protective spells on the user. Unfortunately for the creator of this Wand of Armory, trolls are persistent creatures.
+
+STATISTICS:
+
+Charge abilities:
+- Shield
+  Armor Class set to 4 (2 vs. missile); immunity to magical missiles
+  Duration: 15 rounds
+  Area of Effect: The user
+
+- Ghost Armor
+  Armor Class set to 3
+  Duration: 7 rounds
+  Area of Effect: The user
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+@900010063 = ~Ice Storm~
+@900010064 = ~Shield~
+@900010065 = ~Ghost Armor~
+@900010066 = ~Wand of Polymorphing~
+@900010067 = ~This wand emits a thin, green beam that darts forth to a maximum distance of 60 ft. Any creature touched by this beam must make a Save vs. Wand or be polymorphed into a squirrel.
+
+STATISTICS:
+
+Charge abilities:
+- Polymorph target into squirrel (Save vs. Wand negates)
+  Range: 100 ft.
+  Area of Effect: 1 creature
+  Duration: Permanent (until dispelled)
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+@900010068 = ~Wand of Cloudkill~
+@900010069 = ~This wand emits a vapor bubble that travels towards the target exploding into a deadly cloud of noxious gas that expands to fill an area roughly 15 ft. in radius. The cloud will instantly kill any creature with 4 HD or less with no Saving Throw. Any creature within 5 to 6 HD must make a Saving Throw or be slain. Creatures with greater than 6 HD simply take 1d10 damage for every round that they remain within the cloud. The cloud will dissipate after 1d4 turns.
+
+STATISTICS:
+
+Charge abilities:
+- Cloudkill
+  Damage: 1d10 poison per round
+  Special: Slays creatures with 1-4 HD; creatures with 5-6 HD must save vs. Poison at -4 or die
+  Range: 60 ft.
+  Area of Effect: 15-ft. radius
+  Duration: 1d4 turns
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+@900010070 = ~Wand of Corrosion~
+@900010071 = ~A trio of wizards worked on this wand using a number of material components they had available to them and more that were relatively easy to acquire. Otterly the Rotund, Mabdek of the Seventh Star, and Yrgon the Moron only crafted the wand so they could sell it. Their long-term goal was the construction of a vast magical research facility based on the designs of the Naturalist Guild in Myth Drannor. Their wand was a greater success than their research facility.
+
+STATISTICS:
+
+Charge abilities:
+- Death Fog
+  Damage: 4 acid in the 1st round, 8 acid in the 2nd round, 16 acid in the 3rd round
+  Special: Movement speed limited to 50% within fog; must save vs. Spell or suffer -2 to Strength and Dexterity that round
+  Range: Visual range of the user
+  Duration: 15 rounds
+  Area of Effect: 12-ft. radius
+
+- Acid Storm
+  Damage: 1d4 acid for 3 rounds, 1d6 acid for the next 3 rounds, and 1d8 acid for the remaining rounds (Save vs. Spell for half)
+  Range: Visual range of the user
+  Duration: 30 rounds
+  Area of Effect: 12-ft. radius
+
+Requires:
+ 9 Intelligence
+
+Weight: 1~
+
 //Wands @900020001 to @900030000
 
 @900020001 = ~You do not have the materials to recharge a wand.~
 @900020002 = ~Recharge a wand of what tier?~
 @900020003 = ~Recharge a Tier I Wand~
-
+@900020004 = ~Recharge a Tier II Wand~
+@900020005 = ~Exit~
+@900020006 = ~Recharge a Tier III Wand~
+@900020007 = ~Recharge a Tier IV Wand~
+@900020008 = ~Recharge a Tier V Wand~
+@900020009 = ~Recharge a Tier VI Wand~
+@900020010 = ~Recharge a Tier VII Wand~
 
 

@@ -1,61 +1,29 @@
-BEGIN ~B_W701~
+BEGIN ~B_rech1~
 
 
 
-IF ~Global("B_T","GLOBAL",0)~ THEN BEGIN B_Rech000
-SAY @900020001
+IF ~Global("B_T1","GLOBAL",1)~ THEN BEGIN B_Rech000
+SAY @115040
 IF ~~ THEN EXIT
 END
 
 IF ~True()~ THEN BEGIN B_Rech001
-SAY @900020002
-IF ~Global("B_T1","GLOBAL",1)~ THEN REPLY @900020003 GOTO B_Rech100 //Tier One Wands
-IF ~GlobalGT("B_T","GLOBAL",1) Global("B_T2","GLOBAL",1)~ THEN REPLY @900020004 GOTO B_Rech200  //Tier 2 Wands
-IF ~GlobalGT("B_T","GLOBAL",2) Global("B_T3","GLOBAL",1)~ THEN REPLY @900020006 GOTO B_Rech300  //Tier 3 Wands
-IF ~GlobalGT("B_T","GLOBAL",3) Global("B_T4","GLOBAL",1)~ THEN REPLY @900020007 GOTO B_Rech400  //Tier 4 Wands
-IF ~GlobalGT("B_T","GLOBAL",4) Global("B_T5","GLOBAL",1)~ THEN REPLY @900020008 GOTO B_Rech500  //Tier 5 Wands
-IF ~GlobalGT("B_T","GLOBAL",5) Global("B_T6","GLOBAL",1)~ THEN REPLY @900020009 GOTO B_Rech600  //Tier 6 Wands
-IF ~GlobalGT("B_T","GLOBAL",6) Global("B_T7","GLOBAL",1)~ THEN REPLY @900020010 GOTO B_Rech700  //Tier 7 Wands
-IF ~~ THEN REPLY @900020005 EXIT
+SAY @115104
+IF ~~ THEN REPLY @115105 GOTO B_Rech100 //Tier One Wands
+IF ~Global("B_T2","GLOBAL",0)~ THEN REPLY @115106 GOTO B_Rech200  //Tier 2 Wands
+IF ~Global("B_T2","GLOBAL",1)~ THEN REPLY @115110 EXIT  //Tier 2 Wands Too Poor
+IF ~Global("B_T3","GLOBAL",0)~ THEN REPLY @115107 GOTO B_Rech300  //Tier 3 Wands
+IF ~Global("B_T3","GLOBAL",1)~ THEN REPLY @115111 EXIT  //Tier 3 Wands Too Poor
+IF ~Global("B_T4","GLOBAL",0)~ THEN REPLY @115108 GOTO B_Rech400  //Tier 4 Wands
+IF ~Global("B_T4","GLOBAL",1)~ THEN REPLY @115112 EXIT  //Tier 4 Wands Too Poor
+IF ~Global("B_T5","GLOBAL",0)~ THEN REPLY @115109 GOTO B_Rech500  //Tier 5 Wands
+IF ~Global("B_T5","GLOBAL",1)~ THEN REPLY @115113 EXIT  //Tier 5 Wands Too Poor
+IF ~Global("B_T6","GLOBAL",0)~ THEN REPLY @115158 GOTO B_Rech600  //Tier 5 Wands
+IF ~Global("B_T6","GLOBAL",1)~ THEN REPLY @115160 EXIT  //Tier 6 Wands Too Poor
+IF ~Global("B_T7","GLOBAL",0)~ THEN REPLY @115159 GOTO B_Rech700  //Tier 5 Wands
+IF ~Global("B_T7","GLOBAL",1)~ THEN REPLY @115161 EXIT  //Tier 7 Wands Too Poor
+IF ~~ THEN REPLY @115015 EXIT
 END
-
-//CONTINUE FROM HERE
-
-/////notes
-
-///Tier I
-//B_MM: Wand of missile
-//B_SLP: Wand of sleep
-//B_MISTL: Mistletoe
-//B_FRESH: Wand of Freshness
-
-///Tier II
-//B_FEA: Wand of fear
-//B_GREM: gremlin wand
-//B_FORCE: Wand of force
-//B_KNOCK; Wand of knock
-
-///Tier III
-//B_FIR: Wand of fire
-//B_FIRBALL: Wand of fireball
-//B_LIG: Wand of lightening
-//B_MON: Wand of mon summoning
-
-///Tier IV
-//B_FRE: Wand of Freezing Death
-//B_ARM; Wand of Armory
-//B_POL: Wand of Polymorph
-//B_HEAL: Wand of Healing
-//B_SPIDERZ:  Wand of Spiders 
-
-///Tier V
-//B_PAR: Wand of Paralysis
-//B_FRO: Wand of Frozen Death
-//B_CLO: Wand of Cloudkill
-//B_BONEW: Bonewand
-
-
-
 //CHANGE THESE HASITEMS TO PARTYHASITEM FOR SCROLLS.  IT IS ONLY NECESSARY THAT THE WAND IS IN CHARACTERS POSESSION AND PREFERABLE IF THE SCROLL IS NOT
 
 /*   Samples for excluding and including wands due to having more than one in inventory

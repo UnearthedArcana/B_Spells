@@ -3,31 +3,28 @@ IF
         HasItem("MISC38",LastSummonerOf(Myself))
         HasItem("MISC39",LastSummonerOf(Myself))
         HasItem("MISC40",LastSummonerOf(Myself))
-        !Global("B_T1","GLOBAL",1)
+        GlobalLT("B_T","GLOBAL",1)
 THEN
 	RESPONSE #100
-	        SetGlobal("B_T1","GLOBAL",1)         //Removes Tier 1 Items: money
-	        SetGlobal("B_T","GLOBAL",1)         //Removes Tier 1 Items: money
+	        SetGlobal("B_T","GLOBAL",1)         //Tier 1 items
                 Continue()
 END
 
 IF
         HasItem("MISC42",LastSummonerOf(Myself))
-        !Global("B_T2","GLOBAL",1)
+        GlobalLT("B_T","GLOBAL",2)
 THEN
 	RESPONSE #100
-	        SetGlobal("B_T2","GLOBAL",1)         //Removes Tier 1 Items: money
-	        SetGlobal("B_T","GLOBAL",2)         //Removes Tier 1 Items: money
+	        SetGlobal("B_T","GLOBAL",2)         //Tier 2 items
                 Continue()
 END
 
 IF
         HasItem("MISC43",LastSummonerOf(Myself))
-        !Global("B_T3","GLOBAL",1)
+        GlobalLT("B_T","GLOBAL",3)
 THEN
 	RESPONSE #100
-	        SetGlobal("B_T3","GLOBAL",1)         //Removes Tier 1 Items: money
-	        SetGlobal("B_T","GLOBAL",3)         //Removes Tier 1 Items: money
+	        SetGlobal("B_T","GLOBAL",3)         //Tier 3 items
                 Continue()
 END
 
@@ -35,37 +32,32 @@ IF
         OR(2)
         HasItem("MISC41",LastSummonerOf(Myself))
         HasItem("TTTREAS",LastSummonerOf(Myself))
-        !Global("B_T4","GLOBAL",1)
+        GlobalLT("B_T","GLOBAL",4)
 THEN
 	RESPONSE #100
-	        SetGlobal("B_T4","GLOBAL",1)         //Removes Tier 1 Items: money
-	        SetGlobal("B_T","GLOBAL",4)         //Removes Tier 1 Items: money
+	        SetGlobal("B_T","GLOBAL",4)         //Tier 4 items
                 Continue()
 END
 
 IF
         HasItem("MISC44",LastSummonerOf(Myself))
-        !Global("B_T5","GLOBAL",1)
+        GlobalLT("B_T","GLOBAL",5)
 THEN
 	RESPONSE #100
-	        SetGlobal("B_T5","GLOBAL",1)         //Removes Tier 1 Items: money
-	        SetGlobal("B_T","GLOBAL",5)         //Removes Tier 1 Items: money
+	        SetGlobal("B_T","GLOBAL",5)         //Tier 5 items
                 Continue()
 END
 
 IF
         HasItem("MISC45",LastSummonerOf(Myself))
-        OR(2)
-        !Global("B_T6","GLOBAL",1)
-        !Global("B_T7","GLOBAL",1)
+        GlobalLT("B_T","GLOBAL",7)
 THEN
 	RESPONSE #100
-	        SetGlobal("B_T6","GLOBAL",1)         //Removes Tier 1 Items: money
-	        SetGlobal("B_T7","GLOBAL",1)         //Removes Tier 1 Items: money
-	        SetGlobal("B_T","GLOBAL",7)         //Removes Tier 1 Items: money
+	        SetGlobal("B_T","GLOBAL",7)         //Tier 7 items
                 Continue()
 END
 
+/////////tier I items
 
 //wand of magic missile
 IF
@@ -79,6 +71,7 @@ IF
 THEN
 	RESPONSE #100
 	        SetGlobal("B_MM","GLOBAL",1)         //Gives MM option
+	        SetGlobal("B_T1","GLOBAL",1)         //signals presence of tier 1 items
                 Continue()
 END
 
@@ -90,9 +83,33 @@ IF
 THEN
 	RESPONSE #100
 	        SetGlobal("B_SLP","GLOBAL",1)         //Gives Sleep option
+	        SetGlobal("B_T1","GLOBAL",1)         //signals presence of tier 1 items
                 Continue()
 END
 
+//Mistletoe
+IF
+        HasItem("B_WAN03",LastSummonerOf(Myself))
+        Global("B_MISTL","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_MISTL","GLOBAL",1)         //Gives Sleep option
+	        SetGlobal("B_T1","GLOBAL",1)         //signals presence of tier 1 items
+                Continue()
+END
+
+//Wand of freshness
+IF
+        HasItem("B_WAN10",LastSummonerOf(Myself))
+        Global("B_FRESH","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_FRESH","GLOBAL",1)         //Gives Wand of Freshness option
+	        SetGlobal("B_T1","GLOBAL",1)         //signals presence of tier 1 items
+                Continue()
+END
+
+/////////tier II items
 
 //wand of fear
 IF
@@ -101,8 +118,44 @@ IF
 THEN
 	RESPONSE #100
 	        SetGlobal("B_FEA","GLOBAL",1)         //Gives fear option
+	        SetGlobal("B_T2","GLOBAL",1)         //signals presence of tier 2 items
                 Continue()
 END
+
+//gremlin wand
+IF
+        HasItem("B_WAN17",LastSummonerOf(Myself))
+        Global("B_GREM","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_GREM","GLOBAL",1)         //Gives gremlin option
+	        SetGlobal("B_T2","GLOBAL",1)         //signals presence of tier 2 items
+                Continue()
+END
+
+//wand of force
+IF
+        HasItem("B_WAN17",LastSummonerOf(Myself))
+        Global("B_GREM","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_FORCE","GLOBAL",1)         //Gives wand of force option
+	        SetGlobal("B_T2","GLOBAL",1)         //signals presence of tier 2 items
+                Continue()
+END
+
+//wand of knock
+IF
+        HasItem("B_WAN02",LastSummonerOf(Myself))
+        Global("B_KNOCK","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_KNOCK","GLOBAL",1)         //Gives wand of knock option
+	        SetGlobal("B_T2","GLOBAL",1)         //signals presence of tier 2 items
+                Continue()
+END
+
+/////////tier III items
 
 //wand of fire
 IF
@@ -111,6 +164,18 @@ IF
 THEN
 	RESPONSE #100
 	        SetGlobal("B_FIR","GLOBAL",1)         //Gives fire option
+	        SetGlobal("B_T3","GLOBAL",1)         //signals presence of tier 3 items
+                Continue()
+END
+
+//wand of fireball
+IF
+        HasItem("WAND05",LastSummonerOf(Myself))
+        Global("B_FIRBALL","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_FIRBALL","GLOBAL",1)         //Gives fireball option
+	        SetGlobal("B_T3","GLOBAL",1)         //signals presence of tier 3 items
                 Continue()
 END
 
@@ -119,12 +184,13 @@ END
 IF
         OR(3)
         HasItem("WAND07",LastSummonerOf(Myself))
-        HasItem("WANDFAK",LastSummonerOf(Myself))
+        HasItem("MISC7N",LastSummonerOf(Myself))
         HasItem("WANDREA",LastSummonerOf(Myself))
         Global("B_LIG","GLOBAL",0)
 THEN
 	RESPONSE #100
 	        SetGlobal("B_LIG","GLOBAL",1)         //Gives Lightning option
+	        SetGlobal("B_T3","GLOBAL",1)         //signals presence of tier 3 items
                 Continue()
 END
 
@@ -136,10 +202,13 @@ IF
 THEN
 	RESPONSE #100
 	        SetGlobal("B_MON","GLOBAL",1)         //Gives Mon Sum option
+	        SetGlobal("B_T3","GLOBAL",1)         //signals presence of tier 3 items
                 Continue()
 END
 
 
+
+/////////tier IV items
 
 //wand of freezing death
 IF
@@ -148,6 +217,7 @@ IF
 THEN
 	RESPONSE #100
 	        SetGlobal("B_FRE","GLOBAL",1)         //Gives Freezing Death option
+	        SetGlobal("B_T4","GLOBAL",1)         //signals presence of tier 4 items
                 Continue()
 END
 
@@ -159,6 +229,7 @@ IF
 THEN
 	RESPONSE #100
 	        SetGlobal("B_ARM","GLOBAL",1)         //Gives Armory option
+	        SetGlobal("B_T4","GLOBAL",1)         //signals presence of tier 4 items
                 Continue()
 END
 
@@ -170,26 +241,54 @@ IF
 THEN
 	RESPONSE #100
 	        SetGlobal("B_POL","GLOBAL",1)         //Gives Polymorph option
+	        SetGlobal("B_T4","GLOBAL",1)         //signals presence of tier 4 items
                 Continue()
 END
 
-//Wand of Para
+//Wand of Healing
+IF
+        HasItem("B_WAN13",LastSummonerOf(Myself))
+        Global("B_HEAL","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_HEAL","GLOBAL",1)         //Gives Wand of Healing option
+	        SetGlobal("B_T4","GLOBAL",1)         //signals presence of tier 4 items
+                Continue()
+END
+
+//Wand of Spiders
+IF
+        HasItem("B_WAN14",LastSummonerOf(Myself))
+        Global("B_SPIDERZ","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_SPIDERZ","GLOBAL",1)         //Gives Wand of Spiders option
+	        SetGlobal("B_T4","GLOBAL",1)         //signals presence of tier 4 items
+                Continue()
+END
+
+/////////tier V items
+
+//Wand of Paralyzation
 IF
         HasItem("WAND04",LastSummonerOf(Myself))
         Global("B_PAR","GLOBAL",0)
 THEN
 	RESPONSE #100
 	        SetGlobal("B_PAR","GLOBAL",1)         //Gives
+	        SetGlobal("B_T5","GLOBAL",1)         //signals presence of tier 5 items
                 Continue()
 END
 
 
+//Wand of Frost
 IF
         HasItem("WAND06",LastSummonerOf(Myself))
         Global("B_FRO","GLOBAL",0)
 THEN
 	RESPONSE #100
 	        SetGlobal("B_FRO","GLOBAL",1)         //Gives Frost option
+	        SetGlobal("B_T5","GLOBAL",1)         //signals presence of tier 5 items
                 Continue()
 END
 
@@ -202,39 +301,76 @@ IF
 THEN
 	RESPONSE #100
 	        SetGlobal("B_CLO","GLOBAL",1)         //Gives Cloudkill option
+	        SetGlobal("B_T5","GLOBAL",1)         //signals presence of tier 5 items
+                Continue()
+END
+
+//Bonewand
+
+IF
+        HasItem("B_WAN07",LastSummonerOf(Myself))
+        Global("B_BONEW","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_BONEW","GLOBAL",1)         //Gives Bonewand option
+	        SetGlobal("B_T5","GLOBAL",1)         //signals presence of tier 5 items
                 Continue()
 END
 
 
+/////////tier VI items
 
+//Wand of CKill
 IF
         HasItem("WAND18",LastSummonerOf(Myself))
         Global("B_STRK","GLOBAL",0)
 THEN
 	RESPONSE #100
 	        SetGlobal("B_STRK","GLOBAL",1)         //Gives Spellstriking option
+	        SetGlobal("B_T6","GLOBAL",1)         //signals presence of tier 6 items
                 Continue()
 END
 
 
+//Wand of cursing
 IF
         HasItem("WAND19",LastSummonerOf(Myself))
         Global("B_CRS","GLOBAL",0)
 THEN
 	RESPONSE #100
 	        SetGlobal("B_CRS","GLOBAL",1)         //Gives Cursing option
+	        SetGlobal("B_T6","GLOBAL",1)         //signals presence of tier 6 items
                 Continue()
 END
 
+/////////tier VII items
+
+//Wand of corosion
 
 IF
         HasItem("WANDCOR",LastSummonerOf(Myself))
         Global("B_COR","GLOBAL",0)
 THEN
 	RESPONSE #100
+	        SetGlobal("B_T7","GLOBAL",1)         //signals presence of tier 6 items
 	        SetGlobal("B_COR","GLOBAL",1)         //Gives Corr option
                 Continue()
 END
+
+//Wand of the heavens
+
+IF
+        OR(2)
+        HasItem("TTWAND",LastSummonerOf(Myself))
+        HasItem("WAND11",LastSummonerOf(Myself))
+        Global("B_HEAV","GLOBAL",0)
+THEN
+	RESPONSE #100
+	        SetGlobal("B_T7","GLOBAL",1)         //signals presence of tier 6 items
+	        SetGlobal("B_HEAV","GLOBAL",1)         //Gives wand of heaven option
+                Continue()
+END
+
 
 IF
         NumTimesTalkedTo(0)
@@ -249,19 +385,29 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("B_MM","GLOBAL",0)
-		SetGlobal("B_SLP","GLOBAL",0)
+	        SetGlobal("B_MISTL","GLOBAL",0)
+      		SetGlobal("B_SLP","GLOBAL",0)
+	        SetGlobal("B_FRESH","GLOBAL",0)
 		SetGlobal("B_FEA","GLOBAL",0)
+	        SetGlobal("B_FORCE","GLOBAL",0)
+	        SetGlobal("B_GREM","GLOBAL",0)
+	        SetGlobal("B_KNOCK","GLOBAL",0)
 		SetGlobal("B_FIR","GLOBAL",0)
+	        SetGlobal("B_FIRBALL","GLOBAL",0)
 		SetGlobal("B_LIG","GLOBAL",0)
 		SetGlobal("B_MON","GLOBAL",0)
 		SetGlobal("B_FRE","GLOBAL",0)
 		SetGlobal("B_ARM","GLOBAL",0)
 		SetGlobal("B_POL","GLOBAL",0)
+	        SetGlobal("B_SPIDERZ","GLOBAL",0)
 		SetGlobal("B_PAR","GLOBAL",0)
 		SetGlobal("B_FRO","GLOBAL",0)
+	        SetGlobal("B_BONEW","GLOBAL",0)
+	        SetGlobal("B_HEAL","GLOBAL",0)
 		SetGlobal("B_CLO","GLOBAL",0)
 		SetGlobal("B_STRK","GLOBAL",0)
 		SetGlobal("B_COR","GLOBAL",0)
+		SetGlobal("B_HEAV","GLOBAL",0)
 		SetGlobal("B_T","GLOBAL",0)
 		SetGlobal("B_T1","GLOBAL",0)
 		SetGlobal("B_T2","GLOBAL",0)

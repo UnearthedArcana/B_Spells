@@ -66,6 +66,18 @@ TO DO 32: go back to CHill Touch range 10' IFF touch to target spells global is 
 
 TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or add as 2nd level spell as Spectral Hand).
 
+Version 0.90.14
+
+2020-08-30
+
+- missing wands: wand of the heavens, gremlin wand,wand of force, wand of fireball, wand of freshness, wand of knock, wand of spiders, 
+
+2020-08-29
+
+- Added spell icon bams for mass dominate and demand
+
+- Missing wand: added wand of freezing death, wand of magic missile, wand of lightning, wand of armory, Wand of Polymorph, Wand of Freezing Death, Wand of Cloudkill
+
 Version 0.90.13
 
 2020-08-25
