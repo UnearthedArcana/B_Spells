@@ -62,13 +62,48 @@ TO DO 30: Add certain spells added in revision (e.g. hold beast; devil's eyes) t
 
 TO DO 31: Revise Reprieve spell as per description on github. 
 
-TO DO 32: go back to CHill Touch range 10' IFF touch to target spells global is installed
+TO DO 32: go back to Chill Touch range 10' IFF touch to target spells global is installed
 
 TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or add as 2nd level spell as Spectral Hand).
 
-Version 0.90.14
+TO DO 34: Add different versions of Fog and banishment for those wands if SR not installed(?) 
+
+
+Version 0.90.15
+
+2020-09-13
+
+- bam icons for anticipation
+
+2020-09-12
+
+- Updated wand tier list with existing wands
+
+- Wand tier list: SR wand of fog
+
+- bam icons snowball spell (Credit Mordus)
+
+- Bam icons for alarm spell, Animate Skeleton
+
+2020-09-11
+
+- Started room_for_spells.tpa
+
+2020-09-05
+
+- Icons: Binding, bless water
+
+- Missing Wands: Wand of darkness, wand of eyes, animated wand,
+
+2020-09-02
+
+- Missing Wands: Animated Wand, wand of banishment,
 
 2020-08-30
+
+- Spell icons for Polymorph any object
+
+Version 0.90.14
 
 - missing wands: wand of the heavens, gremlin wand,wand of force, wand of fireball, wand of freshness, wand of knock, wand of spiders, 
 

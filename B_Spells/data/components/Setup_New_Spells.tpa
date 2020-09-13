@@ -442,12 +442,11 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W101a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W101b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W101c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -558,7 +557,14 @@ END
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-// TO DO CONTINUE
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ102a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ102b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ102c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -1118,6 +1124,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+//TO DO CONTINUE
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
 COPY ~%mod_folder%/data/new_spells/mage_1/B_M101a.bam~ ~override/%spell_res%a.bam~
@@ -3666,6 +3673,16 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ104A.spl~ ~override/%spell_res%A~ 
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+//credit Mordus
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ104a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ104b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ104c.bam~ ~override/%spell_res%c.bam~
+
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -5363,7 +5380,7 @@ ACTION_IF (%b_poly_any_object% > 0) BEGIN  //
 //////NOTES:
 ////////////////////////////
 //subspell: stone to flesh B_WZ802A
-
+//// Looks like ADD_SPELL is pulling from the wrong location (workspace rather than data folder)CHECK
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
@@ -5383,7 +5400,7 @@ ACTION_IF (%b_poly_any_object% > 0) BEGIN  //
  COPY_EXISTING ~%spell_res%.spl~ ~backup/%mod_folder%/workspace/B_WZ802B.SPL~
 
   //probably change text rather than overwrite
-ADD_SPELL ~backup/%mod_folder%/workspace/B_WZ802.SPL~ 2 8 ~WIZARD_POLYMORPH_ANY_OBJECT~ //
+ADD_SPELL ~backup/%mod_folder%/workspace/B_WZ802.SPL~ 2 8 ~WIZARD_POLYMORPH_ANY_OBJECT~ // Looks like this is pulling from the wrong location (workspace rather than data folder)CHECK
         SAY NAME1 @68071
         SAY NAME2 @68071
         SAY UNIDENTIFIED_DESC @68072
@@ -5395,12 +5412,21 @@ END
 //COPY_EXISTING ~%spell_res%.spl~ ~override~
 //  LPF ALTER_EFFECT INT_VAR match_opcode = 324 STR_VAR resource = EVAL ~%spell_res%~ END  //
 
-*/
-//END NOT READY 
 
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_8/B_WZ802A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_8/B_WZ802B.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_8/B_WZ802C.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+*/
+//END NOT READY 
 
 ////////////////////////////
 //////Portrait Icons:

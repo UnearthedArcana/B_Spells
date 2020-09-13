@@ -22,6 +22,58 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~TTTREAS.itm~ BEGIN
 	SAY DESC @68089
 END
 
+//to do list
+////////////////////////////////////////////////////////////////////////
+//////////////////            Wand of Mirrors         //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Mirrors (N)  | ? |  Shield and Mirror Image |
+
+////////////////////////////////////////////////////////////////////////
+//////////////////            Wand of Negation        //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Negation (N)  | ? |  Dispel Magic |
+
+////////////////////////////////////////////////////////////////////////
+//////////////////            Wand of Peace           //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Peace (N) | ? |  All creatures in area save or cannot attack for 3 rounds |
+
+////////////////////////////////////////////////////////////////////////
+//////////////////          Wand of Revealing         //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Revealing (N)  | ? |  Find Traps/D. Illusion 75% |
+
+////////////////////////////////////////////////////////////////////////
+//////////////////             Wand of Salt           //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Salt (N) | ? | 6d8 dam plant cre (3d6 non plant) Save for 1/2 |
+
+
+////////////////////////////////////////////////////////////////////////
+//////////////////             Wand of Steam          //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Steam (N)  | ? |  As Cloudkill, but fire damage 3 r: 6d6/4d6/2d6 |
+
+////////////////////////////////////////////////////////////////////////
+//////////////////            Wand of the Squid       //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of the Squid (N)  | ? |  4d4 crush and hold (save 1/2 dam, no hold |
+
+////////////////////////////////////////////////////////////////////////
+//////////////////            Wand of the Sun         //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of the Sun (N)  | ? |  Ray 6d4 fire +2d4 metal wearing x2 undead|
+
+////////////////////////////////////////////////////////////////////////
+//////////////////            Wand of Traps           //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Traps(N)  | ? |   as Find Traps |  Each charge just one 'check'
+
+////////////////////////////////////////////////////////////////////////
+//////////////////             Wand of Light          //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Light (N)  | VII |  Light Blade; Sun Ray (beam does 2d6+2 magic) x2 undead; Prot from evil; good only |
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////                                    ////////////////////////////////////
@@ -72,6 +124,40 @@ END
 
 
 ////////////////////////////////////////////////////////////////////////
+//////////////////             Wand of Fog            //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Fog (Ns) | I |  as Obscuring Mist |
+//only installed if SR is installed 
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN11.ITM~ BEGIN
+
+ ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) BEGIN  //SR obscuring Mist
+//copy the spell
+ LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_OBSCURING_MIST~
+  RET spell_res
+ END
+ COPY_EXISTING ~%spell_res%.spl~ ~override/B_WANFG.spl~
+  WRITE_BYTE 0x001c  4  //innate
+
+  COPY ~%mod_folder%/data/wands/B_WAN11.itm~ ~override~
+        SAY NAME2 @900010021
+        SAY DESC @900010022
+//now, include in tier 1 wands:
+    COPY ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~ ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
+      REPLACE_TEXTUALLY ~//B_WAN11~ ~B_WAN11~
+
+ END //end SR Obscuring Mist
+//dummy wand if not available
+
+ ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) BEGIN
+
+  COPY_EXISTING ~WAND03.ITM~ ~override/B_WAN11.ITM~
+
+ END
+END
+
+////////////////////////////////////////////////////////////////////////
 //////////////////          Wand of Freshness         //////////////////
 ////////////////////////////////////////////////////////////////////////
 //| of Freshness (N) | I |  as ZoSA | p235
@@ -80,6 +166,16 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN10.ITM~ BEGIN
   COPY ~%mod_folder%/data/wands/B_WAN10.itm~ ~override~
         SAY NAME2 @900010019
         SAY DESC @900010020
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////            Wand of Teeth           //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Teeth (N)  | I | 2d6+2 missile dam (save 1/2) |
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN01.ITM~ BEGIN
+  COPY ~%mod_folder%/data/wands/B_WAN01.itm~ ~override~
+        SAY NAME2 @900010001
+        SAY DESC @900010002
 END
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -131,6 +227,12 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN08.ITM~ BEGIN
           SAY NAME2 @900010015
           SAY DESC @900010016
 END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////           Wand of Illusion         //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Illusion (N) | II |  Glammer; Ph. Force |
+
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////           Wand of Knock            //////////////////
@@ -487,6 +589,69 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN07.ITM~ BEGIN
  END
 END
 
+////////////////////////////////////////////////////////////////////////
+//////////////////            Wand of Eyes            //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Eyes (N) | V |   Wizard Eye; See Invisible |  b_wan09
+//add protection from B_WAND09 to WIzEye spell
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN07.ITM~ BEGIN
+//WIzEye
+//copy wiz eye, add immunity to secspell:
+  COPY_EXISTING ~SPWI425.spl~ ~override~
+  LPF CLONE_EFFECT INT_VAR multi_match = 1 match_opcode = 206 STR_VAR resource = ~B_WNDEY~ END  //Protection from secspell
+//create secspell
+  COPY_EXISTING ~SPWI425.spl~ ~override/B_WNDEY.spl~
+    WRITE_BYTE 0x001c  4  //innate no wiz spell!
+
+//CureBlind
+
+//Detect Invisibility
+//create secspell
+  COPY_EXISTING ~SPWI203.spl~ ~override/B_WNDDI.spl~
+    WRITE_BYTE 0x001c  4  //innate no wiz spell!
+
+//actual wand
+
+  COPY ~%mod_folder%/data/wands/B_WAN09.itm~ ~override~
+        SAY NAME2 @900010017
+        SAY DESC @900010018
+
+//tooltip
+ LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010044) // Wizard Eye
+  $tip(2) = RESOLVE_STR_REF (@900010045) // Remove Blindness
+  $tip(3) = RESOLVE_STR_REF (@900010046) // Detect Invisibility
+ STR_VAR
+  item = B_WAN09 // file name
+ END
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////         Wand of Illumination       //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Illumination (N) | V | As Sunfire |
+//just use the fireball pro...
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN19.itm~ BEGIN
+
+  COPY ~%mod_folder%/data/wands/B_WAN19.itm~ ~override~
+        SAY NAME2 @900010037
+        SAY DESC @900010038
+
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////          Wand of Swarming          //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Swarming (N)  | ? |  as Summon Insects |
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN15.itm~ BEGIN
+
+  COPY ~%mod_folder%/data/wands/B_WAN15.itm~ ~override~
+        SAY NAME2 @900010029
+        SAY DESC @900010030
+
+END
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////                                    ////////////////////////////////////
@@ -551,6 +716,75 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~WAND19.itm~ BEGIN
   LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@68083) match_parameter1 = 37805 STR_VAR END  //Silence notification
 END  //end add wand
 
+////////////////////////////////////////////////////////////////////////
+//////////////////            Animated Wand           //////////////////
+////////////////////////////////////////////////////////////////////////
+//| Animated Wand (N) | VI | Transforms into a blade that fights for the caster |
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN06.itm~ BEGIN
+
+ COPY ~%mod_folder%/data/wands/B_WAN06.itm~ ~override~
+          SAY NAME2 @900010011
+          SAY DESC @900010012
+//cre
+ COPY ~%mod_folder%/data/wands/B_WAN06.cre~ ~override~
+          SAY NAME1 @900010011
+          SAY NAME2 @900010011
+//crea weapon  IPSION.itm
+ COPY ~%mod_folder%/data/wands/B_WAN06A.itm~ ~override~
+          SAY NAME1 @900010011
+          SAY NAME2 @900010011
+//just in case
+ COPY ~%mod_folder%/data/wands/IPSION.itm~ ~override~
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////          Wand of Banishment        //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Banishment (Ns) | VI | Removes summoned creatures, evil outsiders save or destroyed/banished |
+//only installed if SR is installed 
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN12.itm~ BEGIN
+
+ ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN  //SR Banishment
+
+ LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~CLERIC_BANISHMENT~
+  RET spell_res
+ END
+
+ COPY_EXISTING ~%spell_res%.spl~ ~override/B_WANBA.spl~
+  WRITE_BYTE 0x001c  4  //innate
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 177 savingthrow = 8           //  save wand
+  END      //
+  LPF CLONE_EFFECT
+      INT_VAR match_opcode = 177 savingthrow = 0  timing = 0 duration = 18
+      STR_VAR resource = ~B_WANST~   //Stun
+  END
+
+  //stun eff
+  COPY ~%mod_folder%/data/wands/B_WANST.eff~ ~override~   //stun effect
+
+  //actual wand
+  COPY ~%mod_folder%/data/wands/B_WAN12.itm~ ~override~
+        SAY NAME2 @900010023
+        SAY DESC @900010024
+
+
+ END //end check for banishment
+//dummy wand if not available
+ ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN
+
+  COPY_EXISTING ~WAND03.ITM~ ~override/B_WAN12.ITM~
+
+ END
+
+END//end check for wand
+
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////                                    ////////////////////////////////////
@@ -558,6 +792,35 @@ END  //end add wand
 ////////////////////////////////////                                    ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////
+//////////////////          Wand of Command           //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Command (N)  | VII |  as Dominate |
+
+  COPY ~%mod_folder%/data/wands/B_WAN04.itm~ ~override~
+        SAY NAME2 @900010007
+        SAY DESC @900010008
+
+//text notification (BG2EE/EET is the default)
+  ACTION_IF GAME_IS ~bgee~ BEGIN
+
+  COPY_EXISTING ~B_WAN04.itm~ ~override~
+   LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139            //
+      parameter1 = 26206
+  END      //
+
+  END
+  ACTION_IF GAME_IS ~iwdee~ BEGIN
+
+  COPY_EXISTING ~B_WAN04.itm~ ~override~
+   LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139            //
+      parameter1 = 35544
+   END      //
+
+  END
 
 ////////////////////////////////////////////////////////////////////////
 //////////////////          Wand of Corosion          //////////////////
@@ -577,8 +840,6 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~WANDCOR.ITM~ BEGIN
 	SAY DESC @900010071
         SAY UNIDENTIFIED_DESC @900010058
 
-//CONTINUE FROM HERE
-
 END
 
 ////////////////////////////////////////////////////////////////////////
@@ -590,4 +851,37 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~TTWAND.ITM~ BEGIN
 
 END
 
+////////////////////////////////////////////////////////////////////////
+//////////////////           Wand of Death            //////////////////
+////////////////////////////////////////////////////////////////////////
+//| of Death (N) | VII | Death Spell? |
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN16.ITM~ BEGIN
+
+  COPY ~%mod_folder%/data/wands/B_WAN16.itm~ ~override~
+        SAY NAME2 @900010031
+        SAY DESC @900010032
+
+END
+
+////////////////////////////////////////////////////////////////////////
+//////////////////           Wand of Darkness         //////////////////
+////////////////////////////////////////////////////////////////////////
+
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~B_WAN18.ITM~ BEGIN
+
+  COPY ~%mod_folder%/data/wands/B_WAN18.itm~ ~override~
+        SAY NAME2 @900010035
+        SAY DESC @900010036
+
+//tooltip
+ LAF tooltips INT_VAR
+  $tip(1) = RESOLVE_STR_REF (@900010041) // Blindness
+  $tip(2) = RESOLVE_STR_REF (@900010042) // Smite Good
+  $tip(3) = RESOLVE_STR_REF (@900010043) // Summon Shadow
+ STR_VAR
+  item = B_WAN18 // file name
+ END
+
+END
 

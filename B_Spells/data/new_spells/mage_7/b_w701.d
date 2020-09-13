@@ -27,7 +27,9 @@ END
 //B_MM: Wand of missile
 //B_SLP: Wand of sleep
 //B_MISTL: Mistletoe
-//B_FRESH: Wand of Freshness
+//B_FRESH: Wand of Freshness (B_WAN10.itm)
+//B_FOG: Wand of Fog (B_WAN11.itm)
+//B_TEETH: Wand of Teeth (B_WAN01.itm)
 
 ///Tier II
 //B_FEA: Wand of fear
@@ -37,7 +39,7 @@ END
 
 ///Tier III
 //B_FIR: Wand of fire
-//B_FIRBALL: Wand of fireball
+//B_FIRBALL: Wand of fireball (B_WAN05.itm)
 //B_LIG: Wand of lightening
 //B_MON: Wand of mon summoning
 
@@ -45,14 +47,32 @@ END
 //B_FRE: Wand of Freezing Death
 //B_ARM; Wand of Armory
 //B_POL: Wand of Polymorph
-//B_HEAL: Wand of Healing
-//B_SPIDERZ:  Wand of Spiders 
+//B_HEAL: Wand of Healing (B_WAN13.itm)
+//B_SPIDERZ:  Wand of Spiders (B_WAN14.itm)
 
 ///Tier V
 //B_PAR: Wand of Paralysis
 //B_FRO: Wand of Frozen Death
 //B_CLO: Wand of Cloudkill
-//B_BONEW: Bonewand
+//B_BONEW: Bonewand   (B_WAN07.itm)
+//B_EYE: Wand of Eyes (B_WAN09.itm)
+//B_ILLUM: Wand of Illumination (B_WAN19.itm)
+//B_SWARM: Wand of Swarm option (B_WAN15.itm)
+
+///Tier VI
+//B_CRS: Wand of Cursing 
+//B_STRK: Wand of Spellstriking
+//B_CRS: Wand of Cursing
+//B_ANIWAND: Animated Wand (B_WAN06.itm)
+//B_BANWND: Wand of Banishment (B_WAN12.itm)
+
+
+///Tier VII
+//B_COR: Wand of Corrosion
+//B_HEAV: Wand of Heaven
+//B_DETH: Wand of Death (B_WAN16.itm)
+//B_DARK: Gives wand of darkness (B_WAN18.itm)
+//B_COMMND: Wand of command (B_WAN04.itm)
 
 
 

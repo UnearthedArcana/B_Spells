@@ -1,0 +1,11 @@
+//Known HLAs_________________________________________________________________
+
+INCLUDE ~%mod_folder%/lib/misc_lists/spell_room_list.tpa~
+
+ACTION_PHP_EACH spell_list AS spell => type BEGIN
+  ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~%spell_ids%~)) BEGIN
+        LAF RES_NUM_OF_SPELL_NAME STR_VAR spell_name = ~%spell_ids%~ RET spell_res END
+               COPY_EXISTING ~%spell_res%.spl~ ~override~
+                   LPF MAKE_CANTRIP  INT_VAR type = 0 STR_VAR level_text = SAME  END
+  END
+END

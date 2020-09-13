@@ -2,13 +2,32 @@
 
 ACTION_DEFINE_ASSOCIATIVE_ARRAY wand_tier BEGIN
 
-B_WAN01 => tier_I   //Wand of teeth, tier I
-B_WAN03 => tier_I   //Mistletoe, tier I
-B_WAN10 => tier_I   //wand of freshness, tier I
-//B_WAN11 => tier_I   //wand of fog, tier I    Only if sr is installed...
-B_WAN02 => tier_II  //wand of knock, tier II
-B_WAN13 => tier_II  //wand of healing, tier II
-
+  B_WAN01 => tier_1  //Wand of teeth, tier I
+  B_WAN03 => tier_1  //Mistletoe, tier I
+  B_WAN10 => tier_1  //wand of freshness, tier I
+//B_WAN11 => tier_1  //wand of fog, tier I    Only if sr is installed...
+  B_WAN17 => tier_2  //gremlin wand, tier II
+  B_WAN02 => tier_2  //wand of knock, tier II
+  B_WAN13 => tier_2  //wand of healing, tier II
+  B_WAN17 => tier_2  //wand of force, tier II
+  B_WAN05 => tier_3  //wand of fireball, tier III
+//WAND09 => tier_4   //Wand of Polymorph, tier IV    Only if game IWDEE
+  B_WAN13 => tier_4  //wand of healing, tier IV
+  B_WAN14 => tier_4  //wand of Spiders, tier IV
+//WANDARM => tier_4  //Wand of armory, tier IV    Only if game non-IWDEE
+//WANDFRE => tier_4  //Wand of freezing death, tier IV    Only if game non-IWDEE
+//WAND13 => tier_5   //Wand of Cloudkill, tier V    Only if game IWDEE
+  B_WAN07 => tier_5  //Bonewand, tier V
+  B_WAN09 => tier_5  //wand of eyes, tier V
+  B_WAN19 => tier_5  //wand of illumination, tier V
+  B_WAN15 => tier_5  //wand of swarm, tier V
+//WAND18 => tier_6   //Wand of spellstrike, tier VI    Only if game non-IWDEE
+//WAND19 => tier_6   //Wand of cursing, tier VI    Only if game non-IWDEE
+  B_WAN06 => tier_6  //Animated Wand, tier VI
+//B_WAN12 => tier_6  //wand of fog, tier VI    Only if sr is installed...
+//WANDCOR => tier_7   //Wand of corrosion, tier VII    Only if game non-IWDEE
+  B_WAN04 => tier_7   //Wand of Command, tier VII    
+  B_WAN18 => tier_7   //Wand of death, tier VII
 
 END
 

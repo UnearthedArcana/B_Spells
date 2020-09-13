@@ -2,7 +2,7 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.14~
+VERSION ~0.90.15~
 
 
 ALWAYS
@@ -53,6 +53,8 @@ ALWAYS
         INCLUDE ~B_Spells/lib/tooltips.tpa~
 
         INCLUDE ~B_Spells/lib/make_cantrip.tpa~
+
+//        INCLUDE ~B_Spells/lib/room_for_spells.tpa~
 
         INCLUDE ~B_Spells/lib/alter_effect.tpa~
 
@@ -680,11 +682,20 @@ INCLUDE ~%mod_folder%/data/components/Setup_Variant_Wands.tpa~      //Priest Scr
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //do in B_KITS and then migrate here
 
+BEGIN @24  //Install Innate HLAs through the Spell Menu Button
+DESIGNATED 5001
+GROUP @25
+REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
+/*
+//not ready (not even close)
+INCLUDE ~%mod_folder%/data/components/Setup_innate_spmenu.tpa~      //Priest Scrolls
+
+*/
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 ///////                                                              ///////
-///////          Components ???-???: ???          ///////
+///////                    Components ???-???: ???                   ///////
 ///////                                                              ///////
 ////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
