@@ -372,9 +372,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_BUT03.itm~ ~override~   //Eggshell
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//CHECK BAMS CONTINUE
 
-//bams seem to be messed up (sigh, again!)
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL  ~%spell_res%B~ END
@@ -393,10 +391,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.bam~ ~override/%spell_res%C.
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
-//NA?
-//Sh. of Entropy immunity list
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
-
+//NA
 ////////////////////////////
 //////Scrolls: Creation
 ////////////////////////////
@@ -765,15 +760,14 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//TO DO CONITNUE
+COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
-//  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
-//COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
-//COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
-//COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R102a.bam~ ~override/%spell_res%a.bam~
+ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R102b.bam~ ~override/%spell_res%b.bam~
+ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R102c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
-//COPY_EXISTING ~%spell_res%.spl~ ~override~
-//  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:

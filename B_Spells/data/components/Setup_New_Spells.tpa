@@ -403,6 +403,7 @@ ACTION_IF (%b_alarm% > 0) BEGIN  //
 //////NOTES:
 ////////////////////////////
 //1st level cantrips: Converted to a second level spell, unchanged
+//Add portrait icon for innate alarm spell (speed increased or somesuch thing)
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -423,7 +424,7 @@ COPY ~%mod_folder%/data/new_spells/mage_1/b_w101.cre~ ~override~   //cre alarm
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/b_w101.spl~ 2 1 ~WIZARD_ALARM~ //
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/b_w101.spl~ 2 1 ~WIZARD_ALARM_SPELL~ //
         SAY NAME1 @65201
         SAY NAME2 @65201
         SAY UNIDENTIFIED_DESC @65202
@@ -454,7 +455,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-// NA
+// TO DO For Innate alarm
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -780,7 +781,7 @@ END //end cantrip spell
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//____________________________________________________________Detect Magic______________________________________________________________________________//
+//____________________________________________________________Reveal Magic______________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -802,15 +803,16 @@ ACTION_IF (%b_detect_magic% > 0) BEGIN  //
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_WZ107.spl~ 2 1 ~WIZARD_DETECT_MAGIC~ //
+/*
+//not ready
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_WZ107.spl~ 2 1 ~WIZARD_REVEAL_MAGIC~ //
           SAY NAME1 @68036
           SAY NAME2 @68036
           SAY UNIDENTIFIED_DESC @68047
   	  SAY DESC @68047
 
 LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_DETECT_MAGIC~
+  STR_VAR spell_name = ~WIZARD_REVEAL_MAGIC~
   RET spell_res
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
@@ -863,7 +865,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Compatibility
 ////////////////////////////
-
+*/
+//end not ready
 END//end spell
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -995,6 +998,9 @@ END //end detect traps and portals
 
 ACTION_IF (%devil_eyes% > 0) BEGIN  //
 
+/*
+//not first release
+
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
@@ -1052,10 +1058,19 @@ ELSE ACTION_IF ((%devil_eyes% = 1) AND (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~))
 	SAY DESC @10110030
         LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@10110026) END  //Notification: Heat Vision
   END  //end 'replace' infravision w/devil's eyes
+
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
 //TO DO CONTINUE
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_1/B_DEVA.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_DEVB.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_DEVC.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -1082,6 +1097,9 @@ ELSE ACTION_IF ((%devil_eyes% = 1) AND (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~))
 ////////////////////////////
 //DONE
 
+*/
+
+//end not first release
 END //end install devil's eyes
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1124,7 +1142,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//TO DO CONTINUE
+
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
 COPY ~%mod_folder%/data/new_spells/mage_1/B_M101a.bam~ ~override/%spell_res%a.bam~
@@ -1215,7 +1233,7 @@ ACTION_IF (%b_exterminate% > 0) BEGIN  //
 ////////////////////////////
   //0-level cantrips: convert to 0 level cantrip
   //**1st-Level Cantrips**: This spell is installed if 1st level spell (unchanged) if 1st-level Cantrips  is installed.
-  //need to remove the insect projectile using effect 273 (probably?)
+  //need to remove the insect projectile using effect 273 (probably?) from the "A" subspell
   //remove summon swarm (new wiz spell 3rd lev)  from  B_M102A.spl/%spell_res%A.spl
   //prot/immunity to death
   //add icons, etc.
@@ -1241,8 +1259,8 @@ LAF RES_NUM_OF_SPELL_NAME
   RET spell_res
 END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_parameter1 = 49 STR_VAR resource = EVAL ~%spell_res%A~ END  // Ally spell (removing insect spells)
-  LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_parameter1 = 50 STR_VAR resource = EVAL ~%spell_res%B~ END  // non-Ally spell (killing 'pests')
+  LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_parameter2 = 49 STR_VAR resource = EVAL ~%spell_res%A~ END  // Ally spell (removing insect spells)
+  LPF ALTER_EFFECT INT_VAR match_opcode = 326 match_parameter2 = 50 STR_VAR resource = EVAL ~%spell_res%B~ END  // non-Ally spell (killing 'pests')
 
 //sec spells
 //help ally (including animal affected by summon insects or summon swarm)
@@ -1251,7 +1269,7 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_M102A.spl~ ~override/%spell_res%A.sp
 //hurt/kill non allied animal
 COPY ~%mod_folder%/data/new_spells/mage_1/B_M102B.spl~ ~override/%spell_res%B.spl~  //Kill animals spl
   LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = EVAL ~%spell_res%B~ END  //
-  LPF ALTER_EFFECT INT_VAR match_opcode = 13 parameter1 = RESOLVE_STR_REF (@65113) END  // Exterminated notification
+
 
 ////////////////////////////////
 //////Add Icons and Projectiles:
@@ -1425,6 +1443,8 @@ END
 //TO DO CONTINUE 
 
 END//end farseer
+
+//////////////////////////////////CHECK FROM HERE
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1782,7 +1802,16 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//TO DO CONTINUE
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ105a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ105b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ105c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
 
 ////////////////////////////
 //////Portrait Icons:
@@ -1966,6 +1995,8 @@ ACTION_IF (%b_lasting_breath% > 0) BEGIN  //
   //SR:
   //MiH: 
   //OS:
+  //ICONS DONE
+  // USE B_WZ108 as NAME
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
@@ -1978,6 +2009,18 @@ ACTION_IF (%b_lasting_breath% > 0) BEGIN  //
 //////Add Icons and Projectiles:
 ////////////////////////////////
 
+/*
+//actually done
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ108a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ108b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ108c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+*/
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -2144,21 +2187,17 @@ COPY ~%mod_folder%/data/new_spells/mage_1/b_belie.eff~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//TO DO CONTINUE 
 
-/*
 COPY_EXISTING ~%spell_res%.spl~ ~override~
-
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ101a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ101b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ101c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
-*/  
-  
+
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -2328,6 +2367,8 @@ ACTION_IF (%b_read_magic_arcane% > 0) BEGIN  //
 //////NOTES:
 ////////////////////////////
 //make sure there are priest scrolls for the mage to read (or mage spells limited to lev the mage can cast without this spell)
+//icons done
+ // USE B_WZ109 as NAME
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -2340,6 +2381,19 @@ ACTION_IF (%b_read_magic_arcane% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+
+/*
+//actually done
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ109a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ109b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ109c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+*/
 
 ////////////////////////////
 //////Portrait Icons:
@@ -2403,24 +2457,24 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
       STR_VAR resource = EVAL ~%spell_res%~
   END      //
   LPF ALTER_SPELL_HEADER INT_VAR speed = 1 END
+
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
 //TO DO CONTINUE 
 
 //No icons (or portrait icons) as yet. Use invisibility (mislead) for now
-/*
 
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR  speed = 1 icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W102a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W102b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W102c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-*/
+
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -2652,20 +2706,16 @@ END
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//No icons (or portrait icons) as yet.
-/*
-COPY_EXISTING ~%spell_res%.spl~ ~override~
 
+COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W104a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W104b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_1/B_W104c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-*/
 
 ////////////////////////////
 //////Portrait Icons:
@@ -2837,6 +2887,16 @@ END
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ201A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ201B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ201C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -3635,6 +3695,9 @@ END//end spell
 
 ACTION_IF (%b_snowball% > 0) BEGIN  //
 
+/*
+//this spell is NOT B_WZ104.spl in mage_1.  INVESTIGATE
+
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
@@ -3704,6 +3767,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //////Compatibility
 ////////////////////////////
 
+*/
+//END NOT READY
 END//end spell
 
 
@@ -3776,7 +3841,7 @@ ACTION_IF (%b_alamir_breakdown% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
-
+//file name: B_MG301
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
@@ -3788,7 +3853,21 @@ ACTION_IF (%b_alamir_breakdown% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+//created: B_MG301A, B_MG301B and B_MG301C
 
+/*
+
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_3/B_MG301a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_3/B_MG301b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_3/B_MG301c.bam~ ~override/%spell_res%c.bam~
+
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+*/
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -3986,7 +4065,17 @@ COPY ~%mod_folder%/data/new_spells/mage_1/SPWI101C.spl~ ~override/%spell_res%B.s
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-// TO DO CONTINUE
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_3/B_TEMPA.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_3/B_TEMPB.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_3/B_TEMPC.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
 
 ////////////////////////////
 //////Portrait Icons:
@@ -4169,7 +4258,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 
 /*
-
+COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
 COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
@@ -4548,7 +4637,16 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//TO DO CONTINUE
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_4/B_WZ401a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_4/B_WZ401b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_4/B_WZ401c.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:

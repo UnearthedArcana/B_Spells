@@ -1121,7 +1121,7 @@ Area of Effect: Special
 Saving Throw: Special
 
 This spell instantaneously snuffs out the life forces of all animals in the area of effect, including such normal pests as flies, mice, beetles, rats, spiders, and the like. Specifically, it affects the targeted animal and up to 3 animals within 20 ft. of it. Animals with 1 or fewer Hit Die are instantly slain with no save.  Animals with more hit die are allowed a save vs. death. 
-Animals that succeed the save receive 2d8 points of damage but do not (necessarily) die.  Only non-humanoid animals can be affected by this spell, including large spiders, stirges, poisonous snakes, and giant or huge centipedes. If the targeted creatures are extremely small (1 hp or less), then an area up to 5 cubic can be cleansed of pests.  This spell can counter the summon insects or summon swarm spells, but it is not powerful enough to counter stronger summoning spells, such as creeping death.  This spell is ineffective against Familiars.~
+Animals that succeed the save receive 2d8 points of damage but do not (necessarily) die.  Only non-humanoid animals can be affected by this spell, including large spiders, stirges, poisonous snakes, and giant or huge centipedes. If the targeted creatures are extremely small (1 hp or less), then an area up to 5 cubic can be cleansed of pests.  This spell can counter the summon insects or summon swarm spells, but it is not powerful enough to counter stronger summoning spells, such as creeping death.  This spell does not affect Familiars or allied animals (though, this spell is exact enough to remove a swarm from an allied animal or familiar).~
 
 @65113   = ~Exterminated~
 
@@ -1247,9 +1247,8 @@ Casting Time: 2
 Area of Effect: 1 creature
 Saving Throw: Special
 
-When this spell is cast, a ray slams into the target chosen by the caster, sapping their energy and knocking the wind out of them.  At first level, this spell does 2d4 non-lethal damage to the target, and, if they do not save vs. death, penalizes their AC, THAC0 and Saves by -1.
-
-Damage increases by 2d4 at 3rd level, and every 2 levels thereafter (max 10d4 at 9th level).  The penalties are increased by -1 at 5th level, and every 5 levels thereafter (max -5 at 20th level).
+When this spell is cast, a ray slams into the target chosen by the caster, sapping their energy and knocking the wind out of them.  At first level, this spell does 2d4 non-lethal damage to the target, and, if they do not save vs. death, penalizes their AC, THAC0 and Saves by -1.   
+Damage increases by 1d4 at 3rd level, and every 2 levels thereafter (max 5d4 at 7th level).  
 
 Undead and creatures without a biological anatomy are immune to Enervating Ray.~
 
@@ -1550,7 +1549,7 @@ Casting Time: 9
 Area of Effect: Special
 Saving Throw: None
 
-This specialized version of the animate dead spell produces one skeleton servant. The animated skeleton obeys the simple verbal commands of the caster, and remain animated until destroyed in combat, turned by a priest, or 8 hours pass; the magic cannot be dispelled.~
+This specialized version of the animate dead spell produces one skeleton servant. The animated skeleton obeys the simple verbal commands of the caster, and remains animated until destroyed in combat, turned by a priest, or 8 hours pass; the magic cannot be dispelled.~
 
 @68026 = ~Carpet of Adhesion~
 
@@ -1608,8 +1607,8 @@ When this spell is cast, the caster selects a point within range. That point bur
 
 @68034 = ~Skeleton~
 @68035 = ~Skeleton Archer~
-@68036 = ~Detect Magic~
-@68037 = ~Detect Magic
+@68036 = ~Reveal Magic~
+@68037 = ~Reveal Magic
 (Divination)
 
 Level: 1
@@ -1619,7 +1618,7 @@ Casting Time: Special
 Area of Effect: 30-ft. radius
 Saving Throw: None
 
-When the detect magic spell is cast, the wizard detects magical radiations in all creatures within 30-ft. Essentially, all creatures under the effect of a dispellable spell glow briefly. This spell also gives the caster special insight as to the nature of the magics affecting said creatures. The caster can use this insight to cast dispel magic within 1 round, and if <PRO_HESHE> does so, <PRO_HISHER> dispel magic check is made at twice <PRO_HISHER> level (maximum +5 levels at 5th level).
+When the reveal magic spell is cast, the wizard detects magical radiations in all creatures within 30-ft. Essentially, all creatures under the effect of a dispellable spell glow briefly. This spell also gives the caster special insight as to the nature of the magics affecting said creatures. The caster can use this insight to cast dispel magic within 1 round, and if <PRO_HESHE> does so, <PRO_HISHER> dispel magic check is made at twice <PRO_HISHER> level (maximum +5 levels at 5th level).
 
 Note that this spell does not reveal the presence of good or evil, or reveal alignment. Otherplanar creatures are not necessarily magical.
 

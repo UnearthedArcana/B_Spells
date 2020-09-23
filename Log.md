@@ -68,10 +68,47 @@ TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or
 
 TO DO 34: Add different versions of Fog and banishment for those wands if SR not installed(?) 
 
+TO DO 35: Custom Portrait Icons: Accelerate Metabolism, Alarm (innate), Anticipation, detect traps/portals, enervating ray, farseer 
+
+Version 0.90.16
+
+2020-09-22
+
+- Bam icons for destroy undead
+
+- cleaned up a few bams (a bit--they still don't look great)
+
+- applied fixes to alarm, anticipation
+
+- changed internal ref for alarm spell (conflict in bgee)
+
+- nerfed Enervating Ray (cuz boyhowdy, that was op)
+
+- 
+
+2020-09-21
+
+- bam icons for Camouflage
+
+2020-09-19
+
+- Bam icons for Carpet of adhesion, animate zombie, Protective Shell, Read Magic, Reprieve, Abundant Ammunition, binding and Vanish
+
+2020-09-15
+
+- Changed Detect magic to Reveal Magic (for compatibility w/ospells)
+
+- Bam icons for reveal magic, phantasmal force
+
+2020-09-13
+
+- redid bam icon for bless water
+
+- Added bam icons for devil's eyes, e ray, farseer, ice knife
+
 
 Version 0.90.15
 
-2020-09-13
 
 - bam icons for anticipation
 
