@@ -1125,8 +1125,8 @@ Animals that succeed the save receive 2d8 points of damage but do not (necessari
 
 @65113   = ~Exterminated~
 
-@65121   = ~Exterminate~
-@65122   = ~Exterminate
+@65121   = ~Filth's Bane~
+@65122   = ~Filth's Bane
 (Alteration)
 
 Level: 1
@@ -1136,8 +1136,7 @@ Casting Time: 6
 Area of Effect: 1 Creature
 Saving Throw: Special
 
-This simple spell removes dirt, grime, and impurities from any surface or person it is cast upon. While this spell doesn't specifically remove diseases and poisons, the purifying magic can give a victim of these afflictions a fighting chance. If the target saves vs. death, any poisons or diseases they are afflicted with are removed.~
-
+This simple spell removes dirt, grime, and impurities from any surface or person it is cast upon.   While this spell doesn't specifically remove diseases and poisons, the purifying magic can give a victim of these afflictions a fighting chance.   If the target saves vs. death, any poisons or diseases they are afflicted with are removed.~
 
 @65201 = ~Alarm~
 @65202 = ~Alarm

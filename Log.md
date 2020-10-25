@@ -68,7 +68,29 @@ TO DO 33: Put Devil's Eyes in New Spell section (offer to replace Infravision or
 
 TO DO 34: Add different versions of Fog and banishment for those wands if SR not installed(?) 
 
-TO DO 35: Custom Portrait Icons: Accelerate Metabolism, Alarm (innate), Anticipation, detect traps/portals, enervating ray, farseer 
+TO DO 35: Custom Portrait Icons: Accelerate Metabolism, Alarm (innate), Anticipation, detect traps/portals, enervating ray, farseer, hypnotism, Ice Knife(numbness),  
+
+TO DO 36: Protection Lists:
+
+TO DO 37: Dispel Lists:
+
+TO DO 38: To be remove lists: regen_list, 
+
+Version 0.90.17
+
+2020-10-24
+
+- icons for alter self, binding (fin but missing), Blastbones, Bolt of Paralysis, Choke, Hypnotic Pattern, l trap, protection from paralysis
+
+2020-09-26
+
+- Created regen_list for Accelerate metabolism
+
+2020-09-24
+
+- fixed description for filth's bane
+
+- changed hypnotism so it doesn't rely on command (because that can lead to problems)
 
 Version 0.90.16
 

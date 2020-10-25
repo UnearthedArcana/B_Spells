@@ -282,6 +282,7 @@ ACTION_IF (%b_acc_metabolisim% > 0) BEGIN  //
 //////NOTES:
 ////////////////////////////
 //1st level cantrips: Converted to a second level spell, unchanged
+//regen_list Better forms of regenerate remove accelerate metabolism (to do globally)
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -334,7 +335,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
-//NA? 
+//Regeneration spls
+INCLUDE ~%mod_folder%/lib/spell_lists/regen_list.tpa~
 
 ////////////////////////////
 //////Scrolls: Creation
@@ -529,6 +531,7 @@ ACTION_IF (%b_anim_skele% > 0) BEGIN  //
 //////NOTES:
 ////////////////////////////
 //check to see if all these skeletons are in BG(2)EE,
+//do scrolls and scroll placement
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -1442,7 +1445,7 @@ END
 
 //TO DO CONTINUE 
 
-END//end farseer
+END //end farseer
 
 //////////////////////////////////CHECK FROM HERE
 
@@ -1619,11 +1622,8 @@ ACTION_IF (%b_hypno_arcane% > 0) BEGIN  //
 //////NOTES:
 ////////////////////////////
 
-//If SR is installed, zero out save penalties, and change description to SR standard
 //Make and place scrolls
 //make portrait icon
-//note to user that changes to command spell affect hypnotism as well
-//check with MEspells alteration (which gives 1 round control) e.g. the alter
 //1st level cantrips: This spell is installed (unchanged) if 1st-level spells is installed.
 
 ///////////////////////////////////////////////
@@ -1636,37 +1636,24 @@ ACTION_IF (%b_hypno_arcane% > 0) BEGIN  //
 ///////////////////////////////////////////////////
 
 //Using command as a base spell
-COPY_EXISTING ~SPPR102.spl~ ~override/b_1w1xx.spl~
-ADD_SPELL ~override/b_1w1xx.spl~ 2 1 ~WIZARD_HYPNOTISM~ //
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_MG101.spl~ 2 1 ~WIZARD_HYPNOTISM~ //
           SAY NAME1 @65203
           SAY NAME2 @65203
           SAY UNIDENTIFIED_DESC @65204
   	  SAY DESC @65204
- WRITE_BYTE 0x1c 1//Wizard Spells
- WRITE_LONG 0x1e 0x1000//General spells, exclude necro
- WRITE_LONG 0x18 0//Remove hostility
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 39  opcode = 76          //change to feeblemind opcode
-  END      //
-  LPF CLONE_EFFECT INT_VAR match_opcode = 76 opcode = 324 parameter2 = 1 END  //Protection complete below
-  LPF CLONE_EFFECT INT_VAR match_opcode = 76 opcode = 139 parameter1 = RESOLVE_STR_REF (@65205) END  //Notification: Hypnotized
-  LPF CLONE_EFFECT INT_VAR match_opcode = 76 opcode = 232 parameter2 = 7 END  //Notification: Hypnotized
-  LPF ALTER_SPELL_HEADER INT_VAR projectile = 190 END  //hold projectile
-//  LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 324 STR_VAR resource = EVAL ~%spell_res%~ END   //no unnatural etc
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@65205) END  //Notification: Hypnotized
+  LPF ALTER_EFFECT INT_VAR match_opcode = 232 parameter2 = 7 STR_VAR resource = EVAL ~%spell_res%A~  END  //
 
 LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~WIZARD_HYPNOTISM~
   RET spell_res
 END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 232 STR_VAR resource = EVAL ~%spell_res%A~ END  //Hypno remover
-  LPF ALTER_EFFECT INT_VAR match_opcode = 324 STR_VAR resource = EVAL ~%spell_res%~ END   //no undead
-  LPF CLONE_EFFECT INT_VAR match_opcode = 324 parameter2 = 27 STR_VAR resource = EVAL ~%spell_res%~ END  //no golem
+
 COPY ~%mod_folder%/data/new_spells/mage_1/B_W1XXA.spl~ ~override/%spell_res%A.spl~   //Notification: No longer Hypnotized
           SAY NAME1 @65206
           SAY NAME2 @65206
   LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~%spell_res%~ END  //
-//  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@65206) END  //Notification: No longer Hypnotized
 
 ////////////////////////////////
 //////Add Icons and Projectiles:
@@ -2104,7 +2091,8 @@ END //mending
 
 ACTION_IF (%b_phant_force% > 0) BEGIN  //
 
-
+/*
+//not in version 1
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
@@ -2228,6 +2216,8 @@ INCLUDE ~%mod_folder%/lib/spell_lists/illusion_list.tpa~
 ////////////////////////////
 //TO DO CONTINUE 
 
+*/
+//end not in versin 1
 END //phant force
 
 
@@ -2461,9 +2451,6 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//TO DO CONTINUE 
-
-//No icons (or portrait icons) as yet. Use invisibility (mislead) for now
 
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
@@ -2808,6 +2795,7 @@ ACTION_IF (%b_alter_self% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
+//use B_M201.spl
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -2820,7 +2808,18 @@ ACTION_IF (%b_alter_self% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-
+//done but need to do spell
+*/
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M201a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M201b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M201C.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+*/
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -3037,7 +3036,15 @@ COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202D.spl~ ~override/%spell_res%D.s
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//TO DO CONTINUE 
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -3147,7 +3154,15 @@ COPY ~%mod_folder%/data/new_spells/mage_2/B_POOF.spl~ ~override~ //save dam
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//to do CONTINUE
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W202A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W202B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W202C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -3216,7 +3231,15 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//to do CONTINUE
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W204A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W204B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W204C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -3313,7 +3336,16 @@ COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ203D.spl~ ~override/%spell_res%D.s
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//to do CONTINUE
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ203A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ203B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ203C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
 
 ////////////////////////////
 //////Portrait Icons:
@@ -3380,7 +3412,15 @@ END
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//to do CONTINUE
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ204A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ204B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ204C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -3423,7 +3463,7 @@ ACTION_IF (%b_hypnotic_pattern% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
-//add protection for Int 20+ opponents
+//use B_M202.spl
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -3437,8 +3477,18 @@ ACTION_IF (%b_hypnotic_pattern% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//to do CONTINUE
-
+//done
+/*
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M202A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M202B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M202C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+*/
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -3506,7 +3556,15 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//to do CONTINUE
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W203A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W203B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_W203C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -3548,6 +3606,7 @@ ACTION_IF (%b_leomund_trap% > 0) BEGIN  //
 //////NOTES:
 ////////////////////////////
 //add protection for Int 20+ opponents
+//use B_M203.spl
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -3558,11 +3617,21 @@ ACTION_IF (%b_leomund_trap% > 0) BEGIN  //
 ///////////////////////////////////////////////////
 
 
-
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//to do CONTINUE
+//done
+/*
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M203A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M203B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M203C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+*/
 
 ////////////////////////////
 //////Portrait Icons:
@@ -3605,6 +3674,7 @@ ACTION_IF (%b_protec_para% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
+//use B_M204.spl
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -3614,10 +3684,22 @@ ACTION_IF (%b_protec_para% > 0) BEGIN  //
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
+
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-
+//done
+/*
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M204A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M204B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_2/B_M204C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+*/
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
