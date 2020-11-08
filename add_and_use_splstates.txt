@@ -1,0 +1,50 @@
+DEFINE_ACTION_FUNCTION ADD_SPLSTATE STR_VAR label = ~~ RET new_ids BEGIN
+OUTER_SET new_ids = ~-1~
+ACTION_IF FILE_CONTAINS_EVALUATED (~SPLSTATE.IDS~ ~^.+[ %TAB%]%label%\b~) BEGIN
+COPY_EXISTING ~SPLSTATE.IDS~ override
+COUNT_2DA_ROWS 2 rows
+FOR (i = 0; i < rows; ++i) BEGIN
+READ_2DA_ENTRY i 1 2 state_label
+PATCH_IF ~%state_label%~ STRING_EQUAL_CASE ~%label%~ BEGIN
+READ_2DA_ENTRY i 0 2 state_id
+SET new_ids = state_id
+END
+END
+BUT_ONLY
+END ELSE BEGIN
+OUTER_FOR (i = 0; i < 256; ++i) BEGIN
+OUTER_SET $occupied_spell_state(~%i%~) = 0
+END
+ACTION_IF (~%label%~ STRING_EQUAL ~~) BEGIN FAIL ~Missing Spell State label~ END ELSE BEGIN
+ACTION_IF ((~%label%~ STRING_CONTAINS_REGEXP ~ ~) = 0) BEGIN FAIL ~Spell State lable cannot have spaces~ END ELSE BEGIN
+COPY_EXISTING ~SPLSTATE.IDS~ override
+COUNT_2DA_ROWS 2 rows
+FOR (i = 0; i < rows; ++i) BEGIN
+READ_2DA_ENTRY i 0 2 state_id
+SET $occupied_spell_state(~%state_id%~) = 1
+END
+FOR (i = 0; i < 256; ++i) BEGIN
+PATCH_IF $occupied_spell_state(~%i%~) = 0 BEGIN
+SET new_ids = i
+SET i = 256
+PATCH_IF new_ids <= rows BEGIN
+INSERT_2DA_ROW new_ids 2 ~%new_ids% %label%~
+END ELSE BEGIN
+INSERT_2DA_ROW new_ids 2 ~%new_ids% %label%~
+END
+END
+END
+PATCH_IF (new_ids = ~-1~) BEGIN PATCH_FAIL ~No available Spell States~ END
+BUT_ONLY
+END
+END
+END
+END
+LAF ADD_SPLSTATE STR_VAR label = ~CUSTOM_STATE~ RET new_ids END
+
+COPY_EXISTING ~SPWI101.spl~ ~override/B_TEST01.spl~
+  LPF CLONE_EFFECT INT_VAR match_opcode = 158 opcode = 326 target = 1 timing = 0 duration = 1 parameter1 = EVAL ~%new_ids%~  parameter2 = 0x112 savingthrow = 0 STR_VAR insert = ~first~ resource = EVAL ~TEST02~  END
+BUT_ONLY
+
+COPY ~splpath/spl.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 328 parameter2 = EVAL ~%new_ids%~ STR_VAR END

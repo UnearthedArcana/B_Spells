@@ -2,7 +2,7 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.17~
+VERSION ~0.90.18~
 
 
 ALWAYS
@@ -96,14 +96,10 @@ LANGUAGE ~English~ ~english~
          ~B_Spells/tra/english/revised.tra~  //for revised
          ~B_Spells/tra/english/items.tra~  //for items
 
-//___________________________________________________________________________________
-//Markers:
-//b_IWD.itm: FnP spells (Priest, new and specific wiz spells)
-//B_pri.itm: IWDEE priest spells (mine)
-//b_wiz.itm: all IWDEE wiz spells (mine)
-//b_new.itm to detect my new spells only (which may or may not include IWDEE spells depening on game)
-//setup-iwdification.tp2~ ~40~: IWDIFICATION priest spells
-//setup-iwdification.tp2~ ~30~: IWDIFICATION wiz spells
+///NOTE TO SELF: COMPLETELY REDO tp2 with finished products from B_Spells/comp/%VAR%.tpa~
+
+
+//CONTINUE FROM HERE
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

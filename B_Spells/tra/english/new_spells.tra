@@ -782,8 +782,8 @@ Casting Time: 1
 Area of Effect: 1 creature
 Saving Throw: None 
 
-This spell surrounds the recipient with a magical barrier at a distance of one foot. Spirits, fey creatures, elementals, lower-planar creatures, and spectral undead receive a penalty of -2 to hit when attacking the protected creature. In addition, the recipient gains a +3 bonus to Saving Throws against all spells that belong to the Enchantment school. 
-~
+This spell surrounds the recipient with a magical barrier at a distance of one foot. Spirits, fey creatures, elementals, lower-planar creatures, and spectral undead receive a penalty of -2 to hit when attacking the protected creature. In addition, the recipient gains a +3 bonus to Saving Throws against all spells that belong to the Enchantment school.~
+
 //Misc. @53000
 
 @53000 = ~Abundant Ammunition~
@@ -1074,6 +1074,27 @@ This spell imbues the subject with a touch of divine guidance.
 The recipient of this spell gains a +10% bonus to all thief skills for the duration of the spell.~
 
 @53038 = ~Affected by Guidance~
+
+@53040 = ~Delay Death~
+@53041 = ~Delay Death
+(Necromancy)
+
+Level: 4
+Sphere: Necromantic
+Range: 30 ft.
+Duration: 1 round/level
+Target: 1 Ally
+Casting Time: 1
+Saving Throw: None
+
+The subject of this powerful spell is unable to die from hit point damage. While under the protection of this spell, the subject cannot go below 1 hit point.  This spell does not give protection against spells or effects that cause death by some means other than hit point loss, sucha as a death spell or disintegrate, nor does it protect against other effects, such as poison or ability drain (however, it will prevent the poison from killing them by hit point loss).
+
+If the subject has 1 hit point when the spell's duration expires, they die instantly.~
+
+
+ //inspired by the 3e spell of the same name
+ 
+
 
 
 //ARCANE SPELLS

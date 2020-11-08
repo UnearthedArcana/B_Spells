@@ -231,6 +231,24 @@ However, while <PRO_HESHE> can fight normally, <PRO_HESHE> cannot cast spells, n
 
 @109000005 = ~Curse or Doom spells~
 
+@109000101 = ~Preserve Life~
+@109000102 = ~Preserve Life
+(Necromancy)
+
+Level: Orison
+Sphere: Healing
+Range: Touch
+Duration: Instant
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: None
+This spell is useful for bringing the subject from the brink of death, but is ineffective against moderate or superficial wounds. If the target's hit point total is equal to or less than 5 hit points, they recover 1d6+4 hit points. Otherwise, this orison is ineffective.
+
+Preserve life heals an additional 4 hit points of damage at levels 5, 10, and 15.
+
+The minimum hit point amount increases by 5 every five levels (10 at 5th level, 20 at 15th level, etc.)~
+
+@109000103 = ~Preserve Life is ineffective~
 
 //CANTRIPS: ZERO LEVEL WIZARD
 
@@ -327,7 +345,7 @@ Casting Time: 3
 Area of Effect: 1 creature
 Saving Throw: Neg.
 
-By means of this spell, the wizard creates a glob of acid that propels at an enemy of <PRO_HISHER> choosing within 10'. If the creature does not save vs. breath +2, they receive 1d3 points of acid damage.  Unless the cantrip is somehow dispelled, this cantrip will cause another 1d3 points of damage on the next round.
+By means of this spell, the wizard creates a glob of acid that propels at an enemy of <PRO_HISHER> choosing within 10'. If the creature does not save vs. breath, they receive 1d3 points of acid damage. Unless the cantrip is somehow dispelled, this cantrip will cause another 1d3 points of damage on the next round.
 
 This cantrip lasts for an additional round, doing an additional 1d3 points of damage, at levels 6, 12, and 18.
 
@@ -383,4 +401,109 @@ With this spell, the caster surrounds a creature with illusory sounds of disturb
 As the caster levels up, the illusory sounds become more distracting and more difficult to ignore.  They inflict a -1 penalty to attack and an additional 5% spell failure at levels 6 and 18.
 
 Creatures without minds, such as golems, are unaffected by this cantrip (though, undead creatures are not immune). Deaf creatures are also immune.~
+
+@200009101   = ~Sixth Sense~
+
+@200009102   = ~Sixth Sense
+(Divination)
+
+Level: 1
+Range: 0
+Duration: Special
+Casting Time: 9, Special
+Area of Effect: The caster
+Saving Throw: None
+When this spell is cast, the caster gains a sixth sense that alerts <PRO_HIMHER> the next time <PRO_HESHE> is attacked in the next 8 hours. If <PRO_HESHE> is attacked in that time, <PRO_HESHE> gains a +3 bonus to AC, and cannot be backstabbed for the entire round.
+
+Sixth Sense cannot be cast in the presence of enemies.
+
+A mage cannot have more than one Sixth Sense active at any one time.~
+
+@200009201   = ~Shadow Dagger~
+@200009202   = ~Shadow Dagger
+(Illusion/Phantasm)
+
+Level: Cantrip
+Range: Visual range of the caster
+Duration: Instant
+Casting Time: 4
+Area of Effect: 1 creature
+Saving Throw: Neg.
+By means of this spell, the wizard creates an illusion of a dagger that hurls toward a target <PRO_HESHE> designates within range. That target must save vs. spell +2 or take 2d4 points of non-lethal damage.
+
+This spell is ineffective against undead, constructs, or any other creature immune to non-lethal damage.
+
+At levels 6, 12, and 18, this spell does an additional 1d4 points of non-lethal damage.
+
+Opponents receive a -1 penalty to their saves at levels 10 and 20.~
+
+@200009301   = ~Magical Stone~
+@200009302   = ~Magical Stone
+(Enchantment)
+
+Level: 1
+Sphere: Elemental earth
+Range: 0
+Duration: 8 Hours
+Casting Time: 3
+Area of Effect: the caster
+Saving Throw: None 
+
+By using this spell, the priest can enchant a number of stones, which can be used against <PRO_HISHER> enemies.  This spell enchants three stones at 1st level, plus one every 2 levels (max 12 stones at 19th level). The priest can throw the stones as a weapon anytime within the spell duration.  The stones are considered +1 weapons for determining if a creature can be struck by it.
+
+The stones keep their enchantment for one hour.  
+
+The effective enchantment level of the stones increases by 1 at levels 6, 12, and 18.
+
+The priest cannot have more than one Magical Stone active at a time.~
+
+@200009303   = ~Magical Stone
+This is a magical stone enchanted by the Magical Stone orison. This stone strikes as a +1 weapon.
+
+STATISTICS:
+
+THAC0: +2
+Damage: 1d4+1 (crushing)
+Speed Factor: 2
+Type: One-handed
+
+Weight: 0~
+
+@200009304   = ~Magical Stone
+This is a magical stone enchanted by the Magical Stone orison. This stone strikes as a +2 weapon.
+
+STATISTICS:
+
+THAC0: +3
+Damage: 1d4+2 (crushing)
+Speed Factor: 2
+Type: One-handed
+
+Weight: 0~
+
+@200009305   = ~Magical Stone
+This is a magical stone enchanted by the Magical Stone orison. This stone strikes as a +3 weapon.
+
+STATISTICS:
+
+THAC0: +4
+Damage: 1d4+3 (crushing)
+Speed Factor: 2
+Type: One-handed
+
+Weight: 0~
+
+@200009306   = ~Magical Stone
+This is a magical stone enchanted by the Magical Stone orison. This stone strikes as a +4 weapon.
+
+STATISTICS:
+
+THAC0: +5
+Damage: 1d4+4 (crushing)
+Speed Factor: 2
+Type: One-handed
+
+Weight: 0~
+
+
 //Items start at @900000000

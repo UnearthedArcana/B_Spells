@@ -76,6 +76,36 @@ TO DO 37: Dispel Lists:
 
 TO DO 38: To be remove lists: regen_list, 
 
+Version 0.90.18
+
+2020-11-07
+
+- orison: created splprot_orisons.tpa and included it in orison installation (to check for current hp)
+
+- create preserve life orison
+
+2020-10-30
+
+- Magic Stone 0 level cantrip: 1st draft
+
+- Delay Death: 1st draft
+
+2020-10-30
+
+- Sixth Sense Cantrip: First Draft
+
+- Shadow Dagger: First draft
+
+- Magical Stone (0 level version): First draft
+
+2020-10-27
+
+- Fixed ESP Icon
+
+- Moved Bind to 1st level
+
+- Icons for Tasha's Uncontrollable Hideous Laughter,
+
 Version 0.90.17
 
 2020-10-24
