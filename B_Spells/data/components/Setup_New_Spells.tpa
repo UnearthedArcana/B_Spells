@@ -319,9 +319,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W103a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W103b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W103c.bam~ ~override/%spell_res%c.bam~
 
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
@@ -330,8 +330,27 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//TO DO CONTINUE
 
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_W103P.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1002)   //healing accelerated
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_W103P~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
@@ -447,9 +466,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W101a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W101b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W101c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W101a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W101b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W101c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -457,7 +476,37 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-// TO DO For Innate alarm
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_W101P.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1003)   //Alarmed
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_W101P~
+PRETTY_PRINT_2DA
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~INNATE_ALARM~
+  RET spell_res
+END
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
+
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ALARM~
+  RET spell_res
+END
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -645,12 +694,36 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDIa.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDIb.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDIc.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/D5_WIDIa.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/D5_WIDIb.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/D5_WIDIc.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/D5_WIDIP.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1004)   //Anticipating
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   D5_WIDIP~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
 
 ////////////////////////////
 //////Scrolls: Creation
@@ -783,9 +856,9 @@ COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202D.spl~ ~override/%spell_res%D.s
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202A.bam~ ~override/%spell_res%A.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202B.bam~ ~override/%spell_res%B.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202C.bam~ ~override/%spell_res%C.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ202A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ202b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ202c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -793,8 +866,26 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//TO DO CONTINUE
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_WZ202P.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1004)   //Anticipating
 
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_WZ202P~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
@@ -821,7 +912,7 @@ END//end spell
 //______________________________________________________________Cantrip_________________________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//TO DO CONTINUE 
+//TO DO CONTINUE
 
 ACTION_IF (%b_cantrip_spell% > 0) BEGIN  //
 
@@ -833,6 +924,7 @@ ACTION_IF (%b_cantrip_spell% > 0) BEGIN  //
 //1st level cantrips: Cantrip is moved to 2nd level if 1st level cantrips is installed, and it will allow the character to cast the 1st level versions of all cantrips. Note that this spell allows the mage to cast any cantrip, even if they do not know it or if it is from an otherwise prohibited school.
 //This spell does not require that any cantrip component be installed. 
 //need to actually populate the select spell 2da (again, wait until finished with cantrips)
+//use B_CTRI.spl
 
 /*
 
@@ -861,10 +953,20 @@ END
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/icons/mage_1/B_CTRIA.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_CTRIb.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_CTRIc.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+//na- added by each individual cantrip
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -961,6 +1063,26 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_WZ107P.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1005)   //Detecting Magic
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_WZ107P~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -1043,9 +1165,29 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
-//////Immunity/Prot Lists:
+//////Portrait Icons:
 ////////////////////////////
-//NA
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_W105P.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1007)   //Detecting Traps and Portals
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_W105P~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
+
 
 ////////////////////////////
 //////Scrolls: Creation
@@ -1187,7 +1329,26 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//TO DO CONTINUE
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_DEVP.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1006)   //Devil's Eyes
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_DEVP~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -1267,7 +1428,26 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//TO DO CONTINUE  
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_M101P.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1008)   //Enervated
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_M101P~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
 
 
 ////////////////////////////
@@ -1493,7 +1673,26 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//TO DO CONTINUE 
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_W106P.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1009)   //Farseer
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_W106P~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -1732,8 +1931,8 @@ ACTION_IF (%b_hypno_arcane% > 0) BEGIN  //
 ////////////////////////////
 
 //Make and place scrolls
-//make portrait icon
 //1st level cantrips: This spell is installed (unchanged) if 1st-level spells is installed.
+//should give elves and half elves resistance
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -1767,21 +1966,39 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_W1XXA.spl~ ~override/%spell_res%A.sp
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-
 COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_1W1xxa.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_1W1xxb.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_1W1xxc.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_1W1xxA.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_1W1xxb.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_1W1xxc.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
-
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//TO DO CONTINUE 
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_1W1xxP.bam~ ~override~     //concentrating on bless
+ SET strref = RESOLVE_STR_REF(@1010)   //Hypnotized
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_1W1xxP~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -1791,6 +2008,7 @@ INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
 INCLUDE ~%mod_folder%/lib/spell_lists/hypno_list.tpa~
 INCLUDE ~%mod_folder%/lib/spell_lists/1st_list.tpa~
 INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
+//should give elves and half elves resistance
 
 ////////////////////////////
 //////Scrolls: Creation

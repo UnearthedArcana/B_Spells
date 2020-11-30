@@ -271,3 +271,63 @@ Once the caster makes a successful attack, this spell ends.
 Damage increases by 2 points every level (max +20 poinds at level 10).
 
 Undead Creatures are unaffected by Spectral Hand.~
+
+@10110046 = ~Bless~
+@10110047 = ~Bless
+(Conjuration/Summoning)
+
+Level: 1
+Sphere: All
+Range: 40 ft.
+Duration: 6 rounds
+Casting Time: 9
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+Upon uttering the bless spell, the caster raises the morale of friendly creatures by +1. Furthermore, it raises their attack dice rolls by +1. The caster determines at what range (up to 30 feet) <PRO_HESHE> will cast the spell. At the instant the spell is completed, it affects all friendly creatures in a 15-foot cube centered on the point selected by the caster (thus, affected creatures leaving the area are still subject to the spell’s effect; those entering the area after the casting is completed are not).
+
+A second use of this spell is to bless a single weapon wielded by the target creature. A blessed weapon counts as a +1 weapon for the purposes of determining what it can hit.
+
+The bonuses granted by Bless increase by +1 at 5th level, and every 5 levels after that.
+
+Multiple bless spells are not cumulative.~
+
+@10110048 = ~Bless Weapon~
+
+@10110100 = ~Command~
+@10110101 = ~Command
+(Enchantment/Charm)
+
+Level: 1
+Sphere: Charm 
+Range: 30 ft.
+Duration: 1 round 
+Casting Time: 1 
+Area of Effect: 1 creature 
+Saving Throw: neg.
+
+You give the subject a single command, which it obeys to the best of it's ability on its turn. You may select from the following options:
+
+- Die: You command the creature to 'die', causing them to fall to the ground and do nothing for a single round if they fail their save
+- Flee: You command the creature to 'flee', causing them to run around as if in fear for one round if they fail their save
+- Silence: You command the creature to be 'silent'.  Such creatures cannot speak or cast any spells for one round if they fail their save~
+
+@10110102 = ~Command: Die!~
+@10110103 = ~Command: Flee!~
+@10110104 = ~Command: Silence!~
+
+@10110200 = ~Know Evil~
+@10110201 = ~Know Evil
+(Divination)
+
+Level: 1
+Sphere: Divination
+Range: Touch
+Duration: 1 turn
+Casting Time: 2
+Area of Effect: 1 creature
+Saving Throw: None
+
+This spell instills the recipient with an insight into the heart of evil.  For a full turn, they can recognize evil on sight.
+
+Further, the target gains a +2 bonus to attack and damage against evil creatures, undead, or summoned creatures.~

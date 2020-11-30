@@ -2,7 +2,7 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.18~
+VERSION ~0.90.19~
 
 
 ALWAYS
@@ -95,6 +95,7 @@ LANGUAGE ~English~ ~english~
          ~B_Spells/tra/english/cantrips.tra~  //for cantrips
          ~B_Spells/tra/english/revised.tra~  //for revised
          ~B_Spells/tra/english/items.tra~  //for items
+         ~B_Spells/tra/english/icons.tra~   //icons
 
 ///NOTE TO SELF: COMPLETELY REDO tp2 with finished products from B_Spells/comp/%VAR%.tpa~
 

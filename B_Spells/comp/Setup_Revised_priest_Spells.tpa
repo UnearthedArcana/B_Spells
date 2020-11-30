@@ -1,0 +1,252 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+/////////////////////////////////////               Divine Spells             //////////////////////////////////////
+/////////////////////////////////////                                         //////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+LAM b_spells_settings_rev_spells  //loads the individual spell options
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_____________________________________________________________________BLESS____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+LAM b_spells_settings_bless  //Bless options
+
+// bless total conversion
+ ACTION_IF (%bless_total% > 0) BEGIN
+   LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~CLERIC_BLESS~
+    RET spell_res
+   END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  READ_LONG  0x0034 level //spell level
+ADD_SPELL ~%mod_folder%/data/rev_spells/bless/SPPR101.spl~ 1 %level% ~CLERIC_BLESS~ //
+        SAY NAME1 @10110046
+        SAY NAME2 @10110046
+        SAY UNIDENTIFIED_DESC @10110047
+	SAY DESC @10110047
+   LPF ALTER_SPELL_TYPE
+         STR_VAR spell_level = EVAL ~%level%~
+         STR_VAR level_text = EVAL ~%level%~
+   END
+//secondary spells
+//normal bless
+COPY ~%mod_folder%/data/rev_spells/bless/B_BLESA.spl~ ~override~   //
+        SAY NAME1 @10110046
+        SAY NAME2 @10110046
+COPY ~%mod_folder%/data/rev_spells/bless/B_BLESB.spl~ ~override~   //
+        SAY NAME1 @10110046
+        SAY NAME2 @10110046
+COPY ~%mod_folder%/data/rev_spells/bless/B_BLESC.spl~ ~override~   //
+        SAY NAME1 @10110046
+        SAY NAME2 @10110046
+COPY ~%mod_folder%/data/rev_spells/bless/B_BLESD.spl~ ~override~   //
+        SAY NAME1 @10110046
+        SAY NAME2 @10110046
+COPY ~%mod_folder%/data/rev_spells/bless/B_BLESE.spl~ ~override~   //
+        SAY NAME1 @10110046
+        SAY NAME2 @10110046
+//bless weapon
+COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPA.spl~ ~override~   //
+        SAY NAME1 @10110048
+        SAY NAME2 @10110048
+COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPB.spl~ ~override~   //
+        SAY NAME1 @10110048
+        SAY NAME2 @10110048
+COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPC.spl~ ~override~   //
+        SAY NAME1 @10110048
+        SAY NAME2 @10110048
+COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPD.spl~ ~override~   //
+        SAY NAME1 @10110048
+        SAY NAME2 @10110048
+COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPE.spl~ ~override~   //
+        SAY NAME1 @10110048
+        SAY NAME2 @10110048
+//2das
+COPY ~%mod_folder%/data/rev_spells/bless/SPPR101A.2da~ ~override~   //
+COPY ~%mod_folder%/data/rev_spells/bless/SPPR101B.2da~ ~override~   //
+COPY ~%mod_folder%/data/rev_spells/bless/SPPR101C.2da~ ~override~   //
+COPY ~%mod_folder%/data/rev_spells/bless/SPPR101D.2da~ ~override~   //
+COPY ~%mod_folder%/data/rev_spells/bless/SPPR101E.2da~ ~override~   //
+
+
+END //end total conversion
+
+// bless duration
+ ACTION_IF (%bless_dur% > 0) BEGIN
+   LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~CLERIC_BLESS~
+    RET spell_res
+   END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+
+ACTION_IF FILE_EXISTS_IN_GAME ~B_BLESA.spl~ BEGIN  //
+COPY_EXISTING ~B_BLESA.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~B_BLESB.spl~ BEGIN  //
+COPY_EXISTING ~B_BLESB.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~B_BLESC.spl~ BEGIN  //
+COPY_EXISTING ~B_BLESC.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~B_BLESD.spl~ BEGIN  //
+COPY_EXISTING ~B_BLESD.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~B_BLESE.spl~ BEGIN  //
+COPY_EXISTING ~B_BLESE.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~B_WEAPA.spl~ BEGIN  //
+COPY_EXISTING ~B_WEAPA.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~B_WEAPB.spl~ BEGIN  //
+COPY_EXISTING ~B_WEAPB.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~B_WEAPC.spl~ BEGIN  //
+COPY_EXISTING ~B_WEAPC.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~B_WEAPD.spl~ BEGIN  //
+COPY_EXISTING ~B_WEAPD.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+ACTION_IF FILE_EXISTS_IN_GAME ~B_WEAPE.spl~ BEGIN  //
+COPY_EXISTING ~B_WEAPE.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR duration = EVAL ~%bless_dur%~          //
+      STR_VAR
+  END      //
+END
+
+END  //bless duration
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________COMMAND_______________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+LAM b_spells_settings_command  //Command options
+// command total conversion
+ ACTION_IF (%command_total% > 0) BEGIN
+   LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~CLERIC_COMMAND~
+    RET spell_res
+   END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  READ_LONG  0x0034 level //spell level
+ADD_SPELL ~%mod_folder%/data/rev_spells/command/SPPR102.spl~ 1 %level% ~CLERIC_COMMAND~ //
+        SAY NAME1 @10110100
+        SAY NAME2 @10110100
+        SAY UNIDENTIFIED_DESC @10110101
+	SAY DESC @10110101
+   LPF ALTER_SPELL_TYPE
+         STR_VAR spell_level = EVAL ~%level%~
+         STR_VAR level_text = EVAL ~%level%~
+   END
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 324            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 214            //
+      STR_VAR resource = EVAL ~%spell_res%A~
+  END      //
+
+//2da
+COPY ~%mod_folder%/data/rev_spells/command/SPPR102A.2da~ ~override/%spell_res%A.2da~   //
+
+//secondary spells
+COPY ~%mod_folder%/data/rev_spells/command/B_DIE.spl~ ~override~   //
+        SAY NAME1 @10110102
+        SAY NAME2 @10110102
+
+COPY ~%mod_folder%/data/rev_spells/command/B_FLEE.spl~ ~override~   //
+        SAY NAME1 @10110103
+        SAY NAME2 @10110103
+
+COPY ~%mod_folder%/data/rev_spells/command/B_QUIET.spl~ ~override~   //
+        SAY NAME1 @10110104
+        SAY NAME2 @10110104
+
+END  //command total conversion
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________DETECT_EVIL-->KNOW_EVIL___________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+LAM b_spells_settings_command  //Command options
+
+ ACTION_IF (%d_evil_total% > 0) BEGIN
+   LAF RES_NUM_OF_SPELL_NAME
+    STR_VAR spell_name = ~CLERIC_DETECT_EVIL~
+    RET spell_res
+   END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  READ_LONG  0x0034 level //spell level
+ADD_SPELL ~%mod_folder%/data/rev_spells/det_evil/SPPR104.spl~ 1 %level% ~CLERIC_DETECT_EVIL~ //
+        SAY NAME1 @10110200
+        SAY NAME2 @10110200
+        SAY UNIDENTIFIED_DESC @10110201
+	SAY DESC @10110201
+   LPF ALTER_SPELL_TYPE
+         STR_VAR spell_level = EVAL ~%level%~
+         STR_VAR level_text = EVAL ~%level%~
+   END
+//effs
+  COPY ~%mod_folder%/data/rev_spells/det_evil/B_DEVL1.eff~ ~override~   //
+  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL1.eff~ ~override~   //
+  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL2.eff~ ~override~   //
+  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL3.eff~ ~override~   //
+  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL4.eff~ ~override~   //
+  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL5.eff~ ~override~   //
+  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL6.eff~ ~override~   //
+  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL7.eff~ ~override~   //
+  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL8.eff~ ~override~   //
+END // Detect Evil Total

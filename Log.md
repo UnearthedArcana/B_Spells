@@ -76,6 +76,16 @@ TO DO 37: Dispel Lists:
 
 TO DO 38: To be remove lists: regen_list, 
 
+Version 0.90.19
+
+2020-11-29
+
+- Updated icons and port icons for a number of spells 
+
+2020-11-14
+
+- Revised Spells: Bless
+
 Version 0.90.18
 
 2020-11-07
