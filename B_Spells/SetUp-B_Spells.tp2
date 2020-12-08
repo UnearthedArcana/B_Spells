@@ -25,6 +25,14 @@ ALWAYS
           OUTER_SPRINT ~game~ ~iwdee~
         END
 
+ 	ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN
+          OUTER_SPRINT ~style~ ~bgee~
+        END
+
+ 	ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
+          OUTER_SPRINT ~style~ ~iwdee~
+        END
+
         //not ready yet
 	ACTION_IF NOT FILE_EXISTS ~override/b_spells_settings.ini~ BEGIN
   	  COPY ~B_Spells/b_spells_settings.ini~ ~override~
@@ -35,6 +43,8 @@ ALWAYS
         INCLUDE ~B_Spells/lib/spon_cast_functions.tpa~
 
         INCLUDE ~B_Spells/lib/replace_text.tpa~
+
+        INCLUDE ~B_Spells/lib/add_icons.tpa~
 
         INCLUDE ~B_Spells/lib/add_headers.tpa~
 

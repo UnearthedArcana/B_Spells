@@ -22,6 +22,116 @@ LAM b_spells_settings_0_cantrip //because this gets checked on occasion--Maybe j
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________Accelerate Metabolism___________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_acc_metabolisim% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//1st level cantrips: Converted to a second level spell, unchanged
+//regen_list Better forms of regenerate remove accelerate metabolism (to do globally)
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+//NA
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W103.spl~ 2 1 ~WIZARD_ACCELERATE_HEALING~ //
+        SAY NAME1 @66013
+        SAY NAME2 @66013
+        SAY UNIDENTIFIED_DESC @66014
+	SAY DESC @66014
+
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ACCELERATE_HEALING~
+  RET spell_res
+END
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@66015)            // Accelerated Metabolism
+      STR_VAR
+  END      //
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1002) //Battling with Phantasmal Killer
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_W103a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_W103b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_W103c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_1/B_W103P.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+END
+
+
+//continue (a number of the scroll related vars above need to be indentified)
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+//Regeneration spls
+INCLUDE ~%mod_folder%/lib/spell_lists/regen_list.tpa~
+
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+//Scroll Placement
+//BGEE 
+//High Hedge
+ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
+  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
+    ADD_STORE_ITEM ~%scroll_name%~ #1 #0 #0 ~IDENTIFIED~ #2
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
+COPY_EXISTING ~SCROLLS.STO~ ~override~
+ ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+
+ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+ COPY_EXISTING ~UDDROW25.STO~ ~override~
+  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
+END
+//SoD
+ ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
+  COPY_EXISTING ~STO0703.STO~ ~override~
+   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
+ END
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+//1st level cantrips: Converted to a second level spell, unchanged
+//TO DO CONTINUE (other regen spells?)
+
+END //end install acc metab
+
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////

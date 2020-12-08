@@ -1,0 +1,1757 @@
+<style>
+  .phb#p1{ text-align:center; }
+  .phb#p1:after{ display:none; }
+</style>
+
+<div style='margin-top:450px;'></div>
+
+# Eberron
+
+<div style='margin-top:25px'></div>
+<div class='wide'>
+##### Subtitle and Short Description
+</div>
+
+
+\page
+<div class='wide'>
+# Table of Contents
+</div>
+
+
+
+
+
+
+
+  
+
+
+\page
+<div class='wide'>
+## Character Creation Outline
+  
+#### 1) Determine Ability Scores
+Start by generating your character’s ability scores. These six scores determine your character’s most basic attributes and are used to decide a wide variety of details and statistics. There are several methods to choose from for generating these scores so consult your GM to determine which method he is using. See the next section for details.
+ 
+#### 2) Choose a Race
+Pick a race, applying any modifiers to your ability scores and any other racial traits. 
+
+#### 3) Choose a Background
+Pick a background, adding any bonus skill or tool proficiencies or languages to your character sheet.  Each entry lists the basic languages that each character automatically knows.  Additional languages can be aquired by characters with high intelligence scores (see the entry on Intelligence).  
+  
+#### 4) Choose a Class
+A character’s class represents a profession, such as fighter or wizard. If this is a new character, he or she starts at 1st level in this chosen class. As the character gains experience points (XP) for defeating monsters, he goes up in level, granting him new powers and abilities.
+
+If your character is a spell caster that prepares spells (such as a wizard) you will need to determine the spells your character starts with. 
+
+Once you have selected your class, you can determine your hit points, skill and tool proficiencies, and starting languages (as well as spells if applicable).  
+  
+#### 6) Get Equipped
+Each new character begins the game with equipment determined by his class or background. This gear helps your character survive while adventuring. You also typically begin play with gold, which you can use to spend on equipment that your character purchased sometime before starting her life as an adventurer.  Usually you cannot use this starting money to buy magic items without the consent of your GM.
+
+The armor or other protective devices you purchase may affect his starting Armor Class (AC), so once you have purchased armor or other protective devices you can determine your Armor Class (AC).
+  
+#### 7) Determine Saving Throws, Initiative, and Attack Values.
+Determine all of the character’s other mechanical details, such as his or her saving throws, initiative modifier, and attack values. All of these numbers are determined by the decisions made in previous steps, usually determined by your class choice.
+  
+#### 8) Description & Personality
+Choose or make up a name for your character (or generate one randomly!), choose a Background, determine his or her age, alignment, and physical appearance (such as height, weight, eye and hair color etc). It is helpful to think of a few unique personality traits as well, to help you play the character during the game.
+</div>
+
+\page
+
+<div class='wide'>
+
+## Ability Scores
+
+
+  Is a character muscle-bound and insightful? Brilliant and charming? Nimble and hardy? Ability scores define these qualities—a creature’s assets as well as weaknesses. The three main rolls of the game—the ability check, the saving throw, and the attack roll—rely on the six ability scores. The book’s introduction describes the basic rule behind these rolls: roll a d20, add an ability modifier derived from one of the six ability scores, and compare the total to a target number.
+  Here are the six abilities and a brief description of each:
+
+- **Strength**: measures bodily power, athletic training, and the extent to which you can exert raw physical force. 
+- **Dexterity**: measures agility, reflexes, and balance.
+- **Constitution**: measures health, stamina, and vital force.
+- **Intelligence**: measures mental acuity, accuracy of recall, and the ability to reason.
+- **Wisdom**: reflects how attuned you are to the world around you and represents perceptiveness and intuition.
+- **Charisma**: measures your ability to interact effectively with others. It includes such factors as confidence and eloquence, and it can represent a charming or commanding personality.
+
+## Ability Scores and Modifiers
+Each of a creature’s abilities has a score, a number that defines the magnitude of that ability. An ability score is not just a measure of innate capabilities, but also encompasses a creature’s training and competence in activities related to that ability. A score of 10 or 11 is the normal human average, but adventurers and many monsters are a cut above average in most abilities. A score of 18 is the highest that a person usually reaches. Adventurers can have scores as high as 20, and monsters and divine beings can have scores as high as 30. Each ability also has a modifier, derived from the score and ranging from ?5 (for an ability score of 1) to +10 (for a score of 30). The Ability Scores and Modifiers table notes the ability modifiers for the range of possible ability scores, from 1 to 30. To determine an ability modifier without consulting the table, subtract 10 from the ability score and then divide the total by 2 (round down). Because ability modifiers affect almost every attack roll, ability check, and saving throw, ability modifiers come up in play more often than their associated scores.
+</div>
+
+##### Table: Ability Scores and Modifiers
+| Score | Modifier |
+|:----:|:-------------|
+| 1  | -5 |
+| 2-3  | -4 |
+| 4-5 | -3 |
+| 6-7 | -2 |
+| 8-9 | -1 |
+| 10-11  | 0 |
+| 12-13  | +1 |
+| 14-15 | +2 |
+| 16-17 | +3 |
+| 18-19 | +4 |
+| 20-21  | +5 |
+| 22-23 | +6 |
+| 24-25 | +7 |
+| 26-27 | +8 |
+| 28-29 | +9 |
+| 30 | +10 |
+
+
+\page
+
+<div class='wide'>
+## Generating Ability Scores
+  
+There are several methods to choose from for generating these scores so consult your GM to determine which method he is using.  
+  
+If your GM is using a point buy method, the point amounts and costs of attributes are included at right for your convenience.  
+  
+**Note**: Your choice of race will offer one or more bonuses to apply to your Ability Scores.
+
+### Method 1: Standard 1
+Roll 4d6, discard the lowest die result, and add the three remaining results together. Record this total and repeat the process until six numbers are generated. Assign these totals to your ability scores in the order that you rolled them. 
+### Method 2: Standard 2
+Roll 4d6, discard the lowest die result, and add the three remaining results together. Record this total and repeat the process until six numbers are generated. Assign these totals to your ability scores as you see fit. This method is less random than Standard 1 and tends to create characters that are more suited to the player's playstyle.  
+  
+### Method 3: Point Buy
+If the Point Buy method is selected, each character begins with a score of 10 in each attribute.  They can then have an additional 30 points to distribute among as determined by the following table:
+</div>
+  
+##### Table: Table: Ability Score Costs
+| Score | Points |
+|:----|:----|
+| 7  | -4 |
+| 8  | -2 |
+| 9  | -1 |
+| 10  | 0 |
+| 11  | 1 |
+| 12  | 2 |
+| 13  | 3 |
+| 14  | 5 |
+| 15  | 7 |
+| 16  | 10 |
+| 17  | 13 |
+| 18  | 17 |
+  
+  
+
+
+
+
+
+
+
+
+
+\page
+<div class='wide'>
+### Strength  
+  
+Strength measures bodily power, athletic training, and the extent to which you can exert raw physical force.
+</div>
+
+
+#### Strength Checks
+A Strength check can model any attempt to lift, push, pull, or break something, to force your body through a space, or to otherwise apply brute force to a situation. 
+  
+##### Athletics  
+Your Strength (Athletics) check covers difficult situations you encounter while climbing, jumping, or swimming. See the skill section below for details.  
+
+##### Other Strength Checks 
+The GM might also call for a Strength check when you try to accomplish tasks like the following:
+
+- Force open a stuck, locked, or barred door
+- Break free of bonds
+- Push through a tunnel that is too small
+- Hang on to a wagon while being dragged behind it
+- Tip over a statue
+- Keep a boulder from rolling
+
+##### Attack Rolls and Damage
+You add your Strength modifier to your attack roll and your damage roll when attacking with a melee weapon such as a mace, a battleaxe, or a javelin. You use melee weapons to make melee attacks in hand-to-hand combat, and some of them can be thrown to make a ranged attack. Certain ranged weapons that otherwise use your dexterity modifier to attack still allow you to add your strength modify to the damage roll.
+
+##### Lifting and Carrying
+Your Strength score determines the amount of weight you can bear. The following terms define what you can lift or carry:    
+**Carrying Capacity**: Your carrying capacity is your Strength score multiplied by 15. This is the weight (in pounds) that you can carry, which is high enough that most characters don’t usually have to worry about it. 
+**Push, Drag, or Lift**: You can push, drag, or lift a weight in pounds up to twice your carrying capacity (or 30 times your Strength score). While pushing or dragging weight in excess of your carrying capacity, your speed drops to 5 feet. 
+**Size and Strength**: Larger creatures can bear more weight, whereas Tiny creatures can carry less. For each size category above Medium, double the creature’s carrying capacity and the amount it can push, drag, or lift. For a Tiny creature, halve these weights.
+
+\page
+<div class='wide'>
+### Dexterity
+Dexterity measures agility, reflexes, and balance.
+</div>
+
+
+
+
+#### Dexterity Checks
+A Dexterity check can model any attempt to move nimbly, quickly, or quietly, or to keep from falling on tricky footing. 
+
+
+##### Acrobatics
+Your Dexterity (Acrobatics) check covers your attempt to stay on your feet in a tricky situation, such as when you’re trying to run across a sheet of ice, balance on a tightrope, or stay upright on a rocking ship’s deck. The GM might also call for a Dexterity (Acrobatics) check to see if you can perform acrobatic stunts, including dives, rolls, somersaults, and flips.  See the skill for more details
+
+
+##### Sleight of Hand
+Whenever you attempt an act of legerdemain or manual trickery, such as planting something on someone else or concealing an object on your person, make a Dexterity (Sleight of Hand) check. The GM might also call for a Dexterity (Sleight of Hand) check to determine whether you can lift a coin purse off another person or slip something out of another person’s pocket.  See the skill for more details
+
+
+##### Stealth
+Make a Dexterity (Stealth) check when you attempt to conceal yourself from enemies, slink past guards, slip away without being noticed, or sneak up on someone without being seen or heard. See the Stealth Skill for more details.  
+
+##### Other Dexterity Checks 
+The GM might call for a Dexterity check when you try to accomplish tasks like the following:
+
+- Control a heavily laden cart on a steep descent
+- Steer a chariot around a tight turn
+- Pick a lock
+- Disable a trap
+- Securely tie up a prisoner
+- Wriggle free of bonds
+
+
+##### Attack Rolls
+You add your Dexterity modifier to your attack roll when attacking with a ranged weapon, such as a longbow or firearm. You can also add your Dexterity modifier to your attack roll when attacking with a melee weapon that has the finesse property, such as a dagger or a rapier.
+```
+```
+##### Armor Class
+Depending on the armor you wear, you might add some or all of your Dexterity modifier to your Armor Class.
+
+##### Initiative
+At the beginning of every combat, you roll initiative by making a Dexterity check. Initiative determines the order of creatures’ turns in combat.
+
+\page
+<div class='wide'>
+### Constitution
+Constitution measures health, stamina, and vital force.
+</div>
+
+# REVISE THIS SECTION (DEPENDS WHETHER ENDURANCE ADDED AS A SKILL)
+
+
+#### Constitution Checks
+Constitution checks are uncommon, and no (ONLY ONE? CONTINUE) skills apply to Constitution checks, because the endurance this ability represents is largely passive rather than involving a specific effort on the part of a character or monster. 
+
+
+
+##### Endurance
+Make a Constitution (Endurance) check when CONTINUE
+
+#### Other Constitution Checks
+A Constitution check can model your attempt to push beyond normal limits, however. The GM might call for a Constitution check when you try to accomplish tasks like the following: 
+
+- Hold your breath
+- March or labor for hours without rest
+- Go without sleep
+- Survive without food or water
+- Quaff an entire stein of ale in one go
+
+##### Hit Points
+Your Constitution modifier contributes to your hit points. Typically, you add your Constitution modifier to each Hit Die you roll for your hit points. If your Constitution modifier changes, your hit point maximum changes as well, as though you had the new modifier from 1st level. For example, if you raise your Constitution score when you reach 4th level and your Constitution modifier increases from +1 to +2, you adjust your hit point maximum as though the modifier had always been +2. So you add 3 hit points for your first three levels, and then roll your hit points for 4th level using your new modifier. Or if you’re 7th level and some effect lowers your Constitution score so as to reduce your Constitution modifier by 1, your hit point maximum is reduced by 7.
+
+\page
+<div class='wide'>
+### Intelligence
+Intelligence measures mental acuity, accuracy of recall, and the ability to reason.
+</div>
+
+# NOTE: I"M ASSUMING READ/WRITE WILL BE ADDED TO SKILLS
+
+
+#### Intelligence Checks
+An Intelligence check comes into play when you need to draw on logic, education, memory, or deductive reasoning.  
+
+
+##### Arcana
+Your Intelligence (Arcana) check measures your ability to recall lore about spells, magic items, eldritch symbols, magical traditions, the planes of existence, and the inhabitants of those planes.
+
+
+##### History
+Your Intelligence (History) check measures your ability to recall lore about historical events, legendary people, ancient kingdoms, past disputes, recent wars, and lost civilizations.
+
+
+##### Investigation
+When you look around for clues and make deductions based on those clues, you make an Intelligence (Investigation) check. You might deduce the location of a hidden object, discern from the appearance of a wound what kind of weapon dealt it, or determine the weakest point in a tunnel that could cause it to collapse. Poring through ancient scrolls in search of a hidden fragment of knowledge might also call for an Intelligence (Investigation) check. 
+
+##### Nature
+Your Intelligence (Nature) check measures your ability to recall lore about terrain, plants and animals, the weather, and natural cycles. 
+
+##### Read/Write
+our Intelligence (Read/Write) check covers how well you understand a piece of written text, or how well you can convey your thoughts and ideas using the written word.
+
+Simple messages, such as road signs, shop signs, and short notes are easy for most characters with a basic understanding of the written word to understand, while archaic, academic texts may seem to be written in a wholly different language to those with even a moderate understanding of the language.
+
+The GM might call for an Intelligence (Read/Write) check when a book or letter might prove difficult for your character to decipher, when learning a spell from an ancient tome, or when reading a poorly or hastily written message. 
+
+##### Religion
+Your Intelligence (Religion) check measures your ability to recall lore about deities, rites and prayers, religious hierarchies, holy symbols, and the practices of secret cults. 
+
+```
+```
+
+
+##### Other Intelligence Checks
+The GM might call for an Intelligence check when you try to accomplish tasks like the following:
+
+- Communicate with a creature without using words
+- Estimate the value of a precious item
+- Pull together a disguise to pass as a city guard
+- Forge a document
+- Recall lore about a craft or trade
+- Win a game of skill
+
+##### Skill Increase
+A character can gain additional skill or tool proficiencies and/or languages from his or her class's list based on her Intelligence Modifier. 
+
+##### Spellcasting Ability
+Certain classes, such as wizards use Intelligence as their spellcasting ability, which helps determine the saving throw DCs of spells they cast. 
+
+   
+
+\page
+<div class='wide'>
+### Wisdom
+Wisdom reflects how attuned you are to the world around you and represents perceptiveness and intuition.
+</div>
+  
+#### Wisdom Checks
+A Wisdom check might reflect an effort to read body language, understand someone’s feelings, notice things about the environment, or care for an injured person. 
+
+##### Insight
+Your Wisdom (Insight) check decides whether you can determine the true intentions of a creature, such as when searching out a lie or predicting someone’s next move. Doing so involves gleaning clues from body language, speech habits, and changes in mannerisms.
+
+##### Medicine
+A Wisdom (Medicine) check lets you try to stabilize a dying companion or diagnose an illness.
+
+##### Perception
+Your Wisdom (Perception) check lets you spot, hear, or otherwise detect the presence of something. It measures your general awareness of your surroundings and the keenness of your senses. For example, you might try to hear a conversation through a closed door, eavesdrop under an open window, or hear monsters moving stealthily in the forest. Or you might try to spot things that are obscured or easy to miss, whether they are orcs lying in ambush on a road, thugs hiding in the shadows of an alley, or candlelight under a closed secret door.
+
+##### Survival
+The GM might ask you to make a Wisdom (Survival) check to follow tracks, hunt wild game, guide your group through frozen wastelands, identify signs that owlbears live nearby, predict the weather, or avoid quicksand and other natural hazards.
+
+##### Other Wisdom Checks
+The GM might call for a Wisdom check when you try to accomplish tasks like the following:
+
+- Get a gut feeling about what course of action to follow
+- Discern whether a seemingly dead or living creature is undead
+
+
+##### Spellcasting Ability
+Some classes such as Clerics use Wisdom as their spellcasting ability, which helps determine the saving throw DCs of spells they cast.
+
+\page
+
+<div class='wide'>
+### Charisma
+Charisma measures your ability to interact effectively with others. It includes such factors as confidence and eloquence, and it can represent a charming or commanding personality.
+</div>
+# CONTINUE W USE MAGIC DEVICE  
+#### Charisma Checks
+A Charisma check might arise when you try to influence or entertain others, when you try to make an impression or tell a convincing lie, or when you are navigating a tricky social situation.  
+
+##### Deception
+Your Charisma (Deception) check determines whether you can convincingly hide the truth, either verbally or through your actions. This deception can encompass everything from misleading others through ambiguity to telling outright lies. Typical situations include trying to fast- talk a guard, con a merchant, earn money through gambling, pass yourself off in a disguise, dull someone’s suspicions with false assurances, or maintain a straight face while telling a blatant lie. 
+
+##### Deception
+Your Charisma (Deception) check determines whether you can convincingly 
+
+##### Intimidation
+When you attempt to influence someone through overt threats, hostile actions, and physical violence, the GM might ask you to make a Charisma (Intimidation) check. Examples include trying to pry information out of a prisoner, convincing street thugs to back down from a confrontation, or using the edge of a broken bottle to convince a sneering vizier to reconsider a decision. 
+
+##### Performance
+Your Charisma (Performance) check determines how well you can delight an audience with music, dance, acting, storytelling, or some other form of entertainment. 
+
+##### Persuasion
+When you attempt to influence someone or a group of people with tact, social graces, or good nature, the GM might ask you to make a Charisma (Persuasion) check. Typically, you use persuasion when acting in good faith, to foster friendships, make cordial requests, or exhibit proper etiquette. Examples of persuading others include convincing a chamberlain to let your party see the king, negotiating peace between warring tribes, or inspiring a crowd of townsfolk. 
+
+##### Use Magic Device
+Your Charisma (Use Magic Device) check determines whether you can CONTINUE 
+```
+```
+
+
+##### Other Charisma Checks
+The GM might call for a Charisma check when you try to accomplish tasks like the following:
+
+- Find the best person to talk to for news, rumors, and gossip
+- Blend into a crowd to get the sense of key topics of conversation
+
+##### Spellcasting Ability
+Certain clasess such as Bards use Charisma as their spellcasting ability, which helps determine the saving throw DCs of spells they cast.
+
+\page
+
+<div class='wide'>
+# Afflictions and Conditions
+Conditions alter a creature’s capabilities in a variety of ways and can arise as a result of a spell, a class feature, a monster’s attack, or other effect. Most conditions, such as blinded, are impairments, but a few, such as invisible, can be advantageous. A condition lasts either until it is countered (the prone condition is countered by standing up, for example) or for a duration specified by the effect that imposed the condition. If multiple effects impose the same condition on a creature, each instance of the condition has its own duration, but the condition’s effects don’t get worse. A creature either has a condition or doesn’t. The following definitions specify what happens to a creature while it is subjected to a condition.
+  
+## Special Note: Advantage and Disadvantage
+Sometimes a condition or affliction tells you that you have advantage or disadvantage on an ability check, a saving throw, or an attack roll. When that happens, you roll a second d20 when you make the roll. Use the higher of the two rolls if you have advantage, and use the lower roll if you have disadvantage. For example, if you have disadvantage and roll a 17 and a 5, you use the 5. If you instead have advantage and roll those numbers, you use the 17.
+If multiple situations affect a roll and each one grants advantage or imposes disadvantage on it, you don’t roll more than one additional d20. If two favorable situations grant advantage, for example, you still roll only one additional d20. If circumstances cause a roll to have both advantage and disadvantage, you are considered to have neither of them, and you roll one d20. This is true even if multiple circumstances impose disadvantage and only one grants advantage or vice versa. In such a situation, you have neither advantage nor disadvantage. When you have advantage or disadvantage and something in the game, such as the halfling’s Lucky trait, lets you reroll the d20, you can reroll only one of the dice. You choose which one. 
+
+  
+</div>
+
+
+\page
+<div class='wide'>
+# Special Abilities
+</div>  
+
+
+
+
+\page
+<div class='wide'>
+# Races
+The description of each race includes racial traits that are common to members of that race. The following entries appear among the traits of most races.
+  
+<div style='margin-top:90px'></div>
+
+  
+#### Ability Score Increase
+Every race increases one or more of a character’s ability scores.
+
+#### Age
+The age entry notes the age when a member of the race is considered an adult, as well as the race’s expected lifespan. This information can help you decide how old your character is at the start of the game. You can choose any age for your character, which could provide an explanation for some of your ability scores. For example, if you play a young or very old character, your age could explain a particularly low Strength or Constitution score, while advanced age could account for a high Intelligence or Wisdom.
+
+#### Alignment
+Most races have tendencies toward certain alignments, described in this entry. These are not binding for player characters, but considering why your dwarf is chaotic, for example, in defiance of lawful dwarf society can help you better define your character.
+
+#### Size
+Characters of most races are Medium, a size category including creatures that are roughly 4 to 8 feet tall. Members of a few races are Small (between 2 and 4 feet tall), which means that certain rules of the game affect them differently. The most important of these rules is that Small characters have trouble wielding heavy weapons, as explained in “Equipment.”
+
+#### Speed
+Your speed determines how far you can move when traveling ( “Adventuring”) and fighting (“Combat”).
+  
+#### Available Backgrounds
+The backgrounds available to you are determined by your race.  
+
+#### Subraces
+Some races have subraces. Members of a subrace have the traits of the parent race in addition to the traits specified for their subrace. Relationships among subraces vary significantly from race to race and world to world.
+</div>
+# CONITNUE RACES 
+
+\page
+
+<div class='wide'>
+## Dwarves
+From a history of barbarism and warfare, the dwarves have risen to a position of enormous economic might.  For the last eight centuries, they have dominated banking and finance in the bourgeoning mercantile industries of Khorvaire, leaving their brutal past behind them.
+  
+Dwarves are natural miners and smiths, and they control most of the precious metals found naturally across the continent of Khorvaire. Powerful dwarf families mint coinage and operate banks, issue letters of credit, hold loans, and collect debts. Dwarf bankers and merchants wield a great deal of economic power throughout Khorvaire, and they are well respected as a result. To an extent, they are also feared, since dwarves are known to be ruthless in collecting unpaid debts.
+
+#### Physical Description  
+
+Dwarves are a short and stocky race, and stand about a foot shorter than most humans, with wide, compact bodies that account for their burly appearance. Male and female dwarves pride themselves on the long length of their hair, and men often decorate their beards with a variety of clasps and intricate braids. Clean-shavenness on a male dwarf is rare, often considered to be a sure sign of madness, or worse—no one familiar with their race trusts a beardless dwarven man.
+
+#### Alignment and Religion  
+
+Many dwarves pay homage to the Sovereign Host, and worship of the Host has grown steadily in recent generations. The deity most favored among the dwarves is Kol Korran, god of trade and wealth. Other deities are popular as well, including Boldrei, Olladar, Onatar, and Dol Dorn. Many far-seeing dwarves hope that devotion to the Sovereign Host might serve as a unifying force within dwarf culture, but such religious influence is unlikely given the independent nature of dwarves and the growing influence of mercantile interests among dwarf clans.
+
+#### Adventurers  
+
+Most dwarves adventure to increase their own wealth and prestige, carving a life and fame out of the world the same way the barbaric clans of their ancestors carved space for themselves in their mountain holds.
+
+</div>
+#### Standard Racial Traits
+
+- **Ability Score Increase**: Your Constitution score increases by 2.
+- **Size**: Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.
+- **Type**: Dwarves are humanoids with the dwarf subtype.
+- **Base Speed**: Your base walking speed is 25 feet. Your speed is not reduced by wearing heavy armor.
+- **Languages**: You can speak, read, and write Common and Dwarvish. Dwarvish is full of hard consonants and guttural sounds, and those characteristics spill over into whatever other language a dwarf might speak.
+
+#### Sensory Racial Traits
+- **Darkvision**: Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.  
+
+#### Offensive Racial Traits
+- **Dwarven Combat Training**: You have proficiency with the battleaxe, handaxe, light hammer, and warhammer.
+
+
+#### Defensive Racial Traits
+- **Dwarven Resilience**: You have advantage on saving throws against poison, and you have resistance against poison damage.
+```
+```
+
+
+
+#### Miscleaneous Racial Traits
+- **Tool Proficiency**: You gain proficiency with the artisan’s tools of your choice: smith’s tools, brewer’s supplies, or mason’s tools.
+
+- **Stonecunning**: Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add double your proficiency bonus to the check, instead of your normal proficiency bonus.
+\page
+<div class='wide'>
+### Subraces
+Select one of the following: 
+  
+#### **Hill Dwarf**
+As a hill dwarf, you have keen senses, deep intuition, and remarkable resilience.  
+
+-  **Ability Score Increase**: Your Wisdom score increases by 1.
+-  **Dwarven Toughness**: Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
+
+ 
+ 
+
+
+</div>
+\page
+<div class='wide'>
+## Humans
+Humanity first arose on Sarlona. History fails to recount which of the continent's many disasters first inspired humans to leave, but leave they did, setting out in primitive ships. The earliest explorers crossed the Sea of Rage, arriving in what are now the Lhazaar Principalities and Q'barra. Later expeditions traveled east across the Barren Sea, landing in the Demon Wastes, the Eldeen Reaches, and the Shadow Marches.  Few of those colonies survived. 
+
+  
+Once it established a foothold in Khorvaire, humanity could not be stopped. Ragged bands of explorers and pilgrims advanced across the continent, and settlements emerged. Towns became cities and cities formed nations before finally coalescing into the Kingdom of Galifar. The kingdom lasted for centuries until finally the Last War came, crippling humanity with over a century of warfare. Today, humans still control most of Khorvaire, although the peace between their nations is tenuous.
+
+#### Physical Description  
+
+The physical characteristics of humans are as varied as the world’s climes. From the dark-skinned tribesmen of the southern continents to the pale and barbaric raiders of the northern lands, humans possess a wide variety of skin colors, body types, and facial features. Generally speaking, humans’ skin color assumes a darker hue the closer to the equator they live. At the same time, bone structure, hair color and texture, eye color, and a host of facial and bodily phenotypic characteristics vary immensely from one locale to another. Cheekbones may be high or broad, noses aquiline or flat, and lips full or thin; eyes range wildly in hue, some deep set in their sockets, and others with full epicanthic folds. Appearance is hardly random, of course, and familial, tribal, or national commonalities often allow the knowledgeable to identify a human’s place of origin on sight, or at least to hazard a good guess. Humans’ origins are also indicated through their traditional styles of bodily decoration, not only in the clothing or jewelry worn, but also in elaborate hairstyles, piercing, tattooing, and even scarification.
+
+#### Alignment and Religion  
+
+Humanity is perhaps the most diverse of all the common races, with a capacity for both great evil and boundless good. Some humans assemble into vast barbaric hordes, while others build sprawling cities that cover miles. Taken as a whole, most humans are neutral, yet they generally tend to congregate in nations and civilizations with specific alignments. Humans also have the widest range of gods and religions, lacking other races’ ties to tradition and eager to turn to anyone offering them glory or protection.  That said, Humans tend to worship the Sovereign Host and the Silver Flame. Humans of a cruder or more chaotic bent pay homage to the Dark Six.
+
+#### Adventurers  
+
+Ambition alone drives countless humans, and for many, adventuring serves as a means to an end, whether it be wealth, acclaim, social status, or arcane knowledge. A few pursue adventuring careers simply for the thrill of danger. Humans hail from myriad regions and backgrounds, and as such can fill any role within an adventuring party. 
+</div>
+
+#### Standard Racial Traits
+
+- **Ability Score Increase**: Your ability scores each increase by 1.
+- **Size**: Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+- **Type**: Humans are humanoids with the human subtype.
+- **Base Speed**: Your base walking speed is 30 feet.
+- **Languages**: You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on.
+
+
+\page
+
+\page
+
+<div class='wide'>
+# Background
+Every story has a beginning. Your character’s background reveals where you came from, how you became an adventurer, and your place in the world. Your fighter might have been a courageous knight or a grizzled soldier. Your wizard could have been a sage or an artisan. Your rogue might have gotten by as a guild thief or commanded audiences as a jester.
+
+Choosing a background provides you with important story cues about your character’s identity. The most important question to ask about your background is what changed? Why did you stop doing whatever your background describes and start adventuring? Where did you get the money to purchase your starting gear, or, if you come from a wealthy background, why don’t you have more money? How did you learn the skills of your class? What sets you apart from ordinary people who share your background?
+
+- **Proficiencies** Each background gives a character proficiency in two skills (described in “Using Ability Scores”). If a character would gain the same proficiency from two different sources, he or she gains a free skill focus feat in that skill or skills in addition to proficiency. 
+
+- **Languages** Some backgrounds also allow characters to learn additional languages beyond those given by race. See “Languages.”
+
+- **Equipment** Each background provides a package of starting equipment. If you use the optional rule to spend coin on gear, you do not receive the starting equipment from your background.
+  
+- **Racial Variants** This section describes any variations based on race for this background.  
+
+- **Suggested Characteristics** A background contains suggested personal characteristics based on your background. You can pick characteristics, roll dice to determine them randomly, or use the suggestions as inspiration for characteristics of your own creation.
+</div>
+
+# CONITNUE BACKGROUNDS 
+\page
+<div class='wide'>
+## Acolyte
+
+
+You have spent your life in the service of a temple to a specific god or pantheon of gods. You act as an intermediary between the realm of the holy and the mortal world, performing sacred rites and offering sacrifices in order to conduct worshipers into the presence of the divine. You are not necessarily a cleric—performing sacred rites is not the same thing as channeling divine power.
+
+Choose a god, a religion, or sect, and work with your DM to detail the nature of your religious service. Were you a lesser functionary in a temple, raised from childhood to assist the priests in the sacred rites? Or were you a high priest who suddenly experienced a call to serve your god in a different way? Perhaps you were the leader of a small cult outside of any established temple structure, or even an occult group that served a fiendish master that you now deny. 
+
+-  **Skill Proficiencies**: Insight, Religion
+-  **Languages**: Two of your choice 
+-  **Equipment**: A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a pouch containing 15 gp.
+
+#### Suggested Characteristics
+Acolytes are shaped by their experience in temples or other religious communities. Their study of the history and tenets of their faith and their relationships to temples, shrines, or hierarchies affect their mannerisms and ideals. Their flaws might be some hidden hypocrisy or heretical idea, or an ideal or bond taken to an extreme.
+
+
+</div>
+
+##### Personality Trait
+| d8 | Personality Trait |
+|:----:|:-------------|
+| 1  | I idolize a particular hero of my faith, and constantly refer to that person’s deeds and example. |
+| 2  | I can find common ground between the fiercest enemies, empathizing with them and always working toward peace. |
+| 3 | I see omens in every event and action. The gods try to speak to us, we just need to listen. |
+| 4 | Nothing can shake my optimistic attitude. |
+| 5 | I quote (or misquote) sacred texts and proverbs in almost every situation. |
+| 6 | I am tolerant (or intolerant) of other faiths and respect (or condemn) the worship of other gods. |
+| 7 | I’ve enjoyed fine food, drink, and high society among my temple’s elite. Rough living grates on me. |
+| 8 | I’ve spent so long in the temple that I have little practical experience dealing with people in the outside world. |
+##### Ideal
+| d6 | Ideal |
+|:----:|:-------------|
+| 1  | Tradition. The ancient traditions of worship and sacrifice must be preserved and upheld. (Lawful) |
+| 2  | Charity. I always try to help those in need, no matter what the personal cost. (Good) |
+| 3 | Change. We must help bring about the changes the gods are constantly working in the world. (Chaotic) |
+| 4 | Power. I hope to one day rise to the top of my faith’s religious hierarchy. (Lawful) |
+| 5 | Faith. I trust that my deity will guide my actions. I have faith that if I work hard, things will go well. (Lawful) |
+| 6 | Aspiration. I seek to prove myself worthy of my god’s favor by matching my actions against his or her teachings. (Any) |
+
+```
+```
+##### Bond
+| d6 | Bond |
+|:----:|:-------------|
+| 1  | I would die to recover an ancient relic of my faith that was lost long ago. |
+| 2  | I will someday get revenge on the corrupt temple hierarchy who branded me a heretic. |
+| 3 | I owe my life to the priest who took me in when my parents died. |
+| 4 | Everything I do is for the common people. |
+| 5 | I will do anything to protect the temple where I served. |
+| 6 | I seek to preserve a sacred text that my enemies consider heretical and seek to destroy. |
+
+##### Flaw
+| d6 | Flaw |
+|:----:|:-------------|
+| 1  | I judge others harshly, and myself even more severely. |
+| 2  | I put too much trust in those who wield power within my temple’s hierarchy. |
+| 3 | My piety sometimes leads me to blindly trust those that profess faith in my god. |
+| 4 | I am inflexible in my thinking. |
+| 5 | I am suspicious of strangers and expect the worst of them. |
+| 6 | Once I pick a goal, I become obsessed with it to the detriment of everything else in my life. |
+
+\page
+<div class='wide'>
+# Class
+# CONITNUE CLASSES  
+# 1 fewer skill (2 fewer for int based classes) to compensate for Int modification
+Adventurers are extraordinary people, driven by a thirst for excitement into a life that others would never dare lead. They are heroes, compelled to explore the dark places of the world and take on the challenges that lesser women and men can’t stand against.
+
+Class is the primary definition of what your character can do. It’s more than a profession; it’s your character’s calling. Class shapes the way you think about the world and interact with it and your relationship with other people and powers in the multiverse. A fighter, for example, might view the world in pragmatic terms of strategy and maneuvering, and see herself as just a pawn in a much larger game. A cleric, by contrast, might see himself as a willing servant in a god’s unfolding plan or a conflict brewing among various deities. While the fighter has contacts in a mercenary company or army, the cleric might know a number of priests, paladins, and devotees who share his faith.
+
+Your class gives you a variety of special features, such as a fighter’s mastery of weapons and armor, and a wizard’s spells. At low levels, your class gives you only two or three features, but as you advance in level you gain more and your existing features often improve. Each class entry in this chapter includes a table summarizing the benefits you gain at every level, and a detailed explanation of each one.
+
+Adventurers sometimes advance in more than one class. A rogue might switch direction in life and swear the oath of a paladin. A barbarian might discover latent magical ability and dabble in the sorcerer class while continuing to advance as a barbarian. Elves are known to combine martial mastery with magical training and advance as fighters and wizards simultaneously. 
+</div>
+
+\page
+
+<div class='wide'>
+# Fighter
+Some take up arms for glory, wealth, or revenge. Others do battle to prove themselves, to protect others, or because they know nothing else. Still others learn the ways of weaponcraft to hone their bodies in battle and prove their mettle in the forge of war. Lords of the battlefield, fighters are a disparate lot, training with many weapons or just one, perfecting the uses of armor, learning the fighting techniques of exotic masters, and studying the art of combat, all to shape themselves into living weapons. Far more than mere thugs, these skilled warriors reveal the true deadliness of their weapons, turning hunks of metal into arms capable of taming kingdoms, slaughtering monsters, and rousing the hearts of armies. Soldiers, knights, hunters, and artists of war, fighters are unparalleled champions, and woe to those who dare stand against them.  
+  **Role**: Fighters excel at combat—defeating their enemies, controlling the flow of battle, and surviving such sorties themselves. While their specific weapons and methods grant them a wide variety of tactics, few can match fighters for sheer battle prowess.  
+  
+**Alignment**: Any 
+  
+
+</div>
+
+<div class='classTable wide'>
+##### The Fighter
+| Level | BAB | Features | Stances  | Maneuvers Readied | Maneuvers Known | 
+|:---:|:---:|:---|:---:|:---:|:---:|
+| 1st | +1 | Bonus Feat, Fighting Style | 2 | 3 | 4 |
+| 2nd | +2 |  | 2 | 3 | 5 | 
+| 3rd | +3 |  | 2 | 4 | 5 | 
+| 4th | +4 |  | 2 | 4 | 6 |
+| 5th | +5 |  | 3 | 4 | 6 | 
+| 6th | +6 |  | 3 | 4 | 6 | 
+| 7th | +7 |  | 3 | 5 | 7 | 
+| 8th | +8 |  | 3 | 5 | 7 |
+| 9th | +9 |  | 4 | 5 | 7 | 
+| 10th | +10 |  | 4 | 5 | 8 | 
+| 11th | +11 | - | 4 | 6 | 8 | 
+| 12th | +12 |  | 4 | 6 | 8 | 
+| 13th | +13 |  | 5 | 6 | 9 | 
+| 14th | +14 |  | 5 | 6 | 9 | 
+| 15th | +15 |  | 5 | 7 | 9 | 
+| 16th | +16 |  | 5 | 7 | 10 | 
+| 17th | +17 |  | 6 | 7 | 10 | 
+| 18th | +18 | - | 6 | 7 | 10 | 
+| 19th | +19 |  | 6 | 8 | 11 | 
+| 20th | +20 |  | 6 | 8 | 11 | 
+</div>
+
+\page
+## Class Features:  
+ 
+
+####  Hit Points   
+
+**Hit Dice**: 1d10 per fighter level  
+**Hit Points at 1st Level**: 10 + your Constitution modifier  
+**Hit Points at Higher Levels**: 1d10 (or 6) + your Constitution modifier per fighter level after 1st  
+  
+#### Proficiencies
+**Weapon**: Simple and Martial Weapon Proficiencies  
+**Armor**: Light, Medium and Heavy Armor Proficiencies  
+**Shield**: All Shields (including Tower Shields)  
+**Skills**: Choose 2 (plus your Int modifier) from the following list: Athletics (Str), Blacksmithing (Int), Handle Animal (Wis), Heal (Wis), Intimidate (Cha), Perception (Wis), Insight (Wis) and Survival (Wis).
+
+
+\page
+
+<div class='wide'>
+# Skills
+# NOTE: POSSIBLE ADDITIONAL SKILLS: ENDURANCE, Read/Write, USE MAGIC DEVCE 
+While your character’s ability scores represent their raw talent and potential, skills represent their training and experience at performing certain tasks. Each skill is keyed to one of your character’s ability scores and used for an array of related actions. Your character’s expertise in a skill comes from several sources, including their background and class. In this section, you’ll learn about skills, their scope, and the actions they can be used for.
+
+A character’s acumen in skills can come from all sorts of training, from practicing acrobatic tricks to studying academic topics to rehearsing a performing art. When you create your character and as they advance in level, you have flexibility as to which skills they become better at and when. Some classes depend heavily on certain skills—such as the alchemist’s reliance on Crafting—but for most classes, you can choose whichever skills make the most sense for your character’s theme and backstory at 1st level, then use their adventure and downtime experiences to inform how their skills should improve as your character levels up.
+
+A character gains training in certain skills at 1st level: typically two skills from their background, a small number of predetermined skills from their class, and several skills of your choice granted by your class. This training increases your proficiency ranks for those skills to trained instead of untrained and lets you use more of the skills’ actions. Sometimes you might gain training in a specific skill from multiple sources, such as if your background granted training in Crafting and you took the alchemist class, which also grants training in Crafting. Each time after the first that you would gain the trained proficiency rank in a given skill, you instead allocate the trained proficiency to any other skill of your choice.
+
+### Key Ability
+Each skill is tied to a key ability. You add your modifier for this ability to checks and DCs when using that skill. For example, skulking about the shadows of a city at night with Stealth uses your Dexterity modifier, navigating the myriad personalities and power plays of court politics with Society uses your Intelligence modifier, and so on. The key ability for each skill is listed on Table 4–1: Skills, Key Abilities, and Actions and also appears in parentheses following the skill’s name in the descriptions on the following pages. If the GM deems it appropriate for a certain situation, however, they might have you use a different ability modifier for a skill check or when determining your skill DC.
+
+### Skill Actions
+The actions you can perform with a given skill are sorted into those you can use untrained and those that require you to be trained in the skill, as shown on Table 4–1: Skills, Key Abilities, and Actions. The untrained and trained actions of each skill appear in separate sections within the skill’s description.
+
+Anyone can use a skill’s untrained actions, but you can use trained actions only if you have a proficiency rank of trained or better in that skill. A circumstance, condition, or effect might bar you from a skill action regardless of your proficiency rank, and sometimes using a skill in a specific situation might require you to have a higher proficiency rank than what is listed on the table. For instance, even though a barbarian untrained in Arcana could identify a construct with a lucky roll using Arcana to Recall Knowledge, the GM might decide that Recalling Knowledge to determine the spells used to create such a construct is beyond the scope of the barbarian’s anecdotal knowledge. The GM decides whether a task requires a particular proficiency rank.
+
+#### IMPROVING SKILLS
+As your character advances in level, there are two main ways their skills improve: skill increases and skill feats. Your class lists the levels at which you gain each of these improvements.
+
+#### SKILL INCREASES
+Skill increases improve your proficiency in skills of your choice. You can use these increases to become trained in new skills or increase your proficiency rank in skills you’re trained in (from trained to expert at any level, expert to master at 7th level or higher, and master to legendary at 15th level or higher). Unlike when you first become trained at a skill, if two different abilities would make you an expert, master, or legendary in a skill, you don’t get to choose a second skill to become expert in—the redundant benefit simply has no effect.
+
+#### SKILL FEATS
+Skill feats are a type of general feat that often grant you a new way to use a skill or make you better at using a skill in a particular way. Skill feats always have the skill trait.
+</div>
+
+\page
+<div class='wide'>
+
+
+
+
+### Skill Checks and Skill DCs
+When you’re actively using a skill, often by performing one of its actions, you might attempt a skill check: rolling a d20 and adding your skill modifier. To determine this modifier, add your ability modifier for the skill’s key ability, your proficiency bonus for the skill, and any other bonuses and penalties.
+
+**Skill modifier = modifier of the skill’s key ability score + proficiency bonus + other bonuses + penalties**
+
+When writing down the modifier on your character sheet, you should write down only the numbers that always apply—typically just your ability modifier and proficiency bonus at 1st level. At higher levels, you may wear or use items to improve your skills with item bonuses pretty much all the time; you should write those down, too.
+
+The GM sets the DC of a skill check.  The most important DCs to remember are the five simple skill DCs below.
+
+</div>
+
+##### Table: Task Difficulty
+| Task Difficulty | DC |
+|:----|:-------------|
+| Untrained  | 10 |
+| Trained  | 15 |
+| Expert | 20 |
+| Master | 30 |
+| Legendary | 40 |
+
+<div class='wide'>  
+  
+#### ARMOR AND SKILLS
+Some armor imposes a penalty on specific skill checks and DCs. If a creature is wearing armor that imparts a skill penalty, that penalty is applied to the creature’s Strength and Dexterity-based skill checks and skill DCs, unless the action has the attack trait. Check penalties from armor are detailed in Equipment.
+  
+#### DESCRIPTOR: SECRET CHECKS
+Sometimes you won’t know whether you succeed at a skill check. If an action has the secret trait, the GM rolls the check for you and informs you of the effect without revealing the result of the roll or the degree of success. The GM rolls secret checks when your knowledge about the outcome is imperfect, like when you’re searching for a hidden creature or object, attempting to deceive someone, translating a tricky bit of ancient text, or remembering some piece of lore.
+
+This way, you as the player don’t know things that your character wouldn’t. This rule is the default for actions with the secret trait, but the GM can choose not to use secret checks if they would rather some or all rolls be public.
+
+#### DESCRIPTOR: EXPLORATION AND DOWNTIME ACTIVITIES
+Some skill activities have the exploration or downtime trait. Exploration activities usually take a minute or more, while downtime activities may take a day or more. They usually can’t be used during an encounter, though the GM might bend this restriction. If you’re not sure whether you have the time to use one of these activities, ask your GM.
+</div>
+
+\page
+<div class='wide'>
+## General Skill Actions
+General skill actions are skill actions that can be used with multiple different skills. When you use a general skill action, you might use your modifier from any skill that lists it as one of the skill’s actions, depending on the situation.</div>
+
+
+
+##### Table: General Skill Actions
+| Skill Action | Proficiency |
+|:----|:-------------|
+| Decipher Writing  | Trained |
+| Earn Income  | Untrained |
+| Identify Magic | Trained|
+| Learn a Spell | Trained |
+| Recall Knowledge [one-action] | Untrained |
+| Subsist  | Untrained |
+
+
+### DECIPHER WRITING (TRAINED)
+When you encounter particularly archaic or esoteric texts, the GM might require you to Decipher the Writing before you can understand it. You must be trained in the relevant skill to Decipher Writing. Arcana is typically used for writing about magic or science, Religion for scripture, and Society for coded messages or archaic documents.
+  
+#### Decipher Writing
+**Descriptor(s)**: Concentrate, Exploration, Secret  
+You attempt to decipher complicated writing or literature on an obscure topic. This usually takes 1 minute per page of text, but might take longer (typically an hour per page for decrypting ciphers or the like). The text must be in a language you can read, though the GM might allow you to attempt to decipher text written in an unfamiliar language using Society instead.
+
+The DC is determined by the GM based on the state or complexity of the document. The GM might have you roll one check for a short text or a check for each section of a larger text.
+
+- Critical Success You understand the true meaning of the text.
+- Success You understand the true meaning of the text. If it was a coded document, you know the general meaning but might not have a word-for-word translation.
+- Failure You can’t understand the text and take a –2 circumstance penalty to further checks to decipher it.
+- Critical Failure You believe you understand the text on that page, but you have in fact misconstrued its message.  You automatically fail further checks unless new information comes to light (in which case, you can make a new check).  The GM determines what counts as 'new information'.  
+
+```
+```
+
+  
+### EARN INCOME (UNTRAINED)
+You can use a skill—typically Crafting, Lore, or Performance—to earn money during downtime. You must be trained in the skill to do so. This takes time to set up, and your income depends on your proficiency rank and how lucrative a task you can find. Because this process requires a significant amount of time and involves tracking things outside the progress of adventures, it won’t come up in every campaign.
+
+In some cases, the GM might let you use a different skill to Earn Income through specialized work. Usually, this is scholarly work, such as using Religion in a monastery to study old texts—but giving sermons at a church would still fall under Performance instead of Religion. You also might be able to use physical skills to make money, such as using Acrobatics to perform feats in a circus or Thievery to pick pockets. If you’re using a skill other than Crafting, Lore, or Performance, the DC tends to be significantly higher.
+
+
+#### Earn Income
+**Descriptor(s)**: Downtime
+You use one of your skills to make money during downtime.  
+
+The GM assigns a task level representing the most lucrative job available. You can search for lower-level tasks, with the GM determining whether you find any. Sometimes you can attempt to find better work than the initial offerings, though this takes time and requires using the Diplomacy skill to Gather Information, doing some research, or socializing.
+
+When you take on a job, the GM secretly sets the DC of your skill check. After your first day of work, you roll to determine your earnings. You gain an amount of income based on your result, the task’s level, and your proficiency rank (as listed on Table 4–2: Income Earned).
+
+You can continue working at the task on subsequent days without needing to roll again. For each day you spend after the first, you earn the same amount as the first day, up until the task’s completion. The GM determines how long you can work at the task. Most tasks last a week or two, though some can take months or even years.
+- Critical Success You do outstanding work. Gain the amount of currency listed for the task level + 1 and your proficiency rank.
+- Success You do competent work. Gain the amount of currency listed for the task level and your proficiency rank.
+- Failure You do shoddy work and get paid the bare minimum for your time. Gain the amount of currency listed in the failure column for the task level. The GM will likely reduce how long you can continue at the task.
+- Critical Failure You earn nothing for your work and are fired immediately. You can’t continue at the task. Your reputation suffers, potentially making it difficult for you to find rewarding jobs in that community in the future.
+
+\page
+
+##### Table: Income Earned
+| Task Level | Failure | Untrained | Trained | Expert | Master | Legendary | 
+|:---|:---|:---|:---|:---|:---|:---|
+|0	| 1 cp| 2 cp|	5 cp|	5 cp|	5 cp|	5 cp|
+|1	| 2 cp| 1 sp|	2 sp|	2 sp|	2 sp|	2 sp|
+|2	| 4 cp| 2 sp|	3 sp|	3 sp|	3 sp|	3 sp|
+|3	| 8 cp| 3 sp|	5 sp|	5 sp|	5 sp|	5 sp|
+|4	| 1 sp| 4 sp|	7 sp|	8 sp|	8 sp|	8 sp|
+
+
+5	2 sp	9 sp	1 gp	1 gp	1 gp
+6	3 sp	1 gp, 5 sp	2 gp	2 gp	2 gp
+7	4 sp	2 gp	2 gp, 5 sp	2 gp, 5 sp	2 gp, 5 sp
+8	5 sp	2 gp, 5 sp	3 gp	3 gp	3 gp
+9	6 sp	3 gp	4 gp	4 gp	4 gp
+10	7 sp	4 gp	5 gp	6 gp	6 gp
+11	8 sp	5 gp	6 gp	8 gp	8 gp
+12	9 sp	6 gp	8 gp	10 gp	10 gp
+13	1 gp	7 gp	10 gp	15 gp	15 gp
+14	1 gp, 5 sp	8 gp	15 gp	20 gp	20 gp
+15	2 gp	10 gp	20 gp	28 gp	28 gp
+16	2 gp, 5 sp	13 gp	25 gp	36 gp	40 gp
+17	3 gp	15 gp	30 gp	45 gp	55 gp
+18	4 gp	20 gp	45 gp	70 gp	90 gp
+19	6 gp	30 gp	60 gp	100 gp	130 gp
+20	8 gp	40 gp	75 gp	150 gp	200 gp
+20 (critical success)	—	50 gp	90 gp	175 gp	300 gp
+
+
+\page
+
+<div class='wide'>
+## SKILL DESCRIPTIONS  
+</div>
+
+### Acrobatics
+
+
+Your Dexterity (Acrobatics) check covers your attempt to stay on your feet in a tricky situation, such as when you’re trying to run across a sheet of ice, balance on a tightrope, or stay upright on a rocking ship’s deck. The GM might also call for a Dexterity (Acrobatics) check to see if you can perform acrobatic stunts, including dives, rolls, somersaults, and flips.  
+
+### Athletics.  
+Your Strength (Athletics) check covers difficult situations you encounter while climbing, jumping, or swimming.   
+Examples include the following activities:
+
+- You attempt to climb a sheer or slippery cliff, avoid hazards while scaling a wall, or cling to a surface while something is trying to knock you off.
+- You try to jump an unusually long distance or pull off a stunt midjump.
+- You struggle to swim or stay afloat in treacherous currents, storm-tossed waves, or areas of thick seaweed. Or another creature tries to push or pull you underwater or otherwise interfere with your swimming.
+
+### Sleight of Hand
+Whenever you attempt an act of legerdemain or manual trickery, such as planting something on someone else or concealing an object on your person, make a Dexterity (Sleight of Hand) check. The GM might also call for a Dexterity (Sleight of Hand) check to determine whether you can lift a coin purse off another person or slip something out of another person’s pocket.  
+```
+```
+### Stealth
+Make a Dexterity (Stealth) check when you attempt to conceal yourself from enemies, slink past guards, slip away without being noticed, or sneak up on someone without being seen or heard. 
+
+**Hiding**
+The DM decides when circumstances are appropriate for hiding. When you try to hide, make a Dexterity (Stealth) check. Until you are discovered or you stop hiding, that check’s total is contested by the Wisdom (Perception) check of any creature that actively searches for signs of your presence. You can’t hide from a creature that can see you clearly, and you give away your position if you make noise, such as shouting a warning or knocking over a vase. An invisible creature can always try to hide. Signs of its passage might still be noticed, and it does have to stay quiet. In combat, most creatures stay alert for signs of danger all around, so if you come out of hiding and approach a creature, it usually sees you. However, under certain circumstances, the DM might allow you to stay hidden as you approach a creature that is distracted, allowing you to gain advantage on an attack roll before you are seen. Passive Perception: When you hide, there’s a chance someone will notice you even if they aren’t searching. To determine whether such a creature notices you, the DM compares your Dexterity (Stealth) check with that creature’s passive Wisdom (Perception) score, which equals 10 + the creature’s Wisdom modifier, as well as any other bonuses or penalties. If the creature has advantage, add 5. For disadvantage, subtract 5. For example, if a 1st-­level character (with a proficiency bonus of +2) has a Wisdom of 15 (a +2 modifier) and proficiency in Perception, he or she has a passive Wisdom (Perception) of 14. What Can You See?: One of the main factors in determining whether you can find a hidden creature or object is how well you can see in an area, which might be lightly or heavily obscured, as explained in “Adventuring.”
+
+
+\page
+<div class='wide'>
+# Gamemastering - The Basics
+</div>
+
+## The Basics
+
+## Traveling
+
+## Combat
+
+# ...
+
+\page
+
+
+<div class='wide'>
+# The Basics
+  
+**Saving Throws**
+A saving throw—also called a save—represents an attempt to resist a spell, a trap, a poison, a disease, or a similar threat. You don’t normally decide to make a saving throw; you are forced to make one because your character or monster is at risk of harm. To make a saving throw, roll a d20 and add the appropriate ability modifier. For example, you use your Dexterity modifier for a Dexterity saving throw. A saving throw can be modified by a situational bonus or penalty and can be affected by advantage and disadvantage, as determined by the GM. Each class gives proficiency in at least two saving throws. The wizard, for example, is proficient in Intelligence saves. As with skill proficiencies, proficiency in a saving throw lets a character add his or her proficiency bonus to saving throws made using a particular ability score. Some monsters have saving throw proficiencies as well. The Difficulty Class for a saving throw is determined by the effect that causes it. For example, the DC for a saving throw allowed by a spell is determined by the caster’s spellcasting ability and proficiency bonus. The result of a successful or failed saving throw is also detailed in the effect that allows the save. Usually, a successful save means that a creature suffers no harm, or reduced harm, from an effect.
+<div style='margin-top:0px'></div>
+
+
+</div> 
+ 
+ 
+  \page
+<div class='wide'>
+  ## Movement and Time
+  **Time**: In situations where keeping track of the passage of time is important, the GM determines the time a task requires. The GM might use a different time scale depending on the context of the situation at hand. In a dungeon environment, the adventurers’ movement happens on a scale of minutes. It takes them about a minute to creep down a long hallway, another minute to check for traps on the door at the end of the hall, and a good ten minutes to search the chamber beyond for anything interesting or valuable. In a city or wilderness, a scale of hours is often more appropriate. Adventurers eager to reach the lonely tower at the heart of the forest hurry across those fifteen miles in just under four hours’ time. For long journeys, a scale of days works best. Following the road, the adventurers spend four uneventful days before a goblin ambush interrupts their journey. In combat and other fast-paced situations, the game relies on rounds, a 6-second span of time.   
+<div style='margin-top:0px'></div>   
+  
+**Movement**: Swimming across a rushing river, sneaking down a dungeon corridor, scaling a treacherous mountain slope—all sorts of movement play a key role in fantasy gaming adventures. The GM can summarize the adventurers’ movement without calculating exact distances or travel times: “You travel through the forest and find the dungeon entrance late in the evening of the third day.” Even in a dungeon, particularly a large dungeon or a cave network, the GM can summarize movement between encounters: “After killing the guardian at the entrance to the ancient dwarven stronghold, you consult your map, which leads you through miles of echoing corridors to a chasm bridged by a narrow stone arch.” Sometimes it’s important, though, to know how long it takes to get from one spot to another, whether the answer is in days, hours, or minutes. The rules for determining travel time depend on two factors: the speed and travel pace of the creatures moving and the terrain they’re moving over.
+<div style='margin-top:0px'></div>  
+  
+**Speed**:
+Every character and monster has a speed, which is the distance in feet that the character or monster can walk in 1 round. This number assumes short bursts of energetic movement in the midst of a life- threatening situation. The following rules determine how far a character or monster can move in a minute, an hour, or a day.
+ 
+##### Table: Pace Distance Traveled per
+| Pace | Minute	|Hour	| Day | Effect |
+|:----|---|---|---|:---|
+| Fast | 400 feet |4 Miles |30 Miles|-5 penalty to passive Wisdom (Perception) scores|
+| Normal  | 300 feet |3 Miles |24 Miles|--|
+| Slow | 200 feet |2 Miles |18 Miles|Able to use Stealth|
+ 
+While traveling, a group of adventurers can move at a normal, fast, or slow pace, as shown on the Travel Pace table. The table states how far the party can move in a period of time and whether the pace has any effect. A fast pace makes characters less perceptive, while a slow pace makes it possible to sneak around and to search an area more carefully. Forced March. The Travel Pace table assumes that characters travel for 8 hours in day. They can push on beyond that limit, at the risk of exhaustion. For each additional hour of travel beyond 8 hours, the characters cover the distance shown in the Hour column for their pace, and each character must make a Constitution saving throw at the end of the hour. The DC is 10 + 1 for each hour past 8 hours. On a failed saving throw, a character suffers one level of exhaustion (see appendix A). Mounts and Vehicles. For short spans of time (up to an hour), many animals move much faster than humanoids. A mounted character can ride at a gallop for about an hour, covering twice the usual distance for a fast pace. If fresh mounts are available every 8 to 10 miles, characters can cover larger distances at this pace, but this is very rare except in densely populated areas. Characters in wagons, carriages, or other land vehicles choose a pace as normal. Characters in a waterborne vessel are limited to the speed of the vessel, and they don’t suffer penalties for a fast pace or gain benefits from a slow pace. Depending on the vessel and the size of the crew, ships might be able to travel for up to 24 hours per day. Certain special mounts, such as a pegasus or griffon, or special vehicles, such as a carpet of flying, allow you to travel more swiftly.
+
+  
+**Difficult Terrain**: 
+The travel speeds given in the Travel Pace table assume relatively simple terrain: roads, open plains, or clear dungeon corridors. But adventurers often face dense forests, deep swamps, rubble-filled ruins, steep mountains, and ice-covered ground—all considered difficult terrain. You move at half speed in difficult terrain—moving 1 foot in difficult terrain costs 2 feet of speed—so you can cover only half the normal distance in a minute, an hour, or a day. <div style='margin-top:0px'></div>  
+</div>
+\page
+<div class='wide'>
+
+
+**Special Types of Movement**: 
+Movement through dangerous dungeons or wilderness areas often involves more than simply walking. Adventurers might have to climb, crawl, swim, or jump to get where they need to go.
+</div>  
+
+**Climbing, Swimming, and Crawling**
+While climbing or swimming, each foot of movement costs 1 extra foot (2 extra feet in difficult terrain), unless a creature has a climbing or swimming speed. At the GM’s option, climbing a slippery vertical surface or one with few handholds requires a successful Strength (Athletics) check. Similarly, gaining any distance in rough water might require a successful Strength (Athletics) check.
+
+**Jumping**
+Your Strength determines how far you can jump. Long Jump. When you make a long jump, you cover a number of feet up to your Strength score if you move at least 10 feet on foot immediately before the jump. When you make a standing long jump, you can leap only half that distance. Either way, each foot you clear on the jump costs a foot of movement. This rule assumes that the height of your jump doesn’t matter, such as a jump across a stream or chasm.   
+  At your GM’s option, you must succeed on a DC 10 Strength (Athletics) check to clear a low obstacle (no taller than a quarter of the jump’s distance), such as a hedge or low wall. Otherwise, you hit it.   
+  When you land in difficult terrain, you must succeed on a DC 10 Dexterity (Acrobatics) check to land on your feet. Otherwise, you land prone.   
+  High Jump. When you make a high jump, you leap into the air a number of feet equal to 3 + your Strength modifier if you move at least 10 feet on foot immediately before the jump. When you make a standing high jump, you can jump only half that distance.   
+  Either way, each foot you clear on the jump costs a foot of movement. In some circumstances, your GM might allow you to make a Strength (Athletics) check to jump higher than you normally can.   
+  You can extend your arms half your height above yourself during the jump. Thus, you can reach above you a distance equal to the height of the jump plus 1½ times your height.
+
+
+
+
+\page
+
+# Legal
+ 
+OPEN GAME LICENSE Version 1.0a
+The following text is the property of Wizards of the Coast, Inc. and is Copyright 2000 Wizards of the Coast, Inc (“Wizards”). All Rights Reserved.
+
+1. Definitions: (a)”Contributors” means the copyright and/or trademark owners who have contributed Open Game Content; (b)”Derivative Material” means copyrighted material including derivative works and translations (including into other computer languages), potation, modification, correction, addition, extension, upgrade, improvement, compilation, abridgment or other form in which an existing work may be recast, transformed or adapted; (c) “Distribute” means to reproduce, license, rent, lease, sell, broadcast, publicly display, transmit or otherwise distribute; (d)”Open Game Content” means the game mechanic and includes the methods, procedures, processes and routines to the extent such content does not embody the Product Identity and is an enhancement over the prior art and any additional content clearly identified as Open Game Content by the Contributor, and means any work covered by this License, including translations and derivative works under copyright law, but specifically excludes Product Identity. (e) “Product Identity” means product and product line names, logos and identifying marks including trade dress; artifacts; creatures characters; stories, storylines, plots, thematic elements, dialogue, incidents, language, artwork, symbols, designs, depictions, likenesses, formats, poses, concepts, themes and graphic, photographic and other visual or audio representations; names and descriptions of characters, spells, enchantments, personalities, teams, personas, likenesses and special abilities; places, locations, environments, creatures, equipment, magical or supernatural abilities or effects, logos, symbols, or graphic designs; and any other trademark or registered trademark clearly identified as Product identity by the owner of the Product Identity, and which specifically excludes the Open Game Content; (f) “Trademark” means the logos, names, mark, sign, motto, designs that are used by a Contributor to identify itself or its products or the associated products contributed to the Open Game License by the Contributor (g) “Use”, “Used” or “Using” means to use, Distribute, copy, edit, format, modify, translate and otherwise create Derivative Material of Open Game Content. (h) “You” or “Your” means the licensee in terms of this agreement. Not for resale. Permission granted to print or photocopy this document for personal use only.
+
+2. The License: This License applies to any Open Game Content that contains a notice indicating that the Open Game Content may only be Used under and in terms of this License. You must affix such a notice to any Open Game Content that you Use. No terms may be added to or subtracted from this License except as described by the License itself. No other terms or conditions may be applied to any Open Game Content distributed using this License.
+
+3.Offer and Acceptance: By Using the Open Game Content You indicate Your acceptance of the terms of this License.
+
+4. Grant and Consideration: In consideration for agreeing to use this License, the Contributors grant You a perpetual, worldwide, royalty-free, non-exclusive license with the exact terms of this License to Use, the Open Game Content.
+
+5.Representation of Authority to Contribute: If You are contributing original material as Open Game Content, You represent that Your Contributions are Your original creation and/or You have sufficient rights to grant the rights conveyed by this License.
+
+6. Notice of License Copyright: You must update the COPYRIGHT NOTICE portion of this License to include the exact text of the COPYRIGHT NOTICE of any Open Game Content You are copying, modifying or distributing, and You must add the title, the copyright date, and the copyright holder’s name to the COPYRIGHT NOTICE of any original Open Game Content you Distribute.
+
+7. Use of Product Identity: You agree not to Use any Product Identity, including as an indication as to compatibility, except as expressly licensed in another, independent Agreement with the owner of each element of that Product Identity. You agree not to indicate compatibility or co-adaptability with any Trademark or Registered Trademark in conjunction with a work containing Open Game Content except as expressly licensed in another, independent Agreement with the owner of such Trademark or Registered Trademark. The use of any Product Identity in Open Game Content does not constitute a challenge to the ownership of that Product Identity. The owner of any Product Identity used in Open Game Content shall retain all rights, title and interest in and to that Product Identity.
+
+8. Identification: If you distribute Open Game Content You must clearly indicate which portions of the work that you are distributing are Open Game Content.
+
+9. Updating the License: Wizards or its designated Agents may publish updated versions of this License. You may use any authorized version of this License to copy, modify and distribute any Open Game Content originally distributed under any version of this License.
+
+10. Copy of this License: You MUST include a copy of this License with every copy of the Open Game Content You Distribute.
+
+11. Use of Contributor Credits: You may not market or advertise the Open Game Content using the name of any Contributor unless You have written permission from the Contributor to do so.
+
+12. Inability to Comply: If it is impossible for You to comply with any of the terms of this License with respect to some or all of the Open Game Content due to statute, judicial order, or governmental regulation then You may not Use any Open Game Material so affected.
+\page
+
+13. Termination: This License will terminate automatically if You fail to comply with all terms herein and fail to cure such breach within 30 days of becoming aware of the breach. All sublicenses shall survive the termination of this License.
+
+14. Reformation: If any provision of this License is held to be unenforceable, such provision shall be reformed only to the extent necessary to make it enforceable.
+
+15. COPYRIGHT NOTICE
+
+Open Game License v 1.0a Copyright 2000, Wizards of the Coast, Inc.
+
+System Reference Document. Copyright 2000, Wizards of the Coast, Inc.; Authors Jonathan Tweet, Monte Cook, Skip Williams, based on material by E. Gary Gygax and Dave Arneson.
+
+System Reference Document. Copyright 2000, Wizards of the Coast, Inc.; Authors Jonathan Tweet, Monte Cook, Skip Williams, based on original material by Dave Arneson and E. Gary Gygax.
+
+System Reference Document. Copyright 2000-2003, Wizards of the Coast, Inc.; Authors Jonathan Tweet, Monte Cook, Skip Williams, Rich baker, Andy Collins, David noonan, Rich Redman, Bruce R. Cordell, based on original material by E. Gary Gygax and Dave Arneson.
+
+System Reference Document 5.0. Copyright 2016, Wizards of the Coast, Inc.; Authors Mike Mearls, Jeremy Crawford, Chris Perkins, Rodney Thompson, Peter Lee, James Wyatt, Robert J. Schwalb, Bruce R. Cordell, Chris Sims, and Steve Townshend, based on original material by E. Gary Gygax and Dave Arneson.
+
+Tome of Horrors Copyright 2002, Necromancer Games, Inc.; Authors: Scott Greene, with Clark Peterson, Erica Balsley, Kevin Baase, Casey Christofferson, Lance Hawvermale, Travis Hawvermale, Patrick Lawinger, and Bill Webb; Based on original content from TSR.
+
+Adherer, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Aerial Servant from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., authors Scott Greene and Clark Peterson based on original material by E. Gary Gygax.
+
+Aerial Servant, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Algoid, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Al-MiRaj from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., authors Scott Greene and Clark Peterson based on original material by Roger Musson.
+
+Amphisbaena from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Ant Lion, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Ascomoid, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Assassin Bug, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Astral Shark, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Aurumvorax from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Aurumvorax, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Axe Beak from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Babbler from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., authors Scott Greene and Clark Peterson based on original material by Jeremy Goodwin and Ian McDowell.
+
+Basilisk, Greater, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Bat, Mobat from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., authors Scott Greene and Clark Peterson based on original material by E. Gary Gygax.
+
+Bat: Doombat, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Beetle Giant Rhinoceros from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Beetle, Death Watch from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., authors Scott Greene and Clark Peterson based on original material by E. Gary Gygax.
+
+Beetle, Giant Boring from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Beetle, Giant Rhinoceros, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Beetle, Giant Slicer, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Blindheim from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Roger Musson.
+
+Blood Hawk, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Bloody Bones, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Boalisk, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Bone Cobbler, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Bonesucker, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+\page
+Brownie from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Carbuncle from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Albie Fiore.
+
+Carbuncle, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Caryatid Column from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Jean Wells.
+
+Caryatid Column, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Caterwaul from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Albie Fiore.
+
+Cave Cricket, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Cave Fisher, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Clam, Giant, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Cobra Flower, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Coffer Corpse from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Simon Eaton.
+
+Cooshee, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Crabman from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., authors Scott Greene and Erica Balsey based on original material by Ian Livingstone.
+
+Crabman, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Crayfish, Monstrous, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Crypt Thing from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Roger Musson.
+
+Crypt Thing, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Dagon, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Dakon from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Ian McDowell.
+
+Dark Creeper from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Rik Shepard.
+
+Dark Creeper, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Dark Stalker from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Simon Muth.
+
+Dark Stalker, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Darnoc, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Death Dog, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Death Worm, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Decapus, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Demon Cambion from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Demon, Alu- from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Demonic Knight, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Dire Corby, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Disenchanter from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Roger Musson.
+
+Dracolisk from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Dracolisk, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Drake, Fire, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Drake, Ice, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Dust Digger, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Eblis, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Eel, Giant Moray, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Executioner’s Hood from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Eye of the Deep from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Fen Witch, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+\page
+Fire Snake, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Flail Snail, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Flind from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Fly, Giant from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Foo Dog, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Forester’s Bane, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Froghemoth, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Gargoyle from the Tome of Horrors copyright 2002 by Necromancer Games Inc authors Scott Greene and Clark Peterson based on original material by E. Gary Gygax.
+
+Gargoyle, Green Guardian, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Gargoyle: Four-Armed, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Gargoyle: Margoyle, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Golem, Stone Guardian, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Gorbel, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Gorgimera from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Gorgimera, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Grippli, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Groaning Spirit from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., authors Scott Greene and Clark Peterson based on original material by E. Gary Gygax.
+
+Hangman Tree, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Hippocampus, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Hoar Fox, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Jackalwere from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Jaculi, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Jelly, Mustard, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Jupiter Bloodsucker, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Kamadan, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Kampfult, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Kech, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Kelpie, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Khargra, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Korred, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Land Lamprey, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Lava Child, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Leech, Giant from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Leprechaun from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Lurker Above from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Mantari, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Midnight Peddler, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Mite, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Mite, Pestie, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Mongrelman from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Mummy of the Deep, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Necrophidius from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Simon Tilbrook.
+\page
+Nereid from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Nilbog from the Tome of Horrors copyright 2002 by Necromancer Games Inc author Scott Greene based on original material by Roger Musson.
+
+Olive Slime Zombie, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Olive Slime, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Pech, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Phantom from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Harold Johnson and Tom Moldvay.
+
+Phycomid, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Piercer from the Tome of Horrors copyright 2002 by Necromancer Games Inc authors Scott Greene and Clark Peterson based on original material by E. Gary Gygax.
+
+Poltergeist from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Lew Pulsipher.
+
+Pyrolisk, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Quickling from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Quickwood, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Rat, Shadow, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Rot Grub from the Tome of Horrors copyright 2002 by Necromancer Games Inc authors Scott Greene and Clark Peterson based on original material by E. Gary Gygax.
+
+Russet Mold, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Sandling, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Screaming Devilkin, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Scythe Tree, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Shadow, Lesser, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Shedu from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Skeleton Warrior from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Nigel Morgan.
+
+Skeleton Warrior, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Skulk, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Slithering Tracker from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Slithering Tracker, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Slug, Giant from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Sprite from the Tome of Horrors copyright 2002 by Necromancer Games Inc author Scott Greene based on original material by E. Gary Gygax.
+
+Squealer from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Stegocentipede, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Strangle Weed, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Stunjelly from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Tabaxi, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Taer, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Therianthrope: Foxwere, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Therianthrope: Lionwere, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Therianthrope: Owlwere, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Therianthrope: Wolfwere, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Tick, Giant from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greenebased on original material by E. Gary Gygax.
+
+Trapper from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material be E. Gary Gygax.
+
+Tri-flower Frond, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Troll, Giant Two Headed from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Oliver Charles McDonald.
+\page
+
+Troll, Ice from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Russell Cole.
+
+Troll, Spectral, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Troll, Two-headed, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Tunnel Worm, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Vampire Rose, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Vegepygmy Chief, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Vegepygmy Commoner, Worker, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Vegepygmy Guard, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Vilstrak from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E.Gary Gygax.
+
+Volt from the Tome of Horrors copyright 2002 by Necromancer Games Inc author Scott Greene based on original material by Jonathon Jones.
+
+Volt, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Vulchling from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+Vulchling, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Witherstench, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Yellow Musk Creeper from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Albie Fiore.
+
+Yellow Musk Creeper, from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Yellow Musk Zombie , from the Tome of Horrors Complete, Copyright 2011, Necromancer Games, Inc., published and distributed by Frog God Games.
+
+Yellow Musk Zombie from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by Albie Fiore.
+
+Yeti from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Green based on original material by E. Gary Gygax.
+
+Zombie, Juju from the Tome of Horrors copyright 2002 by Necromancer Games, Inc., author Scott Greene based on original material by E. Gary Gygax.
+
+EN World EN5ider. Copyright 2015–2017 EN Publishing.
+
+EN World EN5ider Presents: A Touch of Class. Copyright 2017 EN Publishing.
+
+Burok Torn: City Under Siege Copyright 2002, White Wolf Publishing, Inc.
+
+Creature Collection 2: Dark Menagerie Copyright 2001, White Wolf Publishing, Inc.
+
+Creature Collection Copyright 2001, Clark Peterson.
+
+Eldritch Sorcery Copyright 2005, Necromancer Games, Inc.; Authors Patrick Lawinger, Scott Greene, and David Mannes, with Erica Balsley, Chris Bernhardt, Casey W. Christofferson, Bill Collins, Jim Collura, Chad Coulter, Patrick Goulah, Skeeter Green, Jeff Harkness, Lance Hawvermale, Travis Hawvermale, Richard Hughes, Robert Hunter, Al Krombach, Rob Mason, Matt McGee, Clark Peterson, Michael Proteau, Greg Ragland, Gary Schotter, Joe Walmsley, and Bill Webb.
+
+Evolved Grottoes & Griffons: Teratic Tome 1st Edition copyright 2013 by Rafael Chandler.
+
+Faeries Copyright 2003, Bastion Press, Inc.
+
+Hollowfaust: City of Necromancers Copyright 2001, White Wolf Publishing, Inc.
+
+If Thoughts Could Kill Copyright 2002, Bruce R. Cordell. All Right Reserved.
+
+Mithril: City of the Golem Copyright 2001, White Wolf Publishing, Inc.
+
+Monster Compendium: 0e, Copyright 2008, Matthew J. Finch.
+
+Monstrosities, © 2012, Frog God Games LLC; Authors Andrew Trent (“the Venomous Pao”), Trent Foster, Salvatore Macri (“Skathros”), Scott Wylie Roberts (“Myrystyr”), Sean Stone (“Stonegiant”), Sean Wills (“Geordie Racer”), Cameron DuBeers, Matt Hoover (“Random”), Mike Davison, Russell Cone (“Grim”), Mudguard, Old Crawler, Michael Shorten (“Chgowiz”), Mark Ahmed, Scott Casper (“Scottenkainen”), The Lizard of Oz, James Malizsewski, Michael Kotschi, J.D. Jarvis, John Turcotte, Guy Fullerton, Michael Coté, Thomas Clark, Tanner Adams, and Matt Finch (“Mythmere”). Cyclopean Deeps: Volume 1 — Copyright 2014 Matthew J. Finch, Frog God Games LLC.
+
+Classic Play – The Book of the Planes Copyright 2004, Mongoose Publishing Ltd.
+
+Original Spell Name Compendium, Copyright 2002 Clark Peterson; based on NPC-named spells from the Player’s Handbook that were renamed in the System Reference Document. The Compendium can be found on the legal page of www.necromancergames.com.
+
+OSRIC appendices copyright 2006-08 by Stuart Marshall and James D. Kramer.
+
+OSRIC Chapter I copyright 2006-08 by Stuart Marshall.
+
+OSRIC Chapter II copyright 2006-08 by Stuart Marshall.
+
+OSRIC Chapter III copyright 2006- 08 by Stuart Marshall, Trent Foster, James Boney and Vincent Frug ©.
+
+OSRIC Chapter IV copyright 2006-08 by Stuart Marshall, Trent Foster, James Boney and Vincent Frug ©.
+
+OSRIC Chapter V copyright 2007-08 by Stuart Marshall, Chris Hopkins, James Boney, Robert Ross, Jeremy Goehring, Mike Davison, Daniel Proctor, B. Scot Hoover, Chris Cain, Bill Silvey, Floyd Canaday, Vincent Frug © and Matthew James Stanham.
+
+OSRIC Chapter VI copyright 2007-08 by Stuart Marshall, Daniel Proctor and Vincent Frug ©.
+
+Relics & Rituals: Excalibur Copyright 2005, White Wolf Publishing, Inc.
+
+Relics & Rituals: Olympus Copyright 2004, White Wolf Publishing, Inc.
+\page
+Relics and Rituals 2: Lost Lore Copyright 2002, White Wolf Publishing, Inc.
+
+Scarred Lands Campaign Setting: Ghelspad Copyright 2002, White Wolf Publishing, Inc.
+
+Secrets and Societies Copyright 2002, White Wolf Publishing, Inc.
+
+Skreyn’s Register: The Bonds of Magic. © 2002, Sean K Reynolds.
+
+Swords & Wizardry Core Rules, Copyright 2008, Matthew J. Finch Swords & Wizardry Complete Rules, Copyright 2010, Matthew J. Finch.
+
+The Book of Experimental Might Copyright 2008, Monte J. Cook. All rights reserved.
+
+The Divine and the Defeated Copyright 2001, White Wolf Publishing, Inc.
+
+Vigil Watch: Warrens of the Ratmen Copyright 2002, White Wolf Publishing, Inc.
+
+Advanced Player’s Guide Copyright 2010 Paizo Publishing, LLC; Author: Jason Bulmahn.
+
+Pathfinder Roleplaying Game Core Rulebook © 2011, Paizo Publishing, LLC; Author: Jason Bulmahn, based on material by Jonathan Tweet, Monte Cook, and Skip Williams.
+
+Pathfinder RPG Bestiary © 2009, Paizo Publishing, LLC; Author: Jason Bulmahn, based on material by Jonathan Tweet, Monte Cook, and Skip Williams.
+
+Pathfinder Roleplaying Game Bestiary 2 © 2010, Paizo Publishing, LLC; Authors Wolfgang Baur, Jason Bulmahn, Adam Daigle, Graeme Davis, Crystal Frasier, Joshua J. Frost, Tim Hitchcock, Brandon Hodge, James Jacobs, Steve Kenson, Hal MacLean, Martin Mason, Rob McCreary, Erik Mona, Jason Nelson, Patrick Renie, Sean K Reynolds, F. Wesley Schneider, Owen K.C. Stephens, James L. Sutter, Russ Taylor, and Greg A. Vaughan, based on material by Jonathan Tweet, Monte Cook, and Skip Williams.
+
+Pathfinder Roleplaying Game Ultimate Magic © 2011, Paizo Publishing, LLC; Authors: Jason Bulmahn, Tim Hitchcock, Colin McComb, Rob McCreary, Jason Nelson, Stephen Radney-MacFarland, Sean K Reynolds, Owen K.C. Stephens, and Russ Taylor.
+
+Pathfinder Roleplaying Game Ultimate Combat © 2011, Paizo Publishing, LLC; Authors: Jason Bulmahn, Tim Hitchcock, Colin McComb, Rob McCreary, Jason Nelson, Stephen Radney-MacFarland, Sean K Reynolds, Owen K.C. Stephens, and Russ Taylor.
+
+The Grand OGL Wiki, http://grandwiki.wikidot.com Copyright 2008-2009 Purple Duck Creations; Authors: Mark Gedak, Alex Schroeder, Joel Arellano, George Fields, Yair Rezek, Mike Whalen, Shane O’Connor, Mike Rickard, John Whamond, Bill Browne, Eric Williamson, Slatz Grubnik, Charles R. Wenzler Jr.
+
+The Book of the Righteous, Copyright 2002, 2017, Aaron Loeb
+
+Genies for Fifth Edition 1.0 published by Tribality.com (Innovaworks Inc.); Copyright 2016 Colin McLaughlin.
+
+Pirate Adventurers for Fifth Edition 1.0 published by Tribality.com (Innovaworks Inc.); Copyright 2016 Shawn Ellsworth
+
+Steampunk Adventurers for Fifth Edition 1.0 published by Tribality.com (Innovaworks Inc.); Copyright 2016 Shawn Ellsworth.
+
+Underworld Races and Classes Copyright 2017 AAW Games, LLC; Thilo Graf, Mike Myler, and Jonathan G. Nelson Occult Secrets of the Underworld Copyright 2018, AAW Games, LLC; Thilo Graf and Jonathan G. Nelson.
+
+Aaralyn’s Stolen Notes to Velea Copyright 2018 Anne Gregersen Author Anne Gregersen
+
+Ponyfinder: Campaign Setting Dawn of the Fifth Age © 2015, Silver Games, LLC; Authors: David Silver.
+
+Ponyfinder: 5th Edition Gods, Feats, and Expanded Races © 2015, Silver Games, LLC; Authors: David Silver.
+
+Player’s Advantage – Barbarian. © 2016, Samurai Sheepdog; Author: Kevin Glusing
+
+The Book of Lost Spells Copyright 2015 Frog God Games LLC.
+
+Fifth Edition Foes, Copyright 2014, Frog God Games, LLC.
+
+In the Company of Giants (5e) Copyright 2016 Steven D. Russell; Author Steven D. Russell.
+
+Book of Heroic Races: Player Races 1. © 2015, Jon Brazer Enterprises.
+
+5e Options: Rogue Archetypes Shadow Warrior ©2015, Rogue Genius Games. Designers: Owen K.C. Stephens and Rich E. Howard.
+
+The Eliminator Copyright 2016 by RJ Grady. Published by Tripod Machine.
+
+Tome of Beasts. Copyright 2016, Open Design; Authors Chris Harris, Dan Dillon, Rodrigo Garcia Carmona, and Wolfgang Baur.
+
+Advanced Races: Aasimar. © 2014 Open Design; Author: Adam Roy. KoboldPress.com
+
+Advanced Races: Centaurs. © 2014 Open Design; Author: Karen McDonald. KoboldPress.com.
+
+Advanced Races: Dragonkin © 2013 Open Design; Authors: Amanda Hamon Kunz.
+
+Advanced Races: Gearforged. © 2013 Open Design; Authors: Thomas Benton.
+
+Advanced Races: Gnolls. © 2015 Open Design; Authors: Ben McFarland and Brian Suskind.
+
+Advanced Races: Kobolds © 2013 Open Design; Authors: Nicholas Milasich, Matt Blackie.
+
+Advanced Races: Lizardfolk. © 2015 Open Design; Authors: Steven T.Helt, Stephen Rowe, and Dan Dillon.
+
+Advanced Races: Ravenfolk © 2014 Open Design; Authors: Wade Rockett.
+
+Advanced Races: Shadow Fey. © 2014 Open Design; Authors: Carlos and Holly Ovalle.
+
+Advanced Races: Trollkin. © 2015 Open Design; Authors: Steven T.Helt, Stephen Rowe, and Dan Dillon.
+
+Advanced Races: Werelions. © 2015 Open Design; Authors: Ben McFarland and Brian Suskind.
+
+Midgard Heroes © 2015 Open Design; Author: Dan Dillon.
+
+Southlands Heroes © 2015 Open Design; Author: Rich Howard.
+
+A Collection of Poisons. Copyright 2014 Assassin Games
+
+Dungeon Archetypes. Copyright 2016 Mike Myler, published under license by Legendary Games; Authors Mike Myler.
+
+Fighter Folio © 2018 Total Party Kill Games; Authors: Brian Berg, Mark A. Hart.
+
+Fifth Edition Feats. Copyright, 2016 Total Party Kill Games. Author(s): Brian Berg.
+
+5th Edition Races – Aasimar by Fat Goblin Games. Copyright 2015. Author Troy Daniels, Artist Rick Hershey, Layout Troy Daniels and Rick Hershey.
+\page
+Ritual Magic Expanded © 2015, Fat Goblin Games; Author: Ismael Alvarez
+
+Amazing Weapons, Armor and Equipment © 2016, Fat Goblin Games; Author: Ismael Alvarez
+
+HYPERLANES Developer Ryan Chaddock Copyright 2017 Scrivened, LLC
+
+Unspeakable Knowledge Copyright 2018, Schwalb Entertainment, LLC. Author Robert J. Schwalb.
+
+5th Edition Horror. © 2018, Fat Goblin Games; Author: Ismael Alvarez
+
+Simple Settings: Savage Lands. © 2018, Fat Goblin Games; Author: Rick Hershey, Ismael Alvarez
+
+Pirate Campaign Compendium © 2018, Legendary Games; Lead Designer Jason Nelson. Authors: Alex Augunas, Jeff Gomez, Matt Goodall, Jim Groves, Tim Hitchcock, Victoria Jaczko, Jonathan H. Keith, Lyz Liddell, Thomas J. Phillips, Alistair J. Rigg, Alex Riggs, Loren Sieg, Neil Spicer, Todd Stewart, Rachel Ventura, Michael D. Welham, Linda Zayas-Palmer.
+
+Libram of Lost Arcana, vol. I © 2018 Total Party Kill Games; Authors: Brian Berg, Mark A. Hart.
+
+Libram of Lost Arcana, vol. II © 2018 Total Party Kill Games; Authors: Brian Berg, Mark A. Hart.
+
+Mist Walker © 2019, Cody C. Lewis
+
+Creature Codex. © 2018 Open Design LLC; Authors Wolfgang Baur, Dan Dillon, Richard Green, James Haeck, Chris Harris, Jeremy Hochhalter, James Introcaso, Chris Lockey, Shawn Merwin, and Jon Sawatsky.
+
+Tome of Beasts. Copyright 2016, Open Design; Authors Chris Harris, Dan Dillon, Rodrigo Garcia Carmona, and Wolfgang Baur.
+
+Art of Magic – Heretical Pacts © 2019, d20pfsrd.com Publishing; Author: Ed Kabara
+
+Blood Vaults of Sister Alkava. © 2016 Open Design. Author: Bill Slavicsek. The Clattering Keep. © 2017 Open Design. Author: Jon Sawatsky.
+
+Demon Cults & Secret Societies for 5th Edition. © 2017 Open Design. Authors: Jeff Lee, Mike Welham, and Jon Sawatsky.
+
+Firefalls of Ghoss. © 2018 Open Design LLC. Author: Jon Sawatsky.
+
+The Lamassu’s Secrets. © 2018 Open Design LLC. Author: Richard Green.
+
+Midgard Heroes Handbook. © 2018 Open Design LLC; Authors: Chris Harris, Dan Dillon, Greg Marks, James Haeck, Jon Sawatsky, Michael Ohl, Richard Green, Rich Howard, Scott Carter, Shawn Merwin, and Wolfgang Baur.
+
+Midgard Worldbook. Copyright © 2018 Open Design LLC. Authors: Wolfgang Baur, Dan Dillon, Richard Green, Jeff Grubb, Chris Harris, Brian Suskind, and Jon Sawatsky.
+
+The Raven’s Call 5th Edition © 2015 Open Design; Authors: Wolfgang Baur and Dan Dillon.
+
+Warlock Part 1. Authors: Wolfgang Baur, Dan Dillon, Troy E. Taylor, Ben McFarland, Richard Green. © 2017 Open Design.
+
+Warlock 2: Dread Magic. Authors: Wolfgang Baur, Dan Dillon, Jon Sawatsky, Richard Green. © 2017 Open Design.
+
+Warlock 3: Undercity. Authors: James J. Haeck, Ben McFarland, Brian Suskind, Peter von Bleichert, Shawn Merwin. © 2018 Open Design.
+
+Warlock 4: The Dragon Empire. Authors: Wolfgang Baur, Chris Harris, James J. Haeck, Jon Sawatsky, Jeremy Hochhalter, Brian Suskind. © 2018 Open Design.
+
+Zobeck Gazetteer for 5th Edition. Copyright ©2018 Open Design LLC. Author: James Haeck.
+
+Sandy Petersen’s Cthulhu Mythos, © 2018, Petersen Games; Authors: Sandy Petersen, David N. Ross, James Jacobs, Arthur Petersen, Ian Starcher.
+
+Drunkens & Dragons Presents: 5e: Hardcore Mode Copyright Runehammer Games 2020
+
+The Big Book of Backgrounds Copyright 2019, P.B. Publishing, Phil Beckwith, and Cody Faulk.
+
+Tegel Manor © 2019, Frog God Games, LLC; Authors: Bill Webb & Thom Wilson with additional material by Gabor Lux
+
+The Lost Lands: Bard’s Gate © 2016, Frog God Games, LLC; Authors: Casey Chrisofferson, Matt Finch, Skeeter Green, and Greg A. Vaughan with additional new material by James M. Spahn; Based on original content from Necromancer Games.
+
+Tome of Horrors © 2018, Frog God Games, LLC; Authors: Kevin Baase, Erica Balsley, John “Pexx” Barnhouse, Christopher Bishop, Casey Christofferson, Jim Collura, Andrea Costantini, Jayson ‘Rocky’ Gardner, Zach Glazar, Meghan Greene, Scott Greene, Lance Hawvermale, Travis Hawvermale, Ian S. Johnston, Bill Kenower, Patrick Lawinger, Rhiannon Louve, Ian McGarty, Edwin Nagy, James Patterson, Nathan Paul, Patrick N. Pilgrim, Clark Peterson, Anthony Pryor, Greg Ragland, Robert Schwalb, G. Scott Swift, Greg A. Vaughan, and Bill Webb
+
+Wardens of the Wild. Copyright, 2015 Total Party Kill Games. Author(s): PJ Harn and Brian Berg.
+
+Frost & Fur. Copyright 2004, MonkeyGod Enterprises, Author Michael Tresca.
+
+The Seas of Vodari Copyright 2020, Tribality (Innovaworks Inc.) and Shawn Ellsworth.
+
+5E RPG: Ancient Adventures. Copyright 2020, Mal and Tal, LLC; Author Michael Tresca.
+
+5E RPG: Viking Adventures. Copyright 2020, Mal and Tal, LLC; Author Michael Tresca.
+
+Scarred Lands Player’s Guide © 2016 Onyx Path Publishing Authors: Bill Ashbless, Jason Bolte, Chris Cowger, Adam Eichelberger, Alain Giorla, Nathan Knaack, Chris Sims, Eddy Webb
+
+Yugman’s Guide to Ghelspad: Part One © 2020 Onyx Path Publishing
+
+Travelcraft Good Traveling Rules for 5e Copyright 2020 BestPalBrigade Author(s): Kyle Carty, Kathryn Carty
+
+Ancestry & Culture: An Alternative to Race in 5e © 2020 Arcanist Press Author: Eugene Marshall
+
+The Warden Class Copyright 2020, Vorpal Dice Press and Genuine Fantasy Press, LLC.
+
+Compendium of Forgotten Secrets: Awakening Copyright 2018, Genuine Fantasy Press, LLC.
+
+Compendium of Sacred Mysteries: Resurrection Copyright 2020, Genuine Fantasy Press, LLC.
+
+Book of Monstrous Might: Ecology of the Umbral Elves ©2020 Total Party Kill Games. Authors: Brian Berg
+
+Ancestry & Culture: An Alternative to Race in 5e © 2020 Arcanist Press Author: Eugene Marshall
+
+More Ancestries & Cultures, Copyright 2020, Arcanist Press LLP.
+
+Dungeons & Divinities: Greek Pantheon Codex Copyright 2020 Nicolas (Zehus) Levastre Author: Nicolas (Zehus) Levastre.
+
+Haunted: A 5th Edition Ravenloft Sourcebook of Horrific Haunts Copyright 2019 Louis Porter Jr. Design, Inc.
+\page
+
+The New Argonauts Copyright 2004 Sean K. Reynolds.
+
+Pathfinder Roleplaying Game Bestiary 3. © 2011, Paizo Publishing, LLC; Authors: Jesse Benner, Jason Bulmahn, Adam Daigle, James Jacobs, Michael Kenway, Rob McCreary, Patrick Renie, Chris Sims, F. Wesley Schneider, James L. Sutter, and Russ Taylor, based on material by Jonathan Tweet, Monte Cook, and Skip Williams.
+
+Pathfinder Roleplaying Game Bestiary 4. © 2013, Paizo Publishing, LLC; Authors: Dennis Baker, Jesse Benner, Savannah Broadway, Ross Byers, Adam Daigle, Tim Hitchcock, Tracy Hurley, James Jacobs, Matt James, Rob McCreary, Jason Nelson, Tom Phillips, Stephen Radney-MacFarland, Sean K Reynolds, F. Wesley Schneider, Tork Shaw, and Russ Taylor.
+
+Hypercorps 2099 (5E) Copyright 2016 Mike Myler, published under license by Legendary Games; Authors Mike Myler, Savannah Broadway, Rich Howard, Luis Loza, Michael McCarthy.
+
+Odyssey of the Dragonlords Player’s Guide © James Ohlen 2019, © Jesse Sky 2019 www.arcanumworlds.com.
+
+Mists of Akuma: Trade War © 2019 Mike Myler, published under license by Storm Bunny Studios; Authors: Mike Myler, Christopher Rippee, Andrew Engelbrite, Dirk van de Rijt, Duan Byrd.
+
+Mists of Akuma: Iconics Tome Copyright 2019 Mike Myler, published under license by Storm Bunny Studios, LLC; Authors Mike Myler, Savannah Broadway, Michael McCarthy.
+
+ENWorld EN5ider Presents: The Masterclass Codex Copyright 2019 EN Publishing.
+
+Mythological Figures & Maleficent Monsters Copyright 2020 EN Publishing. Authors Mike Myler, Russ Morrissey. www.enpublishingrpg.com
+
+Corpus Malicious © 2020 Dream Realm Storytellers LTD. All rights reserved.
+
+www.5eSRD.com Copyright 2017, Open Gaming LLC; Authors (various).
+  
+  Open Game License v 1.0a Copyright 2000, Wizards of the Coast, Inc.
+
+System Reference Document Copyright 2000-2003, Wizards of the Coast, Inc.; Authors Jonathan Tweet, Monte Cook, Skip Williams, Rich Baker, Andy Collins, David Noonan, Rich Redman, Bruce R. Cordell, John D. Rateliff, Thomas Reid, James Wyatt, based on original material by E. Gary Gygax and Dave Arneson.
+
+Creature Collection Volume 1 Copyright 2000, Clark Peterson.
+
+Modern System Reference Document Copyright 2002, Wizards of the Coast, Inc.; Authors Bill Slavicsek, Jeff Grubb, Rich Redman, Charles Ryan, based on material by Jonathan Tweet, Monte Cook, Skip Williams, Richard Baker,Peter Adkison, Bruce R. Cordell, John Tynes, Andy Collins, and JD Wiker
+
+Monster Manual II Copyright 2002, Wizards of the Coast, Inc.
+
+Swords of Our Fathers Copyright 2003, The Game Mechanics.
+
+Mutants & Masterminds Copyright 2002, Green Ronin Publishing.
+
+Unearthed Arcana Copyright 2004, Wizards of the Coast, Inc.; Andy Collins, Jesse Decker, David Noonan, Rich Redman.
+
+The Hypertext d20 SRD Copyright 2004, Jans W Carton; transferred to BoLS Interactive, 2016.
+
+Modern System Reference Document, Copyright 2002, Wizards of the Coast, Inc.; Authors Bill Slavicsek, Jeff Grubb, Rich Redman, Charles Ryan, based on material by Jonathan Tweet, Monte Cook, Skip Williams, Richard Baker, Peter Adkison, Bruce R. Cordell, John Tynes, Andy Collins, and JD Wiker.
+
+Arms & Armor, Copyright 2001, Bastion Press, Inc.
+
+The Assassin’s Handbook, Copyright 2002, Green Ronin Publishing; Authors Wolfgang Baur and David “Zeb” Cook.
+
+Beyond Monks, Copyright 2002, Chainmail Bikini Games, Ltd.
+
+The Book of Eldritch Might, Copyright 2001, Monte J. Cook. All Rights Reserved.
+
+The Book of Eldritch Might III: The Nexus, Copyright 2002, Monte J. Cook. All Rights Reserved.
+
+Codex Arcanis, Copyright 2001, Paradigm Concepts, Inc.; Authors Scott Charlton, Brian Dalrymple, Jarad Fennell, Matt Forbeck, Shawn Havraneck, Henry Lopez, William Simoni, Eric Wiener, based upon the original concept by Henry Lopez.
+
+Creatures of Rokugan, Copyright 2001, Alderac Entertainment Group.
+
+Deadlands d20, Copyright 2001, Pinnacle Entertainment Group, Inc.
+
+Dragons, Copyright 2001, Alderac Entertainment Group.
+
+Dragonstar: Starfarer’s Handbook, Copyright 2001, Fantasy Flight, Inc.
+
+Dungeon Master’s Guide, Copyright 2000, Wizards of the Coast.
+
+Dungeons, Copyright 2000, Alderac Entertainment Group.
+
+Evil, Copyright 2001, Alderac Entertainment Group.
+
+Forged In Magic, Copyright 2002, Paradigm Concepts, Inc.
+
+Foul Locales: Beyond the Walls, Copyright 2002-2016, Samurai Sheepdog.
+
+Foul Locales: Urban Blight, Copyright 2016, Samurai Sheepdog.
+
+Freeport: The City of Adventure, Copyright 2002, Green Ronin Publishing; Authors Matt Forbeck and Chris Pramas.
+
+Magic of Rokugan, Copyright 2001, Alderac Entertainment Group.
+
+Mercenaries, Copyright 2002, Alderac Entertainment Group.
+
+Monster, Copyright 2002, Alderac Entertainment Group.
+
+The Monsternomicon, Copyright 2002, Privateer Press LLC; Authors Matt Staroscik, Doug Seacat, J. Michael Kilmartin, Brett Huffman, Rob Baxter, Colin Chapman, Jon Thompson, Andrew Flynn, Joseph Miller, Matt Wilson.
+
+Monte Cook’s Arcana Unearthed, Copyright 2003, Monte J. Cook. All Rights Reserved.
+
+Mutants & Masterminds, Copyright 2002, Green Ronin Publishing.
+
+Nyambe: African Adventures, Copyright 2002, Trident Inc. d/b/a Atlas Games; Author Christopher W. Dolunt.
+
+Occult Lore, Copyright 2002, Trident Inc. d/b/a Atlas Games.
+
+Oriental Adventures, Copyright 2001, Wizards of the Coast.
+
+Path of Shadow, Copyright 2002, Fantasy Flight Publishing, Inc.
+
+Path of the Sword, Copyright 2002, Fantasy Flight Publishing, Inc.
+
+Player’s Handbook, Copyright 2000, Wizards of the Coast.
+\page
+
+Plot & Poison: A Guidebook to Drow, Copyright 2002, Green Ronin Publishing; Author Matthew Sernett.
+
+Purloined Pages—A Web Enhancement for Player’s Advantage: Rogue, Copyright 2016, Samurai Sheepdog; Author Charles W. Plemons III. Rokugan, Copyright 2001, Alderac Entertainment Group.
+
+Seafarer’s Handbook, Copyright 2001, Fantasy Flight Publishing, Inc.
+
+Open Game Content from The Tide of Years, Copyright 2001, Michelle A. Brown Nephew.
+
+Swords of Our Fathers, Copyright 2003, The Game Mechanics.
+
+Traps & Treachery, Copyright 2001, Fantasy Flight, Inc.
+
+Tournaments, Fairs, and Taverns, Copyright 2002, Natural 20 Press. Undead, Copyright 2001, Alderac Entertainment Group.
+
+Unearthed Arcana, Copyright 2004, Wizards of the Coast, Inc.; Andy Collins, Jesse Decker, David Noonan, Rich Redman.
+
+War, Copyright 2002, Alderac Entertainment Group.
+
+Way of the Samurai, Copyright 2002, Alderac Entertainment Group.
+
+Way of the Ninja, Copyright 2002, Alderac Entertainment Group.
+
+Wild Spellcraft, Copyright 2002, Natural 20 Press.
+
+Player’s Advantage: Rogue, Copyright 2016, Samurai Sheepdog; Author Charles W. Plemons III.
+  
+
+Pathfinder Core Rulebook (Second Edition) © 2019, Paizo Inc.; Designers: Logan Bonner, Jason Bulmahn, Stephen Radney-MacFarland, and Mark Seifter.
+
+Pathfinder Bestiary (Second Edition) © 2019, Paizo Inc.; Authors: Alexander Augunas, Logan Bonner, Jason Bulmahn, John Compton, Paris Crenshaw, Adam Daigle, Eleanor Ferron, Leo Glass, Thurston Hillman, James Jacobs, Jason Keeley, Lyz Liddell, Ron Lundeen, Robert G. McCreary, Tim Nightengale, Stephen Radney-MacFarland, Alex Riggs, David N. Ross, Michael Sayre, Mark Seifter, Chris S. Sims, Jeffrey Swank, Jason Tondro, Tonya Woldridge, and Linda Zayas-Palmer.
+
+Pathfinder Lost Omens Character Guide (Second Edition) © 2019, Paizo Inc.; Authors: John Compton, Sasha Lindley Hall, Amanda Hamon, Mike Kimmel, Luis Loza, Ron Lundeen, Matt Morris, Patchen Mortimer, Andrew Mullen, Mikhail Rekun, Micheal Sayre, Owen K.C. Stephens, Isabelle Thorne, and Linda Zayas-Palmer.
+
+Pathfinder Advanced Player’s Guide Class Playtest (Second Edition) © 2019, Paizo Inc.; Authors: Logan Bonner, Lyz Liddell, and Mark Seifter.
+
+Pathfinder Lost Omens Gods & Magic (Second Edition) © 2020, Paizo Inc.; Authors: Robert Adducci, Amirali Attar Olyaee, Calder CaDavid, James Case, Adam Daigle, Katina Davis, Leo Glass, Joshua Grinlinton, James Jacobs, Virginia Jordan, Jason Keeley, Jacky Leung, Lyz Liddell, Ron Lundeen, Stephanie Lundeen, Jacob W. Michaels, Matt Morris, Dave Nelson, Samantha Phelan, Jennifer Povey, Jessica Redekop, Nathan Reinecke, Patrick Renie, David N. Ross, Simone D. Sallé, Michael Sayre, David Schwartz, Shahreena Shahrani, Isabelle Thorne, Marc Thuot, Jason Tondro, and Diego Valdez.
+
+
+Pathfinder Advanced Player’s Guide © 2020, Paizo Inc.; Authors: Amirali Attar Olyaee, Alexander Augunas, Kate Baker, Brian Bauman, Logan Bonner, Carlos Cabrera, James Case, Jessica Catalan, John Compton, Paris Crenshaw, Jesse Decker, Fabby Garza Marroquín, Steven Hammond, Sasha Laranoa Harving, Joan Hong, Nicolas Hornyak, Vanessa Hoskins, James Jacobs, Erik Keith, Lyz Liddell, Luis Loza, Ron Lundeen, Patchen Mortimer, Dennis Muldoon, Stephen Radney-MacFarland, Jessica Redekop, Mikhail Rekun, Alex Riggs, David N. Ross, Michael Sayre, Mark Seifter, Kendra Leigh Speedling, Jason Tondro, Clark Valentine, and Andrew White.
+  
+Pathfinder Adventure Path #149: Against the Scarlet Triad © 2019, Paizo Inc.; Authors: John Compton, with Tim Nightengale and James L. Sutter.
+
+Pathfinder Adventure Path #150: Broken Promises © 2019, Paizo Inc.; Authors: Luis Loza, with James Jacobs, Alex Riggs, and Owen K.C. Stephens.
+
+Pathfinder Adventure Path #151: The Show Must Go On © 2020, Paizo Inc.; Authors: Jason Tondro, with Andrew Mullen, Patrick Renie, David N. Ross, and Michael Sayre.
+
+Nature’s Wrath: New Environmental Hazards © 2020, Necromancers of the Northwest; Designers: Alex Riggs, Joshua Zaback.
+
+The Pathfinder 2E: Third-Party Content Wiki © 2019; Author: Rednal
+
+Paizo blog Fan Content Author: Enderrin.com Copyright 2020 Enderrin
+
+The Murmuring Fountain (PF2) © 2019, Legendary Games; Authors Jason Nelson and Clark Peterson. Adapted by Jacob Michaels.
+
+END OF LICENSE
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+                                                                                                                                                                                                                                                                                                                                                                                                                                             ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ

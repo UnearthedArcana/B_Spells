@@ -76,6 +76,10 @@ TO DO 37: Dispel Lists:
 
 TO DO 38: To be remove lists: regen_list, 
 
+Version 0.90.20
+
+- Not completely sure...need to recheck just about everything :(
+
 Version 0.90.19
 
 2020-11-29
