@@ -76,6 +76,14 @@ TO DO 37: Dispel Lists:
 
 TO DO 38: To be remove lists: regen_list, 
 
+Version 0.90.21
+
+2020-12-08
+
+- Corrected icons and port icon images
+
+- Small fix to add_icons.tpa (but needs a lot of work)
+
 Version 0.90.20
 
 - Not completely sure...need to recheck just about everything :(

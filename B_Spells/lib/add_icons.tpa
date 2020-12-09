@@ -1,0 +1,245 @@
+DEFINE_ACTION_FUNCTION ADD_ICONS
+  INT_VAR   rename            = "0"       //rename icons based on spell_res?  0 = no; 1 = yes
+            port_text         = "-1"      //strref of portrait for port icon (optional, but pretty nec for adding port icons)
+            add_port_icon     = "0"       //Add port icon to spell (be careful) 0= no, 1= yes (all), 2= yes, but ONLY global
+            create_scroll     = "0"       //create a scroll? 0 = no; 1 = yes (provide a path in STR_VAR scroll_path)
+            gen_scroll        = "0"       //is the scroll provided in scroll_path generic (i.e. need to add deets?) 0 = no; 1 =yes
+            high_hedge        = "0"       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no     = "1"       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch         = "0"       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no      = "1"       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch       = "0"       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no    = "1"       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun           = "0"       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no        = "1"       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store         = "0"       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no      = "1"       //Number of scrolls sold at ...some SOD store (default 1)
+//          scroll_store      = "0"       //add scroll to stores?  We'll see
+
+  STR_VAR   pathA             = "SAME"    //path to "A" icon (req for scroll--otherwise optional)
+            pathB             = "SAME"    //path to "B" icon (optional)
+            pathC             = "SAME"    //path to "C" icon (optional)
+            pathP             = "SAME"    //path to portrait icon (optional)
+            port_exist        = "SAME"    //portrait icon if already in game(optional)
+            scroll_path       = "SAME"    //path of scroll--will create a scroll if pathA AND this field not "SAME" (optional)
+            spell_name        = "SAME"    //filename of spell that is getting the icons--assumes spell was added prior (required)
+  RET       iconA                         //name of iconA
+            iconB                         //name of iconB
+            iconC                         //name of iconC
+            iconP                         //name of portrait icon
+            port_icon                     //Returns portrait icon line for removal/protection/ALTER_EFFECT, etc.
+            scroll_name                   //Returns the name of the scroll
+//          scroll_icon                   //Returns "A" icon for scrolls--needed?
+
+BEGIN
+
+ ACTION_IF ("%spell_name%" STRING_COMPARE_CASE "SAME" != 0) BEGIN //
+
+//add icon A
+   ACTION_IF ("%pathA%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
+     ACTION_IF (rename > 0)  BEGIN
+      COPY ~%pathA%~ ~override/%spell_name%A.BAM~
+        INNER_PATCH_SAVE iconA ~%SOURCE_RES%~ BEGIN END //icon a named %iconA%
+     END //end icon bams ~same name as spl
+     ACTION_IF (rename = 0)  BEGIN
+      COPY ~%pathA%~ ~override~
+        INNER_PATCH_SAVE iconA ~%SOURCE_RES%~ BEGIN END //icon a named %iconA%
+     END //end icon bams ~not same name as spl
+   END //end actual pathA
+//if no A
+   ACTION_IF ("%pathA%" STRING_COMPARE_CASE "SAME" = 0) BEGIN    //
+        OUTER_SPRINT ~iconA~ ~nil~ //icon a named %iconA%
+   END //if no A
+//add icon B
+   ACTION_IF ("%pathB%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
+     ACTION_IF (rename > 0)  BEGIN
+      COPY ~%pathB%~ ~override/%spell_name%B.BAM~
+        INNER_PATCH_SAVE iconB ~%SOURCE_RES%~ BEGIN END //icon a named %iconB%
+     END //end icon bams ~same name as spl
+     ACTION_IF (rename = 0)  BEGIN
+      COPY ~%pathB%~ ~override~
+        INNER_PATCH_SAVE iconB ~%SOURCE_RES%~ BEGIN END //icon a named %iconB%
+     END //end icon bams ~not same name as spl
+   END //end actual pathB
+//if no B
+   ACTION_IF ("%pathB%" STRING_COMPARE_CASE "SAME" = 0) BEGIN    //
+        OUTER_SPRINT ~iconB~ ~nil~ //icon a named %iconB%
+   END //if no B
+
+//add icon C
+   ACTION_IF ("%pathC%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
+     ACTION_IF (rename > 0)  BEGIN
+      COPY ~%pathC%~ ~override/%spell_name%C.BAM~
+        INNER_PATCH_SAVE iconC ~%SOURCE_RES%~ BEGIN END //icon a named %iconC%
+     END //end icon bams ~same name as spl
+     ACTION_IF (rename = 0)  BEGIN
+      COPY ~%pathC%~ ~override~
+        INNER_PATCH_SAVE iconC ~%SOURCE_RES%~ BEGIN END //icon a named %iconC%
+     END //end icon bams ~not same name as spl
+   END //end actual pathC
+//if no C
+   ACTION_IF ("%pathC%" STRING_COMPARE_CASE "SAME" = 0) BEGIN    //
+        OUTER_SPRINT ~iconC~ ~nil~ //icon a named %iconA%
+   END //if no C
+//Portrait icon
+   ACTION_IF ("%pathP%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
+      COPY ~%pathP%~ ~override~
+       SET strref = %port_text% //
+        INNER_PATCH_SAVE iconP ~%SOURCE_RES%~ BEGIN END //icon a named %iconP%
+
+//Add icon to STATEDEC.2da (Thanks kjeron and argent77!!!)
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   %iconP%~
+PRETTY_PRINT_2DA
+        OUTER_SPRINT ~port_icon~ ~max~ //line # for icon
+
+   END //end add portrait icon path
+   ACTION_IF ("%port_exist%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    // portrait is in game (pathP sould be default!)
+        COPY_EXISTING ~%port_exist%.BAM~ override
+            SET strref = %port_text% //
+               INNER_PATCH_SAVE iconP ~%SOURCE_RES%~ BEGIN END //icon a named %iconP%
+//Add icon to STATEDEC.2da (Thanks kjeron and argent77!!!)
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   %iconP%~
+PRETTY_PRINT_2DA
+        OUTER_SPRINT ~port_icon~ ~max~ //line # for icon
+   END //end port icon in game
+
+//if no P
+   ACTION_IF ("%pathP%" STRING_COMPARE_CASE "SAME" = 0) AND ("%port_exist%" STRING_COMPARE_CASE "SAME" = 0) BEGIN    //
+        OUTER_SPRINT ~iconP~ ~nil~ //icon a named %iconP%
+        OUTER_SPRINT ~port_icon~ ~nil~ //line # for icon
+   END //if no A
+
+
+//now, add stuff to spell
+//B
+   ACTION_IF ("%pathB%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
+      COPY_EXISTING ~%spell_name%.spl~ ~override~
+        LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%iconB%~ END
+   END //path B
+//Now C
+   ACTION_IF ("%pathC%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
+      COPY_EXISTING ~%spell_name%.spl~ ~override~
+          WRITE_EVALUATED_ASCII 0x003a ~%iconC%~
+   END
+//add port icon?????? 
+     ACTION_IF (add_port_icon > 0)  BEGIN
+           ACTION_IF (add_port_icon = 1)  BEGIN   //add port icon to all
+              COPY_EXISTING ~%spell_name%.spl~ ~override~
+                 LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END
+           END
+           ACTION_IF (add_port_icon = 2)  BEGIN   //add port icon Global ONLY
+              COPY_EXISTING ~%spell_name%.spl~ ~override~
+                 LPF ALTER_EFFECT INT_VAR match_opcode = 142 check_headers = 0 parameter2 = %max% END
+           END
+     END
+//scroll stuff
+   ACTION_IF (create_scroll > 0)  BEGIN
+     ACTION_IF ("%scroll_path%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
+        //first copy over spell and get name and description infos (and let's do this for everything exept cost for non-generic)
+        COPY_EXISTING ~%spell_name%.SPL~ ~override~
+ 	     READ_LONG  0x0034 level //spell level
+             READ_LONG  0x0008 name //spell name
+	     READ_LONG  0x0050 desc //description
+	     READ_SHORT 0x007E target //Target-check
+	     READ_SHORT 0x0080 range //range-check
+        ACTION_IF (gen_scroll > 0)  BEGIN  //generic scroll
+           COPY ~%scroll_path%~ ~override/%spell_name%S.ITM~   //hopefully that won't copy over any genuine spell items
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             WRITE_LONG 0x0034 (level * 50)
+             LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%iconA%~ END
+             LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_name%~ END
+             LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_name%~ END
+             //now get scroll filename
+                INNER_PATCH_SAVE scroll_name ~%SOURCE_RES%~ BEGIN END //name of scroll file
+        END //end generic scroll creation
+        ACTION_IF (gen_scroll = 0)  BEGIN  //non-generic scroll
+           COPY ~%scroll_path%~ ~override/%spell_name%S.ITM~   //hopefully that won't copy over any genuine spell items
+             WRITE_LONG 0x0008 ~%name%~
+             WRITE_LONG 0x000c ~%name%~
+             WRITE_LONG 0x0054 ~%desc%~
+             WRITE_SHORT 0x007E target //Target-check
+             WRITE_SHORT 0x0080 range //range-check
+             LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%iconA%~ END
+             LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_name%~ END
+             LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_name%~ END
+             //now get scroll filename
+                INNER_PATCH_SAVE scroll_name ~%SOURCE_RES%~ BEGIN END //name of scroll file
+        END  //nongeneric scroll creation
+//place scroll?
+//high hedge
+        ACTION_IF (high_hedge > 0)  BEGIN
+             ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
+               COPY_EXISTING ~HIGHHEDG.sto~ ~override~
+                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+             END
+        END
+//Pen and Parchment
+        ACTION_IF (pen_parch > 0)  BEGIN
+             ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
+               COPY_EXISTING ~SCROLLS.STO~ ~override~
+                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+             END
+        END
+//Underdark Merchant
+        ACTION_IF (under_merch > 0)  BEGIN
+             ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
+               COPY_EXISTING ~UDDROW25.STO~ ~override~
+                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+             END
+        END
+//Sorcerous Sundries
+        ACTION_IF (sor_sun > 0)  BEGIN
+             ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
+               COPY_EXISTING ~STO0703.STO~ ~override~
+                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+             END
+        END
+//SOD Store?
+        ACTION_IF (sod_store > 0)  BEGIN
+             ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //
+               COPY_EXISTING ~BDSORCSC.STO~ ~override~
+                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+             END
+        END
+//add more stores CONTINUE
+
+     END //scroll path non blank
+
+//scroll creation fail
+     ACTION_IF ("%scroll_path%" STRING_COMPARE_CASE "SAME" = 0) BEGIN    //
+ 		FAIL @1039  //You must specify a scroll path in order to create a scroll
+     END
+
+   END//end create scroll
+   ACTION_IF (create_scroll = 0)  BEGIN   
+   //just need to fill the variable
+        OUTER_SPRINT ~scroll_name~ ~nil~ //file named %scroll_name%
+   END
+ END//end required spell_name
+ ELSE BEGIN
+ 		FAIL @1011  //You must specify a spell file name for this function to work
+ END //end fail
+
+END //end function

@@ -72,11 +72,21 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 
 LAF ADD_ICONS
-    INT_VAR port_text     = RESOLVE_STR_REF(@1002) //Battling with Phantasmal Killer
+    INT_VAR port_text     = RESOLVE_STR_REF(@1002) //Healing Accelerated
             rename        = 1
             add_port_icon = 1
             create_scroll = 1
             gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 1       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 1       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
             pathA         = ~%mod_folder%/data/icons/mage_1/B_W103a.bam~
             pathB         = ~%mod_folder%/data/icons/mage_1/B_W103b.bam~
