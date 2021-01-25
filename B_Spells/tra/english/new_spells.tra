@@ -299,11 +299,14 @@ Sphere: Animal
 Range: Touch
 Duration: 1 Turn
 Casting Time: 6
-Area of Effect: The caster
+Area of Effect: 1 Animal
+Saving Throw: None.
 
 When the caster completes this spell and touches an allied animal, <PRO_HESHE> gains the ability to see through that animal's eyes allowing <PRO_HIMHER> to see everything that that animal sees.  Additionally, <PRO_HESHE> has greater influence over the creature, urging it to be more aggressive in its attacks, granting it a +1 critical threat rolls.
 
-While this spell is in effect, the caster's body is helpless, as <PRO_HESHE> is helpless, and blind.~
+While this spell is in effect, the caster's body is helpless and blind as <PRO_HISHER> consciousness now temporarily resides in the target.
+
+Note that if the animal is slain or removed for any reason, the caster's consciousness finds its way to <PRO_HISHER> body by the end of the original spell duration.~
 
 @51104 = ~Hold Beast~
 @51105 = ~Hold Beast
@@ -1005,15 +1008,15 @@ This spell temporarily blinds its target. A Saving Throw is allowed and, if succ
 
 Level: 1
 Sphere: Creation
-Range: 35 ft.
-Duration: 1 round/3 levels
-Casting Time: 5
-Area of Effect: 1 creature
+Range: Visual Range of Caster
+Duration: 5 rounds maximum (see below)
+Casting Time: 2
+Area of Effect: 1 Creature
 Saving Throw: Neg.
 
-This spell conjures a rope that wraps around a target creature if they do not save vs. breath. Affected creatures cannot move and are effectively held. Creatures are held for 1 round per 3 levels of the caster (max 7 rounds at 19th level)
+When this spell is employed, the priest can command any nonliving ropelike object, including string, yarn, cord, line, rope, or even a cable to enwrap a single creature if they do not make a save vs. breath. Affected creatures cannot move and are effectively held for 1 round. Each additional round, the target gets another save, and if they succeed, then they are free. Otherwise, the creature remains held until they save or until 5 rounds pass.
 
-Huge or larger creatures are not affected by this spell.~
+Huge creatures, and creatures with strength scores of 20 or higher are not affected by this spell.~
 
 @53031 = ~Castigate~
 @53032 = ~Castigate

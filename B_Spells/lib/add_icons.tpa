@@ -39,6 +39,7 @@ BEGIN
    ACTION_IF ("%pathA%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
      ACTION_IF (rename > 0)  BEGIN
       COPY ~%pathA%~ ~override/%spell_name%A.BAM~
+       COPY_EXISTING ~%spell_name%A.BAM~ ~override~
         INNER_PATCH_SAVE iconA ~%SOURCE_RES%~ BEGIN END //icon a named %iconA%
      END //end icon bams ~same name as spl
      ACTION_IF (rename = 0)  BEGIN
@@ -54,6 +55,7 @@ BEGIN
    ACTION_IF ("%pathB%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
      ACTION_IF (rename > 0)  BEGIN
       COPY ~%pathB%~ ~override/%spell_name%B.BAM~
+       COPY_EXISTING ~%spell_name%B.BAM~ ~override~
         INNER_PATCH_SAVE iconB ~%SOURCE_RES%~ BEGIN END //icon a named %iconB%
      END //end icon bams ~same name as spl
      ACTION_IF (rename = 0)  BEGIN
@@ -70,6 +72,7 @@ BEGIN
    ACTION_IF ("%pathC%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    //
      ACTION_IF (rename > 0)  BEGIN
       COPY ~%pathC%~ ~override/%spell_name%C.BAM~
+       COPY_EXISTING ~%spell_name%C.BAM~ ~override~
         INNER_PATCH_SAVE iconC ~%SOURCE_RES%~ BEGIN END //icon a named %iconC%
      END //end icon bams ~same name as spl
      ACTION_IF (rename = 0)  BEGIN
@@ -88,7 +91,7 @@ BEGIN
         INNER_PATCH_SAVE iconP ~%SOURCE_RES%~ BEGIN END //icon a named %iconP%
 
 //Add icon to STATEDEC.2da (Thanks kjeron and argent77!!!)
- COPY_EXISTING ~STATDESC.2DA~ override
+ COPY_EXISTING ~STATDESC.2DA~ ~override~
   COUNT_2DA_COLS cols
   COUNT_2DA_ROWS cols rows
   SET max = 0
@@ -99,7 +102,7 @@ BEGIN
 SET max += 1
 INSERT_2DA_ROW rows cols ~%max%   %strref%   %iconP%~
 PRETTY_PRINT_2DA
-        OUTER_SPRINT ~port_icon~ ~max~ //line # for icon
+        OUTER_SPRINT ~port_icon~ ~%max%~ //line # for icon
 
    END //end add portrait icon path
    ACTION_IF ("%port_exist%" STRING_COMPARE_CASE "SAME" != 0) BEGIN    // portrait is in game (pathP sould be default!)
@@ -118,7 +121,7 @@ PRETTY_PRINT_2DA
 SET max += 1
 INSERT_2DA_ROW rows cols ~%max%   %strref%   %iconP%~
 PRETTY_PRINT_2DA
-        OUTER_SPRINT ~port_icon~ ~max~ //line # for icon
+        OUTER_SPRINT ~port_icon~ ~%max%~ //line # for icon
    END //end port icon in game
 
 //if no P
@@ -168,10 +171,12 @@ PRETTY_PRINT_2DA
              WRITE_SHORT 0x007E target //Target-check
              WRITE_SHORT 0x0080 range //range-check
              WRITE_LONG 0x0034 (level * 50)
+             WRITE_EVALUATED_ASCII 0x003a ~%iconA%~
              LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%iconA%~ END
              LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_name%~ END
              LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_name%~ END
              //now get scroll filename
+              COPY_EXISTING ~%spell_name%S.ITM~ ~override~
                 INNER_PATCH_SAVE scroll_name ~%SOURCE_RES%~ BEGIN END //name of scroll file
         END //end generic scroll creation
         ACTION_IF (gen_scroll = 0)  BEGIN  //non-generic scroll
@@ -181,57 +186,74 @@ PRETTY_PRINT_2DA
              WRITE_LONG 0x0054 ~%desc%~
              WRITE_SHORT 0x007E target //Target-check
              WRITE_SHORT 0x0080 range //range-check
+             WRITE_EVALUATED_ASCII 0x003a ~%iconA%~
              LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%iconA%~ END
              LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_name%~ END
              LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_name%~ END
              //now get scroll filename
+              COPY_EXISTING ~%spell_name%S.ITM~ ~override~
                 INNER_PATCH_SAVE scroll_name ~%SOURCE_RES%~ BEGIN END //name of scroll file
         END  //nongeneric scroll creation
-//place scroll?
+//place scroll
+
 //high hedge
-        ACTION_IF (high_hedge > 0)  BEGIN
+   ACTION_IF (high_hedge > 0)  BEGIN
+    COPY ~%mod_folder%/lib/scroll_stores/high_hedge.tpa~ ~%mod_folder%/lib/scroll_stores/high_hedge.tpa~
+      REPLACE_TEXTUALLY ~NUM~ ~%high_hedge_no%~
              ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
-               COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+                  INCLUDE ~%mod_folder%/lib/scroll_stores/high_hedge.tpa~
              END
-        END
+    COPY ~%mod_folder%/lib/scroll_stores/high_hedge.tpa~ ~%mod_folder%/lib/scroll_stores/high_hedge.tpa~
+      REPLACE_TEXTUALLY ~%high_hedge_no%~ ~NUM~
+   END
 //Pen and Parchment
-        ACTION_IF (pen_parch > 0)  BEGIN
+  ACTION_IF (pen_parch > 0)  BEGIN
+    COPY ~%mod_folder%/lib/scroll_stores/pen.tpa~ ~%mod_folder%/lib/scroll_stores/pen.tpa~
+      REPLACE_TEXTUALLY ~NUM~ ~%pen_parch_no%~
              ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
-               COPY_EXISTING ~SCROLLS.STO~ ~override~
-                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+                  INCLUDE ~%mod_folder%/lib/scroll_stores/pen.tpa~
              END
-        END
+    COPY ~%mod_folder%/lib/scroll_stores/pen.tpa~ ~%mod_folder%/lib/scroll_stores/pen.tpa~
+      REPLACE_TEXTUALLY ~%pen_parch_no%~ ~NUM~
+  END
+
 //Underdark Merchant
-        ACTION_IF (under_merch > 0)  BEGIN
+   ACTION_IF (under_merch > 0)  BEGIN
+    COPY ~%mod_folder%/lib/scroll_stores/under_merch.tpa~ ~%mod_folder%/lib/scroll_stores/under_merch.tpa~
+      REPLACE_TEXTUALLY ~NUM~ ~%under_merch_no%~
              ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
-               COPY_EXISTING ~UDDROW25.STO~ ~override~
-                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+                  INCLUDE ~%mod_folder%/lib/scroll_stores/under_merch.tpa~
              END
-        END
+    COPY ~%mod_folder%/lib/scroll_stores/under_merch.tpa~ ~%mod_folder%/lib/scroll_stores/under_merch.tpa~
+      REPLACE_TEXTUALLY ~%pen_parch_no%~ ~NUM~
+   END
 //Sorcerous Sundries
-        ACTION_IF (sor_sun > 0)  BEGIN
+   ACTION_IF (sor_sun > 0)  BEGIN
+    COPY ~%mod_folder%/lib/scroll_stores/sor_sun.tpa~ ~%mod_folder%/lib/scroll_stores/sor_sun.tpa~
+      REPLACE_TEXTUALLY ~NUM~ ~%sor_sun_no%~
              ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
-               COPY_EXISTING ~STO0703.STO~ ~override~
-                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+                  INCLUDE ~%mod_folder%/lib/scroll_stores/sor_sun.tpa~
              END
-        END
+    COPY ~%mod_folder%/lib/scroll_stores/sor_sun.tpa~ ~%mod_folder%/lib/scroll_stores/sor_sun.tpa~
+      REPLACE_TEXTUALLY ~%sor_sun_no%~ ~NUM~
+   END
 //SOD Store?
-        ACTION_IF (sod_store > 0)  BEGIN
+   ACTION_IF (sod_store > 0)  BEGIN
+    COPY ~%mod_folder%/lib/scroll_stores/sod_store.tpa~ ~%mod_folder%/lib/scroll_stores/sod_store.tpa~
+      REPLACE_TEXTUALLY ~NUM~ ~%sod_store_no%~
              ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //
-               COPY_EXISTING ~BDSORCSC.STO~ ~override~
-                 ADD_STORE_ITEM ~%scroll_name%~ #1 #1 #0 ~IDENTIFIED~ #1
+                  INCLUDE ~%mod_folder%/lib/scroll_stores/sor_sun.tpa~
              END
-        END
+    COPY ~%mod_folder%/lib/scroll_stores/sod_store.tpa~ ~%mod_folder%/lib/scroll_stores/sod_store.tpa~
+      REPLACE_TEXTUALLY ~%sod_store_no%~ ~NUM~
+   END
 //add more stores CONTINUE
 
      END //scroll path non blank
-
 //scroll creation fail
      ACTION_IF ("%scroll_path%" STRING_COMPARE_CASE "SAME" = 0) BEGIN    //
  		FAIL @1039  //You must specify a scroll path in order to create a scroll
      END
-
    END//end create scroll
    ACTION_IF (create_scroll = 0)  BEGIN   
    //just need to fill the variable
@@ -241,5 +263,4 @@ PRETTY_PRINT_2DA
  ELSE BEGIN
  		FAIL @1011  //You must specify a spell file name for this function to work
  END //end fail
-
 END //end function

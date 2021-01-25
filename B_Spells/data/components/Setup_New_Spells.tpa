@@ -270,643 +270,11 @@ ACTION_IF (%b_new_spells% = 1) OR (%b_new_spells% = 2)  BEGIN  //At least arcane
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//______________________________________________________________Accelerate Metabolism___________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ACTION_IF (%b_acc_metabolisim% > 0) BEGIN  //
 
-////////////////////////////
-//////NOTES:
-////////////////////////////
-//1st level cantrips: Converted to a second level spell, unchanged
-//regen_list Better forms of regenerate remove accelerate metabolism (to do globally)
 
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-//NA
 
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
 
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W103.spl~ 2 1 ~WIZARD_ACCELERATE_HEALING~ //
-        SAY NAME1 @66013
-        SAY NAME2 @66013
-        SAY UNIDENTIFIED_DESC @66014
-	SAY DESC @66014
-
-//to clear earlier versions of the spell
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_ACCELERATE_HEALING~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@66015)            // Accelerated Metabolism
-      STR_VAR
-  END      //
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/icons/mage_1/B_W103a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/icons/mage_1/B_W103b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/icons/mage_1/B_W103c.bam~ ~override/%spell_res%c.bam~
-
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-
-//Icon itself
-COPY ~%mod_folder%/data/port_icons/mage_1/B_W103P.bam~ ~override~     //concentrating on bless
- SET strref = RESOLVE_STR_REF(@1002)   //healing accelerated
-
-
-//Thanks kjeron and argent77!!!
- COPY_EXISTING ~STATDESC.2DA~ override
-  COUNT_2DA_COLS cols
-  COUNT_2DA_ROWS cols rows
-  SET max = 0
-  FOR (i = 0; i < rows; ++i) BEGIN
-   READ_2DA_ENTRY i 0 cols num
-   PATCH_IF num > max BEGIN max = num END
-  END
-SET max += 1
-INSERT_2DA_ROW rows cols ~%max%   %strref%   B_W103P~
-PRETTY_PRINT_2DA
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-//Regeneration spls
-INCLUDE ~%mod_folder%/lib/spell_lists/regen_list.tpa~
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @900009016
-        SAY NAME2 @66013
-	SAY DESC @66014
-  LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-
-//Scroll Placement
-//BGEE - Sorcerous Sundries
-ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
-  COPY_EXISTING ~STO0703.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-//High Hedge
-ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
-  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
-COPY_EXISTING ~SCROLLS.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
- COPY_EXISTING ~UDDROW25.STO~ ~override~
-  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
-  COPY_EXISTING ~STO0703.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-//1st level cantrips: Converted to a second level spell, unchanged
-//TO DO CONTINUE (other regen spells?)
-
-END //end install acc metab
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________________________________ALARM________________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-ACTION_IF (%b_alarm% > 0) BEGIN  //
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-//1st level cantrips: Converted to a second level spell, unchanged
-//Add portrait icon for innate alarm spell (speed increased or somesuch thing)
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/b_alarm.spl~ 3 1 ~INNATE_ALARM~ //Innate
-	SAY NAME1 @65201
-//itm
-COPY ~%mod_folder%/data/new_spells/mage_1/b_w101.itm~ ~override~   //itm alarm
-//baf
-COMPILE ~%mod_folder%/data/new_spells/mage_1/b_alarm.baf~    //script
-//cre
-COPY ~%mod_folder%/data/new_spells/mage_1/b_w101.cre~ ~override~   //cre alarm
-       SAY 0x8 @65201
-       SAY 0xc @65201
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/b_w101.spl~ 2 1 ~WIZARD_ALARM_SPELL~ //
-        SAY NAME1 @65201
-        SAY NAME2 @65201
-        SAY UNIDENTIFIED_DESC @65202
-	SAY DESC @65202
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_ALARM~
-  RET spell_res
-END
-//to clear earlier versions of the spell
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 206            //Is this the best opcode to use?
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/icons/mage_1/B_W101a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/icons/mage_1/B_W101b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/icons/mage_1/B_W101c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//Icon itself
-COPY ~%mod_folder%/data/port_icons/mage_1/B_W101P.bam~ ~override~     //concentrating on bless
- SET strref = RESOLVE_STR_REF(@1003)   //Alarmed
-
-
-//Thanks kjeron and argent77!!!
- COPY_EXISTING ~STATDESC.2DA~ override
-  COUNT_2DA_COLS cols
-  COUNT_2DA_ROWS cols rows
-  SET max = 0
-  FOR (i = 0; i < rows; ++i) BEGIN
-   READ_2DA_ENTRY i 0 cols num
-   PATCH_IF num > max BEGIN max = num END
-  END
-SET max += 1
-INSERT_2DA_ROW rows cols ~%max%   %strref%   B_W101P~
-PRETTY_PRINT_2DA
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~INNATE_ALARM~
-  RET spell_res
-END
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
-
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_ALARM~
-  RET spell_res
-END
-
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-//NA Invisible stalker?
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @900009016
-        SAY NAME2 @65201
-	SAY DESC @65202
-  LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-
-//BGEE - Sorcerous Sundries
-ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
-  COPY_EXISTING ~STO0703.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-//High Hedge
-ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
-  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
-COPY_EXISTING ~SCROLLS.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
- COPY_EXISTING ~UDDROW25.STO~ ~override~
-  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
-  COPY_EXISTING ~STO0703.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-//1st level cantrips: Converted to a second level spell, unchanged
-// TO DO CONTINUE
-
-END //end alarm
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//____________________________________________________________Animate Skeleton__________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-ACTION_IF (%b_anim_skele% > 0) BEGIN  //
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-//check to see if all these skeletons are in BG(2)EE,
-//do scrolls and scroll placement
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-//skele creature
-//cre
-ACTION_IF !FILE_EXISTS_IN_GAME ~AD1SKLM.cre~ BEGIN
- COPY ~%mod_folder%/data/new_spells/mage_1/AD1SKLM.cre~ ~override~   //
-       SAY 0x8 @68034
-       SAY 0xc @68034
-END
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_WZ102.spl~ 2 1 ~WIZARD_ANIMATE_SKELETON~ //
-        SAY NAME1 @68024
-        SAY NAME2 @68024
-        SAY UNIDENTIFIED_DESC @68025
-	SAY DESC @68025
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_ANIMATE_SKELETON~
-  RET spell_res
-END
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/icons/mage_1/%style%/B_WZ102a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/icons/mage_1/%style%/B_WZ102b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/icons/mage_1/%style%/B_WZ102c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-// NA
-
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-// NA
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-// TO DO CONTINUE
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-// TO DO CONTINUE
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-// TO DO CONTINUE
-
-END//end spell
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________________________________ANTICIPATION_________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Credit for this spell belons to Subtledoctor (Modified with permission)
-
-ACTION_IF (%b_anticipation% > 0) BEGIN  //
-
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-// **1st-Level Cantrips**: This spell is installed (unchanged) if 1st-level cantrips is installed--maybe only lasts for 2 rounds, actually.
-//do icon and portrait icon 
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-//na
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.spl~ 2 1 ~WIZARD_ANTICIPATION~ //
-        SAY NAME1 @65101
-        SAY NAME2 @65101
-        SAY UNIDENTIFIED_DESC @65102
-	SAY DESC @65102
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_ANTICIPATION~
-  RET spell_res
-END
-//to clear earlier versions of the spell
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/icons/mage_1/D5_WIDIa.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/icons/mage_1/D5_WIDIb.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/icons/mage_1/D5_WIDIc.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//Icon itself
-COPY ~%mod_folder%/data/port_icons/mage_1/D5_WIDIP.bam~ ~override~     //concentrating on bless
- SET strref = RESOLVE_STR_REF(@1004)   //Anticipating
-
-
-//Thanks kjeron and argent77!!!
- COPY_EXISTING ~STATDESC.2DA~ override
-  COUNT_2DA_COLS cols
-  COUNT_2DA_ROWS cols rows
-  SET max = 0
-  FOR (i = 0; i < rows; ++i) BEGIN
-   READ_2DA_ENTRY i 0 cols num
-   PATCH_IF num > max BEGIN max = num END
-  END
-SET max += 1
-INSERT_2DA_ROW rows cols ~%max%   %strref%   D5_WIDIP~
-PRETTY_PRINT_2DA
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-
-COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @900009016
-        SAY NAME2 @65101
-	SAY DESC @65102
-  LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-
-//BGEE - Sorcerous Sundries
-ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
-  COPY_EXISTING ~STO0703.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-//High Hedge
-ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
-  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
-COPY_EXISTING ~SCROLLS.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
- COPY_EXISTING ~UDDROW25.STO~ ~override~
-  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
-  COPY_EXISTING ~STO0703.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-// 1st Level Cantrips: This spell is converted to a second level spell, and the duration increased to 1 turn.
-//TO DO CONTINUE 
-
-END //end anticipation
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//____________________________________________________________________________Bind______________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-ACTION_IF (%b_bind% > 0) BEGIN  //
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-//add immunities for crea with str 20+
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-//NA?
-
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_2/B_WZ202.spl~ 2 1 ~WIZARD_BIND~ //
-        SAY NAME1 @68047
-        SAY NAME2 @68047
-        SAY UNIDENTIFIED_DESC @68048
-	SAY DESC @68048
-LPF ALTER_SPELL_TYPE
-  STR_VAR spell_level = 1
-  STR_VAR level_text = ~1~   //
-END
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_BIND~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 324            //
-      STR_VAR resource = EVAL ~%spell_res%~   //
-  END      //
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 146            //
-      STR_VAR resource = EVAL ~%spell_res%A~   //
-  END      //
-
-/* TO DO CONTINUE
-  LPF CLONE_EFFECT
-      INT_VAR match_opcode = 324  parameter1 = 5   parameter2 = 20
-      STR_VAR resource = EVAL ~%spell_res%~   //
-  END      
-*/
-
-//subspells
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202A.spl~ ~override/%spell_res%A.spl~ //1st subspell
-        SAY NAME1 @68047
-        SAY NAME2 @68047
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%B~   END      // Cast next subspell
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202B.spl~ ~override/%spell_res%B.spl~ //2nd subspell
-        SAY NAME1 @68047
-        SAY NAME2 @68047
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%C~   END      // Cast next subspell
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202C.spl~ ~override/%spell_res%C.spl~ //3rd subspell
-        SAY NAME1 @68047
-        SAY NAME2 @68047
-  LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%D~   END      // Cast next subspell
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202D.spl~ ~override/%spell_res%D.spl~ //last subspell
-        SAY NAME1 @68047
-        SAY NAME2 @68047
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-//add icons and projectile
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/icons/mage_1/B_WZ202A.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/icons/mage_1/B_WZ202b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/icons/mage_1/B_WZ202c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//Icon itself
-COPY ~%mod_folder%/data/port_icons/mage_1/B_WZ202P.bam~ ~override~     //concentrating on bless
- SET strref = RESOLVE_STR_REF(@1004)   //Anticipating
-
-
-//Thanks kjeron and argent77!!!
- COPY_EXISTING ~STATDESC.2DA~ override
-  COUNT_2DA_COLS cols
-  COUNT_2DA_ROWS cols rows
-  SET max = 0
-  FOR (i = 0; i < rows; ++i) BEGIN
-   READ_2DA_ENTRY i 0 cols num
-   PATCH_IF num > max BEGIN max = num END
-  END
-SET max += 1
-INSERT_2DA_ROW rows cols ~%max%   %strref%   B_WZ202P~
-PRETTY_PRINT_2DA
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-//prob not necessary (str 20+ immune, but that should be doable within the spell itself)
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-//TO DO CONTINUE
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-//TO DO CONTINUE
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-//TO DO CONTINUE
-
-END//end spell
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //______________________________________________________________Cantrip_________________________________________________________________________________//
@@ -1103,146 +471,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //end not ready
 END//end spell
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_________________________________________________________________DETECT TRAPS AND PORTALS_____________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ACTION_IF (%b_traps_n_portals% > 0) BEGIN  //
-
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-
-//might change to have invis monster have caster check for traps (giving boni to search)
-// 1st level cantrips: Converted to a second level spell, +20% to skill bonus (maxes out at 95%)
-
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-
-//script
-COMPILE ~%mod_folder%/data/new_spells/mage_1/B_DETT.baf~
-//cre
-COPY ~%mod_folder%/data/new_spells/mage_1/B_DETT.cre~ ~override~
-//itm
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W105.spl~ 2 1 ~WIZARD_DETECT_TRAPS~ //
-          SAY NAME1 @66001
-          SAY NAME2 @66001
-          SAY UNIDENTIFIED_DESC @66002
-  	  SAY DESC @66002
-
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_DETECT_TRAPS~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //  Remove earlier versions of spell
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR speed = 9 STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W105a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W105b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W105c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//Icon itself
-COPY ~%mod_folder%/data/port_icons/mage_1/B_W105P.bam~ ~override~     //concentrating on bless
- SET strref = RESOLVE_STR_REF(@1007)   //Detecting Traps and Portals
-
-
-//Thanks kjeron and argent77!!!
- COPY_EXISTING ~STATDESC.2DA~ override
-  COUNT_2DA_COLS cols
-  COUNT_2DA_ROWS cols rows
-  SET max = 0
-  FOR (i = 0; i < rows; ++i) BEGIN
-   READ_2DA_ENTRY i 0 cols num
-   PATCH_IF num > max BEGIN max = num END
-  END
-SET max += 1
-INSERT_2DA_ROW rows cols ~%max%   %strref%   B_W105P~
-PRETTY_PRINT_2DA
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
-
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-
-COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~ ~override/%spell_res%.itm~ //It's fine to use the same scroll
-        SAY NAME1 @900009016
-        SAY NAME2 @66001
-	SAY DESC @66002
-  LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-
-//BGEE - Sorcerous Sundries
-ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
-  COPY_EXISTING ~STO0703.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-//High Hedge
-ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
-  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
-COPY_EXISTING ~SCROLLS.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
- COPY_EXISTING ~UDDROW25.STO~ ~override~
-  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
-  COPY_EXISTING ~STO0703.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-// 1st level cantrips: Converted to a second level spell, +20% to skill bonus (maxes out at 95%)
-//TO DO CONTINUE 
-
-END //end detect traps and portals
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1319,9 +548,9 @@ ELSE ACTION_IF ((%devil_eyes% = 1) AND (NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~))
 //TO DO CONTINUE
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_DEVA.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_DEVB.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_DEVC.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_DEVA.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_DEVB.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_DEVC.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -1375,139 +604,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //end not first release
 END //end install devil's eyes
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//_______________________________________________________________Enervating Ray_________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ACTION_IF (%b_enervating_ray% > 0) BEGIN  //
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-//1st level cantrips: Damage is reduced to 1/2, but kept as a 1st level spell
-
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_M101.spl~ 2 1 ~WIZARD_ENERVATING_RAY~ //
-        SAY NAME1 @66101
-        SAY NAME2 @66101
-        SAY UNIDENTIFIED_DESC @66102
-	SAY DESC @66102
-//to clear earlier versions of the spell
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_ENERVATING_RAY~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@66103) END  //
-  LPF CLONE_EFFECT INT_VAR match_opcode = 12 opcode = 324 timing = 0 parameter1 = 0 parameter2 = 1 duration = 1 dicenumber = 0 dicesize = 0 savingthrow = 0 STR_VAR resource = EVAL ~%spell_res%~  END   //undead immune
-  LPF CLONE_EFFECT INT_VAR match_opcode = 12 opcode = 324 timing = 0 parameter1 = 0 parameter2 = 9 duration = 1 dicenumber = 0 dicesize = 0 savingthrow = 0 STR_VAR resource = EVAL ~%spell_res%~  END   //elemental immune
-  LPF CLONE_EFFECT INT_VAR match_opcode = 12 opcode = 324 timing = 0 parameter1 = 0 parameter2 = 27 duration = 1 dicenumber = 0 dicesize = 0 savingthrow = 0 STR_VAR resource = EVAL ~%spell_res%~  END   //golem immune
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M101a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M101b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M101c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//Icon itself
-COPY ~%mod_folder%/data/port_icons/mage_1/B_M101P.bam~ ~override~     //concentrating on bless
- SET strref = RESOLVE_STR_REF(@1008)   //Enervated
-
-
-//Thanks kjeron and argent77!!!
- COPY_EXISTING ~STATDESC.2DA~ override
-  COUNT_2DA_COLS cols
-  COUNT_2DA_ROWS cols rows
-  SET max = 0
-  FOR (i = 0; i < rows; ++i) BEGIN
-   READ_2DA_ENTRY i 0 cols num
-   PATCH_IF num > max BEGIN max = num END
-  END
-SET max += 1
-INSERT_2DA_ROW rows cols ~%max%   %strref%   B_M101P~
-PRETTY_PRINT_2DA
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
-
-
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-//TO DO CONTINUE  
-
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~ ~override/%spell_res%.itm~
-        SAY NAME1 @900009016
-        SAY NAME2 @66101
-	SAY DESC @66102
-  LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-
-//BGEE - Sorcerous Sundries
-ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
-  COPY_EXISTING ~STO0703.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-//High Hedge
-ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
-  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
-COPY_EXISTING ~SCROLLS.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
- COPY_EXISTING ~UDDROW25.STO~ ~override~
-  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
-  COPY_EXISTING ~STO0703.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
- 
- END //End Enervating Ray  
-////////////////////////////
-//////Compatibility
-////////////////////////////
-//1st level cantrips: Damage is reduced to 1/2, but kept as a 1st level spell
-//TO DO CONTINUE  
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1570,9 +667,9 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_M102B.spl~ ~override/%spell_res%B.sp
 
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %ALL_HLD% STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M102a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M102b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M102c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_M102a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_M102b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_M102c.bam~ ~override/%spell_res%c.bam~
 
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
@@ -1609,233 +706,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 END//end exterminate
  
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//________________________________________________________________Farseer ______________________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-ACTION_IF (%b_far_see% > 0) BEGIN  //
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-//give option to not install if using MEspells 
-//1st level cantrips: Duration reduced to 3 rounds
-//METweaks: Note that this spell will not increase visual range if the following component is installed:
-//"Increase the visual range and movement speed of all creatures in the game (including party members) significantly"
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-///na 
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W106.spl~ 2 1 ~WIZARD_FARSEER~ //
-          SAY NAME1 @66110
-          SAY NAME2 @66110
-          SAY UNIDENTIFIED_DESC @66111
-  	  SAY DESC @66111
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_FARSEER~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 321            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //  Remove earlier versions of spell
-  LPF ALTER_EFFECT
-      INT_VAR match_opcode = 324            //
-      STR_VAR resource = EVAL ~%spell_res%~
-  END      //  Blind immune
-  LPF ALTER_EFFECT 
-      INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@66112)
-  END  // Farseer notification
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W106a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W106b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W106c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//Icon itself
-COPY ~%mod_folder%/data/port_icons/mage_1/B_W106P.bam~ ~override~     //concentrating on bless
- SET strref = RESOLVE_STR_REF(@1009)   //Farseer
-
-
-//Thanks kjeron and argent77!!!
- COPY_EXISTING ~STATDESC.2DA~ override
-  COUNT_2DA_COLS cols
-  COUNT_2DA_ROWS cols rows
-  SET max = 0
-  FOR (i = 0; i < rows; ++i) BEGIN
-   READ_2DA_ENTRY i 0 cols num
-   PATCH_IF num > max BEGIN max = num END
-  END
-SET max += 1
-INSERT_2DA_ROW rows cols ~%max%   %strref%   B_W106P~
-PRETTY_PRINT_2DA
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
-
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
-//na
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
-
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103.itm~ ~override/%spell_res%.itm~ //It's fine to use the same scroll
-        SAY NAME1 @900009016
-        SAY NAME2 @66110
-	SAY DESC @66111
-  LPF ALTER_ITEM_HEADER STR_VAR icon = EVAL  ~%spell_res%A~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 146 STR_VAR resource = EVAL  ~%spell_res%~ END
-  LPF ALTER_ITEM_EFFECT INT_VAR check_headers = 1 match_opcode = 147 STR_VAR resource = EVAL  ~%spell_res%~ END
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-
-//BGEE - Sorcerous Sundries
-ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //
-  COPY_EXISTING ~STO0703.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-//High Hedge
-ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
-  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
-COPY_EXISTING ~SCROLLS.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
- COPY_EXISTING ~UDDROW25.STO~ ~override~
-  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~BDSORCSC.STO~ BEGIN  //SoD
-  COPY_EXISTING ~BDSORCSC.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
- ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
-  COPY_EXISTING ~STO0703.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-//1st level cantrips: Duration reduced to 3 rounds
-
-//TO DO CONTINUE 
-
-END //end farseer
-
-//////////////////////////////////CHECK FROM HERE
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//____________________________________________________________________Filth's Bane______________________________________________________________________//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//TO DO CONTINUE
-
-ACTION_IF (%b_filth_bane% > 0) BEGIN  //
-
-////////////////////////////
-//////NOTES:
-////////////////////////////
-  //**0-Level Cantrips**: This spell is converted to a cantrip if 0-level cantrips is installed.  Further, creatures can only be affected by Filth's Bane once per 8 hours, and the save is made with a -4 penalty.
-  //**1st-Level Cantrips**: Filth's Bane will only affect a creature once per 8 hours if 1st-level spells installed.
-  // Check if needs to remove IWDEE specific spells (used BGEE n.poison)
-
-///////////////////////////////////////////////
-//////Spell Basics: Pros, effs, bams, wavs, etc
-///////////////////////////////////////////////
-
-///////////////////////////////////////////////////
-//////Spell Itself (and spell biz (e.g. sec spells)
-///////////////////////////////////////////////////
-
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_M103.spl~ 2 1 ~WIZARD_NO_FILTH~ //
-        SAY NAME1 @65121
-        SAY NAME2 @65121
-        SAY UNIDENTIFIED_DESC @65122
-	SAY DESC @65122
-//to clear earlier versions of the spell
-LAF RES_NUM_OF_SPELL_NAME
-  STR_VAR spell_name = ~WIZARD_NO_FILTH~
-  RET spell_res
-END
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = EVAL ~%spell_res%~ END  // immunity (but allowing save)
-
-////////////////////////////////
-//////Add Icons and Projectiles:
-////////////////////////////////
-
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M103a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M103b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_M103c.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//NA
-
-////////////////////////////
-//////Immunity/Prot Lists:
-////////////////////////////
- //TO DO CONTINUE
- //IWDEE spells to account for?
-
-////////////////////////////
-//////Scrolls: Creation
-////////////////////////////
- //TO DO CONTINUE
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
- //TO DO CONTINUE
-
-////////////////////////////
-//////Compatibility
-////////////////////////////
-  //**0-Level Cantrips**: This spell is converted to a cantrip if 0-level cantrips is installed.  Further, creatures can only be affected by Filth's Bane once per 8 hours, and the save is made with a -4 penalty.
-  //**1st-Level Cantrips**: Filth's Bane will only affect a creature once per 8 hours if 1st-level spells installed.
-  //TO DO CONTINUE
-
-END// End filth's Bane
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2119,9 +990,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ105a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ105b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ105c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ105a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ105b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ105c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -2208,21 +1079,19 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //TO DO CONTINUE
 
-/*
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W103c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W107a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W107b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W107c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-*/
 
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//TO DO CONTINUE 
+//Done B_W107P
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -2435,12 +1304,15 @@ ACTION_IF (%b_lasting_breath% > 0) BEGIN  //
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ108a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ108b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ108c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ108a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ108b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ108c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+//port icon
+COPY ~%mod_folder%/data/port_icons/mage_1/B_WZ108P.bam~ ~override/%spell_res%c.bam~
+
 */
 ////////////////////////////
 //////Portrait Icons:
@@ -2480,6 +1352,8 @@ ACTION_IF (%b_mending% > 0) BEGIN  //
 //step 1: Have to make broken items distinguishable
   //**0-level cantrips**: This spell is installed (unchanged) if 0-level cantrips is installed.
   //**1st-level cantrips**: This spell is installed (unchanged) if 1st-level cantrips is installed.
+  // Use B_WZ111
+  //may make temporary--gives a mundane item in inventory for limited time which then breaks after duration is up (use mending port icon in that case)
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -2492,6 +1366,7 @@ ACTION_IF (%b_mending% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+//DONE %mod_folder%/data/icons/mage_1/B_WZ111x.BAM   (even included a port icon "B_WZ111P" just in case
 
 ////////////////////////////
 //////Portrait Icons:
@@ -2612,9 +1487,9 @@ COPY ~%mod_folder%/data/new_spells/mage_1/b_belie.eff~ ~override~
 
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ101a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ101b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ101c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ101a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ101b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ101c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -2707,9 +1582,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIABa.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIABb.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/D5_WIABc.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/D5_WIABa.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/D5_WIABb.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/D5_WIABc.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -2717,7 +1592,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//TO DO CONTINUE 
+//TO DO CONTINUE   D5_WIABP
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -2811,9 +1686,9 @@ ACTION_IF (%b_read_magic_arcane% > 0) BEGIN  //
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ109a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ109b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ109c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ109a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ109b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ109c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -2889,17 +1764,33 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR  speed = 1 icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W102a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W102b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_W102c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W102a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W102b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_W102c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//TO DO CONTINUE 
+//Icon itself
+COPY ~%mod_folder%/data/port_icons/mage_1/B_W102P.bam~ ~override~     //
+ SET strref = RESOLVE_STR_REF(@1041)   //Reprieve
+
+
+//Thanks kjeron and argent77!!!
+ COPY_EXISTING ~STATDESC.2DA~ override
+  COUNT_2DA_COLS cols
+  COUNT_2DA_ROWS cols rows
+  SET max = 0
+  FOR (i = 0; i < rows; ++i) BEGIN
+   READ_2DA_ENTRY i 0 cols num
+   PATCH_IF num > max BEGIN max = num END
+  END
+SET max += 1
+INSERT_2DA_ROW rows cols ~%max%   %strref%   B_W102P~
+PRETTY_PRINT_2DA
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %max% END           //
 
 
 
@@ -3063,8 +1954,39 @@ END //end 'getting rid' of Chill Touch
 //end direct target version
 
 ////////////////////////////////
-//////Add Icons and Projectiles:
+//////Add Icons, Projectiles and Scrolls:
 ////////////////////////////////
+//temporary, but should prob use existing chill touch scroll, at least in some occasions
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1042) //Spectral Hand
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 0       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 0       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 1       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_SPECTA.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_SPECTB.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_SPECTC.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_1/B_SPECTP.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
 
 ////////////////////////////
 //////Portrait Icons:
@@ -3091,6 +2013,55 @@ END //end spectral hand installation
 
 */
 //end not even close to ready
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________________Stuck___________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_stuck% > 0) BEGIN  //
+
+//not ready
+// use B_WZ112
+/*
+///////////////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+///////////////////////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1043)   //Stuck
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_WZ112a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_WZ112b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_WZ112c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_1/B_WZ112P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3243,16 +2214,37 @@ ACTION_IF (%b_alter_self% > 0) BEGIN  //
 //////Add Icons and Projectiles:
 ////////////////////////////////
 //done but need to do spell
-*/
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-//add icons and projectile
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M201a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M201b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M201C.bam~ ~override/%spell_res%c.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+/*
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1044)   //Altered
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/B_M201a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/B_M201b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/B_M201c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_2/B_M201P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
 */
 ////////////////////////////
 //////Portrait Icons:
@@ -3321,19 +2313,29 @@ END
 //////Add Icons and Projectiles:
 ////////////////////////////////
 
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-//add icons and projectile
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ201A.bam~ ~override/%spell_res%A.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ201B.bam~ ~override/%spell_res%B.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ201C.bam~ ~override/%spell_res%C.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/%style%/B_WZ201a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/%style%/B_WZ201b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/%style%/B_WZ201c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -3365,6 +2367,7 @@ ACTION_IF (%b_dexy_digits% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
+ //Use B_WZ205
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -3378,10 +2381,31 @@ ACTION_IF (%b_dexy_digits% > 0) BEGIN  //
 //////Add Icons and Projectiles:
 ////////////////////////////////
 
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-
+/*
+//done
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/%style%/B_WZ205a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/%style%/B_WZ205b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/%style%/B_WZ205c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+*/
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
@@ -3563,9 +2587,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_2/B_W204A.bam~ ~override/%spell_res%A.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_W204B.bam~ ~override/%spell_res%B.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_W204C.bam~ ~override/%spell_res%C.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_W204A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_W204B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_W204C.bam~ ~override/%spell_res%C.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -3743,9 +2767,9 @@ END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ204A.bam~ ~override/%spell_res%A.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ204B.bam~ ~override/%spell_res%B.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ204C.bam~ ~override/%spell_res%C.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_WZ204A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_WZ204B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_WZ204C.bam~ ~override/%spell_res%C.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -3753,7 +2777,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//TO DO
+//done
+COPY ~%mod_folder%/data/port_icons/mage_2/B_WZ204P.bam~
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -3778,6 +2803,42 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 END//end spell
 
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Flaming Sphere________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//Use B_M208
+ACTION_IF (%b_flame_ball% > 0) BEGIN  //
+
+/*
+//done
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/B_M208a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/B_M208b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/B_M208c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+*/
+
+END
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -3805,22 +2866,39 @@ ACTION_IF (%b_hypnotic_pattern% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//done
+//done but need to do spell
 /*
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-//add icons and projectile
-  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M202A.bam~ ~override/%spell_res%A.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M202B.bam~ ~override/%spell_res%B.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M202C.bam~ ~override/%spell_res%C.bam~
-//add bams to spl
-COPY_EXISTING ~%spell_res%.spl~ ~override~
-  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1044)   //Altered
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/B_M202a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/B_M202b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/B_M202c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_2/B_M202P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
 */
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//not needed, I think
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -4021,16 +3099,18 @@ ACTION_IF (%b_protec_para% > 0) BEGIN  //
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M204A.bam~ ~override/%spell_res%A.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M204B.bam~ ~override/%spell_res%B.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M204C.bam~ ~override/%spell_res%C.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_M204A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_M204B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_M204C.bam~ ~override/%spell_res%C.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-*/
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+COPY ~%mod_folder%/data/port_icons/mage_2/B_M204P.bam~ ~override.bam~
+*/
+
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -4075,10 +3155,22 @@ ACTION_IF (%b_pyrotechnics% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-
+//done
+/*
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+//add icons and projectile
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/icons/mage_2/B_M205A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_M205B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_M205C.bam~ ~override/%spell_res%C.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+COPY ~%mod_folder%/data/port_icons/mage_2/B_M205P.bam~ ~override.bam~
+*/
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -4150,9 +3242,9 @@ COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ104A.spl~ ~override/%spell_res%A~ 
 //credit Mordus
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ104a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ104b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_1/B_WZ104c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ104a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ104b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_1/B_WZ104c.bam~ ~override/%spell_res%c.bam~
 
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
@@ -4214,17 +3306,19 @@ ACTION_IF (%b_tasha_giggle% > 0) BEGIN  //
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
 COPY ~%mod_folder%/data/new_spells/mage_2/B_M206a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_2/B_M206b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_2/B_M206b.bam~ ~override/%spell_res%b.bam~       //Yes, the b icon is in a different folder
 COPY ~%mod_folder%/data/new_spells/mage_2/B_M206c.bam~ ~override/%spell_res%c.bam~
 
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-*/
+
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+COPY ~%mod_folder%/data/port_icons/mage_2/B_M206p.bam~
 
+*/
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
@@ -4283,8 +3377,8 @@ ACTION_IF (%b_alamir_breakdown% > 0) BEGIN  //
 
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_3/B_MG301a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_3/B_MG301b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_MG301a.bam~ ~override/%spell_res%a.bam~  //yes, dif folders
+COPY ~%mod_folder%/data/icons/mage_3/B_MG301b.bam~ ~override/%spell_res%b.bam~
 COPY ~%mod_folder%/data/new_spells/mage_3/B_MG301c.bam~ ~override/%spell_res%c.bam~
 
 //add bams to spl
@@ -4324,7 +3418,7 @@ ACTION_IF (%b_augmet_undead% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
-
+//use B_MG302
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
@@ -4336,11 +3430,17 @@ ACTION_IF (%b_augmet_undead% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+/*
+COPY ~%mod_folder%/data/icons/mage_3/B_MG302a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_MG302b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_MG302c.bam~ ~override/%spell_res%c.bam~
+
 
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-
+COPY ~%mod_folder%/data/port_icons/mage_3/B_MG302p.bam~ ~override/%spell_res%a.bam~
+*/
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
@@ -4380,6 +3480,7 @@ ACTION_IF (%b_explosive_runes% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
+////use B_MG303
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -4392,7 +3493,13 @@ ACTION_IF (%b_explosive_runes% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+/*
+//done but waiting for spell
+COPY ~%mod_folder%/data/icons/mage_3/B_MG303a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_MG303b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_MG303c.bam~ ~override/%spell_res%c.bam~
 
+*/
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -4483,7 +3590,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //sec spell
 COPY ~%mod_folder%/data/new_spells/mage_1/SPWI101C.spl~ ~override/%spell_res%B.spl~
 */
-//not done and/or necessary 
+//not done and/or necessary
 
 ////////////////////////////////
 //////Add Icons and Projectiles:
@@ -4492,9 +3599,9 @@ COPY ~%mod_folder%/data/new_spells/mage_1/SPWI101C.spl~ ~override/%spell_res%B.s
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_3/B_TEMPA.bam~ ~override/%spell_res%A.bam~
-COPY ~%mod_folder%/data/new_spells/mage_3/B_TEMPB.bam~ ~override/%spell_res%B.bam~
-COPY ~%mod_folder%/data/new_spells/mage_3/B_TEMPC.bam~ ~override/%spell_res%C.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_TEMPA.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_TEMPB.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/new_spells/mage_3/B_TEMPC.bam~ ~override/%spell_res%C.bam~   //yes, dif folder
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -4503,7 +3610,8 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-// NA
+// done, but need to add to spl, etc. 
+// COPY ~%mod_folder%/data/port_icons/mage_3/B_STK01.bam~
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -4561,6 +3669,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
+COPY ~%mod_folder%/data/icons/mage_3/B_W303A.bam~ ~override/%spell_res%A.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W303B.bam~ ~override/%spell_res%B.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W303C.bam~ ~override/%spell_res%C.bam~
 
 ////////////////////////////////
 //////Add Icons and Projectiles:
@@ -4604,6 +3715,7 @@ ACTION_IF (%b_fabricate% > 0) BEGIN  //
 ////////////////////////////
 //////NOTES:
 ////////////////////////////
+////use B_MG304
 
 ///////////////////////////////////////////////
 //////Spell Basics: Pros, effs, bams, wavs, etc
@@ -4616,6 +3728,12 @@ ACTION_IF (%b_fabricate% > 0) BEGIN  //
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+/*
+//done but waiting for spell
+COPY ~%mod_folder%/data/icons/mage_3/B_MG304a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_MG304b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_MG304c.bam~ ~override/%spell_res%c.bam~
+*/
 
 ////////////////////////////
 //////Portrait Icons:
@@ -4684,12 +3802,15 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W302a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W302b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W302c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+  
+COPY ~%mod_folder%/data/port_icons/mage_3/B_W302P.bam~
+
 */
 
 ////////////////////////////
@@ -4780,13 +3901,18 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//to do CONTINUE
+/*
+COPY ~%mod_folder%/data/icons/mage_3/B_W205A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W205B.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W205C.bam~ ~override/%spell_res%c.bam~
 
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
-//not needed, I think
+//
+COPY ~%mod_folder%/data/port_icons/mage_3/B_W205P.bam~ ~override/%spell_res%a.bam~
 
+*/
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
@@ -4860,11 +3986,18 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+/*
+COPY ~%mod_folder%/data/icons/mage_3/B_W304A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W304B.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W304C.bam~ ~override/%spell_res%c.bam~
 
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+//
+COPY ~%mod_folder%/data/port_icons/mage_3/B_W304P.bam~
 
+*/
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
@@ -4916,10 +4049,18 @@ END
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+/*
+COPY ~%mod_folder%/data/icons/mage_3/B_W301A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W301B.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_3/B_W301C.bam~ ~override/%spell_res%c.bam~
 
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+//
+COPY ~%mod_folder%/data/port_icons/mage_3/B_W301P.bam~
+
+*/
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -4995,9 +4136,14 @@ END
 //////Add Icons and Projectiles:
 ////////////////////////////////
 
+COPY ~%mod_folder%/data/icons/mage_4/B_1W4XXa.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_4/B_1W4XXb.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_4/B_1W4XXc.bam~ ~override/%spell_res%c.bam~
+
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+COPY ~%mod_folder%/data/port_icons/mage_4/B_1W4XXP.bam~
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -5064,9 +4210,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_4/B_WZ401a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_4/B_WZ401b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_4/B_WZ401c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_4/B_WZ401a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_4/B_WZ401b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/new_spells/mage_4/B_WZ401c.bam~ ~override/%spell_res%c.bam~ //yes, dif folder
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -5098,6 +4244,33 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 END//end spell
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________Fumble_______________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//use B_WI401
+/*
+COPY ~%mod_folder%/data/icons/mage_4/B_WI401A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_4/B_WI401B.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_4/B_WI401C.bam~ ~override/%spell_res%c.bam~
+
+//port icon
+COPY ~%mod_folder%/data/port_icons/mage_4/B_WI401P.bam~
+*/
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________Iron Maiden_______________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//use B_WI402
+/*
+COPY ~%mod_folder%/data/icons/mage_4/%style%/B_WI402A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_4/%style%/B_WI402B.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_4/%style%/B_WI402C.bam~ ~override/%spell_res%c.bam~
+
+*/
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5145,9 +4318,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_4/B_W401a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_4/B_W401b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_4/B_W401c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_4/B_W401a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_4/B_W401b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_4/B_W401c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -5282,8 +4455,10 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//TO DO CONTINUE
-
+//NA
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~SPPR411A.BAM~ BEGIN  //
+  COPY ~%mod_folder%/data/icons/mage_4/SPPR411A.BAM~ ~override~
+END
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -5393,6 +4568,141 @@ END//end spell
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________Bigby's Fantastic Fencers_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_fancy_fencers% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+ //Use B_MG501
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+/*
+//done
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_5/B_MG501a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_5/B_MG501b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_5/B_MG501c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+*/
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________Caddelyn's Catastrophe_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_caddys_catty% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+ //Use B_MG502
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+/*
+//done
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_5/B_MG502a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_5/B_MG502b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_5/B_MG502c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+*/
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+END//end spell
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5440,6 +4750,107 @@ COPY ~%mod_folder%/data/new_spells/mage_5/B_WZ501A.spl~ ~override/%spell_res%A.s
 //////Add Icons and Projectiles:
 ////////////////////////////////
 
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_5/B_WZ501a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_5/B_WZ501b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_5/B_WZ501c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________________Seeming________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_seems_like_it% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+ //Use B_MG503
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+//to do
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+//done but need to do spell
+/*
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1101)   //Seeming
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_5/B_MG503a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_5/B_MG503b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_5/B_MG503c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_5/B_MG503P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+
+
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -5461,6 +4872,7 @@ COPY ~%mod_folder%/data/new_spells/mage_5/B_WZ501A.spl~ ~override/%spell_res%A.s
 ////////////////////////////
 
 END//end spell
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5497,6 +4909,30 @@ END
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR rename         = 1
+            create_scroll  = 1
+            gen_scroll     = 1
+            high_hedge     = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no  = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch      = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no   = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch    = 1      //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1      //Number of scrolls sold at underdark merchant (default 1)
+            sod_store      = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no   = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name     = EVAL ~%spell_res%~ //
+            pathA          = ~%mod_folder%/data/icons/mage_5/B_W501a.bam~
+            pathB          = ~%mod_folder%/data/icons/mage_5/B_W501b.bam~
+            pathC          = ~%mod_folder%/data/icons/mage_5/B_W501c.bam~
+            scroll_path    = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
 
 ////////////////////////////
 //////Portrait Icons:
@@ -5571,10 +5007,10 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_5/b_w502a.bam~ ~override~
-COPY ~%mod_folder%/data/new_spells/mage_5/b_w502a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_5/b_w502b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_5/b_w502c.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_5/b_w502a.bam~ ~override~  //???
+COPY ~%mod_folder%/data/icons/mage_5/b_w502a.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_5/b_w502b.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_5/b_w502c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -5643,11 +5079,253 @@ END//end spell
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________________Eyebite________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_eyebite% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+ //Use B_MG601
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+//to do
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+//done but need to do spell
+/*
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1102)   //Evil Eye
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_6/B_MG601a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_6/B_MG601b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_6/B_MG601c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_6/B_MG601P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//__________________________________________________________________Mass Hypnotism______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_mass_hypno% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+ //Use B_MG602
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+//to do
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+//done but need to do spell
+
+/*
+LAF ADD_ICONS
+    INT_VAR rename         = 1
+            create_scroll  = 1
+            gen_scroll     = 1
+            high_hedge     = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no  = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch      = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no   = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch    = 1      //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1      //Number of scrolls sold at underdark merchant (default 1)
+            sod_store      = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no   = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name     = EVAL ~%spell_res%~ //
+            pathA          = ~%mod_folder%/data/icons/mage_6/B_MG602a.bam~
+            pathB          = ~%mod_folder%/data/icons/mage_6/B_MG602b.bam~
+            pathC          = ~%mod_folder%/data/icons/mage_6/B_MG602c.bam~
+            scroll_path    = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+//use hypnosis port icon (but make sure it's there as user might not install hypnotism)
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________________Repulsion______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_repulsion% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+ //Use B_MG603
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+//to do
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+//done but need to do spell
+/*
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1103)   //Repulsed
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_6/B_MG603a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_6/B_MG603b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_6/B_MG603c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_6/B_MG603P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+END//end spell
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //_________________________________________________________________Siphon Vitality______________________________________________________________________//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ACTION_IF (%b_s_major_missile% > 0) BEGIN  //
+ACTION_IF (%b_siphon_vitals% > 0) BEGIN  //
 
 ////////////////////////////
 //////NOTES:
@@ -5695,10 +5373,34 @@ COPY ~%mod_folder%/data/new_spells/mage_6/B_W601A.spl~ ~override/%spell_res%A.sp
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+LAF ADD_ICONS
+    INT_VAR rename         = 1
+            create_scroll  = 1
+            gen_scroll     = 1
+            high_hedge     = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no  = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch      = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no   = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch    = 1      //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1      //Number of scrolls sold at underdark merchant (default 1)
+            sod_store      = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no   = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name     = EVAL ~%spell_res%~ //
+            pathA          = ~%mod_folder%/data/icons/mage_6/B_W601a.bam~
+            pathB          = ~%mod_folder%/data/icons/mage_6/B_W601b.bam~
+            pathC          = ~%mod_folder%/data/icons/mage_6/B_W601c.bam~
+            scroll_path    = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
 
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+//na
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -5777,6 +5479,107 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //////Add Icons and Projectiles:
 ////////////////////////////////
 
+/*
+LAF ADD_ICONS
+    INT_VAR rename         = 1
+            create_scroll  = 1
+            gen_scroll     = 1
+            high_hedge     = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no  = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch      = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no   = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch    = 1      //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1      //Number of scrolls sold at underdark merchant (default 1)
+            sod_store      = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no   = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name     = EVAL ~%spell_res%~ //
+            pathA          = ~%mod_folder%/data/icons/mage_7/B_W701a.bam~
+            pathB          = ~%mod_folder%/data/icons/mage_7/B_W701b.bam~
+            pathC          = ~%mod_folder%/data/icons/mage_7/B_W701c.bam~
+            scroll_path    = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+END//end spell
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________Transfer Enchantment_________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_transfer_enchant% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//use B_MG702
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+/*
+LAF ADD_ICONS
+    INT_VAR rename         = 1
+            create_scroll  = 1
+            gen_scroll     = 1
+            high_hedge     = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no  = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch      = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no   = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch    = 1      //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1      //Number of scrolls sold at underdark merchant (default 1)
+            sod_store      = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no   = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name     = EVAL ~%spell_res%~ //
+            pathA          = ~%mod_folder%/data/icons/mage_7/B_MG702a.bam~
+            pathB          = ~%mod_folder%/data/icons/mage_7/B_MG702b.bam~
+            pathC          = ~%mod_folder%/data/icons/mage_7/B_MG702c.bam~
+            scroll_path    = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -5806,6 +5609,80 @@ END//end spell
 ////////////////////////            //////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________Blast of Air_________________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_air_blast% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//use B_MG801
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+/*
+LAF ADD_ICONS
+    INT_VAR rename         = 1
+            create_scroll  = 1
+            gen_scroll     = 1
+            high_hedge     = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no  = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch      = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no   = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch    = 1      //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1      //Number of scrolls sold at underdark merchant (default 1)
+            sod_store      = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no   = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name     = EVAL ~%spell_res%~ //
+            pathA          = ~%mod_folder%/data/icons/mage_8/B_MG801a.bam~
+            pathB          = ~%mod_folder%/data/icons/mage_8/B_MG801b.bam~
+            pathC          = ~%mod_folder%/data/icons/mage_8/B_MG801c.bam~
+            scroll_path    = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+END//end spell
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5859,9 +5736,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_8/B_TEMPA.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_8/B_TEMPB.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_8/B_TEMPC.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_8/B_DMDA.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_8/B_DMDB.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_8/B_DMDC.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -5939,9 +5816,9 @@ END
 ////////////////////////////////
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_8/B_WZ802A.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_8/B_WZ802B.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_8/B_WZ802C.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_8/B_WZ802A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_8/B_WZ802B.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_8/B_WZ802C.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -6008,10 +5885,20 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/icons/mage_8/B_WZ801A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_8/B_WZ801B.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_8/B_WZ801C.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
+
 
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
+//in port folder B_WZ801P
 
 ////////////////////////////
 //////Immunity/Prot Lists:
@@ -6081,6 +5968,15 @@ COPY_EXISTING ~%mod_folder%/data/new_spells/mage_9/B_WZ901P.spl~ ~override/%spel
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
+COPY ~%mod_folder%/data/icons/mage_9/B_WZ901A.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_9/B_WZ901B.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_9/B_WZ901C.bam~ ~override/%spell_res%c.bam~
+//add bams to spl
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 ////////////////////////////
 //////Portrait Icons:
@@ -6155,9 +6051,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/mage_9/B_TEMPA.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/mage_9/B_TEMPB.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/mage_9/B_TEMPC.bam~ ~override/%spell_res%c.bam~
+COPY ~%mod_folder%/data/icons/mage_9/B_MDOMA.bam~ ~override/%spell_res%a.bam~
+COPY ~%mod_folder%/data/icons/mage_9/B_MDOMB.bam~ ~override/%spell_res%b.bam~
+COPY ~%mod_folder%/data/icons/mage_9/B_MDOMC.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -6223,12 +6119,36 @@ END
 ////////////////////////////////
 //////Add Icons and Projectiles:
 ////////////////////////////////
-//to do continue 
 
-////////////////////////////
-//////Portrait Icons:
-////////////////////////////
-//to do continue
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1104)   //Paralyzed with fear
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_9/B_W901a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_9/B_W901b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_9/B_W901c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_9/B_W901P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
 
 ////////////////////////////
 //////Immunity/Prot Lists:

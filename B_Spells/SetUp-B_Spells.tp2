@@ -2,7 +2,7 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.21~
+VERSION ~0.90.22~
 
 
 ALWAYS
@@ -73,6 +73,8 @@ ALWAYS
 	INCLUDE ~B_Spells/lib/remove_lines.tpa~
 
 	INCLUDE ~B_Spells/lib/summon_table.tpa~
+
+	INCLUDE ~B_Spells/lib/splprot_attributes.tpa~
 
 	INCLUDE ~B_Spells/lib/spell_to_innate.tpa~
 

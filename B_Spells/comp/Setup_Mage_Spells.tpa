@@ -79,8 +79,8 @@ LAF ADD_ICONS
             gen_scroll    = 1
             high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
             high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
-            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
-            pen_parch_no  = 1       //Number of scrolls sold at Pen and Parchment (default 1)
+            pen_parch     = 0       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 0       //Number of scrolls sold at Pen and Parchment (default 1)
             under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
             under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
             sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
@@ -95,44 +95,17 @@ LAF ADD_ICONS
             scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
     RET    port_icon
            scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
 END
-
-
-//continue (a number of the scroll related vars above need to be indentified)
 
 ////////////////////////////
 //////Immunity/Prot Lists:
 ////////////////////////////
 //Regeneration spls
 INCLUDE ~%mod_folder%/lib/spell_lists/regen_list.tpa~
-
-
-////////////////////////////
-//////Scrolls: Placement
-////////////////////////////
-
-//Scroll Placement
-//BGEE 
-//High Hedge
-ACTION_IF FILE_EXISTS_IN_GAME ~HIGHHEDG.STO~ BEGIN  //
-  COPY_EXISTING ~HIGHHEDG.sto~ ~override~
-    ADD_STORE_ITEM ~%scroll_name%~ #1 #0 #0 ~IDENTIFIED~ #2
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~SCROLLS.STO~ BEGIN  //
-COPY_EXISTING ~SCROLLS.STO~ ~override~
- ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-
-ACTION_IF FILE_EXISTS_IN_GAME ~UDDROW25.STO~ BEGIN  //
- COPY_EXISTING ~UDDROW25.STO~ ~override~
-  ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #4
-END
-//SoD
- ACTION_IF FILE_EXISTS_IN_GAME ~STO0703.STO~ BEGIN  //SoD
-  COPY_EXISTING ~STO0703.STO~ ~override~
-   ADD_STORE_ITEM ~%spell_res%~ #1 #0 #0 ~IDENTIFIED~ #2
- END
 
 ////////////////////////////
 //////Compatibility
@@ -142,6 +115,1055 @@ END
 
 END //end install acc metab
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________ALARM________________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_alarm% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//1st level cantrips: Converted to a second level spell, unchanged
+//Add portrait icon for innate alarm spell (speed increased or somesuch thing)
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/b_alarm.spl~ 3 1 ~INNATE_ALARM~ //Innate
+	SAY NAME1 @65201
+//itm
+COPY ~%mod_folder%/data/new_spells/mage_1/b_w101.itm~ ~override~   //itm alarm
+//baf
+COMPILE ~%mod_folder%/data/new_spells/mage_1/b_alarm.baf~    //script
+//cre
+COPY ~%mod_folder%/data/new_spells/mage_1/b_w101.cre~ ~override~   //cre alarm
+       SAY 0x8 @65201
+       SAY 0xc @65201
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/b_w101.spl~ 2 1 ~WIZARD_ALARM_SPELL~ //
+        SAY NAME1 @65201
+        SAY NAME2 @65201
+        SAY UNIDENTIFIED_DESC @65202
+	SAY DESC @65202
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ALARM_SPELL~
+  RET spell_res
+END
+//to clear earlier versions of the spell
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 206            //Is this the best opcode to use?
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1003) //Alarmed
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 2       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 4       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_W101a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_W101b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_W101c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_1/B_W101P.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~INNATE_ALARM~
+  RET spell_res
+END
+
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 142 parameter2 = %port_icon% END           //
+
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ALARM_SPELL~
+  RET spell_res
+END
+
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+//1st level cantrips: Converted to a second level spell, unchanged
+// TO DO CONTINUE
+
+END //end alarm
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________Animate Skeleton__________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_anim_skele% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//check to see if all these skeletons are in BG(2)EE,
+//do scrolls and scroll placement
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+//skele creature
+//cre
+ACTION_IF !FILE_EXISTS_IN_GAME ~AD1SKLM.cre~ BEGIN
+ COPY ~%mod_folder%/data/new_spells/mage_1/AD1SKLM.cre~ ~override~   //
+       SAY 0x8 @68034
+       SAY 0xc @68034
+END
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_WZ102.spl~ 2 1 ~WIZARD_ANIMATE_SKELETON~ //
+        SAY NAME1 @68024
+        SAY NAME2 @68024
+        SAY UNIDENTIFIED_DESC @68025
+	SAY DESC @68025
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ANIMATE_SKELETON~
+  RET spell_res
+END
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/%style%/B_WZ102a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/%style%/B_WZ102b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/%style%/B_WZ102c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________ANTICIPATION_________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Credit for this spell belons to Subtledoctor (Modified with permission)
+
+ACTION_IF (%b_anticipation% > 0) BEGIN  //
+
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+// **1st-Level Cantrips**: This spell is installed (unchanged) if 1st-level cantrips is installed--maybe only lasts for 2 rounds, actually.
+//do icon and portrait icon 
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+//na
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.spl~ 2 1 ~WIZARD_ANTICIPATION~ //
+        SAY NAME1 @65101
+        SAY NAME2 @65101
+        SAY UNIDENTIFIED_DESC @65102
+	SAY DESC @65102
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ANTICIPATION~
+  RET spell_res
+END
+//to clear earlier versions of the spell
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1004)   //Anticipating
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 0
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 1       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 1       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/D5_WIDIa.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/D5_WIDIb.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/D5_WIDIc.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_1/D5_WIDIP.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+END //END Anticipation
+
+ACTION_IF (%b_bind% > 0) BEGIN  //
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________________________Bind______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//add immunities for crea with str 20+
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+//NA?
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_2/B_WZ202.spl~ 2 1 ~WIZARD_BIND~ //
+        SAY NAME1 @68047
+        SAY NAME2 @68047
+        SAY UNIDENTIFIED_DESC @68048
+	SAY DESC @68048
+LPF ALTER_SPELL_TYPE
+  STR_VAR spell_level = 1
+  STR_VAR level_text = ~1~   //
+END
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_BIND~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 324            //
+      STR_VAR resource = EVAL ~%spell_res%~   //
+  END      //
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 146            //
+      STR_VAR resource = EVAL ~%spell_res%A~   //
+  END      //
+
+  LPF CLONE_EFFECT
+      INT_VAR match_opcode = 324  parameter1 = 19   parameter2 = %str_gr% multi_match = 1
+      STR_VAR resource = EVAL ~%spell_res%~   //
+  END
+
+//subspells
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202A.spl~ ~override/%spell_res%A.spl~ //1st subspell
+        SAY NAME1 @68047
+        SAY NAME2 @68047
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%B~   END      // Cast next subspell
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202B.spl~ ~override/%spell_res%B.spl~ //2nd subspell
+        SAY NAME1 @68047
+        SAY NAME2 @68047
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%C~   END      // Cast next subspell
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202C.spl~ ~override/%spell_res%C.spl~ //3rd subspell
+        SAY NAME1 @68047
+        SAY NAME2 @68047
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%D~   END      // Cast next subspell
+COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202D.spl~ ~override/%spell_res%D.spl~ //last subspell
+        SAY NAME1 @68047
+        SAY NAME2 @68047
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1040)   //Bound
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 1       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 1       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_WZ202A.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_WZ202b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_WZ202c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_1/B_WZ202P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+//prob not necessary (str 20+ immune, but that should be doable within the spell itself)
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+//TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________Cantrip_________________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_cantrip_spell% > 0) BEGIN  //
+
+END //end cantrip
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Color_________________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_color% > 0) BEGIN  //
+
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_COL01
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_COL01A.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_COL01B.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_COL01C.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END //End Reveal Magic
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//__________________________________________________________________Dust Devil__________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_dust_devil% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_DST01
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/%style%/B_DST01a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/%style%/B_DST01b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/%style%/B_DST01c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________Reveal Magic______________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_detect_magic% > 0) BEGIN  //
+
+END //End Reveal Magic
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________DETECT TRAPS AND PORTALS_____________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_traps_n_portals% > 0) BEGIN  //
+
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+
+//might change to have invis monster have caster check for traps (giving boni to search)
+// 1st level cantrips: Converted to a second level spell, +20% to skill bonus (maxes out at 95%)
+
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+//script
+COMPILE ~%mod_folder%/data/new_spells/mage_1/B_DETT.baf~
+//cre
+COPY ~%mod_folder%/data/new_spells/mage_1/B_DETT.cre~ ~override~
+//itm
+COPY ~%mod_folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W105.spl~ 2 1 ~WIZARD_DETECT_TRAPS~ //
+          SAY NAME1 @66001
+          SAY NAME2 @66001
+          SAY UNIDENTIFIED_DESC @66002
+  	  SAY DESC @66002
+
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_DETECT_TRAPS~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //  Remove earlier versions of spell
+
+///////////////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+///////////////////////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1007)   //Detecting Traps and Portals
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 1       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 1       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_W105a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_W105b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_W105c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_1/B_W105P.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// 1st level cantrips: Converted to a second level spell, +20% to skill bonus (maxes out at 95%)
+//TO DO CONTINUE 
+
+END //end detect traps and portals
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Devil's Eyes__________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%devil_eyes% > 0) BEGIN  //
+
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_______________________________________________________________Enervating Ray_________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_enervating_ray% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//1st level cantrips: Damage is reduced to 1/2, but kept as a 1st level spell
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_M101.spl~ 2 1 ~WIZARD_ENERVATING_RAY~ //
+        SAY NAME1 @66101
+        SAY NAME2 @66101
+        SAY UNIDENTIFIED_DESC @66102
+	SAY DESC @66102
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_ENERVATING_RAY~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@66103) END  //
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 opcode = 324 timing = 0 parameter1 = 0 parameter2 = 1 duration = 1 dicenumber = 0 dicesize = 0 savingthrow = 0 STR_VAR resource = EVAL ~%spell_res%~  END   //undead immune
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 opcode = 324 timing = 0 parameter1 = 0 parameter2 = 9 duration = 1 dicenumber = 0 dicesize = 0 savingthrow = 0 STR_VAR resource = EVAL ~%spell_res%~  END   //elemental immune
+  LPF CLONE_EFFECT INT_VAR match_opcode = 12 opcode = 324 timing = 0 parameter1 = 0 parameter2 = 27 duration = 1 dicenumber = 0 dicesize = 0 savingthrow = 0 STR_VAR resource = EVAL ~%spell_res%~  END   //golem immune
+
+///////////////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+///////////////////////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1008)   //Enervated
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/new_spells/mage_1/B_M101a.bam~
+            pathB         = ~%mod_folder%/data/new_spells/mage_1/B_M101b.bam~
+            pathC         = ~%mod_folder%/data/new_spells/mage_1/B_M101c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_1/B_M101P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+//TO DO CONTINUE  
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+//1st level cantrips: Damage is reduced to 1/2, but kept as a 1st level spell
+//TO DO CONTINUE  
+END //End Enervating Ray
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________Exterminate ______________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//TO DO CONTINUE 
+
+ACTION_IF (%b_exterminate% > 0) BEGIN  //
+
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Farseer ______________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_far_see% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//give option to not install if using MEspells 
+//1st level cantrips: Duration reduced to 3 rounds
+//METweaks: Note that this spell will not increase visual range if the following component is installed:
+//"Increase the visual range and movement speed of all creatures in the game (including party members) significantly"
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+///na 
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_W106.spl~ 2 1 ~WIZARD_FARSEER~ //
+          SAY NAME1 @66110
+          SAY NAME2 @66110
+          SAY UNIDENTIFIED_DESC @66111
+  	  SAY DESC @66111
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_FARSEER~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 321            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //  Remove earlier versions of spell
+  LPF ALTER_EFFECT
+      INT_VAR match_opcode = 324            //
+      STR_VAR resource = EVAL ~%spell_res%~
+  END      //  Blind immune
+  LPF ALTER_EFFECT 
+      INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@66112)
+  END  // Farseer notification
+
+///////////////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+///////////////////////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1009)   //Farseer
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_W106a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_W106b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_W106c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_1/B_W106P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+//na
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+//1st level cantrips: Duration reduced to 3 rounds
+
+//TO DO CONTINUE 
+
+END //end farseer
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//____________________________________________________________________Filth's Bane______________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//TO DO CONTINUE
+
+ACTION_IF (%b_filth_bane% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+  //**0-Level Cantrips**: This spell is converted to a cantrip if 0-level cantrips is installed.  Further, creatures can only be affected by Filth's Bane once per 8 hours, and the save is made with a -4 penalty.
+  //**1st-Level Cantrips**: Filth's Bane will only affect a creature once per 8 hours if 1st-level spells installed.
+  // Check if needs to remove IWDEE specific spells (used BGEE n.poison)
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+ADD_SPELL ~%mod_folder%/data/new_spells/mage_1/B_M103.spl~ 2 1 ~WIZARD_NO_FILTH~ //
+        SAY NAME1 @65121
+        SAY NAME2 @65121
+        SAY UNIDENTIFIED_DESC @65122
+	SAY DESC @65122
+//to clear earlier versions of the spell
+LAF RES_NUM_OF_SPELL_NAME
+  STR_VAR spell_name = ~WIZARD_NO_FILTH~
+  RET spell_res
+END
+COPY_EXISTING ~%spell_res%.spl~ ~override~
+  LPF ALTER_EFFECT INT_VAR match_opcode = 318 STR_VAR resource = EVAL ~%spell_res%~ END  // immunity (but allowing save)
+
+///////////////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+///////////////////////////////////////////////////
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_M103a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_M103b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_M103c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+//NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+ //TO DO CONTINUE
+ //IWDEE spells to account for?
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+ //TO DO CONTINUE
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+ //TO DO CONTINUE
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+  //**0-Level Cantrips**: This spell is converted to a cantrip if 0-level cantrips is installed.  Further, creatures can only be affected by Filth's Bane once per 8 hours, and the save is made with a -4 penalty.
+  //**1st-Level Cantrips**: Filth's Bane will only affect a creature once per 8 hours if 1st-level spells installed.
+  //TO DO CONTINUE
+
+END// End filth's Bane
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_________________________________________________________________HYPNOTISM___________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_hypno_arcane% > 0) BEGIN  //
+
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Ice Knife_____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//TO DO CONTINUE 
+
+ACTION_IF (%b_ice_knife% > 0) BEGIN  //
+
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________Invisibility to Undead__________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_inv_undead_arcane% > 0) BEGIN  //
+
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//______________________________________________________________________Stuck___________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_stuck% > 0) BEGIN  //
+
+END
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//__________________________________________________________________Tenser’s Floating Disc______________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_tenser_disk% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_DST02
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_1/B_DST02a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_1/B_DST02b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_1/B_DST02c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
@@ -149,6 +1171,442 @@ END //end install acc metab
 ////////////////////////            //////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//__________________________________________________________________Create Arms and Armaments___________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_create_arms% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//B_MG201
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/B_MG201a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/B_MG201b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/B_MG201c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//__________________________________________________________________Deeppockets_________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_deeppockets% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//B_MG202
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+////////////////////////////////
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/B_MG202a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/B_MG202b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/B_MG202c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Fog Cloud_____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_fog_cloud% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//B_MG203
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+///
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+///////////////////////////////////////////////////
+/*
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1108)   //Inhibited Vision
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/B_MG203a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/B_MG203b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/B_MG203c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_2/B_MG203P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+//
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+//TO DO CONTINUE
+
+END //end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_____________________________________________________________Improved Phantasmal Force________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_imp_phant_force% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_M207
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/B_M207a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/B_M207b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/B_M207c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Irritation____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_irritation% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//B_MG204
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+///
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+///////////////////////////////////////////////////
+/*
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1109)   //Irritated
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/B_MG204a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/B_MG204b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/B_MG204c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_2/B_MG204P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+//
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+//TO DO CONTINUE
+
+END //end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Protection From Cantrips______________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_protec_cantrip% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//B_MG205
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+///
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+///////////////////////////////////////////////////
+/*
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1110)   //Protected from Cantrips
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_2/B_MG205a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_2/B_MG205b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_2/B_MG205c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_2/B_MG205P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+//
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+//TO DO CONTINUE
+
+END //end spell
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -158,6 +1616,153 @@ END //end install acc metab
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Minor Contingency_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_minor_contingency% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//use B_MG305
+//internal: WIZARD_MINOR_CONTINGENCY
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+///
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+///////////////////////////////////////////////////
+/*
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1111)   //Minor Contingency
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_3/B_MG305a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_3/B_MG305b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_3/B_MG305c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_3/B_MG305P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+//
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+//TO DO CONTINUE
+
+END //end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________________Spectral Force________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_spectral_force% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG306
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_3/B_MG306a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_3/B_MG306b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_3/B_MG306c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
@@ -166,6 +1771,157 @@ END //end install acc metab
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________________Fire Trap_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_fire_trap% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG401
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_4/B_MG401a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_4/B_MG401b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_4/B_MG401c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________________Solid Fog_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_solid_fog% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG402
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1112)   //Movement Impeded
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_4/B_MG402a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_4/B_MG402b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_4/B_MG402c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_4/B_MG402P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
@@ -173,6 +1929,374 @@ END //end install acc metab
 ////////////////////////            //////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_____________________________________________________________________Advanced Illusion________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_adv_illusion% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG504
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_5/B_MG504a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_5/B_MG504b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_5/B_MG504c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_____________________________________________________________________Avoidance________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_avoidance% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG505
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR port_text     = RESOLVE_STR_REF(@1113)   //Repelled
+            rename        = 1
+            add_port_icon = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 4       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 2       //Number of scrolls sold at underdark merchant (default 1)
+            sor_sun       = 1       //place a scroll or two in Sorcerous Sundries  (if present--bgee and maybe sod)
+            sor_sun_no    = 2       //Number of scrolls sold at Sorcerous Sundries (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 2       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_5/B_MG505a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_5/B_MG505b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_5/B_MG505c.bam~
+            pathP         = ~%mod_folder%/data/port_icons/mage_5/B_MG505P.bam~
+            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/B_M101.itm~   //blank scroll
+    RET    port_icon
+           scroll_name
+           iconA
+           iconB
+           iconC
+           iconP
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_____________________________________________________________________Dismissal________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_dismissal% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG506
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_5/B_MG506a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_5/B_MG506b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_5/B_MG506c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//__________________________________________________________Mordenkainen’s Faithful Hound_______________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_mordy_dog% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG507
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_5/B_MG507a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_5/B_MG507b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_5/B_MG507c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//________________________________________________________________Shadow Magic__________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_shadow_magic% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG508
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_5/B_MG508a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_5/B_MG508b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_5/B_MG508c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -190,6 +2314,154 @@ END //end install acc metab
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//___________________________________________________________________Chaos Blade________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_chaos_blade% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG703
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_7/B_MG703a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_7/B_MG703b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_7/B_MG703c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//_____________________________________________________________Reincarnation____________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+ACTION_IF (%b_reincarnation% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//use B_MG701
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+//not ready
+
+////////////////////////////////
+//////Add Icons and Projectiles:
+////////////////////////////////
+
+/*
+LAF ADD_ICONS
+    INT_VAR rename         = 1
+            create_scroll  = 1
+            gen_scroll     = 1
+            high_hedge     = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no  = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch      = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no   = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch    = 1      //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1      //Number of scrolls sold at underdark merchant (default 1)
+            sod_store      = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no   = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name     = EVAL ~%spell_res%~ //
+            pathA          = ~%mod_folder%/data/icons/mage_7/B_MG701a.bam~
+            pathB          = ~%mod_folder%/data/icons/mage_7/B_MG701b.bam~
+            pathC          = ~%mod_folder%/data/icons/mage_7/B_MG701c.bam~
+            scroll_path    = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Creation
+////////////////////////////
+
+////////////////////////////
+//////Scrolls: Placement
+////////////////////////////
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+
+END//end spell
+
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
@@ -198,6 +2470,79 @@ END //end install acc metab
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//___________________________________________________________________Wildzone___________________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_wildzone% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG802
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_8/B_MG802a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_8/B_MG802b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_8/B_MG802c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell
+
+
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 ////////////////////////            //////////////////////////
@@ -205,3 +2550,75 @@ END //end install acc metab
 ////////////////////////            //////////////////////////
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//___________________________________________________________________Crystalbrittle_____________________________________________________________________//
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+ACTION_IF (%b_crystalbrittle% > 0) BEGIN  //
+
+////////////////////////////
+//////NOTES:
+////////////////////////////
+//Use B_MG901
+
+///////////////////////////////////////////////
+//////Spell Basics: Pros, effs, bams, wavs, etc
+///////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////
+//////Spell Itself (and spell biz (e.g. sec spells)
+///////////////////////////////////////////////////
+
+
+/////////////////////////////////////////
+//////Add Icons, Projectiles and Scrolls:
+/////////////////////////////////////////
+
+/*
+
+LAF ADD_ICONS
+    INT_VAR rename        = 1
+            create_scroll = 1
+            gen_scroll    = 1
+            high_hedge    = 1       //place a scroll or two in hedge hedge (if present--bgee)
+            high_hedge_no = 1       //Number of scrolls sold at High Hedge (default 1)
+            pen_parch     = 1       //place a scroll or two in Pen and Parchment  (if present--bg2ee)
+            pen_parch_no  = 4       //Number of scrolls sold at Pen and Parchment (default 1)
+            under_merch   = 1       //place a scroll or two in underdark merchant (if present--bg2ee)
+            under_merch_no = 1       //Number of scrolls sold at underdark merchant (default 1)
+            sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
+            sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
+    STR_VAR spell_name    = EVAL ~%spell_res%~ //
+            pathA         = ~%mod_folder%/data/icons/mage_9/B_MG901a.bam~
+            pathB         = ~%mod_folder%/data/icons/mage_9/B_MG901b.bam~
+            pathC         = ~%mod_folder%/data/icons/mage_9/B_MG901c.bam~
+            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+    RET    scroll_name
+           iconA
+           iconB
+           iconC
+END
+
+*/
+
+////////////////////////////
+//////Portrait Icons:
+////////////////////////////
+// NA
+
+////////////////////////////
+//////Immunity/Prot Lists:
+////////////////////////////
+// NA
+
+
+////////////////////////////
+//////Compatibility
+////////////////////////////
+// TO DO CONTINUE
+
+END//end spell

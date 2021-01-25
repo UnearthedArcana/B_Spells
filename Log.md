@@ -76,6 +76,106 @@ TO DO 37: Dispel Lists:
 
 TO DO 38: To be remove lists: regen_list, 
 
+TO DO 39: ADD_ICONS: incorporate mage vs. priest scrolls (for learning), and add more stores
+
+Version 0.90.22
+
+2021-01-24
+
+- updated icons
+
+2021-01-23
+
+- updated icons
+
+2021-01-22
+
+- updated icons
+
+2021-01-21
+
+- icons for many spells
+
+2021-01-16
+
+- revised cantrip icon
+
+- icons: orison, 
+
+2021-01-15
+
+- Including splprot_attributes.tpa and used for bind (priest and mage versions)
+
+
+2021-01-13
+
+- Updated Cleric Binding spell to be like the wizard version
+
+2021-01-10
+
+- Animal Eyes: added portrait icon, updated spell paramerters
+
+2021-01-09
+
+- Updated icons for snowball, farseer, devil's eyes, iron mind, Transfer Enchantment, Blast of Air, Polymorph any object, Unfailing Premonition, Demand, Bless Water, Camoflauge, castigate, cheetah's Sprint,
+
+2021-01-07
+
+- Icons: reincarnate, recharge
+
+2021-01-06
+
+- Icons for seeming, eyebite, s major missile, mass hypnotism, Repulsion, Siphon Vitality
+
+2021-01-05
+
+- Icons for Caddy's Catastrophe, Delayed MM, Augment Undead
+
+2021-01-03
+
+- Updated Charm Monster icons
+
+2021-01-02
+
+- Updated Filth's Bane, Phant Force, prot shell, Reprieve, Al Fund Breakdown, abundant ammo, esp, mindsight, u shell, poison, Icons
+
+2020-12-26
+
+- Updated icons for iron mind, fabrication, explosive runes, disrupt life, plant control, Sepia Snake Sigil, Solvent of Corrosion, Charm Monster, fumble, Iron Maiden
+
+2020-12-25
+
+- Updated Protection from Paralysis, Pyrotechnics, Snowball, Tasha's Laugh (p and b icons), Augment Undead, Carpet of Adhesion 
+
+2020-12-24
+
+- Updated Alter Self
+
+2020-12-19
+
+- Redid Reprieve, spectral hand, Stuck, Alter Self, Animate Zombie, Bigby's Dexterous Digits, bolt of paralysis, esp, Flaming Sphere, Hypnotic Pattern icons
+
+
+2020-12-18
+
+- Redid protective shell, read magic and lasting breath icons
+
+2020-12-16
+
+- Updating icons
+
+2020-12-13
+
+- Updated and created a number of icons and port icons
+
+2020-12-12
+
+- Redid a number of B icons
+
+2020-12-08
+
+- Fixed scroll creation, and icon application for ADD_ICONS
+
 Version 0.90.21
 
 2020-12-08
