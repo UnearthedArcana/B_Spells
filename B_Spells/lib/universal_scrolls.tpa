@@ -24,7 +24,7 @@ COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
           REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_PS~
          END
            INNER_ACTION BEGIN
-            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
+            COPY ~%folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
              WRITE_LONG 0x0008 ~%name%~
              WRITE_LONG 0x000c ~%name%~
              WRITE_LONG 0x0054 ~%desc%~
@@ -45,7 +45,7 @@ COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
           REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
          END
            INNER_ACTION BEGIN
-            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
+            COPY ~%folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
              WRITE_LONG 0x0008 ~%name%~
              WRITE_LONG 0x000c ~%name%~
              WRITE_LONG 0x0054 ~%desc%~
@@ -66,7 +66,7 @@ COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcde]*\.SPL~ ~override~
           REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
          END
            INNER_ACTION BEGIN
-            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
+            COPY ~%folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
              WRITE_LONG 0x0008 ~%name%~
              WRITE_LONG 0x000c ~%name%~
              WRITE_LONG 0x0054 ~%desc%~
@@ -108,7 +108,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -127,7 +127,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -146,7 +146,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -176,7 +176,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -194,7 +194,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -212,7 +212,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -240,7 +240,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -268,7 +268,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -286,7 +286,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -304,7 +304,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -332,7 +332,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -350,7 +350,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -368,7 +368,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -397,7 +397,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -415,7 +415,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -433,7 +433,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -462,7 +462,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_dp101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -480,7 +480,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_cp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -498,7 +498,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_gp101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -530,7 +530,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
+                 COPY ~%folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -549,7 +549,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -567,7 +567,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -596,7 +596,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
+                 COPY ~%folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -614,7 +614,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -632,7 +632,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -660,7 +660,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
+                 COPY ~%folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -678,7 +678,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -696,7 +696,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -724,7 +724,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
+                 COPY ~%folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -742,7 +742,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -760,7 +760,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -788,7 +788,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
+                 COPY ~%folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -806,7 +806,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -824,7 +824,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -853,7 +853,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
+                 COPY ~%folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -871,7 +871,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -889,7 +889,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -918,7 +918,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_DS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
+                 COPY ~%folder%/data/scrolls/priest_1/b_da101.itm~ ~override/%p_druid%.ITM~   //Druid target person opcode (148)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -936,7 +936,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_CS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ca101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~
@@ -954,7 +954,7 @@ COPY_EXISTING_REGEXP GLOB ~.[^abcdewi]*\.SPL~ ~override~
                            REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~SPPR~ ~B_GS~
                       END
                  INNER_ACTION BEGIN
-                 COPY ~%mod_folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
+                 COPY ~%folder%/data/scrolls/priest_1/b_ga101.itm~ ~override/%p_cleric%.ITM~   //Druid target person opcode (146)
                       WRITE_LONG 0x0008 ~%name%~
                       WRITE_LONG 0x000c ~%name%~
                       WRITE_LONG 0x0054 ~%desc%~

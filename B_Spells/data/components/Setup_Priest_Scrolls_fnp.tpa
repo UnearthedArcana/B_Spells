@@ -27,7 +27,7 @@ COPY_EXISTING ~d5fnplst.2da~ ~override~
 //        PATCH_PRINT ~%scr_spl% is a spell (oritinally %orig_spl%) in the %scr_sph% sphere~        //just to be sure...
 
 	INNER_ACTION BEGIN
-             INCLUDE ~%mod_folder%/lib/scroll_lists/fnp_scroll_ref.tpa~
+             INCLUDE ~%folder%/lib/scroll_lists/fnp_scroll_ref.tpa~
 	END// end inner action
 END // end for row
 
@@ -67,7 +67,7 @@ ACTION_PHP_EACH fnp_scroll_ref AS block => clock BEGIN
           REPLACE_TEXTUALLY CASE_INSENSITIVE EXACT_MATCH ~B_P7~ ~B_P%level%~
          END
            INNER_ACTION BEGIN
-            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
+            COPY ~%folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
              WRITE_LONG 0x0008 ~%name%~
              WRITE_LONG 0x000c ~%name%~
              WRITE_LONG 0x0054 ~%desc%~
@@ -77,7 +77,7 @@ ACTION_PHP_EACH fnp_scroll_ref AS block => clock BEGIN
              WRITE_ASCIIE 0x003a  ~%spellicon%A~   //inventory icon
              WRITE_LONG 0x0034 (level * 100)       //cost
              LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = EVAL ~%clock%~ END
-               INCLUDE ~%mod_folder%/lib/scroll_lists/fnp_scroll_sell.tpa~
+               INCLUDE ~%folder%/lib/scroll_lists/fnp_scroll_sell.tpa~
 //           PATCH_PRINT ~%gen% is the name of the scroll that casts the spell %clock%~        //just to be sure...
            END //end inner action
            BUT_ONLY
@@ -93,7 +93,7 @@ END //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //it seems that BG2EE (At least!) doesn't have all priest scroll bams.  Add them here if needed
 ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN  //missing scroll bams in bg2ee
-      COPY ~%mod_folder%/data/scrolls/bam/missing~ ~override~   //missing scroll bams
+      COPY ~%folder%/data/scrolls/bam/missing~ ~override~   //missing scroll bams
 END
 
 //if bam has no pres ref (e.g. say a custom spl where the modder didn't supply a scroll bam)
@@ -103,7 +103,7 @@ ACTION_PHP_EACH fnp_scroll AS rock => sock BEGIN
               READ_ASCII 0x0076 spellicon (7)  //needed?
               PATCH_IF !FILE_EXISTS_IN_GAME ~%spellicon%A.BAM~ BEGIN
                    INNER_ACTION BEGIN
-                        COPY ~%mod_folder%/data/scrolls/bam/sppr101a.bam~ ~override/%spellicon%A.BAM~   //missing scroll bams
+                        COPY ~%folder%/data/scrolls/bam/sppr101a.bam~ ~override/%spellicon%A.BAM~   //missing scroll bams
                    END
               END
          END    //end valid file

@@ -1,3 +1,4 @@
+
 // SD: eliminate #bonecir.spl from IWDEE
 ACTION_IF GAME_IS ~iwdee~ BEGIN
   ACTION_IF FILE_EXISTS_IN_GAME "#bonecir.spl" BEGIN

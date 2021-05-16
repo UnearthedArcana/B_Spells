@@ -29,7 +29,7 @@
 //associate tiers with wands
 /*
 
-INCLUDE ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
+INCLUDE ~%folder%/lib/wand_lists/wand_tier_list.tpa~
 
  //something doesn't work...
 COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:

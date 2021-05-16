@@ -1,7 +1,9 @@
+
+
 ////////////////////////////////////////////////////////////////
 /////////////////         Components        ////////////////////
 ////////////////////////////////////////////////////////////////
-//INCLUDE ~%mod_folder%/lib/Setup_New_Wands.tpa~      //New Wands  ??? What's this doing here???
+//INCLUDE ~%folder%/lib/Setup_New_Wands.tpa~      //New Wands  ??? What's this doing here???
 
 
 
@@ -12,7 +14,7 @@
 
 //let's get potions on a list based on cost (and ~on dragmag 130)
 
-COPY ~%mod_folder%/data/arcane_crafting/potion/potion_list.2da~ ~override~  //unpopulated list
+COPY ~%folder%/data/arcane_crafting/potion/potion_list.2da~ ~override~  //unpopulated list
 
 APPEND ~potion_list.2da~ ~POTION_NAME%TAB%TIER%TAB%COST%TAB%FILE_NAME~     //adding labels (cuz may need to expand)
 
@@ -150,24 +152,24 @@ BUT_ONLY
 /////////////////         Craft Wand        ////////////////////
 ////////////////////////////////////////////////////////////////
 
-  COMPILE ~%mod_folder%/data/arcane_crafting/wand/bg/b_wand1.baf~
-  COMPILE ~%mod_folder%/data/arcane_crafting/wand/bg/b_wand1.d~
+  COMPILE ~%folder%/data/arcane_crafting/wand/bg/b_wand1.baf~
+  COMPILE ~%folder%/data/arcane_crafting/wand/bg/b_wand1.d~
 
-COPY ~%mod_folder%/data/arcane_crafting/wand/b_wand1.cre~ ~override~
+COPY ~%folder%/data/arcane_crafting/wand/b_wand1.cre~ ~override~
 
 ////////////////////////////////////////////////////////////////
 /////////////////      Recharge Wand        ////////////////////
 ////////////////////////////////////////////////////////////////
 
-COPY ~%mod_folder%/data/arcane_crafting/wand/b_rech1.spl~ ~override~
+COPY ~%folder%/data/arcane_crafting/wand/b_rech1.spl~ ~override~
   SAY NAME1 @115038//Recharge Wands
   SAY UNIDENTIFIED_DESC @115039
 
   
-  COMPILE ~%mod_folder%/data/arcane_crafting/wand/bg/b_rech1.baf~ ~override~
-  COMPILE ~%mod_folder%/data/arcane_crafting/wand/bg/b_rech1.d~ ~override~
+  COMPILE ~%folder%/data/arcane_crafting/wand/bg/b_rech1.baf~ ~override~
+  COMPILE ~%folder%/data/arcane_crafting/wand/bg/b_rech1.d~ ~override~
 
-COPY ~%mod_folder%/data/arcane_crafting/wand/b_rech1.cre~ ~override~
+COPY ~%folder%/data/arcane_crafting/wand/b_rech1.cre~ ~override~
 
 ////////////////////////////////////////////////////////////////
 /////////////////        Scribe Scroll      ////////////////////
@@ -175,18 +177,18 @@ COPY ~%mod_folder%/data/arcane_crafting/wand/b_rech1.cre~ ~override~
 ////////////////////////////////////////////////////////////////
 
 //Items: for all versions
-COPY ~%mod_folder%/data/arcane_crafting/scroll/b_scr01.bam~ ~override~  //NRD
-COPY ~%mod_folder%/data/arcane_crafting/scroll/b_scr01.itm~ ~override~
+COPY ~%folder%/data/arcane_crafting/scroll/b_scr01.bam~ ~override~  //NRD
+COPY ~%folder%/data/arcane_crafting/scroll/b_scr01.itm~ ~override~
   SAY NAME1 @115027//NRD
   SAY UNIDENTIFIED_DESC @115028
   
-COPY ~%mod_folder%/data/arcane_crafting/scroll/b_scr02.bam~ ~override~  //Chaos Shield
-COPY ~%mod_folder%/data/arcane_crafting/scroll/b_scr02.itm~ ~override~
+COPY ~%folder%/data/arcane_crafting/scroll/b_scr02.bam~ ~override~  //Chaos Shield
+COPY ~%folder%/data/arcane_crafting/scroll/b_scr02.itm~ ~override~
   SAY NAME1 @115029//CS
   SAY UNIDENTIFIED_DESC @115030
 
-COPY ~%mod_folder%/data/arcane_crafting/scroll/b_scr03.bam~ ~override~  //Improved Chaos Shield
-COPY ~%mod_folder%/data/arcane_crafting/scroll/b_scr03.itm~ ~override~
+COPY ~%folder%/data/arcane_crafting/scroll/b_scr03.bam~ ~override~  //Improved Chaos Shield
+COPY ~%folder%/data/arcane_crafting/scroll/b_scr03.itm~ ~override~
   SAY NAME1 @115031//ICS
   SAY UNIDENTIFIED_DESC @115032
   
@@ -194,26 +196,26 @@ COPY ~%mod_folder%/data/arcane_crafting/scroll/b_scr03.itm~ ~override~
 /////////////////        Scribe Scroll      ////////////////////
 /////////////////         Just Gold         ////////////////////
 ////////////////////////////////////////////////////////////////
-COPY ~%mod_folder%/data/arcane_crafting/scroll/b_scrib.spl~ ~override~   //Scribe Spl
+COPY ~%folder%/data/arcane_crafting/scroll/b_scrib.spl~ ~override~   //Scribe Spl
   SAY NAME1 @115003//Scribe Scroll
   SAY UNIDENTIFIED_DESC @115017
 
 
-COMPILE ~%mod_folder%/data/arcane_crafting/scroll/b_scrib.baf~ ~override~   //Scribe script
-COMPILE ~%mod_folder%/data/arcane_crafting/scroll/b_scrib.d~ ~override~     //Scribe dlg
-COPY ~%mod_folder%/data/arcane_crafting/scroll/b_scrib.cre~ ~override~      //scribe creature
+COMPILE ~%folder%/data/arcane_crafting/scroll/b_scrib.baf~ ~override~   //Scribe script
+COMPILE ~%folder%/data/arcane_crafting/scroll/b_scrib.d~ ~override~     //Scribe dlg
+COPY ~%folder%/data/arcane_crafting/scroll/b_scrib.cre~ ~override~      //scribe creature
 
 
 ////////////////////////////////////////////////////////////////
 /////////////////         Brew Potion       ////////////////////
 ////////////////////////////////////////////////////////////////
 //Tiers: http://baldursgate.wikia.com/wiki/Keen-Scentin%27_Concocter_of_Marvelous_Draughts#Concocter
-COPY ~%mod_folder%/data/arcane_crafting/potion/b_Brew1.spl~ ~override~
+COPY ~%folder%/data/arcane_crafting/potion/b_Brew1.spl~ ~override~
   SAY NAME1 @115025//Brew Potion
   SAY UNIDENTIFIED_DESC @115254
-COMPILE ~%mod_folder%/data/arcane_crafting/potion/b_Brew1.baf~ ~override~
-COMPILE ~%mod_folder%/data/arcane_crafting/potion/b_Brew1.d~ ~override~
-COPY ~%mod_folder%/data/arcane_crafting/potion/b_Brew1.cre~ ~override~
+COMPILE ~%folder%/data/arcane_crafting/potion/b_Brew1.baf~ ~override~
+COMPILE ~%folder%/data/arcane_crafting/potion/b_Brew1.d~ ~override~
+COPY ~%folder%/data/arcane_crafting/potion/b_Brew1.cre~ ~override~
   
   
 ///////////////////////////////////////////////////////////////
@@ -221,29 +223,29 @@ COPY ~%mod_folder%/data/arcane_crafting/potion/b_Brew1.cre~ ~override~
 //
 //1st level scribe scroll for mage only
 //1st level scribe scroll for mage only
-COPY ~%mod_folder%/data/arcane_crafting/QDSCRCK.spl~ ~override~  //craft mage only
-COPY ~%mod_folder%/data/arcane_crafting/QDSCRCK.EFF~ ~override~  //craft mage only
-COPY ~%mod_folder%/data/arcane_crafting/b_ic1.spl~ ~override~  //craft mage only
+COPY ~%folder%/data/arcane_crafting/QDSCRCK.spl~ ~override~  //craft mage only
+COPY ~%folder%/data/arcane_crafting/QDSCRCK.EFF~ ~override~  //craft mage only
+COPY ~%folder%/data/arcane_crafting/b_ic1.spl~ ~override~  //craft mage only
   SAY NAME1 @115255//Craft item
   SAY UNIDENTIFIED_DESC @115256
 
-COPY ~%mod_folder%/data/arcane_crafting/b_ic10.2da~ ~override~  //craft mage only
-COPY ~%mod_folder%/data/arcane_crafting/b_ic11.2da~ ~override~  //craft mage only
-COPY ~%mod_folder%/data/arcane_crafting/b_ic12.2da~ ~override~  //craft mage only
-COPY ~%mod_folder%/data/arcane_crafting/b_ic13.2da~ ~override~  //craft mage only
+COPY ~%folder%/data/arcane_crafting/b_ic10.2da~ ~override~  //craft mage only
+COPY ~%folder%/data/arcane_crafting/b_ic11.2da~ ~override~  //craft mage only
+COPY ~%folder%/data/arcane_crafting/b_ic12.2da~ ~override~  //craft mage only
+COPY ~%folder%/data/arcane_crafting/b_ic13.2da~ ~override~  //craft mage only
 
-COPY ~%mod_folder%/data/arcane_crafting/b_ic2.spl~ ~override~  //craft sor only
-COPY ~%mod_folder%/data/arcane_crafting/b_ic3.spl~ ~override~  //craft sor only
+COPY ~%folder%/data/arcane_crafting/b_ic2.spl~ ~override~  //craft sor only
+COPY ~%folder%/data/arcane_crafting/b_ic3.spl~ ~override~  //craft sor only
   SAY NAME1 @115255//Craft item
   SAY UNIDENTIFIED_DESC @115256
-COPY ~%mod_folder%/data/arcane_crafting/b_ic3.eff~ ~override~  //craft sor only
-COPY ~%mod_folder%/data/arcane_crafting/b_ic30.2da~ ~override~  //craft sor only
-COPY ~%mod_folder%/data/arcane_crafting/b_ic31.2da~ ~override~  //craft sor only
-COPY ~%mod_folder%/data/arcane_crafting/b_ic32.2da~ ~override~  //craft sor only
+COPY ~%folder%/data/arcane_crafting/b_ic3.eff~ ~override~  //craft sor only
+COPY ~%folder%/data/arcane_crafting/b_ic30.2da~ ~override~  //craft sor only
+COPY ~%folder%/data/arcane_crafting/b_ic31.2da~ ~override~  //craft sor only
+COPY ~%folder%/data/arcane_crafting/b_ic32.2da~ ~override~  //craft sor only
 //adding craft wands to mages and sorcerers
 
 	//adding craft wands to mages and sorcerers
-INCLUDE ~%mod_folder%/data/core/tnb_kit_list.tpa~ 
+INCLUDE ~%folder%/data/core/tnb_kit_list.tpa~
 	//mages get scribe scroll, potion and craft wand
 ACTION_PHP_EACH tnb_kit_list AS kitinfo => kitclab BEGIN 
 	ACTION_IF (FILE_EXISTS_IN_GAME ~%kitclab%.2da~) BEGIN 

@@ -18,7 +18,7 @@ ACTION_IF FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_ENTROPY_SHIELD~) BEGIN //I
 //Prob have to do it via 177
 
 //Entropy immunity SR neutral
-INCLUDE ~%mod_folder%/lib/entropy_immunity.tpa~
+INCLUDE ~%folder%/lib/entropy_immunity.tpa~
 
 
 END//End Entropy Shield installed
@@ -37,25 +37,25 @@ END//End Entropy Shield installed
 ACTION_PHP_EACH prot AS block => rock BEGIN
     //1st level immune
   ACTION_IF (~%rock%~ STRING_EQUAL ~lev_one~) BEGIN
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1~ ~206, "-1", "-10", "%block%", "-10", "-10", "same" => 1
       206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1~
   END
     //2nd level immune
   ACTION_IF (~%rock%~ STRING_EQUAL ~lev_two~) BEGIN
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_TWO", "-10", "-10", "same" => 1~ ~206, "-1", "-10", "%block%", "-10", "-10", "same" => 1
       206, "-1", "-10", "LEV_TWO", "-10", "-10", "same" => 1~
   END
     //3rd level immune
   ACTION_IF (~%rock%~ STRING_EQUAL ~lev_three~) BEGIN
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_THR", "-10", "-10", "same" => 1~ ~206, "-1", "-10", "%block%", "-10", "-10", "same" => 1
       206, "-1", "-10", "LEV_THR", "-10", "-10", "same" => 1~
   END
     //4th level immune
   ACTION_IF (~%rock%~ STRING_EQUAL ~lev_four~) BEGIN
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_FOU", "-10", "-10", "same" => 1~ ~206, "-1", "-10", "%block%", "-10", "-10", "same" => 1
       206, "-1", "-10", "LEV_FOU", "-10", "-10", "same" => 1~
   END
@@ -63,7 +63,7 @@ ACTION_PHP_EACH prot AS block => rock BEGIN
     //Fear removal
   ACTION_IF (~%rock%~ STRING_EQUAL ~fear~) BEGIN
     //Fear spells
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~ ~321, "-10", "-10", "%block%", 1, 0, "same" => 1
       321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~
   END
@@ -71,7 +71,7 @@ ACTION_PHP_EACH prot AS block => rock BEGIN
       //Fear protect
   ACTION_IF (~%rock%~ STRING_EQUAL ~fear~) BEGIN
     //Fear spells
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_P", 1, 0, "same" => 1~ ~321, "-10", "-10", "%block%", 1, 0, "same" => 1
       321, "-10", "-10", "FEAR_P", 1, 0, "same" => 1~
   END
@@ -80,26 +80,26 @@ ACTION_PHP_EACH prot AS block => rock BEGIN
     //Berserk   Blood Rage has a unique icon that needs to be protected against!!! Is this done???
   ACTION_IF (~%rock%~ STRING_EQUAL ~rage~) BEGIN
     //Beserk removal and immunity
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1~ ~321, "0", "0", "%block%",  "-10", "-10", "same" => 1
       321, "0", "0", "RAGE_R",  "-10", "-10", "same" => 1~
       REPLACE_TEXTUALLY ~324, "0", "0", "RAGE_P",  "-10", "-10", "same" => 1~ ~324, "0", "0", "%block%",  "-10", "-10", "same" => 1
       324, "0", "0", "RAGE_P",  "-10", "-10", "same" => 1~
   END
   ACTION_IF (~%rock%~ STRING_EQUAL ~blood~) BEGIN   //blood rage specific removes
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~321, "-10", "-10", "EMO_R", 1,"-10", "same" => 1~ ~321, "-10", "-10", "%block%", 1,"-10", "same" => 1
       321, "-10", "-10", "EMO_R", 1,"-10", "same" => 1~
       REPLACE_TEXTUALLY ~318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1~ ~318, "-10", "-10", "%block%", "-10","-10", "same" => 1
       318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1~
   END
   ACTION_IF (~%rock%~ STRING_EQUAL ~entropy~) BEGIN
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~318, "-10", "-10", "ENT_P", "-10","-10", "same" => 1~ ~318, "-10", "-10", "%block%", "-10","-10", "same" => 1
       318, "-10", "-10", "ENT_P", "-10","-10", "same" => 1~
   END
   ACTION_IF (~%rock%~ STRING_EQUAL ~entropy_pro~) BEGIN
-    COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+    COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~83, "-10", 314, "", "-10","-10", "same" => 1~ ~83, "-10", "%block%", "", "-10","-10", "same" => 1
       83, "-10", 314, "", "-10","-10", "same" => 1~
   END
@@ -114,7 +114,7 @@ END
 
 
 //Remove Gunk
-COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+COPY ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
       REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_R", 1, 0, "same" => 1~ ~~
       REPLACE_TEXTUALLY ~321, "-10", "-10", "FEAR_P", 1, 0, "same" => 1~ ~~
       REPLACE_TEXTUALLY ~206, "-1", "-10", "LEV_ONE", "-10", "-10", "same" => 1~ ~~
@@ -127,7 +127,7 @@ COPY ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~ ~%mod_folder%/lib/bg2fp_eff
       REPLACE_TEXTUALLY ~318, "-10", "-10", "EMO_P", "-10","-10", "same" => 1~ ~~
       REPLACE_TEXTUALLY ~318, "-10", "-10", "ENT_P", "-10","-10", "same" => 1~ ~~
 //Reinclude effect_batches
-REINCLUDE ~%mod_folder%/lib/bg2fp_effect_batches_fnp.tpa~
+REINCLUDE ~%folder%/lib/bg2fp_effect_batches_fnp.tpa~
 
 
 ////////////////////////////////////////////////////////////////////////////////

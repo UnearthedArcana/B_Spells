@@ -27,7 +27,7 @@ LAM b_spells_settings_bless  //Bless options
    END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   READ_LONG  0x0034 level //spell level
-ADD_SPELL ~%mod_folder%/data/rev_spells/bless/SPPR101.spl~ 1 %level% ~CLERIC_BLESS~ //
+ADD_SPELL ~%folder%/data/rev_spells/bless/SPPR101.spl~ 1 %level% ~CLERIC_BLESS~ //
         SAY NAME1 @10110046
         SAY NAME2 @10110046
         SAY UNIDENTIFIED_DESC @10110047
@@ -38,43 +38,43 @@ ADD_SPELL ~%mod_folder%/data/rev_spells/bless/SPPR101.spl~ 1 %level% ~CLERIC_BLE
    END
 //secondary spells
 //normal bless
-COPY ~%mod_folder%/data/rev_spells/bless/B_BLESA.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_BLESA.spl~ ~override~   //
         SAY NAME1 @10110046
         SAY NAME2 @10110046
-COPY ~%mod_folder%/data/rev_spells/bless/B_BLESB.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_BLESB.spl~ ~override~   //
         SAY NAME1 @10110046
         SAY NAME2 @10110046
-COPY ~%mod_folder%/data/rev_spells/bless/B_BLESC.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_BLESC.spl~ ~override~   //
         SAY NAME1 @10110046
         SAY NAME2 @10110046
-COPY ~%mod_folder%/data/rev_spells/bless/B_BLESD.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_BLESD.spl~ ~override~   //
         SAY NAME1 @10110046
         SAY NAME2 @10110046
-COPY ~%mod_folder%/data/rev_spells/bless/B_BLESE.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_BLESE.spl~ ~override~   //
         SAY NAME1 @10110046
         SAY NAME2 @10110046
 //bless weapon
-COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPA.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_WEAPA.spl~ ~override~   //
         SAY NAME1 @10110048
         SAY NAME2 @10110048
-COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPB.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_WEAPB.spl~ ~override~   //
         SAY NAME1 @10110048
         SAY NAME2 @10110048
-COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPC.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_WEAPC.spl~ ~override~   //
         SAY NAME1 @10110048
         SAY NAME2 @10110048
-COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPD.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_WEAPD.spl~ ~override~   //
         SAY NAME1 @10110048
         SAY NAME2 @10110048
-COPY ~%mod_folder%/data/rev_spells/bless/B_WEAPE.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/B_WEAPE.spl~ ~override~   //
         SAY NAME1 @10110048
         SAY NAME2 @10110048
 //2das
-COPY ~%mod_folder%/data/rev_spells/bless/SPPR101A.2da~ ~override~   //
-COPY ~%mod_folder%/data/rev_spells/bless/SPPR101B.2da~ ~override~   //
-COPY ~%mod_folder%/data/rev_spells/bless/SPPR101C.2da~ ~override~   //
-COPY ~%mod_folder%/data/rev_spells/bless/SPPR101D.2da~ ~override~   //
-COPY ~%mod_folder%/data/rev_spells/bless/SPPR101E.2da~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/SPPR101A.2da~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/SPPR101B.2da~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/SPPR101C.2da~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/SPPR101D.2da~ ~override~   //
+COPY ~%folder%/data/rev_spells/bless/SPPR101E.2da~ ~override~   //
 
 
 END //end total conversion
@@ -180,7 +180,7 @@ LAM b_spells_settings_command  //Command options
    END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   READ_LONG  0x0034 level //spell level
-ADD_SPELL ~%mod_folder%/data/rev_spells/command/SPPR102.spl~ 1 %level% ~CLERIC_COMMAND~ //
+ADD_SPELL ~%folder%/data/rev_spells/command/SPPR102.spl~ 1 %level% ~CLERIC_COMMAND~ //
         SAY NAME1 @10110100
         SAY NAME2 @10110100
         SAY UNIDENTIFIED_DESC @10110101
@@ -199,18 +199,18 @@ ADD_SPELL ~%mod_folder%/data/rev_spells/command/SPPR102.spl~ 1 %level% ~CLERIC_C
   END      //
 
 //2da
-COPY ~%mod_folder%/data/rev_spells/command/SPPR102A.2da~ ~override/%spell_res%A.2da~   //
+COPY ~%folder%/data/rev_spells/command/SPPR102A.2da~ ~override/%spell_res%A.2da~   //
 
 //secondary spells
-COPY ~%mod_folder%/data/rev_spells/command/B_DIE.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/command/B_DIE.spl~ ~override~   //
         SAY NAME1 @10110102
         SAY NAME2 @10110102
 
-COPY ~%mod_folder%/data/rev_spells/command/B_FLEE.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/command/B_FLEE.spl~ ~override~   //
         SAY NAME1 @10110103
         SAY NAME2 @10110103
 
-COPY ~%mod_folder%/data/rev_spells/command/B_QUIET.spl~ ~override~   //
+COPY ~%folder%/data/rev_spells/command/B_QUIET.spl~ ~override~   //
         SAY NAME1 @10110104
         SAY NAME2 @10110104
 
@@ -230,7 +230,7 @@ LAM b_spells_settings_command  //Command options
    END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   READ_LONG  0x0034 level //spell level
-ADD_SPELL ~%mod_folder%/data/rev_spells/det_evil/SPPR104.spl~ 1 %level% ~CLERIC_DETECT_EVIL~ //
+ADD_SPELL ~%folder%/data/rev_spells/det_evil/SPPR104.spl~ 1 %level% ~CLERIC_DETECT_EVIL~ //
         SAY NAME1 @10110200
         SAY NAME2 @10110200
         SAY UNIDENTIFIED_DESC @10110201
@@ -240,13 +240,13 @@ ADD_SPELL ~%mod_folder%/data/rev_spells/det_evil/SPPR104.spl~ 1 %level% ~CLERIC_
          STR_VAR level_text = EVAL ~%level%~
    END
 //effs
-  COPY ~%mod_folder%/data/rev_spells/det_evil/B_DEVL1.eff~ ~override~   //
-  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL1.eff~ ~override~   //
-  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL2.eff~ ~override~   //
-  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL3.eff~ ~override~   //
-  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL4.eff~ ~override~   //
-  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL5.eff~ ~override~   //
-  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL6.eff~ ~override~   //
-  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL7.eff~ ~override~   //
-  COPY ~%mod_folder%/data/rev_spells/det_evil/B_EVIL8.eff~ ~override~   //
+  COPY ~%folder%/data/rev_spells/det_evil/B_DEVL1.eff~ ~override~   //
+  COPY ~%folder%/data/rev_spells/det_evil/B_EVIL1.eff~ ~override~   //
+  COPY ~%folder%/data/rev_spells/det_evil/B_EVIL2.eff~ ~override~   //
+  COPY ~%folder%/data/rev_spells/det_evil/B_EVIL3.eff~ ~override~   //
+  COPY ~%folder%/data/rev_spells/det_evil/B_EVIL4.eff~ ~override~   //
+  COPY ~%folder%/data/rev_spells/det_evil/B_EVIL5.eff~ ~override~   //
+  COPY ~%folder%/data/rev_spells/det_evil/B_EVIL6.eff~ ~override~   //
+  COPY ~%folder%/data/rev_spells/det_evil/B_EVIL7.eff~ ~override~   //
+  COPY ~%folder%/data/rev_spells/det_evil/B_EVIL8.eff~ ~override~   //
 END // Detect Evil Total

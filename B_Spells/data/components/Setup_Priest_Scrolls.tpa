@@ -57,10 +57,10 @@ COPY_EXISTING_REGEXP GLOB ~SPPR.[^abcdew]*\.SPL~ ~override~  //addspelled priest
                        END
 	               // Add to gen priest list
                        INNER_ACTION BEGIN
-                            INCLUDE ~%mod_folder%/lib/scroll_lists/priest_list.tpa~ //item to gen type   (for placement)
-                            INCLUDE ~%mod_folder%/lib/scroll_lists/spell_item_list.tpa~  //spell to item (for ref)
-                            INCLUDE ~%mod_folder%/lib/scroll_lists/type_level_priest.tpa~  //type_level, item  (for placement)
-                            COPY ~%mod_folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
+                            INCLUDE ~%folder%/lib/scroll_lists/priest_list.tpa~ //item to gen type   (for placement)
+                            INCLUDE ~%folder%/lib/scroll_lists/spell_item_list.tpa~  //spell to item (for ref)
+                            INCLUDE ~%folder%/lib/scroll_lists/type_level_priest.tpa~  //type_level, item  (for placement)
+                            COPY ~%folder%/data/scrolls/priest_1/b_ps101.itm~ ~override/%gen%.ITM~   //Level 1 universal as generic.  Modify all others after
                                    WRITE_LONG 0x0008 ~%name%~
                                    WRITE_LONG 0x000c ~%name%~
                                    WRITE_LONG 0x0054 ~%desc%~
@@ -100,7 +100,7 @@ END     //php
 
 //it seems that BG2EE (At least!) doesn't have all priest scroll bams.  Add them here if needed
 ACTION_IF GAME_IS ~bg2ee~ THEN BEGIN  //missing scroll bams in bg2ee
-      COPY ~%mod_folder%/data/scrolls/bam/missing~ ~override~   //missing scroll bams
+      COPY ~%folder%/data/scrolls/bam/missing~ ~override~   //missing scroll bams
 END
 
 //if bam has no pres ref (e.g. say a custom spl where the modder didn't supply a scroll bam)
@@ -110,7 +110,7 @@ ACTION_PHP_EACH spell_item AS land => clan BEGIN
               READ_ASCII 0x0076 spellicon (7)  //needed?
               PATCH_IF !FILE_EXISTS_IN_GAME ~%spellicon%A.BAM~ BEGIN
                    INNER_ACTION BEGIN
-                        COPY ~%mod_folder%/data/scrolls/bam/sppr101a.bam~ ~override/%spellicon%A.BAM~   //missing scroll bams
+                        COPY ~%folder%/data/scrolls/bam/sppr101a.bam~ ~override/%spellicon%A.BAM~   //missing scroll bams
                    END
               END
 END //php

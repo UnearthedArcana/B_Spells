@@ -45,14 +45,14 @@ ACTION_IF (%animal_eyes% > 0) BEGIN  //
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
 //sounds
-COPY ~%mod_folder%/spheres/spells/death/#EFF_E04.wav~ ~override~ // Already copied over (at least) twice, but just in case...
-COPY ~%mod_folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
+COPY ~%folder%/spheres/spells/death/#EFF_E04.wav~ ~override~ // Already copied over (at least) twice, but just in case...
+COPY ~%folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 //Spell itself
-ADD_SPELL ~%mod_folder%/spheres/spells/animal/b_c102.spl~ 1 1 ~CLERIC_ANIMAL_EYES~ //
+ADD_SPELL ~%folder%/spheres/spells/animal/b_c102.spl~ 1 1 ~CLERIC_ANIMAL_EYES~ //
         SAY NAME1 @51101
         SAY NAME2 @51101
         SAY UNIDENTIFIED_DESC @51102
@@ -89,11 +89,11 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/spheres/spells/animal/b_c102a.bam~
-            pathB         = ~%mod_folder%/spheres/spells/animal/b_c102b.bam~
-            pathC         = ~%mod_folder%/spheres/spells/animal/b_c102c.bam~
-            pathP         = ~%mod_folder%/data/port_icons/priest_1/B_C102P.bam~
-            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+            pathA         = ~%folder%/spheres/spells/animal/b_c102a.bam~
+            pathB         = ~%folder%/spheres/spells/animal/b_c102b.bam~
+            pathC         = ~%folder%/spheres/spells/animal/b_c102c.bam~
+            pathP         = ~%folder%/data/port_icons/priest_1/B_C102P.bam~
+            scroll_path   = ~%folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
     RET    port_icon
            scroll_name
            iconA
@@ -164,10 +164,10 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_P107a.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_P107b.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_P107c.bam~
-            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_P107a.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_P107b.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_P107c.bam~
+            scroll_path   = ~%folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
     RET    scroll_name
            iconA
            iconB
@@ -219,7 +219,7 @@ ACTION_IF (%b_bind_priest% > 0) BEGIN  //
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/mage_2/B_WZ202.spl~ 1 1 ~CLERIC_BINDING~ //
+ADD_SPELL ~%folder%/data/new_spells/mage_2/B_WZ202.spl~ 1 1 ~CLERIC_BINDING~ //
         SAY NAME1 @53029
         SAY NAME2 @53029
         SAY UNIDENTIFIED_DESC @53030
@@ -251,19 +251,19 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 
 //subspells
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202A.spl~ ~override/%spell_res%A.spl~ //1st subspell
+COPY ~%folder%/data/new_spells/mage_2/B_WZ202A.spl~ ~override/%spell_res%A.spl~ //1st subspell
         SAY NAME1 @68047
         SAY NAME2 @68047
   LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%B~   END      // Cast next subspell
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202B.spl~ ~override/%spell_res%B.spl~ //2nd subspell
+COPY ~%folder%/data/new_spells/mage_2/B_WZ202B.spl~ ~override/%spell_res%B.spl~ //2nd subspell
         SAY NAME1 @68047
         SAY NAME2 @68047
   LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%C~   END      // Cast next subspell
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202C.spl~ ~override/%spell_res%C.spl~ //3rd subspell
+COPY ~%folder%/data/new_spells/mage_2/B_WZ202C.spl~ ~override/%spell_res%C.spl~ //3rd subspell
         SAY NAME1 @68047
         SAY NAME2 @68047
   LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%D~   END      // Cast next subspell
-COPY ~%mod_folder%/data/new_spells/mage_2/B_WZ202D.spl~ ~override/%spell_res%D.spl~ //last subspell
+COPY ~%folder%/data/new_spells/mage_2/B_WZ202D.spl~ ~override/%spell_res%D.spl~ //last subspell
         SAY NAME1 @68047
         SAY NAME2 @68047
 
@@ -288,11 +288,11 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/mage_1/B_WZ202A.bam~
-            pathB         = ~%mod_folder%/data/icons/mage_1/B_WZ202b.bam~
-            pathC         = ~%mod_folder%/data/icons/mage_1/B_WZ202c.bam~
-            pathP         = ~%mod_folder%/data/port_icons/mage_1/B_WZ202P.bam~
-            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/mage_1/B_WZ202A.bam~
+            pathB         = ~%folder%/data/icons/mage_1/B_WZ202b.bam~
+            pathC         = ~%folder%/data/icons/mage_1/B_WZ202c.bam~
+            pathP         = ~%folder%/data/port_icons/mage_1/B_WZ202P.bam~
+            scroll_path   = ~%folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
     RET    port_icon
            scroll_name
            iconA
@@ -341,13 +341,13 @@ ACTION_IF (%b_bless_water% > 0) BEGIN  //
 ///////////////////////////////////////////////
 
 //effs
-COPY ~%mod_folder%/data/new_spells/priest_1/B_P101.eff~ ~override~
+COPY ~%folder%/data/new_spells/priest_1/B_P101.eff~ ~override~
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/priest_1/B_P101.spl~ 1 1 ~CLERIC_BLESS_WATER~ //
+ADD_SPELL ~%folder%/data/new_spells/priest_1/B_P101.spl~ 1 1 ~CLERIC_BLESS_WATER~ //
         SAY NAME1 @50000
         SAY NAME2 @50000
         SAY UNIDENTIFIED_DESC @50001
@@ -363,7 +363,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
       STR_VAR resource = EVAL ~%spell_res%D~
   END      //
 //itm
-COPY ~%mod_folder%/data/new_spells/priest_1/B_P101.itm~ ~override/%spell_res%D.itm~
+COPY ~%folder%/data/new_spells/priest_1/B_P101.itm~ ~override/%spell_res%D.itm~
         SAY NAME1 @50002
         SAY NAME2 @50002
         SAY UNIDENTIFIED_DESC @50003
@@ -398,9 +398,9 @@ COPY ~%mod_folder%/data/new_spells/priest_1/B_P101.itm~ ~override/%spell_res%D.i
   END      //
 //secspells
 //harm unnaturals
-COPY ~%mod_folder%/data/new_spells/priest_1/B_P101A.spl~ ~override/%spell_res%A.spl~  //hurtspell
+COPY ~%folder%/data/new_spells/priest_1/B_P101A.spl~ ~override/%spell_res%A.spl~  //hurtspell
 //heal naturals
-COPY ~%mod_folder%/data/new_spells/priest_1/B_P101B.spl~ ~override/%spell_res%B.spl~  //healspell
+COPY ~%folder%/data/new_spells/priest_1/B_P101B.spl~ ~override/%spell_res%B.spl~  //healspell
 
 ////////////////////////////////
 //////Add Icons and Projectiles:
@@ -418,10 +418,10 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/b_p101a.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/b_p101b.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/b_p101c.bam~
-            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/b_p101a.bam~
+            pathB         = ~%folder%/data/icons/priest_1/b_p101b.bam~
+            pathC         = ~%folder%/data/icons/priest_1/b_p101c.bam~
+            scroll_path   = ~%folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
     RET    scroll_name
            iconA
            iconB
@@ -512,11 +512,11 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_P102A.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_P102B.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_P102C.bam~
-            pathP         = ~%mod_folder%/data/port_icons/priest_1/B_P102P.bam~
-            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_P102A.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_P102B.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_P102C.bam~
+            pathP         = ~%folder%/data/port_icons/priest_1/B_P102P.bam~
+            scroll_path   = ~%folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
     RET    port_icon
            scroll_name
            iconA
@@ -591,11 +591,11 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_P108A.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_P108B.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_P108C.bam~
-            pathP         = ~%mod_folder%/data/port_icons/priest_1/B_P108P.bam~
-            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_P108A.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_P108B.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_P108C.bam~
+            pathP         = ~%folder%/data/port_icons/priest_1/B_P108P.bam~
+            scroll_path   = ~%folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
     RET    port_icon
            scroll_name
            iconA
@@ -670,11 +670,11 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_P103A.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_P103B.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_P103C.bam~
-            pathP         = ~%mod_folder%/data/port_icons/priest_1/B_P103P.bam~
-            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_P103A.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_P103B.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_P103C.bam~
+            pathP         = ~%folder%/data/port_icons/priest_1/B_P103P.bam~
+            scroll_path   = ~%folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
     RET    port_icon
            scroll_name
            iconA
@@ -752,11 +752,11 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_P104A.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_P104B.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_P104C.bam~
-            pathP         = ~%mod_folder%/data/port_icons/priest_1/B_P104P.bam~
-            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_P104A.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_P104B.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_P104C.bam~
+            pathP         = ~%folder%/data/port_icons/priest_1/B_P104P.bam~
+            scroll_path   = ~%folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
     RET    port_icon
            scroll_name
            iconA
@@ -828,10 +828,10 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_P105a.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_P105b.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_P105c.bam~
-            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_P105a.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_P105b.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_P105c.bam~
+            scroll_path   = ~%folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
     RET    scroll_name
            iconA
            iconB
@@ -905,11 +905,11 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_P106A.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_P106B.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_P106C.bam~
-            pathP         = ~%mod_folder%/data/port_icons/priest_1/B_P106P.bam~
-            scroll_path   = ~%mod_folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_P106A.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_P106B.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_P106C.bam~
+            pathP         = ~%folder%/data/port_icons/priest_1/B_P106P.bam~
+            scroll_path   = ~%folder%/data/new_spells/mage_1/D5_WIDI.itm~   //blank scroll
     RET    port_icon
            scroll_name
            iconA
@@ -988,10 +988,10 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_ORISa.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_ORISb.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_ORISc.bam~
-            scroll_path   = ~%mod_folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_ORISa.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_ORISb.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_ORISc.bam~
+            scroll_path   = ~%folder%/data/scrolls/generic/B_W103.itm~   //blank scroll
     RET    scroll_name
            iconA
            iconB

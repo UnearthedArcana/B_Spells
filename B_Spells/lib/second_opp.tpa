@@ -15,7 +15,7 @@ DEFINE_PATCH_FUNCTION SECOND_OPP
             law               = "-1" //1 = Prohibit Lawful priests (too)(NO OTHER VALUES ACCEPTED) TEST
             lcneutral         = "-1" //1 = Prohibit Morally neutral priests (too)(NO OTHER VALUES ACCEPTED) TEST
   STR_VAR   
-  
+
   BEGIN
 
 //Additional restricted schools if specified

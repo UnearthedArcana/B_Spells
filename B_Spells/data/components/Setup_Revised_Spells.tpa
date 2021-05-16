@@ -300,8 +300,8 @@ ACTION_IF (%chill_affect_undead_patch% > 0) BEGIN  //
 ACTION_IF (%chill_affect_undead_patch% = 1) BEGIN  //
       ACTION_IF (!GAME_IS ~iwdee~) AND (!FILE_EXISTS_IN_GAME ~dvimhere.mrk~) THEN BEGIN    //Already exists in iwdee--but SR overwrites
               //fear spl
-COPY ~%mod_folder%/data/revised_spells/chill_touch/SPWI117C.spl~ ~override/%spell_res%C.spl~  //removes protection
-COPY ~%mod_folder%/data/revised_spells/chill_touch/SPWI117A.spl~ ~override/%spell_res%A.spl~  //applies horror
+COPY ~%folder%/data/revised_spells/chill_touch/SPWI117C.spl~ ~override/%spell_res%C.spl~  //removes protection
+COPY ~%folder%/data/revised_spells/chill_touch/SPWI117A.spl~ ~override/%spell_res%A.spl~  //applies horror
 //now, let's modify the actual spell
    COPY_EXISTING_REGEXP GLOB ~%spell_res%.spl~ ~override~
      PATCH_IF (~%SOURCE_SIZE%~ > ~0x71~) BEGIN
@@ -781,9 +781,9 @@ LAF RES_NUM_OF_SPELL_NAME
   STR_VAR spell_name = ~CLERIC_HOLD_ANIMAL~
   RET spell_res
 END
-COPY_EXISTING ~%spell_res%.spl~ ~backup/%mod_folder%/workspace/B_HANIM.SPL~
+COPY_EXISTING ~%spell_res%.spl~ ~backup/%folder%/workspace/B_HANIM.SPL~
 
-LAF ADD_SPELL_EX INT_VAR type = 1 level = EVAL ~%hold_animal_lev%~  STR_VAR file = EVAL ~backup/%mod_folder%/workspace/B_HANIM.SPL~ name = ~CLERIC_HOLD_ANIMAL~ RET DEST_FILE END
+LAF ADD_SPELL_EX INT_VAR type = 1 level = EVAL ~%hold_animal_lev%~  STR_VAR file = EVAL ~backup/%folder%/workspace/B_HANIM.SPL~ name = ~CLERIC_HOLD_ANIMAL~ RET DEST_FILE END
    COPY_EXISTING ~%DEST_FILE%~ ~override~
    LPF ALTER_SPELL_TYPE INT_VAR   spell_level = EVAL ~%hold_animal_lev%~ STR_VAR level_text = EVAL ~%hold_animal_lev%~ END
    

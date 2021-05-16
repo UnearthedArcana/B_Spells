@@ -115,7 +115,7 @@ ACTION_IF (%b_acid_splash_cantrip_0% > 0) BEGIN  //
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-COPY ~%mod_folder%/data/cantrips/arcane/b_wc102.spl~  ~override~
+COPY ~%folder%/data/cantrips/arcane/b_wc102.spl~  ~override~
         SAY NAME1 @200006001
         SAY NAME2 @200006001
         SAY UNIDENTIFIED_DESC @200006002
@@ -168,19 +168,19 @@ ACTION_IF (%b_audible_glam_cantrip_0% > 0) BEGIN  //
 ///////////////////////////////////////////////
 
 //sounds
-COPY ~%mod_folder%/data/cantrips/arcane/b_wisp1.WAV~ ~override~   //sound
-COPY ~%mod_folder%/data/cantrips/arcane/b_wisp2.WAV~ ~override~   //sound
-COPY ~%mod_folder%/data/cantrips/arcane/b_wisp3.WAV~ ~override~   //sound
-COPY ~%mod_folder%/data/cantrips/arcane/b_wisp4.WAV~ ~override~   //sound
-COPY ~%mod_folder%/data/cantrips/arcane/b_wisp5.WAV~ ~override~   //sound
-COPY ~%mod_folder%/data/cantrips/arcane/b_wisp6.WAV~ ~override~   //sound
-COPY ~%mod_folder%/data/cantrips/arcane/b_wisp7.WAV~ ~override~   //sound
+COPY ~%folder%/data/cantrips/arcane/b_wisp1.WAV~ ~override~   //sound
+COPY ~%folder%/data/cantrips/arcane/b_wisp2.WAV~ ~override~   //sound
+COPY ~%folder%/data/cantrips/arcane/b_wisp3.WAV~ ~override~   //sound
+COPY ~%folder%/data/cantrips/arcane/b_wisp4.WAV~ ~override~   //sound
+COPY ~%folder%/data/cantrips/arcane/b_wisp5.WAV~ ~override~   //sound
+COPY ~%folder%/data/cantrips/arcane/b_wisp6.WAV~ ~override~   //sound
+COPY ~%folder%/data/cantrips/arcane/b_wisp7.WAV~ ~override~   //sound
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-COPY ~%mod_folder%/data/cantrips/arcane/B_WC103.spl~  ~override~
+COPY ~%folder%/data/cantrips/arcane/B_WC103.spl~  ~override~
         SAY NAME1 @200009001
         SAY NAME2 @200009001
         SAY UNIDENTIFIED_DESC @200009002
@@ -296,7 +296,7 @@ ACTION_IF (%b_shad_dagger_cantrip_0% > 0) BEGIN  //
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-COPY  ~%mod_folder%/data/cantrips/arcane/B_WC005.spl~ ~override~
+COPY  ~%folder%/data/cantrips/arcane/B_WC005.spl~ ~override~
         SAY NAME1 @200009201
         SAY NAME2 @200009201
         SAY UNIDENTIFIED_DESC @200009202
@@ -356,14 +356,14 @@ ACTION_IF (%b_six_sense_cantrip% > 0) BEGIN  //
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-COPY  ~%mod_folder%/data/cantrips/arcane/B_WC005.spl~ ~override~
+COPY  ~%folder%/data/cantrips/arcane/B_WC005.spl~ ~override~
         SAY NAME1 @200009101
         SAY NAME2 @200009101
         SAY UNIDENTIFIED_DESC @200009102
 	SAY DESC @200009102
 
 //sec spell
-COPY ~%mod_folder%/data/cantrips/arcane/B_WC005D.spl~ ~override~
+COPY ~%folder%/data/cantrips/arcane/B_WC005D.spl~ ~override~
         SAY NAME1 @200009101
         SAY NAME2 @200009101
 
@@ -431,9 +431,9 @@ ACTION_IF (%b_chill_touch_cantrip_0% > 0) BEGIN  //
                 STR_VAR spell_name = ~WIZARD_CHILL_TOUCH~
                 RET spell_res
               END
- COPY_EXISTING ~%spell_res%.spl~ ~backup/%mod_folder%/workspace/B_TEMP.SPL~  //place it here for now
+ COPY_EXISTING ~%spell_res%.spl~ ~backup/%folder%/workspace/B_TEMP.SPL~  //place it here for now
  //add as an innate:
- LAF ADD_SPELL_EX INT_VAR type = 3  STR_VAR file = EVAL ~backup/%mod_folder%/workspace/B_TEMP.SPL~ name = ~WIZARD_CHILL_TOUCH~ RET DEST_FILE END
+ LAF ADD_SPELL_EX INT_VAR type = 3  STR_VAR file = EVAL ~backup/%folder%/workspace/B_TEMP.SPL~ name = ~WIZARD_CHILL_TOUCH~ RET DEST_FILE END
    COPY_EXISTING ~%DEST_FILE%~ ~override~
      LPF MAKE_CANTRIP STR_VAR spell_name = EVAL ~%DEST_FILE%~ END      //Default make_cantrip
      SPRINT old @200002003//old text
@@ -496,13 +496,13 @@ ACTION_IF (%b_drench_cantrip_0% > 0) BEGIN  //
 ///////////////////////////////////////////////
 
 //Animation
-COPY ~%mod_folder%/data/cantrips/arcane/b_wet.bam~ ~override~
+COPY ~%folder%/data/cantrips/arcane/b_wet.bam~ ~override~
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-COPY ~%mod_folder%/data/cantrips/arcane/b_wc003.spl~ ~override~   //Drench
+COPY ~%folder%/data/cantrips/arcane/b_wc003.spl~ ~override~   //Drench
         SAY NAME1 @200005001
         SAY NAME2 @200005001
         SAY UNIDENTIFIED_DESC @200005002
@@ -589,7 +589,7 @@ ACTION_IF (%b_drowse_cantrip_0% > 0) BEGIN  //
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-COPY ~%mod_folder%/data/cantrips/arcane/b_wc004.spl~  ~override~
+COPY ~%folder%/data/cantrips/arcane/b_wc004.spl~  ~override~
         SAY NAME1 @200003001
         SAY NAME2 @200003001
         SAY UNIDENTIFIED_DESC @200003002
@@ -648,7 +648,7 @@ ACTION_IF (%b_exp_retreat_cantrip_0% > 0) BEGIN  //
  ACTION_IF FILE_EXISTS_IN_GAME ~b_cant.itm~ BEGIN   //This spell is a cantrip if cantrips installed
   ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN   //any version of sr (not sure about details if SR installed--for now, not if SR installed)
    ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_EXPEDITIOUS_RETREAT~)) BEGIN  //if not IWDEE priest spells..from any source
-   COPY ~%mod_folder%/data/iwd_spells/wizard_1/b_w101.spl~ ~override~   //spell itself
+   COPY ~%folder%/data/iwd_spells/wizard_1/b_w101.spl~ ~override~   //spell itself
         SAY NAME1 @1260000
         SAY NAME2 @1260000
         SAY UNIDENTIFIED_DESC @1260001
@@ -748,14 +748,14 @@ ACTION_IF (%b_fire_bolt_cantrip_0% > 0) BEGIN  //
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
 //Projectile
-ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/D5_MSORN.pro~   //projectile
+ADD_PROJECTILE ~%folder%/data/cantrips/arcane/D5_MSORN.pro~   //projectile
 //bam
-COPY ~%mod_folder%/data/cantrips/arcane/SPMAGM04.bam~ ~override~   //animation
+COPY ~%folder%/data/cantrips/arcane/SPMAGM04.bam~ ~override~   //animation
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-COPY ~%mod_folder%/data/cantrips/arcane/d5_wfir.spl~  ~override~
+COPY ~%folder%/data/cantrips/arcane/d5_wfir.spl~  ~override~
         SAY NAME1 @200007001
         SAY NAME2 @200007001
         SAY UNIDENTIFIED_DESC @200007002
@@ -808,14 +808,14 @@ ACTION_IF (%b_frost_ray_cantrip_0% > 0) BEGIN  //
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
 //Projectile
-ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
+ADD_PROJECTILE ~%folder%/data/cantrips/arcane/b_1c101.pro~   //projectile
 //bam
-COPY ~%mod_folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
+COPY ~%folder%/data/cantrips/arcane/b_frost1.bam~ ~override~   //animation
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-COPY ~%mod_folder%/data/cantrips/arcane/b_wc001.spl~  ~override~
+COPY ~%folder%/data/cantrips/arcane/b_wc001.spl~  ~override~
         SAY NAME1 @200001001
         SAY NAME2 @200001001
         SAY UNIDENTIFIED_DESC @200001002
@@ -873,7 +873,7 @@ ACTION_IF (%b_jolt_cantrip_0% > 0) BEGIN  //
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-COPY ~%mod_folder%/data/cantrips/arcane/b_wc002.spl~  ~override~
+COPY ~%folder%/data/cantrips/arcane/b_wc002.spl~  ~override~
         SAY NAME1 @200002001
         SAY NAME2 @200002001
         SAY UNIDENTIFIED_DESC @200002002
@@ -926,14 +926,14 @@ ACTION_IF (%b_magic_bolt_cantrip_0% > 0) BEGIN  //
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
 //Projectile
-ADD_PROJECTILE ~%mod_folder%/data/cantrips/arcane/D5_MSBLU.pro~   //projectile
+ADD_PROJECTILE ~%folder%/data/cantrips/arcane/D5_MSBLU.pro~   //projectile
 //bam
-COPY ~%mod_folder%/data/cantrips/arcane/SPMAGM07.bam~ ~override~   //animation
+COPY ~%folder%/data/cantrips/arcane/SPMAGM07.bam~ ~override~   //animation
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-COPY ~%mod_folder%/data/cantrips/arcane/D5_WIIN.spl~  ~override~
+COPY ~%folder%/data/cantrips/arcane/D5_WIIN.spl~  ~override~
         SAY NAME1 @200008001
         SAY NAME2 @200008001
         SAY UNIDENTIFIED_DESC @200008002
@@ -1092,7 +1092,7 @@ COPY_EXISTING ~CLABPR01.2da~ ~override~ //Base cleric
               ~CLABPA01.2da~ ~override~ //Base paladin
               ~CLABDR01.2da~ ~override~ //Base Druid
               ~CLABRN01.2da~ ~override~ //Base Ranger
-              APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
+              APPEND_FILE ~%folder%/data/cantrips/cleric_cantrips.txt~
 
 //add to clab
 //thanks subtledoctor!
@@ -1110,32 +1110,32 @@ ACTION_PHP_EACH d5_base_spell_array AS bo => zo BEGIN
 	ACTION_IF (%zo% = 2) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 3) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 6) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 11) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 12) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%folder%/data/cantrips/cleric_cantrips.txt~
 	END
 	ACTION_IF (%zo% = 21) AND (FILE_EXISTS_IN_GAME ~%bo%.2da~) BEGIN
 		COPY_EXISTING ~%bo%.2da~ ~override~
 			LPM remove_blank_lines
-			APPEND_FILE ~%mod_folder%/data/cantrips/cleric_cantrips.txt~
+			APPEND_FILE ~%folder%/data/cantrips/cleric_cantrips.txt~
 	END
 END
 */
@@ -1143,7 +1143,7 @@ END
 //CONTINUE FROM HERE Create arrays based on fnp, tnb, and vanilla (for both addition and immunities)
 
 //cleric innates
-COPY ~%mod_folder%/data/cantrips/divine/b_prc01.spl~ ~override/b_pr01.spl~ //will need to add all cantrips to this and
+COPY ~%folder%/data/cantrips/divine/b_prc01.spl~ ~override/b_pr01.spl~ //will need to add all cantrips to this and
 
 
 

@@ -86,7 +86,7 @@ END //end cantrip add
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //splprot
-  INCLUDE ~%mod_folder%/lib/splprot_orisons.tpa~
+  INCLUDE ~%folder%/lib/splprot_orisons.tpa~
 
 ///////////////////////////////////////
 //////////// player modified variables
@@ -110,28 +110,28 @@ ACTION_IF (%b_magic_stone_cantrip_0% > 0) BEGIN  //
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
 //display bam
-COPY ~%mod_folder%/data/cantrips/divine/IBULL09.BAM~ ~override~
+COPY ~%folder%/data/cantrips/divine/IBULL09.BAM~ ~override~
 
 //the stones
-COPY ~%mod_folder%/data/cantrips/divine/B_STONE1.ITM~ ~override~
+COPY ~%folder%/data/cantrips/divine/B_STONE1.ITM~ ~override~
         SAY NAME1 @200009301
         SAY NAME2 @200009301
         SAY UNIDENTIFIED_DESC @200009303
 	SAY DESC @200009303
 
-COPY ~%mod_folder%/data/cantrips/divine/B_STONE2.ITM~ ~override~
+COPY ~%folder%/data/cantrips/divine/B_STONE2.ITM~ ~override~
         SAY NAME1 @200009301
         SAY NAME2 @200009301
         SAY UNIDENTIFIED_DESC @200009304
 	SAY DESC @200009304
 
-COPY ~%mod_folder%/data/cantrips/divine/B_STONE3.ITM~ ~override~
+COPY ~%folder%/data/cantrips/divine/B_STONE3.ITM~ ~override~
         SAY NAME1 @200009301
         SAY NAME2 @200009301
         SAY UNIDENTIFIED_DESC @200009305
 	SAY DESC @200009305
 
-COPY ~%mod_folder%/data/cantrips/divine/B_STONE4.ITM~ ~override~
+COPY ~%folder%/data/cantrips/divine/B_STONE4.ITM~ ~override~
         SAY NAME1 @200009301
         SAY NAME2 @200009301
         SAY UNIDENTIFIED_DESC @200009306
@@ -141,7 +141,7 @@ COPY ~%mod_folder%/data/cantrips/divine/B_STONE4.ITM~ ~override~
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-COPY ~%mod_folder%/data/cantrips/divine/B_P001.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/B_P001.spl~ ~override~
         SAY NAME1 @200009301
         SAY NAME2 @200009301
         SAY UNIDENTIFIED_DESC @200009302
@@ -205,7 +205,7 @@ ACTION_IF (%b_p_life_cantrip_0% > 0) BEGIN  //
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-COPY ~%mod_folder%/data/cantrips/divine/B_PC002.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/B_PC002.spl~ ~override~
         SAY NAME1 @109000101
         SAY NAME2 @109000101
         SAY UNIDENTIFIED_DESC @109000102
@@ -220,14 +220,14 @@ COPY ~%mod_folder%/data/cantrips/divine/B_PC002.spl~ ~override~
            LPF CLONE_EFFECT INT_VAR match_opcode = 326 parameter1 = 15 parameter2 = %chp_gr% multi_match = 5 STR_VAR match_resource = ~B_PC002C~ resource = ~B_PC002E~ END  //this spell is ineffective
            LPF CLONE_EFFECT INT_VAR match_opcode = 326 parameter1 = 20 parameter2 = %chp_gr% multi_match = 5 STR_VAR match_resource = ~B_PC002D~ resource = ~B_PC002E~ END  //this spell is ineffective
 //sec spells
-COPY ~%mod_folder%/data/cantrips/divine/B_PC002A.spl~ ~override~
-COPY ~%mod_folder%/data/cantrips/divine/B_PC002A.spl~ ~override/B_PC002B.spl~
+COPY ~%folder%/data/cantrips/divine/B_PC002A.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/B_PC002A.spl~ ~override/B_PC002B.spl~
            LPF ALTER_EFFECT INT_VAR match_opcode = 17 parameter1 = 8 STR_VAR END  //
-COPY ~%mod_folder%/data/cantrips/divine/B_PC002A.spl~ ~override/B_PC002C.spl~
+COPY ~%folder%/data/cantrips/divine/B_PC002A.spl~ ~override/B_PC002C.spl~
            LPF ALTER_EFFECT INT_VAR match_opcode = 17 parameter1 = 12 STR_VAR END  //
-COPY ~%mod_folder%/data/cantrips/divine/B_PC002A.spl~ ~override/B_PC002D.spl~
+COPY ~%folder%/data/cantrips/divine/B_PC002A.spl~ ~override/B_PC002D.spl~
            LPF ALTER_EFFECT INT_VAR match_opcode = 17 parameter1 = 16 STR_VAR END  //
-COPY ~%mod_folder%/data/cantrips/divine/B_PC002E.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/B_PC002E.spl~ ~override~
   LPF ALTER_EFFECT
       INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@109000103)            // Preserve Life is ineffective
       STR_VAR
@@ -303,7 +303,7 @@ END //end cantrip add
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-COPY ~%mod_folder%/data/cantrips/divine/b_po090.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/b_po090.spl~ ~override~
         SAY NAME1 @109000000
         SAY NAME2 @109000000
         SAY UNIDENTIFIED_DESC @109000001
@@ -367,7 +367,7 @@ END
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-COPY ~%mod_folder%/data/cantrips/divine/b_po080.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/b_po080.spl~ ~override~
         SAY NAME1 @108000001
         SAY NAME2 @108000001
         SAY UNIDENTIFIED_DESC @108000002
@@ -434,7 +434,7 @@ END
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-COPY ~%mod_folder%/data/cantrips/divine/b_po020.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/b_po020.spl~ ~override~
         SAY NAME1 @102000000
         SAY NAME2 @102000000
         SAY UNIDENTIFIED_DESC @102000001
@@ -444,7 +444,7 @@ LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@10200
    INT_VAR   spell_type = 4  location = 2 failure = 0
   END      //
 
-COPY ~%mod_folder%/data/cantrips/divine/b_po021.spl~ ~override~      //to remove
+COPY ~%folder%/data/cantrips/divine/b_po021.spl~ ~override~      //to remove
         SAY NAME1 @102000002
         SAY NAME2 @102000002
         SAY UNIDENTIFIED_DESC @102000002
@@ -506,14 +506,14 @@ END
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
 //Animation
-COPY ~%mod_folder%/data/cantrips/divine/CLDAMAH.bam~ ~override~
+COPY ~%folder%/data/cantrips/divine/CLDAMAH.bam~ ~override~
 //Sound
-COPY ~%mod_folder%/data/cantrips/divine/#FF_P103.WAV~ ~override~
+COPY ~%folder%/data/cantrips/divine/#FF_P103.WAV~ ~override~
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-COPY ~%mod_folder%/data/cantrips/divine/b_po050.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/b_po050.spl~ ~override~
         SAY NAME1 @105000000
         SAY NAME2 @105000000
         SAY UNIDENTIFIED_DESC @105000001
@@ -531,9 +531,9 @@ COPY ~%mod_folder%/data/cantrips/divine/b_po050.spl~ ~override~
 ////////////////////////////////
 
 //icons (placeholders)
-COPY ~%mod_folder%/data/cantrips/divine/SPPR114A.BAM~ ~override~
-COPY ~%mod_folder%/data/cantrips/divine/SPPR114B.BAM~ ~override~
-COPY ~%mod_folder%/data/cantrips/divine/SPPR114C.BAM~ ~override~
+COPY ~%folder%/data/cantrips/divine/SPPR114A.BAM~ ~override~
+COPY ~%folder%/data/cantrips/divine/SPPR114B.BAM~ ~override~
+COPY ~%folder%/data/cantrips/divine/SPPR114C.BAM~ ~override~
 ////////////////////////////
 //////Portrait Icons:
 ////////////////////////////
@@ -608,7 +608,7 @@ END
 
 //ADD SPHERE SYSTEM COMPATIBILITY: SPHERE: LIFE  d5_spheres.d5
 //STANDARD VERSION
-COPY ~%mod_folder%/data/cantrips/divine/b_po010.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/b_po010.spl~ ~override~
         SAY NAME1 @101000000
         SAY NAME2 @101000000
         SAY UNIDENTIFIED_DESC @101000001
@@ -710,7 +710,7 @@ COPY_EXISTING ~b_po091.spl~ ~override~
 //                                          SR: any unique spells dispell hold besides Remove Paralysis?
 //                                          Other: no need as far as I can tell
 //Adding the cantrip either way
-COPY ~%mod_folder%/data/cantrips/divine/b_po070.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/b_po070.spl~ ~override~
         SAY NAME1 @107000000
         SAY NAME2 @107000000
         SAY UNIDENTIFIED_DESC @107000001
@@ -754,7 +754,7 @@ END
 //                                          Other: Not needed
 //
 
-COPY ~%mod_folder%/data/cantrips/divine/b_po060.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/b_po060.spl~ ~override~
         SAY NAME1 @106000000
         SAY NAME2 @106000000
         SAY UNIDENTIFIED_DESC @106000001
@@ -805,7 +805,7 @@ The recipients of this spell gains the ability to see with infravision, just as 
 //                                          spheres:  I believe so
 //                                          SR: Yes (I believe so)
 
-COPY ~%mod_folder%/data/cantrips/divine/b_po030.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/b_po030.spl~ ~override~
         SAY NAME1 @103000000
         SAY NAME2 @103000000
         SAY UNIDENTIFIED_DESC @103000001
@@ -854,7 +854,7 @@ END
 //                                          SR: I don't think so
 //CHECK SPELL REVISIONS!
 //From Charm to Thought for FnP
-COPY ~%mod_folder%/data/cantrips/divine/b_po040.spl~ ~override~
+COPY ~%folder%/data/cantrips/divine/b_po040.spl~ ~override~
         SAY NAME1 @104000000
         SAY NAME2 @104000000
         SAY UNIDENTIFIED_DESC @104000001

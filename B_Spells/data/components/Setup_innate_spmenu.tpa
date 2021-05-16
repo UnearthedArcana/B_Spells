@@ -1,6 +1,6 @@
 //Known HLAs_________________________________________________________________
 
-INCLUDE ~%mod_folder%/lib/misc_lists/spell_room_list.tpa~
+INCLUDE ~%folder%/lib/misc_lists/spell_room_list.tpa~
 
 ACTION_PHP_EACH spell_list AS spell => type BEGIN
   ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~%spell_ids%~)) BEGIN

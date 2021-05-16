@@ -1,3 +1,5 @@
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////                                         //////////////////////////////////////
@@ -6,7 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //See lib/missing_wands.tpa: Include that here
-INCLUDE ~%mod_folder%/lib/missing_wands.tpa
+INCLUDE ~%folder%/lib/missing_wands.tpa
 
 //Add any missing wands to stores and other places that they work
 
@@ -22,18 +24,18 @@ INCLUDE ~%mod_folder%/lib/missing_wands.tpa
 //sr dependent wands
 //wand of fog
  ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) BEGIN  //SR obscuring Mist
-    COPY ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~ ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
+    COPY ~%folder%/lib/wand_lists/wand_tier_list.tpa~ ~%folder%/lib/wand_lists/wand_tier_list.tpa~
       REPLACE_TEXTUALLY ~//B_WAN11~ ~B_WAN11~
  END
 //wand of banishment
  ACTION_IF (FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BANISHMENT~)) BEGIN  //SR banishment
-    COPY ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~ ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
+    COPY ~%folder%/lib/wand_lists/wand_tier_list.tpa~ ~%folder%/lib/wand_lists/wand_tier_list.tpa~
       REPLACE_TEXTUALLY ~//B_WAN12~ ~B_WAN12~
  END
 
 //iwdee wands to be added in BG(2)EE
  ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN
-    COPY ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~ ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
+    COPY ~%folder%/lib/wand_lists/wand_tier_list.tpa~ ~%folder%/lib/wand_lists/wand_tier_list.tpa~
       REPLACE_TEXTUALLY ~//WANDARM~ ~WANDARM~  //wand of armory
       REPLACE_TEXTUALLY ~//WANDFRE~ ~WANDFRE~  //wand of freezing death
       REPLACE_TEXTUALLY ~//WAND07~ ~WAND07~    //wand of lightning
@@ -44,12 +46,12 @@ INCLUDE ~%mod_folder%/lib/missing_wands.tpa
 
 //wands to be added in IWDEE
  ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
-    COPY ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~ ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
+    COPY ~%folder%/lib/wand_lists/wand_tier_list.tpa~ ~%folder%/lib/wand_lists/wand_tier_list.tpa~
       REPLACE_TEXTUALLY ~//WAND09~ ~WAND09~
       REPLACE_TEXTUALLY ~//WAND13~ ~WAND13~
  END
 
-INCLUDE ~%mod_folder%/lib/wand_lists/wand_tier_list.tpa~
+INCLUDE ~%folder%/lib/wand_lists/wand_tier_list.tpa~
 
 //should work...need to test, though
 COPY_EXISTING_REGEXP GLOB ~^.+\.sto$~ ~override~ // Load all stores BEG CAMCODE:

@@ -78,6 +78,45 @@ TO DO 38: To be remove lists: regen_list,
 
 TO DO 39: ADD_ICONS: incorporate mage vs. priest scrolls (for learning), and add more stores
 
+Version 0.90.23
+
+2021-05-15
+
+- Added option for accelerate metabolism, animate skeleton nec exclusivity
+
+- Changed name of Mage Bind to Rope Trick
+
+- Added ADD_CLASS_SPELL Thank you OlvynChuru
+
+- Changed mod_folder var to folder for compatibility with ADD_CLASS_SPELL
+
+2021-05-14
+
+- Updated A Glamer icons
+
+- First draft: Dust Devil (mage)
+
+- Redid Bind/Rope Trick
+
+2021-02-27
+
+- Audible glamer revision (for 1st lev spells)
+
+
+
+2021-02-20
+
+- Created first draft of fog cloud
+
+
+2021-01-30
+
+- Updated icons,
+
+2021-01-28
+
+- Update a few icons (esp for iwdee vs. bgee style icons)
+
 Version 0.90.22
 
 2021-01-24

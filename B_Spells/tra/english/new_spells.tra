@@ -1292,6 +1292,23 @@ The recipient of this spell gains extraordinary vision, able to see twice as far
 
 @66112 = ~Farsighted~
 
+@66113 = ~Audible Glamer
+(Illusion/Phantasm)
+
+Level: Cantrip
+Range: Visual range of caster  
+Duration: 3 rounds
+Casting Time: 1
+Area of Effect: 1 creature
+Saving Throw:  Special
+
+With this spell, the caster surrounds a creature with illusory sounds of disturbing whispers for 3 rounds. That creature is distracted by the sounds, suffering a -2 to attack rolls and a 10% spell failure chance (save vs. spell to suffer 1/2 the effect).
+
+As the caster levels up, the illusory sounds become more distracting and more difficult to ignore. They inflict a -2 penalty to attack and an additional 10% spell failure at levels 6 and 18.
+
+Creatures without minds, such as golems, are unaffected by this cantrip. Deaf creatures are also immune.~
+
+
 @67000 = ~Bolt of Paralysis~
 
 @67001 = ~Bolt of Paralysis
@@ -1312,6 +1329,18 @@ This spell does not affect undead or constructs, such as golems.~
 
 @67002 = ~Paralyzed~
 
+@67010 = ~Fog Cloud~
+@67011 = ~Fog Cloud
+(Alteration)
+
+Level: 2
+Range: 90 ft.
+Duration: 1 turn
+Casting Time: 2
+Area of Effect: 15-ft. radius
+Saving Throw: None
+
+The fog cloud spell creates a billowing mass of ghastly, yellowish-green much like a cloudkill spell. The fog obscures vision, such that any creature in the cloud can only see 2 feet in front of them obscure vision. A strong breeze, such as that created by a Gust of Wind spell will disperse the cloud immediately. Ranged attacks suffer a -4 penalty to hit creatures within the cloud.~
 
 @67301 = ~Solvent of Corrosion~
 @67302 = ~Solvent of Corrosion
@@ -1706,19 +1735,7 @@ Saving Throw: None
 When the detect magic spell is cast, the wizard is able to detect magical radiations in all creatures within 30-ft with only a moment of concentration. Essentially, whenever <PRO_HESHE> uses this ability, all creatures under the effect of a dispellable spell glow briefly. This spell also gives the caster special insight as to the nature of the magics affecting said creatures. The caster can use this insight to cast dispel magic within the duration, and if <PRO_HESHE> does so, <PRO_HISHER> dispel magic check is made at twice <PRO_HISHER> level (maximum +5 levels at 5th level). This spell also makes it easier for <PRO_HIMHER> to identify magical items, effectively giving <PRO_HIMHER> a +10 bonus to lore for the duration.
 
 Note that this spell does not reveal the presence of good or evil, or reveal alignment. Otherplanar creatures are not necessarily magical.~
-@68047 = ~Bind~
-@68048 = ~Bind
-(Alteration)
 
-Level: 2
-Range: Visual Range of Caster
-Duration: 5 rounds maximum (see below)
-Casting Time: 2
-Area of Effect: 1 Creature
-Saving Throw: Neg
-When this spell is employed, the wizard can command any nonliving ropelike object, including string, yarn, cord, line, rope, or even a cable to enwrap a single creature if they do not make a save vs. breath. Affected creatures cannot move and are effectively held for 1 round. Each additional round, the target gets another save, and if they succeed, then they are free. Otherwise, the creature remains held until they save or until 5 rounds pass.
-
-Huge creatures, and creatures with strength scores of 20 or higher are not affected by this spell.~
 
 
 @68049 = ~Choke~
@@ -1948,7 +1965,33 @@ STATISTICS:
 
 Weight: 0~
 
+@68090 = ~Dust Devil~
+@68091 = ~Dust Devil
+(Conjuration/Summoning)
 
+Level: 1
+Range: 30 ft.
+Duration: 1 hour
+Casting Time: 7
+Area of Effect: Special
+Saving Throw: None
+This spell enables the caster to conjure up a weak air elemental - a dust devil of AC 4, 2 HD, 16 hit points and Movement Rate of 15, one attack for 1d4 points of bludgeoning damage. It can be hit by normal weapons. The Dust Devil kicks up dirt and particles around itself, potentially distracting casters within 10', who must save vs. spell or be unable to cast for that round.
+
+The dust devil appears as a small whirlwind 1 foot in diameter at its base, 5 feet tall, and 3 to 4 feet across at the top. The creature remains under the caster's control until slain or the spell duration expires.~
+
+@68092 = ~Rope Trick~
+@68093 = ~Rope Trick
+(Alteration)
+
+Level: 2
+Range: Visual Range of Caster
+Duration: 5 rounds maximum (see below)
+Casting Time: 2
+Area of Effect: 1 Creature
+Saving Throw: Neg
+When this spell is employed, the wizard can command any nonliving ropelike object, including string, yarn, cord, line, rope, or even a cable to enwrap a single creature if they do not make a save vs. breath. Affected creatures cannot move and are effectively held for 1 round. Each additional round, the target gets another save, and if they succeed, then they are free. Otherwise, the creature remains held until they save or until 5 rounds pass.
+
+Huge creatures, and creatures with strength scores of 20 or higher are not affected by this spell.~
 
 
 

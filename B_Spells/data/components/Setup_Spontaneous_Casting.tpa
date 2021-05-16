@@ -3,34 +3,34 @@ STRING_SET ~23797~ @600100 //?
 //spls
 
 //spon harm
-COPY ~%mod_folder%/data/extra/spon_cast/rgspheal.spl~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspheal.spl~ ~override~
   	SAY NAME1 @600101
   	SAY UNIDENTIFIED_DESC @600102
 
 //spon harm
-COPY ~%mod_folder%/data/extra/spon_cast/rgspharm.spl~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspharm.spl~ ~override~
   	SAY NAME1 @600103
   	SAY UNIDENTIFIED_DESC @600104
 
 //Spon summoning
-COPY ~%mod_folder%/data/extra/spon_cast/rgspsumm.spl~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspsumm.spl~ ~override~
   	SAY NAME1 @600113
   	SAY UNIDENTIFIED_DESC @600114
 
 //bams
-COPY ~%mod_folder%/data/extra/spon_cast/rgspa02b.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspa02c.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspb02b.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspb02c.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspa02b.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspa02c.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspb02b.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspb02c.bam~ ~override~
 
 ACTION_IF GAME_IS ~bgee bg2ee eet~ THEN BEGIN
-COPY ~%mod_folder%/data/extra/spon_cast/rgspc01b.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspc01c.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspc02b.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspc02c.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspc03b.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspc03c.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspsumm.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspc01b.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspc01c.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspc02b.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspc02c.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspc03b.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspc03c.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspsumm.bam~ ~override~
 END
 
 ACTION_IF GAME_IS ~iwdee~ THEN BEGIN
@@ -43,16 +43,16 @@ COPY ~Spontaneous_Casting/iwd_bam/rgspc03c.bam~ ~override~
 COPY ~Spontaneous_Casting/iwd_bam/rgspsumm.bam~ ~override~
 END
 
-COPY ~%mod_folder%/data/extra/spon_cast/rgspcast.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspharm.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgspheal.bam~ ~override~
-COPY ~%mod_folder%/data/extra/spon_cast/rgsummon.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspcast.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspharm.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspheal.bam~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgsummon.bam~ ~override~
 
 //spell that applies innates by alignment for cle
-COPY ~%mod_folder%/data/extra/spon_cast/rgspcast.spl~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspcast.spl~ ~override~
 
 //spell that applies innates for druids
-COPY ~%mod_folder%/data/extra/spon_cast/rgspcast.spl~ ~override~
+COPY ~%folder%/data/extra/spon_cast/rgspcast.spl~ ~override~
 
 //apply to clabs
 APPEND ~CLABPR01.2da~

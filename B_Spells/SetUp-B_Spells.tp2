@@ -2,12 +2,12 @@ BACKUP ~backup/B_Spells~
 AUTHOR ~Grammarsalad~
 README ~B_Spells\B_Spells_README.pdf~
 
-VERSION ~0.90.22~
+VERSION ~0.90.23~
 
 
 ALWAYS
 
-        OUTER_SPRINT ~mod_folder~ ~B_Spells~
+        OUTER_SPRINT ~folder~ ~B_Spells~
 
         ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
 	   INCLUDE ~B_Spells/lib/add_ids.tpa~
@@ -162,33 +162,33 @@ OUTER_SET b_iwdee_spells = 1
 //include
 //Detects IWDEE priest spells- Not SR: checked in individual setup tpas
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
-      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
-        INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
+      COPY ~%folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
+      COPY ~%folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
+        INCLUDE ~%folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
 
 ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BEAST_CLAW~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
- INCLUDE ~%mod_folder%/lib/iwdee_sr_readd.tpa~
+ INCLUDE ~%folder%/lib/iwdee_sr_readd.tpa~
 END
 
 //special: reinstall spells if any version of SR installed
 ACTION_IF FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~ BEGIN
-  INCLUDE ~%mod_folder%/lib/sr_readd.tpa~
+  INCLUDE ~%folder%/lib/sr_readd.tpa~
 END
 
 //Now, for other IWDEE wiz spells--Not SR which will be checked in game
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_CATS_GRACE~)) BEGIN    //if not other IWDEE wiz spells
-    INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
-   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~ //to detect all (my) IWDEE wiz spells
+    INCLUDE ~%folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
+   COPY ~%folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~ //to detect all (my) IWDEE wiz spells
    END
-   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
+   COPY ~%folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
 END
 
 //Add new spells if not in game
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_ABUNDANT_AMMO~)) BEGIN    //
-  INCLUDE ~%mod_folder%/lib/fnp_new_spells.tpa~
+  INCLUDE ~%folder%/lib/fnp_new_spells.tpa~
 END
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_ACCELERATE_HEALING~)) BEGIN  //if not my new spells
-    INCLUDE ~%mod_folder%/data/components/Setup_New_Spells.tpa~      //New Spells
+    INCLUDE ~%folder%/data/components/Setup_New_Spells.tpa~      //New Spells
 END
 
 //__________________________________________________________________________________
@@ -199,9 +199,9 @@ END
 //__________________________________________________________________________________
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
-INCLUDE ~%mod_folder%/lib/immunities.tpa~
+INCLUDE ~%folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
-INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
+INCLUDE ~%folder%/lib/compatibility_SR.tpa~
 
 BEGIN @1  //IWDEE Spells only
 SUBCOMPONENT @100
@@ -215,9 +215,9 @@ ACTION_CLEAR_ARRAY aoe_spell
 
 //Detects IWDEE priest spells- Not SR: checked in individual setup tpas
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-	COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
-      COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
-      INCLUDE ~%mod_folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
+	COPY ~%folder%/compatibility/b_IWD.itm~ ~override~   	//to detect this component
+      COPY ~%folder%/compatibility/b_IWD.itm~ ~override/B_pri.itm~
+      INCLUDE ~%folder%/data/components/Setup_IWD_Spells.tpa~      //install priest spells
 
   ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_BEAST_CLAW~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
    INCLUDE ~faiths_and_powers/lib/iwdee_sr_readd.tpa~
@@ -230,17 +230,17 @@ END
 
 //Now, for other IWDEE wiz spells--Not SR which will be checked in game
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_CATS_GRACE~)) BEGIN    //if not other IWDEE wiz spells
-    INCLUDE ~%mod_folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
-   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~ //to detect all (my) IWDEE wiz spells
+    INCLUDE ~%folder%/data/components/Setup_IWD_Wiz.tpa~      //install non-fnp Wiz spells
+   COPY ~%folder%/compatibility/b_IWD.itm~ ~override/b_wiz.itm~ //to detect all (my) IWDEE wiz spells
    END
-   COPY ~%mod_folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
+   COPY ~%folder%/compatibility/b_IWD.itm~ ~override~   //to detect IWDEE priest (and a few wiz) spells
 END
 
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
-INCLUDE ~%mod_folder%/lib/immunities.tpa~
+INCLUDE ~%folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
-INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
+INCLUDE ~%folder%/lib/compatibility_SR.tpa~
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -260,16 +260,16 @@ ACTION_CLEAR_ARRAY aoe_spell
 
 //Add new spells if not in game
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_ABUNDANT_AMMO~)) BEGIN    //
-  INCLUDE ~%mod_folder%/lib/fnp_new_spells.tpa~
+  INCLUDE ~%folder%/lib/fnp_new_spells.tpa~
 END
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~WIZARD_ACCELERATE_HEALING~)) BEGIN  //if not my new spells
-    INCLUDE ~%mod_folder%/data/components/Setup_New_Spells.tpa~      //New Spells
+    INCLUDE ~%folder%/data/components/Setup_New_Spells.tpa~      //New Spells
 END
 
 //Now, Immunities.  DO AT THE VERY END OF ALL SPELL INSTALLS
-INCLUDE ~%mod_folder%/lib/immunities.tpa~
+INCLUDE ~%folder%/lib/immunities.tpa~
 //sr spell deflection compatibility
-INCLUDE ~%mod_folder%/lib/compatibility_SR.tpa~
+INCLUDE ~%folder%/lib/compatibility_SR.tpa~
 
 
 /////////////////////////////////////////////////////////////////
@@ -346,11 +346,11 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 //priest orisons
 //CHECK???
-INCLUDE ~%mod_folder%/data/components/Setup_priest_0-cantrips.tpa~ //Priest infinite cantrips
+INCLUDE ~%folder%/data/components/Setup_priest_0-cantrips.tpa~ //Priest infinite cantrips
 //END
 //arcane orisons
 //CHECK???
-INCLUDE ~%mod_folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite cantrips
+INCLUDE ~%folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite cantrips
 //END
 
 */
@@ -378,7 +378,7 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 //priest orisons
 //CHECK???
-INCLUDE ~%mod_folder%/data/components/Setup_priest_0-cantrips.tpa~ //Priest infinite cantrips
+INCLUDE ~%folder%/data/components/Setup_priest_0-cantrips.tpa~ //Priest infinite cantrips
 
 */
 
@@ -405,7 +405,7 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 //arcane orisons
 //CHECK???
-INCLUDE ~%mod_folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite cantrips
+INCLUDE ~%folder%/data/components/Setup_arcane_0-cantrips.tpa~ //Priest infinite cantrips
 //END
 
 */
@@ -453,13 +453,13 @@ GROUP @6
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 ACTION_IF !FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //no fnp spheres
-  INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
+  INCLUDE ~%folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
 END
 ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //fnp spheres (of some kind)
-  INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls_fnp.tpa~      //Priest Scrolls
+  INCLUDE ~%folder%/data/components/Setup_Priest_Scrolls_fnp.tpa~      //Priest Scrolls
 END
 
-INCLUDE ~%mod_folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
+INCLUDE ~%folder%/data/components/Setup_New_Wands.tpa~      //Priest Scrolls
 
 //__________________________________________________________________________________
 //__________________________________________________________________________________
@@ -476,39 +476,39 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  ...for 
 
 //player notebook of recipies
 // Notebook files - notebook itself
-COPY ~%mod_folder%/data/arcane_crafting/B_NBOOKA.bam~ ~override~  //   B_NBOOK.itm
-COPY ~%mod_folder%/data/arcane_crafting/B_NBOOKB.bam~ ~override~  //   B_NBOOK.itm
-COPY ~%mod_folder%/data/arcane_crafting/B_NBOOKC.bam~ ~override~  //   B_NBOOK.itm
+COPY ~%folder%/data/arcane_crafting/B_NBOOKA.bam~ ~override~  //   B_NBOOK.itm
+COPY ~%folder%/data/arcane_crafting/B_NBOOKB.bam~ ~override~  //   B_NBOOK.itm
+COPY ~%folder%/data/arcane_crafting/B_NBOOKC.bam~ ~override~  //   B_NBOOK.itm
 //the notebook/store itself
-COPY ~%mod_folder%/data/arcane_crafting/B_NBOOK.sto~ ~override~  //   B_NBOOK.itm
+COPY ~%folder%/data/arcane_crafting/B_NBOOK.sto~ ~override~  //   B_NBOOK.itm
 	SAY STORE_NAME @900010050
-COPY ~%mod_folder%/data/arcane_crafting/B_NBOOK.itm~ ~override~  //
+COPY ~%folder%/data/arcane_crafting/B_NBOOK.itm~ ~override~  //
 	SAY NAME1 @900010050
 	SAY NAME2 @900010050
 	SAY IDENTIFIED_DESC @900010051
 	SAY UNIDENTIFIED_DESC @900010051
 //pages
 //blank pages
-COPY ~%mod_folder%/data/arcane_crafting/B_PPTN00.itm~ ~override~  //
+COPY ~%folder%/data/arcane_crafting/B_PPTN00.itm~ ~override~  //
 	SAY NAME1 @900010053
 	SAY NAME2 @900010053
 	SAY IDENTIFIED_DESC @900010054
 	SAY UNIDENTIFIED_DESC @900010054
 
-COPY ~%mod_folder%/data/arcane_crafting/B_PPTN00.bam~ ~override~  //   blank page small
-COPY ~%mod_folder%/data/arcane_crafting/B_BPTN00.bam~ ~override~  //   blank page large
+COPY ~%folder%/data/arcane_crafting/B_PPTN00.bam~ ~override~  //   blank page small
+COPY ~%folder%/data/arcane_crafting/B_BPTN00.bam~ ~override~  //   blank page large
 
 
 //non-blank pages
-COPY ~%mod_folder%/data/arcane_crafting/B_PPTN01.bam~ ~override~  //   non-blank page small - potions
+COPY ~%folder%/data/arcane_crafting/B_PPTN01.bam~ ~override~  //   non-blank page small - potions
 
 // CONTINUE
 /*
 //Potion recepe
-COPY ~%mod_folder%/data/arcane_crafting/B_PPTN00.bam~ ~override~  //   really need a second frame, here...
-COPY ~%mod_folder%/data/arcane_crafting/B_PPTNA.bam~ ~override~  //   kinda ugly (need to get rid of green, but I don't want to mess it up...)
+COPY ~%folder%/data/arcane_crafting/B_PPTN00.bam~ ~override~  //   really need a second frame, here...
+COPY ~%folder%/data/arcane_crafting/B_PPTNA.bam~ ~override~  //   kinda ugly (need to get rid of green, but I don't want to mess it up...)
 
-COPY ~%mod_folder%/data/arcane_crafting/B_PPTN00.itm~ ~override~  //generic potion page (will use as a base to copy all others over)
+COPY ~%folder%/data/arcane_crafting/B_PPTN00.itm~ ~override~  //generic potion page (will use as a base to copy all others over)
 	SAY NAME1 @900010052
 	SAY NAME2 @900010052
 //	SAY IDENTIFIED_DESC @900010051
@@ -537,10 +537,10 @@ GROUP @6
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 ACTION_IF !FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //no fnp spheres
-  INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
+  INCLUDE ~%folder%/data/components/Setup_Priest_Scrolls.tpa~      //Priest Scrolls
 END
 ACTION_IF FILE_EXISTS_IN_GAME ~d5_spheres.d5~ BEGIN  //fnp spheres (of some kind)
-  INCLUDE ~%mod_folder%/data/components/Setup_Priest_Scrolls_fnp.tpa~      //Priest Scrolls
+  INCLUDE ~%folder%/data/components/Setup_Priest_Scrolls_fnp.tpa~      //Priest Scrolls
 END
 
 */
@@ -572,7 +572,7 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 //revised potions
 
 //variant wands
-INCLUDE ~%mod_folder%/data/components/Setup_Variant_Wands.tpa~      //Priest Scrolls
+INCLUDE ~%folder%/data/components/Setup_Variant_Wands.tpa~      //Priest Scrolls
 
 
 //variant potions(?)
@@ -697,7 +697,7 @@ GROUP @25
 REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 /*
 //not ready (not even close)
-INCLUDE ~%mod_folder%/data/components/Setup_innate_spmenu.tpa~      //Priest Scrolls
+INCLUDE ~%folder%/data/components/Setup_innate_spmenu.tpa~      //Priest Scrolls
 
 */
 
@@ -765,15 +765,15 @@ REQUIRE_PREDICATE GAME_IS ~bgee bg2ee eet iwdee~ @17 //~EE games only!~  for now
 
 //extra spells if nec
 ACTION_IF (!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_CURSE~)) BEGIN  //if not IWDEE priest spells..from any source
-  INCLUDE ~%mod_folder%/data/components/Setup_missing_spells.tpa~
+  INCLUDE ~%folder%/data/components/Setup_missing_spells.tpa~
 END
 
 //New spells if nec
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~dvimhere.mrk~ BEGIN
-  INCLUDE ~%mod_folder%/lib/spon_cast_spells.tpa~
+  INCLUDE ~%folder%/lib/spon_cast_spells.tpa~
 END
 
-INCLUDE ~%mod_folder%/data/components/Setup_Spontaneous_Casting.tpa~
+INCLUDE ~%folder%/data/components/Setup_Spontaneous_Casting.tpa~
 
 //ADD ITEM CRAFTING COMPONENTS
 //ADD DOMAIN SPELLS (INTERACTS WITH SPON CASTING and CANTRIPS)

@@ -48,21 +48,21 @@ insert_point = 7
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Projectile
-ADD_PROJECTILE ~%mod_folder%/data/iwd_spells/wizard_2/IDPRO217.pro~   //projectile
+ADD_PROJECTILE ~%folder%/data/iwd_spells/wizard_2/IDPRO217.pro~   //projectile
 //VVC
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/#SSSWARM.vvc~ ~override~   //animation
+COPY ~%folder%/data/iwd_spells/wizard_2/#SSSWARM.vvc~ ~override~   //animation
 //bam
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SSSWART.BAM~ ~override~   //animation
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SSSWARR.BAM~ ~override~   //animation
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SSSWARX.BAM~ ~override~   //animation
+COPY ~%folder%/data/iwd_spells/wizard_2/SSSWART.BAM~ ~override~   //animation
+COPY ~%folder%/data/iwd_spells/wizard_2/SSSWARR.BAM~ ~override~   //animation
+COPY ~%folder%/data/iwd_spells/wizard_2/SSSWARX.BAM~ ~override~   //animation
 //animations
 //3d animation
 //sounds
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/TRA_18.WAV~ ~override~   //
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/RNG_M02.WAV~ ~override~   //
+COPY ~%folder%/data/iwd_spells/wizard_2/TRA_18.WAV~ ~override~   //
+COPY ~%folder%/data/iwd_spells/wizard_2/RNG_M02.WAV~ ~override~   //
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/iwd_spells/wizard_2/b_w204.spl~ 2 2 ~WIZARD_SNILLOCS_SNOWBALL_SWARM~ //
+ADD_SPELL ~%folder%/data/iwd_spells/wizard_2/b_w204.spl~ 2 2 ~WIZARD_SNILLOCS_SNOWBALL_SWARM~ //
         SAY NAME1 @2040000
         SAY NAME2 @2040000
         SAY UNIDENTIFIED_DESC @2040001
@@ -84,15 +84,15 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   END      //
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 //Sh. of Entropy immunity list
-INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/entropy_list.tpa~
 
 FYI   */
 
@@ -197,13 +197,13 @@ COPY_EXISTING ~AROW08.itm~ ~override/B_TEST01.itm~
 */
 
 //2da
-COPY ~%mod_folder%/data/new_spells/ranger_1/b_r101.2da~ ~override~
+COPY ~%folder%/data/new_spells/ranger_1/b_r101.2da~ ~override~
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/b_r101.spl~ 1 0 ~CLERIC_ABUNDANT_AMMO~ // won't be selectable at 1st; have to add to clab (ranger lev 8 or 9, whenever they normally get 1st lev spells)
+ADD_SPELL ~%folder%/data/new_spells/ranger_1/b_r101.spl~ 1 0 ~CLERIC_ABUNDANT_AMMO~ // won't be selectable at 1st; have to add to clab (ranger lev 8 or 9, whenever they normally get 1st lev spells)
         SAY NAME1 @53000
         SAY NAME2 @53000
         SAY UNIDENTIFIED_DESC @53001
@@ -220,7 +220,7 @@ END
 
 //items and subspells
 //Hunting Arrows
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override~   //Hunting Arrows spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override~   //Hunting Arrows spl
         SAY NAME1 @53004
         SAY NAME2 @53004
   LPF ALTER_EFFECT
@@ -229,17 +229,17 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override~   //Hunting 
   END      //    B_LEAD1.spl
 
 //the actual arrow
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_ARW01.itm~ ~override~   //Hunting Arrows
+COPY ~%folder%/data/new_spells/ranger_1/B_ARW01.itm~ ~override~   //Hunting Arrows
         SAY NAME1 @53004
         SAY NAME2 @53004
         SAY UNIDENTIFIED_DESC @53005
 	SAY DESC @53005
 //bleeding spell
-COPY ~%mod_folder%/data/new_spells/ranger_1/b_lead1.spl~ ~override~   //Bleeding 1
+COPY ~%folder%/data/new_spells/ranger_1/b_lead1.spl~ ~override~   //Bleeding 1
   LPF ALTER_EFFECT INT_VAR match_opcode = 139 parameter1 = RESOLVE_STR_REF (@53006) END  //Notification: Bleeding
 
 //Hunting bolt
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101B.SPL~   //Hunting Bolt spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101B.SPL~   //Hunting Bolt spl
         SAY NAME1 @53007
         SAY NAME2 @53007
   LPF ALTER_EFFECT
@@ -248,17 +248,17 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101B.SPL~ 
   END      //
 
 //the actual bolt
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_QUA01.itm~ ~override~   //Hunting bolt
+COPY ~%folder%/data/new_spells/ranger_1/B_QUA01.itm~ ~override~   //Hunting bolt
         SAY NAME1 @53007
         SAY NAME2 @53007
         SAY UNIDENTIFIED_DESC @53008
 	SAY DESC @53008
 //bam (just in case)
-COPY ~%mod_folder%/data/new_spells/ranger_1/IBOLT09.bam~ ~override~   //Hunting bolt
+COPY ~%folder%/data/new_spells/ranger_1/IBOLT09.bam~ ~override~   //Hunting bolt
 
 //Weighted Bullet
 
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101C.SPL~   //Weighted Bullet spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101C.SPL~   //Weighted Bullet spl
         SAY NAME1 @53009
         SAY NAME2 @53009
   LPF ALTER_EFFECT
@@ -266,16 +266,16 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101C.SPL~ 
       STR_VAR resource = ~B_BUT01~
   END      //
 //the actual bullet
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_BUT01.itm~ ~override~   //Weighted Bullet
+COPY ~%folder%/data/new_spells/ranger_1/B_BUT01.itm~ ~override~   //Weighted Bullet
         SAY NAME1 @53009
         SAY NAME2 @53009
         SAY UNIDENTIFIED_DESC @53010
 	SAY DESC @53010
 //bam (just in case)
-COPY ~%mod_folder%/data/new_spells/ranger_1/IBULL09.bam~ ~override~   //Weighted Bullet
+COPY ~%folder%/data/new_spells/ranger_1/IBULL09.bam~ ~override~   //Weighted Bullet
 
 //Keen Arrows
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101D~   //Keen Arrows spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101D~   //Keen Arrows spl
         SAY NAME1 @53011
         SAY NAME2 @53011
   LPF ALTER_EFFECT
@@ -284,7 +284,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101D~   //
   END      //
 
 //the actual arrow
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_ARW02.itm~ ~override~   //Keen Arrows 
+COPY ~%folder%/data/new_spells/ranger_1/B_ARW02.itm~ ~override~   //Keen Arrows 
         SAY NAME1 @53011
         SAY NAME2 @53011
         SAY UNIDENTIFIED_DESC @53012
@@ -292,7 +292,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_ARW02.itm~ ~override~   //Keen Arr
 
 //Keen Bolt
 
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101E~   //Keen bolt spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101E~   //Keen bolt spl
         SAY NAME1 @53013
         SAY NAME2 @53013
   LPF ALTER_EFFECT
@@ -300,7 +300,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101E~   //
       STR_VAR resource = ~B_QUA02~
   END      //
 //the actual bolt
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_QUA02.itm~ ~override~   //Keen Bolt
+COPY ~%folder%/data/new_spells/ranger_1/B_QUA02.itm~ ~override~   //Keen Bolt
         SAY NAME1 @53013
         SAY NAME2 @53013
         SAY UNIDENTIFIED_DESC @53014
@@ -308,7 +308,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_QUA02.itm~ ~override~   //Keen Bol
 
 //Balanced Bullet
 
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101F.SPL~   //Balanced Bullet spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101F.SPL~   //Balanced Bullet spl
         SAY NAME1 @53015
         SAY NAME2 @53015
   LPF ALTER_EFFECT
@@ -316,14 +316,14 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101F.SPL~ 
       STR_VAR resource = ~B_BUT02~
   END      //
 //the actual bullet
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_BUT02.itm~ ~override~   //Balanced Bullet
+COPY ~%folder%/data/new_spells/ranger_1/B_BUT02.itm~ ~override~   //Balanced Bullet
         SAY NAME1 @53015
         SAY NAME2 @53015
         SAY UNIDENTIFIED_DESC @53016
 	SAY DESC @53016
 
 //Piercing Arrows
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101G~   //Piercing Arrows spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101G~   //Piercing Arrows spl
         SAY NAME1 @53017
         SAY NAME2 @53017
   LPF ALTER_EFFECT
@@ -332,14 +332,14 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101G~   //
   END      //
 
 //the actual arrow
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_ARW03.itm~ ~override~   //Piercing Arrows
+COPY ~%folder%/data/new_spells/ranger_1/B_ARW03.itm~ ~override~   //Piercing Arrows
         SAY NAME1 @53017
         SAY NAME2 @53017
         SAY UNIDENTIFIED_DESC @53018
 	SAY DESC @53018
 
 //Piercing Bolt
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101H~   //piercing bolt spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101H~   //piercing bolt spl
         SAY NAME1 @53019
         SAY NAME2 @53019
   LPF ALTER_EFFECT
@@ -347,7 +347,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101H~   //
       STR_VAR resource = ~B_QUA03~
   END      //
 //the actual bolt
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_QUA03.itm~ ~override~   //piercing Bolt
+COPY ~%folder%/data/new_spells/ranger_1/B_QUA03.itm~ ~override~   //piercing Bolt
         SAY NAME1 @53019
         SAY NAME2 @53019
         SAY UNIDENTIFIED_DESC @53020
@@ -355,7 +355,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_QUA03.itm~ ~override~   //piercing
 
 //Eggshell Bullet
 
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101F.SPL~   //Eggshell Bullet spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101F.SPL~   //Eggshell Bullet spl
         SAY NAME1 @53021
         SAY NAME2 @53021
   LPF ALTER_EFFECT
@@ -363,7 +363,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_R101F.SPL~ 
       STR_VAR resource = ~B_BUT03~
   END      //
 //the actual bullet
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_BUT03.itm~ ~override~   //Eggshell Bullet
+COPY ~%folder%/data/new_spells/ranger_1/B_BUT03.itm~ ~override~   //Eggshell Bullet
         SAY NAME1 @53021
         SAY NAME2 @53021
         SAY UNIDENTIFIED_DESC @53022
@@ -376,9 +376,9 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_BUT03.itm~ ~override~   //Eggshell
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/icons/ranger_1/B_R101A.bam~ ~override/%spell_res%A.bam~  //yes, dif folder
-COPY ~%mod_folder%/data/icons/ranger_1/B_R101B.bam~ ~override/%spell_res%B.bam~
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.bam~ ~override/%spell_res%C.bam~
+COPY ~%folder%/data/icons/ranger_1/B_R101A.bam~ ~override/%spell_res%A.bam~  //yes, dif folder
+COPY ~%folder%/data/icons/ranger_1/B_R101B.bam~ ~override/%spell_res%B.bam~
+COPY ~%folder%/data/new_spells/ranger_1/B_R101C.bam~ ~override/%spell_res%C.bam~
 //add bams to spl
 //COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -452,17 +452,17 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.bam~ ~override/%spell_res%C.
 ///////////////////////////////////////////////
 
 //script
-COMPILE ~%mod_folder%/data/new_spells/ranger_1/B_CAMO.baf~
+COMPILE ~%folder%/data/new_spells/ranger_1/B_CAMO.baf~
 //cre
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_CAMO.cre~ ~override~
+COPY ~%folder%/data/new_spells/ranger_1/B_CAMO.cre~ ~override~
 //itm
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
+COPY ~%folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 
-ADD_SPELL ~%mod_folder%/data/new_spells/ranger_1/B_R102.spl~ 1 1 ~CLERIC_CAMOUFLAGE~ //
+ADD_SPELL ~%folder%/data/new_spells/ranger_1/B_R102.spl~ 1 1 ~CLERIC_CAMOUFLAGE~ //
         SAY NAME1 @53022
         SAY NAME2 @53022
         SAY UNIDENTIFIED_DESC @53023
@@ -485,9 +485,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
- COPY ~%mod_folder%/data/icons/ranger_1/B_R102a.bam~ ~override/%spell_res%a.bam~
- COPY ~%mod_folder%/data/icons/ranger_1/B_R102b.bam~ ~override/%spell_res%b.bam~
- COPY ~%mod_folder%/data/icons/ranger_1/B_R102c.bam~ ~override/%spell_res%c.bam~
+ COPY ~%folder%/data/icons/ranger_1/B_R102a.bam~ ~override/%spell_res%a.bam~
+ COPY ~%folder%/data/icons/ranger_1/B_R102b.bam~ ~override/%spell_res%b.bam~
+ COPY ~%folder%/data/icons/ranger_1/B_R102c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
@@ -495,7 +495,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //////Portrait Icons:
 ////////////////////////////
 
-COPY ~%mod_folder%/data/port_icons/ranger_1/B_R102P.bam~ ~override~
+COPY ~%folder%/data/port_icons/ranger_1/B_R102P.bam~ ~override~
 
 
 ////////////////////////////
@@ -560,11 +560,11 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_DD101A.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_DD101B.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_DD101C.bam~
-            pathP         = ~%mod_folder%/data/port_icons/priest_1/B_DD101P.bam~
-            scroll_path   = ~%mod_folder%/data/iwd_spells/wizard_2/SPWI223A.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_DD101A.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_DD101B.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_DD101C.bam~
+            pathP         = ~%folder%/data/port_icons/priest_1/B_DD101P.bam~
+            scroll_path   = ~%folder%/data/iwd_spells/wizard_2/SPWI223A.itm~   //blank scroll
     RET    port_icon
            scroll_name
            iconA
@@ -594,14 +594,14 @@ END   //end spell
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
 //sounds
-COPY ~%mod_folder%/spheres/spells/death/#EFF_E04.wav~ ~override~ // Added for eyes of dead...still, copying over just in case
-COPY ~%mod_folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
+COPY ~%folder%/spheres/spells/death/#EFF_E04.wav~ ~override~ // Added for eyes of dead...still, copying over just in case
+COPY ~%folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
 //Spell itself
-ADD_SPELL ~%mod_folder%/spheres/spells/death/b_c105.spl~ 1 1 ~CLERIC_DISRUPT_UNDEAD~ //
+ADD_SPELL ~%folder%/spheres/spells/death/b_c105.spl~ 1 1 ~CLERIC_DISRUPT_UNDEAD~ //
         SAY NAME1 @50307
         SAY NAME2 @50307
         SAY UNIDENTIFIED_DESC @50308
@@ -623,9 +623,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 ////////////////////////////////
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/death/b_c105a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/death/b_c105b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/death/b_c105c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/death/b_c105a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/death/b_c105b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/death/b_c105c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -688,13 +688,13 @@ END
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
 //sounds
-COPY ~%mod_folder%/spheres/spells/death/#EFF_E04.wav~ ~override~ // #EFF_P04
-COPY ~%mod_folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
+COPY ~%folder%/spheres/spells/death/#EFF_E04.wav~ ~override~ // #EFF_P04
+COPY ~%folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-ADD_SPELL ~%mod_folder%/spheres/spells/death/b_c104.spl~ 1 1 ~CLERIC_EYES_OF_THE_DEAD~ //
+ADD_SPELL ~%folder%/spheres/spells/death/b_c104.spl~ 1 1 ~CLERIC_EYES_OF_THE_DEAD~ //
         SAY NAME1 @50304
         SAY NAME2 @50304
         SAY UNIDENTIFIED_DESC @50305
@@ -716,9 +716,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/death/b_c104a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/death/b_c104b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/death/b_c104c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/death/b_c104a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/death/b_c104b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/death/b_c104c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -835,18 +835,18 @@ END  //end Cantrip compatibility
 //////Spell Basics: Pros, effs, bams, wavs, etc
 ///////////////////////////////////////////////
 //Projectile
-ADD_PROJECTILE ~%mod_folder%/spheres/spells/water/B_C103.pro~   //projectile
+ADD_PROJECTILE ~%folder%/spheres/spells/water/B_C103.pro~   //projectile
 
 //bam
-COPY ~%mod_folder%/spheres/spells/water/cocoldt.bam~ ~override~ // Frost Fingers
+COPY ~%folder%/spheres/spells/water/cocoldt.bam~ ~override~ // Frost Fingers
 
 //sounds
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/TRA_18.WAV~ ~override~   //
+COPY ~%folder%/data/iwd_spells/wizard_2/TRA_18.WAV~ ~override~   //
 
 ///////////////////////////////////////////////////
 //////Spell Itself (and spell biz (e.g. sec spells)
 ///////////////////////////////////////////////////
-ADD_SPELL ~%mod_folder%/spheres/spells/water/b_c103.spl~ 1 1 ~CLERIC_FROST_FINGERS~ //
+ADD_SPELL ~%folder%/spheres/spells/water/b_c103.spl~ 1 1 ~CLERIC_FROST_FINGERS~ //
         SAY NAME1 @51707
         SAY NAME2 @51707
         SAY UNIDENTIFIED_DESC @51708
@@ -863,9 +863,9 @@ END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %B_C103% STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/water/B_C103a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/water/B_C103b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/water/B_C103c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/water/B_C103a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/water/B_C103b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/water/B_C103c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -884,7 +884,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //////Scrolls: Creation
 ////////////////////////////
 //Copy over the scroll:
-COPY ~%mod_folder%/spheres/scrolls/D1148.itm~ ~override/B_FRST1.itm~   //cuz it's a 148 scroll...
+COPY ~%folder%/spheres/scrolls/D1148.itm~ ~override/B_FRST1.itm~   //cuz it's a 148 scroll...
         SAY NAME1 @900009016
         SAY NAME2 @51707
 	SAY DESC @51708
@@ -976,7 +976,7 @@ OUTER_SET $aoe_spell(~CLERIC_FROST_FINGERS~)=1
 //3d animation
 //sounds
 //Spell itself
-ADD_SPELL ~%mod_folder%/spheres/spells/Destruction/b_pr101.spl~ 1 1 ~CLERIC_HAND_OF_CARNAGE~ //
+ADD_SPELL ~%folder%/spheres/spells/Destruction/b_pr101.spl~ 1 1 ~CLERIC_HAND_OF_CARNAGE~ //
 	SAY NAME1 @50401
 	SAY NAME2 @50401
 	SAY UNIDENTIFIED_DESC @50402
@@ -987,7 +987,7 @@ LAF RES_NUM_OF_SPELL_NAME
   RET spell_res
 END
 //effs
-COPY ~%mod_folder%/spheres/spells/Destruction/b_pr101.eff~ ~override/%spell_res%B.eff~
+COPY ~%folder%/spheres/spells/Destruction/b_pr101.eff~ ~override/%spell_res%B.eff~
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_EFFECT
       INT_VAR match_opcode = 248            //
@@ -995,16 +995,16 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   END      //
 //add icons and projectile
   LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/Destruction/b_c101a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/Destruction/b_c101b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/Destruction/b_c101c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/Destruction/b_c101a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/Destruction/b_c101b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/Destruction/b_c101c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 //Portrait Icons
 //Icon itself
-COPY ~%mod_folder%/spheres/spells/Destruction/B_SMITE.bam~ ~override~
+COPY ~%folder%/spheres/spells/Destruction/B_SMITE.bam~ ~override~
  SET strref = RESOLVE_STR_REF(@50401)
 
 //Thanks kjeron and argent77!!!
@@ -1036,7 +1036,7 @@ END
 //ALso ADD TO IWDEE STORES/Creatures
 
 //Copy over the scroll:
-COPY ~%mod_folder%/spheres/scrolls/C1146.itm~ ~override/B_CARN.itm~   //cuz it's a 146 scroll...
+COPY ~%folder%/spheres/scrolls/C1146.itm~ ~override/B_CARN.itm~   //cuz it's a 146 scroll...
         SAY NAME1 @900009016
         SAY NAME2 @50401
 	SAY DESC @50402
@@ -1102,7 +1102,7 @@ END
 //3d animation
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/priest_1/B_C107.spl~ 1 1 ~CLERIC_MAGIC_WEAPON~ //
+ADD_SPELL ~%folder%/data/new_spells/priest_1/B_C107.spl~ 1 1 ~CLERIC_MAGIC_WEAPON~ //
         SAY NAME1 @53025
         SAY NAME2 @53025
         SAY UNIDENTIFIED_DESC @53026
@@ -1126,9 +1126,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   END      //
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/animal/b_c102a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/animal/b_c102b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/animal/b_c102c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -1170,7 +1170,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //The spell
-ADD_SPELL ~%mod_folder%/data/new_spells/priest_2/B_PL101.spl~ 1 2 ~CLERIC_CASTIGATE~ //
+ADD_SPELL ~%folder%/data/new_spells/priest_2/B_PL101.spl~ 1 2 ~CLERIC_CASTIGATE~ //
           SAY NAME1 @53031
           SAY NAME2 @53031
           SAY UNIDENTIFIED_DESC @53032
@@ -1213,11 +1213,11 @@ LAF ADD_ICONS
             sod_store     = 1       //place a scroll or two in ...some SOD store  (if present--maybe sod)
             sod_store_no  = 1       //Number of scrolls sold at ...some SOD store (default 1)
     STR_VAR spell_name    = EVAL ~%spell_res%~ //
-            pathA         = ~%mod_folder%/data/icons/priest_1/B_PL101A.bam~
-            pathB         = ~%mod_folder%/data/icons/priest_1/B_PL101b.bam~
-            pathC         = ~%mod_folder%/data/icons/priest_1/B_PL101c.bam~
-            pathP         = ~%mod_folder%/data/port_icons/priest_1/B_PL101P.bam~
-            scroll_path   = ~%mod_folder%/data/iwd_spells/wizard_2/SPWI223A.itm~   //blank scroll
+            pathA         = ~%folder%/data/icons/priest_1/B_PL101A.bam~
+            pathB         = ~%folder%/data/icons/priest_1/B_PL101b.bam~
+            pathC         = ~%folder%/data/icons/priest_1/B_PL101c.bam~
+            pathP         = ~%folder%/data/port_icons/priest_1/B_PL101P.bam~
+            scroll_path   = ~%folder%/data/iwd_spells/wizard_2/SPWI223A.itm~   //blank scroll
     RET    port_icon
            scroll_name
            iconA
@@ -1226,11 +1226,11 @@ LAF ADD_ICONS
            iconP
 END
 
-INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/2nd_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/emotion_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/fear_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/command_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/2nd_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/blood_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/emotion_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/fear_list.tpa~
 
 
 
@@ -1241,7 +1241,7 @@ INCLUDE ~%mod_folder%/lib/spell_lists/fear_list.tpa~
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //The spell
-ADD_SPELL ~%mod_folder%/data/new_spells/priest_2/b_p201.spl~ 1 2 ~CLERIC_ENTHRALL~ //
+ADD_SPELL ~%folder%/data/new_spells/priest_2/b_p201.spl~ 1 2 ~CLERIC_ENTHRALL~ //
           SAY NAME1 @50806
           SAY NAME2 @50806
           SAY UNIDENTIFIED_DESC @50807
@@ -1256,26 +1256,26 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR match_opcode = 76 opcode = 139 parameter1 = RESOLVE_STR_REF (@50808) END  //Notification: Enthralled
   LPF CLONE_EFFECT INT_VAR match_opcode = 324 parameter2 = 27 STR_VAR resource = EVAL ~%spell_res%~ END  //no golem
 
-COPY ~%mod_folder%/data/new_spells/priest_2/b_p201a.spl~ ~override/%spell_res%A.spl~   //Notification: No longer Enthralled
+COPY ~%folder%/data/new_spells/priest_2/b_p201a.spl~ ~override/%spell_res%A.spl~   //Notification: No longer Enthralled
           SAY NAME1 @50809
           SAY NAME2 @50809
   LPF ALTER_EFFECT INT_VAR match_opcode = 321 STR_VAR resource = EVAL ~%spell_res%~ END  //
 /*
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR projectile = %IDPRO217% STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/data/iwd_spells/wizard_2/SPWI204a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/data/iwd_spells/wizard_2/SPWI204b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/data/iwd_spells/wizard_2/SPWI204c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 */
   //PROTECTION FROM COMMAND?
-INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/2nd_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/emotion_list.tpa~
-//INCLUDE ~%mod_folder%/lib/spell_lists/emo_disp_list.tpa~  //What is this?
+INCLUDE ~%folder%/lib/spell_lists/command_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/2nd_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/blood_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/emotion_list.tpa~
+//INCLUDE ~%folder%/lib/spell_lists/emo_disp_list.tpa~  //What is this?
 
 //FnP: Thought/charm...there are a lot of those...
 
@@ -1340,10 +1340,10 @@ END */
 //animations
 //3d animation
 //sounds
-COPY ~%mod_folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
+COPY ~%folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/spheres/spells/charm/b_c201.spl~ 1 2 ~CLERIC_FORBID~ //
+ADD_SPELL ~%folder%/spheres/spells/charm/b_c201.spl~ 1 2 ~CLERIC_FORBID~ //
         SAY NAME1 @50800
         SAY NAME2 @50800
         SAY UNIDENTIFIED_DESC @50801
@@ -1362,14 +1362,14 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/charm/b_c201a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c201b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c201c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/charm/b_c201a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/charm/b_c201b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/charm/b_c201c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //PROTECTION FROM COMMAND?
-INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/command_list.tpa~
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1387,60 +1387,60 @@ INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
 //sounds
 //itms
 //blades
-COPY ~%mod_folder%/spheres/spells/water/moonbla.bam~ ~override~   //bam
-COPY ~%mod_folder%/spheres/spells/water/b_iceb1.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/moonbla.bam~ ~override~   //bam
+COPY ~%folder%/spheres/spells/water/b_iceb1.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51710
 	    SAY DESC @51710
-COPY ~%mod_folder%/spheres/spells/water/b_iceb2.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/b_iceb2.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51711
 	    SAY DESC @51711
-COPY ~%mod_folder%/spheres/spells/water/b_iceb3.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/b_iceb3.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51712
 	    SAY DESC @51712
-COPY ~%mod_folder%/spheres/spells/water/b_iceb4.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/b_iceb4.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51713
 	    SAY DESC @51713
-COPY ~%mod_folder%/spheres/spells/water/b_iceb5.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/b_iceb5.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51714
 	    SAY DESC @51714
-COPY ~%mod_folder%/spheres/spells/water/b_iceb6.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/b_iceb6.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51715
 	SAY DESC @51715
-COPY ~%mod_folder%/spheres/spells/water/b_iceb7.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/b_iceb7.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51716
 	SAY DESC @51716
-COPY ~%mod_folder%/spheres/spells/water/b_iceb8.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/b_iceb8.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51717
 	SAY DESC @51717
-COPY ~%mod_folder%/spheres/spells/water/b_iceb9.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/b_iceb9.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51718
 	SAY DESC @51718
-COPY ~%mod_folder%/spheres/spells/water/b_iceb10.itm~ ~override~   //blade
+COPY ~%folder%/spheres/spells/water/b_iceb10.itm~ ~override~   //blade
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51719
 	SAY DESC @51719
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/spheres/spells/water/b_c203.spl~ 1 2 ~CLERIC_ICE_BLADE~ //
+ADD_SPELL ~%folder%/spheres/spells/water/b_c203.spl~ 1 2 ~CLERIC_ICE_BLADE~ //
         SAY NAME1 @51704
         SAY NAME2 @51704
         SAY UNIDENTIFIED_DESC @51705
@@ -1454,14 +1454,14 @@ END
 //add icons and projectile
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/water/b_c203a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/water/b_c203b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/water/b_c203c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/water/b_c203a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/water/b_c203b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/water/b_c203c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 //PROTECTION FROM ICE?  May be necessary
-INCLUDE ~%mod_folder%/lib/spell_lists/ice_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/ice_list.tpa~
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1490,14 +1490,14 @@ COPY_EXISTING ~AROW08.itm~ ~override/B_TEST01.itm~
 //3d animation
 //sounds
 //2da
-COPY ~%mod_folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 1-3
-COPY ~%mod_folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 4-6
-COPY ~%mod_folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 7-9
-COPY ~%mod_folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 10-12
-COPY ~%mod_folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 13+
+COPY ~%folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 1-3
+COPY ~%folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 4-6
+COPY ~%folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 7-9
+COPY ~%folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 10-12
+COPY ~%folder%/data/new_spells/priest_2/B_C211A.2da~ ~override~    //lev 13+
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/priest_2/B_C211.spl~ 1 2 ~CLERIC_MINOR_CREATION~ // won't be selectable at 1st; have to add to clab (ranger lev 8 or 9, whenever they normally get 1st lev spells)
+ADD_SPELL ~%folder%/data/new_spells/priest_2/B_C211.spl~ 1 2 ~CLERIC_MINOR_CREATION~ // won't be selectable at 1st; have to add to clab (ranger lev 8 or 9, whenever they normally get 1st lev spells)
         SAY NAME1 @53033
         SAY NAME2 @53033
         SAY UNIDENTIFIED_DESC @53034
@@ -1508,7 +1508,7 @@ COPY_EXISTING ~SW1H04.itm~ ~override/B_CR001.itm~
       WRITE_LONG 0x0034 0   //price 0
       WRITE_BYTE 0x0042 0   //id lore 0
 //l.swd spells
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_CR001A.SPL~   //Long sword1 spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_CR001A.SPL~   //Long sword1 spl
         SAY NAME1 #2893
         SAY NAME2 #2893
   LPF ALTER_EFFECT
@@ -1516,7 +1516,7 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_CR001A.SPL~
       STR_VAR resource = ~B_CR001~
   END      //
 
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_CR001B.SPL~   //Long sword2 spl
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.SPL~ ~override/B_CR001B.SPL~   //Long sword2 spl
         SAY NAME1 #2893
         SAY NAME2 #2893
   LPF ALTER_EFFECT
@@ -1560,15 +1560,15 @@ END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
 //add icons and projectile
   LPF ALTER_SPELL_HEADER STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101A.bam~ ~override/%spell_res%A.bam~
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101B.bam~ ~override/%spell_res%B.bam~
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.bam~ ~override/%spell_res%C.bam~
+COPY ~%folder%/data/new_spells/ranger_1/B_R101A.bam~ ~override/%spell_res%A.bam~
+COPY ~%folder%/data/new_spells/ranger_1/B_R101B.bam~ ~override/%spell_res%B.bam~
+COPY ~%folder%/data/new_spells/ranger_1/B_R101C.bam~ ~override/%spell_res%C.bam~
 //add bams to spl
 //COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 //Sh. of Entropy immunity list
-//INCLUDE ~%mod_folder%/lib/spell_lists/entropy_list.tpa~
+//INCLUDE ~%folder%/lib/spell_lists/entropy_list.tpa~
 
 //COMPATIBILITY: IN FNP WILL BE ADDED TO WAR SPHERE
 
@@ -1588,11 +1588,11 @@ COPY ~%mod_folder%/data/new_spells/ranger_1/B_R101C.bam~ ~override/%spell_res%C.
 //animations
 //3d animation
 //sounds
-COPY ~%mod_folder%/spheres/spells/death/#EFF_E04.wav~ ~override~ // Already copied over (at least) twice, but just in case...
-COPY ~%mod_folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
+COPY ~%folder%/spheres/spells/death/#EFF_E04.wav~ ~override~ // Already copied over (at least) twice, but just in case...
+COPY ~%folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/spheres/spells/death/b_c202.spl~ 1 2 ~CLERIC_PACIFY_DEAD~ //
+ADD_SPELL ~%folder%/spheres/spells/death/b_c202.spl~ 1 2 ~CLERIC_PACIFY_DEAD~ //
         SAY NAME1 @50301
         SAY NAME2 @50301
         SAY UNIDENTIFIED_DESC @50302
@@ -1642,9 +1642,9 @@ END
 //add icons and projectile
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/death/b_c202a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/death/b_c202b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/death/b_c202c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/death/b_c202a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/death/b_c202b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/death/b_c202c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -1664,10 +1664,10 @@ OUTER_SET $aoe_spell(~CLERIC_PACIFY_DEAD~)=1
 //animations
 //3d animation
 //sounds
-COPY ~%mod_folder%/spheres/spells/Destruction/EFF_E05.wav~ ~override~ //
+COPY ~%folder%/spheres/spells/Destruction/EFF_E05.wav~ ~override~ //
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/spheres/spells/Destruction/b_pr201.spl~ 1 2 ~CLERIC_SHATTER~ //
+ADD_SPELL ~%folder%/spheres/spells/Destruction/b_pr201.spl~ 1 2 ~CLERIC_SHATTER~ //
         SAY NAME1 @50408
         SAY NAME2 @50408
         SAY UNIDENTIFIED_DESC @50409
@@ -1678,18 +1678,18 @@ LAF RES_NUM_OF_SPELL_NAME
   RET spell_res
 END
 //sec spells
-COPY ~%mod_folder%/spheres/spells/Destruction/b_pr201A.spl~ ~override/%spell_res%A.spl~ // Shatter 2nd
+COPY ~%folder%/spheres/spells/Destruction/b_pr201A.spl~ ~override/%spell_res%A.spl~ // Shatter 2nd
   LPF ALTER_EFFECT INT_VAR match_opcode = 177 STR_VAR match_resource = EVAL  ~B_PR201A~ resource =  EVAL  ~%spell_res%A~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 177 STR_VAR match_resource = EVAL  ~B_PR201C~ resource =  EVAL  ~%spell_res%C~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 177 STR_VAR match_resource = EVAL  ~B_PR201D~ resource =  EVAL  ~%spell_res%D~ END
-COPY ~%mod_folder%/spheres/spells/Destruction/b_pr201B.spl~ ~override/%spell_res%B.spl~ // Shatter   3rd
+COPY ~%folder%/spheres/spells/Destruction/b_pr201B.spl~ ~override/%spell_res%B.spl~ // Shatter   3rd
   LPF ALTER_EFFECT INT_VAR match_opcode = 177 STR_VAR match_resource = EVAL  ~B_PR201A~ resource =  EVAL  ~%spell_res%A~ END
   LPF ALTER_EFFECT INT_VAR match_opcode = 177 STR_VAR match_resource = EVAL  ~B_PR201C~ resource =  EVAL  ~%spell_res%C~ END
-COPY ~%mod_folder%/spheres/spells/Destruction/b_pr201A.eff~ ~override/%spell_res%A.eff~ // Shatter  x dam golem
-COPY ~%mod_folder%/spheres/spells/Destruction/b_pr201B.eff~ ~override/%spell_res%B.eff~ // Shatter  cast 2
+COPY ~%folder%/spheres/spells/Destruction/b_pr201A.eff~ ~override/%spell_res%A.eff~ // Shatter  x dam golem
+COPY ~%folder%/spheres/spells/Destruction/b_pr201B.eff~ ~override/%spell_res%B.eff~ // Shatter  cast 2
   WRITE_EVALUATED_ASCII 0x0030 ~%spell_res%A~
-COPY ~%mod_folder%/spheres/spells/Destruction/b_pr201C.eff~ ~override/%spell_res%C.eff~ // Shatter  x dam
-COPY ~%mod_folder%/spheres/spells/Destruction/b_pr201D.eff~ ~override/%spell_res%D.eff~ // Shatter  cast 3
+COPY ~%folder%/spheres/spells/Destruction/b_pr201C.eff~ ~override/%spell_res%C.eff~ // Shatter  x dam
+COPY ~%folder%/spheres/spells/Destruction/b_pr201D.eff~ ~override/%spell_res%D.eff~ // Shatter  cast 3
   WRITE_EVALUATED_ASCII 0x0030 ~%spell_res%B~
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_EFFECT INT_VAR match_opcode = 177 STR_VAR match_resource = ~B_PR201A~ resource =  EVAL  ~%spell_res%A~ END
@@ -1699,9 +1699,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/Destruction/B_C204a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/Destruction/B_C204b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/Destruction/B_C204c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/Destruction/B_C204a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/Destruction/B_C204b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/Destruction/B_C204c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -1725,10 +1725,10 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 //3d animation
 //sounds
-COPY ~%mod_folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
+COPY ~%folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/spheres/spells/earth/b_pr301.spl~ 1 3 ~CLERIC_STONE_FIST~ //
+ADD_SPELL ~%folder%/spheres/spells/earth/b_pr301.spl~ 1 3 ~CLERIC_STONE_FIST~ //
         SAY NAME1 @51501
         SAY NAME2 @51501
         SAY UNIDENTIFIED_DESC @51502
@@ -1745,7 +1745,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
       STR_VAR resource = EVAL ~%spell_res%~
      END
 //itm
-COPY ~%mod_folder%/spheres/spells/earth/b_pr301.itm~ ~override/%spell_res%.itm~ // Actual Fist
+COPY ~%folder%/spheres/spells/earth/b_pr301.itm~ ~override/%spell_res%.itm~ // Actual Fist
         SAY NAME1 @51501
         SAY NAME2 @51501
         SAY UNIDENTIFIED_DESC @51504
@@ -1754,9 +1754,9 @@ COPY ~%mod_folder%/spheres/spells/earth/b_pr301.itm~ ~override/%spell_res%.itm~ 
 //add icons and projectile
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/earth/b_c303a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/earth/b_c303b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/earth/b_c303c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/earth/b_c303a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/earth/b_c303b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/earth/b_c303c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -1772,12 +1772,12 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //VVC
 //bam
 //animations
-COPY ~%mod_folder%/data/new_spells/priest_2/dppr221.bam~ ~override~ //
+COPY ~%folder%/data/new_spells/priest_2/dppr221.bam~ ~override~ //
 //3d animation
 //sounds
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/priest_2/DPPR221.spl~ 1 2 ~CLERIC_WATERY_FIST~ //
+ADD_SPELL ~%folder%/data/new_spells/priest_2/DPPR221.spl~ 1 2 ~CLERIC_WATERY_FIST~ //
      SAY NAME1 @51722
      SAY NAME2 @51722
      SAY UNIDENTIFIED_DESC @51723
@@ -1802,13 +1802,13 @@ ADD_SPELL ~%mod_folder%/data/new_spells/priest_2/DPPR221.spl~ 1 2 ~CLERIC_WATERY
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //create portrait icon
-COMPILE ~%mod_folder%/data/new_spells/ranger_1/B_CAMO.baf~
+COMPILE ~%folder%/data/new_spells/ranger_1/B_CAMO.baf~
 //cre
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_CAMO.cre~ ~override~
+COPY ~%folder%/data/new_spells/ranger_1/B_CAMO.cre~ ~override~
 //itm
-COPY ~%mod_folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
+COPY ~%folder%/data/new_spells/ranger_1/B_INVIS.itm~ ~override~
 
-ADD_SPELL ~%mod_folder%/spheres/spells/shadow/b_c302.spl~ 1 3 ~CLERIC_CLOAK_DARKNESS~ //
+ADD_SPELL ~%folder%/spheres/spells/shadow/b_c302.spl~ 1 3 ~CLERIC_CLOAK_DARKNESS~ //
         SAY NAME1 @52003
         SAY NAME2 @52003
         SAY UNIDENTIFIED_DESC @52004
@@ -1823,9 +1823,9 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   END      //
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/shadow/B_C302a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/shadow/B_C302b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/shadow/B_C302c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/shadow/B_C302a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/shadow/B_C302b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/shadow/B_C302c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -1891,7 +1891,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~   //duration: 1 round to 5 rounds
    SAY_EVALUATED 0x50 ~%new_desc%~
    END  //
 //PROTECTION FROM COMMAND?
-INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/command_list.tpa~
 
 //FnP: Thought/Charm
 
@@ -1909,7 +1909,7 @@ INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
 //sounds
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/priest_3/B_P302.spl~ 1 3 ~CLERIC_FERAL_INSTINCT~ //
+ADD_SPELL ~%folder%/data/new_spells/priest_3/B_P302.spl~ 1 3 ~CLERIC_FERAL_INSTINCT~ //
         SAY NAME1 @50819
         SAY NAME2 @50819
         SAY UNIDENTIFIED_DESC @50820
@@ -1945,17 +1945,17 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 /*
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/charm/b_c301a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c301b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c301c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/charm/b_c301a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/charm/b_c301b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/charm/b_c301c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 */
 // immunity list
-INCLUDE ~%mod_folder%/lib/spell_lists/3rd_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/emotion_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/fear_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/3rd_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/emotion_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/fear_list.tpa~
 
 //Sphere: Animal
 
@@ -1973,7 +1973,7 @@ INCLUDE ~%mod_folder%/lib/spell_lists/fear_list.tpa~
 //sounds
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/spheres/spells/charm/b_c301.spl~ 1 3 ~CLERIC_MURDEROUS_COMMAND~ //
+ADD_SPELL ~%folder%/spheres/spells/charm/b_c301.spl~ 1 3 ~CLERIC_MURDEROUS_COMMAND~ //
         SAY NAME1 @50803
         SAY NAME2 @50803
         SAY UNIDENTIFIED_DESC @50804
@@ -2008,18 +2008,18 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 //add icons and projectile
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/charm/b_c301a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c301b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c301c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/charm/b_c301a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/charm/b_c301b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/charm/b_c301c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
 
 // immunity list
-INCLUDE ~%mod_folder%/lib/spell_lists/3rd_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/command_list.tpa~
-INCLUDE ~%mod_folder%/lib/spell_lists/emotion_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/3rd_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/blood_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/command_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/emotion_list.tpa~
 
 //FnP: THought/Charm
 
@@ -2030,15 +2030,15 @@ INCLUDE ~%mod_folder%/lib/spell_lists/emotion_list.tpa~
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //sec spells
-COPY ~%mod_folder%/data/new_spells/priest_3/b_trp01.spl~ ~override~
-COPY ~%mod_folder%/data/new_spells/priest_3/b_trp02.spl~ ~override~
-COPY ~%mod_folder%/data/new_spells/priest_3/b_trp03.spl~ ~override~
-COPY ~%mod_folder%/data/new_spells/priest_3/b_trp04.spl~ ~override~
-COPY ~%mod_folder%/data/new_spells/priest_3/b_trp05.spl~ ~override~
-COPY ~%mod_folder%/data/new_spells/priest_3/b_trp06.spl~ ~override~
+COPY ~%folder%/data/new_spells/priest_3/b_trp01.spl~ ~override~
+COPY ~%folder%/data/new_spells/priest_3/b_trp02.spl~ ~override~
+COPY ~%folder%/data/new_spells/priest_3/b_trp03.spl~ ~override~
+COPY ~%folder%/data/new_spells/priest_3/b_trp04.spl~ ~override~
+COPY ~%folder%/data/new_spells/priest_3/b_trp05.spl~ ~override~
+COPY ~%folder%/data/new_spells/priest_3/b_trp06.spl~ ~override~
 //effs
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/priest_3/b_dr301.spl~ 1 3 ~CLERIC_SNARE~ //
+ADD_SPELL ~%folder%/data/new_spells/priest_3/b_dr301.spl~ 1 3 ~CLERIC_SNARE~ //
         SAY NAME1 @51420
         SAY NAME2 @51420
         SAY UNIDENTIFIED_DESC @51421
@@ -2051,9 +2051,9 @@ END
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
-COPY ~%mod_folder%/data/new_spells/priest_3/b_dr301a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/data/new_spells/priest_3/b_dr301b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/data/new_spells/priest_3/b_dr301c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/data/new_spells/priest_3/b_dr301a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/data/new_spells/priest_3/b_dr301b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/data/new_spells/priest_3/b_dr301c.bam~ ~override/%spell_res%c.bam~
 
 //////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
@@ -2069,10 +2069,10 @@ COPY ~%mod_folder%/data/new_spells/priest_3/b_dr301c.bam~ ~override/%spell_res%c
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-COPY ~%mod_folder%/spheres/spells/air/b_elect1.bam~ ~override~ //
-COPY ~%mod_folder%/spheres/spells/air/b_storm1.vvc~ ~override~ //
-ADD_PROJECTILE ~%mod_folder%/spheres/spells/air/b_storm1.pro~   //pro
-ADD_SPELL ~%mod_folder%/spheres/spells/air/b_c401.spl~ 1 4 ~CLERIC_STORMWALL~ //
+COPY ~%folder%/spheres/spells/air/b_elect1.bam~ ~override~ //
+COPY ~%folder%/spheres/spells/air/b_storm1.vvc~ ~override~ //
+ADD_PROJECTILE ~%folder%/spheres/spells/air/b_storm1.pro~   //pro
+ADD_SPELL ~%folder%/spheres/spells/air/b_c401.spl~ 1 4 ~CLERIC_STORMWALL~ //
         SAY NAME1 @51601
         SAY NAME2 @51601
         SAY UNIDENTIFIED_DESC @51602
@@ -2085,7 +2085,7 @@ LAF RES_NUM_OF_SPELL_NAME
   RET spell_res
 END
 //sub spell
-COPY ~%mod_folder%/spheres/spells/air/b_c401a.spl~ ~override/%spell_res%A.spl~ //sub-spell
+COPY ~%folder%/spheres/spells/air/b_c401a.spl~ ~override/%spell_res%A.spl~ //sub-spell
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_EFFECT
       INT_VAR match_opcode = 326            //
@@ -2116,13 +2116,13 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 
 //________________________________________________________________
 //icons
-//COPY ~%mod_folder%/spheres/spells/dread/b_c501b.bam~ ~override~ // Misfire   MAKE A SCROLL ICON
-//COPY ~%mod_folder%/spheres/spells/dread/b_c501c.bam~ ~override~ // Misfire
+//COPY ~%folder%/spheres/spells/dread/b_c501b.bam~ ~override~ // Misfire   MAKE A SCROLL ICON
+//COPY ~%folder%/spheres/spells/dread/b_c501c.bam~ ~override~ // Misfire
 //spl etc
-COPY ~%mod_folder%/spheres/spells/dread/b_c501.eff~ ~override~ // Misfire
+COPY ~%folder%/spheres/spells/dread/b_c501.eff~ ~override~ // Misfire
   SAY 0x1c @50901     //Misfire
 
-ADD_SPELL ~%mod_folder%/spheres/spells/dread/b_c501.spl~ 1 5 ~CLERIC_MISFIRE~ //
+ADD_SPELL ~%folder%/spheres/spells/dread/b_c501.spl~ 1 5 ~CLERIC_MISFIRE~ //
         SAY NAME1 @50901
         SAY NAME2 @50901
         SAY UNIDENTIFIED_DESC @50902
@@ -2146,7 +2146,7 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //not added in any equal way.  Just here to ensure B_Spells and FnP have same code base (sanity, and all)
 //special case: __________________________________________________________
 // Is this a spell?
-COPY ~%mod_folder%/spheres/spells/shadow/B_SSTEP.spl~ ~override~ // Shadowstep
+COPY ~%folder%/spheres/spells/shadow/B_SSTEP.spl~ ~override~ // Shadowstep
         SAY NAME1 @52001
         SAY NAME2 @52001
         SAY UNIDENTIFIED_DESC @52002
@@ -2162,7 +2162,7 @@ COPY ~%mod_folder%/spheres/spells/shadow/B_SSTEP.spl~ ~override~ // Shadowstep
 
 
 //__________________________________________________________________________________
-ADD_SPELL ~%mod_folder%/spheres/spells/affliction/b_Pr501.spl~ 1 5 ~CLERIC_WAVES_OF_AGONY~ //
+ADD_SPELL ~%folder%/spheres/spells/affliction/b_Pr501.spl~ 1 5 ~CLERIC_WAVES_OF_AGONY~ //
         SAY NAME1 @51201
         SAY NAME2 @51201
         SAY UNIDENTIFIED_DESC @51202
@@ -2175,18 +2175,18 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%A~   END      // change spl ref
   LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR match_resource = ~B_ILM04~ resource = EVAL ~%spell_res%~   END      // change eff ref
 
-COPY ~%mod_folder%/spheres/spells/affliction/b_ILM04a.spl~ ~override/%spell_res%a.spl~ // Wave of Agony spla
+COPY ~%folder%/spheres/spells/affliction/b_ILM04a.spl~ ~override/%spell_res%a.spl~ // Wave of Agony spla
   LPF ALTER_EFFECT INT_VAR match_opcode = 146  STR_VAR resource = EVAL ~%spell_res%B~   END      // spell ref
   LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR match_resource = ~B_ILM04~ resource = EVAL ~%spell_res%~   END      // eff ref
 
-COPY ~%mod_folder%/spheres/spells/affliction/b_ILM04b.spl~ ~override/%spell_res%b.spl~ // etc.
+COPY ~%folder%/spheres/spells/affliction/b_ILM04b.spl~ ~override/%spell_res%b.spl~ // etc.
   LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR match_resource = ~B_ILM04~ resource = EVAL ~%spell_res%~   END      // eff ref
 
-COPY ~%mod_folder%/spheres/spells/affliction/b_ILM04.eff~ ~override/%spell_res%.eff~ //
+COPY ~%folder%/spheres/spells/affliction/b_ILM04.eff~ ~override/%spell_res%.eff~ //
   SAY 0x1c @51203 //Wracked in Agony
 //Anything protect from pain?  Blood rage at least should
 //bloodrage immunity list
-INCLUDE ~%mod_folder%/lib/spell_lists/blood_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/blood_list.tpa~
 //SR NWN spell deflection
 OUTER_SET $aoe_spell(~CLERIC_WAVES_OF_AGONY~)=1
 
@@ -2206,7 +2206,7 @@ OUTER_SET $aoe_spell(~CLERIC_WAVES_OF_AGONY~)=1
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ADD_SPELL ~%mod_folder%/spheres/spells/plant/b_c601.spl~ 1 6 ~CLERIC_ASSASSIN_VINES~ //
+ADD_SPELL ~%folder%/spheres/spells/plant/b_c601.spl~ 1 6 ~CLERIC_ASSASSIN_VINES~ //
         SAY NAME1 @51404
         SAY NAME2 @51404
         SAY UNIDENTIFIED_DESC @51405
@@ -2234,28 +2234,28 @@ OUTER_SET $aoe_spell(~CLERIC_ASSASSIN_VINES~)=1
 //Projectile
 //VVC
 //cre
- COPY ~%mod_folder%/spheres/spells/water/b_wele1.cre~ ~override~ // 12 HD elemental
+ COPY ~%folder%/spheres/spells/water/b_wele1.cre~ ~override~ // 12 HD elemental
         SAY NAME1 @51720
         SAY NAME2 @51720
- COPY ~%mod_folder%/spheres/spells/water/b_wele2.cre~ ~override~ // 16 HD elemental
+ COPY ~%folder%/spheres/spells/water/b_wele2.cre~ ~override~ // 16 HD elemental
         SAY NAME1 @51720
         SAY NAME2 @51720
- COPY ~%mod_folder%/spheres/spells/water/b_wele3.cre~ ~override~ // 24 HD (greater) elemental
+ COPY ~%folder%/spheres/spells/water/b_wele3.cre~ ~override~ // 24 HD (greater) elemental
         SAY NAME1 @51721
         SAY NAME2 @51721
 //itm
- COPY ~%mod_folder%/spheres/spells/water/b_wele1.itm~ ~override~ // Water Elemental fist
+ COPY ~%folder%/spheres/spells/water/b_wele1.itm~ ~override~ // Water Elemental fist
 //bam
- COPY ~%mod_folder%/spheres/spells/water/iwatere.bam~ ~override~ // fist bam
+ COPY ~%folder%/spheres/spells/water/iwatere.bam~ ~override~ // fist bam
 //animations -check SoD for cre animations...
- COPY ~%mod_folder%/spheres/spells/water/anim~ ~override~ // water anims
+ COPY ~%folder%/spheres/spells/water/anim~ ~override~ // water anims
 //3d animation
 //sounds   Copy sound #EFF_M08
-//COPY ~%mod_folder%/data/iwd_spells/wizard_2/TRA_18.WAV~ ~override~   //
+//COPY ~%folder%/data/iwd_spells/wizard_2/TRA_18.WAV~ ~override~   //
 //effs
- COPY ~%mod_folder%/spheres/spells/water/B_PRWA1.eff~ ~override~ // Summon Water Elemental
- COPY ~%mod_folder%/spheres/spells/water/B_PRWA2.eff~ ~override~ // Summon Water Elemental
- COPY ~%mod_folder%/spheres/spells/water/B_PRWA3.eff~ ~override~ // Summon Water Elemental
+ COPY ~%folder%/spheres/spells/water/B_PRWA1.eff~ ~override~ // Summon Water Elemental
+ COPY ~%folder%/spheres/spells/water/B_PRWA2.eff~ ~override~ // Summon Water Elemental
+ COPY ~%folder%/spheres/spells/water/B_PRWA3.eff~ ~override~ // Summon Water Elemental
 //Spell itself
 COPY_EXISTING ~SPPR605.spl~ ~override/b_pr602.spl~  // Start with C Fire Elemental
                   LPF ALTER_EFFECT INT_VAR match_opcode = 177  STR_VAR resource = ~B_PRWA1~ match_resource = ~SPFIR1P~  END //
@@ -2277,9 +2277,9 @@ END
 /* NEED TO CREATE UNIQUE SPELL ICON
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/charm/b_c201a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c201b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c201c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/charm/b_c201a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/charm/b_c201b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/charm/b_c201c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -2299,14 +2299,14 @@ COPY_EXISTING ~%spell_res%.spl~ ~override~
 //animations
 //3d animation
 //cre
-COPY ~%mod_folder%/data/new_spells/priest_6/SMOUNDSU.cre~ ~override~   //adds resistances (which, apparently, are only in IWDEE???)
+COPY ~%folder%/data/new_spells/priest_6/SMOUNDSU.cre~ ~override~   //adds resistances (which, apparently, are only in IWDEE???)
         SAY NAME1 @73700002
         SAY NAME2 @73700002
 //sounds
-COPY ~%mod_folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
+COPY ~%folder%/spheres/spells/death/#EFF_P04.wav~ ~override~ //
 //effs
 //itm
-COPY ~%mod_folder%/data/new_spells/priest_6/B4-32M3.itm~ ~override~   //
+COPY ~%folder%/data/new_spells/priest_6/B4-32M3.itm~ ~override~   //
     LPF cd_apply_batch STR_VAR array_name = cd_immunity_free_action_arrays END
     LPF cd_apply_batch STR_VAR array_name = cd_immunity_entangle_arrays END    //I've added at least one entry so far
     LPF cd_apply_batch STR_VAR array_name = cd_immunity_slow_arrays END
@@ -2314,12 +2314,12 @@ COPY ~%mod_folder%/data/new_spells/priest_6/B4-32M3.itm~ ~override~   //
     LPF cd_apply_batch STR_VAR array_name = cd_immunity_hold_arrays END  //I have at least one hold spell that needs to be added...(maybe not this way)
     LPF cd_apply_batch STR_VAR array_name = cd_immunity_web_arrays END
 //itm bam
-COPY ~%mod_folder%/data/new_spells/priest_6/ISHAPE07.BAM~ ~override~   //
+COPY ~%folder%/data/new_spells/priest_6/ISHAPE07.BAM~ ~override~   //
 //eff for text notification
-COPY ~%mod_folder%/data/new_spells/priest_6/B4-32M3.eff~ ~override~   //
+COPY ~%folder%/data/new_spells/priest_6/B4-32M3.eff~ ~override~   //
   SAY 0x1c @73700003   //Entangled Notification
 //Spell itself
-ADD_SPELL ~%mod_folder%/data/new_spells/priest_6/b_Pr601.spl~ 1 6 ~CLERIC_NATURES_WRATH~ //
+ADD_SPELL ~%folder%/data/new_spells/priest_6/b_Pr601.spl~ 1 6 ~CLERIC_NATURES_WRATH~ //
         SAY NAME1 @51401
         SAY NAME2 @51401
         SAY UNIDENTIFIED_DESC @51402
@@ -2345,9 +2345,9 @@ LPF cd_apply_batch STR_VAR array_name = cd_spell_transformation_arrays END
 /* NEED TO CREATE UNIQUE SPELL ICON
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   LPF ALTER_SPELL_HEADER INT_VAR STR_VAR icon = EVAL  ~%spell_res%B~ END
-COPY ~%mod_folder%/spheres/spells/charm/b_c201a.bam~ ~override/%spell_res%a.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c201b.bam~ ~override/%spell_res%b.bam~
-COPY ~%mod_folder%/spheres/spells/charm/b_c201c.bam~ ~override/%spell_res%c.bam~
+COPY ~%folder%/spheres/spells/charm/b_c201a.bam~ ~override/%spell_res%a.bam~
+COPY ~%folder%/spheres/spells/charm/b_c201b.bam~ ~override/%spell_res%b.bam~
+COPY ~%folder%/spheres/spells/charm/b_c201c.bam~ ~override/%spell_res%c.bam~
 //add bams to spl
 COPY_EXISTING ~%spell_res%.spl~ ~override~
   WRITE_EVALUATED_ASCII 0x003a ~%spell_res%C~
@@ -2385,7 +2385,7 @@ COPY_EXISTING ~spin124.spl~ ~override~
   LPF CLONE_EFFECT INT_VAR match_opcode = 172 multi_match = 1 STR_VAR resource = EVAL ~%spell_res%~ END
 END
 //finally, polymorph immunity (other possible created spells)
-INCLUDE ~%mod_folder%/lib/spell_lists/poly_list.tpa~
+INCLUDE ~%folder%/lib/spell_lists/poly_list.tpa~
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
