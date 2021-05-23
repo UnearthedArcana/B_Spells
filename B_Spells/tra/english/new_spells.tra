@@ -1635,14 +1635,13 @@ This spell creates a mystical snowball which flies at any target of <PRO_HISHER>
 @68031 = ~Ice Knife
 (Evocation)
 
-Level: 1
+Level: 2
 Range: Visual range of the caster
 Duration: Special
 Casting Time: 2
 Area of Effect: Special
 Saving Throw: Special
-
-This spell fires a dagger of ice at the target. The target suffers 2-8 (2d4) hit points of missile damage. When an ice knife strikes a creature, the knife shatters, releasing a wave of numbing cold. All creatures within a 15-foot radius suffer 2-8 (2d4) hit points of cold damage and become numb for 3 rounds. Numbed creatures have their movement rates reduced by half and their chance to hit reduced by 2. Creatures can save vs. paralyzation for half damage and to avoid the numbed condition.~
+This spell fires a dagger of ice at the target. The target suffers 2d4 hit points of missile damage. When an ice knife strikes a creature, the knife shatters, releasing a wave of numbing cold. All creatures within a 15-foot radius suffer 1d4 hit points of cold damage per 2 levels (max 5d4 at level 10) and become numb for 3 rounds. Numbed creatures have their movement rates reduced by half and their chance to hit reduced by 2. Creatures can save vs. paralyzation for half damage and avoid the numbed condition.~
 
 @68032 = ~Fire Burst~
 @68033 = ~Fire Burst
@@ -1993,6 +1992,20 @@ When this spell is employed, the wizard can command any nonliving ropelike objec
 
 Huge creatures, and creatures with strength scores of 20 or higher are not affected by this spell.~
 
+@68094 = ~Stuck~
+@68095 = ~Stuck
+(Alteration)
+
+Level: 2
+Range: Visual Range of Caster
+Duration: 5 rounds maximum (see below)
+Casting Time: 2
+Area of Effect: 1 Creature
+Saving Throw: Neg
+When this spell is employed, the wizard can command any nonliving ropelike object, including string, yarn, cord, line, rope, or even a cable to enwrap a single creature if they do not make a save vs. breath. Affected creatures cannot move and are effectively held for 1 round. Each additional round, the target gets another save, and if they succeed, then they are free. Otherwise, the creature remains held until they save or until 5 rounds pass.
+
+Huge creatures, and creatures with strength scores of 20 or higher are not affected by this spell.~
+@68096 = ~Slowed Movement~
 
 
 

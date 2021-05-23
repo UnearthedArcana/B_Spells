@@ -78,9 +78,30 @@ TO DO 38: To be remove lists: regen_list,
 
 TO DO 39: ADD_ICONS: incorporate mage vs. priest scrolls (for learning), and add more stores
 
-Version 0.90.23
+Version 0.90.24
+
+- Fixed a few issues with hypnosis, converted it to new icon assignment system
+
+- Moved Ice knife to level 2, and upgraded the spell a bit
+
+- Created numbed port icon for ice knife
+
+- Fixed error w/reprieve
+
+- Created Stuck
+
+2021-05-20
+
+- A few updates to exterminate
+
+- Removed Fire Burst spell (unoriginal) 
+
 
 2021-05-15
+
+- Found a few more instances of mod_folder in the ini
+
+Version 0.90.23
 
 - Added option for accelerate metabolism, animate skeleton nec exclusivity
 
@@ -101,7 +122,6 @@ Version 0.90.23
 2021-02-27
 
 - Audible glamer revision (for 1st lev spells)
-
 
 
 2021-02-20
