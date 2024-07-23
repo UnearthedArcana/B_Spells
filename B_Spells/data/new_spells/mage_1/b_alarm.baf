@@ -1,13 +1,4 @@
 IF
-	True()
-THEN
-	RESPONSE #100
-	MoveToObject(LastSummonerOf(Myself))
-	Continue()
-END
-
-
-IF
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
