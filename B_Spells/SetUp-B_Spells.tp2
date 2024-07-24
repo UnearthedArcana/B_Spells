@@ -503,7 +503,7 @@ COPY ~%folder%/data/arcane_crafting/B_BPTN00.bam~ ~override~  //   blank page la
 COPY ~%folder%/data/arcane_crafting/B_PPTN01.bam~ ~override~  //   non-blank page small - potions
 
 // CONTINUE
-/*
+
 //Potion recepe
 COPY ~%folder%/data/arcane_crafting/B_PPTN00.bam~ ~override~  //   really need a second frame, here...
 COPY ~%folder%/data/arcane_crafting/B_PPTNA.bam~ ~override~  //   kinda ugly (need to get rid of green, but I don't want to mess it up...)
