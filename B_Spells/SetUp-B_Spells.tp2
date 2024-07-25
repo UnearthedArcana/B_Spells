@@ -8,6 +8,7 @@ VERSION ~0.90.25~
 ALWAYS
 
         OUTER_SPRINT ~folder~ ~B_Spells~
+        OUTER_SPRINT ~mod_folder~ ~B_Spells~
 
         ACTION_IF ((!FILE_CONTAINS_EVALUATED(~spell.ids~ ~CLERIC_OBSCURING_MIST~)) AND (FILE_EXISTS_IN_GAME ~dvsrv4here.mrk~)) BEGIN
 	   INCLUDE ~B_Spells/lib/add_ids.tpa~
